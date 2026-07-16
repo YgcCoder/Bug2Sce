@@ -1,0 +1,382 @@
+{
+  "case_id": "case_118",
+  "model_name": "claude-sonnet-4-5",
+  "workflow": "phase2_grounded_generation",
+  "status": "completed",
+  "schema_valid": true,
+  "schema_errors": [],
+  "phase1_ready": "uncertain",
+  "num_candidates_requested": 2,
+  "num_candidates_written": 2,
+  "num_pre_valid": 2,
+  "candidate_records": [
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/claude-sonnet-4-5/json/case_118/case_118__cand_001.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/claude-sonnet-4-5/metadata/case_118/case_118__cand_001.metadata.json",
+      "case_id": "case_118",
+      "model_name": "claude-sonnet-4-5",
+      "candidate_index": 1,
+      "candidate_spec": {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Reduce weather intensity to isolate collision trigger from environmental factors",
+        "mutation_intent": "Lower rain, fog, wetness, puddle to test if collision persists under clearer conditions with same route",
+        "expected_oracle": "collision",
+        "modifications": {
+          "weather_delta": {
+            "rain": -15,
+            "fog": -20,
+            "wetness": -20,
+            "puddle": -15
+          },
+          "actor_mutations": [],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": -0.1,
+              "size_scale": 0.9
+            },
+            {
+              "puddle_index": 1,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": -0.15,
+              "size_scale": 0.85
+            },
+            {
+              "puddle_index": 2,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": -0.1,
+              "size_scale": 0.9
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Same spawn and destination as seed",
+          "Weather reduced but still present",
+          "No actors added"
+        ],
+        "post_execution_validation_rules": [
+          "Collision oracle preserved",
+          "Detected objects present before collision",
+          "vehicle_cmd vs vehicle_status mismatch"
+        ],
+        "uncertainty": [
+          "Red-light and lane_invasion labels may conflict",
+          "Fault layer attribution remains unresolved",
+          "Object detection may vary with weather"
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": -15.0,
+          "fog": -20,
+          "wetness": -20,
+          "puddle": -15.0
+        },
+        "actor_mutations": [],
+        "puddle_mutations": [
+          {
+            "puddle_index": 0,
+            "location_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "level_delta": -0.1,
+            "size_scale": 0.9
+          },
+          {
+            "puddle_index": 1,
+            "location_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "level_delta": -0.15,
+            "size_scale": 0.85
+          },
+          {
+            "puddle_index": 2,
+            "location_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "level_delta": -0.1,
+            "size_scale": 0.9
+          }
+        ],
+        "mission_mutation": {
+          "keep_original": true
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": [
+          "no actors in candidate scenario"
+        ]
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_118__claude-sonnet-4-5.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_118__claude-sonnet-4-5.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    },
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/claude-sonnet-4-5/json/case_118/case_118__cand_002.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/claude-sonnet-4-5/metadata/case_118/case_118__cand_002.metadata.json",
+      "case_id": "case_118",
+      "model_name": "claude-sonnet-4-5",
+      "candidate_index": 2,
+      "candidate_spec": {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Shift spawn position slightly to test route-dependent collision trigger",
+        "mutation_intent": "Offset spawn forward to alter initial trajectory and timing while preserving destination and weather conditions",
+        "expected_oracle": "collision",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": false,
+            "spawn_offset": {
+              "x": 3.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Spawn offset within 5m forward",
+          "Destination unchanged",
+          "Weather and puddles unchanged"
+        ],
+        "post_execution_validation_rules": [
+          "Collision oracle preserved",
+          "Final waypoints available and not blocked",
+          "Red-light violation label preserved"
+        ],
+        "uncertainty": [
+          "Spawn offset may alter traffic light timing",
+          "Detected object count may vary",
+          "Controller mismatch may not reproduce"
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 0.0,
+          "fog": 0.0,
+          "wetness": 0.0,
+          "puddle": 0.0
+        },
+        "actor_mutations": [],
+        "puddle_mutations": [],
+        "mission_mutation": {
+          "spawn_offset": {
+            "x": 3.0,
+            "y": 0.0
+          },
+          "destination_offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": [
+          "no actors in candidate scenario"
+        ]
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_118__claude-sonnet-4-5.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_118__claude-sonnet-4-5.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    }
+  ],
+  "seed_artifact_zip": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/claude-sonnet-4-5/seed-artifact/seed-artifact-case_118.zip",
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_prompts/case_118__claude-sonnet-4-5.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_118__claude-sonnet-4-5.json",
+  "prompt_estimated_tokens": 1391,
+  "usage": {
+    "prompt_tokens": 1631,
+    "completion_tokens": 787,
+    "total_tokens": 2418
+  },
+  "raw_response": "```json\n{\n  \"case_id\": \"case_118\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Reduce weather intensity to isolate collision trigger from environmental factors\",\n      \"mutation_intent\": \"Lower rain, fog, wetness, puddle to test if collision persists under clearer conditions with same route\",\n      \"expected_oracle\": \"collision\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": -15, \"fog\": -20, \"wetness\": -20, \"puddle\": -15},\n        \"actor_mutations\": [],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": -0.1, \"size_scale\": 0.9},\n          {\"puddle_index\": 1, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": -0.15, \"size_scale\": 0.85},\n          {\"puddle_index\": 2, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": -0.1, \"size_scale\": 0.9}\n        ],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Same spawn and destination as seed\", \"Weather reduced but still present\", \"No actors added\"],\n      \"post_execution_validation_rules\": [\"Collision oracle preserved\", \"Detected objects present before collision\", \"vehicle_cmd vs vehicle_status mismatch\"],\n      \"uncertainty\": [\"Red-light and lane_invasion labels may conflict\", \"Fault layer attribution remains unresolved\", \"Object detection may vary with weather\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Shift spawn position slightly to test route-dependent collision trigger\",\n      \"mutation_intent\": \"Offset spawn forward to alter initial trajectory and timing while preserving destination and weather conditions\",\n      \"expected_oracle\": \"collision\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": false, \"spawn_offset\": {\"x\": 3.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Spawn offset within 5m forward\", \"Destination unchanged\", \"Weather and puddles unchanged\"],\n      \"post_execution_validation_rules\": [\"Collision oracle preserved\", \"Final waypoints available and not blocked\", \"Red-light violation label preserved\"],\n      \"uncertainty\": [\"Spawn offset may alter traffic light timing\", \"Detected object count may vary\", \"Controller mismatch may not reproduce\"]\n    }\n  ]\n}\n```",
+  "parsed_response": {
+    "case_id": "case_118",
+    "candidate_specs": [
+      {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Reduce weather intensity to isolate collision trigger from environmental factors",
+        "mutation_intent": "Lower rain, fog, wetness, puddle to test if collision persists under clearer conditions with same route",
+        "expected_oracle": "collision",
+        "modifications": {
+          "weather_delta": {
+            "rain": -15,
+            "fog": -20,
+            "wetness": -20,
+            "puddle": -15
+          },
+          "actor_mutations": [],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": -0.1,
+              "size_scale": 0.9
+            },
+            {
+              "puddle_index": 1,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": -0.15,
+              "size_scale": 0.85
+            },
+            {
+              "puddle_index": 2,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": -0.1,
+              "size_scale": 0.9
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Same spawn and destination as seed",
+          "Weather reduced but still present",
+          "No actors added"
+        ],
+        "post_execution_validation_rules": [
+          "Collision oracle preserved",
+          "Detected objects present before collision",
+          "vehicle_cmd vs vehicle_status mismatch"
+        ],
+        "uncertainty": [
+          "Red-light and lane_invasion labels may conflict",
+          "Fault layer attribution remains unresolved",
+          "Object detection may vary with weather"
+        ]
+      },
+      {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Shift spawn position slightly to test route-dependent collision trigger",
+        "mutation_intent": "Offset spawn forward to alter initial trajectory and timing while preserving destination and weather conditions",
+        "expected_oracle": "collision",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": false,
+            "spawn_offset": {
+              "x": 3.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Spawn offset within 5m forward",
+          "Destination unchanged",
+          "Weather and puddles unchanged"
+        ],
+        "post_execution_validation_rules": [
+          "Collision oracle preserved",
+          "Final waypoints available and not blocked",
+          "Red-light violation label preserved"
+        ],
+        "uncertainty": [
+          "Spawn offset may alter traffic light timing",
+          "Detected object count may vary",
+          "Controller mismatch may not reproduce"
+        ]
+      }
+    ]
+  },
+  "raw_api_payload": {
+    "id": "<REDACTED_RESPONSE_ID>",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "```json\n{\n  \"case_id\": \"case_118\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Reduce weather intensity to isolate collision trigger from environmental factors\",\n      \"mutation_intent\": \"Lower rain, fog, wetness, puddle to test if collision persists under clearer conditions with same route\",\n      \"expected_oracle\": \"collision\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": -15, \"fog\": -20, \"wetness\": -20, \"puddle\": -15},\n        \"actor_mutations\": [],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": -0.1, \"size_scale\": 0.9},\n          {\"puddle_index\": 1, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": -0.15, \"size_scale\": 0.85},\n          {\"puddle_index\": 2, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": -0.1, \"size_scale\": 0.9}\n        ],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Same spawn and destination as seed\", \"Weather reduced but still present\", \"No actors added\"],\n      \"post_execution_validation_rules\": [\"Collision oracle preserved\", \"Detected objects present before collision\", \"vehicle_cmd vs vehicle_status mismatch\"],\n      \"uncertainty\": [\"Red-light and lane_invasion labels may conflict\", \"Fault layer attribution remains unresolved\", \"Object detection may vary with weather\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Shift spawn position slightly to test route-dependent collision trigger\",\n      \"mutation_intent\": \"Offset spawn forward to alter initial trajectory and timing while preserving destination and weather conditions\",\n      \"expected_oracle\": \"collision\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": false, \"spawn_offset\": {\"x\": 3.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Spawn offset within 5m forward\", \"Destination unchanged\", \"Weather and puddles unchanged\"],\n      \"post_execution_validation_rules\": [\"Collision oracle preserved\", \"Final waypoints available and not blocked\", \"Red-light violation label preserved\"],\n      \"uncertainty\": [\"Spawn offset may alter traffic light timing\", \"Detected object count may vary\", \"Controller mismatch may not reproduce\"]\n    }\n  ]\n}\n```",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "claude-sonnet-4-5",
+    "object": "chat.completion",
+    "service_tier": null,
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 787,
+      "prompt_tokens": 1631,
+      "total_tokens": 2418,
+      "completion_tokens_details": null,
+      "prompt_tokens_details": null
+    }
+  },
+  "error_message": "",
+  "elapsed_sec": 14.552,
+  "timestamp": "<REDACTED_TIMESTAMP>"
+}

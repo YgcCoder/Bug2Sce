@@ -1,0 +1,405 @@
+{
+  "case_id": "case_156",
+  "model_name": "ark-doubao-seed-2.0-lite-260215",
+  "workflow": "phase2_grounded_generation",
+  "status": "completed",
+  "schema_valid": true,
+  "schema_errors": [],
+  "phase1_ready": "yes",
+  "num_candidates_requested": 2,
+  "num_candidates_written": 2,
+  "num_pre_valid": 2,
+  "candidate_records": [
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-doubao-seed-2.0-lite-260215/json/case_156/case_156__cand_001.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-doubao-seed-2.0-lite-260215/metadata/case_156/case_156__cand_001.metadata.json",
+      "case_id": "case_156",
+      "model_name": "ark-doubao-seed-2.0-lite-260215",
+      "candidate_index": 1,
+      "candidate_spec": {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Slightly increase road wetness and rain intensity, shift the immobile actor closer to ego's planned route",
+        "mutation_intent": "Preserves all root cause constraints: no collision or red light event before stuck, maintains continuous non-empty planned waypoints and all-zero actuation commands during stuck, preserves the stuck failure symptom",
+        "expected_oracle": "stuck",
+        "modifications": {
+          "weather_delta": {
+            "rain": 5,
+            "fog": 0,
+            "wetness": 5,
+            "puddle": 3
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 2.0,
+                "y": -1.5
+              },
+              "speed_delta": 0.0
+            }
+          ],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 1.0,
+                "y": 0.0
+              },
+              "level_delta": 0.1,
+              "size_scale": 1.05
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Confirm no collision or red light event occurs prior to expected stuck state",
+          "Confirm planning will generate continuous non-empty final waypoints during the test window"
+        ],
+        "post_execution_validation_rules": [
+          "Confirm ego has near-zero displacement and zero velocity for at least 60 seconds",
+          "Confirm all vehicle actuation commands are zero during the stuck window"
+        ],
+        "uncertainty": [
+          "No available evidence explains why zero actuation commands are generated despite available final waypoints",
+          "Module-level failure attribution cannot be confirmed"
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 5.0,
+          "fog": 0.0,
+          "wetness": 5.0,
+          "puddle": 3.0
+        },
+        "actor_mutations": [
+          {
+            "actor_index": 0,
+            "position_offset": {
+              "x": 2.0,
+              "y": -1.5
+            },
+            "speed_delta": 0.0
+          }
+        ],
+        "puddle_mutations": [
+          {
+            "puddle_index": 0,
+            "location_offset": {
+              "x": 1.0,
+              "y": 0.0
+            },
+            "level_delta": 0.1,
+            "size_scale": 1.05
+          }
+        ],
+        "mission_mutation": {
+          "keep_original": true
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_156__ark-doubao-seed-2.0-lite-260215.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_156__ark-doubao-seed-2.0-lite-260215.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    },
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-doubao-seed-2.0-lite-260215/json/case_156/case_156__cand_002.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-doubao-seed-2.0-lite-260215/metadata/case_156/case_156__cand_002.metadata.json",
+      "case_id": "case_156",
+      "model_name": "ark-doubao-seed-2.0-lite-260215",
+      "candidate_index": 2,
+      "candidate_spec": {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Slightly reduce rain and wetness, offset ego spawn position, shift immobile actor further along ego's planned route",
+        "mutation_intent": "Variant with different road and actor positioning that preserves all core root cause pattern constraints: no pre-stuck collision/red light, non-empty planned waypoints, all-zero actuation during stuck, and the stuck failure outcome",
+        "expected_oracle": "stuck",
+        "modifications": {
+          "weather_delta": {
+            "rain": -4,
+            "fog": 0,
+            "wetness": -3,
+            "puddle": -2
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": -3.0,
+                "y": 2.0
+              },
+              "speed_delta": 0.0
+            }
+          ],
+          "puddle_mutations": [
+            {
+              "puddle_index": 2,
+              "location_offset": {
+                "x": -1.5,
+                "y": 0.0
+              },
+              "level_delta": -0.1,
+              "size_scale": 0.95
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": false,
+            "spawn_offset": {
+              "x": 2.5,
+              "y": -1.0
+            },
+            "destination_offset": {
+              "x": 1.5,
+              "y": 0.5
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Confirm no collision or red light event occurs prior to expected stuck state",
+          "Confirm the planned path maintains non-empty final waypoints throughout the test window"
+        ],
+        "post_execution_validation_rules": [
+          "Confirm ego remains stuck with zero velocity and near-zero displacement over 60 seconds",
+          "Confirm all vehicle control actuation commands are zero during the stuck window"
+        ],
+        "uncertainty": [
+          "No available evidence explains why zero actuation commands are generated despite available final waypoints",
+          "Module-level failure attribution cannot be confirmed from available evidence"
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": -4.0,
+          "fog": 0.0,
+          "wetness": -3.0,
+          "puddle": -2.0
+        },
+        "actor_mutations": [
+          {
+            "actor_index": 0,
+            "position_offset": {
+              "x": -3.0,
+              "y": 2.0
+            },
+            "speed_delta": 0.0
+          }
+        ],
+        "puddle_mutations": [
+          {
+            "puddle_index": 2,
+            "location_offset": {
+              "x": -1.5,
+              "y": 0.0
+            },
+            "level_delta": -0.1,
+            "size_scale": 0.95
+          }
+        ],
+        "mission_mutation": {
+          "spawn_offset": {
+            "x": 2.5,
+            "y": -1.0
+          },
+          "destination_offset": {
+            "x": 1.5,
+            "y": 0.5
+          }
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_156__ark-doubao-seed-2.0-lite-260215.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_156__ark-doubao-seed-2.0-lite-260215.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    }
+  ],
+  "seed_artifact_zip": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-doubao-seed-2.0-lite-260215/seed-artifact/seed-artifact-case_156.zip",
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_prompts/case_156__ark-doubao-seed-2.0-lite-260215.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_156__ark-doubao-seed-2.0-lite-260215.json",
+  "prompt_estimated_tokens": 1091,
+  "usage": {
+    "prompt_tokens": 1480,
+    "completion_tokens": 2662,
+    "total_tokens": 4142
+  },
+  "raw_response": "{\n  \"case_id\": \"case_156\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Slightly increase road wetness and rain intensity, shift the immobile actor closer to ego's planned route\",\n      \"mutation_intent\": \"Preserves all root cause constraints: no collision or red light event before stuck, maintains continuous non-empty planned waypoints and all-zero actuation commands during stuck, preserves the stuck failure symptom\",\n      \"expected_oracle\": \"stuck\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 5, \"fog\": 0, \"wetness\": 5, \"puddle\": 3},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 2.0, \"y\": -1.5}, \"speed_delta\": 0.0}\n        ],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": 1.0, \"y\": 0.0}, \"level_delta\": 0.1, \"size_scale\": 1.05}\n        ],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Confirm no collision or red light event occurs prior to expected stuck state\", \"Confirm planning will generate continuous non-empty final waypoints during the test window\"],\n      \"post_execution_validation_rules\": [\"Confirm ego has near-zero displacement and zero velocity for at least 60 seconds\", \"Confirm all vehicle actuation commands are zero during the stuck window\"],\n      \"uncertainty\": [\"No available evidence explains why zero actuation commands are generated despite available final waypoints\", \"Module-level failure attribution cannot be confirmed\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Slightly reduce rain and wetness, offset ego spawn position, shift immobile actor further along ego's planned route\",\n      \"mutation_intent\": \"Variant with different road and actor positioning that preserves all core root cause pattern constraints: no pre-stuck collision/red light, non-empty planned waypoints, all-zero actuation during stuck, and the stuck failure outcome\",\n      \"expected_oracle\": \"stuck\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": -4, \"fog\": 0, \"wetness\": -3, \"puddle\": -2},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": -3.0, \"y\": 2.0}, \"speed_delta\": 0.0}\n        ],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 2, \"location_offset\": {\"x\": -1.5, \"y\": 0.0}, \"level_delta\": -0.1, \"size_scale\": 0.95}\n        ],\n        \"mission_mutation\": {\"keep_original\": false, \"spawn_offset\": {\"x\": 2.5, \"y\": -1.0}, \"destination_offset\": {\"x\": 1.5, \"y\": 0.5}}\n      },\n      \"pre_execution_validation_rules\": [\"Confirm no collision or red light event occurs prior to expected stuck state\", \"Confirm the planned path maintains non-empty final waypoints throughout the test window\"],\n      \"post_execution_validation_rules\": [\"Confirm ego remains stuck with zero velocity and near-zero displacement over 60 seconds\", \"Confirm all vehicle control actuation commands are zero during the stuck window\"],\n      \"uncertainty\": [\"No available evidence explains why zero actuation commands are generated despite available final waypoints\", \"Module-level failure attribution cannot be confirmed from available evidence\"]\n    }\n  ]\n}",
+  "parsed_response": {
+    "case_id": "case_156",
+    "candidate_specs": [
+      {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Slightly increase road wetness and rain intensity, shift the immobile actor closer to ego's planned route",
+        "mutation_intent": "Preserves all root cause constraints: no collision or red light event before stuck, maintains continuous non-empty planned waypoints and all-zero actuation commands during stuck, preserves the stuck failure symptom",
+        "expected_oracle": "stuck",
+        "modifications": {
+          "weather_delta": {
+            "rain": 5,
+            "fog": 0,
+            "wetness": 5,
+            "puddle": 3
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 2.0,
+                "y": -1.5
+              },
+              "speed_delta": 0.0
+            }
+          ],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 1.0,
+                "y": 0.0
+              },
+              "level_delta": 0.1,
+              "size_scale": 1.05
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Confirm no collision or red light event occurs prior to expected stuck state",
+          "Confirm planning will generate continuous non-empty final waypoints during the test window"
+        ],
+        "post_execution_validation_rules": [
+          "Confirm ego has near-zero displacement and zero velocity for at least 60 seconds",
+          "Confirm all vehicle actuation commands are zero during the stuck window"
+        ],
+        "uncertainty": [
+          "No available evidence explains why zero actuation commands are generated despite available final waypoints",
+          "Module-level failure attribution cannot be confirmed"
+        ]
+      },
+      {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Slightly reduce rain and wetness, offset ego spawn position, shift immobile actor further along ego's planned route",
+        "mutation_intent": "Variant with different road and actor positioning that preserves all core root cause pattern constraints: no pre-stuck collision/red light, non-empty planned waypoints, all-zero actuation during stuck, and the stuck failure outcome",
+        "expected_oracle": "stuck",
+        "modifications": {
+          "weather_delta": {
+            "rain": -4,
+            "fog": 0,
+            "wetness": -3,
+            "puddle": -2
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": -3.0,
+                "y": 2.0
+              },
+              "speed_delta": 0.0
+            }
+          ],
+          "puddle_mutations": [
+            {
+              "puddle_index": 2,
+              "location_offset": {
+                "x": -1.5,
+                "y": 0.0
+              },
+              "level_delta": -0.1,
+              "size_scale": 0.95
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": false,
+            "spawn_offset": {
+              "x": 2.5,
+              "y": -1.0
+            },
+            "destination_offset": {
+              "x": 1.5,
+              "y": 0.5
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Confirm no collision or red light event occurs prior to expected stuck state",
+          "Confirm the planned path maintains non-empty final waypoints throughout the test window"
+        ],
+        "post_execution_validation_rules": [
+          "Confirm ego remains stuck with zero velocity and near-zero displacement over 60 seconds",
+          "Confirm all vehicle control actuation commands are zero during the stuck window"
+        ],
+        "uncertainty": [
+          "No available evidence explains why zero actuation commands are generated despite available final waypoints",
+          "Module-level failure attribution cannot be confirmed from available evidence"
+        ]
+      }
+    ]
+  },
+  "raw_api_payload": {
+    "id": "0217829228532374daa34aa74df22f3686beae06759c1e05e4943",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "{\n  \"case_id\": \"case_156\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Slightly increase road wetness and rain intensity, shift the immobile actor closer to ego's planned route\",\n      \"mutation_intent\": \"Preserves all root cause constraints: no collision or red light event before stuck, maintains continuous non-empty planned waypoints and all-zero actuation commands during stuck, preserves the stuck failure symptom\",\n      \"expected_oracle\": \"stuck\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 5, \"fog\": 0, \"wetness\": 5, \"puddle\": 3},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 2.0, \"y\": -1.5}, \"speed_delta\": 0.0}\n        ],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": 1.0, \"y\": 0.0}, \"level_delta\": 0.1, \"size_scale\": 1.05}\n        ],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Confirm no collision or red light event occurs prior to expected stuck state\", \"Confirm planning will generate continuous non-empty final waypoints during the test window\"],\n      \"post_execution_validation_rules\": [\"Confirm ego has near-zero displacement and zero velocity for at least 60 seconds\", \"Confirm all vehicle actuation commands are zero during the stuck window\"],\n      \"uncertainty\": [\"No available evidence explains why zero actuation commands are generated despite available final waypoints\", \"Module-level failure attribution cannot be confirmed\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Slightly reduce rain and wetness, offset ego spawn position, shift immobile actor further along ego's planned route\",\n      \"mutation_intent\": \"Variant with different road and actor positioning that preserves all core root cause pattern constraints: no pre-stuck collision/red light, non-empty planned waypoints, all-zero actuation during stuck, and the stuck failure outcome\",\n      \"expected_oracle\": \"stuck\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": -4, \"fog\": 0, \"wetness\": -3, \"puddle\": -2},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": -3.0, \"y\": 2.0}, \"speed_delta\": 0.0}\n        ],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 2, \"location_offset\": {\"x\": -1.5, \"y\": 0.0}, \"level_delta\": -0.1, \"size_scale\": 0.95}\n        ],\n        \"mission_mutation\": {\"keep_original\": false, \"spawn_offset\": {\"x\": 2.5, \"y\": -1.0}, \"destination_offset\": {\"x\": 1.5, \"y\": 0.5}}\n      },\n      \"pre_execution_validation_rules\": [\"Confirm no collision or red light event occurs prior to expected stuck state\", \"Confirm the planned path maintains non-empty final waypoints throughout the test window\"],\n      \"post_execution_validation_rules\": [\"Confirm ego remains stuck with zero velocity and near-zero displacement over 60 seconds\", \"Confirm all vehicle control actuation commands are zero during the stuck window\"],\n      \"uncertainty\": [\"No available evidence explains why zero actuation commands are generated despite available final waypoints\", \"Module-level failure attribution cannot be confirmed from available evidence\"]\n    }\n  ]\n}",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null,
+          "reasoning_content": "\nGot it, let's build this step by step. First, case_id is case_156 right? Need two candidate specs, cand_001 and cand_002.\n\nFirst, cand_001. High level variant: What's a good variant? Maybe move the immobile actor a bit closer to the ego spawn path, increase wetness slightly, keep the stuck condition. Wait, mutation intent: preserves the root cause pattern because it just changes the road condition slightly, still keeps no collision/red light, non-empty waypoints, zero actuation. Expected oracle is stuck, right? Because the original is stuck.\n\nModifications for cand_001: Let's see, weather delta. Rain +5, wetness +5, puddle +3, fog 0. That's within 20, good. Actor mutation: actor 0, position offset x 2.0, y -1.5, speed delta 0. That's within [-8,8] right, yes. Puddle mutations: puddle 0, location offset x 1, y 0, level delta 0.1, size scale 1.05. That's within the delta, good. Mission mutation: keep_original true, right? Pre execution rules: need to check no collision/red light before stuck, check non-empty waypoints planned. Post execution: check ego velocity zero for 60s, check all actuation commands zero. Uncertainty: still the same as phase1, no root cause attribution confirmed.\n\nNow cand_002. High level variant: Slightly offset ego spawn position, reduce rain and wetness slightly, move immobile actor further along the planned path, still maintain all stuck conditions. Mutation intent: Preserves all root cause constraints: no pre-stuck collision/red light, non-empty planned waypoints, all-zero actuation commands when stuck, so it's a valid variant that tests the same stuck failure pattern. Expected oracle is stuck again.\n\nModifications: Weather delta: rain -4, wetness -3, puddle -2, fog 0, all within 20. Actor mutation: actor 0, position offset x -3.0, y 2.0, speed delta 0.0, within limits. Puddle mutations: puddle 2, location offset x -1.5, y 0, level delta -0.1, size scale 0.95, that's okay. Mission mutation: keep_original false, spawn offset x 2.5, y -1.0, destination offset x 1.5, y 0.5, that's within [-5,5], right. Pre execution rules: same as first, verify no collision/red light event before stuck state, verify planning will generate non-empty final waypoints. Post execution: verify ego has zero velocity and <0.1m displacement over 60s, verify all vehicle actuation commands are zero during stuck window. Uncertainty: same as phase1, module level failure attribution can't be confirmed, no evidence for root cause of zero actuation.\n\nWait let's check all rules. Exactly two candidates, all offsets within limits. Weather deltas within [-20,20], actor positions within [-8,8], speed delta within [-3,3], mission offsets within [-5,5], puddle level delta within [-0.2,0.2], size between 0.8 and 1.2. Oracle is stuck, which is correct, no invention. Preserves root cause. Uncertainty preserved.\n\nLet me structure this correctly into JSON. Let's make sure all fields are there. Let's write it out:\n\nFirst case_id is case_156. candidate_specs array has two objects.\n\nFirst cand_001:\nhigh_level_variant: \"Slightly increase road wetness and rain intensity, shift the immobile actor closer to ego's planned route\"\nmutation_intent: \"Preserves all root cause constraints: no collision or red light event before stuck, maintains requirement for continuous non-empty planned waypoints and all-zero actuation commands during stuck, preserves the stuck failure symptom\"\nexpected_oracle: \"stuck\"\nmodifications:\nweather_delta: {\"rain\": 5, \"fog\": 0, \"wetness\": 5, \"puddle\": 3}\nactor_mutations: [{\"actor_index\": 0, \"position_offset\": {\"x\": 2.0, \"y\": -1.5}, \"speed_delta\": 0.0}]\npuddle_mutations: [{\"puddle_index\": 0, \"location_offset\": {\"x\": 1.0, \"y\": 0.0}, \"level_delta\": 0.1, \"size_scale\": 1.05}]\nmission_mutation: {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\npre_execution_validation_rules: [\"Confirm no collision or red light event occurs prior to expected stuck state\", \"Confirm planning will generate continuous non-empty final waypoints during the test window\"]\npost_execution_validation_rules: [\"Confirm ego has near-zero displacement and zero velocity for at least 60 seconds\", \"Confirm all vehicle actuation commands are zero during the stuck window\"]\nuncertainty: [\"No available evidence explains why zero actuation commands are generated despite available final waypoints\", \"Module-level failure attribution cannot be confirmed\"]\n\nThen cand_002:\ncandidate_id: \"cand_002\"\nhigh_level_variant: \"Slightly reduce rain and wetness, offset ego spawn position, shift immobile actor further along ego's planned route\"\nmutation_intent: \"Variant with different road and actor positioning that preserves all core root cause pattern constraints: no pre-stuck collision/red light, non-empty planned waypoints, all-zero actuation during stuck, and the stuck failure outcome\"\nexpected_oracle: \"stuck\"\nmodifications:\nweather_delta: {\"rain\": -4, \"fog\": 0, \"wetness\": -3, \"puddle\": -2}\nactor_mutations: [{\"actor_index\": 0, \"position_offset\": {\"x\": -3.0, \"y\": 2.0}, \"speed_delta\": 0.0}]\npuddle_mutations: [{\"puddle_index\": 2, \"location_offset\": {\"x\": -1.5, \"y\": 0.0}, \"level_delta\": -0.1, \"size_scale\": 0.95}]\nmission_mutation: {\"keep_original\": false, \"spawn_offset\": {\"x\": 2.5, \"y\": -1.0}, \"destination_offset\": {\"x\": 1.5, \"y\": 0.5}}\npre_execution_validation_rules: [\"Confirm no collision or red light event occurs prior to expected stuck state\", \"Confirm the planned path maintains non-empty final waypoints throughout the test window\"]\npost_execution_validation_rules: [\"Confirm ego remains stuck with zero velocity and near-zero displacement over 60 seconds\", \"Confirm all vehicle control actuation commands are zero during the stuck window\"]\nuncertainty: [\"No available evidence explains why zero actuation commands are generated despite available final waypoints\", \"Module-level failure attribution cannot be confirmed from available evidence\"]\n\nWait that all checks out. Let's make sure all numbers are within limits: position offsets are all between -8 and 8, yes. Speed delta is 0, which is between -3 and 3. Mission offsets are 2.5, -1, etc, all within -5 to 5. Weather deltas are all between -20 and 20. Puddle level delta is 0.1 and -0.1, within -0.2 to 0.2, size scale 1.05 and 0.95, between 0.8 and 1.2. Perfect. Two candidates, correct oracle is stuck, preserves all root cause constraints, uncertainty preserved. That's exactly what's needed. Now put it all into valid JSON."
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "doubao-seed-2-0-lite-260215",
+    "object": "chat.completion",
+    "service_tier": "default",
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 2662,
+      "prompt_tokens": 1480,
+      "total_tokens": 4142,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 1760,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": null,
+        "cached_tokens": 0
+      }
+    }
+  },
+  "error_message": "",
+  "elapsed_sec": 52.019,
+  "timestamp": "<REDACTED_TIMESTAMP>"
+}

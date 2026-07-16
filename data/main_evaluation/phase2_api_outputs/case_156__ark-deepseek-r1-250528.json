@@ -1,0 +1,366 @@
+{
+  "case_id": "case_156",
+  "model_name": "ark-deepseek-r1-250528",
+  "workflow": "phase2_grounded_generation",
+  "status": "completed",
+  "schema_valid": true,
+  "schema_errors": [],
+  "phase1_ready": "yes",
+  "num_candidates_requested": 2,
+  "num_candidates_written": 2,
+  "num_pre_valid": 2,
+  "candidate_records": [
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-deepseek-r1-250528/json/case_156/case_156__cand_001.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-deepseek-r1-250528/metadata/case_156/case_156__cand_001.metadata.json",
+      "case_id": "case_156",
+      "model_name": "ark-deepseek-r1-250528",
+      "candidate_index": 1,
+      "candidate_spec": {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Shift the existing immobile actor 2.5m closer to the ego's spawn path, retain all original environmental and mission conditions",
+        "mutation_intent": "Slightly adjusts actor position to maintain the stuck trigger while preserving all core phase 1 constraints: no added collision or red light interference, available sensing/perception/final waypoints, and the stuck state with zero velocity/zero controls",
+        "expected_oracle": "stuck",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": -2.5,
+                "y": 0.0
+              },
+              "speed_delta": 0.0
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Confirm no collision or red light events are introduced before the stuck window",
+          "Verify sensing, perception and final waypoint topics are available prior to the stuck state"
+        ],
+        "post_execution_validation_rules": [
+          "Confirm ego exhibits zero velocity and all-zero control commands in the final 60 seconds of the stuck window",
+          "Validate the stuck failure symptom is present"
+        ],
+        "uncertainty": [
+          "No direct evidence localizes the zero command issue to a specific module, original uncertainty is preserved"
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 0.0,
+          "fog": 0.0,
+          "wetness": 0.0,
+          "puddle": 0.0
+        },
+        "actor_mutations": [
+          {
+            "actor_index": 0,
+            "position_offset": {
+              "x": -2.5,
+              "y": 0.0
+            },
+            "speed_delta": 0.0
+          }
+        ],
+        "puddle_mutations": [],
+        "mission_mutation": {
+          "keep_original": true
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_156__ark-deepseek-r1-250528.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_156__ark-deepseek-r1-250528.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    },
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-deepseek-r1-250528/json/case_156/case_156__cand_002.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-deepseek-r1-250528/metadata/case_156/case_156__cand_002.metadata.json",
+      "case_id": "case_156",
+      "model_name": "ark-deepseek-r1-250528",
+      "candidate_index": 2,
+      "candidate_spec": {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Slightly increase wetness and puddle level near the ego spawn area, retain original actor and mission positions",
+        "mutation_intent": "Conservatively adjusts environmental conditions while preserving all root-cause constraints: no added collision/red light interference, maintains available waypoints, and preserves the stuck state pattern from phase 1",
+        "expected_oracle": "stuck",
+        "modifications": {
+          "weather_delta": {
+            "rain": 5,
+            "fog": 0,
+            "wetness": 5,
+            "puddle": 3
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "speed_delta": 0.0
+            }
+          ],
+          "puddle_mutations": [
+            {
+              "puddle_index": 2,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": 0.1,
+              "size_scale": 1.0
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Ensure no unobserved collision or red light events are introduced before the stuck state",
+          "Check that final waypoints remain available in the critical stuck window"
+        ],
+        "post_execution_validation_rules": [
+          "Confirm ego is stuck with zero velocity and all-zero control commands in the final 60 seconds",
+          "Verify no conflicting failure events are present that change the original root cause"
+        ],
+        "uncertainty": [
+          "Module-level root cause remains unconfirmed as per original available evidence",
+          "Original uncertainty about the source of zero commands is preserved"
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 5.0,
+          "fog": 0.0,
+          "wetness": 5.0,
+          "puddle": 3.0
+        },
+        "actor_mutations": [
+          {
+            "actor_index": 0,
+            "position_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "speed_delta": 0.0
+          }
+        ],
+        "puddle_mutations": [
+          {
+            "puddle_index": 2,
+            "location_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "level_delta": 0.1,
+            "size_scale": 1.0
+          }
+        ],
+        "mission_mutation": {
+          "keep_original": true
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_156__ark-deepseek-r1-250528.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_156__ark-deepseek-r1-250528.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    }
+  ],
+  "seed_artifact_zip": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-deepseek-r1-250528/seed-artifact/seed-artifact-case_156.zip",
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_prompts/case_156__ark-deepseek-r1-250528.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_156__ark-deepseek-r1-250528.json",
+  "prompt_estimated_tokens": 1147,
+  "usage": {
+    "prompt_tokens": 1519,
+    "completion_tokens": 2480,
+    "total_tokens": 3999
+  },
+  "raw_response": "{\n  \"case_id\": \"case_156\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Shift the existing immobile actor 2.5m closer to the ego's spawn path, retain all original environmental and mission conditions\",\n      \"mutation_intent\": \"Slightly adjusts actor position to maintain the stuck trigger while preserving all core phase 1 constraints: no added collision or red light interference, available sensing/perception/final waypoints, and the stuck state with zero velocity/zero controls\",\n      \"expected_oracle\": \"stuck\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": -2.5, \"y\": 0.0}, \"speed_delta\": 0.0}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Confirm no collision or red light events are introduced before the stuck window\", \"Verify sensing, perception and final waypoint topics are available prior to the stuck state\"],\n      \"post_execution_validation_rules\": [\"Confirm ego exhibits zero velocity and all-zero control commands in the final 60 seconds of the stuck window\", \"Validate the stuck failure symptom is present\"],\n      \"uncertainty\": [\"No direct evidence localizes the zero command issue to a specific module, original uncertainty is preserved\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Slightly increase wetness and puddle level near the ego spawn area, retain original actor and mission positions\",\n      \"mutation_intent\": \"Conservatively adjusts environmental conditions while preserving all root-cause constraints: no added collision/red light interference, maintains available waypoints, and preserves the stuck state pattern from phase 1\",\n      \"expected_oracle\": \"stuck\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 5, \"fog\": 0, \"wetness\": 5, \"puddle\": 3},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 0.0, \"y\": 0.0}, \"speed_delta\": 0.0}\n        ],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 2, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": 0.1, \"size_scale\": 1.0}\n        ],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Ensure no unobserved collision or red light events are introduced before the stuck state\", \"Check that final waypoints remain available in the critical stuck window\"],\n      \"post_execution_validation_rules\": [\"Confirm ego is stuck with zero velocity and all-zero control commands in the final 60 seconds\", \"Verify no conflicting failure events are present that change the original root cause\"],\n      \"uncertainty\": [\"Module-level root cause remains unconfirmed as per original available evidence\", \"Original uncertainty about the source of zero commands is preserved\"]\n    }\n  ]\n}",
+  "parsed_response": {
+    "case_id": "case_156",
+    "candidate_specs": [
+      {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Shift the existing immobile actor 2.5m closer to the ego's spawn path, retain all original environmental and mission conditions",
+        "mutation_intent": "Slightly adjusts actor position to maintain the stuck trigger while preserving all core phase 1 constraints: no added collision or red light interference, available sensing/perception/final waypoints, and the stuck state with zero velocity/zero controls",
+        "expected_oracle": "stuck",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": -2.5,
+                "y": 0.0
+              },
+              "speed_delta": 0.0
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Confirm no collision or red light events are introduced before the stuck window",
+          "Verify sensing, perception and final waypoint topics are available prior to the stuck state"
+        ],
+        "post_execution_validation_rules": [
+          "Confirm ego exhibits zero velocity and all-zero control commands in the final 60 seconds of the stuck window",
+          "Validate the stuck failure symptom is present"
+        ],
+        "uncertainty": [
+          "No direct evidence localizes the zero command issue to a specific module, original uncertainty is preserved"
+        ]
+      },
+      {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Slightly increase wetness and puddle level near the ego spawn area, retain original actor and mission positions",
+        "mutation_intent": "Conservatively adjusts environmental conditions while preserving all root-cause constraints: no added collision/red light interference, maintains available waypoints, and preserves the stuck state pattern from phase 1",
+        "expected_oracle": "stuck",
+        "modifications": {
+          "weather_delta": {
+            "rain": 5,
+            "fog": 0,
+            "wetness": 5,
+            "puddle": 3
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "speed_delta": 0.0
+            }
+          ],
+          "puddle_mutations": [
+            {
+              "puddle_index": 2,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": 0.1,
+              "size_scale": 1.0
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Ensure no unobserved collision or red light events are introduced before the stuck state",
+          "Check that final waypoints remain available in the critical stuck window"
+        ],
+        "post_execution_validation_rules": [
+          "Confirm ego is stuck with zero velocity and all-zero control commands in the final 60 seconds",
+          "Verify no conflicting failure events are present that change the original root cause"
+        ],
+        "uncertainty": [
+          "Module-level root cause remains unconfirmed as per original available evidence",
+          "Original uncertainty about the source of zero commands is preserved"
+        ]
+      }
+    ]
+  },
+  "raw_api_payload": {
+    "id": "021782924226869c85c17782ebc45169ced08d4429f63da717410",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "{\n  \"case_id\": \"case_156\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Shift the existing immobile actor 2.5m closer to the ego's spawn path, retain all original environmental and mission conditions\",\n      \"mutation_intent\": \"Slightly adjusts actor position to maintain the stuck trigger while preserving all core phase 1 constraints: no added collision or red light interference, available sensing/perception/final waypoints, and the stuck state with zero velocity/zero controls\",\n      \"expected_oracle\": \"stuck\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": -2.5, \"y\": 0.0}, \"speed_delta\": 0.0}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Confirm no collision or red light events are introduced before the stuck window\", \"Verify sensing, perception and final waypoint topics are available prior to the stuck state\"],\n      \"post_execution_validation_rules\": [\"Confirm ego exhibits zero velocity and all-zero control commands in the final 60 seconds of the stuck window\", \"Validate the stuck failure symptom is present\"],\n      \"uncertainty\": [\"No direct evidence localizes the zero command issue to a specific module, original uncertainty is preserved\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Slightly increase wetness and puddle level near the ego spawn area, retain original actor and mission positions\",\n      \"mutation_intent\": \"Conservatively adjusts environmental conditions while preserving all root-cause constraints: no added collision/red light interference, maintains available waypoints, and preserves the stuck state pattern from phase 1\",\n      \"expected_oracle\": \"stuck\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 5, \"fog\": 0, \"wetness\": 5, \"puddle\": 3},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 0.0, \"y\": 0.0}, \"speed_delta\": 0.0}\n        ],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 2, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": 0.1, \"size_scale\": 1.0}\n        ],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Ensure no unobserved collision or red light events are introduced before the stuck state\", \"Check that final waypoints remain available in the critical stuck window\"],\n      \"post_execution_validation_rules\": [\"Confirm ego is stuck with zero velocity and all-zero control commands in the final 60 seconds\", \"Verify no conflicting failure events are present that change the original root cause\"],\n      \"uncertainty\": [\"Module-level root cause remains unconfirmed as per original available evidence\", \"Original uncertainty about the source of zero commands is preserved\"]\n    }\n  ]\n}",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null,
+          "reasoning_content": "\nGot it, let's build this JSON step by step. First, case_id is case_156 right? Then we need exactly two candidate_specs.\n\nFirst candidate, cand_001. High level variant: shift the immobile blocking actor slightly closer to ego's spawn path, keep all other conditions same. Mutation intent: preserves the original stuck root cause pattern by only adjusting actor position, keeps all required constraints: no collision/red light before stuck, waypoints available, zero control/velocity. Expected oracle is stuck, right? Because original is stuck.\n\nModifications: weather delta all zero, that's conservative. Actor mutation: actor 0, position offset let's say x -2.5, y 0, speed delta 0. That's within [-8,8], good. Puddle mutations: keep all original, wait no, wait the seed has 3 puddles, let's just leave them as original? Wait, for first candidate, maybe no puddle changes, so puddle_mutations can be empty? Wait no, or if we don't mutate, that's okay. Mission mutation: keep_original true. Pre execution rules: [\"Check no collision or red light events are introduced before stuck window\", \"Verify final waypoint topics are available before stuck state\"], post execution: [\"Confirm ego has zero velocity and all-zero control commands in final 60 seconds of stuck window\", \"Confirm stuck symptom is present\"]. Uncertainty: [\"Module-level root cause remains unconfirmed as per original evidence\"].\n\nNow second candidate, cand_002. High level variant: slightly increase wetness and puddle level near ego's path, keep actor position and other conditions same. Mutation intent: adjusts environmental conditions slightly while preserving all core root cause constraints: no added collision/red light, maintains available waypoints, stuck symptom with zero velocity/controls. Expected oracle still stuck.\n\nModifications: weather delta: rain +5, wetness +5, fog 0, puddle +3. All within [-20,20], good. Actor mutations: no change, so actor 0 offset 0 0, speed delta 0. Puddle mutations: let's take puddle index 2 (the one near spawn) location offset 0 0, level delta +0.1, size_scale 1.0. That's within 0.8-1.2, delta 0.1 is within [-0.2,0.2], good. Mission mutation: keep_original true. Pre execution rules: [\"Confirm no collision or red light events are added before stuck state\", \"Check that sensing, perception and final waypoint topics remain available\"], post execution: [\"Validate ego is stuck with zero velocity and all-zero controls in final 60 seconds\", \"Confirm no conflicting failure events are present during scenario execution\"]. Uncertainty: [\"Root cause module remains unlocalized per original available evidence\", \"Environmental change does not introduce new root causes, original uncertainty preserved\"].\n\nWait let's check all rules: exactly two candidates, all offsets within limits. Let's make sure expected oracle is stuck, which is correct. Preserve all the constraints from phase 1. Let's structure it properly according to the schema.\n\nWait let's check actor position offset: first candidate has x -2.5, y 0, that's within [-8,8], yes. Speed delta 0, within [-3,3]. Weather deltas all within [-20,20], yes. Puddle level delta 0.1, within [-0.2,0.2], size 1.0, within 0.8-1.2, good. Mission keep_original true, that's fine.\n\nLet me put it all together now. Let's make sure the JSON is correct, no trailing commas. Let's write it:\n\nFirst the outer object: case_id is \"case_156\", then candidate_specs array with two elements.\n\nFirst candidate:\ncandidate_id: \"cand_001\",\nhigh_level_variant: \"Shift the immobile actor 2.5m closer to the ego's spawn path, retain all original environmental and mission conditions\",\nmutation_intent: \"Slightly adjusts actor position to retain the original stuck trigger while preserving all core constraints: no added collision/red light interference, available sensing/perception/waypoints, and the stuck state with zero velocity/controls\",\nexpected_oracle: \"stuck\",\nmodifications: {\n  \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n  \"actor_mutations\": [\n    {\"actor_index\": 0, \"position_offset\": {\"x\": -2.5, \"y\": 0.0}, \"speed_delta\": 0.0}\n  ],\n  \"puddle_mutations\": [],\n  \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n},\npre_execution_validation_rules: [\"Confirm no collision or red light events are introduced before the stuck window\", \"Verify sensing, perception and final waypoint topics are available prior to the stuck state\"],\npost_execution_validation_rules: [\"Confirm ego exhibits zero velocity and all-zero control commands in the final 60 seconds of the stuck window\", \"Validate the stuck failure symptom is present\"],\nuncertainty: [\"No direct evidence localizes the zero command issue to a specific module, per original uncertainty\"]\n\nSecond candidate:\ncandidate_id: \"cand_002\",\nhigh_level_variant: \"Slightly increase wetness and puddle level near the ego spawn area, retain original actor and mission positions\",\nmutation_intent: \"Adjusts environmental conditions conservatively while preserving all root-cause constraints: no added collision/red light, maintains available waypoints, and preserves the stuck state pattern\",\nexpected_oracle: \"stuck\",\nmodifications: {\n  \"weather_delta\": {\"rain\": 5, \"fog\": 0, \"wetness\": 5, \"puddle\": 3},\n  \"actor_mutations\": [\n    {\"actor_index\": 0, \"position_offset\": {\"x\": 0.0, \"y\": 0.0}, \"speed_delta\": 0.0}\n  ],\n  \"puddle_mutations\": [\n    {\"puddle_index\": 2, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": 0.1, \"size_scale\": 1.0}\n  ],\n  \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n},\npre_execution_validation_rules: [\"Ensure no unobserved collision or red light events are introduced before the stuck state\", \"Check that final waypoints remain available in the critical stuck window\"],\npost_execution_validation_rules: [\"Confirm ego is stuck with zero velocity and all-zero control commands in the final 60 seconds\", \"Verify no conflicting failure events are present that change the original root cause\"],\nuncertainty: [\"Module-level root cause remains unconfirmed as per original available evidence\", \"Original uncertainty about the zero command source is preserved\"]\n\nWait that all checks out. Let's make sure it's valid JSON, no mistakes. Let's write it properly now."
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "doubao-seed-2-0-lite-260215",
+    "object": "chat.completion",
+    "service_tier": "default",
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 2480,
+      "prompt_tokens": 1519,
+      "total_tokens": 3999,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 1631,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": null,
+        "cached_tokens": 0
+      }
+    }
+  },
+  "error_message": "",
+  "elapsed_sec": 57.1,
+  "timestamp": "<REDACTED_TIMESTAMP>"
+}

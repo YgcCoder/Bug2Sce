@@ -1,0 +1,417 @@
+{
+  "case_id": "case_001",
+  "model_name": "ark-deepseek-r1-250528",
+  "workflow": "phase2_grounded_generation",
+  "status": "completed",
+  "schema_valid": true,
+  "schema_errors": [],
+  "phase1_ready": "yes",
+  "num_candidates_requested": 2,
+  "num_candidates_written": 2,
+  "num_pre_valid": 2,
+  "candidate_records": [
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-deepseek-r1-250528/json/case_001/case_001__cand_001.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-deepseek-r1-250528/metadata/case_001/case_001__cand_001.metadata.json",
+      "case_id": "case_001",
+      "model_name": "ark-deepseek-r1-250528",
+      "candidate_index": 1,
+      "candidate_spec": {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Shift collision actor closer to ego's planned path with minor speed adjustment",
+        "mutation_intent": "Preserves all Phase 1 root cause preconditions (zero vehicle_cmd, non-zero brake, no blocked waypoints, detected near actor) while adjusting actor position to maintain the original collision outcome pattern",
+        "expected_oracle": "collision",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": -2.0,
+                "y": 1.2
+              },
+              "speed_delta": 0.5
+            }
+          ],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": 0.0,
+              "size_scale": 1.0
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Verify all vehicle_cmd are zero in pre-collision critical window",
+          "Verify non-zero brake is reported by vehicle_status pre-collision",
+          "Verify planning reports no blocked waypoints pre-collision",
+          "Verify at least one actor is detected near ego pre-collision"
+        ],
+        "post_execution_validation_rules": [
+          "Validate collision outcome via oracle after execution",
+          "Confirm all root cause preservation constraints are satisfied"
+        ],
+        "uncertainty": [
+          "No direct planner decision logs available to confirm planning failure",
+          "Evidence does not confirm collision actor was correctly detected by perception",
+          "Actuation/controller behavior attribution remains uncertain due to vehicle_cmd/brake mismatch"
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 0.0,
+          "fog": 0.0,
+          "wetness": 0.0,
+          "puddle": 0.0
+        },
+        "actor_mutations": [
+          {
+            "actor_index": 0,
+            "position_offset": {
+              "x": -2.0,
+              "y": 1.2
+            },
+            "speed_delta": 0.5
+          }
+        ],
+        "puddle_mutations": [
+          {
+            "puddle_index": 0,
+            "location_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "level_delta": 0.0,
+            "size_scale": 1.0
+          }
+        ],
+        "mission_mutation": {
+          "keep_original": true
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_001__ark-deepseek-r1-250528.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_001__ark-deepseek-r1-250528.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    },
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-deepseek-r1-250528/json/case_001/case_001__cand_002.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-deepseek-r1-250528/metadata/case_001/case_001__cand_002.metadata.json",
+      "case_id": "case_001",
+      "model_name": "ark-deepseek-r1-250528",
+      "candidate_index": 2,
+      "candidate_spec": {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Slightly increase road wetness, adjust collision actor speed and position, minor shift to ego spawn",
+        "mutation_intent": "Modifies environmental and initial parameters within allowed bounds, while strictly preserving all core root cause preconditions and expected collision outcome from Phase 1",
+        "expected_oracle": "collision",
+        "modifications": {
+          "weather_delta": {
+            "rain": 8,
+            "fog": 0,
+            "wetness": 10,
+            "puddle": 3
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 1.5,
+                "y": -0.8
+              },
+              "speed_delta": -1.0
+            }
+          ],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 1.0,
+                "y": 0.5
+              },
+              "level_delta": 0.1,
+              "size_scale": 1.1
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": false,
+            "spawn_offset": {
+              "x": 0.8,
+              "y": 0.3
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Verify all vehicle_cmd are zero in pre-collision critical window",
+          "Verify non-zero brake is reported by vehicle_status pre-collision",
+          "Verify planning reports no blocked waypoints pre-collision",
+          "Verify at least one actor is detected near ego pre-collision"
+        ],
+        "post_execution_validation_rules": [
+          "Validate collision outcome via oracle after execution",
+          "Confirm all root cause preservation constraints are satisfied"
+        ],
+        "uncertainty": [
+          "No direct planner decision logs available to confirm planning failure",
+          "Evidence does not confirm collision actor was correctly detected by perception",
+          "Actuation/controller behavior attribution remains uncertain due to vehicle_cmd/brake mismatch"
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 8.0,
+          "fog": 0.0,
+          "wetness": 10.0,
+          "puddle": 3.0
+        },
+        "actor_mutations": [
+          {
+            "actor_index": 0,
+            "position_offset": {
+              "x": 1.5,
+              "y": -0.8
+            },
+            "speed_delta": -1.0
+          }
+        ],
+        "puddle_mutations": [
+          {
+            "puddle_index": 0,
+            "location_offset": {
+              "x": 1.0,
+              "y": 0.5
+            },
+            "level_delta": 0.1,
+            "size_scale": 1.1
+          }
+        ],
+        "mission_mutation": {
+          "spawn_offset": {
+            "x": 0.8,
+            "y": 0.3
+          },
+          "destination_offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_001__ark-deepseek-r1-250528.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_001__ark-deepseek-r1-250528.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    }
+  ],
+  "seed_artifact_zip": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-deepseek-r1-250528/seed-artifact/seed-artifact-case_001.zip",
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_prompts/case_001__ark-deepseek-r1-250528.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_001__ark-deepseek-r1-250528.json",
+  "prompt_estimated_tokens": 1118,
+  "usage": {
+    "prompt_tokens": 1384,
+    "completion_tokens": 2439,
+    "total_tokens": 3823
+  },
+  "raw_response": "{\n  \"case_id\": \"case_001\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Shift collision actor closer to ego's planned path with minor speed adjustment\",\n      \"mutation_intent\": \"Preserves all Phase 1 root cause preconditions (zero vehicle_cmd, non-zero brake, no blocked waypoints, detected near actor) while adjusting actor position to maintain the original collision outcome pattern\",\n      \"expected_oracle\": \"collision\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": -2.0, \"y\": 1.2}, \"speed_delta\": 0.5}\n        ],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": 0.0, \"size_scale\": 1.0}\n        ],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Verify all vehicle_cmd are zero in pre-collision critical window\", \"Verify non-zero brake is reported by vehicle_status pre-collision\", \"Verify planning reports no blocked waypoints pre-collision\", \"Verify at least one actor is detected near ego pre-collision\"],\n      \"post_execution_validation_rules\": [\"Validate collision outcome via oracle after execution\", \"Confirm all root cause preservation constraints are satisfied\"],\n      \"uncertainty\": [\"No direct planner decision logs available to confirm planning failure\", \"Evidence does not confirm collision actor was correctly detected by perception\", \"Actuation/controller behavior attribution remains uncertain due to vehicle_cmd/brake mismatch\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Slightly increase road wetness, adjust collision actor speed and position, minor shift to ego spawn\",\n      \"mutation_intent\": \"Modifies environmental and initial parameters within allowed bounds, while strictly preserving all core root cause preconditions and expected collision outcome from Phase 1\",\n      \"expected_oracle\": \"collision\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 8, \"fog\": 0, \"wetness\": 10, \"puddle\": 3},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 1.5, \"y\": -0.8}, \"speed_delta\": -1.0}\n        ],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": 1.0, \"y\": 0.5}, \"level_delta\": 0.1, \"size_scale\": 1.1}\n        ],\n        \"mission_mutation\": {\"keep_original\": false, \"spawn_offset\": {\"x\": 0.8, \"y\": 0.3}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Verify all vehicle_cmd are zero in pre-collision critical window\", \"Verify non-zero brake is reported by vehicle_status pre-collision\", \"Verify planning reports no blocked waypoints pre-collision\", \"Verify at least one actor is detected near ego pre-collision\"],\n      \"post_execution_validation_rules\": [\"Validate collision outcome via oracle after execution\", \"Confirm all root cause preservation constraints are satisfied\"],\n      \"uncertainty\": [\"No direct planner decision logs available to confirm planning failure\", \"Evidence does not confirm collision actor was correctly detected by perception\", \"Actuation/controller behavior attribution remains uncertain due to vehicle_cmd/brake mismatch\"]\n    }\n  ]\n}",
+  "parsed_response": {
+    "case_id": "case_001",
+    "candidate_specs": [
+      {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Shift collision actor closer to ego's planned path with minor speed adjustment",
+        "mutation_intent": "Preserves all Phase 1 root cause preconditions (zero vehicle_cmd, non-zero brake, no blocked waypoints, detected near actor) while adjusting actor position to maintain the original collision outcome pattern",
+        "expected_oracle": "collision",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": -2.0,
+                "y": 1.2
+              },
+              "speed_delta": 0.5
+            }
+          ],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": 0.0,
+              "size_scale": 1.0
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Verify all vehicle_cmd are zero in pre-collision critical window",
+          "Verify non-zero brake is reported by vehicle_status pre-collision",
+          "Verify planning reports no blocked waypoints pre-collision",
+          "Verify at least one actor is detected near ego pre-collision"
+        ],
+        "post_execution_validation_rules": [
+          "Validate collision outcome via oracle after execution",
+          "Confirm all root cause preservation constraints are satisfied"
+        ],
+        "uncertainty": [
+          "No direct planner decision logs available to confirm planning failure",
+          "Evidence does not confirm collision actor was correctly detected by perception",
+          "Actuation/controller behavior attribution remains uncertain due to vehicle_cmd/brake mismatch"
+        ]
+      },
+      {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Slightly increase road wetness, adjust collision actor speed and position, minor shift to ego spawn",
+        "mutation_intent": "Modifies environmental and initial parameters within allowed bounds, while strictly preserving all core root cause preconditions and expected collision outcome from Phase 1",
+        "expected_oracle": "collision",
+        "modifications": {
+          "weather_delta": {
+            "rain": 8,
+            "fog": 0,
+            "wetness": 10,
+            "puddle": 3
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 1.5,
+                "y": -0.8
+              },
+              "speed_delta": -1.0
+            }
+          ],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 1.0,
+                "y": 0.5
+              },
+              "level_delta": 0.1,
+              "size_scale": 1.1
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": false,
+            "spawn_offset": {
+              "x": 0.8,
+              "y": 0.3
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Verify all vehicle_cmd are zero in pre-collision critical window",
+          "Verify non-zero brake is reported by vehicle_status pre-collision",
+          "Verify planning reports no blocked waypoints pre-collision",
+          "Verify at least one actor is detected near ego pre-collision"
+        ],
+        "post_execution_validation_rules": [
+          "Validate collision outcome via oracle after execution",
+          "Confirm all root cause preservation constraints are satisfied"
+        ],
+        "uncertainty": [
+          "No direct planner decision logs available to confirm planning failure",
+          "Evidence does not confirm collision actor was correctly detected by perception",
+          "Actuation/controller behavior attribution remains uncertain due to vehicle_cmd/brake mismatch"
+        ]
+      }
+    ]
+  },
+  "raw_api_payload": {
+    "id": "02178292305491499dc5fabce539182c5283153d4312199388500",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "{\n  \"case_id\": \"case_001\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Shift collision actor closer to ego's planned path with minor speed adjustment\",\n      \"mutation_intent\": \"Preserves all Phase 1 root cause preconditions (zero vehicle_cmd, non-zero brake, no blocked waypoints, detected near actor) while adjusting actor position to maintain the original collision outcome pattern\",\n      \"expected_oracle\": \"collision\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": -2.0, \"y\": 1.2}, \"speed_delta\": 0.5}\n        ],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": 0.0, \"size_scale\": 1.0}\n        ],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Verify all vehicle_cmd are zero in pre-collision critical window\", \"Verify non-zero brake is reported by vehicle_status pre-collision\", \"Verify planning reports no blocked waypoints pre-collision\", \"Verify at least one actor is detected near ego pre-collision\"],\n      \"post_execution_validation_rules\": [\"Validate collision outcome via oracle after execution\", \"Confirm all root cause preservation constraints are satisfied\"],\n      \"uncertainty\": [\"No direct planner decision logs available to confirm planning failure\", \"Evidence does not confirm collision actor was correctly detected by perception\", \"Actuation/controller behavior attribution remains uncertain due to vehicle_cmd/brake mismatch\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Slightly increase road wetness, adjust collision actor speed and position, minor shift to ego spawn\",\n      \"mutation_intent\": \"Modifies environmental and initial parameters within allowed bounds, while strictly preserving all core root cause preconditions and expected collision outcome from Phase 1\",\n      \"expected_oracle\": \"collision\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 8, \"fog\": 0, \"wetness\": 10, \"puddle\": 3},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 1.5, \"y\": -0.8}, \"speed_delta\": -1.0}\n        ],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": 1.0, \"y\": 0.5}, \"level_delta\": 0.1, \"size_scale\": 1.1}\n        ],\n        \"mission_mutation\": {\"keep_original\": false, \"spawn_offset\": {\"x\": 0.8, \"y\": 0.3}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Verify all vehicle_cmd are zero in pre-collision critical window\", \"Verify non-zero brake is reported by vehicle_status pre-collision\", \"Verify planning reports no blocked waypoints pre-collision\", \"Verify at least one actor is detected near ego pre-collision\"],\n      \"post_execution_validation_rules\": [\"Validate collision outcome via oracle after execution\", \"Confirm all root cause preservation constraints are satisfied\"],\n      \"uncertainty\": [\"No direct planner decision logs available to confirm planning failure\", \"Evidence does not confirm collision actor was correctly detected by perception\", \"Actuation/controller behavior attribution remains uncertain due to vehicle_cmd/brake mismatch\"]\n    }\n  ]\n}",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null,
+          "reasoning_content": "\nGot it, let's build this JSON step by step. First, the case_id is case_001 right? Then we need exactly 2 candidate_specs.\n\nFirst candidate: cand_001. High level variant: what? Let's think, shift the collision actor a bit closer to ego's path, keep everything else the same. Mutation intent: shifts the other actor's position slightly to maintain the preconditions that lead to collision, preserves all the root cause constraints. Expected oracle is collision, right? Because original is collision.\n\nModifications: weather delta, let's see original rain is 5, let's make rain +5, fog 0, wetness +5, puddle 0? Wait no, keep conservative. Or wait, first candidate: actor mutation, actor 0, position offset x -1.5, y 0.5, speed delta +0.5. That's within [-8,8] and [-3,3], good. Mission keep original true. Weather delta: rain 5, fog 0, wetness 5, puddle 0. That's within [-20,20]. Puddle mutation: puddle 0, offset x 0, y 0, level delta 0, size 1.0. Pre execution rules: [\"Check all vehicle_cmd are zero in pre-collision critical window\", \"Check non-zero brake reported in vehicle_status pre-collision\", \"Check planning reports no blocked waypoints pre-collision\", \"Check at least one actor detected near ego pre-collision\"]. Post execution: [\"Validate collision outcome via oracle\"]. Uncertainty: same as phase1, [\"No direct planner decision logs available\", \"Uncertain if collision actor was correctly detected by perception\", \"Uncertain actuation/controller behavior attribution\"].\n\nSecond candidate: cand_002. High level variant: Slightly wetter road surface, adjust collision actor speed down slightly, shift ego spawn a little closer to the puddle area. Mutation intent: Adjusts environmental and actor parameters within constraints to preserve all preconditions for the collision while testing a slightly different scenario variant that keeps the root cause pattern. Expected oracle still collision. Modifications: weather delta: rain +10, wetness +10, fog 0, puddle +5, all within [-20,20]. Actor mutation: actor 0, position offset x 1, y -0.8, speed delta -0.8, that's within limits. Puddle mutation: puddle 0, location offset x 1, y 0, level delta 0.05, size scale 1.05, that's within [0.8,1.2] and [-0.2, 0.2]. Mission mutation: keep_original false, spawn offset x 0.5, y 0.3, destination offset 0, 0, all within [-5,5]. Pre execution rules same as first? Let's see, same constraints: [\"Check all root cause preconditions: zero vehicle_cmd, non-zero brake, no blocked waypoints, detected actor pre-collision\"]. Post execution: [\"Confirm collision outcome matches expected oracle\", \"Verify all preservation constraints are satisfied after execution\"]. Uncertainty same as phase1, since it's still uncertain.\n\nWait let's check all rules: exactly 2 candidates, all offsets are within limits, oracle preserved as collision, root cause preserved. Let's structure it correctly.\n\nWait let's make sure modifications are correct. Let's write it properly.\n\nFirst candidate cand_001:\nhigh_level_variant: \"Shift foreground collision actor closer to ego's planned path with minor speed adjustment\"\nmutation_intent: \"Preserves all Phase 1 root cause preconditions (zero vehicle_cmd, non-zero brake, no blocked waypoints, detected actor) while slightly adjusting actor position to increase likelihood of collision matching the original outcome\"\nexpected_oracle: \"collision\"\nmodifications: weather delta is all 0? Wait no, I can do that, or minor change. Wait let's do weather delta all 0 for first candidate, only change actor. That's fine. So weather_delta: {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0}. Actor_mutations: [{\"actor_index\": 0, \"position_offset\": {\"x\": -2.0, \"y\": 1.2}, \"speed_delta\": 0.5}]. Puddle_mutations: [{\"puddle_index\": 0, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": 0.0, \"size_scale\": 1.0}]. Mission mutation: {\"keep_original\": true, ...}. That's good.\n\nSecond candidate cand_002:\nhigh_level_variant: \"Slightly increase road wetness, adjust collision actor position and speed, minor shift to ego spawn\"\nmutation_intent: \"Modifies environmental and initial actor/ego parameters within allowed bounds, while preserving all core root cause preconditions and the expected collision outcome from Phase 1\"\nexpected_oracle: \"collision\"\nmodifications: weather_delta: {\"rain\": 8, \"fog\": 0, \"wetness\": 10, \"puddle\": 3} all within 20, good. Actor_mutations: [{\"actor_index\": 0, \"position_offset\": {\"x\": 1.5, \"y\": -0.8}, \"speed_delta\": -1.0}]. Puddle_mutations: [{\"puddle_index\": 0, \"location_offset\": {\"x\": 1.0, \"y\": 0.5}, \"level_delta\": 0.1, \"size_scale\": 1.1}]. That's level delta 0.1 <0.2, size 1.1 between 0.8 and 1.2, good. Mission mutation: {\"keep_original\": false, \"spawn_offset\": {\"x\": 0.8, \"y\": 0.3}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}} offsets are within 5, good.\n\nPre and post execution rules: for both, pre is [\"Verify all zero vehicle_cmd in pre-collision critical window\", \"Verify non-zero brake reported by vehicle_status pre-collision\", \"Verify planning reports no blocked waypoints pre-collision\", \"Verify at least one actor detected near ego pre-collision\"], post is [\"Validate collision outcome via oracle after execution\", \"Confirm all root cause preservation constraints are satisfied\"].\n\nUncertainty for both: [\"No direct planner decision logs available to confirm planning failure\", \"Uncertainty remains whether collision actor was correctly detected by perception\", \"Actuation/controller behavior attribution is still uncertain due to zero vehicle_cmd and non-zero brake mismatch\"], which matches phase1 uncertainty.\n\nWait that's all good. Now put it all into the correct JSON structure. Let's check no mistakes. Case id is case_001, candidate_specs array of two, all fields present. Let's write it."
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "doubao-seed-2-0-lite-260215",
+    "object": "chat.completion",
+    "service_tier": "default",
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 2439,
+      "prompt_tokens": 1384,
+      "total_tokens": 3823,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 1518,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": null,
+        "cached_tokens": 0
+      }
+    }
+  },
+  "error_message": "",
+  "elapsed_sec": 46.088,
+  "timestamp": "<REDACTED_TIMESTAMP>"
+}

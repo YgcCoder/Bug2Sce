@@ -1,0 +1,100 @@
+{
+  "case_id": "case_112",
+  "model_name": "gpt-4o-2024-11-20",
+  "candidate_index": 1,
+  "candidate_spec": {
+    "candidate_id": "cand_001",
+    "high_level_variant": "Ego collides with a vehicle in slightly reduced visibility conditions.",
+    "mutation_intent": "This variant preserves the Phase 1 root-cause pattern by maintaining the collision symptom, ego's non-zero throttle, no braking, and vehicle_cmd all zero, while slightly reducing visibility to test robustness under marginally degraded conditions.",
+    "expected_oracle": "collision",
+    "modifications": {
+      "weather_delta": {
+        "rain": 5,
+        "fog": 10,
+        "wetness": 5,
+        "puddle": 0
+      },
+      "actor_mutations": [
+        {
+          "actor_index": 0,
+          "position_offset": {
+            "x": 1.0,
+            "y": -2.0
+          },
+          "speed_delta": 0.5
+        },
+        {
+          "actor_index": 1,
+          "position_offset": {
+            "x": -1.5,
+            "y": 2.0
+          },
+          "speed_delta": -0.5
+        }
+      ],
+      "puddle_mutations": [],
+      "mission_mutation": {
+        "keep_original": true,
+        "spawn_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "destination_offset": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Ensure ego maintains non-zero throttle and no braking before collision.",
+      "Validate vehicle_cmd remains all zero in the critical window.",
+      "Check that the closest object is within 10.166m before collision."
+    ],
+    "post_execution_validation_rules": [
+      "Verify collision occurs under modified weather conditions.",
+      "Confirm ego's behavior aligns with Phase 1 root-cause pattern."
+    ],
+    "uncertainty": [
+      "Dataset.xlsx and error.json conflict on lane invasion.",
+      "No direct evidence links the collision to a specific module failure."
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": 5.0,
+      "fog": 10.0,
+      "wetness": 5.0,
+      "puddle": 0.0
+    },
+    "actor_mutations": [
+      {
+        "actor_index": 0,
+        "position_offset": {
+          "x": 1.0,
+          "y": -2.0
+        },
+        "speed_delta": 0.5
+      },
+      {
+        "actor_index": 1,
+        "position_offset": {
+          "x": -1.5,
+          "y": 2.0
+        },
+        "speed_delta": -0.5
+      }
+    ],
+    "puddle_mutations": [],
+    "mission_mutation": {
+      "keep_original": true
+    }
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_112__gpt-4o-2024-11-20.json",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_112__gpt-4o-2024-11-20.json",
+  "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+}

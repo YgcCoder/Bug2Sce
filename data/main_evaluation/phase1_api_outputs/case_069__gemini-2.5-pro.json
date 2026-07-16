@@ -1,0 +1,118 @@
+{
+  "case_id": "case_069",
+  "workflow": "phase1_causal_explanation",
+  "model_name": "gemini-2.5-pro",
+  "model_id": "gemini-2.5-pro",
+  "status": "completed",
+  "dry_run": false,
+  "schema_valid": true,
+  "schema_errors": [],
+  "quality_flags": [],
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_prompts/case_069__gemini-2.5-pro.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_069__gemini-2.5-pro.json",
+  "prompt_estimated_tokens": 2996,
+  "usage": {
+    "prompt_tokens": 4114,
+    "completion_tokens": 3106,
+    "total_tokens": 7220
+  },
+  "estimated_cost_usd": null,
+  "raw_response": "```json\n{\n  \"case_id\": \"case_069\",\n  \"fault_layer\": \"unknown\",\n  \"fault_component\": \"planning-control interface\",\n  \"causal_explanation\": \"The vehicle collides while moving despite the planning module publishing all-zero control commands, indicating a disconnect between planner intent and vehicle behavior.\",\n  \"root_cause_pattern\": \"A mismatch where vehicle_cmd is zero but vehicle_status shows motion leads to a collision.\",\n  \"preservation_constraints\": [\n    \"Preserve that vehicle_cmd contains all-zero commands.\",\n    \"Preserve that vehicle_status shows motion before collision.\",\n    \"Preserve the final collision event.\"\n  ],\n  \"modifiable_factors\": [\n    \"actor_positions\",\n    \"weather\",\n    \"mission_goal\"\n  ],\n  \"non_modifiable_conditions\": [\n    \"vehicle_cmd is zero while vehicle_status shows motion\",\n    \"A collision occurs\"\n  ],\n  \"uncertainty\": [\n    \"Dataset and error.json conflict on collision and lane invasion.\",\n    \"The root cause of the vehicle_cmd/vehicle_status mismatch is unknown.\",\n    \"The lane invasion label is unconfirmed by oracle evidence.\"\n  ],\n  \"evidence_support\": [\n    {\n      \"evidence_id\": \"critical_window_summary.ego_control_before_collision\",\n      \"claim\": \"vehicle_cmd is all zeros while vehicle_status shows motion.\"\n    },\n    {\n      \"evidence_id\": \"trace_summary_compact.oracle.collision\",\n      \"claim\": \"The /carla/ego_vehicle/collision topic confirms a crash occurred.\"\n    },\n    {\n      \"evidence_id\": \"oracle_consistency\",\n      \"claim\": \"Dataset label (C+L) conflicts with error.json (none).\"\n    }\n  ],\n  \"confidence\": \"medium\",\n  \"ready_for_phase2_generation\": \"yes\",\n  \"notes_for_validator\": [\n    \"Collision is confirmed by the /carla/ego_vehicle/collision topic.\",\n    \"Focus on the vehicle_cmd vs. vehicle_status discrepancy.\",\n    \"The lane invasion label is unconfirmed and should be ignored.\"\n  ]\n}\n```",
+  "parsed_response": {
+    "case_id": "case_069",
+    "fault_layer": "unknown",
+    "fault_component": "planning-control interface",
+    "causal_explanation": "The vehicle collides while moving despite the planning module publishing all-zero control commands, indicating a disconnect between planner intent and vehicle behavior.",
+    "root_cause_pattern": "A mismatch where vehicle_cmd is zero but vehicle_status shows motion leads to a collision.",
+    "preservation_constraints": [
+      "Preserve that vehicle_cmd contains all-zero commands.",
+      "Preserve that vehicle_status shows motion before collision.",
+      "Preserve the final collision event."
+    ],
+    "modifiable_factors": [
+      "actor_positions",
+      "weather",
+      "mission_goal"
+    ],
+    "non_modifiable_conditions": [
+      "vehicle_cmd is zero while vehicle_status shows motion",
+      "A collision occurs"
+    ],
+    "uncertainty": [
+      "Dataset and error.json conflict on collision and lane invasion.",
+      "The root cause of the vehicle_cmd/vehicle_status mismatch is unknown.",
+      "The lane invasion label is unconfirmed by oracle evidence."
+    ],
+    "evidence_support": [
+      {
+        "evidence_id": "critical_window_summary.ego_control_before_collision",
+        "claim": "vehicle_cmd is all zeros while vehicle_status shows motion."
+      },
+      {
+        "evidence_id": "trace_summary_compact.oracle.collision",
+        "claim": "The /carla/ego_vehicle/collision topic confirms a crash occurred."
+      },
+      {
+        "evidence_id": "oracle_consistency",
+        "claim": "Dataset label (C+L) conflicts with error.json (none)."
+      }
+    ],
+    "confidence": "medium",
+    "ready_for_phase2_generation": "yes",
+    "notes_for_validator": [
+      "Collision is confirmed by the /carla/ego_vehicle/collision topic.",
+      "Focus on the vehicle_cmd vs. vehicle_status discrepancy.",
+      "The lane invasion label is unconfirmed and should be ignored."
+    ]
+  },
+  "raw_api_payload": {
+    "id": "<REDACTED_RESPONSE_ID>",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "```json\n{\n  \"case_id\": \"case_069\",\n  \"fault_layer\": \"unknown\",\n  \"fault_component\": \"planning-control interface\",\n  \"causal_explanation\": \"The vehicle collides while moving despite the planning module publishing all-zero control commands, indicating a disconnect between planner intent and vehicle behavior.\",\n  \"root_cause_pattern\": \"A mismatch where vehicle_cmd is zero but vehicle_status shows motion leads to a collision.\",\n  \"preservation_constraints\": [\n    \"Preserve that vehicle_cmd contains all-zero commands.\",\n    \"Preserve that vehicle_status shows motion before collision.\",\n    \"Preserve the final collision event.\"\n  ],\n  \"modifiable_factors\": [\n    \"actor_positions\",\n    \"weather\",\n    \"mission_goal\"\n  ],\n  \"non_modifiable_conditions\": [\n    \"vehicle_cmd is zero while vehicle_status shows motion\",\n    \"A collision occurs\"\n  ],\n  \"uncertainty\": [\n    \"Dataset and error.json conflict on collision and lane invasion.\",\n    \"The root cause of the vehicle_cmd/vehicle_status mismatch is unknown.\",\n    \"The lane invasion label is unconfirmed by oracle evidence.\"\n  ],\n  \"evidence_support\": [\n    {\n      \"evidence_id\": \"critical_window_summary.ego_control_before_collision\",\n      \"claim\": \"vehicle_cmd is all zeros while vehicle_status shows motion.\"\n    },\n    {\n      \"evidence_id\": \"trace_summary_compact.oracle.collision\",\n      \"claim\": \"The /carla/ego_vehicle/collision topic confirms a crash occurred.\"\n    },\n    {\n      \"evidence_id\": \"oracle_consistency\",\n      \"claim\": \"Dataset label (C+L) conflicts with error.json (none).\"\n    }\n  ],\n  \"confidence\": \"medium\",\n  \"ready_for_phase2_generation\": \"yes\",\n  \"notes_for_validator\": [\n    \"Collision is confirmed by the /carla/ego_vehicle/collision topic.\",\n    \"Focus on the vehicle_cmd vs. vehicle_status discrepancy.\",\n    \"The lane invasion label is unconfirmed and should be ignored.\"\n  ]\n}\n```",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "gemini-2.5-pro",
+    "object": "chat.completion",
+    "service_tier": null,
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 3106,
+      "prompt_tokens": 4114,
+      "total_tokens": 7220,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": 0,
+        "reasoning_tokens": 2593,
+        "rejected_prediction_tokens": null,
+        "text_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 0,
+        "text_tokens": 4114,
+        "image_tokens": 0
+      },
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "input_tokens_details": null,
+      "claude_cache_creation_5_m_tokens": 0,
+      "claude_cache_creation_1_h_tokens": 0
+    }
+  },
+  "error_message": "",
+  "timestamp": "<REDACTED_TIMESTAMP>",
+  "elapsed_sec": 34.735
+}

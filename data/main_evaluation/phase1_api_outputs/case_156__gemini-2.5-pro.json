@@ -1,0 +1,114 @@
+{
+  "case_id": "case_156",
+  "workflow": "phase1_causal_explanation",
+  "model_name": "gemini-2.5-pro",
+  "model_id": "gemini-2.5-pro",
+  "status": "completed",
+  "dry_run": false,
+  "schema_valid": true,
+  "schema_errors": [],
+  "quality_flags": [],
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_prompts/case_156__gemini-2.5-pro.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_156__gemini-2.5-pro.json",
+  "prompt_estimated_tokens": 2578,
+  "usage": {
+    "prompt_tokens": 3547,
+    "completion_tokens": 2759,
+    "total_tokens": 6306
+  },
+  "estimated_cost_usd": null,
+  "raw_response": "{\n  \"case_id\": \"case_156\",\n  \"fault_layer\": \"planning\",\n  \"fault_component\": \"motion planning / trajectory follower\",\n  \"causal_explanation\": \"The vehicle is stuck because the motion planner commands zero velocity despite having a valid, unblocked path from the high-level planner.\",\n  \"root_cause_pattern\": \"A motion planning state where valid waypoints exist but all output vehicle commands are zero.\",\n  \"preservation_constraints\": [\n    \"Vehicle remains stuck with zero velocity.\",\n    \"Planner must publish a valid waypoint path.\",\n    \"Motion controller must command zero velocity.\"\n  ],\n  \"modifiable_factors\": [\n    \"actor_position\",\n    \"weather\",\n    \"puddles\",\n    \"start_position\"\n  ],\n  \"non_modifiable_conditions\": [\n    \"Stuck vehicle\",\n    \"Valid waypoints published\",\n    \"Zero velocity command\"\n  ],\n  \"uncertainty\": [],\n  \"evidence_support\": [\n    {\n      \"evidence_id\": \"critical_window_summary\",\n      \"claim\": \"Ego velocity and commands are zero in the last 60s.\"\n    },\n    {\n      \"evidence_id\": \"trace_summary_compact.planning.final_waypoints\",\n      \"claim\": \"Planner continuously provides 101 waypoints.\"\n    },\n    {\n      \"evidence_id\": \"trace_summary_compact.actuation.vehicle_cmd\",\n      \"claim\": \"Vehicle command topic shows zero values for all commands.\"\n    }\n  ],\n  \"confidence\": \"high\",\n  \"ready_for_phase2_generation\": \"yes\",\n  \"notes_for_validator\": [\n    \"Clear planning fault: waypoints exist but vehicle commands are zero.\"\n  ]\n}",
+  "parsed_response": {
+    "case_id": "case_156",
+    "fault_layer": "planning",
+    "fault_component": "motion planning / trajectory follower",
+    "causal_explanation": "The vehicle is stuck because the motion planner commands zero velocity despite having a valid, unblocked path from the high-level planner.",
+    "root_cause_pattern": "A motion planning state where valid waypoints exist but all output vehicle commands are zero.",
+    "preservation_constraints": [
+      "Vehicle remains stuck with zero velocity.",
+      "Planner must publish a valid waypoint path.",
+      "Motion controller must command zero velocity."
+    ],
+    "modifiable_factors": [
+      "actor_position",
+      "weather",
+      "puddles",
+      "start_position"
+    ],
+    "non_modifiable_conditions": [
+      "Stuck vehicle",
+      "Valid waypoints published",
+      "Zero velocity command"
+    ],
+    "uncertainty": [],
+    "evidence_support": [
+      {
+        "evidence_id": "critical_window_summary",
+        "claim": "Ego velocity and commands are zero in the last 60s."
+      },
+      {
+        "evidence_id": "trace_summary_compact.planning.final_waypoints",
+        "claim": "Planner continuously provides 101 waypoints."
+      },
+      {
+        "evidence_id": "trace_summary_compact.actuation.vehicle_cmd",
+        "claim": "Vehicle command topic shows zero values for all commands."
+      }
+    ],
+    "confidence": "high",
+    "ready_for_phase2_generation": "yes",
+    "notes_for_validator": [
+      "Clear planning fault: waypoints exist but vehicle commands are zero."
+    ]
+  },
+  "raw_api_payload": {
+    "id": "<REDACTED_RESPONSE_ID>",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "{\n  \"case_id\": \"case_156\",\n  \"fault_layer\": \"planning\",\n  \"fault_component\": \"motion planning / trajectory follower\",\n  \"causal_explanation\": \"The vehicle is stuck because the motion planner commands zero velocity despite having a valid, unblocked path from the high-level planner.\",\n  \"root_cause_pattern\": \"A motion planning state where valid waypoints exist but all output vehicle commands are zero.\",\n  \"preservation_constraints\": [\n    \"Vehicle remains stuck with zero velocity.\",\n    \"Planner must publish a valid waypoint path.\",\n    \"Motion controller must command zero velocity.\"\n  ],\n  \"modifiable_factors\": [\n    \"actor_position\",\n    \"weather\",\n    \"puddles\",\n    \"start_position\"\n  ],\n  \"non_modifiable_conditions\": [\n    \"Stuck vehicle\",\n    \"Valid waypoints published\",\n    \"Zero velocity command\"\n  ],\n  \"uncertainty\": [],\n  \"evidence_support\": [\n    {\n      \"evidence_id\": \"critical_window_summary\",\n      \"claim\": \"Ego velocity and commands are zero in the last 60s.\"\n    },\n    {\n      \"evidence_id\": \"trace_summary_compact.planning.final_waypoints\",\n      \"claim\": \"Planner continuously provides 101 waypoints.\"\n    },\n    {\n      \"evidence_id\": \"trace_summary_compact.actuation.vehicle_cmd\",\n      \"claim\": \"Vehicle command topic shows zero values for all commands.\"\n    }\n  ],\n  \"confidence\": \"high\",\n  \"ready_for_phase2_generation\": \"yes\",\n  \"notes_for_validator\": [\n    \"Clear planning fault: waypoints exist but vehicle commands are zero.\"\n  ]\n}",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "gemini-2.5-pro",
+    "object": "chat.completion",
+    "service_tier": null,
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 2759,
+      "prompt_tokens": 3547,
+      "total_tokens": 6306,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": 0,
+        "reasoning_tokens": 2345,
+        "rejected_prediction_tokens": null,
+        "text_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 0,
+        "text_tokens": 3547,
+        "image_tokens": 0
+      },
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "input_tokens_details": null,
+      "claude_cache_creation_5_m_tokens": 0,
+      "claude_cache_creation_1_h_tokens": 0
+    }
+  },
+  "error_message": "",
+  "timestamp": "<REDACTED_TIMESTAMP>",
+  "elapsed_sec": 30.219
+}

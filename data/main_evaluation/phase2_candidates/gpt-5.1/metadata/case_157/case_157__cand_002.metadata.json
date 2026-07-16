@@ -1,0 +1,145 @@
+{
+  "case_id": "case_157",
+  "model_name": "gpt-5.1",
+  "candidate_index": 2,
+  "candidate_spec": {
+    "candidate_id": "cand_002",
+    "high_level_variant": "Ego follows its route into a mildly denser mixed-traffic area where a crossing vehicle from the side approaches and is detected and predicted, but ego continues forward and collides laterally without braking while planning still outputs unblocked waypoints and vehicle_cmd stays all zero.",
+    "mutation_intent": "Shift the primary interacting actor to approach from a lateral direction while keeping the ego moving and preserving active perception/prediction and unblocked planning outputs alongside a zeroed vehicle_cmd stream. The lateral configuration explores whether the same command–status mismatch and unexplained collision arise when the nearby actor is not purely longitudinal, without changing the core root-cause pattern.",
+    "expected_oracle": "collision",
+    "modifications": {
+      "weather_delta": {
+        "rain": -5,
+        "fog": 5,
+        "wetness": 0,
+        "puddle": 0
+      },
+      "actor_mutations": [
+        {
+          "actor_index": 3,
+          "position_offset": {
+            "x": -4.0,
+            "y": 3.0
+          },
+          "speed_delta": 1.5
+        },
+        {
+          "actor_index": 2,
+          "position_offset": {
+            "x": -2.0,
+            "y": -3.0
+          },
+          "speed_delta": -2.0
+        },
+        {
+          "actor_index": 0,
+          "position_offset": {
+            "x": -5.0,
+            "y": -1.0
+          },
+          "speed_delta": 0.5
+        },
+        {
+          "actor_index": 1,
+          "position_offset": {
+            "x": -1.0,
+            "y": 2.0
+          },
+          "speed_delta": 0.0
+        }
+      ],
+      "puddle_mutations": [],
+      "mission_mutation": {
+        "keep_original": false,
+        "spawn_offset": {
+          "x": 3.0,
+          "y": -2.0
+        },
+        "destination_offset": {
+          "x": -4.0,
+          "y": 1.0
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Verify that actor_index 3’s adjusted pose and speed create a plausible lateral or diagonal path that intersects the ego lane within the simulation horizon, so that a potential side collision region exists.",
+      "Confirm that the mission spawn and destination offsets still place ego on a continuous roadway path without invalid or off-road starts/ends.",
+      "Ensure perception and prediction topics are active and configured to detect and track vehicles approaching from the sides, not just purely longitudinal traffic.",
+      "Check planning still produces full final_waypoints with no preconfigured blocked segments or emergency-stop logic specific to cross-traffic in this map region.",
+      "Confirm the controller and simulator configuration still allow vehicle_status to report ego motion even when vehicle_cmd fields may remain zero."
+    ],
+    "post_execution_validation_rules": [
+      "Confirm oracle collision logs a collision between ego and a non-ego vehicle (preferably actor_index 3) near the end of the run.",
+      "Verify ego velocity remains nonzero leading up to the collision and there is no significant increase in brake_cmd before impact.",
+      "Check that perception/prediction topics report the laterally approaching vehicle with positions and predicted trajectories that intersect or closely approach the ego’s path in the seconds before the collision.",
+      "Ensure final_waypoints remain present, with consistent counts and no blocked flags, throughout the pre-collision window, indicating planning did not explicitly mark the path as obstructed.",
+      "Validate that vehicle_cmd accel_cmd, brake_cmd, steer_cmd, and target_speed stay effectively at zero while vehicle_status shows ongoing motion, reproducing the command–status mismatch.",
+      "Inspect any planner summary metrics (e.g., closest-object-distance) to verify that they do not trigger a stop or blocked-plan condition even as the lateral actor nears the ego."
+    ],
+    "uncertainty": [
+      "Changing the main interacting actor to a lateral vehicle may influence how perception and prediction represent the scene, so it remains uncertain whether the same misalignment between their outputs and planning/control will occur.",
+      "The underlying cause of the zero vehicle_cmd despite ego motion is still ambiguous; this variant tests whether the phenomenon generalizes to cross-traffic, but does not identify which module is responsible if the pattern repeats."
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": -5.0,
+      "fog": 5.0,
+      "wetness": 0.0,
+      "puddle": 0.0
+    },
+    "actor_mutations": [
+      {
+        "actor_index": 3,
+        "position_offset": {
+          "x": -4.0,
+          "y": 3.0
+        },
+        "speed_delta": 1.5
+      },
+      {
+        "actor_index": 2,
+        "position_offset": {
+          "x": -2.0,
+          "y": -3.0
+        },
+        "speed_delta": -2.0
+      },
+      {
+        "actor_index": 0,
+        "position_offset": {
+          "x": -5.0,
+          "y": -1.0
+        },
+        "speed_delta": 0.5
+      },
+      {
+        "actor_index": 1,
+        "position_offset": {
+          "x": -1.0,
+          "y": 2.0
+        },
+        "speed_delta": 0.0
+      }
+    ],
+    "puddle_mutations": [],
+    "mission_mutation": {
+      "spawn_offset": {
+        "x": 3.0,
+        "y": -2.0
+      },
+      "destination_offset": {
+        "x": -4.0,
+        "y": 1.0
+      }
+    }
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_157__gpt-5.1.json",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_157__gpt-5.1.json",
+  "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+}

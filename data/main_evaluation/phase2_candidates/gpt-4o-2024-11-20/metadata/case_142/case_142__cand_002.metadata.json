@@ -1,0 +1,134 @@
+{
+  "case_id": "case_142",
+  "model_name": "gpt-4o-2024-11-20",
+  "candidate_index": 2,
+  "candidate_spec": {
+    "candidate_id": "cand_002",
+    "high_level_variant": "Ego vehicle encounters a red-light violation scenario with slightly altered weather and puddle conditions.",
+    "mutation_intent": "This variant tests the impact of minor weather and puddle adjustments while preserving the collision and red-light violation pattern.",
+    "expected_oracle": "collision",
+    "modifications": {
+      "weather_delta": {
+        "rain": 5,
+        "fog": -10,
+        "wetness": 10,
+        "puddle": 0
+      },
+      "actor_mutations": [
+        {
+          "actor_index": 0,
+          "position_offset": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "speed_delta": 0.0
+        },
+        {
+          "actor_index": 1,
+          "position_offset": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "speed_delta": 0.0
+        },
+        {
+          "actor_index": 2,
+          "position_offset": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "speed_delta": 0.0
+        }
+      ],
+      "puddle_mutations": [
+        {
+          "puddle_index": 0,
+          "location_offset": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "level_delta": 0.1,
+          "size_scale": 1.1
+        }
+      ],
+      "mission_mutation": {
+        "keep_original": true,
+        "spawn_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "destination_offset": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "validate_weather_conditions",
+      "validate_puddle_properties"
+    ],
+    "post_execution_validation_rules": [
+      "validate_collision_impulse",
+      "validate_red_light_violation"
+    ],
+    "uncertainty": [
+      "Lane invasion remains unconfirmed due to dataset and error.json conflict."
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": 5.0,
+      "fog": -10.0,
+      "wetness": 10.0,
+      "puddle": 0.0
+    },
+    "actor_mutations": [
+      {
+        "actor_index": 0,
+        "position_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "speed_delta": 0.0
+      },
+      {
+        "actor_index": 1,
+        "position_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "speed_delta": 0.0
+      },
+      {
+        "actor_index": 2,
+        "position_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "speed_delta": 0.0
+      }
+    ],
+    "puddle_mutations": [
+      {
+        "puddle_index": 0,
+        "location_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "level_delta": 0.1,
+        "size_scale": 1.1
+      }
+    ],
+    "mission_mutation": {
+      "keep_original": true
+    }
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_142__gpt-4o-2024-11-20.json",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_142__gpt-4o-2024-11-20.json",
+  "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+}

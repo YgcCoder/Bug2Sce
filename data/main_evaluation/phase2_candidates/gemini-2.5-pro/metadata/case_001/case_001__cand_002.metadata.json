@@ -1,0 +1,56 @@
+{
+  "case_id": "case_001",
+  "model_name": "gemini-2.5-pro",
+  "candidate_index": 2,
+  "candidate_spec": {
+    "candidate_id": "cand_002",
+    "high_level_variant": "Increase rain and wetness to test environmental effects on the planner freeze.",
+    "mutation_intent": "Investigate if adverse weather is a factor in the planner's decision to send zero commands.",
+    "expected_oracle": "collision",
+    "modifications": {
+      "weather_delta": {
+        "rain": 20,
+        "fog": 0,
+        "wetness": 20,
+        "puddle": 0
+      },
+      "actor_mutations": [],
+      "puddle_mutations": [],
+      "mission_mutation": {
+        "keep_original": true
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Weather is rainier and wetter than seed."
+    ],
+    "post_execution_validation_rules": [
+      "Planner sends zero commands before collision.",
+      "Perception still detects the actor."
+    ],
+    "uncertainty": [
+      "Uncertain if weather affects the planner freeze.",
+      "Uncertain if perception is the true root cause."
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": 20,
+      "fog": 0.0,
+      "wetness": 20,
+      "puddle": 0.0
+    },
+    "actor_mutations": [],
+    "puddle_mutations": [],
+    "mission_mutation": {
+      "keep_original": true
+    }
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_001__gemini-2.5-pro.json",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_001__gemini-2.5-pro.json",
+  "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+}

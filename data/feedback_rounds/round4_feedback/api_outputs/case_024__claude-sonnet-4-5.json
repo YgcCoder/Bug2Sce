@@ -1,0 +1,497 @@
+{
+  "case_id": "case_024",
+  "model_name": "claude-sonnet-4-5",
+  "workflow": "round4_cumulative_feedback_guided_b2s",
+  "authoritative_target": "original_seed_and_original_phase1_root_cause",
+  "status": "completed",
+  "schema_valid": true,
+  "schema_errors": [],
+  "num_round1_feedback_records": 6,
+  "num_round2_feedback_records": 2,
+  "num_round3_feedback_records": 6,
+  "num_candidates_requested": 6,
+  "num_candidates_written": 6,
+  "num_pre_valid": 6,
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/round4_feedback/prompts/case_024.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/round4_feedback/api_outputs/case_024__claude-sonnet-4-5.json",
+  "prompt_estimated_tokens": 6518,
+  "usage": {
+    "prompt_tokens": 7833,
+    "completion_tokens": 2588,
+    "total_tokens": 10421
+  },
+  "candidate_records": [
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/round4_feedback/candidates/case_024__Round4_01.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/round4_feedback/metadata/case_024__Round4_01.metadata.json",
+      "pre_valid": true,
+      "pre_validation_errors": [],
+      "pre_validation_warnings": []
+    },
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/round4_feedback/candidates/case_024__Round4_02.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/round4_feedback/metadata/case_024__Round4_02.metadata.json",
+      "pre_valid": true,
+      "pre_validation_errors": [],
+      "pre_validation_warnings": []
+    },
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/round4_feedback/candidates/case_024__Round4_03.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/round4_feedback/metadata/case_024__Round4_03.metadata.json",
+      "pre_valid": true,
+      "pre_validation_errors": [],
+      "pre_validation_warnings": []
+    },
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/round4_feedback/candidates/case_024__Round4_04.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/round4_feedback/metadata/case_024__Round4_04.metadata.json",
+      "pre_valid": true,
+      "pre_validation_errors": [],
+      "pre_validation_warnings": []
+    },
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/round4_feedback/candidates/case_024__Round4_05.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/round4_feedback/metadata/case_024__Round4_05.metadata.json",
+      "pre_valid": true,
+      "pre_validation_errors": [],
+      "pre_validation_warnings": []
+    },
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/round4_feedback/candidates/case_024__Round4_06.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/round4_feedback/metadata/case_024__Round4_06.metadata.json",
+      "pre_valid": true,
+      "pre_validation_errors": [],
+      "pre_validation_warnings": []
+    }
+  ],
+  "raw_response": "```json\n{\n  \"case_id\": \"case_024\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Actor 1 moved closer to ego path, actor 0 speed slightly reduced\",\n      \"mutation_intent\": \"Build on R3 cand_003 partial success by keeping actor 1 near ego spawn and reducing actor 0 speed for sustained intersection conflict\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 0.0, \"y\": 0.0}, \"speed_delta\": -0.8},\n          {\"actor_index\": 1, \"position_offset\": {\"x\": -1.0, \"y\": 2.5}, \"speed_delta\": 0.0}\n        ],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": 0.0, \"size_scale\": 1.0}\n        ],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Actor 1 within 15m of ego spawn\", \"Actor 0 present near intersection\"],\n      \"post_execution_validation_rules\": [\"Both collision and red-light oracle triggered\", \"Actor proximity to ego route confirmed\"],\n      \"uncertainty\": [\"Exact timing of actor-ego interaction at intersection\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Actor 1 positioned even closer to ego spawn with reduced speed\",\n      \"mutation_intent\": \"Amplify R3 cand_003 success by moving actor 1 nearer to ego initial position and lowering speed for prolonged conflict window\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 0.0, \"y\": 0.0}, \"speed_delta\": 0.0},\n          {\"actor_index\": 1, \"position_offset\": {\"x\": -2.0, \"y\": 3.0}, \"speed_delta\": -1.0}\n        ],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": 0.0, \"size_scale\": 1.0}\n        ],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Actor 1 within 12m of ego spawn\", \"Traffic lights present on route\"],\n      \"post_execution_validation_rules\": [\"Collision and red-light violation both occur\", \"Ego movement and braking detected\"],\n      \"uncertainty\": [\"Whether slower actor 1 speed maintains collision timing\"]\n    },\n    {\n      \"candidate_id\": \"cand_003\",\n      \"high_level_variant\": \"Actor 0 moved slightly backward, actor 1 closer with minor speed increase\",\n      \"mutation_intent\": \"Refine R3 cand_003 by adjusting actor 0 backward and actor 1 speed up slightly to tighten intersection timing\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": -1.5, \"y\": 0.0}, \"speed_delta\": 0.0},\n          {\"actor_index\": 1, \"position_offset\": {\"x\": -1.5, \"y\": 2.0}, \"speed_delta\": 0.5}\n        ],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": 0.0, \"size_scale\": 1.0}\n        ],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Both actors near ego route before collision\", \"Red light state available\"],\n      \"post_execution_validation_rules\": [\"Compound oracle collision+red-light confirmed\", \"Actor-route interaction in critical window\"],\n      \"uncertainty\": [\"Impact of actor 1 speed increase on collision occurrence\"]\n    },\n    {\n      \"candidate_id\": \"cand_004\",\n      \"high_level_variant\": \"Minor rain and wetness added, actor 1 closer to ego spawn\",\n      \"mutation_intent\": \"Combine R3 cand_003 actor positioning with light weather degradation to test robustness of collision+red-light failure\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 3, \"fog\": 0, \"wetness\": 2, \"puddle\": 1},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 0.0, \"y\": 0.0}, \"speed_delta\": 0.0},\n          {\"actor_index\": 1, \"position_offset\": {\"x\": -1.5, \"y\": 2.0}, \"speed_delta\": 0.0}\n        ],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": 0.05, \"size_scale\": 1.0}\n        ],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Actor 1 within 15m of ego spawn\", \"Weather conditions slightly degraded\"],\n      \"post_execution_validation_rules\": [\"Both collision and red-light oracle triggered\", \"Ego braking behavior observed\"],\n      \"uncertainty\": [\"Whether light weather change affects failure manifestation\"]\n    },\n    {\n      \"candidate_id\": \"cand_005\",\n      \"high_level_variant\": \"Actor 0 speed reduced, actor 1 lateral offset increased toward ego path\",\n      \"mutation_intent\": \"Slow actor 0 to extend interaction window while moving actor 1 laterally closer to ego route for intersection conflict\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 0.0, \"y\": 0.0}, \"speed_delta\": -1.2},\n          {\"actor_index\": 1, \"position_offset\": {\"x\": 0.0, \"y\": 3.0}, \"speed_delta\": 0.0}\n        ],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": 0.0, \"size_scale\": 1.0}\n        ],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Actor 0 speed reduced from seed\", \"Actor 1 laterally closer to ego path\"],\n      \"post_execution_validation_rules\": [\"Collision and red-light violation both occur\", \"Actor proximity maintained in critical window\"],\n      \"uncertainty\": [\"Whether lateral shift of actor 1 maintains collision geometry\"]\n    },\n    {\n      \"candidate_id\": \"cand_006\",\n      \"high_level_variant\": \"Both actors speed slightly reduced, actor 1 moved closer to ego spawn\",\n      \"mutation_intent\": \"Lower both actor speeds to extend interaction duration while keeping actor 1 near ego spawn for early conflict\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 0.0, \"y\": 0.0}, \"speed_delta\": -0.5},\n          {\"actor_index\": 1, \"position_offset\": {\"x\": -1.8, \"y\": 1.8}, \"speed_delta\": -0.8}\n        ],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": 0.0, \"size_scale\": 1.0}\n        ],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Both actors speed reduced from seed\", \"Actor 1 within 15m of ego spawn\"],\n      \"post_execution_validation_rules\": [\"Compound oracle collision+red-light confirmed\", \"Traffic light interaction verified\"],\n      \"uncertainty\": [\"Whether reduced speeds maintain collision timing at intersection\"]\n    }\n  ]\n}\n```",
+  "parsed_response": {
+    "case_id": "case_024",
+    "candidate_specs": [
+      {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Actor 1 moved closer to ego path, actor 0 speed slightly reduced",
+        "mutation_intent": "Build on R3 cand_003 partial success by keeping actor 1 near ego spawn and reducing actor 0 speed for sustained intersection conflict",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "speed_delta": -0.8
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": -1.0,
+                "y": 2.5
+              },
+              "speed_delta": 0.0
+            }
+          ],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": 0.0,
+              "size_scale": 1.0
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Actor 1 within 15m of ego spawn",
+          "Actor 0 present near intersection"
+        ],
+        "post_execution_validation_rules": [
+          "Both collision and red-light oracle triggered",
+          "Actor proximity to ego route confirmed"
+        ],
+        "uncertainty": [
+          "Exact timing of actor-ego interaction at intersection"
+        ]
+      },
+      {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Actor 1 positioned even closer to ego spawn with reduced speed",
+        "mutation_intent": "Amplify R3 cand_003 success by moving actor 1 nearer to ego initial position and lowering speed for prolonged conflict window",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "speed_delta": 0.0
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": -2.0,
+                "y": 3.0
+              },
+              "speed_delta": -1.0
+            }
+          ],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": 0.0,
+              "size_scale": 1.0
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Actor 1 within 12m of ego spawn",
+          "Traffic lights present on route"
+        ],
+        "post_execution_validation_rules": [
+          "Collision and red-light violation both occur",
+          "Ego movement and braking detected"
+        ],
+        "uncertainty": [
+          "Whether slower actor 1 speed maintains collision timing"
+        ]
+      },
+      {
+        "candidate_id": "cand_003",
+        "high_level_variant": "Actor 0 moved slightly backward, actor 1 closer with minor speed increase",
+        "mutation_intent": "Refine R3 cand_003 by adjusting actor 0 backward and actor 1 speed up slightly to tighten intersection timing",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": -1.5,
+                "y": 0.0
+              },
+              "speed_delta": 0.0
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": -1.5,
+                "y": 2.0
+              },
+              "speed_delta": 0.5
+            }
+          ],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": 0.0,
+              "size_scale": 1.0
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Both actors near ego route before collision",
+          "Red light state available"
+        ],
+        "post_execution_validation_rules": [
+          "Compound oracle collision+red-light confirmed",
+          "Actor-route interaction in critical window"
+        ],
+        "uncertainty": [
+          "Impact of actor 1 speed increase on collision occurrence"
+        ]
+      },
+      {
+        "candidate_id": "cand_004",
+        "high_level_variant": "Minor rain and wetness added, actor 1 closer to ego spawn",
+        "mutation_intent": "Combine R3 cand_003 actor positioning with light weather degradation to test robustness of collision+red-light failure",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": 3,
+            "fog": 0,
+            "wetness": 2,
+            "puddle": 1
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "speed_delta": 0.0
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": -1.5,
+                "y": 2.0
+              },
+              "speed_delta": 0.0
+            }
+          ],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": 0.05,
+              "size_scale": 1.0
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Actor 1 within 15m of ego spawn",
+          "Weather conditions slightly degraded"
+        ],
+        "post_execution_validation_rules": [
+          "Both collision and red-light oracle triggered",
+          "Ego braking behavior observed"
+        ],
+        "uncertainty": [
+          "Whether light weather change affects failure manifestation"
+        ]
+      },
+      {
+        "candidate_id": "cand_005",
+        "high_level_variant": "Actor 0 speed reduced, actor 1 lateral offset increased toward ego path",
+        "mutation_intent": "Slow actor 0 to extend interaction window while moving actor 1 laterally closer to ego route for intersection conflict",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "speed_delta": -1.2
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": 0.0,
+                "y": 3.0
+              },
+              "speed_delta": 0.0
+            }
+          ],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": 0.0,
+              "size_scale": 1.0
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Actor 0 speed reduced from seed",
+          "Actor 1 laterally closer to ego path"
+        ],
+        "post_execution_validation_rules": [
+          "Collision and red-light violation both occur",
+          "Actor proximity maintained in critical window"
+        ],
+        "uncertainty": [
+          "Whether lateral shift of actor 1 maintains collision geometry"
+        ]
+      },
+      {
+        "candidate_id": "cand_006",
+        "high_level_variant": "Both actors speed slightly reduced, actor 1 moved closer to ego spawn",
+        "mutation_intent": "Lower both actor speeds to extend interaction duration while keeping actor 1 near ego spawn for early conflict",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "speed_delta": -0.5
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": -1.8,
+                "y": 1.8
+              },
+              "speed_delta": -0.8
+            }
+          ],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": 0.0,
+              "size_scale": 1.0
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Both actors speed reduced from seed",
+          "Actor 1 within 15m of ego spawn"
+        ],
+        "post_execution_validation_rules": [
+          "Compound oracle collision+red-light confirmed",
+          "Traffic light interaction verified"
+        ],
+        "uncertainty": [
+          "Whether reduced speeds maintain collision timing at intersection"
+        ]
+      }
+    ]
+  },
+  "error_message": "",
+  "timestamp": "<REDACTED_TIMESTAMP>",
+  "raw_api_payload": {
+    "id": "<REDACTED_RESPONSE_ID>",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "```json\n{\n  \"case_id\": \"case_024\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Actor 1 moved closer to ego path, actor 0 speed slightly reduced\",\n      \"mutation_intent\": \"Build on R3 cand_003 partial success by keeping actor 1 near ego spawn and reducing actor 0 speed for sustained intersection conflict\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 0.0, \"y\": 0.0}, \"speed_delta\": -0.8},\n          {\"actor_index\": 1, \"position_offset\": {\"x\": -1.0, \"y\": 2.5}, \"speed_delta\": 0.0}\n        ],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": 0.0, \"size_scale\": 1.0}\n        ],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Actor 1 within 15m of ego spawn\", \"Actor 0 present near intersection\"],\n      \"post_execution_validation_rules\": [\"Both collision and red-light oracle triggered\", \"Actor proximity to ego route confirmed\"],\n      \"uncertainty\": [\"Exact timing of actor-ego interaction at intersection\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Actor 1 positioned even closer to ego spawn with reduced speed\",\n      \"mutation_intent\": \"Amplify R3 cand_003 success by moving actor 1 nearer to ego initial position and lowering speed for prolonged conflict window\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 0.0, \"y\": 0.0}, \"speed_delta\": 0.0},\n          {\"actor_index\": 1, \"position_offset\": {\"x\": -2.0, \"y\": 3.0}, \"speed_delta\": -1.0}\n        ],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": 0.0, \"size_scale\": 1.0}\n        ],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Actor 1 within 12m of ego spawn\", \"Traffic lights present on route\"],\n      \"post_execution_validation_rules\": [\"Collision and red-light violation both occur\", \"Ego movement and braking detected\"],\n      \"uncertainty\": [\"Whether slower actor 1 speed maintains collision timing\"]\n    },\n    {\n      \"candidate_id\": \"cand_003\",\n      \"high_level_variant\": \"Actor 0 moved slightly backward, actor 1 closer with minor speed increase\",\n      \"mutation_intent\": \"Refine R3 cand_003 by adjusting actor 0 backward and actor 1 speed up slightly to tighten intersection timing\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": -1.5, \"y\": 0.0}, \"speed_delta\": 0.0},\n          {\"actor_index\": 1, \"position_offset\": {\"x\": -1.5, \"y\": 2.0}, \"speed_delta\": 0.5}\n        ],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": 0.0, \"size_scale\": 1.0}\n        ],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Both actors near ego route before collision\", \"Red light state available\"],\n      \"post_execution_validation_rules\": [\"Compound oracle collision+red-light confirmed\", \"Actor-route interaction in critical window\"],\n      \"uncertainty\": [\"Impact of actor 1 speed increase on collision occurrence\"]\n    },\n    {\n      \"candidate_id\": \"cand_004\",\n      \"high_level_variant\": \"Minor rain and wetness added, actor 1 closer to ego spawn\",\n      \"mutation_intent\": \"Combine R3 cand_003 actor positioning with light weather degradation to test robustness of collision+red-light failure\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 3, \"fog\": 0, \"wetness\": 2, \"puddle\": 1},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 0.0, \"y\": 0.0}, \"speed_delta\": 0.0},\n          {\"actor_index\": 1, \"position_offset\": {\"x\": -1.5, \"y\": 2.0}, \"speed_delta\": 0.0}\n        ],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": 0.05, \"size_scale\": 1.0}\n        ],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Actor 1 within 15m of ego spawn\", \"Weather conditions slightly degraded\"],\n      \"post_execution_validation_rules\": [\"Both collision and red-light oracle triggered\", \"Ego braking behavior observed\"],\n      \"uncertainty\": [\"Whether light weather change affects failure manifestation\"]\n    },\n    {\n      \"candidate_id\": \"cand_005\",\n      \"high_level_variant\": \"Actor 0 speed reduced, actor 1 lateral offset increased toward ego path\",\n      \"mutation_intent\": \"Slow actor 0 to extend interaction window while moving actor 1 laterally closer to ego route for intersection conflict\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 0.0, \"y\": 0.0}, \"speed_delta\": -1.2},\n          {\"actor_index\": 1, \"position_offset\": {\"x\": 0.0, \"y\": 3.0}, \"speed_delta\": 0.0}\n        ],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": 0.0, \"size_scale\": 1.0}\n        ],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Actor 0 speed reduced from seed\", \"Actor 1 laterally closer to ego path\"],\n      \"post_execution_validation_rules\": [\"Collision and red-light violation both occur\", \"Actor proximity maintained in critical window\"],\n      \"uncertainty\": [\"Whether lateral shift of actor 1 maintains collision geometry\"]\n    },\n    {\n      \"candidate_id\": \"cand_006\",\n      \"high_level_variant\": \"Both actors speed slightly reduced, actor 1 moved closer to ego spawn\",\n      \"mutation_intent\": \"Lower both actor speeds to extend interaction duration while keeping actor 1 near ego spawn for early conflict\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 0.0, \"y\": 0.0}, \"speed_delta\": -0.5},\n          {\"actor_index\": 1, \"position_offset\": {\"x\": -1.8, \"y\": 1.8}, \"speed_delta\": -0.8}\n        ],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": 0.0, \"size_scale\": 1.0}\n        ],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Both actors speed reduced from seed\", \"Actor 1 within 15m of ego spawn\"],\n      \"post_execution_validation_rules\": [\"Compound oracle collision+red-light confirmed\", \"Traffic light interaction verified\"],\n      \"uncertainty\": [\"Whether reduced speeds maintain collision timing at intersection\"]\n    }\n  ]\n}\n```",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "claude-sonnet-4-5",
+    "object": "chat.completion",
+    "service_tier": null,
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 2588,
+      "prompt_tokens": 7833,
+      "total_tokens": 10421,
+      "completion_tokens_details": null,
+      "prompt_tokens_details": null
+    }
+  },
+  "elapsed_sec": 33.303
+}

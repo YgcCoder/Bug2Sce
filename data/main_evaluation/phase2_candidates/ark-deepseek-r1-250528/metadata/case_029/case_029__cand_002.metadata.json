@@ -1,0 +1,102 @@
+{
+  "case_id": "case_029",
+  "model_name": "ark-deepseek-r1-250528",
+  "candidate_index": 2,
+  "candidate_spec": {
+    "candidate_id": "cand_002",
+    "high_level_variant": "Slight increase in scenario wetness and offset of the second walker toward the intersection stop line where ego encounters red light",
+    "mutation_intent": "Follows all Phase 1 preservation constraints: keeps original mission positions, retains 2 actors, maintains enabled rain, preserves the confirmed red light event, keeps the open label conflict on lane invasion by shifting the second walker near the stop line to retain lane crossing possibility without forcing a definite outcome, preserves original uncertainty pattern",
+    "expected_oracle": "compound",
+    "modifications": {
+      "weather_delta": {
+        "rain": 0,
+        "fog": 0,
+        "wetness": 7,
+        "puddle": 2
+      },
+      "actor_mutations": [
+        {
+          "actor_index": 0,
+          "position_offset": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "speed_delta": 0.0
+        },
+        {
+          "actor_index": 1,
+          "position_offset": {
+            "x": -0.9,
+            "y": 1.5
+          },
+          "speed_delta": -0.3
+        }
+      ],
+      "puddle_mutations": [],
+      "mission_mutation": {
+        "keep_original": true,
+        "spawn_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "destination_offset": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Verify rain remains enabled per original constraint",
+      "Verify both actors spawn at modified positions correctly",
+      "Verify red light is active during ego's intersection approach"
+    ],
+    "post_execution_validation_rules": [
+      "Confirm red light violation matches original confirmed event",
+      "Check for lane invasion to compare against conflicting original labels",
+      "Check vehicle cmd against vehicle status to retain original actuation uncertainty"
+    ],
+    "uncertainty": [
+      "Preserves original label conflict between dataset and error.json for lane invasion",
+      "No confirmed module-level root cause is retained as original",
+      "Actuation behavior uncertainty remains unchanged from original scenario"
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": 0.0,
+      "fog": 0.0,
+      "wetness": 7.0,
+      "puddle": 2.0
+    },
+    "actor_mutations": [
+      {
+        "actor_index": 0,
+        "position_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "speed_delta": 0.0
+      },
+      {
+        "actor_index": 1,
+        "position_offset": {
+          "x": -0.9,
+          "y": 1.5
+        },
+        "speed_delta": -0.3
+      }
+    ],
+    "puddle_mutations": [],
+    "mission_mutation": {
+      "keep_original": true
+    }
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_029__ark-deepseek-r1-250528.json",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_029__ark-deepseek-r1-250528.json",
+  "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+}

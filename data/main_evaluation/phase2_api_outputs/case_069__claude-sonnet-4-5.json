@@ -1,0 +1,389 @@
+{
+  "case_id": "case_069",
+  "model_name": "claude-sonnet-4-5",
+  "workflow": "phase2_grounded_generation",
+  "status": "completed",
+  "schema_valid": true,
+  "schema_errors": [],
+  "phase1_ready": "uncertain",
+  "num_candidates_requested": 2,
+  "num_candidates_written": 2,
+  "num_pre_valid": 2,
+  "candidate_records": [
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/claude-sonnet-4-5/json/case_069/case_069__cand_001.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/claude-sonnet-4-5/metadata/case_069/case_069__cand_001.metadata.json",
+      "case_id": "case_069",
+      "model_name": "claude-sonnet-4-5",
+      "candidate_index": 1,
+      "candidate_spec": {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Preserve collision with detected object at moderate ego speed",
+        "mutation_intent": "Keep actor positions and ego route unchanged to reproduce collision topic impulse with nearby object",
+        "expected_oracle": "collision",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "speed_delta": 0.0
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "speed_delta": 0.0
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Ego spawn at (86,145) and actors within 20m",
+          "Actor 0 autopilot speed 8.76 m/s",
+          "Weather rain=5 fog=12 puddle=8"
+        ],
+        "post_execution_validation_rules": [
+          "Collision topic impulse events present",
+          "Detected object count>=1 distance<15m before collision",
+          "Ego speed 4-6 m/s in critical window"
+        ],
+        "uncertainty": [
+          "Dataset collision=1 vs error.json crash=false conflict",
+          "vehicle_cmd zero vs vehicle_status active mismatch",
+          "Lane invasion label conflict unresolved"
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 0.0,
+          "fog": 0.0,
+          "wetness": 0.0,
+          "puddle": 0.0
+        },
+        "actor_mutations": [
+          {
+            "actor_index": 0,
+            "position_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "speed_delta": 0.0
+          },
+          {
+            "actor_index": 1,
+            "position_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "speed_delta": 0.0
+          }
+        ],
+        "puddle_mutations": [],
+        "mission_mutation": {
+          "keep_original": true
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_069__claude-sonnet-4-5.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_069__claude-sonnet-4-5.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    },
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/claude-sonnet-4-5/json/case_069/case_069__cand_002.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/claude-sonnet-4-5/metadata/case_069/case_069__cand_002.metadata.json",
+      "case_id": "case_069",
+      "model_name": "claude-sonnet-4-5",
+      "candidate_index": 2,
+      "candidate_spec": {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Reduce actor speed to test collision sensitivity",
+        "mutation_intent": "Lower actor 0 speed by 2 m/s to check if collision timing or detection changes",
+        "expected_oracle": "collision",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "speed_delta": -2.0
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "speed_delta": 0.0
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Actor 0 speed reduced to 6.76 m/s",
+          "Ego and actor 1 unchanged",
+          "Weather unchanged"
+        ],
+        "post_execution_validation_rules": [
+          "Collision topic impulse events present",
+          "Detected object distance<15m before collision",
+          "Ego speed profile similar to seed"
+        ],
+        "uncertainty": [
+          "Oracle conflict may persist",
+          "Slower actor may delay or prevent collision",
+          "vehicle_cmd-status mismatch origin unclear"
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 0.0,
+          "fog": 0.0,
+          "wetness": 0.0,
+          "puddle": 0.0
+        },
+        "actor_mutations": [
+          {
+            "actor_index": 0,
+            "position_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "speed_delta": -2.0
+          },
+          {
+            "actor_index": 1,
+            "position_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "speed_delta": 0.0
+          }
+        ],
+        "puddle_mutations": [],
+        "mission_mutation": {
+          "keep_original": true
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_069__claude-sonnet-4-5.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_069__claude-sonnet-4-5.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    }
+  ],
+  "seed_artifact_zip": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/claude-sonnet-4-5/seed-artifact/seed-artifact-case_069.zip",
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_prompts/case_069__claude-sonnet-4-5.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_069__claude-sonnet-4-5.json",
+  "prompt_estimated_tokens": 1327,
+  "usage": {
+    "prompt_tokens": 1545,
+    "completion_tokens": 857,
+    "total_tokens": 2402
+  },
+  "raw_response": "```json\n{\n  \"case_id\": \"case_069\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Preserve collision with detected object at moderate ego speed\",\n      \"mutation_intent\": \"Keep actor positions and ego route unchanged to reproduce collision topic impulse with nearby object\",\n      \"expected_oracle\": \"collision\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 0.0, \"y\": 0.0}, \"speed_delta\": 0.0},\n          {\"actor_index\": 1, \"position_offset\": {\"x\": 0.0, \"y\": 0.0}, \"speed_delta\": 0.0}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Ego spawn at (86,145) and actors within 20m\", \"Actor 0 autopilot speed 8.76 m/s\", \"Weather rain=5 fog=12 puddle=8\"],\n      \"post_execution_validation_rules\": [\"Collision topic impulse events present\", \"Detected object count>=1 distance<15m before collision\", \"Ego speed 4-6 m/s in critical window\"],\n      \"uncertainty\": [\"Dataset collision=1 vs error.json crash=false conflict\", \"vehicle_cmd zero vs vehicle_status active mismatch\", \"Lane invasion label conflict unresolved\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Reduce actor speed to test collision sensitivity\",\n      \"mutation_intent\": \"Lower actor 0 speed by 2 m/s to check if collision timing or detection changes\",\n      \"expected_oracle\": \"collision\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 0.0, \"y\": 0.0}, \"speed_delta\": -2.0},\n          {\"actor_index\": 1, \"position_offset\": {\"x\": 0.0, \"y\": 0.0}, \"speed_delta\": 0.0}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Actor 0 speed reduced to 6.76 m/s\", \"Ego and actor 1 unchanged\", \"Weather unchanged\"],\n      \"post_execution_validation_rules\": [\"Collision topic impulse events present\", \"Detected object distance<15m before collision\", \"Ego speed profile similar to seed\"],\n      \"uncertainty\": [\"Oracle conflict may persist\", \"Slower actor may delay or prevent collision\", \"vehicle_cmd-status mismatch origin unclear\"]\n    }\n  ]\n}\n```",
+  "parsed_response": {
+    "case_id": "case_069",
+    "candidate_specs": [
+      {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Preserve collision with detected object at moderate ego speed",
+        "mutation_intent": "Keep actor positions and ego route unchanged to reproduce collision topic impulse with nearby object",
+        "expected_oracle": "collision",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "speed_delta": 0.0
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "speed_delta": 0.0
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Ego spawn at (86,145) and actors within 20m",
+          "Actor 0 autopilot speed 8.76 m/s",
+          "Weather rain=5 fog=12 puddle=8"
+        ],
+        "post_execution_validation_rules": [
+          "Collision topic impulse events present",
+          "Detected object count>=1 distance<15m before collision",
+          "Ego speed 4-6 m/s in critical window"
+        ],
+        "uncertainty": [
+          "Dataset collision=1 vs error.json crash=false conflict",
+          "vehicle_cmd zero vs vehicle_status active mismatch",
+          "Lane invasion label conflict unresolved"
+        ]
+      },
+      {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Reduce actor speed to test collision sensitivity",
+        "mutation_intent": "Lower actor 0 speed by 2 m/s to check if collision timing or detection changes",
+        "expected_oracle": "collision",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "speed_delta": -2.0
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "speed_delta": 0.0
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Actor 0 speed reduced to 6.76 m/s",
+          "Ego and actor 1 unchanged",
+          "Weather unchanged"
+        ],
+        "post_execution_validation_rules": [
+          "Collision topic impulse events present",
+          "Detected object distance<15m before collision",
+          "Ego speed profile similar to seed"
+        ],
+        "uncertainty": [
+          "Oracle conflict may persist",
+          "Slower actor may delay or prevent collision",
+          "vehicle_cmd-status mismatch origin unclear"
+        ]
+      }
+    ]
+  },
+  "raw_api_payload": {
+    "id": "<REDACTED_RESPONSE_ID>",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "```json\n{\n  \"case_id\": \"case_069\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Preserve collision with detected object at moderate ego speed\",\n      \"mutation_intent\": \"Keep actor positions and ego route unchanged to reproduce collision topic impulse with nearby object\",\n      \"expected_oracle\": \"collision\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 0.0, \"y\": 0.0}, \"speed_delta\": 0.0},\n          {\"actor_index\": 1, \"position_offset\": {\"x\": 0.0, \"y\": 0.0}, \"speed_delta\": 0.0}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Ego spawn at (86,145) and actors within 20m\", \"Actor 0 autopilot speed 8.76 m/s\", \"Weather rain=5 fog=12 puddle=8\"],\n      \"post_execution_validation_rules\": [\"Collision topic impulse events present\", \"Detected object count>=1 distance<15m before collision\", \"Ego speed 4-6 m/s in critical window\"],\n      \"uncertainty\": [\"Dataset collision=1 vs error.json crash=false conflict\", \"vehicle_cmd zero vs vehicle_status active mismatch\", \"Lane invasion label conflict unresolved\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Reduce actor speed to test collision sensitivity\",\n      \"mutation_intent\": \"Lower actor 0 speed by 2 m/s to check if collision timing or detection changes\",\n      \"expected_oracle\": \"collision\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 0.0, \"y\": 0.0}, \"speed_delta\": -2.0},\n          {\"actor_index\": 1, \"position_offset\": {\"x\": 0.0, \"y\": 0.0}, \"speed_delta\": 0.0}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Actor 0 speed reduced to 6.76 m/s\", \"Ego and actor 1 unchanged\", \"Weather unchanged\"],\n      \"post_execution_validation_rules\": [\"Collision topic impulse events present\", \"Detected object distance<15m before collision\", \"Ego speed profile similar to seed\"],\n      \"uncertainty\": [\"Oracle conflict may persist\", \"Slower actor may delay or prevent collision\", \"vehicle_cmd-status mismatch origin unclear\"]\n    }\n  ]\n}\n```",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "claude-sonnet-4-5",
+    "object": "chat.completion",
+    "service_tier": null,
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 857,
+      "prompt_tokens": 1545,
+      "total_tokens": 2402,
+      "completion_tokens_details": null,
+      "prompt_tokens_details": null
+    }
+  },
+  "error_message": "",
+  "elapsed_sec": 14.09,
+  "timestamp": "<REDACTED_TIMESTAMP>"
+}

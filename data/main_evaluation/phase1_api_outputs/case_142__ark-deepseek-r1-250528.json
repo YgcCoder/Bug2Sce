@@ -1,0 +1,119 @@
+{
+  "case_id": "case_142",
+  "workflow": "phase1_causal_explanation",
+  "model_name": "ark-deepseek-r1-250528",
+  "model_id": "ark-deepseek-r1-250528",
+  "status": "completed",
+  "dry_run": false,
+  "schema_valid": true,
+  "schema_errors": [],
+  "quality_flags": [],
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_prompts/case_142__ark-deepseek-r1-250528.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_142__ark-deepseek-r1-250528.json",
+  "prompt_estimated_tokens": 3281,
+  "usage": {
+    "prompt_tokens": 4381,
+    "completion_tokens": 2005,
+    "total_tokens": 6386
+  },
+  "estimated_cost_usd": null,
+  "raw_response": "{\n  \"case_id\": \"case_142\",\n  \"fault_layer\": \"unknown\",\n  \"fault_component\": \"unknown\",\n  \"causal_explanation\": \"Dataset labels collision, lane invasion, and red-light violation; error.json confirms collision and red-light violation but disagrees on lane invasion, creating a label conflict. A collision occurred, with ego showing non-zero throttle and movement in vehicle status before collision while all Autoware vehicle_cmd outputs were zero. No module-level failure is directly confirmed by available critical window evidence.\",\n  \"root_cause_pattern\": \"Conservative preservation pattern: Ego experiences confirmed collision and red-light violation when all Autoware vehicle_cmd actuation commands are zero, but vehicle status reports non-zero throttle and ongoing movement, with conflicting lane invasion labeling.\",\n  \"preservation_constraints\": [\n    \"Preserve confirmed oracle symptoms of collision and red-light violation\",\n    \"Preserve the mismatch between all-zero vehicle_cmd commands and non-zero pre-collision throttle in vehicle_status\",\n    \"Preserve 3 actors and 3 puddle regions on the Town01 map\",\n    \"Preserve the original high fog level of 92\"\n  ],\n  \"modifiable_factors\": [\"actor_position\", \"cloud cover\", \"rain intensity\", \"wind speed\", \"puddle position\", \"minor starting pose offsets\"],\n  \"non_modifiable_conditions\": [\"confirmed collision and red-light violation symptoms\", \"all-zero vehicle_cmd in the pre-collision critical window\", \"non-zero throttle in pre-collision vehicle_status\", \"Town01 map\", \"high fog condition\"],\n  \"uncertainty\": [\n    \"lane invasion label conflict between dataset (positive) and error.json (negative)\",\n    \"route-light relation and stop-line crossing for red-light violation are not confirmed by evidence\",\n    \"module-level failure attribution is not directly supported by critical window evidence\",\n    \"the vehicle_cmd/vehicle_status mismatch alone cannot confirm an actuation layer fault\"\n  ],\n  \"evidence_support\": [\n    {\"evidence_id\": \"oracle_consistency\", \"claim\": \"Dataset and error.json conflict on lane invasion, agree on collision and red-light violation\"},\n    {\"evidence_id\": \"collision_window\", \"claim\": \"Pre-collision vehicle_cmd is all zero, while vehicle_status reports non-zero throttle and ego movement\"},\n    {\"evidence_id\": \"red_light_window\", \"claim\": \"Red-light violation is confirmed by error.json but route-light relation and stop-line crossing are unconfirmed\"}\n  ],\n  \"confidence\": \"medium\",\n  \"ready_for_phase2_generation\": \"yes\",\n  \"notes_for_validator\": [\n    \"Resolve the lane invasion label conflict before validating generated cases\",\n    \"Verify the all-zero vehicle_cmd / non-zero throttle mismatch is preserved in the pre-collision window\",\n    \"Confirm that collision and red-light violation symptoms are preserved in generated cases\"\n  ]\n}",
+  "parsed_response": {
+    "case_id": "case_142",
+    "fault_layer": "unknown",
+    "fault_component": "unknown",
+    "causal_explanation": "Dataset labels collision, lane invasion, and red-light violation; error.json confirms collision and red-light violation but disagrees on lane invasion, creating a label conflict. A collision occurred, with ego showing non-zero throttle and movement in vehicle status before collision while all Autoware vehicle_cmd outputs were zero. No module-level failure is directly confirmed by available critical window evidence.",
+    "root_cause_pattern": "Conservative preservation pattern: Ego experiences confirmed collision and red-light violation when all Autoware vehicle_cmd actuation commands are zero, but vehicle status reports non-zero throttle and ongoing movement, with conflicting lane invasion labeling.",
+    "preservation_constraints": [
+      "Preserve confirmed oracle symptoms of collision and red-light violation",
+      "Preserve the mismatch between all-zero vehicle_cmd commands and non-zero pre-collision throttle in vehicle_status",
+      "Preserve 3 actors and 3 puddle regions on the Town01 map",
+      "Preserve the original high fog level of 92"
+    ],
+    "modifiable_factors": [
+      "actor_position",
+      "cloud cover",
+      "rain intensity",
+      "wind speed",
+      "puddle position",
+      "minor starting pose offsets"
+    ],
+    "non_modifiable_conditions": [
+      "confirmed collision and red-light violation symptoms",
+      "all-zero vehicle_cmd in the pre-collision critical window",
+      "non-zero throttle in pre-collision vehicle_status",
+      "Town01 map",
+      "high fog condition"
+    ],
+    "uncertainty": [
+      "lane invasion label conflict between dataset (positive) and error.json (negative)",
+      "route-light relation and stop-line crossing for red-light violation are not confirmed by evidence",
+      "module-level failure attribution is not directly supported by critical window evidence",
+      "the vehicle_cmd/vehicle_status mismatch alone cannot confirm an actuation layer fault"
+    ],
+    "evidence_support": [
+      {
+        "evidence_id": "oracle_consistency",
+        "claim": "Dataset and error.json conflict on lane invasion, agree on collision and red-light violation"
+      },
+      {
+        "evidence_id": "collision_window",
+        "claim": "Pre-collision vehicle_cmd is all zero, while vehicle_status reports non-zero throttle and ego movement"
+      },
+      {
+        "evidence_id": "red_light_window",
+        "claim": "Red-light violation is confirmed by error.json but route-light relation and stop-line crossing are unconfirmed"
+      }
+    ],
+    "confidence": "medium",
+    "ready_for_phase2_generation": "yes",
+    "notes_for_validator": [
+      "Resolve the lane invasion label conflict before validating generated cases",
+      "Verify the all-zero vehicle_cmd / non-zero throttle mismatch is preserved in the pre-collision window",
+      "Confirm that collision and red-light violation symptoms are preserved in generated cases"
+    ]
+  },
+  "raw_api_payload": {
+    "id": "021782921277227111fb6a4d6acc002d9c575cdd1b4a762d45448",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "{\n  \"case_id\": \"case_142\",\n  \"fault_layer\": \"unknown\",\n  \"fault_component\": \"unknown\",\n  \"causal_explanation\": \"Dataset labels collision, lane invasion, and red-light violation; error.json confirms collision and red-light violation but disagrees on lane invasion, creating a label conflict. A collision occurred, with ego showing non-zero throttle and movement in vehicle status before collision while all Autoware vehicle_cmd outputs were zero. No module-level failure is directly confirmed by available critical window evidence.\",\n  \"root_cause_pattern\": \"Conservative preservation pattern: Ego experiences confirmed collision and red-light violation when all Autoware vehicle_cmd actuation commands are zero, but vehicle status reports non-zero throttle and ongoing movement, with conflicting lane invasion labeling.\",\n  \"preservation_constraints\": [\n    \"Preserve confirmed oracle symptoms of collision and red-light violation\",\n    \"Preserve the mismatch between all-zero vehicle_cmd commands and non-zero pre-collision throttle in vehicle_status\",\n    \"Preserve 3 actors and 3 puddle regions on the Town01 map\",\n    \"Preserve the original high fog level of 92\"\n  ],\n  \"modifiable_factors\": [\"actor_position\", \"cloud cover\", \"rain intensity\", \"wind speed\", \"puddle position\", \"minor starting pose offsets\"],\n  \"non_modifiable_conditions\": [\"confirmed collision and red-light violation symptoms\", \"all-zero vehicle_cmd in the pre-collision critical window\", \"non-zero throttle in pre-collision vehicle_status\", \"Town01 map\", \"high fog condition\"],\n  \"uncertainty\": [\n    \"lane invasion label conflict between dataset (positive) and error.json (negative)\",\n    \"route-light relation and stop-line crossing for red-light violation are not confirmed by evidence\",\n    \"module-level failure attribution is not directly supported by critical window evidence\",\n    \"the vehicle_cmd/vehicle_status mismatch alone cannot confirm an actuation layer fault\"\n  ],\n  \"evidence_support\": [\n    {\"evidence_id\": \"oracle_consistency\", \"claim\": \"Dataset and error.json conflict on lane invasion, agree on collision and red-light violation\"},\n    {\"evidence_id\": \"collision_window\", \"claim\": \"Pre-collision vehicle_cmd is all zero, while vehicle_status reports non-zero throttle and ego movement\"},\n    {\"evidence_id\": \"red_light_window\", \"claim\": \"Red-light violation is confirmed by error.json but route-light relation and stop-line crossing are unconfirmed\"}\n  ],\n  \"confidence\": \"medium\",\n  \"ready_for_phase2_generation\": \"yes\",\n  \"notes_for_validator\": [\n    \"Resolve the lane invasion label conflict before validating generated cases\",\n    \"Verify the all-zero vehicle_cmd / non-zero throttle mismatch is preserved in the pre-collision window\",\n    \"Confirm that collision and red-light violation symptoms are preserved in generated cases\"\n  ]\n}",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null,
+          "reasoning_content": "\nOkay, let's work through this step by step. First, the case_id is case_142, right? Let's start with that.\n\nNext, fault_layer. Let's see the evidence. There's a conflict between dataset and error.json, also vehicle_cmd is all zero but vehicle_status has throttle non-zero? Wait, wait, looking: vehicle_cmd all commands are zero, but vehicle_status has throttle up to 0.6, so we can't assign actuation for sure. Also, module attribution isn't directly supported. Wait, let's check: the closest object before collision is 37.97 away, right? The detected object count last was 1, predicted 11, but closest is far. Also, lane invasion is conflicting, red light no stop line confirmed. So fault_layer should be... unknown? Wait, let's see: the only confirmed failure is collision and red light violation from error json, lane invasion is conflicting. There's a mismatch between vehicle_cmd (all zero) and vehicle_status (throttle non-zero, movement). So can we assign? No, the rule says if vehicle_cmd all zero but vehicle status shows movement, don't assign actuation from that alone. So fault_layer is unknown. Fault component is unknown too.\n\nCausal explanation: Let's write that. Dataset labels collision, lane invasion, red light violation; error.json confirms collision and red light violation but disagrees on lane invasion, so label conflict exists. A collision occurred, ego had non-zero throttle and movement in vehicle status before collision while all vehicle_cmd outputs were zero. No module-level failure is directly confirmed by critical window evidence. That makes sense.\n\nRoot cause pattern: Conservative pattern: Ego vehicle experiences a collision and confirmed red light violation when all actuation commands from Autoware are zero but ego continues to move with non-zero throttle, with conflicting lane invasion label. Wait, or more concise: Conservative preservation pattern: Ego experiences a confirmed collision and red-light violation while all Autoware vehicle_cmd outputs are zero but vehicle status reports non-zero throttle and ongoing movement, with conflicting lane invasion labeling. Yeah that's right.\n\nPreservation constraints: Let's do 3-6, as per rules. Let's list:\n1. Preserve confirmed collision and red-light violation oracle symptoms.\n2. Preserve the mismatch: all vehicle_cmd commands are zero in the critical collision window while vehicle_status reports non-zero throttle.\n3. Preserve 3 actors and 3 puddle regions in the Town01 map.\n4. Preserve fog level of 92 as in the original scenario. Wait, or more correct, let's make them semantic:\nWait, let's do:\n[\"Preserve the confirmed oracle symptoms of collision and red-light violation\", \"Preserve the mismatch between all-zero vehicle_cmd commands and non-zero throttle reported by vehicle_status in the pre-collision critical window\", \"Preserve 3 actors and 3 puddle regions on the Town01 map\", \"Preserve the high fog level (92) from the original scenario\"]\nThat's four, good.\n\nModifiable factors: Let's see, what can we change? actor_position, weather except fog, start/goal position minor adjustments, wind, cloud, rain, right? Let's list: [\"actor_position\", \"cloud cover\", \"rain intensity\", \"wind speed\", \"puddle position\", \"starting yaw offset\"] That works.\n\nNon-modifiable conditions: [\"confirmed collision and red-light violation symptoms\", \"all-zero vehicle_cmd in pre-collision critical window\", \"non-zero throttle in vehicle_status pre-collision\", \"Town01 map\", \"high fog condition\"] Yeah.\n\nUncertainty: Let's list the conflicts and missing stuff. [\"lane_invasion label conflict between dataset (1) and error.json (0)\", \"route-light relation and stop-line crossing for red-light violation not confirmed\", \"module-level failure attribution not directly supported by critical window evidence\", \"mismatch between vehicle_cmd and vehicle_status cannot be confirmed as actuation failure alone\"] That's right.\n\nEvidence support: Let's list each evidence. Let's do:\n{\"evidence_id\": \"oracle_consistency\", \"claim\": \"dataset and error.json conflict on lane invasion label, confirm collision and red-light violation\"},\n{\"evidence_id\": \"collision_window\", \"claim\": \"pre-collision vehicle_cmd all zero, vehicle_status reports non-zero throttle and ego movement\"},\n{\"evidence_id\": \"red_light_window\", \"claim\": \"red-light violation is confirmed by error.json but route-light relation and stop-line crossing are unconfirmed\"},\n{\"evidence_id\": \"critical_window_summary\", \"claim\": \"no module-level internal failure is directly proven by available evidence\"}\nThat's good.\n\nConfidence: Let's see, we have confirmed collision and red, conflict on lane, can't attribute fault, so confidence is medium? Wait, or low? Wait, the confirmed symptoms are there, the mismatch is there, but fault attribution is unknown. Let's say medium? Wait no, let's check: confidence is about the explanation, right? We know the conflict, the mismatch, so confidence in what we have is medium. Yeah.\n\nReady_for_phase2_generation: yes, because we have a checkable conservative pattern, right? Even though fault is unknown, the pattern is checkable, so yes.\n\nNotes_for_validator: [\"Resolve the lane invasion label conflict before marking the generated case as matching the original root cause\", \"Verify the presence of the all-zero vehicle_cmd / non-zero vehicle_status throttle mismatch in the pre-collision window after generation\", \"Check that confirmed collision and red-light violation symptoms are preserved\"]\n\nWait, let's put all this together correctly, follow the schema, make sure no invented stuff, all from evidence. Let's check the rules again: if they disagree, mark uncertainty, don't treat dataset as ground truth. Correct, we did that. For red light, don't infer route light or stop line crossing, yes we said that's unconfirmed. Vehicle_cmd all zero, vehicle status movement, don't assign actuation, yes we put fault layer unknown. Correct.\n\nWait, let's check the vehicle_cmd stats: yes, in collision window, vehicle_cmd accel, brake, steer, linear velocity all last 0, min 0 max 0. Vehicle_status throttle last 0.498, max 0.6, brake 0, so yes, mismatch. Correct.\n\nOkay, let's write the JSON now, make sure it's valid, no extra stuff."
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "doubao-seed-2-0-lite-260215",
+    "object": "chat.completion",
+    "service_tier": "default",
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 2005,
+      "prompt_tokens": 4381,
+      "total_tokens": 6386,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 1373,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": null,
+        "cached_tokens": 0
+      }
+    }
+  },
+  "error_message": "",
+  "timestamp": "<REDACTED_TIMESTAMP>",
+  "elapsed_sec": 41.038
+}

@@ -1,0 +1,117 @@
+{
+  "case_id": "case_156",
+  "workflow": "phase1_causal_explanation",
+  "model_name": "ark-deepseek-r1-250528",
+  "model_id": "ark-deepseek-r1-250528",
+  "status": "completed",
+  "dry_run": false,
+  "schema_valid": true,
+  "schema_errors": [],
+  "quality_flags": [],
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_prompts/case_156__ark-deepseek-r1-250528.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_156__ark-deepseek-r1-250528.json",
+  "prompt_estimated_tokens": 2663,
+  "usage": {
+    "prompt_tokens": 3527,
+    "completion_tokens": 2126,
+    "total_tokens": 5653
+  },
+  "estimated_cost_usd": null,
+  "raw_response": "{\n  \"case_id\": \"case_156\",\n  \"fault_layer\": \"unknown\",\n  \"fault_component\": \"unknown\",\n  \"causal_explanation\": \"The oracle confirms the ego vehicle is stuck. In the final 60 seconds of the stuck window, ego has zero velocity, all vehicle control commands are zero, and all vehicle status control values are zero. Sensing, perception, and planning topics (including consistent final waypoints) are available, with no collision or red light interference detected.\",\n  \"root_cause_pattern\": \"Conservative pattern: Ego enters a persistent stuck state with zero velocity and all-zero control commands, while final waypoints remain available and no conflicting failure events are observed, with module-level root cause unconfirmed by available evidence.\",\n  \"preservation_constraints\": [\n    \"Preserve the confirmed stuck failure symptom\",\n    \"Preserve availability of sensing, perception, and final waypoint topics in the critical stuck window\",\n    \"Preserve zero velocity and all-zero control commands in the final 60 seconds of the stuck window\",\n    \"Preserve absence of collision and red light interference before the stuck state\"\n  ],\n  \"modifiable_factors\": [\"actor_position\", \"weather_parameters\", \"puddle_position\", \"start_position_offset\"],\n  \"non_modifiable_conditions\": [\n    \"persistent stuck symptom\",\n    \"zero velocity and all-zero controls in critical window\",\n    \"final waypoints available throughout stuck window\",\n    \"no collision or red light interference\"\n  ],\n  \"uncertainty\": [\n    \"No direct evidence localizes the zero command issue to planning, actuation, or another specific module\",\n    \"No evidence of internal processing between final waypoint output and vehicle_cmd publication is available\"\n  ],\n  \"evidence_support\": [\n    {\"evidence_id\": \"oracle_consistency\", \"claim\": \"Dataset and error.json labels agree this is a stuck case with no other failure types\"},\n    {\"evidence_id\": \"critical_window_summary\", \"claim\": \"Final 60 seconds of stuck window have zero velocity and all-zero control commands/vehicle status values\"},\n    {\"evidence_id\": \"planning_topic_summary\", \"claim\": \"101 consistent final waypoints are present throughout the critical window\"},\n    {\"evidence_id\": \"interference_check\", \"claim\": \"No collision or red light interference is detected in error.json\"}\n  ],\n  \"confidence\": \"medium\",\n  \"ready_for_phase2_generation\": \"yes\",\n  \"notes_for_validator\": [\n    \"Validate generated cases have the stuck symptom, all-zero controls, and available final waypoints to confirm root cause preservation\",\n    \"Exclude generated cases that have unobserved collision or red light events as they represent a different root cause\"\n  ]\n}",
+  "parsed_response": {
+    "case_id": "case_156",
+    "fault_layer": "unknown",
+    "fault_component": "unknown",
+    "causal_explanation": "The oracle confirms the ego vehicle is stuck. In the final 60 seconds of the stuck window, ego has zero velocity, all vehicle control commands are zero, and all vehicle status control values are zero. Sensing, perception, and planning topics (including consistent final waypoints) are available, with no collision or red light interference detected.",
+    "root_cause_pattern": "Conservative pattern: Ego enters a persistent stuck state with zero velocity and all-zero control commands, while final waypoints remain available and no conflicting failure events are observed, with module-level root cause unconfirmed by available evidence.",
+    "preservation_constraints": [
+      "Preserve the confirmed stuck failure symptom",
+      "Preserve availability of sensing, perception, and final waypoint topics in the critical stuck window",
+      "Preserve zero velocity and all-zero control commands in the final 60 seconds of the stuck window",
+      "Preserve absence of collision and red light interference before the stuck state"
+    ],
+    "modifiable_factors": [
+      "actor_position",
+      "weather_parameters",
+      "puddle_position",
+      "start_position_offset"
+    ],
+    "non_modifiable_conditions": [
+      "persistent stuck symptom",
+      "zero velocity and all-zero controls in critical window",
+      "final waypoints available throughout stuck window",
+      "no collision or red light interference"
+    ],
+    "uncertainty": [
+      "No direct evidence localizes the zero command issue to planning, actuation, or another specific module",
+      "No evidence of internal processing between final waypoint output and vehicle_cmd publication is available"
+    ],
+    "evidence_support": [
+      {
+        "evidence_id": "oracle_consistency",
+        "claim": "Dataset and error.json labels agree this is a stuck case with no other failure types"
+      },
+      {
+        "evidence_id": "critical_window_summary",
+        "claim": "Final 60 seconds of stuck window have zero velocity and all-zero control commands/vehicle status values"
+      },
+      {
+        "evidence_id": "planning_topic_summary",
+        "claim": "101 consistent final waypoints are present throughout the critical window"
+      },
+      {
+        "evidence_id": "interference_check",
+        "claim": "No collision or red light interference is detected in error.json"
+      }
+    ],
+    "confidence": "medium",
+    "ready_for_phase2_generation": "yes",
+    "notes_for_validator": [
+      "Validate generated cases have the stuck symptom, all-zero controls, and available final waypoints to confirm root cause preservation",
+      "Exclude generated cases that have unobserved collision or red light events as they represent a different root cause"
+    ]
+  },
+  "raw_api_payload": {
+    "id": "021782921470490d24b0b4d764165756d4018ab78dadfaca24de0",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "{\n  \"case_id\": \"case_156\",\n  \"fault_layer\": \"unknown\",\n  \"fault_component\": \"unknown\",\n  \"causal_explanation\": \"The oracle confirms the ego vehicle is stuck. In the final 60 seconds of the stuck window, ego has zero velocity, all vehicle control commands are zero, and all vehicle status control values are zero. Sensing, perception, and planning topics (including consistent final waypoints) are available, with no collision or red light interference detected.\",\n  \"root_cause_pattern\": \"Conservative pattern: Ego enters a persistent stuck state with zero velocity and all-zero control commands, while final waypoints remain available and no conflicting failure events are observed, with module-level root cause unconfirmed by available evidence.\",\n  \"preservation_constraints\": [\n    \"Preserve the confirmed stuck failure symptom\",\n    \"Preserve availability of sensing, perception, and final waypoint topics in the critical stuck window\",\n    \"Preserve zero velocity and all-zero control commands in the final 60 seconds of the stuck window\",\n    \"Preserve absence of collision and red light interference before the stuck state\"\n  ],\n  \"modifiable_factors\": [\"actor_position\", \"weather_parameters\", \"puddle_position\", \"start_position_offset\"],\n  \"non_modifiable_conditions\": [\n    \"persistent stuck symptom\",\n    \"zero velocity and all-zero controls in critical window\",\n    \"final waypoints available throughout stuck window\",\n    \"no collision or red light interference\"\n  ],\n  \"uncertainty\": [\n    \"No direct evidence localizes the zero command issue to planning, actuation, or another specific module\",\n    \"No evidence of internal processing between final waypoint output and vehicle_cmd publication is available\"\n  ],\n  \"evidence_support\": [\n    {\"evidence_id\": \"oracle_consistency\", \"claim\": \"Dataset and error.json labels agree this is a stuck case with no other failure types\"},\n    {\"evidence_id\": \"critical_window_summary\", \"claim\": \"Final 60 seconds of stuck window have zero velocity and all-zero control commands/vehicle status values\"},\n    {\"evidence_id\": \"planning_topic_summary\", \"claim\": \"101 consistent final waypoints are present throughout the critical window\"},\n    {\"evidence_id\": \"interference_check\", \"claim\": \"No collision or red light interference is detected in error.json\"}\n  ],\n  \"confidence\": \"medium\",\n  \"ready_for_phase2_generation\": \"yes\",\n  \"notes_for_validator\": [\n    \"Validate generated cases have the stuck symptom, all-zero controls, and available final waypoints to confirm root cause preservation\",\n    \"Exclude generated cases that have unobserved collision or red light events as they represent a different root cause\"\n  ]\n}",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null,
+          "reasoning_content": "\nGot it, let's work through this step by step. First, the case ID is case_156, right? Let's start filling each field.\n\nFirst, fault_layer: Let's check the evidence. Stuck is confirmed. Last 60 seconds, all vehicle_cmd are zero, all vehicle_status throttle, brake, steer are zero, velocity is zero. Final waypoints are present, 101 waypoints, planning has final_waypoints existing. Sensing topics exist, perception objects exist. Wait, what's the issue? All actuation commands are zero, target speed zero. Wait, but why? Do we have evidence of why? Wait, final_waypoints are present, so planning did output waypoints? But vehicle_cmd is all zero. Wait no, wait the evidence: final_waypoints are present, count is 101 consistently. But vehicle_cmd has all accel, brake, steer zero, target speed zero. Vehicle status also all zero, velocity zero. Wait but do we know which layer is at fault? Let's see: planning outputs final waypoints, but does it send command to actuation? Wait, vehicle_cmd is all zero. Wait, but the rule says if vehicle_cmd is all zero and vehicle status matches (no movement, all controls zero) then... Wait let's check: vehicle_cmd stats all zero, vehicle_status control stats all zero, velocity all zero. So what's the causal explanation? The ego vehicle is confirmed stuck, with zero velocity and zero control outputs from vehicle_cmd for the entire last 60 seconds of the stuck window. Final waypoints are present and available to the planning module throughout the window, sensing and perception topics are available with detected objects. Wait, but do we know why planning didn't issue non-zero commands? Or is it actuation? Wait, let's see: the evidence says final_waypoints are present, but vehicle_cmd is all zero. So we don't have evidence that planning processed the waypoints into commands, right? So module attribution is unknown? Wait let's check the rules: prefer fault_layer=unknown when module-level attribution not directly supported. Let's see: we have final_waypoints present, but do we have evidence that planning failed to generate commands? Or that actuation didn't execute? No, because vehicle_cmd is the output from planning to actuation, right? So vehicle_cmd itself is all zero, that means whatever the reason, the command sent is zero. But why? Did planning decide to send zero, or did something drop the command? The evidence doesn't say. So fault_layer is unknown? Wait, or is it planning? Wait no, let's stick to the rules: if you don't have direct evidence, assign unknown.\n\nFault component: unknown, right? Because we can't attribute.\n\nCausal explanation: The oracle confirms the ego vehicle is stuck. In the critical last 60 seconds of the stuck window, ego has zero velocity, all vehicle control commands (vehicle_cmd) are zero, and all vehicle status control values are also zero. Sensing, perception, and planning topics (including 101 consistent final waypoints) are available throughout the window, with no collision or red light interference detected.\n\nRoot cause pattern: Conservative pattern: Ego vehicle enters a stuck state with zero velocity and zero all-zero control commands, while final waypoints remain available and no conflicting events (collision, red light) are detected, with module-level cause unknown.\n\nPreservation constraints: Let's make 3-6: 1. Preserve the confirmed stuck symptom with no collision or red light interference. 2. Preserve availability of sensing, perception, and final waypoint topics in the critical stuck window. 3. Preserve zero velocity and all-zero control commands in the last 60 seconds of the stuck window. 4. Preserve at least one actor present in the scenario. That's good.\n\nModifiable factors: Let's see, what can be changed? actor position, weather (cloud, rain, wind, fog), puddle count and position, start position offset, right? So [\"actor_position\", \"weather_parameters\", \"puddle_position\", \"start_position_offset\"] that's fine.\n\nNon_modifiable_conditions: [\"confirmed stuck symptom\", \"all-zero control commands and zero velocity in critical stuck window\", \"final waypoints remain available during stuck window\", \"no collision or red light interference before failure\"] that works.\n\nUncertainty: [\"No direct evidence localizes the zero command issue to planning failure, actuation failure, or another module.\", \"No inspection of command generation logic between final waypoint output and vehicle_cmd publication is available in the provided evidence.\"] That's right.\n\nEvidence support: Let's list each evidence: {\"evidence_id\": \"oracle_consistency\", \"claim\": \"Dataset and error.json labels agree that this is a stuck case with no collision, lane invasion, or red light failure.\"}, {\"evidence_id\": \"critical_window_stuck_summary\", \"claim\": \"Last 60 seconds of the stuck window have zero velocity, all-zero vehicle_cmd, and all-zero vehicle_status controls.\"}, {\"evidence_id\": \"planning_topic_summary\", \"claim\": \"Final waypoints are consistently present (101 waypoints) throughout the critical window.\"}, {\"evidence_id\": \"collision_interference_check\", \"claim\": \"No collision or red light interference is detected in the error_json.\"} That's good.\n\nConfidence: What's the confidence? The symptom is confirmed, the observations are clear, but root cause is unknown, so confidence is medium? Wait, symptom is confirmed, observations are consistent, so medium, right? Because we know the symptom and the observed conditions, just not the module fault.\n\nReady_for_phase2_generation: yes, because we have a checkable conservative pattern, right? The rule says use yes when there's a checkable conservative pattern even if fault_layer is unknown.\n\nNotes_for_validator: [\"Validate that the generated case has the stuck symptom, all-zero controls in the critical window, and available final waypoints to confirm same-root-cause preservation.\", \"Check for unobserved collision or red light events that would change the failure root cause.\"]\n\nWait let's check all the rules: did we invent anything? No, all from evidence. Let's check the rules for stuck: used last window velocity, yes. Vehicle_cmd all zero, vehicle status matches (all zero, movement zero), so no uncertain controller here, that rule says if vehicle_cmd all zero but status shows movement/braking then uncertain, here both are zero, so that's fine. Labels are consistent, oracle says consistent, so no conflict. Let's put it all together in JSON correctly.\n\nWait let's adjust fault_layer: wait, is there any way to assign? Let's see: final_waypoints are there, so planning output waypoints, but vehicle_cmd is zero. So between planning (failed to generate commands from waypoints) or something else. But we don't have evidence that planning didn't generate, right? The evidence only says vehicle_cmd is zero. So yes, fault_layer is unknown, that's correct per rules.\n\nLet me write the JSON properly now, make sure all fields are there, no extra stuff, concise."
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "doubao-seed-2-0-lite-260215",
+    "object": "chat.completion",
+    "service_tier": "default",
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 2126,
+      "prompt_tokens": 3527,
+      "total_tokens": 5653,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 1517,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": null,
+        "cached_tokens": 0
+      }
+    }
+  },
+  "error_message": "",
+  "timestamp": "<REDACTED_TIMESTAMP>",
+  "elapsed_sec": 39.764
+}

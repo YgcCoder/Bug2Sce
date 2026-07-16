@@ -1,0 +1,344 @@
+{
+  "case_id": "case_037",
+  "model_name": "ark-doubao-seed-2.0-lite-260215",
+  "workflow": "phase2_grounded_generation",
+  "status": "completed",
+  "schema_valid": true,
+  "schema_errors": [],
+  "phase1_ready": "uncertain",
+  "num_candidates_requested": 2,
+  "num_candidates_written": 2,
+  "num_pre_valid": 2,
+  "candidate_records": [
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-doubao-seed-2.0-lite-260215/json/case_037/case_037__cand_001.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-doubao-seed-2.0-lite-260215/metadata/case_037/case_037__cand_001.metadata.json",
+      "case_id": "case_037",
+      "model_name": "ark-doubao-seed-2.0-lite-260215",
+      "candidate_index": 1,
+      "candidate_spec": {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Minor positional offset to the non-ego vehicle, retain all original weather, mission and actor count",
+        "mutation_intent": "Preserves all root cause requirements: conflicting dataset/error.json labels, actuation command-status mismatch, original Town01 map, original mission, heavy rain/high wetness, two-actor setup. Minor variation tests symptom consistency without changing the core root cause pattern",
+        "expected_oracle": "red_light",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 1.5,
+                "y": -0.5
+              },
+              "speed_delta": 0.3
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Retain original Town01 map and start-goal mission",
+          "Preserve actuation mismatch between all-zero /vehicle_cmd and non-zero /vehicle_status in critical window",
+          "Maintain two-actor scenario setup"
+        ],
+        "post_execution_validation_rules": [
+          "Verify conflicting label structure between generated output and original oracles",
+          "Check that red light violation is recorded as confirmed by error.json"
+        ],
+        "uncertainty": [
+          "Collision and lane invasion are not confirmed by error.json",
+          "Actuation mismatch root cause cannot be localized to a specific module"
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 0.0,
+          "fog": 0.0,
+          "wetness": 0.0,
+          "puddle": 0.0
+        },
+        "actor_mutations": [
+          {
+            "actor_index": 0,
+            "position_offset": {
+              "x": 1.5,
+              "y": -0.5
+            },
+            "speed_delta": 0.3
+          }
+        ],
+        "puddle_mutations": [],
+        "mission_mutation": {
+          "keep_original": true
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_037__ark-doubao-seed-2.0-lite-260215.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_037__ark-doubao-seed-2.0-lite-260215.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    },
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-doubao-seed-2.0-lite-260215/json/case_037/case_037__cand_002.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-doubao-seed-2.0-lite-260215/metadata/case_037/case_037__cand_002.metadata.json",
+      "case_id": "case_037",
+      "model_name": "ark-doubao-seed-2.0-lite-260215",
+      "candidate_index": 2,
+      "candidate_spec": {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Minor positional and speed adjustment to the walking actor, retain all other original scenario parameters",
+        "mutation_intent": "Preserves all required root cause pattern elements including conflicting oracle labels, actuation command-status mismatch, original map, mission, heavy rain/high wetness conditions, and two-actor setup. Variation to the walker tests scenario sensitivity while preserving all core constraints",
+        "expected_oracle": "unknown",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": -1.0,
+                "y": 0.8
+              },
+              "speed_delta": -0.2
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Retain original heavy rain and high wetness weather conditions",
+          "Preserve conflicting oracle labels between dataset and error.json",
+          "Maintain actuation mismatch pattern in critical pre-event window"
+        ],
+        "post_execution_validation_rules": [
+          "Check that all core preservation constraints are satisfied in the generated scenario",
+          "Confirm that unconfirmed root cause properties are retained as in original"
+        ],
+        "uncertainty": [
+          "Dataset and error.json conflict on collision and lane invasion symptoms",
+          "Actuation mismatch cannot be localized to a specific module with available evidence",
+          "Route-light relation and stop-line crossing for red light are unconfirmed"
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 0.0,
+          "fog": 0.0,
+          "wetness": 0.0,
+          "puddle": 0.0
+        },
+        "actor_mutations": [
+          {
+            "actor_index": 1,
+            "position_offset": {
+              "x": -1.0,
+              "y": 0.8
+            },
+            "speed_delta": -0.2
+          }
+        ],
+        "puddle_mutations": [],
+        "mission_mutation": {
+          "keep_original": true
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_037__ark-doubao-seed-2.0-lite-260215.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_037__ark-doubao-seed-2.0-lite-260215.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    }
+  ],
+  "seed_artifact_zip": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-doubao-seed-2.0-lite-260215/seed-artifact/seed-artifact-case_037.zip",
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_prompts/case_037__ark-doubao-seed-2.0-lite-260215.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_037__ark-doubao-seed-2.0-lite-260215.json",
+  "prompt_estimated_tokens": 1091,
+  "usage": {
+    "prompt_tokens": 1392,
+    "completion_tokens": 3414,
+    "total_tokens": 4806
+  },
+  "raw_response": "{\n  \"case_id\": \"case_037\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Minor positional offset to the non-ego vehicle, retain all original weather, mission and actor count\",\n      \"mutation_intent\": \"Preserves all root cause requirements: conflicting dataset/error.json labels, actuation command-status mismatch, original Town01 map, original mission, heavy rain/high wetness, two-actor setup. Minor variation tests symptom consistency without changing the core root cause pattern\",\n      \"expected_oracle\": \"red_light\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 1.5, \"y\": -0.5}, \"speed_delta\": 0.3}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Retain original Town01 map and start-goal mission\", \"Preserve actuation mismatch between all-zero /vehicle_cmd and non-zero /vehicle_status in critical window\", \"Maintain two-actor scenario setup\"],\n      \"post_execution_validation_rules\": [\"Verify conflicting label structure between generated output and original oracles\", \"Check that red light violation is recorded as confirmed by error.json\"],\n      \"uncertainty\": [\"Collision and lane invasion are not confirmed by error.json\", \"Actuation mismatch root cause cannot be localized to a specific module\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Minor positional and speed adjustment to the walking actor, retain all other original scenario parameters\",\n      \"mutation_intent\": \"Preserves all required root cause pattern elements including conflicting oracle labels, actuation command-status mismatch, original map, mission, heavy rain/high wetness conditions, and two-actor setup. Variation to the walker tests scenario sensitivity while preserving all core constraints\",\n      \"expected_oracle\": \"unknown\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 1, \"position_offset\": {\"x\": -1.0, \"y\": 0.8}, \"speed_delta\": -0.2}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Retain original heavy rain and high wetness weather conditions\", \"Preserve conflicting oracle labels between dataset and error.json\", \"Maintain actuation mismatch pattern in critical pre-event window\"],\n      \"post_execution_validation_rules\": [\"Check that all core preservation constraints are satisfied in the generated scenario\", \"Confirm that unconfirmed root cause properties are retained as in original\"],\n      \"uncertainty\": [\"Dataset and error.json conflict on collision and lane invasion symptoms\", \"Actuation mismatch cannot be localized to a specific module with available evidence\", \"Route-light relation and stop-line crossing for red light are unconfirmed\"]\n    }\n  ]\n}",
+  "parsed_response": {
+    "case_id": "case_037",
+    "candidate_specs": [
+      {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Minor positional offset to the non-ego vehicle, retain all original weather, mission and actor count",
+        "mutation_intent": "Preserves all root cause requirements: conflicting dataset/error.json labels, actuation command-status mismatch, original Town01 map, original mission, heavy rain/high wetness, two-actor setup. Minor variation tests symptom consistency without changing the core root cause pattern",
+        "expected_oracle": "red_light",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 1.5,
+                "y": -0.5
+              },
+              "speed_delta": 0.3
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Retain original Town01 map and start-goal mission",
+          "Preserve actuation mismatch between all-zero /vehicle_cmd and non-zero /vehicle_status in critical window",
+          "Maintain two-actor scenario setup"
+        ],
+        "post_execution_validation_rules": [
+          "Verify conflicting label structure between generated output and original oracles",
+          "Check that red light violation is recorded as confirmed by error.json"
+        ],
+        "uncertainty": [
+          "Collision and lane invasion are not confirmed by error.json",
+          "Actuation mismatch root cause cannot be localized to a specific module"
+        ]
+      },
+      {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Minor positional and speed adjustment to the walking actor, retain all other original scenario parameters",
+        "mutation_intent": "Preserves all required root cause pattern elements including conflicting oracle labels, actuation command-status mismatch, original map, mission, heavy rain/high wetness conditions, and two-actor setup. Variation to the walker tests scenario sensitivity while preserving all core constraints",
+        "expected_oracle": "unknown",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": -1.0,
+                "y": 0.8
+              },
+              "speed_delta": -0.2
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Retain original heavy rain and high wetness weather conditions",
+          "Preserve conflicting oracle labels between dataset and error.json",
+          "Maintain actuation mismatch pattern in critical pre-event window"
+        ],
+        "post_execution_validation_rules": [
+          "Check that all core preservation constraints are satisfied in the generated scenario",
+          "Confirm that unconfirmed root cause properties are retained as in original"
+        ],
+        "uncertainty": [
+          "Dataset and error.json conflict on collision and lane invasion symptoms",
+          "Actuation mismatch cannot be localized to a specific module with available evidence",
+          "Route-light relation and stop-line crossing for red light are unconfirmed"
+        ]
+      }
+    ]
+  },
+  "raw_api_payload": {
+    "id": "0217829220481712d60f863e4315e8806c7747df8d22708300e1b",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "{\n  \"case_id\": \"case_037\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Minor positional offset to the non-ego vehicle, retain all original weather, mission and actor count\",\n      \"mutation_intent\": \"Preserves all root cause requirements: conflicting dataset/error.json labels, actuation command-status mismatch, original Town01 map, original mission, heavy rain/high wetness, two-actor setup. Minor variation tests symptom consistency without changing the core root cause pattern\",\n      \"expected_oracle\": \"red_light\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 1.5, \"y\": -0.5}, \"speed_delta\": 0.3}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Retain original Town01 map and start-goal mission\", \"Preserve actuation mismatch between all-zero /vehicle_cmd and non-zero /vehicle_status in critical window\", \"Maintain two-actor scenario setup\"],\n      \"post_execution_validation_rules\": [\"Verify conflicting label structure between generated output and original oracles\", \"Check that red light violation is recorded as confirmed by error.json\"],\n      \"uncertainty\": [\"Collision and lane invasion are not confirmed by error.json\", \"Actuation mismatch root cause cannot be localized to a specific module\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Minor positional and speed adjustment to the walking actor, retain all other original scenario parameters\",\n      \"mutation_intent\": \"Preserves all required root cause pattern elements including conflicting oracle labels, actuation command-status mismatch, original map, mission, heavy rain/high wetness conditions, and two-actor setup. Variation to the walker tests scenario sensitivity while preserving all core constraints\",\n      \"expected_oracle\": \"unknown\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 1, \"position_offset\": {\"x\": -1.0, \"y\": 0.8}, \"speed_delta\": -0.2}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Retain original heavy rain and high wetness weather conditions\", \"Preserve conflicting oracle labels between dataset and error.json\", \"Maintain actuation mismatch pattern in critical pre-event window\"],\n      \"post_execution_validation_rules\": [\"Check that all core preservation constraints are satisfied in the generated scenario\", \"Confirm that unconfirmed root cause properties are retained as in original\"],\n      \"uncertainty\": [\"Dataset and error.json conflict on collision and lane invasion symptoms\", \"Actuation mismatch cannot be localized to a specific module with available evidence\", \"Route-light relation and stop-line crossing for red light are unconfirmed\"]\n    }\n  ]\n}",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null,
+          "reasoning_content": "\nGot it, let's build this JSON step by step. First, case_id is case_037, right? Need two candidate specs, cand_001 and cand_002.\n\nFirst, let's remember the preservation constraints. We have to keep original map, mission, heavy rain high wetness, two actors, conflicting oracles, actuation mismatch.\n\nFirst candidate (cand_001): Let's think of a variant that slightly shifts the other vehicle position to keep the uncertainty. High level variant: Slightly offset the approaching vehicle position while keeping all original conditions. Mutation intent: Preserves all root cause constraints, only minor position change to test if the symptom still occurs, keeps the label conflict and actuation mismatch. Expected oracle: red_light, right? Because only that's confirmed. Wait, wait, the input says dataset has collision, lane invasion, red light, error.json only confirms red light. So expected oracle should be... wait the rule says don't invent new labels, preserve intended. Let's see, unconfirmed so maybe compound? No, wait, error.json only confirms red light, but dataset has others, so expected oracle? Wait let's check: the root cause has conflicting labels, so first candidate: let's do modifications. Weather delta: wait preservation says keep heavy rain and high wetness, so delta 0 for all? Wait maybe first candidate, minor offset to actor 0 (the vehicle). Position offset x: 1.2, y: -0.8, speed delta 0.5, that's within limits. Mission keep_original true, puddle mutations empty because there are no puddles originally, right? Seed scenario has puddles empty. Oh right, seed_scenario puddles is [], so puddle_mutations is empty. Pre-execution rules: [\"Check that original Town01 map is retained\", \"Check that actuation command mismatch pattern is preserved in critical window\", \"Check that two actors are retained\"], post execution: [\"Check for label consistency between output and original conflict\", \"Verify red light violation is recorded\"], uncertainty same as original: [\"Dataset and error.json conflict on collision and lane invasion symptoms\", \"Route-light relation and stop-line crossing for red light are unconfirmed\"].\n\nThen cand_002: what's another variant? Let's offset the walker (actor 1) a bit, change speed slightly. High level variant: Slightly offset the walking actor position and adjust its speed, keep all other original conditions. Mutation intent: Preserves all required root cause pattern elements including conflicting oracle labels, actuation mismatch, original map and mission, heavy rain conditions, two actor setup, only minor variation to the non-ego actor to test symptom reproducibility while keeping uncertainty. Expected oracle: still red_light? Wait or compound because of the conflicting labels? Wait the input says error.json only confirms red light, but dataset labels others, so let's make expected_oracle red_light for first, wait no, let's see: the root cause is conflicting labels, so maybe expected_oracle is compound? Wait no, let's check the schema options: collision | red_light | lane_invasion | stuck | compound | unknown. Oh, since we have conflicting labels, unconfirmed, so maybe first cand expected_oracle red_light, second cand expected_oracle unknown? Wait no, let's think. The preservation constraints say preserve conflicting oracles. Let's structure:\n\ncand_001:\nhigh_level_variant: \"Minor positional offset to the non-ego approaching vehicle, retain all original weather, mission and actor count\"\nmutation_intent: \"Preserves all root cause requirements: conflicting dataset/error.json labels, actuation command-status mismatch, original Town01 map, original mission, heavy rain/high wetness, two-actor setup. Minor position variation tests symptom consistency without changing root cause pattern.\"\nexpected_oracle: \"red_light\"\nmodifications: weather_delta all 0, because we need to keep original rain and wetness. actor_mutations: actor 0, position x 1.5, y -0.5, speed delta 0.3, that's within limits. puddle_mutations empty, mission keep_original true.\npre_execution_validation_rules: [\"Retain original Town01 map and mission\", \"Preserve actuation mismatch between all-zero /vehicle_cmd and non-zero /vehicle_status in critical window\", \"Maintain two-actor scenario setup\"]\npost_execution_validation_rules: [\"Verify conflicting label structure between generated output and original oracles\", \"Check that red light violation is present as confirmed by error.json\"]\nuncertainty: [\"Collision and lane invasion are not confirmed by error.json\", \"Actuation mismatch root cause cannot be localized to a specific module\"]\n\nThen cand_002:\nhigh_level_variant: \"Minor positional and speed adjustment to the walking actor, retain all other original scenario parameters\"\nmutation_intent: \"Preserves all required root cause pattern elements including conflicting oracle labels, actuation command-status mismatch, original map, mission, weather conditions, and two-actor count. Variation to the walker tests scenario sensitivity while preserving all core constraints.\"\nexpected_oracle: \"compound\" because dataset labels multiple, even though unconfirmed, right? Or unknown? Wait no, the conflict means that the expected is unknown? No, let's do expected_oracle \"unknown\" because the root cause is unconfirmed module level, labels are conflicting. Wait no, let's check: the phase1 says fault_layer is unknown, so cand 002 expected_oracle is unknown? Wait let's adjust. Let's see:\n\ncand_002:\nactor_mutations is actor 1, position offset x -1.0, y 0.8, speed delta -0.2, which is within [-3,3], offset within [-8,8], good.\nmodifications: weather_delta all 0, because we need to keep heavy rain, wetness. mission keep_original true, puddle_mutations empty.\npre_execution_validation_rules: [\"Retain original heavy rain and high wetness weather conditions\", \"Preserve conflicting oracle labels between dataset and error.json\", \"Maintain actuation mismatch pattern in critical pre-event window\"]\npost_execution_validation_rules: [\"Check that core scenario properties match original preservation constraints\", \"Confirm that unconfirmed root cause properties are retained\"]\nuncertainty: [\"Dataset and error.json conflict on collision and lane invasion symptoms\", \"Actuation mismatch cannot be localized to a specific module with available evidence\"]\n\nWait let's check all constraints: exactly two candidates, offsets are within limits, speed delta within [-3,3], all preservation constraints are followed: keep original map, mission, heavy rain, two actors, conflicting labels, actuation mismatch. That's good.\n\nNow let's structure the whole JSON correctly. Let's make sure case_id is case_037, candidate ids are cand_001 and cand_002. Let's check all fields:\n\nWait the seed scenario has no puddles, so puddle_mutations is empty array for both, that's correct. Mission for both is keep_original: true, offsets all zero, because preservation says preserve original mission, so that's correct. Weather delta all zero, because we need to preserve heavy rain and high wetness, so delta 0 for all, that's correct.\n\nLet me write it out properly now, make sure it's valid JSON, no extra commas. Let's check:\n\n{\n  \"case_id\": \"case_037\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Minor positional offset to the non-ego vehicle, retain all original weather, mission and actor count\",\n      \"mutation_intent\": \"Preserves all root cause requirements: conflicting dataset/error.json labels, actuation command-status mismatch, original Town01 map, original mission, heavy rain/high wetness, two-actor setup. Minor variation tests symptom consistency without changing the core root cause pattern\",\n      \"expected_oracle\": \"red_light\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 1.5, \"y\": -0.5}, \"speed_delta\": 0.3}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Retain original Town01 map and start-goal mission\", \"Preserve actuation mismatch between all-zero /vehicle_cmd and non-zero /vehicle_status in critical window\", \"Maintain two-actor scenario setup\"],\n      \"post_execution_validation_rules\": [\"Verify conflicting label structure between generated output and original oracles\", \"Check that red light violation is recorded as confirmed by error.json\"],\n      \"uncertainty\": [\"Collision and lane invasion are not confirmed by error.json\", \"Actuation mismatch root cause cannot be localized to a specific module\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Minor positional and speed adjustment to the walking actor, retain all other original scenario parameters\",\n      \"mutation_intent\": \"Preserves all required root cause pattern elements including conflicting oracle labels, actuation command-status mismatch, original map, mission, heavy rain/high wetness conditions, and two-actor setup. Variation to the walker tests scenario sensitivity while preserving all core constraints\",\n      \"expected_oracle\": \"unknown\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 1, \"position_offset\": {\"x\": -1.0, \"y\": 0.8}, \"speed_delta\": -0.2}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Retain original heavy rain and high wetness weather conditions\", \"Preserve conflicting oracle labels between dataset and error.json\", \"Maintain actuation mismatch pattern in critical pre-event window\"],\n      \"post_execution_validation_rules\": [\"Check that all core preservation constraints are satisfied in the generated scenario\", \"Confirm that unconfirmed root cause properties are retained as in original\"],\n      \"uncertainty\": [\"Dataset and error.json conflict on collision and lane invasion symptoms\", \"Actuation mismatch cannot be localized to a specific module with available evidence\", \"Route-light relation and stop-line crossing for red light are unconfirmed\"]\n    }\n  ]\n}\n\nWait that looks good. Let's check all rules: exactly two candidates, offsets are within [-8,8], yes, 1.5, -0.5, -1.0, 0.8 all good. Speed delta 0.3, -0.2, within [-3,3], yes. Weather delta all 0, which is within [-20,20], yes. Mission keep_original true, which follows the constraint to preserve original mission. Preserves all root cause pattern: conflicting labels, actuation mismatch, two actors, heavy rain, original map. Uncertainty is preserved, as phase1 is uncertainty-heavy, we kept uncertainty in output. No new oracle labels, expected_oracle is red_light and unknown, which matches the input. That's all correct."
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "doubao-seed-2-0-lite-260215",
+    "object": "chat.completion",
+    "service_tier": "default",
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 3414,
+      "prompt_tokens": 1392,
+      "total_tokens": 4806,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 2579,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": null,
+        "cached_tokens": 0
+      }
+    }
+  },
+  "error_message": "",
+  "elapsed_sec": 53.968,
+  "timestamp": "<REDACTED_TIMESTAMP>"
+}

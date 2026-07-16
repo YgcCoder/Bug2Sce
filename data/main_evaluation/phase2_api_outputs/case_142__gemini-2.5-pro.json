@@ -1,0 +1,284 @@
+{
+  "case_id": "case_142",
+  "model_name": "gemini-2.5-pro",
+  "workflow": "phase2_grounded_generation",
+  "status": "completed",
+  "schema_valid": true,
+  "schema_errors": [],
+  "phase1_ready": "yes",
+  "num_candidates_requested": 2,
+  "num_candidates_written": 2,
+  "num_pre_valid": 2,
+  "candidate_records": [
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/gemini-2.5-pro/json/case_142/case_142__cand_001.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/gemini-2.5-pro/metadata/case_142/case_142__cand_001.metadata.json",
+      "case_id": "case_142",
+      "model_name": "gemini-2.5-pro",
+      "candidate_index": 1,
+      "candidate_spec": {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Test if the controller failure occurs in clear weather, isolating it from perception issues.",
+        "mutation_intent": "Remove adverse weather (rain, fog, wetness) to test if the planning failure is independent of environmental conditions.",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": -16,
+            "fog": -20,
+            "wetness": -20,
+            "puddle": 0
+          },
+          "actor_mutations": [],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Ego approaches a red light.",
+          "Weather is significantly clearer than seed."
+        ],
+        "post_execution_validation_rules": [
+          "Vehicle command output is zero while ego is moving.",
+          "Ego collides with an actor.",
+          "Ego runs the red light."
+        ],
+        "uncertainty": [
+          "The disputed lane invasion may or may not occur."
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": -16.0,
+          "fog": -20,
+          "wetness": -20,
+          "puddle": 0.0
+        },
+        "actor_mutations": [],
+        "puddle_mutations": [],
+        "mission_mutation": {
+          "keep_original": true
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_142__gemini-2.5-pro.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_142__gemini-2.5-pro.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    },
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/gemini-2.5-pro/json/case_142/case_142__cand_002.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/gemini-2.5-pro/metadata/case_142/case_142__cand_002.metadata.json",
+      "case_id": "case_142",
+      "model_name": "gemini-2.5-pro",
+      "candidate_index": 2,
+      "candidate_spec": {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Alter traffic pattern at the intersection to test failure robustness against different timings.",
+        "mutation_intent": "Slightly slow down and shift a lead vehicle to change the traffic dynamics as the ego vehicle approaches the intersection.",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 1.0,
+                "y": -1.0
+              },
+              "speed_delta": -1.5
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Ego approaches a red light.",
+          "Actor 0 is slower than in seed scenario."
+        ],
+        "post_execution_validation_rules": [
+          "Vehicle command output is zero while ego is moving.",
+          "Ego collides with an actor."
+        ],
+        "uncertainty": [
+          "Unclear if new traffic pattern will alter the specific collision target."
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 0.0,
+          "fog": 0.0,
+          "wetness": 0.0,
+          "puddle": 0.0
+        },
+        "actor_mutations": [
+          {
+            "actor_index": 0,
+            "position_offset": {
+              "x": 1.0,
+              "y": -1.0
+            },
+            "speed_delta": -1.5
+          }
+        ],
+        "puddle_mutations": [],
+        "mission_mutation": {
+          "keep_original": true
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_142__gemini-2.5-pro.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_142__gemini-2.5-pro.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    }
+  ],
+  "seed_artifact_zip": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/gemini-2.5-pro/seed-artifact/seed-artifact-case_142.zip",
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_prompts/case_142__gemini-2.5-pro.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_142__gemini-2.5-pro.json",
+  "prompt_estimated_tokens": 1109,
+  "usage": {
+    "prompt_tokens": 1544,
+    "completion_tokens": 2973,
+    "total_tokens": 4517
+  },
+  "raw_response": "```json\n{\n  \"case_id\": \"case_142\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Test if the controller failure occurs in clear weather, isolating it from perception issues.\",\n      \"mutation_intent\": \"Remove adverse weather (rain, fog, wetness) to test if the planning failure is independent of environmental conditions.\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": -16, \"fog\": -20, \"wetness\": -20, \"puddle\": 0},\n        \"actor_mutations\": [],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true}\n      },\n      \"pre_execution_validation_rules\": [\"Ego approaches a red light.\", \"Weather is significantly clearer than seed.\"],\n      \"post_execution_validation_rules\": [\"Vehicle command output is zero while ego is moving.\", \"Ego collides with an actor.\", \"Ego runs the red light.\"],\n      \"uncertainty\": [\"The disputed lane invasion may or may not occur.\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Alter traffic pattern at the intersection to test failure robustness against different timings.\",\n      \"mutation_intent\": \"Slightly slow down and shift a lead vehicle to change the traffic dynamics as the ego vehicle approaches the intersection.\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 1.0, \"y\": -1.0}, \"speed_delta\": -1.5}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true}\n      },\n      \"pre_execution_validation_rules\": [\"Ego approaches a red light.\", \"Actor 0 is slower than in seed scenario.\"],\n      \"post_execution_validation_rules\": [\"Vehicle command output is zero while ego is moving.\", \"Ego collides with an actor.\"],\n      \"uncertainty\": [\"Unclear if new traffic pattern will alter the specific collision target.\"]\n    }\n  ]\n}\n```",
+  "parsed_response": {
+    "case_id": "case_142",
+    "candidate_specs": [
+      {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Test if the controller failure occurs in clear weather, isolating it from perception issues.",
+        "mutation_intent": "Remove adverse weather (rain, fog, wetness) to test if the planning failure is independent of environmental conditions.",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": -16,
+            "fog": -20,
+            "wetness": -20,
+            "puddle": 0
+          },
+          "actor_mutations": [],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Ego approaches a red light.",
+          "Weather is significantly clearer than seed."
+        ],
+        "post_execution_validation_rules": [
+          "Vehicle command output is zero while ego is moving.",
+          "Ego collides with an actor.",
+          "Ego runs the red light."
+        ],
+        "uncertainty": [
+          "The disputed lane invasion may or may not occur."
+        ]
+      },
+      {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Alter traffic pattern at the intersection to test failure robustness against different timings.",
+        "mutation_intent": "Slightly slow down and shift a lead vehicle to change the traffic dynamics as the ego vehicle approaches the intersection.",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 1.0,
+                "y": -1.0
+              },
+              "speed_delta": -1.5
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Ego approaches a red light.",
+          "Actor 0 is slower than in seed scenario."
+        ],
+        "post_execution_validation_rules": [
+          "Vehicle command output is zero while ego is moving.",
+          "Ego collides with an actor."
+        ],
+        "uncertainty": [
+          "Unclear if new traffic pattern will alter the specific collision target."
+        ]
+      }
+    ]
+  },
+  "raw_api_payload": {
+    "id": "<REDACTED_RESPONSE_ID>",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "```json\n{\n  \"case_id\": \"case_142\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Test if the controller failure occurs in clear weather, isolating it from perception issues.\",\n      \"mutation_intent\": \"Remove adverse weather (rain, fog, wetness) to test if the planning failure is independent of environmental conditions.\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": -16, \"fog\": -20, \"wetness\": -20, \"puddle\": 0},\n        \"actor_mutations\": [],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true}\n      },\n      \"pre_execution_validation_rules\": [\"Ego approaches a red light.\", \"Weather is significantly clearer than seed.\"],\n      \"post_execution_validation_rules\": [\"Vehicle command output is zero while ego is moving.\", \"Ego collides with an actor.\", \"Ego runs the red light.\"],\n      \"uncertainty\": [\"The disputed lane invasion may or may not occur.\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Alter traffic pattern at the intersection to test failure robustness against different timings.\",\n      \"mutation_intent\": \"Slightly slow down and shift a lead vehicle to change the traffic dynamics as the ego vehicle approaches the intersection.\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 1.0, \"y\": -1.0}, \"speed_delta\": -1.5}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true}\n      },\n      \"pre_execution_validation_rules\": [\"Ego approaches a red light.\", \"Actor 0 is slower than in seed scenario.\"],\n      \"post_execution_validation_rules\": [\"Vehicle command output is zero while ego is moving.\", \"Ego collides with an actor.\"],\n      \"uncertainty\": [\"Unclear if new traffic pattern will alter the specific collision target.\"]\n    }\n  ]\n}\n```",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "gemini-2.5-pro",
+    "object": "chat.completion",
+    "service_tier": null,
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 2973,
+      "prompt_tokens": 1544,
+      "total_tokens": 4517,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": 0,
+        "reasoning_tokens": 2405,
+        "rejected_prediction_tokens": null,
+        "text_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 0,
+        "text_tokens": 1544,
+        "image_tokens": 0
+      },
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "input_tokens_details": null,
+      "claude_cache_creation_5_m_tokens": 0,
+      "claude_cache_creation_1_h_tokens": 0
+    }
+  },
+  "error_message": "",
+  "elapsed_sec": 32.423,
+  "timestamp": "<REDACTED_TIMESTAMP>"
+}

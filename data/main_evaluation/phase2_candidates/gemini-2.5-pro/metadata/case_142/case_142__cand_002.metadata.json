@@ -1,0 +1,74 @@
+{
+  "case_id": "case_142",
+  "model_name": "gemini-2.5-pro",
+  "candidate_index": 2,
+  "candidate_spec": {
+    "candidate_id": "cand_002",
+    "high_level_variant": "Alter traffic pattern at the intersection to test failure robustness against different timings.",
+    "mutation_intent": "Slightly slow down and shift a lead vehicle to change the traffic dynamics as the ego vehicle approaches the intersection.",
+    "expected_oracle": "compound",
+    "modifications": {
+      "weather_delta": {
+        "rain": 0,
+        "fog": 0,
+        "wetness": 0,
+        "puddle": 0
+      },
+      "actor_mutations": [
+        {
+          "actor_index": 0,
+          "position_offset": {
+            "x": 1.0,
+            "y": -1.0
+          },
+          "speed_delta": -1.5
+        }
+      ],
+      "puddle_mutations": [],
+      "mission_mutation": {
+        "keep_original": true
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Ego approaches a red light.",
+      "Actor 0 is slower than in seed scenario."
+    ],
+    "post_execution_validation_rules": [
+      "Vehicle command output is zero while ego is moving.",
+      "Ego collides with an actor."
+    ],
+    "uncertainty": [
+      "Unclear if new traffic pattern will alter the specific collision target."
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": 0.0,
+      "fog": 0.0,
+      "wetness": 0.0,
+      "puddle": 0.0
+    },
+    "actor_mutations": [
+      {
+        "actor_index": 0,
+        "position_offset": {
+          "x": 1.0,
+          "y": -1.0
+        },
+        "speed_delta": -1.5
+      }
+    ],
+    "puddle_mutations": [],
+    "mission_mutation": {
+      "keep_original": true
+    }
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_142__gemini-2.5-pro.json",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_142__gemini-2.5-pro.json",
+  "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+}

@@ -1,0 +1,232 @@
+{
+  "case_id": "case_103",
+  "model_name": "gemini-2.5-pro",
+  "workflow": "pure_llm_phase2_baseline",
+  "status": "completed",
+  "schema_valid": true,
+  "schema_errors": [],
+  "num_candidates_requested": 1,
+  "num_candidates_written": 1,
+  "num_pre_valid": 1,
+  "candidate_records": [
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/pure_llm_phase2_candidates/gemini-2.5-pro/json/case_103/case_103__model_gemini-2.5-pro__cand_001.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/pure_llm_phase2_candidates/gemini-2.5-pro/metadata/case_103/case_103__model_gemini-2.5-pro__cand_001.metadata.json",
+      "case_id": "case_103",
+      "model_name": "gemini-2.5-pro",
+      "candidate_index": 1,
+      "candidate_spec": {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Increase rain and fog, and slightly slow down the other vehicle at the intersection.",
+        "mutation_intent": "Test if worsening weather conditions exacerbates the red light and lane invasion failure, despite a slower actor.",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": 4,
+            "fog": 15,
+            "wetness": 10,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 1.0,
+                "y": -1.0
+              },
+              "speed_delta": -0.5
+            }
+          ],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": 0.05,
+              "size_scale": 1.0
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Ego and actor must not spawn in collision."
+        ],
+        "post_execution_validation_rules": [
+          "Ego must reach destination without new failures."
+        ],
+        "uncertainty": [
+          "Uncertain if weather or actor speed is the dominant factor for the failure."
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 4.0,
+          "fog": 15.0,
+          "wetness": 10.0,
+          "puddle": 0.0
+        },
+        "actor_mutations": [
+          {
+            "actor_index": 0,
+            "position_offset": {
+              "x": 1.0,
+              "y": -1.0
+            },
+            "speed_delta": -0.5
+          }
+        ],
+        "puddle_mutations": [
+          {
+            "puddle_index": 0,
+            "location_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "level_delta": 0.05,
+            "size_scale": 1.0
+          }
+        ],
+        "mission_mutation": {
+          "keep_original": true
+        },
+        "safety_repairs": []
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": []
+      }
+    }
+  ],
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/pure_llm_phase2_api_prompts/case_103__gemini-2.5-pro.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/pure_llm_phase2_api_outputs/case_103__gemini-2.5-pro.json",
+  "prompt_estimated_tokens": 809,
+  "usage": {
+    "prompt_tokens": 1204,
+    "completion_tokens": 2491,
+    "total_tokens": 3695
+  },
+  "raw_response": "```json\n{\n  \"case_id\": \"case_103\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Increase rain and fog, and slightly slow down the other vehicle at the intersection.\",\n      \"mutation_intent\": \"Test if worsening weather conditions exacerbates the red light and lane invasion failure, despite a slower actor.\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 4, \"fog\": 15, \"wetness\": 10, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 1.0, \"y\": -1.0}, \"speed_delta\": -0.5}\n        ],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": 0.05, \"size_scale\": 1.0}\n        ],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Ego and actor must not spawn in collision.\"],\n      \"post_execution_validation_rules\": [\"Ego must reach destination without new failures.\"],\n      \"uncertainty\": [\"Uncertain if weather or actor speed is the dominant factor for the failure.\"]\n    }\n  ]\n}\n```",
+  "parsed_response": {
+    "case_id": "case_103",
+    "candidate_specs": [
+      {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Increase rain and fog, and slightly slow down the other vehicle at the intersection.",
+        "mutation_intent": "Test if worsening weather conditions exacerbates the red light and lane invasion failure, despite a slower actor.",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": 4,
+            "fog": 15,
+            "wetness": 10,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 1.0,
+                "y": -1.0
+              },
+              "speed_delta": -0.5
+            }
+          ],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": 0.05,
+              "size_scale": 1.0
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Ego and actor must not spawn in collision."
+        ],
+        "post_execution_validation_rules": [
+          "Ego must reach destination without new failures."
+        ],
+        "uncertainty": [
+          "Uncertain if weather or actor speed is the dominant factor for the failure."
+        ]
+      }
+    ]
+  },
+  "raw_api_payload": {
+    "id": "<REDACTED_RESPONSE_ID>",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "```json\n{\n  \"case_id\": \"case_103\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Increase rain and fog, and slightly slow down the other vehicle at the intersection.\",\n      \"mutation_intent\": \"Test if worsening weather conditions exacerbates the red light and lane invasion failure, despite a slower actor.\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 4, \"fog\": 15, \"wetness\": 10, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 1.0, \"y\": -1.0}, \"speed_delta\": -0.5}\n        ],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": 0.05, \"size_scale\": 1.0}\n        ],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Ego and actor must not spawn in collision.\"],\n      \"post_execution_validation_rules\": [\"Ego must reach destination without new failures.\"],\n      \"uncertainty\": [\"Uncertain if weather or actor speed is the dominant factor for the failure.\"]\n    }\n  ]\n}\n```",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "gemini-2.5-pro",
+    "object": "chat.completion",
+    "service_tier": null,
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 2491,
+      "prompt_tokens": 1204,
+      "total_tokens": 3695,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": 0,
+        "reasoning_tokens": 2089,
+        "rejected_prediction_tokens": null,
+        "text_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 0,
+        "text_tokens": 1204,
+        "image_tokens": 0
+      },
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "input_tokens_details": null,
+      "claude_cache_creation_5_m_tokens": 0,
+      "claude_cache_creation_1_h_tokens": 0
+    }
+  },
+  "error_message": "",
+  "elapsed_sec": 25.67,
+  "timestamp": "<REDACTED_TIMESTAMP>"
+}

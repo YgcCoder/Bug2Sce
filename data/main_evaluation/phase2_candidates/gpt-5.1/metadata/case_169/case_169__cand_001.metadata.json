@@ -1,0 +1,82 @@
+{
+  "case_id": "case_169",
+  "model_name": "gpt-5.1",
+  "candidate_index": 1,
+  "candidate_spec": {
+    "candidate_id": "cand_001",
+    "high_level_variant": "Same road segment and mission layout in Town01, with a slight lateral-offset spawn and mild weather change, ensuring ego moves through an intersection area with active traffic lights but without forcing an evident stop-line crossing at red.",
+    "mutation_intent": "Keep the environment and route similar while slightly perturbing ego start position so that traffic lights remain in perception range and active, but the route–light relation and exact stop-line crossing timing remain ambiguous, preserving an oracle red-light violation with unknown mechanism.",
+    "expected_oracle": "red_light",
+    "modifications": {
+      "weather_delta": {
+        "rain": 5,
+        "fog": -10,
+        "wetness": 5,
+        "puddle": 0
+      },
+      "actor_mutations": [],
+      "puddle_mutations": [],
+      "mission_mutation": {
+        "keep_original": false,
+        "spawn_offset": {
+          "x": 1.5,
+          "y": -2.0
+        },
+        "destination_offset": {
+          "x": 0.0,
+          "y": 3.0
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Ensure the map is Town01.",
+      "Verify that at least one traffic light entity is present and published on /carla/traffic_lights.",
+      "Confirm that the ego route (from spawn+offset to destination+offset) passes near at least one signalized intersection but does not deliberately enforce a mandatory stop-line crossing geometry at a specific known red light.",
+      "Check that final_waypoints are configured to be published for the full route with no intentional gaps.",
+      "Ensure no additional non-ego actors are spawned that would cause deterministic collisions or block the ego path."
+    ],
+    "post_execution_validation_rules": [
+      "Confirm that the primary oracle label is red_light and that collision, lane_invasion, and stuck are not reported as primary failures.",
+      "Verify that /carla/traffic_lights was published throughout the run with multiple state updates.",
+      "Inspect ego odometry or vehicle_status to ensure ego speed is nonzero at some point during the scenario.",
+      "Check that final_waypoints were continuously available near the time the oracle flags the red-light violation and that there are no null rows or missing segments.",
+      "Review logged positions of ego and traffic lights and confirm that they do not yield a single, clearly documented stop-line crossing at a known red phase; the route–light relation should remain ambiguous.",
+      "Do not infer a specific Autoware fault layer; keep fault_layer as unknown unless new, conclusive evidence appears."
+    ],
+    "uncertainty": [
+      "It remains unclear which specific traffic light, if any, the ego is judged to have violated.",
+      "The precise timing between any traffic-light state change and the ego’s movement is not constrained by this variant.",
+      "The control authority (Autoware vs simulator default) cannot be deduced solely from vehicle_cmd and vehicle_status under this configuration."
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": 5.0,
+      "fog": -10.0,
+      "wetness": 5.0,
+      "puddle": 0.0
+    },
+    "actor_mutations": [],
+    "puddle_mutations": [],
+    "mission_mutation": {
+      "spawn_offset": {
+        "x": 1.5,
+        "y": -2.0
+      },
+      "destination_offset": {
+        "x": 0.0,
+        "y": 3.0
+      }
+    }
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": [
+      "no actors in candidate scenario"
+    ]
+  },
+  "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_169__gpt-5.1.json",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_169__gpt-5.1.json",
+  "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+}

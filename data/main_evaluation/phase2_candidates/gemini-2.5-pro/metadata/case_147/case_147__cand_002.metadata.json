@@ -1,0 +1,70 @@
+{
+  "case_id": "case_147",
+  "model_name": "gemini-2.5-pro",
+  "candidate_index": 2,
+  "candidate_spec": {
+    "candidate_id": "cand_002",
+    "high_level_variant": "Slightly shift the ego vehicle's entire route.",
+    "mutation_intent": "Determine if the planner failure is specific to the exact initial coordinates or a more general issue in the area.",
+    "expected_oracle": "collision",
+    "modifications": {
+      "weather_delta": {
+        "rain": 0,
+        "fog": 0,
+        "wetness": 0,
+        "puddle": 0
+      },
+      "actor_mutations": [],
+      "puddle_mutations": [],
+      "mission_mutation": {
+        "keep_original": false,
+        "spawn_offset": {
+          "x": 1.0,
+          "y": -1.0
+        },
+        "destination_offset": {
+          "x": 1.0,
+          "y": -1.0
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Vehicle must be in motion initially."
+    ],
+    "post_execution_validation_rules": [
+      "Planner must output all-zero commands.",
+      "A collision must occur."
+    ],
+    "uncertainty": [
+      "Component causing motion despite zero commands is unknown."
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": 0.0,
+      "fog": 0.0,
+      "wetness": 0.0,
+      "puddle": 0.0
+    },
+    "actor_mutations": [],
+    "puddle_mutations": [],
+    "mission_mutation": {
+      "spawn_offset": {
+        "x": 1.0,
+        "y": -1.0
+      },
+      "destination_offset": {
+        "x": 1.0,
+        "y": -1.0
+      }
+    }
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_147__gemini-2.5-pro.json",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_147__gemini-2.5-pro.json",
+  "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+}

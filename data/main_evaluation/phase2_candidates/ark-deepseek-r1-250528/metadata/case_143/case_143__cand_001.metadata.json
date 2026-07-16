@@ -1,0 +1,77 @@
+{
+  "case_id": "case_143",
+  "model_name": "ark-deepseek-r1-250528",
+  "candidate_index": 1,
+  "candidate_spec": {
+    "candidate_id": "cand_001",
+    "high_level_variant": "Slightly increased rain, fog and road wetness, small shift of ego spawn towards the intersection, no dynamic actors added",
+    "mutation_intent": "Preserves all original root cause pattern requirements: keeps zero dynamic actors, Town01 map, conflicting lane invasion labels, reported red-light violation, and does not require confirmed stop-line or lane boundary crossing, only tests a conservative weather variation",
+    "expected_oracle": "compound",
+    "modifications": {
+      "weather_delta": {
+        "rain": 5,
+        "fog": 5,
+        "wetness": 5,
+        "puddle": 5
+      },
+      "actor_mutations": [],
+      "puddle_mutations": [],
+      "mission_mutation": {
+        "keep_original": false,
+        "spawn_offset": {
+          "x": -1.5,
+          "y": 0.5
+        },
+        "destination_offset": {
+          "x": 1.0,
+          "y": -0.5
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Red traffic light is positioned in ego's critical path",
+      "No dynamic actors are present in the scenario",
+      "Scenario is generated on Town01 map"
+    ],
+    "post_execution_validation_rules": [
+      "Original conflicting label status for lane invasion is preserved",
+      "Red-light event is present in the critical window as reported in original error.json"
+    ],
+    "uncertainty": [
+      "Lane invasion label conflict between dataset and error.json remains unresolved",
+      "Stop-line crossing for red-light violation is not confirmed",
+      "Lane boundary crossing for lane invasion is not confirmed",
+      "Actuation behavior attribution remains uncertain"
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": 5.0,
+      "fog": 5.0,
+      "wetness": 5.0,
+      "puddle": 5.0
+    },
+    "actor_mutations": [],
+    "puddle_mutations": [],
+    "mission_mutation": {
+      "spawn_offset": {
+        "x": -1.5,
+        "y": 0.5
+      },
+      "destination_offset": {
+        "x": 1.0,
+        "y": -0.5
+      }
+    }
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": [
+      "no actors in candidate scenario"
+    ]
+  },
+  "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_143__ark-deepseek-r1-250528.json",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_143__ark-deepseek-r1-250528.json",
+  "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+}

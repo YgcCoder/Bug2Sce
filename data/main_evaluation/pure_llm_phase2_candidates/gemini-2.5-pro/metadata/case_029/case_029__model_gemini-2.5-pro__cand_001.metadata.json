@@ -1,0 +1,82 @@
+{
+  "case_id": "case_029",
+  "model_name": "gemini-2.5-pro",
+  "workflow": "pure_llm_phase2_baseline",
+  "candidate_index": 1,
+  "candidate_spec": {
+    "candidate_id": "cand_001",
+    "high_level_variant": "Increase rain and fog, and move a walker closer to the ego's path.",
+    "mutation_intent": "Test if increased weather adversity and a closer pedestrian distract the ego at the intersection, causing a violation.",
+    "expected_oracle": "compound",
+    "modifications": {
+      "weather_delta": {
+        "rain": 15,
+        "fog": 15,
+        "wetness": 15,
+        "puddle": 0
+      },
+      "actor_mutations": [
+        {
+          "actor_index": 0,
+          "position_offset": {
+            "x": -2.5,
+            "y": -2.0
+          },
+          "speed_delta": 0.5
+        }
+      ],
+      "puddle_mutations": [],
+      "mission_mutation": {
+        "keep_original": true,
+        "spawn_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "destination_offset": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Ego and actors must not spawn in collision."
+    ],
+    "post_execution_validation_rules": [
+      "Ego must not collide with any actor."
+    ],
+    "uncertainty": [
+      "Uncertain if weather or walker is the primary trigger."
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": 15.0,
+      "fog": 15.0,
+      "wetness": 15.0,
+      "puddle": 0.0
+    },
+    "actor_mutations": [
+      {
+        "actor_index": 0,
+        "position_offset": {
+          "x": -2.5,
+          "y": -2.0
+        },
+        "speed_delta": 0.5
+      }
+    ],
+    "puddle_mutations": [],
+    "mission_mutation": {
+      "keep_original": true
+    },
+    "safety_repairs": []
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/pure_llm_phase2_api_prompts/case_029__gemini-2.5-pro.md",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/pure_llm_phase2_api_outputs/case_029__gemini-2.5-pro.json",
+  "baseline_note": "Pure-LLM baseline: prompt used no root-cause pattern or critical-window evidence."
+}

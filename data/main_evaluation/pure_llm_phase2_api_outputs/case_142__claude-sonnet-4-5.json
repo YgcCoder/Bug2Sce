@@ -1,0 +1,240 @@
+{
+  "case_id": "case_142",
+  "model_name": "claude-sonnet-4-5",
+  "workflow": "pure_llm_phase2_baseline",
+  "status": "completed",
+  "schema_valid": true,
+  "schema_errors": [],
+  "num_candidates_requested": 1,
+  "num_candidates_written": 1,
+  "num_pre_valid": 1,
+  "candidate_records": [
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/pure_llm_phase2_candidates/claude-sonnet-4-5/json/case_142/case_142__model_claude-sonnet-4-5__cand_001.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/pure_llm_phase2_candidates/claude-sonnet-4-5/metadata/case_142/case_142__model_claude-sonnet-4-5__cand_001.metadata.json",
+      "case_id": "case_142",
+      "model_name": "claude-sonnet-4-5",
+      "candidate_index": 1,
+      "candidate_spec": {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Increase fog and rain, shift autopilot vehicle closer to intersection",
+        "mutation_intent": "Worsen visibility and reduce reaction distance to trigger collision, lane invasion, and red light violation",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": 15,
+            "fog": 8,
+            "wetness": 10,
+            "puddle": 5
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": -4.0,
+                "y": 1.5
+              },
+              "speed_delta": 1.2
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": 2.0,
+                "y": -1.0
+              },
+              "speed_delta": -0.8
+            }
+          ],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": -3.0,
+                "y": 2.0
+              },
+              "level_delta": 0.1,
+              "size_scale": 1.1
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Verify all actors spawn within map bounds and weather parameters are valid"
+        ],
+        "post_execution_validation_rules": [
+          "Check for collision, lane invasion, or red light violation events in trace"
+        ],
+        "uncertainty": [
+          "Exact timing of intersection entry and actor interaction depends on runtime dynamics"
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 15.0,
+          "fog": 8.0,
+          "wetness": 10.0,
+          "puddle": 5.0
+        },
+        "actor_mutations": [
+          {
+            "actor_index": 0,
+            "position_offset": {
+              "x": -4.0,
+              "y": 1.5
+            },
+            "speed_delta": 1.2
+          },
+          {
+            "actor_index": 1,
+            "position_offset": {
+              "x": 2.0,
+              "y": -1.0
+            },
+            "speed_delta": -0.8
+          }
+        ],
+        "puddle_mutations": [
+          {
+            "puddle_index": 0,
+            "location_offset": {
+              "x": -3.0,
+              "y": 2.0
+            },
+            "level_delta": 0.1,
+            "size_scale": 1.1
+          }
+        ],
+        "mission_mutation": {
+          "keep_original": true
+        },
+        "safety_repairs": []
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": []
+      }
+    }
+  ],
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/pure_llm_phase2_api_prompts/case_142__claude-sonnet-4-5.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/pure_llm_phase2_api_outputs/case_142__claude-sonnet-4-5.json",
+  "prompt_estimated_tokens": 900,
+  "usage": {
+    "prompt_tokens": 1302,
+    "completion_tokens": 444,
+    "total_tokens": 1746
+  },
+  "raw_response": "```json\n{\n  \"case_id\": \"case_142\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Increase fog and rain, shift autopilot vehicle closer to intersection\",\n      \"mutation_intent\": \"Worsen visibility and reduce reaction distance to trigger collision, lane invasion, and red light violation\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 15, \"fog\": 8, \"wetness\": 10, \"puddle\": 5},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": -4.0, \"y\": 1.5}, \"speed_delta\": 1.2},\n          {\"actor_index\": 1, \"position_offset\": {\"x\": 2.0, \"y\": -1.0}, \"speed_delta\": -0.8}\n        ],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": -3.0, \"y\": 2.0}, \"level_delta\": 0.1, \"size_scale\": 1.1}\n        ],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Verify all actors spawn within map bounds and weather parameters are valid\"],\n      \"post_execution_validation_rules\": [\"Check for collision, lane invasion, or red light violation events in trace\"],\n      \"uncertainty\": [\"Exact timing of intersection entry and actor interaction depends on runtime dynamics\"]\n    }\n  ]\n}\n```",
+  "parsed_response": {
+    "case_id": "case_142",
+    "candidate_specs": [
+      {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Increase fog and rain, shift autopilot vehicle closer to intersection",
+        "mutation_intent": "Worsen visibility and reduce reaction distance to trigger collision, lane invasion, and red light violation",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": 15,
+            "fog": 8,
+            "wetness": 10,
+            "puddle": 5
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": -4.0,
+                "y": 1.5
+              },
+              "speed_delta": 1.2
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": 2.0,
+                "y": -1.0
+              },
+              "speed_delta": -0.8
+            }
+          ],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": -3.0,
+                "y": 2.0
+              },
+              "level_delta": 0.1,
+              "size_scale": 1.1
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Verify all actors spawn within map bounds and weather parameters are valid"
+        ],
+        "post_execution_validation_rules": [
+          "Check for collision, lane invasion, or red light violation events in trace"
+        ],
+        "uncertainty": [
+          "Exact timing of intersection entry and actor interaction depends on runtime dynamics"
+        ]
+      }
+    ]
+  },
+  "raw_api_payload": {
+    "id": "<REDACTED_RESPONSE_ID>",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "```json\n{\n  \"case_id\": \"case_142\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Increase fog and rain, shift autopilot vehicle closer to intersection\",\n      \"mutation_intent\": \"Worsen visibility and reduce reaction distance to trigger collision, lane invasion, and red light violation\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 15, \"fog\": 8, \"wetness\": 10, \"puddle\": 5},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": -4.0, \"y\": 1.5}, \"speed_delta\": 1.2},\n          {\"actor_index\": 1, \"position_offset\": {\"x\": 2.0, \"y\": -1.0}, \"speed_delta\": -0.8}\n        ],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": -3.0, \"y\": 2.0}, \"level_delta\": 0.1, \"size_scale\": 1.1}\n        ],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Verify all actors spawn within map bounds and weather parameters are valid\"],\n      \"post_execution_validation_rules\": [\"Check for collision, lane invasion, or red light violation events in trace\"],\n      \"uncertainty\": [\"Exact timing of intersection entry and actor interaction depends on runtime dynamics\"]\n    }\n  ]\n}\n```",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "claude-sonnet-4-5",
+    "object": "chat.completion",
+    "service_tier": null,
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 444,
+      "prompt_tokens": 1302,
+      "total_tokens": 1746,
+      "completion_tokens_details": null,
+      "prompt_tokens_details": null
+    }
+  },
+  "error_message": "",
+  "elapsed_sec": 11.52,
+  "timestamp": "<REDACTED_TIMESTAMP>"
+}

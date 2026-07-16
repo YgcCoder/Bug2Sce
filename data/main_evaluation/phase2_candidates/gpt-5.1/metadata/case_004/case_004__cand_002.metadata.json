@@ -1,0 +1,99 @@
+{
+  "case_id": "case_004",
+  "model_name": "gpt-5.1",
+  "candidate_index": 2,
+  "candidate_spec": {
+    "candidate_id": "cand_002",
+    "high_level_variant": "Ego slightly offset laterally within the lane and with a small forward speed bias near the same signalized junction, keeping overall displacement minimal so that the oracle still flags a red-light violation without explicit evidence of crossing the stop line or lane boundaries.",
+    "mutation_intent": "Tests whether a small change in ego pose and low-speed behavior near the junction preserves an oracle red violation in a scene with static environment, available traffic-light states, and no dynamic actors, while maintaining ambiguity about the precise physical infraction.",
+    "expected_oracle": "red_light",
+    "modifications": {
+      "weather_delta": {
+        "rain": -3,
+        "fog": 2,
+        "wetness": 3,
+        "puddle": 0
+      },
+      "actor_mutations": [
+        {
+          "actor_index": 0,
+          "position_offset": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "speed_delta": 0.5
+        }
+      ],
+      "puddle_mutations": [
+        {
+          "puddle_index": 0,
+          "location_offset": {
+            "x": 1.5,
+            "y": -1.0
+          },
+          "level_delta": 0.05,
+          "size_scale": 1.1
+        }
+      ],
+      "mission_mutation": {
+        "keep_original": true,
+        "spawn_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "destination_offset": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Interpret actor_index=0 as the ego vehicle when applying actor_mutations; do not introduce any non-ego dynamic actors.",
+      "Confirm that the ego remains within the same logical approach lane toward the junction; lateral offset must not clearly place the ego into an adjacent lane.",
+      "Verify that traffic-light state data is being published before the ego begins to move, and that the junction remains signal-controlled."
+    ],
+    "post_execution_validation_rules": [
+      "Verify oracle red=true with crash=false, stuck=false, lane_invasion=false at run completion.",
+      "Ensure ego net displacement from start to end remains small (e.g., limited forward creep, not a full intersection traversal).",
+      "Check that no explicit stop-line crossing event or clear route–signal linkage is recorded in planner or map-matching logs; if such evidence exists, classify as deviating from the intended ambiguous mechanism.",
+      "Confirm that any dataset-style lane invasion indicators are not used as ground truth; rely only on the online oracle flags when comparing to the root-cause pattern."
+    ],
+    "uncertainty": [
+      "Small lateral and speed adjustments may alter planner or perception behavior in ways that change how the oracle evaluates red violations; this variant intentionally explores that regime while still targeting the same high-level outcome.",
+      "The exact spatial relation between ego, lane markings, and stop line remains under-specified; validation must avoid assuming a particular geometry when judging red-light causality."
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": -3.0,
+      "fog": 2.0,
+      "wetness": 3.0,
+      "puddle": 0.0
+    },
+    "actor_mutations": [],
+    "puddle_mutations": [
+      {
+        "puddle_index": 0,
+        "location_offset": {
+          "x": 1.5,
+          "y": -1.0
+        },
+        "level_delta": 0.05,
+        "size_scale": 1.1
+      }
+    ],
+    "mission_mutation": {
+      "keep_original": true
+    }
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": [
+      "no actors in candidate scenario"
+    ]
+  },
+  "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_004__gpt-5.1.json",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_004__gpt-5.1.json",
+  "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+}

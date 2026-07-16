@@ -1,0 +1,110 @@
+{
+  "case_id": "case_027",
+  "model_name": "gpt-5.1",
+  "candidate_index": 1,
+  "candidate_spec": {
+    "candidate_id": "cand_001",
+    "high_level_variant": "Same mission and nearby static vehicle; slightly increased road wetness to test if low-speed dynamics still lead to a long stationary, brake-applied stuck state with available waypoints.",
+    "mutation_intent": "Keep geometry and actors effectively unchanged so the planner still has a clear path, but mildly adjust surface conditions without introducing strong external blockers. This should preserve the pattern where, despite valid sensing and stable final waypoints, target_speed and accel_cmd stay at zero with brakes applied and ego remains stationary for an extended period.",
+    "expected_oracle": "stuck",
+    "modifications": {
+      "weather_delta": {
+        "rain": 5,
+        "fog": 0,
+        "wetness": 10,
+        "puddle": 0
+      },
+      "actor_mutations": [
+        {
+          "actor_index": 0,
+          "position_offset": {
+            "x": 0.5,
+            "y": -0.5
+          },
+          "speed_delta": 0.0
+        }
+      ],
+      "puddle_mutations": [
+        {
+          "puddle_index": 0,
+          "location_offset": {
+            "x": 1.0,
+            "y": -1.0
+          },
+          "level_delta": 0.05,
+          "size_scale": 1.05
+        }
+      ],
+      "mission_mutation": {
+        "keep_original": true,
+        "spawn_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "destination_offset": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Validate that the ego spawn and destination remain on navigable drivable lanes in Town01.",
+      "Check that the immobile vehicle (actor_index 0) remains outside the ego spawn volume and does not overlap with the ego at t=0.",
+      "Ensure that weather parameters after applying deltas remain within simulator-accepted bounds and do not disable any sensors.",
+      "Confirm that at least one valid route exists from ego spawn to destination under the modified conditions (planner can generate final_waypoints)."
+    ],
+    "post_execution_validation_rules": [
+      "Verify that the oracle labels the scenario as stuck with a stuck duration comparable to or exceeding 240 seconds.",
+      "During a designated critical stuck window (e.g., the last 60 seconds), confirm ego net displacement is below a small threshold (e.g., < 1 m) while ego_movement_distance may be non-zero.",
+      "Check that final_waypoints remain continuously available with a stable, non-zero waypoint count and no blocked flags during the critical window.",
+      "Ensure vehicle_cmd target_speed and accel_cmd stay at or near zero throughout the critical window.",
+      "Confirm vehicle_status reports near-zero velocity in the critical window and a persistent, non-zero brake value.",
+      "Verify that camera, lidar, and odometry topics remain live and without long gaps over the entire run."
+    ],
+    "uncertainty": [
+      "The precise module (planning vs. control vs. higher-level logic) responsible for keeping target_speed and accel_cmd at zero remains unknown.",
+      "It is unclear whether ego_movement_distance during the stuck window reflects tiny oscillations, wheel slip, or localization noise.",
+      "The extent to which slightly increased wetness and rain influence the stationary behavior versus internal decision logic is not observable from high-level logs."
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": 5.0,
+      "fog": 0.0,
+      "wetness": 10.0,
+      "puddle": 0.0
+    },
+    "actor_mutations": [
+      {
+        "actor_index": 0,
+        "position_offset": {
+          "x": 0.5,
+          "y": -0.5
+        },
+        "speed_delta": 0.0
+      }
+    ],
+    "puddle_mutations": [
+      {
+        "puddle_index": 0,
+        "location_offset": {
+          "x": 1.0,
+          "y": -1.0
+        },
+        "level_delta": 0.05,
+        "size_scale": 1.05
+      }
+    ],
+    "mission_mutation": {
+      "keep_original": true
+    }
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_027__gpt-5.1.json",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_027__gpt-5.1.json",
+  "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+}

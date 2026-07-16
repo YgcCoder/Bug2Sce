@@ -1,0 +1,118 @@
+{
+  "case_id": "case_001",
+  "model_name": "gpt-5.1",
+  "candidate_index": 2,
+  "candidate_spec": {
+    "candidate_id": "cand_002",
+    "high_level_variant": "Ego starts slightly offset while a nearby vehicle travels parallel in the same direction, leading to a slow drift or overlap collision as the planner continues to treat the lane as unblocked.",
+    "mutation_intent": "Create a side-by-side or gentle overlap interaction where the ego can end up sharing space with a nearby actor along the same lane, still with valid perception/prediction outputs and unblocked final waypoints, to preserve the colliding-pose-with-nearby-actor pattern while keeping the module-level root cause ambiguous.",
+    "expected_oracle": "collision",
+    "modifications": {
+      "weather_delta": {
+        "rain": 5,
+        "fog": 0,
+        "wetness": 5,
+        "puddle": 0
+      },
+      "actor_mutations": [
+        {
+          "actor_index": 0,
+          "position_offset": {
+            "x": -4.0,
+            "y": 1.0
+          },
+          "speed_delta": -2.0
+        }
+      ],
+      "puddle_mutations": [
+        {
+          "puddle_index": 0,
+          "location_offset": {
+            "x": 2.0,
+            "y": 0.0
+          },
+          "level_delta": 0.05,
+          "size_scale": 1.1
+        }
+      ],
+      "mission_mutation": {
+        "keep_original": false,
+        "spawn_offset": {
+          "x": 2.0,
+          "y": -2.0
+        },
+        "destination_offset": {
+          "x": 3.0,
+          "y": 1.0
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Ensure the ego spawn and actor spawn offsets result in both vehicles being on roughly parallel trajectories within the same logical lane or adjacent lanes with potential for overlap.",
+      "Verify that, given the adjusted speeds, the relative longitudinal separation between ego and non-ego reduces to less than 3 m within 30 s, enabling a potential side or overlap collision at low speed.",
+      "Confirm that perception and prediction nodes are active and configured normally so that at least one object (the nearby vehicle) should be detectable throughout the approach.",
+      "Check that the modest increase in rain and wetness does not cause extreme visibility or traction changes that could introduce fundamentally different failure modes."
+    ],
+    "post_execution_validation_rules": [
+      "Verify that a collision event is raised for the ego and that the collision partner matches the configured non-ego actor index.",
+      "Confirm that perception object and prediction topics report at least one object (ideally the non-ego vehicle) consistently in the seconds leading up to the collision.",
+      "Check that final_waypoints remain available, with nonzero waypoint count and no blocked flag, in the last pre-collision message.",
+      "Validate that the planner’s closest_object_distance or equivalent metric indicates near-zero separation between the planned path and the non-ego actor just before collision.",
+      "Confirm that vehicle_cmd remains zero or effectively zero in the critical pre-collision window, while vehicle_status reflects a nontrivial dynamic history (e.g., initial motion, possible slight braking) to avoid classifying the ego as trivially static.",
+      "Maintain the same uncertainty labeling: do not ascribe the observed failure uniquely to perception, planning, or control without additional module-internal evidence."
+    ],
+    "uncertainty": [
+      "It is unclear whether the planner’s side-by-side or overlap behavior is intentional (e.g., due to lane assumptions) or a misinterpretation of the nearby actor as non-blocking.",
+      "Perception might still be misclassifying or intermittently losing the side vehicle, but this cannot be confirmed from topic-level summaries alone.",
+      "A persistent zero vehicle_cmd despite evolving vehicle_status could again indicate issues in the control interface or simulator timing rather than high-level decision making.",
+      "The impact of slightly increased rain and wetness on sensor performance and control cannot be isolated without more detailed sensor and controller logs, so environmental contribution to the failure remains uncertain."
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": 5.0,
+      "fog": 0.0,
+      "wetness": 5.0,
+      "puddle": 0.0
+    },
+    "actor_mutations": [
+      {
+        "actor_index": 0,
+        "position_offset": {
+          "x": -4.0,
+          "y": 1.0
+        },
+        "speed_delta": -2.0
+      }
+    ],
+    "puddle_mutations": [
+      {
+        "puddle_index": 0,
+        "location_offset": {
+          "x": 2.0,
+          "y": 0.0
+        },
+        "level_delta": 0.05,
+        "size_scale": 1.1
+      }
+    ],
+    "mission_mutation": {
+      "spawn_offset": {
+        "x": 2.0,
+        "y": -2.0
+      },
+      "destination_offset": {
+        "x": 3.0,
+        "y": 1.0
+      }
+    }
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_001__gpt-5.1.json",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_001__gpt-5.1.json",
+  "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+}

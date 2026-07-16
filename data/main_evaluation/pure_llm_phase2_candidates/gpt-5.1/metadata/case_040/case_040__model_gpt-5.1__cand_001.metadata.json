@@ -1,0 +1,118 @@
+{
+  "case_id": "case_040",
+  "model_name": "gpt-5.1",
+  "workflow": "pure_llm_phase2_baseline",
+  "candidate_index": 1,
+  "candidate_spec": {
+    "candidate_id": "cand_001",
+    "high_level_variant": "Lead vehicle closer to intersection, heavy rain night stop scenario",
+    "mutation_intent": "Bring front car nearer so ego reaches signal area sooner, stressing red light handling",
+    "expected_oracle": "red_light",
+    "modifications": {
+      "weather_delta": {
+        "rain": 5,
+        "fog": 5,
+        "wetness": 5,
+        "puddle": 0
+      },
+      "actor_mutations": [
+        {
+          "actor_index": 0,
+          "position_offset": {
+            "x": 1.0,
+            "y": -2.0
+          },
+          "speed_delta": 0.0
+        },
+        {
+          "actor_index": 1,
+          "position_offset": {
+            "x": 0.0,
+            "y": -6.0
+          },
+          "speed_delta": -2.0
+        }
+      ],
+      "puddle_mutations": [
+        {
+          "puddle_index": 0,
+          "location_offset": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "level_delta": 0.0,
+          "size_scale": 1.0
+        }
+      ],
+      "mission_mutation": {
+        "keep_original": false,
+        "spawn_offset": {
+          "x": -2.0,
+          "y": -3.0
+        },
+        "destination_offset": {
+          "x": 1.0,
+          "y": 2.0
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Ensure front vehicle remains ahead in same lane",
+      "Ego spawn stays on drivable lane segment"
+    ],
+    "post_execution_validation_rules": [
+      "Check ego fully stops before red line",
+      "Verify no crossing of stop line on red"
+    ],
+    "uncertainty": [
+      "Signal timing with closer lead car",
+      "Effect of heavier rain on stopping distance"
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": 5.0,
+      "fog": 5.0,
+      "wetness": 5.0,
+      "puddle": 0.0
+    },
+    "actor_mutations": [
+      {
+        "actor_index": 0,
+        "position_offset": {
+          "x": 1.0,
+          "y": -2.0
+        },
+        "speed_delta": 0.0
+      },
+      {
+        "actor_index": 1,
+        "position_offset": {
+          "x": 0.0,
+          "y": -6.0
+        },
+        "speed_delta": -2.0
+      }
+    ],
+    "puddle_mutations": [],
+    "mission_mutation": {
+      "spawn_offset": {
+        "x": -2.0,
+        "y": -3.0
+      },
+      "destination_offset": {
+        "x": 1.0,
+        "y": 2.0
+      }
+    },
+    "safety_repairs": []
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/pure_llm_phase2_api_prompts/case_040__gpt-5.1.md",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/pure_llm_phase2_api_outputs/case_040__gpt-5.1.json",
+  "baseline_note": "Pure-LLM baseline: prompt used no root-cause pattern or critical-window evidence."
+}

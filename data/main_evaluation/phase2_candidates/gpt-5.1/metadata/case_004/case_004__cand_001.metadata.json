@@ -1,0 +1,97 @@
+{
+  "case_id": "case_004",
+  "model_name": "gpt-5.1",
+  "candidate_index": 1,
+  "candidate_spec": {
+    "candidate_id": "cand_001",
+    "high_level_variant": "Same intersection and start pose with ego almost stationary near a signalized junction; slight mission destination shift while preserving minimal motion so that a red-light violation is still triggered without confirmed stop-line or lane-boundary context.",
+    "mutation_intent": "Preserves the pattern of an oracle red-light violation in a largely static scene with traffic-light data and minimal ego displacement, while slightly perturbing mission geometry to test robustness of the oracle-level violation under near-identical kinematics and no dynamic actors.",
+    "expected_oracle": "red_light",
+    "modifications": {
+      "weather_delta": {
+        "rain": 0,
+        "fog": 0,
+        "wetness": 0,
+        "puddle": 0
+      },
+      "actor_mutations": [],
+      "puddle_mutations": [
+        {
+          "puddle_index": 0,
+          "location_offset": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "level_delta": 0.0,
+          "size_scale": 1.0
+        }
+      ],
+      "mission_mutation": {
+        "keep_original": false,
+        "spawn_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "destination_offset": {
+          "x": 2.0,
+          "y": -2.0
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Ensure no additional dynamic actors (vehicles, pedestrians, cyclists) are spawned beyond static traffic-light objects.",
+      "Verify that the ego spawn pose remains aligned with the same lane and junction region as the seed scenario (orientation within a few degrees of original yaw).",
+      "Confirm that traffic-light objects relevant to the junction are present in the map and that their state topic is being published before ego motion begins."
+    ],
+    "post_execution_validation_rules": [
+      "Check oracle output: red=true, crash=false, stuck=false, lane_invasion=false, with no additional failure flags set.",
+      "Confirm ego odometry shows very small net displacement between first and last samples (e.g., within a few meters), consistent with “almost stationary” behavior.",
+      "Verify traffic-light state messages exist throughout the run, but logs do not provide explicit association between the ego route and any particular stop line or governing signal.",
+      "Ensure there is no clearly logged lane-boundary crossing event or explicit planner reference to lane invasion; if present, treat as deviation from this case pattern."
+    ],
+    "uncertainty": [
+      "Mechanism by which the oracle triggers red=true (whether due to internal stop-line mapping, timing, or perception) remains unknown and should not be overconstrained.",
+      "Dataset-level lane_invasion labels from analogous cases may conflict with online oracle; do not enforce lane invasion here even if offline labels suggest it."
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": 0.0,
+      "fog": 0.0,
+      "wetness": 0.0,
+      "puddle": 0.0
+    },
+    "actor_mutations": [],
+    "puddle_mutations": [
+      {
+        "puddle_index": 0,
+        "location_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "level_delta": 0.0,
+        "size_scale": 1.0
+      }
+    ],
+    "mission_mutation": {
+      "spawn_offset": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "destination_offset": {
+        "x": 2.0,
+        "y": -2.0
+      }
+    }
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": [
+      "no actors in candidate scenario"
+    ]
+  },
+  "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_004__gpt-5.1.json",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_004__gpt-5.1.json",
+  "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+}

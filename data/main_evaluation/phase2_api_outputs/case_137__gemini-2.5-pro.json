@@ -1,0 +1,247 @@
+{
+  "case_id": "case_137",
+  "model_name": "gemini-2.5-pro",
+  "workflow": "phase2_grounded_generation",
+  "status": "completed",
+  "schema_valid": true,
+  "schema_errors": [],
+  "phase1_ready": "yes",
+  "num_candidates_requested": 2,
+  "num_candidates_written": 2,
+  "num_pre_valid": 2,
+  "candidate_records": [
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/gemini-2.5-pro/json/case_137/case_137__cand_001.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/gemini-2.5-pro/metadata/case_137/case_137__cand_001.metadata.json",
+      "case_id": "case_137",
+      "model_name": "gemini-2.5-pro",
+      "candidate_index": 1,
+      "candidate_spec": {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Increase rain and fog to stress perception's ability to detect the red light.",
+        "mutation_intent": "Test if the red light violation is exacerbated by adverse weather, which would suggest a perception-related root cause.",
+        "expected_oracle": "red_light",
+        "modifications": {
+          "weather_delta": {
+            "rain": 20,
+            "fog": 20,
+            "wetness": 20,
+            "puddle": 0
+          },
+          "actor_mutations": [],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Ego vehicle path must lead to a red light."
+        ],
+        "post_execution_validation_rules": [
+          "Ego must cross the stop line during a red light."
+        ],
+        "uncertainty": [
+          "Failure may depend on perception model sensitivity to weather."
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 20,
+          "fog": 20,
+          "wetness": 20,
+          "puddle": 0.0
+        },
+        "actor_mutations": [],
+        "puddle_mutations": [],
+        "mission_mutation": {
+          "keep_original": true
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_137__gemini-2.5-pro.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_137__gemini-2.5-pro.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    },
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/gemini-2.5-pro/json/case_137/case_137__cand_002.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/gemini-2.5-pro/metadata/case_137/case_137__cand_002.metadata.json",
+      "case_id": "case_137",
+      "model_name": "gemini-2.5-pro",
+      "candidate_index": 2,
+      "candidate_spec": {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Clear the weather to test if the planning failure occurs even with perfect perception.",
+        "mutation_intent": "Isolate the planner's failure by removing weather as a confounding factor. A failure here points to a pure planning bug.",
+        "expected_oracle": "red_light",
+        "modifications": {
+          "weather_delta": {
+            "rain": -20,
+            "fog": -20,
+            "wetness": -20,
+            "puddle": 0
+          },
+          "actor_mutations": [],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Ego vehicle path must lead to a red light."
+        ],
+        "post_execution_validation_rules": [
+          "Ego must cross the stop line during a red light."
+        ],
+        "uncertainty": [
+          "The bug might only manifest under specific sensor noise conditions."
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": -20,
+          "fog": -20,
+          "wetness": -20,
+          "puddle": 0.0
+        },
+        "actor_mutations": [],
+        "puddle_mutations": [],
+        "mission_mutation": {
+          "keep_original": true
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_137__gemini-2.5-pro.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_137__gemini-2.5-pro.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    }
+  ],
+  "seed_artifact_zip": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/gemini-2.5-pro/seed-artifact/seed-artifact-case_137.zip",
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_prompts/case_137__gemini-2.5-pro.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_137__gemini-2.5-pro.json",
+  "prompt_estimated_tokens": 1008,
+  "usage": {
+    "prompt_tokens": 1348,
+    "completion_tokens": 3156,
+    "total_tokens": 4504
+  },
+  "raw_response": "```json\n{\n  \"case_id\": \"case_137\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Increase rain and fog to stress perception's ability to detect the red light.\",\n      \"mutation_intent\": \"Test if the red light violation is exacerbated by adverse weather, which would suggest a perception-related root cause.\",\n      \"expected_oracle\": \"red_light\",\n      \"modifications\": {\n        \"weather_delta\": {\n          \"rain\": 20,\n          \"fog\": 20,\n          \"wetness\": 20,\n          \"puddle\": 0\n        },\n        \"actor_mutations\": [],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\n          \"keep_original\": true\n        }\n      },\n      \"pre_execution_validation_rules\": [\n        \"Ego vehicle path must lead to a red light.\"\n      ],\n      \"post_execution_validation_rules\": [\n        \"Ego must cross the stop line during a red light.\"\n      ],\n      \"uncertainty\": [\n        \"Failure may depend on perception model sensitivity to weather.\"\n      ]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Clear the weather to test if the planning failure occurs even with perfect perception.\",\n      \"mutation_intent\": \"Isolate the planner's failure by removing weather as a confounding factor. A failure here points to a pure planning bug.\",\n      \"expected_oracle\": \"red_light\",\n      \"modifications\": {\n        \"weather_delta\": {\n          \"rain\": -20,\n          \"fog\": -20,\n          \"wetness\": -20,\n          \"puddle\": 0\n        },\n        \"actor_mutations\": [],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\n          \"keep_original\": true\n        }\n      },\n      \"pre_execution_validation_rules\": [\n        \"Ego vehicle path must lead to a red light.\"\n      ],\n      \"post_execution_validation_rules\": [\n        \"Ego must cross the stop line during a red light.\"\n      ],\n      \"uncertainty\": [\n        \"The bug might only manifest under specific sensor noise conditions.\"\n      ]\n    }\n  ]\n}\n```",
+  "parsed_response": {
+    "case_id": "case_137",
+    "candidate_specs": [
+      {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Increase rain and fog to stress perception's ability to detect the red light.",
+        "mutation_intent": "Test if the red light violation is exacerbated by adverse weather, which would suggest a perception-related root cause.",
+        "expected_oracle": "red_light",
+        "modifications": {
+          "weather_delta": {
+            "rain": 20,
+            "fog": 20,
+            "wetness": 20,
+            "puddle": 0
+          },
+          "actor_mutations": [],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Ego vehicle path must lead to a red light."
+        ],
+        "post_execution_validation_rules": [
+          "Ego must cross the stop line during a red light."
+        ],
+        "uncertainty": [
+          "Failure may depend on perception model sensitivity to weather."
+        ]
+      },
+      {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Clear the weather to test if the planning failure occurs even with perfect perception.",
+        "mutation_intent": "Isolate the planner's failure by removing weather as a confounding factor. A failure here points to a pure planning bug.",
+        "expected_oracle": "red_light",
+        "modifications": {
+          "weather_delta": {
+            "rain": -20,
+            "fog": -20,
+            "wetness": -20,
+            "puddle": 0
+          },
+          "actor_mutations": [],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Ego vehicle path must lead to a red light."
+        ],
+        "post_execution_validation_rules": [
+          "Ego must cross the stop line during a red light."
+        ],
+        "uncertainty": [
+          "The bug might only manifest under specific sensor noise conditions."
+        ]
+      }
+    ]
+  },
+  "raw_api_payload": {
+    "id": "<REDACTED_RESPONSE_ID>",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "```json\n{\n  \"case_id\": \"case_137\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Increase rain and fog to stress perception's ability to detect the red light.\",\n      \"mutation_intent\": \"Test if the red light violation is exacerbated by adverse weather, which would suggest a perception-related root cause.\",\n      \"expected_oracle\": \"red_light\",\n      \"modifications\": {\n        \"weather_delta\": {\n          \"rain\": 20,\n          \"fog\": 20,\n          \"wetness\": 20,\n          \"puddle\": 0\n        },\n        \"actor_mutations\": [],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\n          \"keep_original\": true\n        }\n      },\n      \"pre_execution_validation_rules\": [\n        \"Ego vehicle path must lead to a red light.\"\n      ],\n      \"post_execution_validation_rules\": [\n        \"Ego must cross the stop line during a red light.\"\n      ],\n      \"uncertainty\": [\n        \"Failure may depend on perception model sensitivity to weather.\"\n      ]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Clear the weather to test if the planning failure occurs even with perfect perception.\",\n      \"mutation_intent\": \"Isolate the planner's failure by removing weather as a confounding factor. A failure here points to a pure planning bug.\",\n      \"expected_oracle\": \"red_light\",\n      \"modifications\": {\n        \"weather_delta\": {\n          \"rain\": -20,\n          \"fog\": -20,\n          \"wetness\": -20,\n          \"puddle\": 0\n        },\n        \"actor_mutations\": [],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\n          \"keep_original\": true\n        }\n      },\n      \"pre_execution_validation_rules\": [\n        \"Ego vehicle path must lead to a red light.\"\n      ],\n      \"post_execution_validation_rules\": [\n        \"Ego must cross the stop line during a red light.\"\n      ],\n      \"uncertainty\": [\n        \"The bug might only manifest under specific sensor noise conditions.\"\n      ]\n    }\n  ]\n}\n```",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "gemini-2.5-pro",
+    "object": "chat.completion",
+    "service_tier": null,
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 3156,
+      "prompt_tokens": 1348,
+      "total_tokens": 4504,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": 0,
+        "reasoning_tokens": 2590,
+        "rejected_prediction_tokens": null,
+        "text_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 0,
+        "text_tokens": 1348,
+        "image_tokens": 0
+      },
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "input_tokens_details": null,
+      "claude_cache_creation_5_m_tokens": 0,
+      "claude_cache_creation_1_h_tokens": 0
+    }
+  },
+  "error_message": "",
+  "elapsed_sec": 31.063,
+  "timestamp": "<REDACTED_TIMESTAMP>"
+}

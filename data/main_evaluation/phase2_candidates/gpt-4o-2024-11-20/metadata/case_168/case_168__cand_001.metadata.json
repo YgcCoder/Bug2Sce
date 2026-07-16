@@ -1,0 +1,85 @@
+{
+  "case_id": "case_168",
+  "model_name": "gpt-4o-2024-11-20",
+  "candidate_index": 1,
+  "candidate_spec": {
+    "candidate_id": "cand_001",
+    "high_level_variant": "Ego vehicle approaches a red light with slightly reduced rain and a minor puddle adjustment near the intersection.",
+    "mutation_intent": "This variant preserves the red-light violation symptom while reducing weather intensity to test its impact on actuation and lane invasion uncertainty.",
+    "expected_oracle": "red_light",
+    "modifications": {
+      "weather_delta": {
+        "rain": -10,
+        "fog": 0,
+        "wetness": -5,
+        "puddle": 0
+      },
+      "actor_mutations": [],
+      "puddle_mutations": [
+        {
+          "puddle_index": 0,
+          "location_offset": {
+            "x": 1.0,
+            "y": -1.0
+          },
+          "level_delta": -0.1,
+          "size_scale": 0.9
+        }
+      ],
+      "mission_mutation": {
+        "keep_original": true,
+        "spawn_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "destination_offset": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Ensure traffic light states are available during the critical window."
+    ],
+    "post_execution_validation_rules": [
+      "Validate route-light relation and stop-line crossing evidence."
+    ],
+    "uncertainty": [
+      "Conflict between dataset and error.json on lane invasion.",
+      "No confirmed route-light relation or stop-line crossing."
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": -10.0,
+      "fog": 0.0,
+      "wetness": -5.0,
+      "puddle": 0.0
+    },
+    "actor_mutations": [],
+    "puddle_mutations": [
+      {
+        "puddle_index": 0,
+        "location_offset": {
+          "x": 1.0,
+          "y": -1.0
+        },
+        "level_delta": -0.1,
+        "size_scale": 0.9
+      }
+    ],
+    "mission_mutation": {
+      "keep_original": true
+    }
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": [
+      "no actors in candidate scenario"
+    ]
+  },
+  "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_168__gpt-4o-2024-11-20.json",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_168__gpt-4o-2024-11-20.json",
+  "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+}

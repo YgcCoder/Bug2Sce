@@ -1,0 +1,125 @@
+{
+  "case_id": "case_061",
+  "round": 3,
+  "model_name": "claude-sonnet-4-5",
+  "candidate_index": 5,
+  "candidate_spec": {
+    "candidate_id": "cand_005",
+    "high_level_variant": "Ego spawn shifted slightly forward with walker 0 repositioned",
+    "mutation_intent": "Alter ego starting position to change intersection approach timing while keeping walker near collision path",
+    "expected_oracle": "collision",
+    "modifications": {
+      "weather_delta": {
+        "rain": 0,
+        "fog": 0,
+        "wetness": 0,
+        "puddle": 0
+      },
+      "actor_mutations": [
+        {
+          "actor_index": 0,
+          "position_offset": {
+            "x": -0.8,
+            "y": 4.2
+          },
+          "speed_delta": 0.0
+        },
+        {
+          "actor_index": 1,
+          "position_offset": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "speed_delta": 0.0
+        }
+      ],
+      "puddle_mutations": [],
+      "mission_mutation": {
+        "keep_original": false,
+        "spawn_offset": {
+          "x": 2.5,
+          "y": 0.0
+        },
+        "destination_offset": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Ego spawn offset within 5m",
+      "Walker 0 remains near ego route"
+    ],
+    "post_execution_validation_rules": [
+      "Collision occurred at intersection",
+      "Red-light violation present",
+      "Ego speed 3-5 m/s maintained"
+    ],
+    "uncertainty": [
+      "Spawn shift may alter traffic light phase timing",
+      "Walker interaction timing may change"
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": 0.0,
+      "fog": 0.0,
+      "wetness": 0.0,
+      "puddle": 0.0
+    },
+    "actor_mutations": [
+      {
+        "actor_index": 0,
+        "position_offset": {
+          "x": -0.8,
+          "y": 4.2
+        },
+        "speed_delta": 0.0
+      },
+      {
+        "actor_index": 1,
+        "position_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "speed_delta": 0.0
+      }
+    ],
+    "puddle_mutations": [],
+    "mission_mutation": {
+      "spawn_offset": {
+        "x": 2.5,
+        "y": 0.0
+      },
+      "destination_offset": {
+        "x": 0.0,
+        "y": 0.0
+      }
+    },
+    "safety_repairs": [
+      {
+        "type": "actor_min_distance",
+        "actor_index": 0,
+        "old_spawn": {
+          "x": 306.306,
+          "y": 330.917
+        },
+        "new_spawn": {
+          "x": 306.3112506043409,
+          "y": 330.9178027436207
+        },
+        "old_distance": 2.495,
+        "min_distance": 2.5
+      }
+    ]
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "authoritative_original_phase1_output": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_061__claude-sonnet-4-5.json",
+  "round1_feedback_count": 6,
+  "round2_feedback_count": 2,
+  "round3_api_output": "<WORKSPACE_ROOT>/processed/experiments/round3_feedback/api_outputs/case_061__claude-sonnet-4-5.json"
+}

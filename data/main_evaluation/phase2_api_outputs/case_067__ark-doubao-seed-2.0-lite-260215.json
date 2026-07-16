@@ -1,0 +1,301 @@
+{
+  "case_id": "case_067",
+  "model_name": "ark-doubao-seed-2.0-lite-260215",
+  "workflow": "phase2_grounded_generation",
+  "status": "completed",
+  "schema_valid": true,
+  "schema_errors": [],
+  "phase1_ready": "uncertain",
+  "num_candidates_requested": 2,
+  "num_candidates_written": 2,
+  "num_pre_valid": 2,
+  "candidate_records": [
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-doubao-seed-2.0-lite-260215/json/case_067/case_067__cand_001.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-doubao-seed-2.0-lite-260215/metadata/case_067/case_067__cand_001.metadata.json",
+      "case_id": "case_067",
+      "model_name": "ark-doubao-seed-2.0-lite-260215",
+      "candidate_index": 1,
+      "candidate_spec": {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Slight offset of ego spawn and destination positions with conservative minor weather adjustment, no additional actors or puddles added",
+        "mutation_intent": "Preserves all Phase 1 root cause constraints: maintains absence of dynamic actors and puddles, keeps requirement for all-zero final actuation commands, preserves conflicting failure label status, does not confirm unconfirmed route-light and stop-line crossing status",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": 5,
+            "fog": -3,
+            "wetness": 4,
+            "puddle": 0
+          },
+          "actor_mutations": [],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": false,
+            "spawn_offset": {
+              "x": 1.2,
+              "y": -0.8
+            },
+            "destination_offset": {
+              "x": -1.5,
+              "y": 0.5
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "No dynamic actors may be added to the scenario",
+          "No puddles may be added to the scenario",
+          "All position offsets are within allowed bounded ranges"
+        ],
+        "post_execution_validation_rules": [
+          "Final ego velocity must be zero",
+          "Final actuation commands must be all-zero",
+          "Conflicting failure label status between dataset and error.json must be preserved"
+        ],
+        "uncertainty": [
+          "Stop-line crossing and route-light relation remain unconfirmed",
+          "Label conflict between dataset and error.json is preserved as unresolved"
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 5.0,
+          "fog": -3.0,
+          "wetness": 4.0,
+          "puddle": 0.0
+        },
+        "actor_mutations": [],
+        "puddle_mutations": [],
+        "mission_mutation": {
+          "spawn_offset": {
+            "x": 1.2,
+            "y": -0.8
+          },
+          "destination_offset": {
+            "x": -1.5,
+            "y": 0.5
+          }
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": [
+          "no actors in candidate scenario"
+        ]
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_067__ark-doubao-seed-2.0-lite-260215.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_067__ark-doubao-seed-2.0-lite-260215.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    },
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-doubao-seed-2.0-lite-260215/json/case_067/case_067__cand_002.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-doubao-seed-2.0-lite-260215/metadata/case_067/case_067__cand_002.metadata.json",
+      "case_id": "case_067",
+      "model_name": "ark-doubao-seed-2.0-lite-260215",
+      "candidate_index": 2,
+      "candidate_spec": {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Keep original ego mission spawn and destination positions, apply conservative minor weather adjustment, no actors or puddles added",
+        "mutation_intent": "Adheres to all Phase 1 preservation constraints: retains original mission positioning, maintains absence of actors and puddles, preserves the conflicting failure label status and requirement for all-zero final actuation, keeps unconfirmed status of route and stop-line relation",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": -4,
+            "fog": 2,
+            "wetness": -3,
+            "puddle": 0
+          },
+          "actor_mutations": [],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "No dynamic actors or puddles are present in the generated scenario",
+          "Weather delta adjustments are within conservative allowed bounds"
+        ],
+        "post_execution_validation_rules": [
+          "All-zero actuation commands in the final critical window are confirmed",
+          "No artificial module-level root cause is introduced",
+          "Conflicting failure label status is maintained"
+        ],
+        "uncertainty": [
+          "No specific module-level root cause is confirmed, matching original uncertainty",
+          "Route-light relation and stop-line crossing status remain unconfirmed"
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": -4.0,
+          "fog": 2.0,
+          "wetness": -3.0,
+          "puddle": 0.0
+        },
+        "actor_mutations": [],
+        "puddle_mutations": [],
+        "mission_mutation": {
+          "keep_original": true
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": [
+          "no actors in candidate scenario"
+        ]
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_067__ark-doubao-seed-2.0-lite-260215.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_067__ark-doubao-seed-2.0-lite-260215.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    }
+  ],
+  "seed_artifact_zip": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-doubao-seed-2.0-lite-260215/seed-artifact/seed-artifact-case_067.zip",
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_prompts/case_067__ark-doubao-seed-2.0-lite-260215.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_067__ark-doubao-seed-2.0-lite-260215.json",
+  "prompt_estimated_tokens": 1018,
+  "usage": {
+    "prompt_tokens": 1225,
+    "completion_tokens": 2225,
+    "total_tokens": 3450
+  },
+  "raw_response": "{\n  \"case_id\": \"case_067\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Slight offset of ego spawn and destination positions with conservative minor weather adjustment, no additional actors or puddles added\",\n      \"mutation_intent\": \"Preserves all Phase 1 root cause constraints: maintains absence of dynamic actors and puddles, keeps requirement for all-zero final actuation commands, preserves conflicting failure label status, does not confirm unconfirmed route-light and stop-line crossing status\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 5, \"fog\": -3, \"wetness\": 4, \"puddle\": 0},\n        \"actor_mutations\": [],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": false, \"spawn_offset\": {\"x\": 1.2, \"y\": -0.8}, \"destination_offset\": {\"x\": -1.5, \"y\": 0.5}}\n      },\n      \"pre_execution_validation_rules\": [\"No dynamic actors may be added to the scenario\", \"No puddles may be added to the scenario\", \"All position offsets are within allowed bounded ranges\"],\n      \"post_execution_validation_rules\": [\"Final ego velocity must be zero\", \"Final actuation commands must be all-zero\", \"Conflicting failure label status between dataset and error.json must be preserved\"],\n      \"uncertainty\": [\"Stop-line crossing and route-light relation remain unconfirmed\", \"Label conflict between dataset and error.json is preserved as unresolved\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Keep original ego mission spawn and destination positions, apply conservative minor weather adjustment, no actors or puddles added\",\n      \"mutation_intent\": \"Adheres to all Phase 1 preservation constraints: retains original mission positioning, maintains absence of actors and puddles, preserves the conflicting failure label status and requirement for all-zero final actuation, keeps unconfirmed status of route and stop-line relation\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": -4, \"fog\": 2, \"wetness\": -3, \"puddle\": 0},\n        \"actor_mutations\": [],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"No dynamic actors or puddles are present in the generated scenario\", \"Weather delta adjustments are within conservative allowed bounds\"],\n      \"post_execution_validation_rules\": [\"All-zero actuation commands in the final critical window are confirmed\", \"No artificial module-level root cause is introduced\", \"Conflicting failure label status is maintained\"],\n      \"uncertainty\": [\"No specific module-level root cause is confirmed, matching original uncertainty\", \"Route-light relation and stop-line crossing status remain unconfirmed\"]\n    }\n  ]\n}",
+  "parsed_response": {
+    "case_id": "case_067",
+    "candidate_specs": [
+      {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Slight offset of ego spawn and destination positions with conservative minor weather adjustment, no additional actors or puddles added",
+        "mutation_intent": "Preserves all Phase 1 root cause constraints: maintains absence of dynamic actors and puddles, keeps requirement for all-zero final actuation commands, preserves conflicting failure label status, does not confirm unconfirmed route-light and stop-line crossing status",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": 5,
+            "fog": -3,
+            "wetness": 4,
+            "puddle": 0
+          },
+          "actor_mutations": [],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": false,
+            "spawn_offset": {
+              "x": 1.2,
+              "y": -0.8
+            },
+            "destination_offset": {
+              "x": -1.5,
+              "y": 0.5
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "No dynamic actors may be added to the scenario",
+          "No puddles may be added to the scenario",
+          "All position offsets are within allowed bounded ranges"
+        ],
+        "post_execution_validation_rules": [
+          "Final ego velocity must be zero",
+          "Final actuation commands must be all-zero",
+          "Conflicting failure label status between dataset and error.json must be preserved"
+        ],
+        "uncertainty": [
+          "Stop-line crossing and route-light relation remain unconfirmed",
+          "Label conflict between dataset and error.json is preserved as unresolved"
+        ]
+      },
+      {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Keep original ego mission spawn and destination positions, apply conservative minor weather adjustment, no actors or puddles added",
+        "mutation_intent": "Adheres to all Phase 1 preservation constraints: retains original mission positioning, maintains absence of actors and puddles, preserves the conflicting failure label status and requirement for all-zero final actuation, keeps unconfirmed status of route and stop-line relation",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": -4,
+            "fog": 2,
+            "wetness": -3,
+            "puddle": 0
+          },
+          "actor_mutations": [],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "No dynamic actors or puddles are present in the generated scenario",
+          "Weather delta adjustments are within conservative allowed bounds"
+        ],
+        "post_execution_validation_rules": [
+          "All-zero actuation commands in the final critical window are confirmed",
+          "No artificial module-level root cause is introduced",
+          "Conflicting failure label status is maintained"
+        ],
+        "uncertainty": [
+          "No specific module-level root cause is confirmed, matching original uncertainty",
+          "Route-light relation and stop-line crossing status remain unconfirmed"
+        ]
+      }
+    ]
+  },
+  "raw_api_payload": {
+    "id": "021782922220815a494df944a230ff836cdfb3920056d77b5a117",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "{\n  \"case_id\": \"case_067\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Slight offset of ego spawn and destination positions with conservative minor weather adjustment, no additional actors or puddles added\",\n      \"mutation_intent\": \"Preserves all Phase 1 root cause constraints: maintains absence of dynamic actors and puddles, keeps requirement for all-zero final actuation commands, preserves conflicting failure label status, does not confirm unconfirmed route-light and stop-line crossing status\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 5, \"fog\": -3, \"wetness\": 4, \"puddle\": 0},\n        \"actor_mutations\": [],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": false, \"spawn_offset\": {\"x\": 1.2, \"y\": -0.8}, \"destination_offset\": {\"x\": -1.5, \"y\": 0.5}}\n      },\n      \"pre_execution_validation_rules\": [\"No dynamic actors may be added to the scenario\", \"No puddles may be added to the scenario\", \"All position offsets are within allowed bounded ranges\"],\n      \"post_execution_validation_rules\": [\"Final ego velocity must be zero\", \"Final actuation commands must be all-zero\", \"Conflicting failure label status between dataset and error.json must be preserved\"],\n      \"uncertainty\": [\"Stop-line crossing and route-light relation remain unconfirmed\", \"Label conflict between dataset and error.json is preserved as unresolved\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Keep original ego mission spawn and destination positions, apply conservative minor weather adjustment, no actors or puddles added\",\n      \"mutation_intent\": \"Adheres to all Phase 1 preservation constraints: retains original mission positioning, maintains absence of actors and puddles, preserves the conflicting failure label status and requirement for all-zero final actuation, keeps unconfirmed status of route and stop-line relation\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": -4, \"fog\": 2, \"wetness\": -3, \"puddle\": 0},\n        \"actor_mutations\": [],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"No dynamic actors or puddles are present in the generated scenario\", \"Weather delta adjustments are within conservative allowed bounds\"],\n      \"post_execution_validation_rules\": [\"All-zero actuation commands in the final critical window are confirmed\", \"No artificial module-level root cause is introduced\", \"Conflicting failure label status is maintained\"],\n      \"uncertainty\": [\"No specific module-level root cause is confirmed, matching original uncertainty\", \"Route-light relation and stop-line crossing status remain unconfirmed\"]\n    }\n  ]\n}",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null,
+          "reasoning_content": "\nGot it, let's build this JSON step by step. First, the case_id is case_067 right? Then we need two candidate specs. Let's start with the first one.\n\nFirst candidate: cand_001. High level variant: Slight offset of ego spawn and destination with minor weather adjustment, no actors/puddles added. Mutation intent: Preserves all original constraints: no actors/puddles, keeps final zero actuation, maintains conflicting label status, doesn't confirm route-light relation. Expected oracle should be compound? Wait wait, original has conflicting labels: stuck, red light, lane invasion, only red confirmed. Oh right, expected oracle is compound because multiple possible labels conflict. Wait let's check the root cause: conflicting labels, only red confirmed, ends with zero velocity. Let's do modifications. First weather delta: let's do small changes, like rain +5, fog -3, wetness +4, puddle 0, right? Because conservative. Actor mutations: original actors are empty, so keep that, so actor_mutations is empty? Wait no, original has no actors, so we preserve that, so actor_mutations is empty. Puddle mutations also empty, since no puddles. Mission mutation: keep_original is false? Wait, small offsets. Spawn offset x: 1.2, y: -0.8, destination offset x: -1.5, y: 0.5. That's within [-5,5], good. Pre execution rules: [\"Check that no dynamic actors are added\", \"Check that no puddles are added to the scenario\", \"Confirm mission offsets are within allowed bounds\"], post execution: [\"Verify final ego velocity is zero\", \"Verify final actuation commands are all zero\", \"Check that conflicting label status is preserved\"]. Uncertainty: [\"Unconfirmed stop-line crossing status preserved\", \"Label conflict between dataset and error.json remains unresolved\"].\n\nNow second candidate, cand_002. High level variant: Minor weather adjustment with original spawn and destination kept, no actors/puddles added. Mutation intent: Follows all preservation constraints, keeps original mission position, maintains absence of actors/puddles, preserves all zero final actuation and conflicting label status. Expected oracle: still compound, right? Wait or unknown? Wait original fault layer is unknown, conflicting labels. Wait let's see: original says only red light confirmed, but dataset has more, so expected oracle is compound. Wait let's check modifications. Weather delta: rain -4, fog +2, wetness -3, puddle 0. That's within [-20,20], good. Actor mutations empty, puddle mutations empty. Mission mutation: keep_original is true, offsets all zero. Pre execution rules: [\"Check that no dynamic actors or puddles are present in generated scenario\", \"Confirm weather deltas are within conservative bounds\"], post execution: [\"Check for all-zero actuation commands in final critical window\", \"Validate that no module-level root cause is artificially introduced\", \"Confirm conflicting failure label status is maintained\"]. Uncertainty: [\"No proven module-level root cause is introduced per constraints\", \"Route-light relation remains unconfirmed as required\"].\n\nWait let's check all rules: exactly two candidates, all offsets within ranges. Actor offsets: since no actors, actor_mutations is empty, that's okay. Puddles none, so puddle_mutations empty. Let's make sure all preservation constraints are followed: preserve no actors, no puddles, conflicting labels, all zero actuation, unconfirmed status. Yep. Let's structure the JSON correctly.\n\nWait let's fill in all fields properly. Let's start:\n\ncase_id is \"case_067\", correct. Then candidate_specs array with two objects. First candidate:\n\ncandidate_id: \"cand_001\", high_level_variant: \"Slight offset of ego spawn and destination positions with conservative minor weather adjustment, no additional actors or puddles added\", mutation_intent: \"Preserves all Phase 1 root cause constraints: maintains absence of dynamic actors and puddles, keeps requirement for all-zero final actuation commands, preserves conflicting failure label status, does not confirm unconfirmed route-light and stop-line crossing status\", expected_oracle: \"compound\", modifications: weather_delta is {\"rain\": 5, \"fog\": -3, \"wetness\": 4, \"puddle\": 0}, actor_mutations is empty array, puddle_mutations empty array, mission_mutation: {\"keep_original\": false, \"spawn_offset\": {\"x\": 1.2, \"y\": -0.8}, \"destination_offset\": {\"x\": -1.5, \"y\": 0.5}}. Pre_execution_validation_rules: [\"No dynamic actors may be added to the scenario\", \"No puddles may be added to the scenario\", \"All position offsets are within allowed bounded ranges\"], post_execution_validation_rules: [\"Final ego velocity must be zero\", \"Final actuation commands must be all-zero\", \"Conflicting failure label status between dataset and error.json must be preserved\"], uncertainty: [\"Stop-line crossing and route-light relation remain unconfirmed\", \"Label conflict between dataset and error.json is preserved as unresolved\"].\n\nSecond candidate cand_002: high_level_variant: \"Keep original ego mission spawn and destination positions, apply conservative minor weather adjustment, no actors or puddles added\", mutation_intent: \"Adheres to all Phase 1 preservation constraints: retains original mission positioning, maintains absence of actors and puddles, preserves the conflicting failure label status and requirement for all-zero final actuation, keeps unconfirmed status of route and stop-line relation\", expected_oracle: \"compound\", modifications: weather_delta: {\"rain\": -4, \"fog\": 2, \"wetness\": -3, \"puddle\": 0}, actor_mutations: [], puddle_mutations: [], mission_mutation: {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}, pre_execution_validation_rules: [\"No dynamic actors or puddles are present in the generated scenario\", \"Weather delta adjustments are within conservative allowed bounds\"], post_execution_validation_rules: [\"All-zero actuation commands in the final critical window are confirmed\", \"No artificial module-level root cause is introduced\", \"Conflicting failure label status is maintained\"], uncertainty: [\"No specific module-level root cause is confirmed, matching original uncertainty\", \"Route-light relation and stop-line crossing status remain unconfirmed\"].\n\nWait that all checks out. Let's check all the constraints: actor position offsets don't apply here because no actors, speed delta none. Mission offsets are within [-5,5], yes 1.2, -0.8 etc are all good. Weather deltas are all within [-20,20], yes. No puddles so level delta etc don't apply. Two candidates, correct. Uncertainty preserved as per Phase 1 which is uncertainty-heavy, so variants are conservative. Root cause preserved. Let's put this all together into valid JSON."
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "doubao-seed-2-0-lite-260215",
+    "object": "chat.completion",
+    "service_tier": "default",
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 2225,
+      "prompt_tokens": 1225,
+      "total_tokens": 3450,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 1505,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": null,
+        "cached_tokens": 0
+      }
+    }
+  },
+  "error_message": "",
+  "elapsed_sec": 46.29,
+  "timestamp": "<REDACTED_TIMESTAMP>"
+}

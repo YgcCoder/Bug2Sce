@@ -1,0 +1,98 @@
+{
+  "case_id": "case_037",
+  "model_name": "ark-doubao-seed-2.0-lite-260215",
+  "workflow": "pure_llm_phase2_baseline",
+  "candidate_index": 1,
+  "candidate_spec": {
+    "candidate_id": "cand_001",
+    "high_level_variant": "Adjust vehicle and weather for multi-violation",
+    "mutation_intent": "Induce compound collision, lane invasion and red light violation",
+    "expected_oracle": "compound",
+    "modifications": {
+      "weather_delta": {
+        "rain": 10,
+        "fog": 10,
+        "wetness": 10,
+        "puddle": 10
+      },
+      "actor_mutations": [
+        {
+          "actor_index": 0,
+          "position_offset": {
+            "x": -2.0,
+            "y": 1.0
+          },
+          "speed_delta": 2.0
+        },
+        {
+          "actor_index": 1,
+          "position_offset": {
+            "x": 1.5,
+            "y": -0.5
+          },
+          "speed_delta": 0.3
+        }
+      ],
+      "puddle_mutations": [],
+      "mission_mutation": {
+        "keep_original": true,
+        "spawn_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "destination_offset": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "All actors spawn on valid road"
+    ],
+    "post_execution_validation_rules": [
+      "Check all reported fault violations"
+    ],
+    "uncertainty": [
+      "Outcome may vary from expectation"
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": 10.0,
+      "fog": 10.0,
+      "wetness": 10.0,
+      "puddle": 10.0
+    },
+    "actor_mutations": [
+      {
+        "actor_index": 0,
+        "position_offset": {
+          "x": -2.0,
+          "y": 1.0
+        },
+        "speed_delta": 2.0
+      },
+      {
+        "actor_index": 1,
+        "position_offset": {
+          "x": 1.5,
+          "y": -0.5
+        },
+        "speed_delta": 0.3
+      }
+    ],
+    "puddle_mutations": [],
+    "mission_mutation": {
+      "keep_original": true
+    },
+    "safety_repairs": []
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/pure_llm_phase2_api_prompts/case_037__ark-doubao-seed-2.0-lite-260215.md",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/pure_llm_phase2_api_outputs/case_037__ark-doubao-seed-2.0-lite-260215.json",
+  "baseline_note": "Pure-LLM baseline: prompt used no root-cause pattern or critical-window evidence."
+}

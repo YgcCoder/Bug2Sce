@@ -1,0 +1,101 @@
+{
+  "case_id": "case_079",
+  "model_name": "ark-deepseek-r1-250528",
+  "candidate_index": 2,
+  "candidate_spec": {
+    "candidate_id": "cand_002",
+    "high_level_variant": "Minor speed adjustment for the walking actor and slight positional shift of the immobile vehicle, all core scenario elements unchanged",
+    "mutation_intent": "Maintains the original root cause pattern of conflicting labels and unconfirmed module failure, adheres to all preservation constraints, introduces small speed variation to test if the original symptom pattern persists without changing core setup",
+    "expected_oracle": "compound",
+    "modifications": {
+      "weather_delta": {
+        "rain": 0,
+        "fog": 0,
+        "wetness": 0,
+        "puddle": 0
+      },
+      "actor_mutations": [
+        {
+          "actor_index": 0,
+          "position_offset": {
+            "x": -0.9,
+            "y": 1.5
+          },
+          "speed_delta": 0.0
+        },
+        {
+          "actor_index": 1,
+          "position_offset": {
+            "x": 0.7,
+            "y": -0.4
+          },
+          "speed_delta": 0.3
+        }
+      ],
+      "puddle_mutations": [],
+      "mission_mutation": {
+        "keep_original": true,
+        "spawn_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "destination_offset": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Mission start and goal positions are unchanged",
+      "Original weather values are preserved",
+      "2 actors are present in the scenario",
+      "Red-state traffic light is present along ego's route"
+    ],
+    "post_execution_validation_rules": [
+      "Verify output label status matches original conflicting pattern between dataset and error.json"
+    ],
+    "uncertainty": [
+      "Vehicle controller behavior remains uncertain as original",
+      "Stop-line crossing for red-light violation is unconfirmed matching original uncertainty",
+      "Conflicting label status is preserved as unresolvable per original"
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": 0.0,
+      "fog": 0.0,
+      "wetness": 0.0,
+      "puddle": 0.0
+    },
+    "actor_mutations": [
+      {
+        "actor_index": 0,
+        "position_offset": {
+          "x": -0.9,
+          "y": 1.5
+        },
+        "speed_delta": 0.0
+      },
+      {
+        "actor_index": 1,
+        "position_offset": {
+          "x": 0.7,
+          "y": -0.4
+        },
+        "speed_delta": 0.3
+      }
+    ],
+    "puddle_mutations": [],
+    "mission_mutation": {
+      "keep_original": true
+    }
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_079__ark-deepseek-r1-250528.json",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_079__ark-deepseek-r1-250528.json",
+  "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+}

@@ -1,0 +1,117 @@
+{
+  "case_id": "case_037",
+  "workflow": "phase1_causal_explanation",
+  "model_name": "ark-doubao-seed-2.0-lite-260215",
+  "model_id": "ark-doubao-seed-2.0-lite-260215",
+  "status": "completed",
+  "dry_run": false,
+  "schema_valid": true,
+  "schema_errors": [],
+  "quality_flags": [],
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_prompts/case_037__ark-doubao-seed-2.0-lite-260215.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_037__ark-doubao-seed-2.0-lite-260215.json",
+  "prompt_estimated_tokens": 3277,
+  "usage": {
+    "prompt_tokens": 4445,
+    "completion_tokens": 2342,
+    "total_tokens": 6787
+  },
+  "estimated_cost_usd": null,
+  "raw_response": "{\n  \"case_id\": \"case_037\",\n  \"fault_layer\": \"unknown\",\n  \"fault_component\": \"unknown\",\n  \"causal_explanation\": \"Dataset labels collision, lane invasion, and red light violation, but error.json only confirms red light violation. A mismatch exists between all-zero actuation commands in /vehicle_cmd and non-zero control values reported in /vehicle_status in the critical pre-collision window, with no proven module-level failure.\",\n  \"root_cause_pattern\": \"Conservative pattern: conflicting failure labels between dataset and error.json oracles, plus an actuation command-vehicle status mismatch in the critical window, with unconfirmed module-level root cause.\",\n  \"preservation_constraints\": [\n    \"Preserve conflicting oracle labels between dataset and error.json\",\n    \"Preserve mismatch between all-zero /vehicle_cmd commands and non-zero /vehicle_status control values in the critical window\",\n    \"Preserve original Town01 map and start-goal mission\",\n    \"Preserve heavy rain and high wetness conditions\",\n    \"Preserve two-actor scenario setup\"\n  ],\n  \"modifiable_factors\": [\"actor_position\", \"cloud_cover\", \"wind_speed\", \"fog_density\"],\n  \"non_modifiable_conditions\": [\"conflicting oracle labels between dataset and error.json\", \"actuation command-vehicle status mismatch in critical window\", \"heavy rain and high wetness\", \"Town01 map\", \"two actors present\"],\n  \"uncertainty\": [\n    \"Dataset and error.json conflict on collision and lane invasion symptoms\",\n    \"Route-light relation and stop-line crossing for red light are unconfirmed\",\n    \"Actuation mismatch cannot be localized to a specific module with available evidence\",\n    \"Collision and lane invasion are not confirmed by error.json\"\n  ],\n  \"evidence_support\": [\n    {\"evidence_id\": \"label_conflict\", \"claim\": \"Dataset labels collision=1, lane_invasion=1, while error.json labels both 0, only confirming red_light=1\"},\n    {\"evidence_id\": \"collision_window_control\", \"claim\": \"All /vehicle_cmd values are zero in the critical window, while /vehicle_status reports non-zero throttle and steering pre-collision\"},\n    {\"evidence_id\": \"red_light_window\", \"claim\": \"Traffic light topic exists but route-light relation and stop-line crossing are not confirmed\"}\n  ],\n  \"confidence\": \"low\",\n  \"ready_for_phase2_generation\": \"uncertain\",\n  \"notes_for_validator\": [\n    \"Manual review is required to resolve the label conflict between dataset and error.json\",\n    \"Generated cases must preserve the observed vehicle_cmd-vehicle_status mismatch in the critical window\"\n  ]\n}",
+  "parsed_response": {
+    "case_id": "case_037",
+    "fault_layer": "unknown",
+    "fault_component": "unknown",
+    "causal_explanation": "Dataset labels collision, lane invasion, and red light violation, but error.json only confirms red light violation. A mismatch exists between all-zero actuation commands in /vehicle_cmd and non-zero control values reported in /vehicle_status in the critical pre-collision window, with no proven module-level failure.",
+    "root_cause_pattern": "Conservative pattern: conflicting failure labels between dataset and error.json oracles, plus an actuation command-vehicle status mismatch in the critical window, with unconfirmed module-level root cause.",
+    "preservation_constraints": [
+      "Preserve conflicting oracle labels between dataset and error.json",
+      "Preserve mismatch between all-zero /vehicle_cmd commands and non-zero /vehicle_status control values in the critical window",
+      "Preserve original Town01 map and start-goal mission",
+      "Preserve heavy rain and high wetness conditions",
+      "Preserve two-actor scenario setup"
+    ],
+    "modifiable_factors": [
+      "actor_position",
+      "cloud_cover",
+      "wind_speed",
+      "fog_density"
+    ],
+    "non_modifiable_conditions": [
+      "conflicting oracle labels between dataset and error.json",
+      "actuation command-vehicle status mismatch in critical window",
+      "heavy rain and high wetness",
+      "Town01 map",
+      "two actors present"
+    ],
+    "uncertainty": [
+      "Dataset and error.json conflict on collision and lane invasion symptoms",
+      "Route-light relation and stop-line crossing for red light are unconfirmed",
+      "Actuation mismatch cannot be localized to a specific module with available evidence",
+      "Collision and lane invasion are not confirmed by error.json"
+    ],
+    "evidence_support": [
+      {
+        "evidence_id": "label_conflict",
+        "claim": "Dataset labels collision=1, lane_invasion=1, while error.json labels both 0, only confirming red_light=1"
+      },
+      {
+        "evidence_id": "collision_window_control",
+        "claim": "All /vehicle_cmd values are zero in the critical window, while /vehicle_status reports non-zero throttle and steering pre-collision"
+      },
+      {
+        "evidence_id": "red_light_window",
+        "claim": "Traffic light topic exists but route-light relation and stop-line crossing are not confirmed"
+      }
+    ],
+    "confidence": "low",
+    "ready_for_phase2_generation": "uncertain",
+    "notes_for_validator": [
+      "Manual review is required to resolve the label conflict between dataset and error.json",
+      "Generated cases must preserve the observed vehicle_cmd-vehicle_status mismatch in the critical window"
+    ]
+  },
+  "raw_api_payload": {
+    "id": "021782919020497f1149078756151b3b9bef96b02590752d9fa45",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "{\n  \"case_id\": \"case_037\",\n  \"fault_layer\": \"unknown\",\n  \"fault_component\": \"unknown\",\n  \"causal_explanation\": \"Dataset labels collision, lane invasion, and red light violation, but error.json only confirms red light violation. A mismatch exists between all-zero actuation commands in /vehicle_cmd and non-zero control values reported in /vehicle_status in the critical pre-collision window, with no proven module-level failure.\",\n  \"root_cause_pattern\": \"Conservative pattern: conflicting failure labels between dataset and error.json oracles, plus an actuation command-vehicle status mismatch in the critical window, with unconfirmed module-level root cause.\",\n  \"preservation_constraints\": [\n    \"Preserve conflicting oracle labels between dataset and error.json\",\n    \"Preserve mismatch between all-zero /vehicle_cmd commands and non-zero /vehicle_status control values in the critical window\",\n    \"Preserve original Town01 map and start-goal mission\",\n    \"Preserve heavy rain and high wetness conditions\",\n    \"Preserve two-actor scenario setup\"\n  ],\n  \"modifiable_factors\": [\"actor_position\", \"cloud_cover\", \"wind_speed\", \"fog_density\"],\n  \"non_modifiable_conditions\": [\"conflicting oracle labels between dataset and error.json\", \"actuation command-vehicle status mismatch in critical window\", \"heavy rain and high wetness\", \"Town01 map\", \"two actors present\"],\n  \"uncertainty\": [\n    \"Dataset and error.json conflict on collision and lane invasion symptoms\",\n    \"Route-light relation and stop-line crossing for red light are unconfirmed\",\n    \"Actuation mismatch cannot be localized to a specific module with available evidence\",\n    \"Collision and lane invasion are not confirmed by error.json\"\n  ],\n  \"evidence_support\": [\n    {\"evidence_id\": \"label_conflict\", \"claim\": \"Dataset labels collision=1, lane_invasion=1, while error.json labels both 0, only confirming red_light=1\"},\n    {\"evidence_id\": \"collision_window_control\", \"claim\": \"All /vehicle_cmd values are zero in the critical window, while /vehicle_status reports non-zero throttle and steering pre-collision\"},\n    {\"evidence_id\": \"red_light_window\", \"claim\": \"Traffic light topic exists but route-light relation and stop-line crossing are not confirmed\"}\n  ],\n  \"confidence\": \"low\",\n  \"ready_for_phase2_generation\": \"uncertain\",\n  \"notes_for_validator\": [\n    \"Manual review is required to resolve the label conflict between dataset and error.json\",\n    \"Generated cases must preserve the observed vehicle_cmd-vehicle_status mismatch in the critical window\"\n  ]\n}",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null,
+          "reasoning_content": "\nOkay, let's build this JSON step by step. First, case_id is case_037, right?\n\nFirst, fault_layer: there's a conflict between dataset and error_json, so let's see. The evidence has vehicle_cmd all zero, but vehicle_status has non-zero throttle before collision? Wait, let's check. Oh right, vehicle_cmd all commands are zero, but vehicle_status shows throttle non-zero, brake non-zero sometimes. So we can't attribute, so fault_layer is unknown? Wait, let's check the rules: if they disagree, mark uncertainty. Fault component is unknown too.\n\nCausal explanation: Dataset labels collision, lane invasion, red light violation, but error.json only confirms red light violation. There's a mismatch between all-zero vehicle_cmd and non-zero control values reported in vehicle_status before the reported collision timestamp, and no module-level failure is directly proven by the available summary evidence.\n\nRoot cause pattern: Conservative pattern: label conflict between dataset and error.json oracles for multiple failure symptoms, with a mismatch between actuation command topics and vehicle status topics in the critical collision window, while root cause attribution is unknown.\n\nPreservation constraints: Let's list 3-6. Let's see: 1. Preserve the mismatch between all-zero commanded values in /vehicle_cmd and non-zero actual control values reported in /vehicle_status in the critical window. 2. Preserve the conflicting oracle labels between dataset and error.json. 3. Preserve heavy rain and high wetness scenario conditions. 4. Preserve two actors in the scenario. 5. Preserve the Town01 map and start-goal mission configuration. Wait that's good.\n\nModifiable factors: What can be modified? actor_position, cloud density, wind strength, fog density, right? Wait the scenario has rain 93, wetness 81, puddles 0. So modifiable factors: [\"actor_position\", \"cloud_cover\", \"wind_speed\", \"fog_density\"] that works.\n\nNon-modifiable conditions: [\"conflicting oracle label set between dataset and error.json\", \"actuation command-vehicle status mismatch in critical window\", \"heavy rain and high wetness conditions\", \"Town01 map base\", \"two actors present\"] that's good.\n\nUncertainty: Let's list: [\"Dataset labels and error.json labels conflict on collision and lane invasion symptoms\", \"route-light relation and stop-line crossing for red light violation are not confirmed\", \"actuation mismatch between vehicle_cmd and vehicle_status can't be localized to a specific module with available evidence\", \"collision occurrence is not confirmed by error.json\"] that's right.\n\nEvidence support: Let's make each entry. First: {\"evidence_id\": \"oracle_consistency\", \"claim\": \"Dataset labels collision, lane invasion, red light while error.json only labels red light, creating a confirmed conflict\"}, another one: {\"evidence_id\": \"collision_window_vehicle_control\", \"claim\": \"All vehicle_cmd values are zero in the critical collision window while vehicle_status reports non-zero throttle and steering before the collision timestamp\"}, another one: {\"evidence_id\": \"red_light_window\", \"claim\": \"Traffic light topic exists but route-light relation and stop-line crossing are unconfirmed\"}, that's good.\n\nConfidence: low? Wait, because there's a lot of conflict, so low? Wait or medium? No, let's see: we have a lot of uncertainty, so confidence low.\n\nReady_for_phase2_generation: uncertain? Wait no, wait the rule says use uncertain when labels conflict. Wait let's check the rule: \"use uncertain when labels conflict or a key condition is missing.\" Oh right, labels conflict here, so ready_for_phase2_generation is uncertain? Wait wait, let's check: \"Do not set ready_for_phase2_generation=no solely because fault_layer is unknown. Use yes when there is a checkable conservative preservation pattern; use uncertain when labels conflict or a key condition is missing.\" Oh right, labels conflict, so it's uncertain. Wait but wait, do we have a checkable pattern? Let's see, the conflict is part of the case, but the labels are conflicting, so ready is uncertain.\n\nNotes_for_validator: [\"Manual review is required to resolve the label conflict between dataset and error.json before confirming root cause\", \"Post-generation check must verify the vehicle_cmd-vehicle_status mismatch in the critical window to match the original case conditions.\"]\n\nWait let's put it all together correctly, follow the schema. Let me check all the rules again. Oh right, for red-light, don't infer route-light relation unless evidence, which we did, we marked that as uncertain. For the vehicle_cmd all zero but vehicle status has movement, we marked controller behavior as uncertain, which we did. We didn't assign fault_layer=actuation just from that mismatch, which follows the rule.\n\nLet me adjust:\n\nWait fault_layer: unknown, right? Because we can't attribute, so fault_layer: \"unknown\", fault_component: \"unknown\". Correct.\n\nCausal explanation: \"Dataset labels the case as having collision, lane invasion, and red light violation, but error.json only confirms red light violation. A mismatch exists between all-zero actuation commands in /vehicle_cmd and non-zero control values reported in /vehicle_status in the critical pre-collision window, but no module-level failure is directly proven by available evidence.\" That's concise, evidence-grounded.\n\nRoot_cause_pattern: \"Conservative preservation pattern: conflicting failure labels between dataset and error.json oracles, plus an actuation command-vehicle status mismatch in the critical window, with no confirmed module-level root cause.\" That's good.\n\nPreservation_constraints:\n[\n  \"Preserve the conflicting oracle label set between the dataset and error.json\",\n  \"Preserve the mismatch between all-zero /vehicle_cmd commands and non-zero /vehicle_status control values in the critical window\",\n  \"Preserve the original map and start-goal mission configuration\",\n  \"Preserve the heavy rain and high wetness scenario conditions\",\n  \"Preserve the two-actor scenario setup\"\n]\nThat's 5, perfect, 3-6, follows the rule, semantic not timestamps.\n\nModifiable_factors: [\"actor_position\", \"cloud_cover\", \"wind_speed\", \"fog_density\", \"fog_level\"] wait no, let's make it natural: [\"actor_position\", \"cloud_cover\", \"wind_speed\", \"fog_density\"] that's enough.\n\nNon_modifiable_conditions: [\"conflicting oracle labels between dataset and error.json\", \"actuation command and vehicle status mismatch in critical window\", \"heavy rain and high wetness conditions\", \"Town01 map\", \"two actors in the scenario\"] correct.\n\nUncertainty:\n[\n  \"Dataset and error.json labels conflict on collision and lane invasion symptoms\",\n  \"Route-light relation and stop-line crossing for red light violation are not confirmed by available evidence\",\n  \"The actuation mismatch between /vehicle_cmd and /vehicle_status cannot be localized to a specific module\",\n  \"Collision and lane invasion are not confirmed by error.json\"\n]\ncorrect.\n\nEvidence_support:\n[\n  {\"evidence_id\": \"label_conflict\", \"claim\": \"Dataset labels collision=1, lane_invasion=1, red_light=1 while error.json labels collision=0, lane_invasion=0, red_light=1\"},\n  {\"evidence_id\": \"collision_window_control_stats\", \"claim\": \"All /vehicle_cmd commands are zero in the critical collision window, while /vehicle_status reports non-zero throttle and steering values before collision\"},\n  {\"evidence_id\": \"red_light_window_summary\", \"claim\": \"Traffic light topic exists but route-light relation and stop-line crossing are unconfirmed\"}\n]\ncorrect.\n\nConfidence: \"low\" because of all the uncertainty and conflict.\n\nReady_for_phase2_generation: \"uncertain\" because labels conflict, which matches the rule.\n\nNotes_for_validator:\n[\n  \"Resolve the label conflict between dataset and error.json via manual review before root cause confirmation\",\n  \"Check that the actuation command-vehicle status mismatch is preserved in generated candidate cases\"\n]\n\nWait that all checks out. Let's put it into valid JSON now, make sure no trailing commas, correct structure."
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "doubao-seed-2-0-lite-260215",
+    "object": "chat.completion",
+    "service_tier": "default",
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 2342,
+      "prompt_tokens": 4445,
+      "total_tokens": 6787,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 1751,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": null,
+        "cached_tokens": 0
+      }
+    }
+  },
+  "error_message": "",
+  "timestamp": "<REDACTED_TIMESTAMP>",
+  "elapsed_sec": 47.223
+}

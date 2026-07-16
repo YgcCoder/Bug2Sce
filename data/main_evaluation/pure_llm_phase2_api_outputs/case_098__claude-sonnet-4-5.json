@@ -1,0 +1,267 @@
+{
+  "case_id": "case_098",
+  "model_name": "claude-sonnet-4-5",
+  "workflow": "pure_llm_phase2_baseline",
+  "status": "completed",
+  "schema_valid": true,
+  "schema_errors": [],
+  "num_candidates_requested": 1,
+  "num_candidates_written": 1,
+  "num_pre_valid": 1,
+  "candidate_records": [
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/pure_llm_phase2_candidates/claude-sonnet-4-5/json/case_098/case_098__model_claude-sonnet-4-5__cand_001.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/pure_llm_phase2_candidates/claude-sonnet-4-5/metadata/case_098/case_098__model_claude-sonnet-4-5__cand_001.metadata.json",
+      "case_id": "case_098",
+      "model_name": "claude-sonnet-4-5",
+      "candidate_index": 1,
+      "candidate_spec": {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Increase actor speed and reduce visibility with fog",
+        "mutation_intent": "Amplify collision risk by increasing vehicle speeds and degrading visibility through weather intensification",
+        "expected_oracle": "collision",
+        "modifications": {
+          "weather_delta": {
+            "rain": 5,
+            "fog": 15,
+            "wetness": 10,
+            "puddle": 5
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 0.0,
+                "y": -3.0
+              },
+              "speed_delta": 2.5
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": 0.0,
+                "y": 2.0
+              },
+              "speed_delta": 1.8
+            }
+          ],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 0.0,
+                "y": -2.0
+              },
+              "level_delta": 0.1,
+              "size_scale": 1.1
+            },
+            {
+              "puddle_index": 1,
+              "location_offset": {
+                "x": 1.5,
+                "y": 0.0
+              },
+              "level_delta": 0.15,
+              "size_scale": 1.15
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Verify actor speeds are positive and positions are within map bounds"
+        ],
+        "post_execution_validation_rules": [
+          "Check collision event occurred between actors within scenario duration"
+        ],
+        "uncertainty": [
+          "Exact collision timing depends on autopilot and linear navigation interaction dynamics"
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 5.0,
+          "fog": 15.0,
+          "wetness": 10.0,
+          "puddle": 5.0
+        },
+        "actor_mutations": [
+          {
+            "actor_index": 0,
+            "position_offset": {
+              "x": 0.0,
+              "y": -3.0
+            },
+            "speed_delta": 2.5
+          },
+          {
+            "actor_index": 1,
+            "position_offset": {
+              "x": 0.0,
+              "y": 2.0
+            },
+            "speed_delta": 1.8
+          }
+        ],
+        "puddle_mutations": [
+          {
+            "puddle_index": 0,
+            "location_offset": {
+              "x": 0.0,
+              "y": -2.0
+            },
+            "level_delta": 0.1,
+            "size_scale": 1.1
+          },
+          {
+            "puddle_index": 1,
+            "location_offset": {
+              "x": 1.5,
+              "y": 0.0
+            },
+            "level_delta": 0.15,
+            "size_scale": 1.15
+          }
+        ],
+        "mission_mutation": {
+          "keep_original": true
+        },
+        "safety_repairs": []
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": []
+      }
+    }
+  ],
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/pure_llm_phase2_api_prompts/case_098__claude-sonnet-4-5.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/pure_llm_phase2_api_outputs/case_098__claude-sonnet-4-5.json",
+  "prompt_estimated_tokens": 852,
+  "usage": {
+    "prompt_tokens": 1203,
+    "completion_tokens": 484,
+    "total_tokens": 1687
+  },
+  "raw_response": "```json\n{\n  \"case_id\": \"case_098\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Increase actor speed and reduce visibility with fog\",\n      \"mutation_intent\": \"Amplify collision risk by increasing vehicle speeds and degrading visibility through weather intensification\",\n      \"expected_oracle\": \"collision\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 5, \"fog\": 15, \"wetness\": 10, \"puddle\": 5},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 0.0, \"y\": -3.0}, \"speed_delta\": 2.5},\n          {\"actor_index\": 1, \"position_offset\": {\"x\": 0.0, \"y\": 2.0}, \"speed_delta\": 1.8}\n        ],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": 0.0, \"y\": -2.0}, \"level_delta\": 0.1, \"size_scale\": 1.1},\n          {\"puddle_index\": 1, \"location_offset\": {\"x\": 1.5, \"y\": 0.0}, \"level_delta\": 0.15, \"size_scale\": 1.15}\n        ],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Verify actor speeds are positive and positions are within map bounds\"],\n      \"post_execution_validation_rules\": [\"Check collision event occurred between actors within scenario duration\"],\n      \"uncertainty\": [\"Exact collision timing depends on autopilot and linear navigation interaction dynamics\"]\n    }\n  ]\n}\n```",
+  "parsed_response": {
+    "case_id": "case_098",
+    "candidate_specs": [
+      {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Increase actor speed and reduce visibility with fog",
+        "mutation_intent": "Amplify collision risk by increasing vehicle speeds and degrading visibility through weather intensification",
+        "expected_oracle": "collision",
+        "modifications": {
+          "weather_delta": {
+            "rain": 5,
+            "fog": 15,
+            "wetness": 10,
+            "puddle": 5
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 0.0,
+                "y": -3.0
+              },
+              "speed_delta": 2.5
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": 0.0,
+                "y": 2.0
+              },
+              "speed_delta": 1.8
+            }
+          ],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 0.0,
+                "y": -2.0
+              },
+              "level_delta": 0.1,
+              "size_scale": 1.1
+            },
+            {
+              "puddle_index": 1,
+              "location_offset": {
+                "x": 1.5,
+                "y": 0.0
+              },
+              "level_delta": 0.15,
+              "size_scale": 1.15
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Verify actor speeds are positive and positions are within map bounds"
+        ],
+        "post_execution_validation_rules": [
+          "Check collision event occurred between actors within scenario duration"
+        ],
+        "uncertainty": [
+          "Exact collision timing depends on autopilot and linear navigation interaction dynamics"
+        ]
+      }
+    ]
+  },
+  "raw_api_payload": {
+    "id": "<REDACTED_RESPONSE_ID>",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "```json\n{\n  \"case_id\": \"case_098\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Increase actor speed and reduce visibility with fog\",\n      \"mutation_intent\": \"Amplify collision risk by increasing vehicle speeds and degrading visibility through weather intensification\",\n      \"expected_oracle\": \"collision\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 5, \"fog\": 15, \"wetness\": 10, \"puddle\": 5},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 0.0, \"y\": -3.0}, \"speed_delta\": 2.5},\n          {\"actor_index\": 1, \"position_offset\": {\"x\": 0.0, \"y\": 2.0}, \"speed_delta\": 1.8}\n        ],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": 0.0, \"y\": -2.0}, \"level_delta\": 0.1, \"size_scale\": 1.1},\n          {\"puddle_index\": 1, \"location_offset\": {\"x\": 1.5, \"y\": 0.0}, \"level_delta\": 0.15, \"size_scale\": 1.15}\n        ],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Verify actor speeds are positive and positions are within map bounds\"],\n      \"post_execution_validation_rules\": [\"Check collision event occurred between actors within scenario duration\"],\n      \"uncertainty\": [\"Exact collision timing depends on autopilot and linear navigation interaction dynamics\"]\n    }\n  ]\n}\n```",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "claude-sonnet-4-5",
+    "object": "chat.completion",
+    "service_tier": null,
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 484,
+      "prompt_tokens": 1203,
+      "total_tokens": 1687,
+      "completion_tokens_details": null,
+      "prompt_tokens_details": null
+    }
+  },
+  "error_message": "",
+  "elapsed_sec": 12.018,
+  "timestamp": "<REDACTED_TIMESTAMP>"
+}

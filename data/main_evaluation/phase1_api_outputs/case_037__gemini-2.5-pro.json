@@ -1,0 +1,123 @@
+{
+  "case_id": "case_037",
+  "workflow": "phase1_causal_explanation",
+  "model_name": "gemini-2.5-pro",
+  "model_id": "gemini-2.5-pro",
+  "status": "completed",
+  "dry_run": false,
+  "schema_valid": true,
+  "schema_errors": [],
+  "quality_flags": [],
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_prompts/case_037__gemini-2.5-pro.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_037__gemini-2.5-pro.json",
+  "prompt_estimated_tokens": 3192,
+  "usage": {
+    "prompt_tokens": 4506,
+    "completion_tokens": 3317,
+    "total_tokens": 7823
+  },
+  "estimated_cost_usd": null,
+  "raw_response": "```json\n{\n  \"case_id\": \"case_037\",\n  \"fault_layer\": \"unknown\",\n  \"fault_component\": \"Control or simulator\",\n  \"causal_explanation\": \"The ego vehicle moves, violates a red light, and collides while receiving zero-value vehicle commands, indicating a disconnect between planning and vehicle state.\",\n  \"root_cause_pattern\": \"A mismatch between zero-value vehicle_cmd and non-zero vehicle_status precedes an oracle-reported failure.\",\n  \"preservation_constraints\": [\n    \"Preserve the red light violation oracle event.\",\n    \"Preserve the vehicle_cmd vs. vehicle_status mismatch.\",\n    \"A collision event is published by the simulator.\"\n  ],\n  \"modifiable_factors\": [\n    \"weather\",\n    \"actor_position\",\n    \"puddles\"\n  ],\n  \"non_modifiable_conditions\": [\n    \"Red light violation occurs.\",\n    \"vehicle_cmd is zero while vehicle_status shows movement.\",\n    \"Dataset and error.json labels conflict.\"\n  ],\n  \"uncertainty\": [\n    \"Dataset.xlsx reports collision and lane invasion, but error.json does not.\",\n    \"The root cause of the vehicle_cmd/vehicle_status mismatch is unknown.\",\n    \"Route-to-traffic-light relationship is not confirmed.\"\n  ],\n  \"evidence_support\": [\n    {\n      \"evidence_id\": \"oracle_consistency\",\n      \"claim\": \"Dataset reports C+L+R, error.json reports R only.\"\n    },\n    {\n      \"evidence_id\": \"critical_window_summary\",\n      \"claim\": \"vehicle_cmd has all zero values before the event.\"\n    },\n    {\n      \"evidence_id\": \"critical_window_summary\",\n      \"claim\": \"vehicle_status shows active throttle and steering.\"\n    },\n    {\n      \"evidence_id\": \"collision_window\",\n      \"claim\": \"A collision message was published to the oracle topic.\"\n    }\n  ],\n  \"confidence\": \"low\",\n  \"ready_for_phase2_generation\": \"uncertain\",\n  \"notes_for_validator\": [\n    \"Major conflict between dataset (C+L+R) and error.json (R).\",\n    \"Key issue: vehicle_cmd is all zeros but vehicle moves.\",\n    \"Collision topic exists, but error.json reports no crash.\"\n  ]\n}\n```",
+  "parsed_response": {
+    "case_id": "case_037",
+    "fault_layer": "unknown",
+    "fault_component": "Control or simulator",
+    "causal_explanation": "The ego vehicle moves, violates a red light, and collides while receiving zero-value vehicle commands, indicating a disconnect between planning and vehicle state.",
+    "root_cause_pattern": "A mismatch between zero-value vehicle_cmd and non-zero vehicle_status precedes an oracle-reported failure.",
+    "preservation_constraints": [
+      "Preserve the red light violation oracle event.",
+      "Preserve the vehicle_cmd vs. vehicle_status mismatch.",
+      "A collision event is published by the simulator."
+    ],
+    "modifiable_factors": [
+      "weather",
+      "actor_position",
+      "puddles"
+    ],
+    "non_modifiable_conditions": [
+      "Red light violation occurs.",
+      "vehicle_cmd is zero while vehicle_status shows movement.",
+      "Dataset and error.json labels conflict."
+    ],
+    "uncertainty": [
+      "Dataset.xlsx reports collision and lane invasion, but error.json does not.",
+      "The root cause of the vehicle_cmd/vehicle_status mismatch is unknown.",
+      "Route-to-traffic-light relationship is not confirmed."
+    ],
+    "evidence_support": [
+      {
+        "evidence_id": "oracle_consistency",
+        "claim": "Dataset reports C+L+R, error.json reports R only."
+      },
+      {
+        "evidence_id": "critical_window_summary",
+        "claim": "vehicle_cmd has all zero values before the event."
+      },
+      {
+        "evidence_id": "critical_window_summary",
+        "claim": "vehicle_status shows active throttle and steering."
+      },
+      {
+        "evidence_id": "collision_window",
+        "claim": "A collision message was published to the oracle topic."
+      }
+    ],
+    "confidence": "low",
+    "ready_for_phase2_generation": "uncertain",
+    "notes_for_validator": [
+      "Major conflict between dataset (C+L+R) and error.json (R).",
+      "Key issue: vehicle_cmd is all zeros but vehicle moves.",
+      "Collision topic exists, but error.json reports no crash."
+    ]
+  },
+  "raw_api_payload": {
+    "id": "<REDACTED_RESPONSE_ID>",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "```json\n{\n  \"case_id\": \"case_037\",\n  \"fault_layer\": \"unknown\",\n  \"fault_component\": \"Control or simulator\",\n  \"causal_explanation\": \"The ego vehicle moves, violates a red light, and collides while receiving zero-value vehicle commands, indicating a disconnect between planning and vehicle state.\",\n  \"root_cause_pattern\": \"A mismatch between zero-value vehicle_cmd and non-zero vehicle_status precedes an oracle-reported failure.\",\n  \"preservation_constraints\": [\n    \"Preserve the red light violation oracle event.\",\n    \"Preserve the vehicle_cmd vs. vehicle_status mismatch.\",\n    \"A collision event is published by the simulator.\"\n  ],\n  \"modifiable_factors\": [\n    \"weather\",\n    \"actor_position\",\n    \"puddles\"\n  ],\n  \"non_modifiable_conditions\": [\n    \"Red light violation occurs.\",\n    \"vehicle_cmd is zero while vehicle_status shows movement.\",\n    \"Dataset and error.json labels conflict.\"\n  ],\n  \"uncertainty\": [\n    \"Dataset.xlsx reports collision and lane invasion, but error.json does not.\",\n    \"The root cause of the vehicle_cmd/vehicle_status mismatch is unknown.\",\n    \"Route-to-traffic-light relationship is not confirmed.\"\n  ],\n  \"evidence_support\": [\n    {\n      \"evidence_id\": \"oracle_consistency\",\n      \"claim\": \"Dataset reports C+L+R, error.json reports R only.\"\n    },\n    {\n      \"evidence_id\": \"critical_window_summary\",\n      \"claim\": \"vehicle_cmd has all zero values before the event.\"\n    },\n    {\n      \"evidence_id\": \"critical_window_summary\",\n      \"claim\": \"vehicle_status shows active throttle and steering.\"\n    },\n    {\n      \"evidence_id\": \"collision_window\",\n      \"claim\": \"A collision message was published to the oracle topic.\"\n    }\n  ],\n  \"confidence\": \"low\",\n  \"ready_for_phase2_generation\": \"uncertain\",\n  \"notes_for_validator\": [\n    \"Major conflict between dataset (C+L+R) and error.json (R).\",\n    \"Key issue: vehicle_cmd is all zeros but vehicle moves.\",\n    \"Collision topic exists, but error.json reports no crash.\"\n  ]\n}\n```",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "gemini-2.5-pro",
+    "object": "chat.completion",
+    "service_tier": null,
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 3317,
+      "prompt_tokens": 4506,
+      "total_tokens": 7823,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": 0,
+        "reasoning_tokens": 2764,
+        "rejected_prediction_tokens": null,
+        "text_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 0,
+        "text_tokens": 4506,
+        "image_tokens": 0
+      },
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "input_tokens_details": null,
+      "claude_cache_creation_5_m_tokens": 0,
+      "claude_cache_creation_1_h_tokens": 0
+    }
+  },
+  "error_message": "",
+  "timestamp": "<REDACTED_TIMESTAMP>",
+  "elapsed_sec": 34.09
+}

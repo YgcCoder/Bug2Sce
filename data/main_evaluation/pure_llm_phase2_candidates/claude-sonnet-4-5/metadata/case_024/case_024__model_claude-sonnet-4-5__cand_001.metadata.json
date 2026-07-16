@@ -1,0 +1,118 @@
+{
+  "case_id": "case_024",
+  "model_name": "claude-sonnet-4-5",
+  "workflow": "pure_llm_phase2_baseline",
+  "candidate_index": 1,
+  "candidate_spec": {
+    "candidate_id": "cand_001",
+    "high_level_variant": "Increase rain and reduce actor speed to test collision and red light violation",
+    "mutation_intent": "Worsen weather and slow traffic to explore if degraded visibility and timing changes trigger same collision and red light fault",
+    "expected_oracle": "compound",
+    "modifications": {
+      "weather_delta": {
+        "rain": 15,
+        "fog": 10,
+        "wetness": 5,
+        "puddle": 8
+      },
+      "actor_mutations": [
+        {
+          "actor_index": 0,
+          "position_offset": {
+            "x": -2.0,
+            "y": 1.5
+          },
+          "speed_delta": -1.5
+        },
+        {
+          "actor_index": 1,
+          "position_offset": {
+            "x": 1.0,
+            "y": -1.0
+          },
+          "speed_delta": -0.8
+        }
+      ],
+      "puddle_mutations": [
+        {
+          "puddle_index": 0,
+          "location_offset": {
+            "x": 3.0,
+            "y": 2.0
+          },
+          "level_delta": 0.1,
+          "size_scale": 1.1
+        }
+      ],
+      "mission_mutation": {
+        "keep_original": true,
+        "spawn_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "destination_offset": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Actors spawn within map bounds and not overlapping"
+    ],
+    "post_execution_validation_rules": [
+      "Check collision and red light violation both occur"
+    ],
+    "uncertainty": [
+      "Timing of red light and collision may shift with speed changes"
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": 15.0,
+      "fog": 10.0,
+      "wetness": 5.0,
+      "puddle": 8.0
+    },
+    "actor_mutations": [
+      {
+        "actor_index": 0,
+        "position_offset": {
+          "x": -2.0,
+          "y": 1.5
+        },
+        "speed_delta": -1.5
+      },
+      {
+        "actor_index": 1,
+        "position_offset": {
+          "x": 1.0,
+          "y": -1.0
+        },
+        "speed_delta": -0.8
+      }
+    ],
+    "puddle_mutations": [
+      {
+        "puddle_index": 0,
+        "location_offset": {
+          "x": 3.0,
+          "y": 2.0
+        },
+        "level_delta": 0.1,
+        "size_scale": 1.1
+      }
+    ],
+    "mission_mutation": {
+      "keep_original": true
+    },
+    "safety_repairs": []
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/pure_llm_phase2_api_prompts/case_024__claude-sonnet-4-5.md",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/pure_llm_phase2_api_outputs/case_024__claude-sonnet-4-5.json",
+  "baseline_note": "Pure-LLM baseline: prompt used no root-cause pattern or critical-window evidence."
+}

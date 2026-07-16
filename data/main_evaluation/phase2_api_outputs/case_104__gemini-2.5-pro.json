@@ -1,0 +1,312 @@
+{
+  "case_id": "case_104",
+  "model_name": "gemini-2.5-pro",
+  "workflow": "phase2_grounded_generation",
+  "status": "completed",
+  "schema_valid": true,
+  "schema_errors": [],
+  "phase1_ready": "uncertain",
+  "num_candidates_requested": 2,
+  "num_candidates_written": 2,
+  "num_pre_valid": 2,
+  "candidate_records": [
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/gemini-2.5-pro/json/case_104/case_104__cand_001.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/gemini-2.5-pro/metadata/case_104/case_104__cand_001.metadata.json",
+      "case_id": "case_104",
+      "model_name": "gemini-2.5-pro",
+      "candidate_index": 1,
+      "candidate_spec": {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Slightly alter the mission destination to see if the vehicle moves.",
+        "mutation_intent": "Test if a minor change in the mission path can break the stationary state, probing the underlying cause.",
+        "expected_oracle": "unknown",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": false,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 3.0,
+              "y": -3.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "New destination is on a drivable lane."
+        ],
+        "post_execution_validation_rules": [
+          "Vehicle remains nearly stationary.",
+          "No red light violation is logged by oracle."
+        ],
+        "uncertainty": [
+          "Original issue is likely a data label error.",
+          "Cause of stationary state is unknown."
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 0.0,
+          "fog": 0.0,
+          "wetness": 0.0,
+          "puddle": 0.0
+        },
+        "actor_mutations": [],
+        "puddle_mutations": [],
+        "mission_mutation": {
+          "spawn_offset": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "destination_offset": {
+            "x": 3.0,
+            "y": -3.0
+          }
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": [
+          "no actors in candidate scenario"
+        ]
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_104__gemini-2.5-pro.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_104__gemini-2.5-pro.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    },
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/gemini-2.5-pro/json/case_104/case_104__cand_002.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/gemini-2.5-pro/metadata/case_104/case_104__cand_002.metadata.json",
+      "case_id": "case_104",
+      "model_name": "gemini-2.5-pro",
+      "candidate_index": 2,
+      "candidate_spec": {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Improve weather conditions to see if perception was the cause for stopping.",
+        "mutation_intent": "Simplify the environment to rule out perception failures as the cause for the vehicle's stationary state.",
+        "expected_oracle": "unknown",
+        "modifications": {
+          "weather_delta": {
+            "rain": -10,
+            "fog": -20,
+            "wetness": -20,
+            "puddle": 0
+          },
+          "actor_mutations": [],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": -0.2,
+              "size_scale": 1.0
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": true
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Weather and puddle levels are reduced."
+        ],
+        "post_execution_validation_rules": [
+          "Vehicle remains nearly stationary.",
+          "No red light violation is logged by oracle."
+        ],
+        "uncertainty": [
+          "Stationary behavior may be unrelated to weather.",
+          "Original dataset label is still suspect."
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": -10.0,
+          "fog": -20,
+          "wetness": -20,
+          "puddle": 0.0
+        },
+        "actor_mutations": [],
+        "puddle_mutations": [
+          {
+            "puddle_index": 0,
+            "location_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "level_delta": -0.2,
+            "size_scale": 1.0
+          }
+        ],
+        "mission_mutation": {
+          "keep_original": true
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": [
+          "no actors in candidate scenario"
+        ]
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_104__gemini-2.5-pro.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_104__gemini-2.5-pro.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    }
+  ],
+  "seed_artifact_zip": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/gemini-2.5-pro/seed-artifact/seed-artifact-case_104.zip",
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_prompts/case_104__gemini-2.5-pro.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_104__gemini-2.5-pro.json",
+  "prompt_estimated_tokens": 953,
+  "usage": {
+    "prompt_tokens": 1253,
+    "completion_tokens": 2058,
+    "total_tokens": 3311
+  },
+  "raw_response": "```json\n{\n  \"case_id\": \"case_104\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Slightly alter the mission destination to see if the vehicle moves.\",\n      \"mutation_intent\": \"Test if a minor change in the mission path can break the stationary state, probing the underlying cause.\",\n      \"expected_oracle\": \"unknown\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": false, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 3.0, \"y\": -3.0}}\n      },\n      \"pre_execution_validation_rules\": [\"New destination is on a drivable lane.\"],\n      \"post_execution_validation_rules\": [\"Vehicle remains nearly stationary.\", \"No red light violation is logged by oracle.\"],\n      \"uncertainty\": [\"Original issue is likely a data label error.\", \"Cause of stationary state is unknown.\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Improve weather conditions to see if perception was the cause for stopping.\",\n      \"mutation_intent\": \"Simplify the environment to rule out perception failures as the cause for the vehicle's stationary state.\",\n      \"expected_oracle\": \"unknown\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": -10, \"fog\": -20, \"wetness\": -20, \"puddle\": 0},\n        \"actor_mutations\": [],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": -0.2, \"size_scale\": 1.0}\n        ],\n        \"mission_mutation\": {\"keep_original\": true}\n      },\n      \"pre_execution_validation_rules\": [\"Weather and puddle levels are reduced.\"],\n      \"post_execution_validation_rules\": [\"Vehicle remains nearly stationary.\", \"No red light violation is logged by oracle.\"],\n      \"uncertainty\": [\"Stationary behavior may be unrelated to weather.\", \"Original dataset label is still suspect.\"]\n    }\n  ]\n}\n```",
+  "parsed_response": {
+    "case_id": "case_104",
+    "candidate_specs": [
+      {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Slightly alter the mission destination to see if the vehicle moves.",
+        "mutation_intent": "Test if a minor change in the mission path can break the stationary state, probing the underlying cause.",
+        "expected_oracle": "unknown",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": false,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 3.0,
+              "y": -3.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "New destination is on a drivable lane."
+        ],
+        "post_execution_validation_rules": [
+          "Vehicle remains nearly stationary.",
+          "No red light violation is logged by oracle."
+        ],
+        "uncertainty": [
+          "Original issue is likely a data label error.",
+          "Cause of stationary state is unknown."
+        ]
+      },
+      {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Improve weather conditions to see if perception was the cause for stopping.",
+        "mutation_intent": "Simplify the environment to rule out perception failures as the cause for the vehicle's stationary state.",
+        "expected_oracle": "unknown",
+        "modifications": {
+          "weather_delta": {
+            "rain": -10,
+            "fog": -20,
+            "wetness": -20,
+            "puddle": 0
+          },
+          "actor_mutations": [],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": -0.2,
+              "size_scale": 1.0
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": true
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Weather and puddle levels are reduced."
+        ],
+        "post_execution_validation_rules": [
+          "Vehicle remains nearly stationary.",
+          "No red light violation is logged by oracle."
+        ],
+        "uncertainty": [
+          "Stationary behavior may be unrelated to weather.",
+          "Original dataset label is still suspect."
+        ]
+      }
+    ]
+  },
+  "raw_api_payload": {
+    "id": "<REDACTED_RESPONSE_ID>",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "```json\n{\n  \"case_id\": \"case_104\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Slightly alter the mission destination to see if the vehicle moves.\",\n      \"mutation_intent\": \"Test if a minor change in the mission path can break the stationary state, probing the underlying cause.\",\n      \"expected_oracle\": \"unknown\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": false, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 3.0, \"y\": -3.0}}\n      },\n      \"pre_execution_validation_rules\": [\"New destination is on a drivable lane.\"],\n      \"post_execution_validation_rules\": [\"Vehicle remains nearly stationary.\", \"No red light violation is logged by oracle.\"],\n      \"uncertainty\": [\"Original issue is likely a data label error.\", \"Cause of stationary state is unknown.\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Improve weather conditions to see if perception was the cause for stopping.\",\n      \"mutation_intent\": \"Simplify the environment to rule out perception failures as the cause for the vehicle's stationary state.\",\n      \"expected_oracle\": \"unknown\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": -10, \"fog\": -20, \"wetness\": -20, \"puddle\": 0},\n        \"actor_mutations\": [],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": -0.2, \"size_scale\": 1.0}\n        ],\n        \"mission_mutation\": {\"keep_original\": true}\n      },\n      \"pre_execution_validation_rules\": [\"Weather and puddle levels are reduced.\"],\n      \"post_execution_validation_rules\": [\"Vehicle remains nearly stationary.\", \"No red light violation is logged by oracle.\"],\n      \"uncertainty\": [\"Stationary behavior may be unrelated to weather.\", \"Original dataset label is still suspect.\"]\n    }\n  ]\n}\n```",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "gemini-2.5-pro",
+    "object": "chat.completion",
+    "service_tier": null,
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 2058,
+      "prompt_tokens": 1253,
+      "total_tokens": 3311,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": 0,
+        "reasoning_tokens": 1469,
+        "rejected_prediction_tokens": null,
+        "text_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 0,
+        "text_tokens": 1253,
+        "image_tokens": 0
+      },
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "input_tokens_details": null,
+      "claude_cache_creation_5_m_tokens": 0,
+      "claude_cache_creation_1_h_tokens": 0
+    }
+  },
+  "error_message": "",
+  "elapsed_sec": 20.425,
+  "timestamp": "<REDACTED_TIMESTAMP>"
+}

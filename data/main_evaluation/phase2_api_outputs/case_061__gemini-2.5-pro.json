@@ -1,0 +1,294 @@
+{
+  "case_id": "case_061",
+  "model_name": "gemini-2.5-pro",
+  "workflow": "phase2_grounded_generation",
+  "status": "completed",
+  "schema_valid": true,
+  "schema_errors": [],
+  "phase1_ready": "yes",
+  "num_candidates_requested": 2,
+  "num_candidates_written": 2,
+  "num_pre_valid": 2,
+  "candidate_records": [
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/gemini-2.5-pro/json/case_061/case_061__cand_001.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/gemini-2.5-pro/metadata/case_061/case_061__cand_001.metadata.json",
+      "case_id": "case_061",
+      "model_name": "gemini-2.5-pro",
+      "candidate_index": 1,
+      "candidate_spec": {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Increase adverse weather conditions to stress the perception and planning systems.",
+        "mutation_intent": "Test if degraded sensor input from heavy rain and fog exacerbates the planning module's failure to produce valid commands.",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": 20,
+            "fog": 15,
+            "wetness": 20,
+            "puddle": 0
+          },
+          "actor_mutations": [],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Ego vehicle approaches a red light."
+        ],
+        "post_execution_validation_rules": [
+          "Planning module sends zero-value commands.",
+          "Ego vehicle runs the red light.",
+          "Ego vehicle collides with another actor."
+        ],
+        "uncertainty": [
+          "The specific trigger for the zero-command failure is unknown."
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 20,
+          "fog": 15.0,
+          "wetness": 20,
+          "puddle": 0.0
+        },
+        "actor_mutations": [],
+        "puddle_mutations": [],
+        "mission_mutation": {
+          "keep_original": true
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_061__gemini-2.5-pro.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_061__gemini-2.5-pro.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    },
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/gemini-2.5-pro/json/case_061/case_061__cand_002.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/gemini-2.5-pro/metadata/case_061/case_061__cand_002.metadata.json",
+      "case_id": "case_061",
+      "model_name": "gemini-2.5-pro",
+      "candidate_index": 2,
+      "candidate_spec": {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Slightly alter the ego vehicle's starting position to change its approach to the intersection.",
+        "mutation_intent": "Determine if minor changes in the ego's trajectory and timing when approaching the intersection affect the planning failure.",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": false,
+            "spawn_offset": {
+              "x": 1.5,
+              "y": -1.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Ego vehicle approaches a red light."
+        ],
+        "post_execution_validation_rules": [
+          "Planning module sends zero-value commands.",
+          "Ego vehicle runs the red light.",
+          "Ego vehicle collides with another actor."
+        ],
+        "uncertainty": [
+          "The specific trigger for the zero-command failure is unknown."
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 0.0,
+          "fog": 0.0,
+          "wetness": 0.0,
+          "puddle": 0.0
+        },
+        "actor_mutations": [],
+        "puddle_mutations": [],
+        "mission_mutation": {
+          "spawn_offset": {
+            "x": 1.5,
+            "y": -1.0
+          },
+          "destination_offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_061__gemini-2.5-pro.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_061__gemini-2.5-pro.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    }
+  ],
+  "seed_artifact_zip": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/gemini-2.5-pro/seed-artifact/seed-artifact-case_061.zip",
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_prompts/case_061__gemini-2.5-pro.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_061__gemini-2.5-pro.json",
+  "prompt_estimated_tokens": 957,
+  "usage": {
+    "prompt_tokens": 1301,
+    "completion_tokens": 2553,
+    "total_tokens": 3854
+  },
+  "raw_response": "```json\n{\n  \"case_id\": \"case_061\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Increase adverse weather conditions to stress the perception and planning systems.\",\n      \"mutation_intent\": \"Test if degraded sensor input from heavy rain and fog exacerbates the planning module's failure to produce valid commands.\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\n          \"rain\": 20,\n          \"fog\": 15,\n          \"wetness\": 20,\n          \"puddle\": 0\n        },\n        \"actor_mutations\": [],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\n          \"keep_original\": true,\n          \"spawn_offset\": {\n            \"x\": 0.0,\n            \"y\": 0.0\n          },\n          \"destination_offset\": {\n            \"x\": 0.0,\n            \"y\": 0.0\n          }\n        }\n      },\n      \"pre_execution_validation_rules\": [\n        \"Ego vehicle approaches a red light.\"\n      ],\n      \"post_execution_validation_rules\": [\n        \"Planning module sends zero-value commands.\",\n        \"Ego vehicle runs the red light.\",\n        \"Ego vehicle collides with another actor.\"\n      ],\n      \"uncertainty\": [\n        \"The specific trigger for the zero-command failure is unknown.\"\n      ]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Slightly alter the ego vehicle's starting position to change its approach to the intersection.\",\n      \"mutation_intent\": \"Determine if minor changes in the ego's trajectory and timing when approaching the intersection affect the planning failure.\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\n          \"rain\": 0,\n          \"fog\": 0,\n          \"wetness\": 0,\n          \"puddle\": 0\n        },\n        \"actor_mutations\": [],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\n          \"keep_original\": false,\n          \"spawn_offset\": {\n            \"x\": 1.5,\n            \"y\": -1.0\n          },\n          \"destination_offset\": {\n            \"x\": 0.0,\n            \"y\": 0.0\n          }\n        }\n      },\n      \"pre_execution_validation_rules\": [\n        \"Ego vehicle approaches a red light.\"\n      ],\n      \"post_execution_validation_rules\": [\n        \"Planning module sends zero-value commands.\",\n        \"Ego vehicle runs the red light.\",\n        \"Ego vehicle collides with another actor.\"\n      ],\n      \"uncertainty\": [\n        \"The specific trigger for the zero-command failure is unknown.\"\n      ]\n    }\n  ]\n}\n```",
+  "parsed_response": {
+    "case_id": "case_061",
+    "candidate_specs": [
+      {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Increase adverse weather conditions to stress the perception and planning systems.",
+        "mutation_intent": "Test if degraded sensor input from heavy rain and fog exacerbates the planning module's failure to produce valid commands.",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": 20,
+            "fog": 15,
+            "wetness": 20,
+            "puddle": 0
+          },
+          "actor_mutations": [],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Ego vehicle approaches a red light."
+        ],
+        "post_execution_validation_rules": [
+          "Planning module sends zero-value commands.",
+          "Ego vehicle runs the red light.",
+          "Ego vehicle collides with another actor."
+        ],
+        "uncertainty": [
+          "The specific trigger for the zero-command failure is unknown."
+        ]
+      },
+      {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Slightly alter the ego vehicle's starting position to change its approach to the intersection.",
+        "mutation_intent": "Determine if minor changes in the ego's trajectory and timing when approaching the intersection affect the planning failure.",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": false,
+            "spawn_offset": {
+              "x": 1.5,
+              "y": -1.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Ego vehicle approaches a red light."
+        ],
+        "post_execution_validation_rules": [
+          "Planning module sends zero-value commands.",
+          "Ego vehicle runs the red light.",
+          "Ego vehicle collides with another actor."
+        ],
+        "uncertainty": [
+          "The specific trigger for the zero-command failure is unknown."
+        ]
+      }
+    ]
+  },
+  "raw_api_payload": {
+    "id": "<REDACTED_RESPONSE_ID>",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "```json\n{\n  \"case_id\": \"case_061\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Increase adverse weather conditions to stress the perception and planning systems.\",\n      \"mutation_intent\": \"Test if degraded sensor input from heavy rain and fog exacerbates the planning module's failure to produce valid commands.\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\n          \"rain\": 20,\n          \"fog\": 15,\n          \"wetness\": 20,\n          \"puddle\": 0\n        },\n        \"actor_mutations\": [],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\n          \"keep_original\": true,\n          \"spawn_offset\": {\n            \"x\": 0.0,\n            \"y\": 0.0\n          },\n          \"destination_offset\": {\n            \"x\": 0.0,\n            \"y\": 0.0\n          }\n        }\n      },\n      \"pre_execution_validation_rules\": [\n        \"Ego vehicle approaches a red light.\"\n      ],\n      \"post_execution_validation_rules\": [\n        \"Planning module sends zero-value commands.\",\n        \"Ego vehicle runs the red light.\",\n        \"Ego vehicle collides with another actor.\"\n      ],\n      \"uncertainty\": [\n        \"The specific trigger for the zero-command failure is unknown.\"\n      ]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Slightly alter the ego vehicle's starting position to change its approach to the intersection.\",\n      \"mutation_intent\": \"Determine if minor changes in the ego's trajectory and timing when approaching the intersection affect the planning failure.\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\n          \"rain\": 0,\n          \"fog\": 0,\n          \"wetness\": 0,\n          \"puddle\": 0\n        },\n        \"actor_mutations\": [],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\n          \"keep_original\": false,\n          \"spawn_offset\": {\n            \"x\": 1.5,\n            \"y\": -1.0\n          },\n          \"destination_offset\": {\n            \"x\": 0.0,\n            \"y\": 0.0\n          }\n        }\n      },\n      \"pre_execution_validation_rules\": [\n        \"Ego vehicle approaches a red light.\"\n      ],\n      \"post_execution_validation_rules\": [\n        \"Planning module sends zero-value commands.\",\n        \"Ego vehicle runs the red light.\",\n        \"Ego vehicle collides with another actor.\"\n      ],\n      \"uncertainty\": [\n        \"The specific trigger for the zero-command failure is unknown.\"\n      ]\n    }\n  ]\n}\n```",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "gemini-2.5-pro",
+    "object": "chat.completion",
+    "service_tier": null,
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 2553,
+      "prompt_tokens": 1301,
+      "total_tokens": 3854,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": 0,
+        "reasoning_tokens": 1840,
+        "rejected_prediction_tokens": null,
+        "text_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 0,
+        "text_tokens": 1301,
+        "image_tokens": 0
+      },
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "input_tokens_details": null,
+      "claude_cache_creation_5_m_tokens": 0,
+      "claude_cache_creation_1_h_tokens": 0
+    }
+  },
+  "error_message": "",
+  "elapsed_sec": 24.289,
+  "timestamp": "<REDACTED_TIMESTAMP>"
+}

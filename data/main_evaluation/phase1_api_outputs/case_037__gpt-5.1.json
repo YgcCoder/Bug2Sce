@@ -1,0 +1,142 @@
+{
+  "case_id": "case_037",
+  "workflow": "phase1_causal_explanation",
+  "model_name": "gpt-5.1",
+  "model_id": "gpt-5.1",
+  "status": "completed",
+  "dry_run": false,
+  "schema_valid": true,
+  "schema_errors": [],
+  "quality_flags": [],
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_prompts/case_037__gpt-5.1.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_037__gpt-5.1.json",
+  "prompt_estimated_tokens": 3277,
+  "usage": {
+    "prompt_tokens": 3522,
+    "completion_tokens": 1320,
+    "total_tokens": 4842
+  },
+  "estimated_cost_usd": null,
+  "raw_response": "{\n  \"case_id\": \"case_037\",\n  \"fault_layer\": \"unknown\",\n  \"fault_component\": \"unknown\",\n  \"causal_explanation\": \"Oracle collision messages occur around the dataset collision timestamp while error.json reports only a red-light violation. The ego shows essentially zero motion over the drive and planning consistently publishes full waypoint sets with no blocked flags. A nearby object is reported very close to the ego at the collision time, but there is no direct evidence of how the ego and actor paths interacted, whether any lane boundary was crossed, or whether the ego actually crossed a red-light stop line. Autoware command topics are all zero while simulator vehicle_status reports small nonzero velocities in the collision window, making controller and actuation behavior uncertain.\",\n  \"root_cause_pattern\": \"Conservative preservation pattern: a red-light oracle violation is recorded while a close-proximity collision oracle event with a nearby actor occurs under heavy-rain conditions, with Autoware planning publishing non-blocked waypoints and actuation command topics remaining at zero, but the precise fault layer behind the collision, lane invasion, and red-light behaviors remains unknown.\",\n  \"preservation_constraints\": [\n    \"The generated candidate should preserve an oracle red-light violation event in error.json.\",\n    \"A collision oracle topic should report at least one impulse event near the end of the run, even if error_json does not flag a crash.\",\n    \"At least one non-ego actor should be present and come within a few meters of the ego near the failure time.\",\n    \"Final waypoints should remain available and not be marked blocked in the critical window before the failure.\",\n    \"vehicle_cmd messages should remain near-zero for acceleration, brake, steer, and target speed over the run.\"\n  ],\n  \"modifiable_factors\": [\n    \"actor_position\",\n    \"actor_velocity\",\n    \"weather\",\n    \"mission\",\n    \"traffic_light_timing\",\n    \"traffic_light_positions\",\n    \"ego_start_time_relative_to_signal_cycle\"\n  ],\n  \"non_modifiable_conditions\": [\n    \"Same oracle symptom pattern: error_json reports a red-light violation while the collision oracle topic reports at least one collision impulse.\",\n    \"Presence of at least one nearby non-ego actor at the time of the collision oracle event.\",\n    \"Autoware planning publishes final_waypoints throughout the run with nonzero counts and no persistent blocked flags.\",\n    \"Autoware /vehicle_cmd topics remain all-zero (or effectively zero) for throttle/accel, brake, steer, and target speed.\"\n  ],\n  \"uncertainty\": [\n    \"Dataset.xlsx reports collision and lane_invasion while error.json does not, so collision and lane-invasion labels are not confirmed ground truth.\",\n    \"Route-to-traffic-light relation and stop-line crossing for the red-light violation are unknown from the summaries.\",\n    \"The precise interaction geometry between ego and the nearby actor at collision time is not available.\",\n    \"Autoware module-level responsibility (perception vs planning vs actuation) cannot be localized from the available topics.\",\n    \"vehicle_status shows nonzero motion and braking within the collision window while vehicle_cmd remains zero, making controller and actuation behavior uncertain.\"\n  ],\n  \"evidence_support\": [\n    {\n      \"evidence_id\": \"oracle_consistency\",\n      \"claim\": \"Dataset labels indicate C+L+R, while error.json reports only a red-light violation; collision and lane invasion labels are inconsistent across sources.\"\n    },\n    {\n      \"evidence_id\": \"critical_window_summary.collision_window\",\n      \"claim\": \"A collision window is defined with collision_timestamp around 143.12 s, collision_topic_exists is true, and a closest available object is within about 2.9 m of the ego near that time.\"\n    },\n    {\n      \"evidence_id\": \"critical_window_summary.red_light_window\",\n      \"claim\": \"error_json marks a red-light violation but route-light relation and stop-line crossing are reported as unknown; stop_line_ids in nearest final waypoints are 4294967295.\"\n    },\n    {\n      \"evidence_id\": \"trace_summary_compact.planning.final_waypoints\",\n      \"claim\": \"final_waypoints exist from ~19.77 s to ~144.67 s with constant waypoint_count of 101 and no blocked rows in the sampled data.\"\n    },\n    {\n      \"evidence_id\": \"trace_summary_compact.actuation.vehicle_cmd\",\n      \"claim\": \"vehicle_cmd exists for the whole run but accel_cmd, brake_cmd, steer_cmd, and target_speed are all zero in the sampled range.\"\n    },\n    {\n      \"evidence_id\": \"trace_summary_compact.actuation.vehicle_status\",\n      \"claim\": \"vehicle_status shows very small but nonzero maximum velocity and zero throttle, brake, and steer in the sampled data, indicating slight motion with no commanded control visible in vehicle_cmd.\"\n    },\n    {\n      \"evidence_id\": \"trace_summary_compact.oracle.collision\",\n      \"claim\": \"The collision topic records impulses between about 143.12 s and 144.67 s with nontrivial magnitudes, consistent with at least one collision event.\"\n    },\n    {\n      \"evidence_id\": \"trace_summary_compact.oracle.traffic_lights\",\n      \"claim\": \"Traffic light states 0, 1, and 2 are present with a fixed count of 36 signals, confirming the presence of signalized intersections though not their relation to the ego route.\"\n    }\n  ],\n  \"confidence\": \"low\",\n  \"ready_for_phase2_generation\": \"uncertain\",\n  \"notes_for_validator\": [\n    \"Treat collision and lane_invasion as uncertain due to disagreement between Dataset.xlsx and error.json; only the red-light error_json event is confirmed.\",\n    \"Post-execution validation should check that error.json still flags a red-light violation while the collision oracle topic records at least one impulse event, even if error_json does not mark a crash.\",\n    \"Verify that final_waypoints remain present and not blocked in the critical window prior to the oracle collision time.\",\n    \"Confirm that vehicle_cmd remains effectively zero for accel, brake, steer, and target speed, while vehicle_status (or odometry) indicates at most slight motion.\",\n    \"Do not attribute the root cause to a specific Autoware module unless additional evidence (e.g., detailed logs or manual inspection) becomes available.\"\n  ]\n}",
+  "parsed_response": {
+    "case_id": "case_037",
+    "fault_layer": "unknown",
+    "fault_component": "unknown",
+    "causal_explanation": "Oracle collision messages occur around the dataset collision timestamp while error.json reports only a red-light violation. The ego shows essentially zero motion over the drive and planning consistently publishes full waypoint sets with no blocked flags. A nearby object is reported very close to the ego at the collision time, but there is no direct evidence of how the ego and actor paths interacted, whether any lane boundary was crossed, or whether the ego actually crossed a red-light stop line. Autoware command topics are all zero while simulator vehicle_status reports small nonzero velocities in the collision window, making controller and actuation behavior uncertain.",
+    "root_cause_pattern": "Conservative preservation pattern: a red-light oracle violation is recorded while a close-proximity collision oracle event with a nearby actor occurs under heavy-rain conditions, with Autoware planning publishing non-blocked waypoints and actuation command topics remaining at zero, but the precise fault layer behind the collision, lane invasion, and red-light behaviors remains unknown.",
+    "preservation_constraints": [
+      "The generated candidate should preserve an oracle red-light violation event in error.json.",
+      "A collision oracle topic should report at least one impulse event near the end of the run, even if error_json does not flag a crash.",
+      "At least one non-ego actor should be present and come within a few meters of the ego near the failure time.",
+      "Final waypoints should remain available and not be marked blocked in the critical window before the failure.",
+      "vehicle_cmd messages should remain near-zero for acceleration, brake, steer, and target speed over the run."
+    ],
+    "modifiable_factors": [
+      "actor_position",
+      "actor_velocity",
+      "weather",
+      "mission",
+      "traffic_light_timing",
+      "traffic_light_positions",
+      "ego_start_time_relative_to_signal_cycle"
+    ],
+    "non_modifiable_conditions": [
+      "Same oracle symptom pattern: error_json reports a red-light violation while the collision oracle topic reports at least one collision impulse.",
+      "Presence of at least one nearby non-ego actor at the time of the collision oracle event.",
+      "Autoware planning publishes final_waypoints throughout the run with nonzero counts and no persistent blocked flags.",
+      "Autoware /vehicle_cmd topics remain all-zero (or effectively zero) for throttle/accel, brake, steer, and target speed."
+    ],
+    "uncertainty": [
+      "Dataset.xlsx reports collision and lane_invasion while error.json does not, so collision and lane-invasion labels are not confirmed ground truth.",
+      "Route-to-traffic-light relation and stop-line crossing for the red-light violation are unknown from the summaries.",
+      "The precise interaction geometry between ego and the nearby actor at collision time is not available.",
+      "Autoware module-level responsibility (perception vs planning vs actuation) cannot be localized from the available topics.",
+      "vehicle_status shows nonzero motion and braking within the collision window while vehicle_cmd remains zero, making controller and actuation behavior uncertain."
+    ],
+    "evidence_support": [
+      {
+        "evidence_id": "oracle_consistency",
+        "claim": "Dataset labels indicate C+L+R, while error.json reports only a red-light violation; collision and lane invasion labels are inconsistent across sources."
+      },
+      {
+        "evidence_id": "critical_window_summary.collision_window",
+        "claim": "A collision window is defined with collision_timestamp around 143.12 s, collision_topic_exists is true, and a closest available object is within about 2.9 m of the ego near that time."
+      },
+      {
+        "evidence_id": "critical_window_summary.red_light_window",
+        "claim": "error_json marks a red-light violation but route-light relation and stop-line crossing are reported as unknown; stop_line_ids in nearest final waypoints are 4294967295."
+      },
+      {
+        "evidence_id": "trace_summary_compact.planning.final_waypoints",
+        "claim": "final_waypoints exist from ~19.77 s to ~144.67 s with constant waypoint_count of 101 and no blocked rows in the sampled data."
+      },
+      {
+        "evidence_id": "trace_summary_compact.actuation.vehicle_cmd",
+        "claim": "vehicle_cmd exists for the whole run but accel_cmd, brake_cmd, steer_cmd, and target_speed are all zero in the sampled range."
+      },
+      {
+        "evidence_id": "trace_summary_compact.actuation.vehicle_status",
+        "claim": "vehicle_status shows very small but nonzero maximum velocity and zero throttle, brake, and steer in the sampled data, indicating slight motion with no commanded control visible in vehicle_cmd."
+      },
+      {
+        "evidence_id": "trace_summary_compact.oracle.collision",
+        "claim": "The collision topic records impulses between about 143.12 s and 144.67 s with nontrivial magnitudes, consistent with at least one collision event."
+      },
+      {
+        "evidence_id": "trace_summary_compact.oracle.traffic_lights",
+        "claim": "Traffic light states 0, 1, and 2 are present with a fixed count of 36 signals, confirming the presence of signalized intersections though not their relation to the ego route."
+      }
+    ],
+    "confidence": "low",
+    "ready_for_phase2_generation": "uncertain",
+    "notes_for_validator": [
+      "Treat collision and lane_invasion as uncertain due to disagreement between Dataset.xlsx and error.json; only the red-light error_json event is confirmed.",
+      "Post-execution validation should check that error.json still flags a red-light violation while the collision oracle topic records at least one impulse event, even if error_json does not mark a crash.",
+      "Verify that final_waypoints remain present and not blocked in the critical window prior to the oracle collision time.",
+      "Confirm that vehicle_cmd remains effectively zero for accel, brake, steer, and target speed, while vehicle_status (or odometry) indicates at most slight motion.",
+      "Do not attribute the root cause to a specific Autoware module unless additional evidence (e.g., detailed logs or manual inspection) becomes available."
+    ]
+  },
+  "raw_api_payload": {
+    "id": "<REDACTED_RESPONSE_ID>",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "{\n  \"case_id\": \"case_037\",\n  \"fault_layer\": \"unknown\",\n  \"fault_component\": \"unknown\",\n  \"causal_explanation\": \"Oracle collision messages occur around the dataset collision timestamp while error.json reports only a red-light violation. The ego shows essentially zero motion over the drive and planning consistently publishes full waypoint sets with no blocked flags. A nearby object is reported very close to the ego at the collision time, but there is no direct evidence of how the ego and actor paths interacted, whether any lane boundary was crossed, or whether the ego actually crossed a red-light stop line. Autoware command topics are all zero while simulator vehicle_status reports small nonzero velocities in the collision window, making controller and actuation behavior uncertain.\",\n  \"root_cause_pattern\": \"Conservative preservation pattern: a red-light oracle violation is recorded while a close-proximity collision oracle event with a nearby actor occurs under heavy-rain conditions, with Autoware planning publishing non-blocked waypoints and actuation command topics remaining at zero, but the precise fault layer behind the collision, lane invasion, and red-light behaviors remains unknown.\",\n  \"preservation_constraints\": [\n    \"The generated candidate should preserve an oracle red-light violation event in error.json.\",\n    \"A collision oracle topic should report at least one impulse event near the end of the run, even if error_json does not flag a crash.\",\n    \"At least one non-ego actor should be present and come within a few meters of the ego near the failure time.\",\n    \"Final waypoints should remain available and not be marked blocked in the critical window before the failure.\",\n    \"vehicle_cmd messages should remain near-zero for acceleration, brake, steer, and target speed over the run.\"\n  ],\n  \"modifiable_factors\": [\n    \"actor_position\",\n    \"actor_velocity\",\n    \"weather\",\n    \"mission\",\n    \"traffic_light_timing\",\n    \"traffic_light_positions\",\n    \"ego_start_time_relative_to_signal_cycle\"\n  ],\n  \"non_modifiable_conditions\": [\n    \"Same oracle symptom pattern: error_json reports a red-light violation while the collision oracle topic reports at least one collision impulse.\",\n    \"Presence of at least one nearby non-ego actor at the time of the collision oracle event.\",\n    \"Autoware planning publishes final_waypoints throughout the run with nonzero counts and no persistent blocked flags.\",\n    \"Autoware /vehicle_cmd topics remain all-zero (or effectively zero) for throttle/accel, brake, steer, and target speed.\"\n  ],\n  \"uncertainty\": [\n    \"Dataset.xlsx reports collision and lane_invasion while error.json does not, so collision and lane-invasion labels are not confirmed ground truth.\",\n    \"Route-to-traffic-light relation and stop-line crossing for the red-light violation are unknown from the summaries.\",\n    \"The precise interaction geometry between ego and the nearby actor at collision time is not available.\",\n    \"Autoware module-level responsibility (perception vs planning vs actuation) cannot be localized from the available topics.\",\n    \"vehicle_status shows nonzero motion and braking within the collision window while vehicle_cmd remains zero, making controller and actuation behavior uncertain.\"\n  ],\n  \"evidence_support\": [\n    {\n      \"evidence_id\": \"oracle_consistency\",\n      \"claim\": \"Dataset labels indicate C+L+R, while error.json reports only a red-light violation; collision and lane invasion labels are inconsistent across sources.\"\n    },\n    {\n      \"evidence_id\": \"critical_window_summary.collision_window\",\n      \"claim\": \"A collision window is defined with collision_timestamp around 143.12 s, collision_topic_exists is true, and a closest available object is within about 2.9 m of the ego near that time.\"\n    },\n    {\n      \"evidence_id\": \"critical_window_summary.red_light_window\",\n      \"claim\": \"error_json marks a red-light violation but route-light relation and stop-line crossing are reported as unknown; stop_line_ids in nearest final waypoints are 4294967295.\"\n    },\n    {\n      \"evidence_id\": \"trace_summary_compact.planning.final_waypoints\",\n      \"claim\": \"final_waypoints exist from ~19.77 s to ~144.67 s with constant waypoint_count of 101 and no blocked rows in the sampled data.\"\n    },\n    {\n      \"evidence_id\": \"trace_summary_compact.actuation.vehicle_cmd\",\n      \"claim\": \"vehicle_cmd exists for the whole run but accel_cmd, brake_cmd, steer_cmd, and target_speed are all zero in the sampled range.\"\n    },\n    {\n      \"evidence_id\": \"trace_summary_compact.actuation.vehicle_status\",\n      \"claim\": \"vehicle_status shows very small but nonzero maximum velocity and zero throttle, brake, and steer in the sampled data, indicating slight motion with no commanded control visible in vehicle_cmd.\"\n    },\n    {\n      \"evidence_id\": \"trace_summary_compact.oracle.collision\",\n      \"claim\": \"The collision topic records impulses between about 143.12 s and 144.67 s with nontrivial magnitudes, consistent with at least one collision event.\"\n    },\n    {\n      \"evidence_id\": \"trace_summary_compact.oracle.traffic_lights\",\n      \"claim\": \"Traffic light states 0, 1, and 2 are present with a fixed count of 36 signals, confirming the presence of signalized intersections though not their relation to the ego route.\"\n    }\n  ],\n  \"confidence\": \"low\",\n  \"ready_for_phase2_generation\": \"uncertain\",\n  \"notes_for_validator\": [\n    \"Treat collision and lane_invasion as uncertain due to disagreement between Dataset.xlsx and error.json; only the red-light error_json event is confirmed.\",\n    \"Post-execution validation should check that error.json still flags a red-light violation while the collision oracle topic records at least one impulse event, even if error_json does not mark a crash.\",\n    \"Verify that final_waypoints remain present and not blocked in the critical window prior to the oracle collision time.\",\n    \"Confirm that vehicle_cmd remains effectively zero for accel, brake, steer, and target speed, while vehicle_status (or odometry) indicates at most slight motion.\",\n    \"Do not attribute the root cause to a specific Autoware module unless additional evidence (e.g., detailed logs or manual inspection) becomes available.\"\n  ]\n}",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": [],
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "gpt-5.1-2025-11-13",
+    "object": "chat.completion",
+    "service_tier": "default",
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 1320,
+      "prompt_tokens": 3522,
+      "total_tokens": 4842,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": 0,
+        "audio_tokens": 0,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 0
+      }
+    }
+  },
+  "error_message": "",
+  "timestamp": "<REDACTED_TIMESTAMP>",
+  "elapsed_sec": 19.52
+}

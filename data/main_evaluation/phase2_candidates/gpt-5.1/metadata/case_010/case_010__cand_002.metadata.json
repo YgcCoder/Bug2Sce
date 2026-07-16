@@ -1,0 +1,138 @@
+{
+  "case_id": "case_010",
+  "model_name": "gpt-5.1",
+  "candidate_index": 2,
+  "candidate_spec": {
+    "candidate_id": "cand_002",
+    "high_level_variant": "Short offset Town01 mission that slightly reorients the start–goal vector across a puddled section, keeping heavy rain and short travel while preserving the label–oracle disagreement about lane invasion.",
+    "mutation_intent": "Explores a nearby short route on Town01 that nudges the ego trajectory laterally relative to puddles while maintaining similar environmental conditions and system behavior (active perception/planning, zeroed commands). This variant keeps the ambiguity of any true lane crossing but stresses a slightly different alignment with wet-road features under the same lane-invasion labeling conflict.",
+    "expected_oracle": "lane_invasion",
+    "modifications": {
+      "weather_delta": {
+        "rain": -3,
+        "fog": 10,
+        "wetness": 5,
+        "puddle": -5
+      },
+      "actor_mutations": [],
+      "puddle_mutations": [
+        {
+          "puddle_index": 0,
+          "location_offset": {
+            "x": -1.0,
+            "y": 1.5
+          },
+          "level_delta": 0.02,
+          "size_scale": 1.0
+        },
+        {
+          "puddle_index": 1,
+          "location_offset": {
+            "x": 3.0,
+            "y": -1.0
+          },
+          "level_delta": -0.1,
+          "size_scale": 0.95
+        },
+        {
+          "puddle_index": 2,
+          "location_offset": {
+            "x": -2.5,
+            "y": 2.0
+          },
+          "level_delta": 0.1,
+          "size_scale": 1.05
+        }
+      ],
+      "mission_mutation": {
+        "keep_original": false,
+        "spawn_offset": {
+          "x": -2.0,
+          "y": 2.0
+        },
+        "destination_offset": {
+          "x": -3.0,
+          "y": -2.5
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Ensure map is Town01.",
+      "Validate that spawn and destination offsets keep the mission length short (under ~25 m along road network).",
+      "Confirm weather remains rainy and wet: rain >= 50 after delta, wetness >= 75, puddles >= 60.",
+      "Check that at least one large puddle overlaps or closely borders the new ego path corridor.",
+      "Ensure there are still no non-ego actors present."
+    ],
+    "post_execution_validation_rules": [
+      "Verify error.json (or equivalent) still reports lane_invasion=false for the ego.",
+      "Confirm that the scenario is still tagged or grouped as lane-invasion-related by any higher-level metadata.",
+      "Check that perception object and prediction topics are active and non-empty up to termination.",
+      "Confirm planning final_waypoints stay continuously available with stable waypoint count and no prolonged dropouts.",
+      "Measure ego trajectory length and ensure only limited motion from the start (comparable to the seed scenario).",
+      "Confirm that commanded accelerations/steering remain near zero even if the ego attains non-zero velocity."
+    ],
+    "uncertainty": [
+      "Whether the lateral offset causes the ego path to cross any true lane boundary is unknown due to absent lane geometry in logs.",
+      "The impact of mildly reduced rain but increased fog on perception and planning reliability is not directly inferable.",
+      "Potential differences in low-level vehicle dynamics along the laterally shifted path are not visible from high-level summaries."
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": -3.0,
+      "fog": 10.0,
+      "wetness": 5.0,
+      "puddle": -5.0
+    },
+    "actor_mutations": [],
+    "puddle_mutations": [
+      {
+        "puddle_index": 0,
+        "location_offset": {
+          "x": -1.0,
+          "y": 1.5
+        },
+        "level_delta": 0.02,
+        "size_scale": 1.0
+      },
+      {
+        "puddle_index": 1,
+        "location_offset": {
+          "x": 3.0,
+          "y": -1.0
+        },
+        "level_delta": -0.1,
+        "size_scale": 0.95
+      },
+      {
+        "puddle_index": 2,
+        "location_offset": {
+          "x": -2.5,
+          "y": 2.0
+        },
+        "level_delta": 0.1,
+        "size_scale": 1.05
+      }
+    ],
+    "mission_mutation": {
+      "spawn_offset": {
+        "x": -2.0,
+        "y": 2.0
+      },
+      "destination_offset": {
+        "x": -3.0,
+        "y": -2.5
+      }
+    }
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": [
+      "no actors in candidate scenario"
+    ]
+  },
+  "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_010__gpt-5.1.json",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_010__gpt-5.1.json",
+  "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+}

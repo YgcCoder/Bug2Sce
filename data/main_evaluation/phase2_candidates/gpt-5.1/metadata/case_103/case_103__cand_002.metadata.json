@@ -1,0 +1,130 @@
+{
+  "case_id": "case_103",
+  "model_name": "gpt-5.1",
+  "candidate_index": 2,
+  "candidate_spec": {
+    "candidate_id": "cand_002",
+    "high_level_variant": "Same spawn, ego route slightly shifted laterally, slightly slower background vehicle.",
+    "mutation_intent": "Change surrounding vehicle influence while preserving red_light violation conditions.",
+    "expected_oracle": "red_light",
+    "modifications": {
+      "weather_delta": {
+        "rain": -5,
+        "fog": 5,
+        "wetness": -3,
+        "puddle": -3
+      },
+      "actor_mutations": [
+        {
+          "actor_index": 0,
+          "position_offset": {
+            "x": 3.0,
+            "y": -1.0
+          },
+          "speed_delta": -1.0
+        }
+      ],
+      "puddle_mutations": [
+        {
+          "puddle_index": 0,
+          "location_offset": {
+            "x": -2.0,
+            "y": 2.0
+          },
+          "level_delta": 0.05,
+          "size_scale": 1.1
+        },
+        {
+          "puddle_index": 1,
+          "location_offset": {
+            "x": 2.0,
+            "y": -1.5
+          },
+          "level_delta": 0.05,
+          "size_scale": 1.1
+        }
+      ],
+      "mission_mutation": {
+        "keep_original": false,
+        "spawn_offset": {
+          "x": -1.0,
+          "y": 1.5
+        },
+        "destination_offset": {
+          "x": 1.0,
+          "y": -1.5
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Ensure traffic-light messages active along ego route.",
+      "Verify ego odometry and pose continuous at junction.",
+      "Confirm planner waypoints cross at least one light."
+    ],
+    "post_execution_validation_rules": [
+      "Check error_json red_light=true, regardless of lane_invasion.",
+      "Confirm at least two light state changes before violation.",
+      "Verify no run-level logging failures occurred."
+    ],
+    "uncertainty": [
+      "Module-level root cause remains unresolved.",
+      "Lane_invasion label mismatch may persist."
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": -5.0,
+      "fog": 5.0,
+      "wetness": -3.0,
+      "puddle": -3.0
+    },
+    "actor_mutations": [
+      {
+        "actor_index": 0,
+        "position_offset": {
+          "x": 3.0,
+          "y": -1.0
+        },
+        "speed_delta": -1.0
+      }
+    ],
+    "puddle_mutations": [
+      {
+        "puddle_index": 0,
+        "location_offset": {
+          "x": -2.0,
+          "y": 2.0
+        },
+        "level_delta": 0.05,
+        "size_scale": 1.1
+      },
+      {
+        "puddle_index": 1,
+        "location_offset": {
+          "x": 2.0,
+          "y": -1.5
+        },
+        "level_delta": 0.05,
+        "size_scale": 1.1
+      }
+    ],
+    "mission_mutation": {
+      "spawn_offset": {
+        "x": -1.0,
+        "y": 1.5
+      },
+      "destination_offset": {
+        "x": 1.0,
+        "y": -1.5
+      }
+    }
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_103__gpt-5.1.json",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_103__gpt-5.1.json",
+  "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+}

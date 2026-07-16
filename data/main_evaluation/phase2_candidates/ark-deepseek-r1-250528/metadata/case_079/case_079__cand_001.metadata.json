@@ -1,0 +1,102 @@
+{
+  "case_id": "case_079",
+  "model_name": "ark-deepseek-r1-250528",
+  "candidate_index": 1,
+  "candidate_spec": {
+    "candidate_id": "cand_001",
+    "high_level_variant": "Minor positional shift of both existing actors, all other original scenario elements preserved",
+    "mutation_intent": "Preserves all Phase 1 preservation constraints, only introduces minor positional variation to test repeatability of the original conflicting symptom pattern, retains all core elements including red traffic light, 2 actors, original map, weather and mission",
+    "expected_oracle": "compound",
+    "modifications": {
+      "weather_delta": {
+        "rain": 0,
+        "fog": 0,
+        "wetness": 0,
+        "puddle": 0
+      },
+      "actor_mutations": [
+        {
+          "actor_index": 0,
+          "position_offset": {
+            "x": 1.2,
+            "y": -0.8
+          },
+          "speed_delta": 0.0
+        },
+        {
+          "actor_index": 1,
+          "position_offset": {
+            "x": -0.5,
+            "y": 1.1
+          },
+          "speed_delta": 0.2
+        }
+      ],
+      "puddle_mutations": [],
+      "mission_mutation": {
+        "keep_original": true,
+        "spawn_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "destination_offset": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Map is Town01",
+      "2 actors are present",
+      "Original weather conditions are preserved",
+      "Mission spawn and destination are unchanged",
+      "At least one red-state traffic light is along ego route"
+    ],
+    "post_execution_validation_rules": [
+      "Check both red-light violation and lane invasion status to preserve original conflicting label pattern"
+    ],
+    "uncertainty": [
+      "Lane invasion event remains unconfirmed per original error.json",
+      "Module-level failure cause is still unlocalized",
+      "Controller behavior uncertainty is preserved"
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": 0.0,
+      "fog": 0.0,
+      "wetness": 0.0,
+      "puddle": 0.0
+    },
+    "actor_mutations": [
+      {
+        "actor_index": 0,
+        "position_offset": {
+          "x": 1.2,
+          "y": -0.8
+        },
+        "speed_delta": 0.0
+      },
+      {
+        "actor_index": 1,
+        "position_offset": {
+          "x": -0.5,
+          "y": 1.1
+        },
+        "speed_delta": 0.2
+      }
+    ],
+    "puddle_mutations": [],
+    "mission_mutation": {
+      "keep_original": true
+    }
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_079__ark-deepseek-r1-250528.json",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_079__ark-deepseek-r1-250528.json",
+  "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+}

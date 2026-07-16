@@ -1,0 +1,541 @@
+{
+  "case_id": "case_094",
+  "model_name": "gpt-5.1",
+  "workflow": "phase2_grounded_generation",
+  "status": "completed",
+  "schema_valid": true,
+  "schema_errors": [],
+  "phase1_ready": "uncertain",
+  "num_candidates_requested": 2,
+  "num_candidates_written": 2,
+  "num_pre_valid": 2,
+  "candidate_records": [
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/gpt-5.1/json/case_094/case_094__cand_001.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/gpt-5.1/metadata/case_094/case_094__cand_001.metadata.json",
+      "case_id": "case_094",
+      "model_name": "gpt-5.1",
+      "candidate_index": 1,
+      "candidate_spec": {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Baseline replication with nearby slow walker preserved and minor mission/spawn perturbation to keep ego in motion toward a pedestrian near the lane edge before a late-run collision",
+        "mutation_intent": "Keep the same basic geometry and actor configuration so that ego follows a stable planned route while a slow walker remains within moderate distance near the ego’s path. Only small spatial nudges are applied to maintain proximity and interaction likelihood, aiming to preserve the pattern where planning publishes valid waypoints, ego moves, vehicle_cmd stays near zero, yet a collision occurs near the end of the run. Changes are conservative to maintain the unknown-layer root-cause and logging/actuation mismatch ambiguity.",
+        "expected_oracle": "collision",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 1.0,
+                "y": -1.5
+              },
+              "speed_delta": 0.2
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": -2.0,
+                "y": 1.0
+              },
+              "speed_delta": -0.5
+            }
+          ],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 0.5,
+                "y": 0.5
+              },
+              "level_delta": 0.05,
+              "size_scale": 1.0
+            },
+            {
+              "puddle_index": 1,
+              "location_offset": {
+                "x": -0.5,
+                "y": -0.5
+              },
+              "level_delta": -0.03,
+              "size_scale": 1.0
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": false,
+            "spawn_offset": {
+              "x": 2.0,
+              "y": -1.0
+            },
+            "destination_offset": {
+              "x": -1.5,
+              "y": 2.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Ensure ego spawn and destination are valid lane positions on Town01 and produce a drivable planned route without hard planner blockage.",
+          "Verify at least one non-ego actor (preferably actor_index 0) is within 40 m of ego at some time before the final 10 s of the run, based on simulator ground truth.",
+          "Check that the scenario length is sufficient for ego to reach nonzero speed (>2 m/s) and approach the nearby actor before the end of the run.",
+          "Confirm that perception or prediction topics can detect and track at least one actor before the anticipated collision window (no complete sensor blackout)."
+        ],
+        "post_execution_validation_rules": [
+          "Confirm the oracle reports a collision event occurring near the end of the log (e.g., after 80% of total simulation time) while ego still has nonzero speed shortly before impact.",
+          "Verify that planning publishes valid, non-blocked final waypoints continuously up to within a few seconds before the collision (no long planner stop due to blockage).",
+          "Check that the actuator command topic (vehicle_cmd or equivalent) has accel, brake, and steering commands effectively at or near zero over the critical window leading to the collision.",
+          "Confirm that vehicle_status or odometry reports nonzero ego speed and some variation in heading or steering over the same window, indicating motion despite near-zero commands.",
+          "Ensure a non-ego actor is within moderate distance (<= 10–15 m) of ego in the seconds preceding collision, and that this actor is visible in simulator/perception data.",
+          "Do not require stuck or lane_invasion labels; treat the run as valid if the collision and command–status mismatch patterns are satisfied even without those symptoms."
+        ],
+        "uncertainty": [
+          "The exact interaction geometry leading to the collision (pedestrian crossing vs. ego side-swipe) is not fixed; multiple layouts that keep the actor close to ego may be consistent with the original logs.",
+          "The source of the apparent controller–status mismatch (actuator layer, simulator bridge, or logging configuration) remains unidentified; this scenario only preserves the observed symptom pattern.",
+          "The original data contained conflicting labels for stuck and lane_invasion; these behaviors may or may not emerge here and are not enforced."
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 0.0,
+          "fog": 0.0,
+          "wetness": 0.0,
+          "puddle": 0.0
+        },
+        "actor_mutations": [
+          {
+            "actor_index": 0,
+            "position_offset": {
+              "x": 1.0,
+              "y": -1.5
+            },
+            "speed_delta": 0.2
+          },
+          {
+            "actor_index": 1,
+            "position_offset": {
+              "x": -2.0,
+              "y": 1.0
+            },
+            "speed_delta": -0.5
+          }
+        ],
+        "puddle_mutations": [
+          {
+            "puddle_index": 0,
+            "location_offset": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "level_delta": 0.05,
+            "size_scale": 1.0
+          },
+          {
+            "puddle_index": 1,
+            "location_offset": {
+              "x": -0.5,
+              "y": -0.5
+            },
+            "level_delta": -0.03,
+            "size_scale": 1.0
+          }
+        ],
+        "mission_mutation": {
+          "spawn_offset": {
+            "x": 2.0,
+            "y": -1.0
+          },
+          "destination_offset": {
+            "x": -1.5,
+            "y": 2.0
+          }
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_094__gpt-5.1.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_094__gpt-5.1.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    },
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/gpt-5.1/json/case_094/case_094__cand_002.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/gpt-5.1/metadata/case_094/case_094__cand_002.metadata.json",
+      "case_id": "case_094",
+      "model_name": "gpt-5.1",
+      "candidate_index": 2,
+      "candidate_spec": {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Shifted route with closer pedestrian approach near destination to encourage late collision while maintaining planner validity and zeroed actuator commands",
+        "mutation_intent": "Bias the mission so ego passes slightly nearer to the primary walker and arrives closer to the destination when the interaction occurs, raising collision likelihood near the run’s end. This keeps the core pattern—ego follows valid waypoints, a nearby actor is present, commands remain near zero but vehicle_status shows motion—while exploring a slightly different spatial relationship and timing to conservatively test robustness of the unknown-layer failure.",
+        "expected_oracle": "collision",
+        "modifications": {
+          "weather_delta": {
+            "rain": 5,
+            "fog": 3,
+            "wetness": 5,
+            "puddle": 5
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": -1.5,
+                "y": 2.5
+              },
+              "speed_delta": 0.5
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": 3.0,
+                "y": -2.0
+              },
+              "speed_delta": -1.0
+            }
+          ],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": -1.0,
+                "y": -1.0
+              },
+              "level_delta": 0.1,
+              "size_scale": 1.1
+            },
+            {
+              "puddle_index": 1,
+              "location_offset": {
+                "x": 1.0,
+                "y": 1.0
+              },
+              "level_delta": 0.08,
+              "size_scale": 0.9
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": false,
+            "spawn_offset": {
+              "x": -3.0,
+              "y": 0.5
+            },
+            "destination_offset": {
+              "x": 4.0,
+              "y": -3.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Validate that the new mission (spawn and destination offsets) still keeps ego on legal drivable lanes in Town01 and produces a continuous planned route.",
+          "Check that the primary walker (actor_index 0) path intersects or closely parallels ego’s lane within 25 m of the destination, to favor a late interaction window.",
+          "Ensure environmental changes (moderate rain, fog, wetness, puddles) do not create extreme sensor degradation or planner blockage; perception should still detect at least one actor.",
+          "Verify the scenario duration is long enough for ego to reach the vicinity of the destination while still moving at nonzero speed, so a collision can occur late in the run."
+        ],
+        "post_execution_validation_rules": [
+          "Confirm an oracle collision event occurs with ego in motion (speed > 1 m/s shortly before impact) and near the latter portion of the scenario time.",
+          "Check that final waypoints remain populated and unblocked up to shortly before the collision; there should be no prolonged planner halt state.",
+          "Inspect actuator command logs to ensure accel, brake, and steering commands are effectively zero (no significant actuation) during the seconds leading to the collision.",
+          "Verify from vehicle_status/odometry that ego maintains nonzero speed and exhibits some motion or heading change during the same period, evidencing a command–status mismatch.",
+          "Confirm that a non-ego actor (ideally actor_index 0) is within 10–15 m of ego in the seconds preceding collision and is visible in simulator/perception/prediction topics.",
+          "Do not enforce stuck or lane_invasion outcomes as pass/fail criteria; only the collision plus the zero-command versus moving-ego symptom must be satisfied."
+        ],
+        "uncertainty": [
+          "Increased rain, fog, and wetness may introduce additional perception or planning effects not clearly present in the original case; these should be monitored but are not the primary root-cause hypothesis.",
+          "The exact timing of when ego reaches the pedestrian near the destination may differ from the original scenario, as only late-collision and motion conditions are constrained.",
+          "The underlying cause of the zeroed vehicle_cmd signals remains ambiguous; this variant only preserves the observed mismatch pattern, not a specific subsystem fault model."
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 5.0,
+          "fog": 3.0,
+          "wetness": 5.0,
+          "puddle": 5.0
+        },
+        "actor_mutations": [
+          {
+            "actor_index": 0,
+            "position_offset": {
+              "x": -1.5,
+              "y": 2.5
+            },
+            "speed_delta": 0.5
+          },
+          {
+            "actor_index": 1,
+            "position_offset": {
+              "x": 3.0,
+              "y": -2.0
+            },
+            "speed_delta": -1.0
+          }
+        ],
+        "puddle_mutations": [
+          {
+            "puddle_index": 0,
+            "location_offset": {
+              "x": -1.0,
+              "y": -1.0
+            },
+            "level_delta": 0.1,
+            "size_scale": 1.1
+          },
+          {
+            "puddle_index": 1,
+            "location_offset": {
+              "x": 1.0,
+              "y": 1.0
+            },
+            "level_delta": 0.08,
+            "size_scale": 0.9
+          }
+        ],
+        "mission_mutation": {
+          "spawn_offset": {
+            "x": -3.0,
+            "y": 0.5
+          },
+          "destination_offset": {
+            "x": 4.0,
+            "y": -3.0
+          }
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_094__gpt-5.1.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_094__gpt-5.1.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    }
+  ],
+  "seed_artifact_zip": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/gpt-5.1/seed-artifact/seed-artifact-case_094.zip",
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_prompts/case_094__gpt-5.1.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_094__gpt-5.1.json",
+  "prompt_estimated_tokens": 1575,
+  "usage": {
+    "prompt_tokens": 1591,
+    "completion_tokens": 1984,
+    "total_tokens": 3575
+  },
+  "raw_response": "{\n  \"case_id\": \"case_094\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Baseline replication with nearby slow walker preserved and minor mission/spawn perturbation to keep ego in motion toward a pedestrian near the lane edge before a late-run collision\",\n      \"mutation_intent\": \"Keep the same basic geometry and actor configuration so that ego follows a stable planned route while a slow walker remains within moderate distance near the ego’s path. Only small spatial nudges are applied to maintain proximity and interaction likelihood, aiming to preserve the pattern where planning publishes valid waypoints, ego moves, vehicle_cmd stays near zero, yet a collision occurs near the end of the run. Changes are conservative to maintain the unknown-layer root-cause and logging/actuation mismatch ambiguity.\",\n      \"expected_oracle\": \"collision\",\n      \"modifications\": {\n        \"weather_delta\": {\n          \"rain\": 0,\n          \"fog\": 0,\n          \"wetness\": 0,\n          \"puddle\": 0\n        },\n        \"actor_mutations\": [\n          {\n            \"actor_index\": 0,\n            \"position_offset\": {\n              \"x\": 1.0,\n              \"y\": -1.5\n            },\n            \"speed_delta\": 0.2\n          },\n          {\n            \"actor_index\": 1,\n            \"position_offset\": {\n              \"x\": -2.0,\n              \"y\": 1.0\n            },\n            \"speed_delta\": -0.5\n          }\n        ],\n        \"puddle_mutations\": [\n          {\n            \"puddle_index\": 0,\n            \"location_offset\": {\n              \"x\": 0.5,\n              \"y\": 0.5\n            },\n            \"level_delta\": 0.05,\n            \"size_scale\": 1.0\n          },\n          {\n            \"puddle_index\": 1,\n            \"location_offset\": {\n              \"x\": -0.5,\n              \"y\": -0.5\n            },\n            \"level_delta\": -0.03,\n            \"size_scale\": 1.0\n          }\n        ],\n        \"mission_mutation\": {\n          \"keep_original\": false,\n          \"spawn_offset\": {\n            \"x\": 2.0,\n            \"y\": -1.0\n          },\n          \"destination_offset\": {\n            \"x\": -1.5,\n            \"y\": 2.0\n          }\n        }\n      },\n      \"pre_execution_validation_rules\": [\n        \"Ensure ego spawn and destination are valid lane positions on Town01 and produce a drivable planned route without hard planner blockage.\",\n        \"Verify at least one non-ego actor (preferably actor_index 0) is within 40 m of ego at some time before the final 10 s of the run, based on simulator ground truth.\",\n        \"Check that the scenario length is sufficient for ego to reach nonzero speed (>2 m/s) and approach the nearby actor before the end of the run.\",\n        \"Confirm that perception or prediction topics can detect and track at least one actor before the anticipated collision window (no complete sensor blackout).\"\n      ],\n      \"post_execution_validation_rules\": [\n        \"Confirm the oracle reports a collision event occurring near the end of the log (e.g., after 80% of total simulation time) while ego still has nonzero speed shortly before impact.\",\n        \"Verify that planning publishes valid, non-blocked final waypoints continuously up to within a few seconds before the collision (no long planner stop due to blockage).\",\n        \"Check that the actuator command topic (vehicle_cmd or equivalent) has accel, brake, and steering commands effectively at or near zero over the critical window leading to the collision.\",\n        \"Confirm that vehicle_status or odometry reports nonzero ego speed and some variation in heading or steering over the same window, indicating motion despite near-zero commands.\",\n        \"Ensure a non-ego actor is within moderate distance (<= 10–15 m) of ego in the seconds preceding collision, and that this actor is visible in simulator/perception data.\",\n        \"Do not require stuck or lane_invasion labels; treat the run as valid if the collision and command–status mismatch patterns are satisfied even without those symptoms.\"\n      ],\n      \"uncertainty\": [\n        \"The exact interaction geometry leading to the collision (pedestrian crossing vs. ego side-swipe) is not fixed; multiple layouts that keep the actor close to ego may be consistent with the original logs.\",\n        \"The source of the apparent controller–status mismatch (actuator layer, simulator bridge, or logging configuration) remains unidentified; this scenario only preserves the observed symptom pattern.\",\n        \"The original data contained conflicting labels for stuck and lane_invasion; these behaviors may or may not emerge here and are not enforced.\"\n      ]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Shifted route with closer pedestrian approach near destination to encourage late collision while maintaining planner validity and zeroed actuator commands\",\n      \"mutation_intent\": \"Bias the mission so ego passes slightly nearer to the primary walker and arrives closer to the destination when the interaction occurs, raising collision likelihood near the run’s end. This keeps the core pattern—ego follows valid waypoints, a nearby actor is present, commands remain near zero but vehicle_status shows motion—while exploring a slightly different spatial relationship and timing to conservatively test robustness of the unknown-layer failure.\",\n      \"expected_oracle\": \"collision\",\n      \"modifications\": {\n        \"weather_delta\": {\n          \"rain\": 5,\n          \"fog\": 3,\n          \"wetness\": 5,\n          \"puddle\": 5\n        },\n        \"actor_mutations\": [\n          {\n            \"actor_index\": 0,\n            \"position_offset\": {\n              \"x\": -1.5,\n              \"y\": 2.5\n            },\n            \"speed_delta\": 0.5\n          },\n          {\n            \"actor_index\": 1,\n            \"position_offset\": {\n              \"x\": 3.0,\n              \"y\": -2.0\n            },\n            \"speed_delta\": -1.0\n          }\n        ],\n        \"puddle_mutations\": [\n          {\n            \"puddle_index\": 0,\n            \"location_offset\": {\n              \"x\": -1.0,\n              \"y\": -1.0\n            },\n            \"level_delta\": 0.1,\n            \"size_scale\": 1.1\n          },\n          {\n            \"puddle_index\": 1,\n            \"location_offset\": {\n              \"x\": 1.0,\n              \"y\": 1.0\n            },\n            \"level_delta\": 0.08,\n            \"size_scale\": 0.9\n          }\n        ],\n        \"mission_mutation\": {\n          \"keep_original\": false,\n          \"spawn_offset\": {\n            \"x\": -3.0,\n            \"y\": 0.5\n          },\n          \"destination_offset\": {\n            \"x\": 4.0,\n            \"y\": -3.0\n          }\n        }\n      },\n      \"pre_execution_validation_rules\": [\n        \"Validate that the new mission (spawn and destination offsets) still keeps ego on legal drivable lanes in Town01 and produces a continuous planned route.\",\n        \"Check that the primary walker (actor_index 0) path intersects or closely parallels ego’s lane within 25 m of the destination, to favor a late interaction window.\",\n        \"Ensure environmental changes (moderate rain, fog, wetness, puddles) do not create extreme sensor degradation or planner blockage; perception should still detect at least one actor.\",\n        \"Verify the scenario duration is long enough for ego to reach the vicinity of the destination while still moving at nonzero speed, so a collision can occur late in the run.\"\n      ],\n      \"post_execution_validation_rules\": [\n        \"Confirm an oracle collision event occurs with ego in motion (speed > 1 m/s shortly before impact) and near the latter portion of the scenario time.\",\n        \"Check that final waypoints remain populated and unblocked up to shortly before the collision; there should be no prolonged planner halt state.\",\n        \"Inspect actuator command logs to ensure accel, brake, and steering commands are effectively zero (no significant actuation) during the seconds leading to the collision.\",\n        \"Verify from vehicle_status/odometry that ego maintains nonzero speed and exhibits some motion or heading change during the same period, evidencing a command–status mismatch.\",\n        \"Confirm that a non-ego actor (ideally actor_index 0) is within 10–15 m of ego in the seconds preceding collision and is visible in simulator/perception/prediction topics.\",\n        \"Do not enforce stuck or lane_invasion outcomes as pass/fail criteria; only the collision plus the zero-command versus moving-ego symptom must be satisfied.\"\n      ],\n      \"uncertainty\": [\n        \"Increased rain, fog, and wetness may introduce additional perception or planning effects not clearly present in the original case; these should be monitored but are not the primary root-cause hypothesis.\",\n        \"The exact timing of when ego reaches the pedestrian near the destination may differ from the original scenario, as only late-collision and motion conditions are constrained.\",\n        \"The underlying cause of the zeroed vehicle_cmd signals remains ambiguous; this variant only preserves the observed mismatch pattern, not a specific subsystem fault model.\"\n      ]\n    }\n  ]\n}",
+  "parsed_response": {
+    "case_id": "case_094",
+    "candidate_specs": [
+      {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Baseline replication with nearby slow walker preserved and minor mission/spawn perturbation to keep ego in motion toward a pedestrian near the lane edge before a late-run collision",
+        "mutation_intent": "Keep the same basic geometry and actor configuration so that ego follows a stable planned route while a slow walker remains within moderate distance near the ego’s path. Only small spatial nudges are applied to maintain proximity and interaction likelihood, aiming to preserve the pattern where planning publishes valid waypoints, ego moves, vehicle_cmd stays near zero, yet a collision occurs near the end of the run. Changes are conservative to maintain the unknown-layer root-cause and logging/actuation mismatch ambiguity.",
+        "expected_oracle": "collision",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 1.0,
+                "y": -1.5
+              },
+              "speed_delta": 0.2
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": -2.0,
+                "y": 1.0
+              },
+              "speed_delta": -0.5
+            }
+          ],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 0.5,
+                "y": 0.5
+              },
+              "level_delta": 0.05,
+              "size_scale": 1.0
+            },
+            {
+              "puddle_index": 1,
+              "location_offset": {
+                "x": -0.5,
+                "y": -0.5
+              },
+              "level_delta": -0.03,
+              "size_scale": 1.0
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": false,
+            "spawn_offset": {
+              "x": 2.0,
+              "y": -1.0
+            },
+            "destination_offset": {
+              "x": -1.5,
+              "y": 2.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Ensure ego spawn and destination are valid lane positions on Town01 and produce a drivable planned route without hard planner blockage.",
+          "Verify at least one non-ego actor (preferably actor_index 0) is within 40 m of ego at some time before the final 10 s of the run, based on simulator ground truth.",
+          "Check that the scenario length is sufficient for ego to reach nonzero speed (>2 m/s) and approach the nearby actor before the end of the run.",
+          "Confirm that perception or prediction topics can detect and track at least one actor before the anticipated collision window (no complete sensor blackout)."
+        ],
+        "post_execution_validation_rules": [
+          "Confirm the oracle reports a collision event occurring near the end of the log (e.g., after 80% of total simulation time) while ego still has nonzero speed shortly before impact.",
+          "Verify that planning publishes valid, non-blocked final waypoints continuously up to within a few seconds before the collision (no long planner stop due to blockage).",
+          "Check that the actuator command topic (vehicle_cmd or equivalent) has accel, brake, and steering commands effectively at or near zero over the critical window leading to the collision.",
+          "Confirm that vehicle_status or odometry reports nonzero ego speed and some variation in heading or steering over the same window, indicating motion despite near-zero commands.",
+          "Ensure a non-ego actor is within moderate distance (<= 10–15 m) of ego in the seconds preceding collision, and that this actor is visible in simulator/perception data.",
+          "Do not require stuck or lane_invasion labels; treat the run as valid if the collision and command–status mismatch patterns are satisfied even without those symptoms."
+        ],
+        "uncertainty": [
+          "The exact interaction geometry leading to the collision (pedestrian crossing vs. ego side-swipe) is not fixed; multiple layouts that keep the actor close to ego may be consistent with the original logs.",
+          "The source of the apparent controller–status mismatch (actuator layer, simulator bridge, or logging configuration) remains unidentified; this scenario only preserves the observed symptom pattern.",
+          "The original data contained conflicting labels for stuck and lane_invasion; these behaviors may or may not emerge here and are not enforced."
+        ]
+      },
+      {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Shifted route with closer pedestrian approach near destination to encourage late collision while maintaining planner validity and zeroed actuator commands",
+        "mutation_intent": "Bias the mission so ego passes slightly nearer to the primary walker and arrives closer to the destination when the interaction occurs, raising collision likelihood near the run’s end. This keeps the core pattern—ego follows valid waypoints, a nearby actor is present, commands remain near zero but vehicle_status shows motion—while exploring a slightly different spatial relationship and timing to conservatively test robustness of the unknown-layer failure.",
+        "expected_oracle": "collision",
+        "modifications": {
+          "weather_delta": {
+            "rain": 5,
+            "fog": 3,
+            "wetness": 5,
+            "puddle": 5
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": -1.5,
+                "y": 2.5
+              },
+              "speed_delta": 0.5
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": 3.0,
+                "y": -2.0
+              },
+              "speed_delta": -1.0
+            }
+          ],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": -1.0,
+                "y": -1.0
+              },
+              "level_delta": 0.1,
+              "size_scale": 1.1
+            },
+            {
+              "puddle_index": 1,
+              "location_offset": {
+                "x": 1.0,
+                "y": 1.0
+              },
+              "level_delta": 0.08,
+              "size_scale": 0.9
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": false,
+            "spawn_offset": {
+              "x": -3.0,
+              "y": 0.5
+            },
+            "destination_offset": {
+              "x": 4.0,
+              "y": -3.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Validate that the new mission (spawn and destination offsets) still keeps ego on legal drivable lanes in Town01 and produces a continuous planned route.",
+          "Check that the primary walker (actor_index 0) path intersects or closely parallels ego’s lane within 25 m of the destination, to favor a late interaction window.",
+          "Ensure environmental changes (moderate rain, fog, wetness, puddles) do not create extreme sensor degradation or planner blockage; perception should still detect at least one actor.",
+          "Verify the scenario duration is long enough for ego to reach the vicinity of the destination while still moving at nonzero speed, so a collision can occur late in the run."
+        ],
+        "post_execution_validation_rules": [
+          "Confirm an oracle collision event occurs with ego in motion (speed > 1 m/s shortly before impact) and near the latter portion of the scenario time.",
+          "Check that final waypoints remain populated and unblocked up to shortly before the collision; there should be no prolonged planner halt state.",
+          "Inspect actuator command logs to ensure accel, brake, and steering commands are effectively zero (no significant actuation) during the seconds leading to the collision.",
+          "Verify from vehicle_status/odometry that ego maintains nonzero speed and exhibits some motion or heading change during the same period, evidencing a command–status mismatch.",
+          "Confirm that a non-ego actor (ideally actor_index 0) is within 10–15 m of ego in the seconds preceding collision and is visible in simulator/perception/prediction topics.",
+          "Do not enforce stuck or lane_invasion outcomes as pass/fail criteria; only the collision plus the zero-command versus moving-ego symptom must be satisfied."
+        ],
+        "uncertainty": [
+          "Increased rain, fog, and wetness may introduce additional perception or planning effects not clearly present in the original case; these should be monitored but are not the primary root-cause hypothesis.",
+          "The exact timing of when ego reaches the pedestrian near the destination may differ from the original scenario, as only late-collision and motion conditions are constrained.",
+          "The underlying cause of the zeroed vehicle_cmd signals remains ambiguous; this variant only preserves the observed mismatch pattern, not a specific subsystem fault model."
+        ]
+      }
+    ]
+  },
+  "raw_api_payload": {
+    "id": "<REDACTED_RESPONSE_ID>",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "{\n  \"case_id\": \"case_094\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Baseline replication with nearby slow walker preserved and minor mission/spawn perturbation to keep ego in motion toward a pedestrian near the lane edge before a late-run collision\",\n      \"mutation_intent\": \"Keep the same basic geometry and actor configuration so that ego follows a stable planned route while a slow walker remains within moderate distance near the ego’s path. Only small spatial nudges are applied to maintain proximity and interaction likelihood, aiming to preserve the pattern where planning publishes valid waypoints, ego moves, vehicle_cmd stays near zero, yet a collision occurs near the end of the run. Changes are conservative to maintain the unknown-layer root-cause and logging/actuation mismatch ambiguity.\",\n      \"expected_oracle\": \"collision\",\n      \"modifications\": {\n        \"weather_delta\": {\n          \"rain\": 0,\n          \"fog\": 0,\n          \"wetness\": 0,\n          \"puddle\": 0\n        },\n        \"actor_mutations\": [\n          {\n            \"actor_index\": 0,\n            \"position_offset\": {\n              \"x\": 1.0,\n              \"y\": -1.5\n            },\n            \"speed_delta\": 0.2\n          },\n          {\n            \"actor_index\": 1,\n            \"position_offset\": {\n              \"x\": -2.0,\n              \"y\": 1.0\n            },\n            \"speed_delta\": -0.5\n          }\n        ],\n        \"puddle_mutations\": [\n          {\n            \"puddle_index\": 0,\n            \"location_offset\": {\n              \"x\": 0.5,\n              \"y\": 0.5\n            },\n            \"level_delta\": 0.05,\n            \"size_scale\": 1.0\n          },\n          {\n            \"puddle_index\": 1,\n            \"location_offset\": {\n              \"x\": -0.5,\n              \"y\": -0.5\n            },\n            \"level_delta\": -0.03,\n            \"size_scale\": 1.0\n          }\n        ],\n        \"mission_mutation\": {\n          \"keep_original\": false,\n          \"spawn_offset\": {\n            \"x\": 2.0,\n            \"y\": -1.0\n          },\n          \"destination_offset\": {\n            \"x\": -1.5,\n            \"y\": 2.0\n          }\n        }\n      },\n      \"pre_execution_validation_rules\": [\n        \"Ensure ego spawn and destination are valid lane positions on Town01 and produce a drivable planned route without hard planner blockage.\",\n        \"Verify at least one non-ego actor (preferably actor_index 0) is within 40 m of ego at some time before the final 10 s of the run, based on simulator ground truth.\",\n        \"Check that the scenario length is sufficient for ego to reach nonzero speed (>2 m/s) and approach the nearby actor before the end of the run.\",\n        \"Confirm that perception or prediction topics can detect and track at least one actor before the anticipated collision window (no complete sensor blackout).\"\n      ],\n      \"post_execution_validation_rules\": [\n        \"Confirm the oracle reports a collision event occurring near the end of the log (e.g., after 80% of total simulation time) while ego still has nonzero speed shortly before impact.\",\n        \"Verify that planning publishes valid, non-blocked final waypoints continuously up to within a few seconds before the collision (no long planner stop due to blockage).\",\n        \"Check that the actuator command topic (vehicle_cmd or equivalent) has accel, brake, and steering commands effectively at or near zero over the critical window leading to the collision.\",\n        \"Confirm that vehicle_status or odometry reports nonzero ego speed and some variation in heading or steering over the same window, indicating motion despite near-zero commands.\",\n        \"Ensure a non-ego actor is within moderate distance (<= 10–15 m) of ego in the seconds preceding collision, and that this actor is visible in simulator/perception data.\",\n        \"Do not require stuck or lane_invasion labels; treat the run as valid if the collision and command–status mismatch patterns are satisfied even without those symptoms.\"\n      ],\n      \"uncertainty\": [\n        \"The exact interaction geometry leading to the collision (pedestrian crossing vs. ego side-swipe) is not fixed; multiple layouts that keep the actor close to ego may be consistent with the original logs.\",\n        \"The source of the apparent controller–status mismatch (actuator layer, simulator bridge, or logging configuration) remains unidentified; this scenario only preserves the observed symptom pattern.\",\n        \"The original data contained conflicting labels for stuck and lane_invasion; these behaviors may or may not emerge here and are not enforced.\"\n      ]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Shifted route with closer pedestrian approach near destination to encourage late collision while maintaining planner validity and zeroed actuator commands\",\n      \"mutation_intent\": \"Bias the mission so ego passes slightly nearer to the primary walker and arrives closer to the destination when the interaction occurs, raising collision likelihood near the run’s end. This keeps the core pattern—ego follows valid waypoints, a nearby actor is present, commands remain near zero but vehicle_status shows motion—while exploring a slightly different spatial relationship and timing to conservatively test robustness of the unknown-layer failure.\",\n      \"expected_oracle\": \"collision\",\n      \"modifications\": {\n        \"weather_delta\": {\n          \"rain\": 5,\n          \"fog\": 3,\n          \"wetness\": 5,\n          \"puddle\": 5\n        },\n        \"actor_mutations\": [\n          {\n            \"actor_index\": 0,\n            \"position_offset\": {\n              \"x\": -1.5,\n              \"y\": 2.5\n            },\n            \"speed_delta\": 0.5\n          },\n          {\n            \"actor_index\": 1,\n            \"position_offset\": {\n              \"x\": 3.0,\n              \"y\": -2.0\n            },\n            \"speed_delta\": -1.0\n          }\n        ],\n        \"puddle_mutations\": [\n          {\n            \"puddle_index\": 0,\n            \"location_offset\": {\n              \"x\": -1.0,\n              \"y\": -1.0\n            },\n            \"level_delta\": 0.1,\n            \"size_scale\": 1.1\n          },\n          {\n            \"puddle_index\": 1,\n            \"location_offset\": {\n              \"x\": 1.0,\n              \"y\": 1.0\n            },\n            \"level_delta\": 0.08,\n            \"size_scale\": 0.9\n          }\n        ],\n        \"mission_mutation\": {\n          \"keep_original\": false,\n          \"spawn_offset\": {\n            \"x\": -3.0,\n            \"y\": 0.5\n          },\n          \"destination_offset\": {\n            \"x\": 4.0,\n            \"y\": -3.0\n          }\n        }\n      },\n      \"pre_execution_validation_rules\": [\n        \"Validate that the new mission (spawn and destination offsets) still keeps ego on legal drivable lanes in Town01 and produces a continuous planned route.\",\n        \"Check that the primary walker (actor_index 0) path intersects or closely parallels ego’s lane within 25 m of the destination, to favor a late interaction window.\",\n        \"Ensure environmental changes (moderate rain, fog, wetness, puddles) do not create extreme sensor degradation or planner blockage; perception should still detect at least one actor.\",\n        \"Verify the scenario duration is long enough for ego to reach the vicinity of the destination while still moving at nonzero speed, so a collision can occur late in the run.\"\n      ],\n      \"post_execution_validation_rules\": [\n        \"Confirm an oracle collision event occurs with ego in motion (speed > 1 m/s shortly before impact) and near the latter portion of the scenario time.\",\n        \"Check that final waypoints remain populated and unblocked up to shortly before the collision; there should be no prolonged planner halt state.\",\n        \"Inspect actuator command logs to ensure accel, brake, and steering commands are effectively zero (no significant actuation) during the seconds leading to the collision.\",\n        \"Verify from vehicle_status/odometry that ego maintains nonzero speed and exhibits some motion or heading change during the same period, evidencing a command–status mismatch.\",\n        \"Confirm that a non-ego actor (ideally actor_index 0) is within 10–15 m of ego in the seconds preceding collision and is visible in simulator/perception/prediction topics.\",\n        \"Do not enforce stuck or lane_invasion outcomes as pass/fail criteria; only the collision plus the zero-command versus moving-ego symptom must be satisfied.\"\n      ],\n      \"uncertainty\": [\n        \"Increased rain, fog, and wetness may introduce additional perception or planning effects not clearly present in the original case; these should be monitored but are not the primary root-cause hypothesis.\",\n        \"The exact timing of when ego reaches the pedestrian near the destination may differ from the original scenario, as only late-collision and motion conditions are constrained.\",\n        \"The underlying cause of the zeroed vehicle_cmd signals remains ambiguous; this variant only preserves the observed mismatch pattern, not a specific subsystem fault model.\"\n      ]\n    }\n  ]\n}",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": [],
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "gpt-5.1-2025-11-13",
+    "object": "chat.completion",
+    "service_tier": "default",
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 1984,
+      "prompt_tokens": 1591,
+      "total_tokens": 3575,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": 0,
+        "audio_tokens": 0,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 0
+      }
+    }
+  },
+  "error_message": "",
+  "elapsed_sec": 25.494,
+  "timestamp": "<REDACTED_TIMESTAMP>"
+}

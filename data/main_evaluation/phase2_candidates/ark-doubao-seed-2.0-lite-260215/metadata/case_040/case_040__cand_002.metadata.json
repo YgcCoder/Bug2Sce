@@ -1,0 +1,86 @@
+{
+  "case_id": "case_040",
+  "model_name": "ark-doubao-seed-2.0-lite-260215",
+  "candidate_index": 2,
+  "candidate_spec": {
+    "candidate_id": "cand_002",
+    "high_level_variant": "Slight speed reduction of the oncoming vehicle and minor increase in fog intensity",
+    "mutation_intent": "Creates a conservative variant that maintains all original preservation constraints, keeps the unconfirmed root cause pattern and consistent red light violation oracle label",
+    "expected_oracle": "red_light",
+    "modifications": {
+      "weather_delta": {
+        "rain": 0,
+        "fog": 8,
+        "wetness": 3,
+        "puddle": 0
+      },
+      "actor_mutations": [
+        {
+          "actor_index": 1,
+          "position_offset": {
+            "x": -0.5,
+            "y": 0.3
+          },
+          "speed_delta": -1.2
+        }
+      ],
+      "puddle_mutations": [],
+      "mission_mutation": {
+        "keep_original": true,
+        "spawn_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "destination_offset": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Confirm total traffic light count remains 36",
+      "Confirm mission spawn and destination positions are unchanged",
+      "Confirm map is Town01"
+    ],
+    "post_execution_validation_rules": [
+      "Confirm stop-line crossing and route-light relation",
+      "Verify consistent red light violation labeling",
+      "Check consistency between control commands and vehicle movement"
+    ],
+    "uncertainty": [
+      "No critical-window evidence localizes failure to a specific module",
+      "Actuation behavior inconsistency uncertainty is preserved",
+      "Stop-line crossing is unconfirmed pre-generation"
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": 0.0,
+      "fog": 8.0,
+      "wetness": 3.0,
+      "puddle": 0.0
+    },
+    "actor_mutations": [
+      {
+        "actor_index": 1,
+        "position_offset": {
+          "x": -0.5,
+          "y": 0.3
+        },
+        "speed_delta": -1.2
+      }
+    ],
+    "puddle_mutations": [],
+    "mission_mutation": {
+      "keep_original": true
+    }
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_040__ark-doubao-seed-2.0-lite-260215.json",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_040__ark-doubao-seed-2.0-lite-260215.json",
+  "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+}

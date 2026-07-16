@@ -1,0 +1,419 @@
+{
+  "case_id": "case_024",
+  "model_name": "claude-sonnet-4-5",
+  "workflow": "phase2_grounded_generation",
+  "status": "completed",
+  "schema_valid": true,
+  "schema_errors": [],
+  "phase1_ready": "yes",
+  "num_candidates_requested": 2,
+  "num_candidates_written": 2,
+  "num_pre_valid": 2,
+  "candidate_records": [
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/claude-sonnet-4-5/json/case_024/case_024__cand_001.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/claude-sonnet-4-5/metadata/case_024/case_024__cand_001.metadata.json",
+      "case_id": "case_024",
+      "model_name": "claude-sonnet-4-5",
+      "candidate_index": 1,
+      "candidate_spec": {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Actor closer to ego spawn, reduced speed, clearer intersection conflict",
+        "mutation_intent": "Increase actor proximity and reduce speed to amplify collision and red-light violation risk at intersection",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": -3.0,
+                "y": 0.5
+              },
+              "speed_delta": -1.5
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": 0.0,
+                "y": 2.0
+              },
+              "speed_delta": -0.5
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Actor 0 within 20m of ego spawn",
+          "Traffic lights present on ego route",
+          "Intersection geometry preserved"
+        ],
+        "post_execution_validation_rules": [
+          "Both collision and red-light violation occur",
+          "Ego movement and braking detected in critical window",
+          "Actor proximity confirmed before collision"
+        ],
+        "uncertainty": [
+          "vehicle_cmd zero despite movement may recur",
+          "red-light timestamp and stop-line crossing unconfirmed",
+          "planning vs perception vs actuation fault unclear"
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 0.0,
+          "fog": 0.0,
+          "wetness": 0.0,
+          "puddle": 0.0
+        },
+        "actor_mutations": [
+          {
+            "actor_index": 0,
+            "position_offset": {
+              "x": -3.0,
+              "y": 0.5
+            },
+            "speed_delta": -1.5
+          },
+          {
+            "actor_index": 1,
+            "position_offset": {
+              "x": 0.0,
+              "y": 2.0
+            },
+            "speed_delta": -0.5
+          }
+        ],
+        "puddle_mutations": [],
+        "mission_mutation": {
+          "keep_original": true
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_024__claude-sonnet-4-5.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_024__claude-sonnet-4-5.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    },
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/claude-sonnet-4-5/json/case_024/case_024__cand_002.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/claude-sonnet-4-5/metadata/case_024/case_024__cand_002.metadata.json",
+      "case_id": "case_024",
+      "model_name": "claude-sonnet-4-5",
+      "candidate_index": 2,
+      "candidate_spec": {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Increased rain and wetness, actor speed reduced, tighter spawn spacing",
+        "mutation_intent": "Add weather stress and tighter actor spacing to preserve compound oracle under degraded conditions",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": 12,
+            "fog": 5,
+            "wetness": 7,
+            "puddle": 10
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": -4.0,
+                "y": 1.0
+              },
+              "speed_delta": -2.0
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": 1.5,
+                "y": 3.0
+              },
+              "speed_delta": -1.0
+            }
+          ],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 2.0,
+                "y": 1.5
+              },
+              "level_delta": 0.1,
+              "size_scale": 1.1
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Weather degradation applied",
+          "Actor 0 and 1 closer to ego route",
+          "Traffic lights and intersection preserved"
+        ],
+        "post_execution_validation_rules": [
+          "Collision and red-light violation both occur",
+          "Ego braking and movement in critical window",
+          "Weather conditions reflected in sensor data"
+        ],
+        "uncertainty": [
+          "vehicle_cmd/vehicle_status inconsistency may persist",
+          "fault layer attribution remains uncertain",
+          "stop-line crossing timing unknown"
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 12.0,
+          "fog": 5.0,
+          "wetness": 7.0,
+          "puddle": 10.0
+        },
+        "actor_mutations": [
+          {
+            "actor_index": 0,
+            "position_offset": {
+              "x": -4.0,
+              "y": 1.0
+            },
+            "speed_delta": -2.0
+          },
+          {
+            "actor_index": 1,
+            "position_offset": {
+              "x": 1.5,
+              "y": 3.0
+            },
+            "speed_delta": -1.0
+          }
+        ],
+        "puddle_mutations": [
+          {
+            "puddle_index": 0,
+            "location_offset": {
+              "x": 2.0,
+              "y": 1.5
+            },
+            "level_delta": 0.1,
+            "size_scale": 1.1
+          }
+        ],
+        "mission_mutation": {
+          "keep_original": true
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_024__claude-sonnet-4-5.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_024__claude-sonnet-4-5.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    }
+  ],
+  "seed_artifact_zip": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/claude-sonnet-4-5/seed-artifact/seed-artifact-case_024.zip",
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_prompts/case_024__claude-sonnet-4-5.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_024__claude-sonnet-4-5.json",
+  "prompt_estimated_tokens": 1235,
+  "usage": {
+    "prompt_tokens": 1452,
+    "completion_tokens": 882,
+    "total_tokens": 2334
+  },
+  "raw_response": "```json\n{\n  \"case_id\": \"case_024\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Actor closer to ego spawn, reduced speed, clearer intersection conflict\",\n      \"mutation_intent\": \"Increase actor proximity and reduce speed to amplify collision and red-light violation risk at intersection\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": -3.0, \"y\": 0.5}, \"speed_delta\": -1.5},\n          {\"actor_index\": 1, \"position_offset\": {\"x\": 0.0, \"y\": 2.0}, \"speed_delta\": -0.5}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Actor 0 within 20m of ego spawn\", \"Traffic lights present on ego route\", \"Intersection geometry preserved\"],\n      \"post_execution_validation_rules\": [\"Both collision and red-light violation occur\", \"Ego movement and braking detected in critical window\", \"Actor proximity confirmed before collision\"],\n      \"uncertainty\": [\"vehicle_cmd zero despite movement may recur\", \"red-light timestamp and stop-line crossing unconfirmed\", \"planning vs perception vs actuation fault unclear\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Increased rain and wetness, actor speed reduced, tighter spawn spacing\",\n      \"mutation_intent\": \"Add weather stress and tighter actor spacing to preserve compound oracle under degraded conditions\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 12, \"fog\": 5, \"wetness\": 7, \"puddle\": 10},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": -4.0, \"y\": 1.0}, \"speed_delta\": -2.0},\n          {\"actor_index\": 1, \"position_offset\": {\"x\": 1.5, \"y\": 3.0}, \"speed_delta\": -1.0}\n        ],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": 2.0, \"y\": 1.5}, \"level_delta\": 0.1, \"size_scale\": 1.1}\n        ],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Weather degradation applied\", \"Actor 0 and 1 closer to ego route\", \"Traffic lights and intersection preserved\"],\n      \"post_execution_validation_rules\": [\"Collision and red-light violation both occur\", \"Ego braking and movement in critical window\", \"Weather conditions reflected in sensor data\"],\n      \"uncertainty\": [\"vehicle_cmd/vehicle_status inconsistency may persist\", \"fault layer attribution remains uncertain\", \"stop-line crossing timing unknown\"]\n    }\n  ]\n}\n```",
+  "parsed_response": {
+    "case_id": "case_024",
+    "candidate_specs": [
+      {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Actor closer to ego spawn, reduced speed, clearer intersection conflict",
+        "mutation_intent": "Increase actor proximity and reduce speed to amplify collision and red-light violation risk at intersection",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": -3.0,
+                "y": 0.5
+              },
+              "speed_delta": -1.5
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": 0.0,
+                "y": 2.0
+              },
+              "speed_delta": -0.5
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Actor 0 within 20m of ego spawn",
+          "Traffic lights present on ego route",
+          "Intersection geometry preserved"
+        ],
+        "post_execution_validation_rules": [
+          "Both collision and red-light violation occur",
+          "Ego movement and braking detected in critical window",
+          "Actor proximity confirmed before collision"
+        ],
+        "uncertainty": [
+          "vehicle_cmd zero despite movement may recur",
+          "red-light timestamp and stop-line crossing unconfirmed",
+          "planning vs perception vs actuation fault unclear"
+        ]
+      },
+      {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Increased rain and wetness, actor speed reduced, tighter spawn spacing",
+        "mutation_intent": "Add weather stress and tighter actor spacing to preserve compound oracle under degraded conditions",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": 12,
+            "fog": 5,
+            "wetness": 7,
+            "puddle": 10
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": -4.0,
+                "y": 1.0
+              },
+              "speed_delta": -2.0
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": 1.5,
+                "y": 3.0
+              },
+              "speed_delta": -1.0
+            }
+          ],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 2.0,
+                "y": 1.5
+              },
+              "level_delta": 0.1,
+              "size_scale": 1.1
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Weather degradation applied",
+          "Actor 0 and 1 closer to ego route",
+          "Traffic lights and intersection preserved"
+        ],
+        "post_execution_validation_rules": [
+          "Collision and red-light violation both occur",
+          "Ego braking and movement in critical window",
+          "Weather conditions reflected in sensor data"
+        ],
+        "uncertainty": [
+          "vehicle_cmd/vehicle_status inconsistency may persist",
+          "fault layer attribution remains uncertain",
+          "stop-line crossing timing unknown"
+        ]
+      }
+    ]
+  },
+  "raw_api_payload": {
+    "id": "<REDACTED_RESPONSE_ID>",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "```json\n{\n  \"case_id\": \"case_024\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Actor closer to ego spawn, reduced speed, clearer intersection conflict\",\n      \"mutation_intent\": \"Increase actor proximity and reduce speed to amplify collision and red-light violation risk at intersection\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": -3.0, \"y\": 0.5}, \"speed_delta\": -1.5},\n          {\"actor_index\": 1, \"position_offset\": {\"x\": 0.0, \"y\": 2.0}, \"speed_delta\": -0.5}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Actor 0 within 20m of ego spawn\", \"Traffic lights present on ego route\", \"Intersection geometry preserved\"],\n      \"post_execution_validation_rules\": [\"Both collision and red-light violation occur\", \"Ego movement and braking detected in critical window\", \"Actor proximity confirmed before collision\"],\n      \"uncertainty\": [\"vehicle_cmd zero despite movement may recur\", \"red-light timestamp and stop-line crossing unconfirmed\", \"planning vs perception vs actuation fault unclear\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Increased rain and wetness, actor speed reduced, tighter spawn spacing\",\n      \"mutation_intent\": \"Add weather stress and tighter actor spacing to preserve compound oracle under degraded conditions\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 12, \"fog\": 5, \"wetness\": 7, \"puddle\": 10},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": -4.0, \"y\": 1.0}, \"speed_delta\": -2.0},\n          {\"actor_index\": 1, \"position_offset\": {\"x\": 1.5, \"y\": 3.0}, \"speed_delta\": -1.0}\n        ],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": 2.0, \"y\": 1.5}, \"level_delta\": 0.1, \"size_scale\": 1.1}\n        ],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Weather degradation applied\", \"Actor 0 and 1 closer to ego route\", \"Traffic lights and intersection preserved\"],\n      \"post_execution_validation_rules\": [\"Collision and red-light violation both occur\", \"Ego braking and movement in critical window\", \"Weather conditions reflected in sensor data\"],\n      \"uncertainty\": [\"vehicle_cmd/vehicle_status inconsistency may persist\", \"fault layer attribution remains uncertain\", \"stop-line crossing timing unknown\"]\n    }\n  ]\n}\n```",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "claude-sonnet-4-5",
+    "object": "chat.completion",
+    "service_tier": null,
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 882,
+      "prompt_tokens": 1452,
+      "total_tokens": 2334,
+      "completion_tokens_details": null,
+      "prompt_tokens_details": null
+    }
+  },
+  "error_message": "",
+  "elapsed_sec": 14.79,
+  "timestamp": "<REDACTED_TIMESTAMP>"
+}

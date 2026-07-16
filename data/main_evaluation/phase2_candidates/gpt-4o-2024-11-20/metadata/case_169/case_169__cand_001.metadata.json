@@ -1,0 +1,65 @@
+{
+  "case_id": "case_169",
+  "model_name": "gpt-4o-2024-11-20",
+  "candidate_index": 1,
+  "candidate_spec": {
+    "candidate_id": "cand_001",
+    "high_level_variant": "Ego vehicle approaches a red light with slightly reduced visibility due to fog.",
+    "mutation_intent": "This variant preserves the Phase 1 pattern by maintaining the red-light violation symptom while introducing a minor weather change to test the impact of reduced visibility on the ego's decision-making.",
+    "expected_oracle": "red_light",
+    "modifications": {
+      "weather_delta": {
+        "rain": 0,
+        "fog": -10,
+        "wetness": 0,
+        "puddle": 0
+      },
+      "actor_mutations": [],
+      "puddle_mutations": [],
+      "mission_mutation": {
+        "keep_original": true,
+        "spawn_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "destination_offset": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Ensure traffic light state evidence is available in the critical window."
+    ],
+    "post_execution_validation_rules": [
+      "Check for route-light relation and stop-line crossing evidence."
+    ],
+    "uncertainty": [
+      "Route-light relation and stop-line crossing are unconfirmed.",
+      "No direct evidence links the failure to a specific module."
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": 0.0,
+      "fog": -10.0,
+      "wetness": 0.0,
+      "puddle": 0.0
+    },
+    "actor_mutations": [],
+    "puddle_mutations": [],
+    "mission_mutation": {
+      "keep_original": true
+    }
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": [
+      "no actors in candidate scenario"
+    ]
+  },
+  "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_169__gpt-4o-2024-11-20.json",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_169__gpt-4o-2024-11-20.json",
+  "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+}

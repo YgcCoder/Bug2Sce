@@ -1,0 +1,143 @@
+{
+  "case_id": "case_039",
+  "round": 3,
+  "model_name": "claude-sonnet-4-5",
+  "candidate_index": 5,
+  "candidate_spec": {
+    "candidate_id": "cand_005",
+    "high_level_variant": "Increase fog slightly while keeping all other parameters identical",
+    "mutation_intent": "Test if minimal fog increase preserves vehicle_cmd=0 pattern without triggering collision or red_light seen in Round 1 high-weather cases",
+    "expected_oracle": "unknown",
+    "modifications": {
+      "weather_delta": {
+        "rain": 0,
+        "fog": 3,
+        "wetness": 0,
+        "puddle": 0
+      },
+      "actor_mutations": [
+        {
+          "actor_index": 0,
+          "position_offset": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "speed_delta": 0.0
+        }
+      ],
+      "puddle_mutations": [
+        {
+          "puddle_index": 0,
+          "location_offset": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "level_delta": 0.0,
+          "size_scale": 1.0
+        },
+        {
+          "puddle_index": 1,
+          "location_offset": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "level_delta": 0.0,
+          "size_scale": 1.0
+        },
+        {
+          "puddle_index": 2,
+          "location_offset": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "level_delta": 0.0,
+          "size_scale": 1.0
+        }
+      ],
+      "mission_mutation": {
+        "keep_original": true,
+        "spawn_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "destination_offset": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Only fog increased by 3",
+      "Actor and puddles unchanged",
+      "Mission identical"
+    ],
+    "post_execution_validation_rules": [
+      "Check vehicle_cmd zero throughout",
+      "Verify vehicle_status shows actuation",
+      "Confirm low-speed movement pattern"
+    ],
+    "uncertainty": [
+      "Minimal fog impact on perception and planning unclear"
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": 0.0,
+      "fog": 3.0,
+      "wetness": 0.0,
+      "puddle": 0.0
+    },
+    "actor_mutations": [
+      {
+        "actor_index": 0,
+        "position_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "speed_delta": 0.0
+      }
+    ],
+    "puddle_mutations": [
+      {
+        "puddle_index": 0,
+        "location_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "level_delta": 0.0,
+        "size_scale": 1.0
+      },
+      {
+        "puddle_index": 1,
+        "location_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "level_delta": 0.0,
+        "size_scale": 1.0
+      },
+      {
+        "puddle_index": 2,
+        "location_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "level_delta": 0.0,
+        "size_scale": 1.0
+      }
+    ],
+    "mission_mutation": {
+      "keep_original": true
+    },
+    "safety_repairs": []
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "authoritative_original_phase1_output": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_039__claude-sonnet-4-5.json",
+  "round1_feedback_count": 6,
+  "round2_feedback_count": 2,
+  "round3_api_output": "<WORKSPACE_ROOT>/processed/experiments/round3_feedback/api_outputs/case_039__claude-sonnet-4-5.json"
+}

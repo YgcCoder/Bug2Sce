@@ -1,0 +1,80 @@
+{
+  "case_id": "case_169",
+  "model_name": "gpt-5.1",
+  "candidate_index": 2,
+  "candidate_spec": {
+    "candidate_id": "cand_002",
+    "high_level_variant": "Mission keeps the original spawn and destination but increases fog reduction and slightly adjusts destination forward, allowing the ego to move further along the corridor with active traffic lights visible, while still not structurally tying the path to a specific red stop-line crossing.",
+    "mutation_intent": "Preserve the same map and near-identical route so that a red-light oracle violation can still occur with traffic-light information available and ego motion present, but avoid additional structure that would clarify which red light or stop line is responsible.",
+    "expected_oracle": "red_light",
+    "modifications": {
+      "weather_delta": {
+        "rain": 0,
+        "fog": -15,
+        "wetness": 10,
+        "puddle": 0
+      },
+      "actor_mutations": [],
+      "puddle_mutations": [],
+      "mission_mutation": {
+        "keep_original": false,
+        "spawn_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "destination_offset": {
+          "x": 0.0,
+          "y": 4.0
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Ensure the mission uses Town01 with the original spawn pose and a destination shifted only by the specified small offset.",
+      "Verify that multiple traffic lights along or near the ego’s corridor are active and publishing states on /carla/traffic_lights.",
+      "Confirm that the ego’s planned route does not explicitly encode a stop line for any particular traffic light in the logs (no dedicated stop_waypoint index tied to a single light).",
+      "Check that final_waypoints publication is enabled and expected to remain stable (no intentional null or empty waypoint arrays)."
+    ],
+    "post_execution_validation_rules": [
+      "Verify that the oracle reports a red_light violation as the main symptom without overriding it with collision, stuck, or lane_invasion as the primary outcome.",
+      "Confirm that /carla/traffic_lights contains a sequence of state transitions during the run (e.g., green/yellow/red) but that logs do not conclusively map any single red phase to a specific ego stop-line crossing.",
+      "Inspect ego odometry to ensure the vehicle attains nonzero speed at some point.",
+      "Validate that final_waypoints remained continuously available, with consistent structure and no null rows, particularly near the time of the reported violation.",
+      "Ensure that from available logs, the responsible internal module (perception, planning, control, or simulator) cannot be uniquely identified as the cause of the red-light violation."
+    ],
+    "uncertainty": [
+      "Which intersection or traffic light, if any, is actually considered violated by the oracle is intentionally left unspecified.",
+      "The path geometry and timing are not constrained enough to reveal an explicit stop-line overrun at red.",
+      "Whether Autoware or the simulator is issuing the effective control inputs that lead to motion remains ambiguous."
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": 0.0,
+      "fog": -15.0,
+      "wetness": 10.0,
+      "puddle": 0.0
+    },
+    "actor_mutations": [],
+    "puddle_mutations": [],
+    "mission_mutation": {
+      "spawn_offset": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "destination_offset": {
+        "x": 0.0,
+        "y": 4.0
+      }
+    }
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": [
+      "no actors in candidate scenario"
+    ]
+  },
+  "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_169__gpt-5.1.json",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_169__gpt-5.1.json",
+  "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+}

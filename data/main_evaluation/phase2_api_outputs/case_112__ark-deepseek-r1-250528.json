@@ -1,0 +1,349 @@
+{
+  "case_id": "case_112",
+  "model_name": "ark-deepseek-r1-250528",
+  "workflow": "phase2_grounded_generation",
+  "status": "completed",
+  "schema_valid": true,
+  "schema_errors": [],
+  "phase1_ready": "yes",
+  "num_candidates_requested": 2,
+  "num_candidates_written": 2,
+  "num_pre_valid": 2,
+  "candidate_records": [
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-deepseek-r1-250528/json/case_112/case_112__cand_001.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-deepseek-r1-250528/metadata/case_112/case_112__cand_001.metadata.json",
+      "case_id": "case_112",
+      "model_name": "ark-deepseek-r1-250528",
+      "candidate_index": 1,
+      "candidate_spec": {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Slightly shift the crossing pedestrian closer to ego's planned path, with minor increase in fog and wetness",
+        "mutation_intent": "Preserves all core root cause constraints: all-zero pre-collision vehicle_cmd, moving non-braking ego, no blocked planning waypoints, and lane invasion label conflict. Minor visibility change does not alter the root failure pattern.",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 5,
+            "wetness": 3,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 1.2,
+                "y": -0.8
+              },
+              "speed_delta": 0.5
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Verify all vehicle_cmd are zero in pre-collision critical window",
+          "Verify ego maintains positive non-decreasing speed with no braking before collision",
+          "Verify planning reports no blocked waypoints before collision"
+        ],
+        "post_execution_validation_rules": [
+          "Confirm collision occurred as required",
+          "Record lane invasion status to resolve original label conflict"
+        ],
+        "uncertainty": [
+          "Original lane invasion label conflict is preserved",
+          "Uncertainty on specific faulty module remains unchanged"
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 0.0,
+          "fog": 5.0,
+          "wetness": 3.0,
+          "puddle": 0.0
+        },
+        "actor_mutations": [
+          {
+            "actor_index": 0,
+            "position_offset": {
+              "x": 1.2,
+              "y": -0.8
+            },
+            "speed_delta": 0.5
+          }
+        ],
+        "puddle_mutations": [],
+        "mission_mutation": {
+          "keep_original": true
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_112__ark-deepseek-r1-250528.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_112__ark-deepseek-r1-250528.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    },
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-deepseek-r1-250528/json/case_112/case_112__cand_002.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-deepseek-r1-250528/metadata/case_112/case_112__cand_002.metadata.json",
+      "case_id": "case_112",
+      "model_name": "ark-deepseek-r1-250528",
+      "candidate_index": 2,
+      "candidate_spec": {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Slightly shift the oncoming vehicle closer to ego's lane, with minor adjustment to ego spawn position",
+        "mutation_intent": "Changes the collision target to the oncoming vehicle while preserving all core root cause conditions: all-zero pre-collision actuation commands, moving non-braking ego, no blocked waypoints, and lane invasion label conflict. The root failure pattern is unchanged.",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": 4,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": -2.1,
+                "y": 1.5
+              },
+              "speed_delta": -1.0
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": false,
+            "spawn_offset": {
+              "x": 1.0,
+              "y": 0.5
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Verify all vehicle_cmd are zero in pre-collision critical window",
+          "Verify ego maintains positive non-decreasing speed with no braking before collision",
+          "Verify planning reports no blocked waypoints before collision"
+        ],
+        "post_execution_validation_rules": [
+          "Confirm collision occurred as required",
+          "Check lane invasion status to resolve original label conflict"
+        ],
+        "uncertainty": [
+          "Original uncertainty about which module is at fault is preserved",
+          "Original lane invasion label conflict is maintained"
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 4.0,
+          "fog": 0.0,
+          "wetness": 0.0,
+          "puddle": 0.0
+        },
+        "actor_mutations": [
+          {
+            "actor_index": 1,
+            "position_offset": {
+              "x": -2.1,
+              "y": 1.5
+            },
+            "speed_delta": -1.0
+          }
+        ],
+        "puddle_mutations": [],
+        "mission_mutation": {
+          "spawn_offset": {
+            "x": 1.0,
+            "y": 0.5
+          },
+          "destination_offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_112__ark-deepseek-r1-250528.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_112__ark-deepseek-r1-250528.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    }
+  ],
+  "seed_artifact_zip": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-deepseek-r1-250528/seed-artifact/seed-artifact-case_112.zip",
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_prompts/case_112__ark-deepseek-r1-250528.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_112__ark-deepseek-r1-250528.json",
+  "prompt_estimated_tokens": 1173,
+  "usage": {
+    "prompt_tokens": 1393,
+    "completion_tokens": 2697,
+    "total_tokens": 4090
+  },
+  "raw_response": "{\n  \"case_id\": \"case_112\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Slightly shift the crossing pedestrian closer to ego's planned path, with minor increase in fog and wetness\",\n      \"mutation_intent\": \"Preserves all core root cause constraints: all-zero pre-collision vehicle_cmd, moving non-braking ego, no blocked planning waypoints, and lane invasion label conflict. Minor visibility change does not alter the root failure pattern.\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 5, \"wetness\": 3, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 1.2, \"y\": -0.8}, \"speed_delta\": 0.5}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Verify all vehicle_cmd are zero in pre-collision critical window\", \"Verify ego maintains positive non-decreasing speed with no braking before collision\", \"Verify planning reports no blocked waypoints before collision\"],\n      \"post_execution_validation_rules\": [\"Confirm collision occurred as required\", \"Record lane invasion status to resolve original label conflict\"],\n      \"uncertainty\": [\"Original lane invasion label conflict is preserved\", \"Uncertainty on specific faulty module remains unchanged\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Slightly shift the oncoming vehicle closer to ego's lane, with minor adjustment to ego spawn position\",\n      \"mutation_intent\": \"Changes the collision target to the oncoming vehicle while preserving all core root cause conditions: all-zero pre-collision actuation commands, moving non-braking ego, no blocked waypoints, and lane invasion label conflict. The root failure pattern is unchanged.\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 4, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 1, \"position_offset\": {\"x\": -2.1, \"y\": 1.5}, \"speed_delta\": -1.0}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": false, \"spawn_offset\": {\"x\": 1.0, \"y\": 0.5}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Verify all vehicle_cmd are zero in pre-collision critical window\", \"Verify ego maintains positive non-decreasing speed with no braking before collision\", \"Verify planning reports no blocked waypoints before collision\"],\n      \"post_execution_validation_rules\": [\"Confirm collision occurred as required\", \"Check lane invasion status to resolve original label conflict\"],\n      \"uncertainty\": [\"Original uncertainty about which module is at fault is preserved\", \"Original lane invasion label conflict is maintained\"]\n    }\n  ]\n}",
+  "parsed_response": {
+    "case_id": "case_112",
+    "candidate_specs": [
+      {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Slightly shift the crossing pedestrian closer to ego's planned path, with minor increase in fog and wetness",
+        "mutation_intent": "Preserves all core root cause constraints: all-zero pre-collision vehicle_cmd, moving non-braking ego, no blocked planning waypoints, and lane invasion label conflict. Minor visibility change does not alter the root failure pattern.",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 5,
+            "wetness": 3,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 1.2,
+                "y": -0.8
+              },
+              "speed_delta": 0.5
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Verify all vehicle_cmd are zero in pre-collision critical window",
+          "Verify ego maintains positive non-decreasing speed with no braking before collision",
+          "Verify planning reports no blocked waypoints before collision"
+        ],
+        "post_execution_validation_rules": [
+          "Confirm collision occurred as required",
+          "Record lane invasion status to resolve original label conflict"
+        ],
+        "uncertainty": [
+          "Original lane invasion label conflict is preserved",
+          "Uncertainty on specific faulty module remains unchanged"
+        ]
+      },
+      {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Slightly shift the oncoming vehicle closer to ego's lane, with minor adjustment to ego spawn position",
+        "mutation_intent": "Changes the collision target to the oncoming vehicle while preserving all core root cause conditions: all-zero pre-collision actuation commands, moving non-braking ego, no blocked waypoints, and lane invasion label conflict. The root failure pattern is unchanged.",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": 4,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": -2.1,
+                "y": 1.5
+              },
+              "speed_delta": -1.0
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": false,
+            "spawn_offset": {
+              "x": 1.0,
+              "y": 0.5
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Verify all vehicle_cmd are zero in pre-collision critical window",
+          "Verify ego maintains positive non-decreasing speed with no braking before collision",
+          "Verify planning reports no blocked waypoints before collision"
+        ],
+        "post_execution_validation_rules": [
+          "Confirm collision occurred as required",
+          "Check lane invasion status to resolve original label conflict"
+        ],
+        "uncertainty": [
+          "Original uncertainty about which module is at fault is preserved",
+          "Original lane invasion label conflict is maintained"
+        ]
+      }
+    ]
+  },
+  "raw_api_payload": {
+    "id": "021782923867226f952b6c252d6ae62c15909f77d85597e4b3630",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "{\n  \"case_id\": \"case_112\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Slightly shift the crossing pedestrian closer to ego's planned path, with minor increase in fog and wetness\",\n      \"mutation_intent\": \"Preserves all core root cause constraints: all-zero pre-collision vehicle_cmd, moving non-braking ego, no blocked planning waypoints, and lane invasion label conflict. Minor visibility change does not alter the root failure pattern.\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 5, \"wetness\": 3, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 1.2, \"y\": -0.8}, \"speed_delta\": 0.5}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Verify all vehicle_cmd are zero in pre-collision critical window\", \"Verify ego maintains positive non-decreasing speed with no braking before collision\", \"Verify planning reports no blocked waypoints before collision\"],\n      \"post_execution_validation_rules\": [\"Confirm collision occurred as required\", \"Record lane invasion status to resolve original label conflict\"],\n      \"uncertainty\": [\"Original lane invasion label conflict is preserved\", \"Uncertainty on specific faulty module remains unchanged\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Slightly shift the oncoming vehicle closer to ego's lane, with minor adjustment to ego spawn position\",\n      \"mutation_intent\": \"Changes the collision target to the oncoming vehicle while preserving all core root cause conditions: all-zero pre-collision actuation commands, moving non-braking ego, no blocked waypoints, and lane invasion label conflict. The root failure pattern is unchanged.\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 4, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 1, \"position_offset\": {\"x\": -2.1, \"y\": 1.5}, \"speed_delta\": -1.0}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": false, \"spawn_offset\": {\"x\": 1.0, \"y\": 0.5}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Verify all vehicle_cmd are zero in pre-collision critical window\", \"Verify ego maintains positive non-decreasing speed with no braking before collision\", \"Verify planning reports no blocked waypoints before collision\"],\n      \"post_execution_validation_rules\": [\"Confirm collision occurred as required\", \"Check lane invasion status to resolve original label conflict\"],\n      \"uncertainty\": [\"Original uncertainty about which module is at fault is preserved\", \"Original lane invasion label conflict is maintained\"]\n    }\n  ]\n}",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null,
+          "reasoning_content": "\nGot it, let's build this JSON step by step. First, case_id is case_112, right? We need two candidate specs.\n\nFirst candidate, cand_001. High level variant: Move the pedestrian actor slightly closer to ego's planned path, increase fog a bit to keep the uncertainty about perception, while keeping all other conditions. Mutation intent: Preserves all original root cause conditions, only adjusts actor position and weather slightly to test if collision still occurs under slightly reduced visibility while keeping the core all-zero actuation vs moving ego condition. Expected oracle is collision, because that's confirmed. Wait, the labels conflict on lane invasion, so expected oracle is compound? Wait no, the confirmed collision, conflicting lane invasion, so expected oracle would be compound? Wait let's check: original says collision is confirmed, lane invasion label conflict. Let's do first candidate:\n\nHigh_level_variant: Slight shift of pedestrian into ego's path, minor increase in fog and wetness. Mutation intent: Preserves all core root cause conditions (all-zero pre-collision vehicle_cmd, moving non-braking ego, no blocked planning waypoints, lane invasion label conflict) while introducing a minor visibility change that doesn't alter the failure pattern. Expected oracle: collision, wait no, since lane invasion is conflicting, maybe compound? Wait let's see the oracles: collision | red_light | lane_invasion | stuck | compound | unknown. Original has confirmed collision, unknown on lane invasion, so compound? Or collision? Wait let's check the preservation constraints: preserve confirmed collision, preserve lane invasion label conflict. So expected oracle can be compound because it's collision plus possible lane invasion.\n\nThen modifications: weather_delta: rain 0, fog +5, wetness +3, puddle 0. That's within [-20,20], good. Actor mutations: actor 0 (the walker) position offset x: 1.2, y: -0.8, speed delta +0.5. That's within [-8,8] x/y, speed delta [-3,3], good. Puddles are empty so puddle mutations empty. Mission mutation keep_original true. Pre execution rules: [\"Verify all vehicle_cmd are zero in pre-collision window\", \"Verify ego speed is positive non-zero with no braking before collision\", \"Verify planning reports no blocked waypoints pre-collision\"], post execution: [\"Check collision occurred\", \"Record lane invasion status to resolve original label conflict\"], uncertainty: [\"Original label conflict for lane invasion preserved\", \"Uncertainty on module localization remains\"].\n\nThat's first candidate. Now second candidate, cand_002. Let's do another variant: slightly shift the other vehicle (index 1) position, adjust ego spawn a little, change rain a bit. High level variant: Slight shift of oncoming vehicle closer to ego's lane, minor adjustment of ego spawn position. Mutation intent: Keeps all core root cause conditions, changes which actor ego collides with to test the same failure pattern with a different collision target while preserving all constraints. Expected oracle: collision again? Or compound, same as before. Wait, let's do expected_oracle: compound, since we have confirmed collision and conflicting lane invasion label.\n\nModifications: weather_delta: rain +4, fog 0, wetness 0, puddle 0. That's fine. Actor mutations: actor index 1, position offset x: -2.1, y: 1.5, speed delta -1.0. Speed delta is within [-3,3], position within [-8,8], good. Mission mutation: keep_original false? Wait, spawn offset x: 1.0, y: 0.5, destination offset x: 0, y: 0. That's within [-5,5], right. Puddles are empty so puddle_mutations is empty. Pre execution rules same as first? Wait adjust: [\"Verify all vehicle_cmd are zero in pre-collision window\", \"Verify ego maintains positive non-decreasing speed with no braking pre-collision\", \"Verify no blocked waypoints reported by planning pre-collision\"], post execution: [\"Confirm collision occurred\", \"Check lane invasion presence to resolve original label conflict\"], uncertainty: [\"Uncertainty on specific failed module preserved\", \"Original lane invasion label conflict maintained\"].\n\nWait let's check all rules: exactly two candidates, all offsets are within limits, preserves root cause pattern, doesn't invent new oracles, keeps uncertainty. Let's structure it correctly.\n\nWait let's check the schema: case_id is case_112, candidate_specs array of two. Let's fill each field correctly.\n\nWait let's write it out:\n\nFirst, case_id is \"case_112\". Then candidate_specs[0] is cand_001:\n\n\"candidate_id\": \"cand_001\",\n\"high_level_variant\": \"Slightly shift the crossing pedestrian closer to ego's planned path, with minor increase in fog and wetness\",\n\"mutation_intent\": \"Preserves all core root cause constraints: all-zero pre-collision vehicle_cmd, moving non-braking ego, no blocked planning waypoints, and lane invasion label conflict. Minor visibility change does not alter the root failure pattern.\",\n\"expected_oracle\": \"compound\",\n\"modifications\": {\n  \"weather_delta\": {\"rain\": 0, \"fog\": 5, \"wetness\": 3, \"puddle\": 0},\n  \"actor_mutations\": [\n    {\"actor_index\": 0, \"position_offset\": {\"x\": 1.2, \"y\": -0.8}, \"speed_delta\": 0.5}\n  ],\n  \"puddle_mutations\": [],\n  \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n},\n\"pre_execution_validation_rules\": [\"Verify all vehicle_cmd are zero in pre-collision critical window\", \"Verify ego maintains positive non-decreasing speed with no braking before collision\", \"Verify planning reports no blocked waypoints before collision\"],\n\"post_execution_validation_rules\": [\"Confirm collision occurred as required\", \"Record lane invasion status to resolve original label conflict\"],\n\"uncertainty\": [\"Original lane invasion label conflict is preserved\", \"Uncertainty on specific faulty module remains unchanged\"]\n\nThen candidate 002:\n\n\"candidate_id\": \"cand_002\",\n\"high_level_variant\": \"Slightly shift the oncoming vehicle closer to ego's lane, with minor adjustment to ego spawn position\",\n\"mutation_intent\": \"Changes the collision target to the oncoming vehicle while preserving all core root cause conditions: all-zero pre-collision actuation commands, moving non-braking ego, no blocked waypoints, and lane invasion label conflict. The root failure pattern is unchanged.\",\n\"expected_oracle\": \"compound\",\n\"modifications\": {\n  \"weather_delta\": {\"rain\": 4, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n  \"actor_mutations\": [\n    {\"actor_index\": 1, \"position_offset\": {\"x\": -2.1, \"y\": 1.5}, \"speed_delta\": -1.0}\n  ],\n  \"puddle_mutations\": [],\n  \"mission_mutation\": {\"keep_original\": false, \"spawn_offset\": {\"x\": 1.0, \"y\": 0.5}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n},\n\"pre_execution_validation_rules\": [\"Verify all vehicle_cmd are zero in pre-collision critical window\", \"Verify ego speed is positive and non-decreasing with no braking before collision\", \"Verify planning reports no blocked waypoints before collision\"],\n\"post_execution_validation_rules\": [\"Confirm collision occurred as required\", \"Check lane invasion status to resolve original label conflict\"],\n\"uncertainty\": [\"Original uncertainty about which module is at fault is preserved\", \"Original lane invasion label conflict is maintained\"]\n\nWait all offsets check out: position offsets are all within [-8,8], speed delta 0.5, -1.0 are within [-3,3], mission offsets 1.0, 0.5 are within [-5,5], weather deltas 5, 3, 4 all within [-20,20]. Puddles are empty so puddle_mutations is empty, which is correct. Preserves all root cause constraints, has two candidates, correct oracle: compound because collision is confirmed plus possible lane invasion with conflict, that makes sense. Uncertainty is preserved as per original. That all fits. Now put it all into valid JSON, no markdown fences, exactly one object. Let's make sure all commas are correct, brackets are closed. Yeah that should work."
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "doubao-seed-2-0-lite-260215",
+    "object": "chat.completion",
+    "service_tier": "default",
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 2697,
+      "prompt_tokens": 1393,
+      "total_tokens": 4090,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 1914,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": null,
+        "cached_tokens": 0
+      }
+    }
+  },
+  "error_message": "",
+  "elapsed_sec": 60.517,
+  "timestamp": "<REDACTED_TIMESTAMP>"
+}

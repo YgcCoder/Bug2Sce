@@ -1,0 +1,144 @@
+{
+  "case_id": "case_039",
+  "round": 5,
+  "model_name": "claude-sonnet-4-5",
+  "candidate_index": 3,
+  "candidate_spec": {
+    "candidate_id": "cand_003",
+    "high_level_variant": "Actor moved 4m diagonally backward-right with slight wetness reduction",
+    "mutation_intent": "Combine diagonal actor offset with minimal wetness reduction to test if reduced wet conditions preserve vehicle_cmd=0 pattern while avoiding collision",
+    "expected_oracle": "unknown",
+    "modifications": {
+      "weather_delta": {
+        "rain": -1,
+        "fog": 0,
+        "wetness": -1,
+        "puddle": 0
+      },
+      "actor_mutations": [
+        {
+          "actor_index": 0,
+          "position_offset": {
+            "x": -3.0,
+            "y": 2.5
+          },
+          "speed_delta": 0.0
+        }
+      ],
+      "puddle_mutations": [
+        {
+          "puddle_index": 0,
+          "location_offset": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "level_delta": 0.0,
+          "size_scale": 1.0
+        },
+        {
+          "puddle_index": 1,
+          "location_offset": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "level_delta": -0.02,
+          "size_scale": 1.0
+        },
+        {
+          "puddle_index": 2,
+          "location_offset": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "level_delta": 0.0,
+          "size_scale": 1.0
+        }
+      ],
+      "mission_mutation": {
+        "keep_original": true,
+        "spawn_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "destination_offset": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Actor must be displaced diagonally from original position",
+      "Wetness reduction must remain within conservative bounds"
+    ],
+    "post_execution_validation_rules": [
+      "Verify low-speed movement with final waypoints available",
+      "Check vehicle_cmd=0 while vehicle_status shows actuation"
+    ],
+    "uncertainty": [
+      "Unknown if slight wetness reduction affects vehicle_cmd=0 pattern preservation"
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": -1.0,
+      "fog": 0.0,
+      "wetness": -1.0,
+      "puddle": 0.0
+    },
+    "actor_mutations": [
+      {
+        "actor_index": 0,
+        "position_offset": {
+          "x": -3.0,
+          "y": 2.5
+        },
+        "speed_delta": 0.0
+      }
+    ],
+    "puddle_mutations": [
+      {
+        "puddle_index": 0,
+        "location_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "level_delta": 0.0,
+        "size_scale": 1.0
+      },
+      {
+        "puddle_index": 1,
+        "location_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "level_delta": -0.02,
+        "size_scale": 1.0
+      },
+      {
+        "puddle_index": 2,
+        "location_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "level_delta": 0.0,
+        "size_scale": 1.0
+      }
+    ],
+    "mission_mutation": {
+      "keep_original": true
+    },
+    "safety_repairs": []
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "authoritative_original_phase1_output": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_039__claude-sonnet-4-5.json",
+  "round1_feedback_count": 6,
+  "round2_feedback_count": 2,
+  "round3_feedback_count": 6,
+  "round4_feedback_count": 6,
+  "feedback_memory_policy": "all_same_seed_outcomes_retained",
+  "round5_api_output": "<WORKSPACE_ROOT>/processed/experiments/round5_feedback/api_outputs/case_039__claude-sonnet-4-5.json"
+}

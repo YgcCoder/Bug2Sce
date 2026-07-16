@@ -1,0 +1,185 @@
+{
+  "case_id": "case_112",
+  "model_name": "claude-sonnet-4-5",
+  "workflow": "round2_feedback_guided_b2s",
+  "experimental_difference": "six_models_round1_feedback_added_to_original_b2s_input",
+  "status": "completed",
+  "schema_valid": true,
+  "schema_errors": [],
+  "num_round1_feedback_records": 6,
+  "num_candidates_requested": 2,
+  "num_candidates_written": 2,
+  "num_pre_valid": 2,
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/round2_feedback/prompts/case_112.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/round2_feedback/api_outputs/case_112__claude-sonnet-4-5.json",
+  "prompt_estimated_tokens": 3944,
+  "usage": {
+    "prompt_tokens": 4422,
+    "completion_tokens": 978,
+    "total_tokens": 5400
+  },
+  "candidate_records": [
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/round2_feedback/candidates/case_112__Round2_01.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/round2_feedback/metadata/case_112__Round2_01.metadata.json",
+      "pre_valid": true,
+      "pre_validation_errors": [],
+      "pre_validation_warnings": []
+    },
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/round2_feedback/candidates/case_112__Round2_02.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/round2_feedback/metadata/case_112__Round2_02.metadata.json",
+      "pre_valid": true,
+      "pre_validation_errors": [],
+      "pre_validation_warnings": []
+    }
+  ],
+  "raw_response": "```json\n{\n  \"case_id\": \"case_112\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Walker positioned closer to ego path with minimal weather change to preserve collision dynamics\",\n      \"mutation_intent\": \"Preserve collision with detected objects at moderate speed and vehicle_cmd/status mismatch by adjusting walker position minimally\",\n      \"expected_oracle\": \"collision\",\n      \"modifications\": {\n        \"weather_delta\": {\n          \"rain\": 0,\n          \"fog\": 2,\n          \"wetness\": 0,\n          \"puddle\": 0\n        },\n        \"actor_mutations\": [\n          {\n            \"actor_index\": 0,\n            \"position_offset\": {\n              \"x\": -1.0,\n              \"y\": 1.5\n            },\n            \"speed_delta\": 0.6\n          },\n          {\n            \"actor_index\": 1,\n            \"position_offset\": {\n              \"x\": 0.0,\n              \"y\": 0.0\n            },\n            \"speed_delta\": 0.0\n          }\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\n          \"keep_original\": true,\n          \"spawn_offset\": {\n            \"x\": 0.0,\n            \"y\": 0.0\n          },\n          \"destination_offset\": {\n            \"x\": 0.0,\n            \"y\": 0.0\n          }\n        }\n      },\n      \"pre_execution_validation_rules\": [\n        \"Walker spawn within 8m of original position and on collision trajectory with ego route\"\n      ],\n      \"post_execution_validation_rules\": [\n        \"Collision oracle triggered with 1-6 detected objects and ego speed 4-6 m/s before impact\",\n        \"Check vehicle_cmd vs vehicle_status consistency in critical window\"\n      ],\n      \"uncertainty\": [\n        \"Lane invasion label conflict may persist; vehicle_cmd/status mismatch root cause remains uncertain\"\n      ]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Vehicle actor adjusted slightly with walker kept near original to test multi-actor detection\",\n      \"mutation_intent\": \"Preserve collision pattern with multiple detected objects by minor vehicle repositioning while maintaining walker interaction\",\n      \"expected_oracle\": \"collision\",\n      \"modifications\": {\n        \"weather_delta\": {\n          \"rain\": 0,\n          \"fog\": 0,\n          \"wetness\": 0,\n          \"puddle\": 0\n        },\n        \"actor_mutations\": [\n          {\n            \"actor_index\": 0,\n            \"position_offset\": {\n              \"x\": -0.5,\n              \"y\": 0.8\n            },\n            \"speed_delta\": 0.3\n          },\n          {\n            \"actor_index\": 1,\n            \"position_offset\": {\n              \"x\": -2.0,\n              \"y\": 1.5\n            },\n            \"speed_delta\": -1.0\n          }\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\n          \"keep_original\": true,\n          \"spawn_offset\": {\n            \"x\": 0.0,\n            \"y\": 0.0\n          },\n          \"destination_offset\": {\n            \"x\": 0.0,\n            \"y\": 0.0\n          }\n        }\n      },\n      \"pre_execution_validation_rules\": [\n        \"Both actors remain within 8m of original positions and near ego route\"\n      ],\n      \"post_execution_validation_rules\": [\n        \"Collision oracle with multiple detected objects present before impact at moderate ego speed\",\n        \"Verify vehicle_cmd all-zero pattern persists with active vehicle_status\"\n      ],\n      \"uncertainty\": [\n        \"Multi-actor scenario may alter timing; module-level fault attribution remains uncertain\"\n      ]\n    }\n  ]\n}\n```",
+  "parsed_response": {
+    "case_id": "case_112",
+    "candidate_specs": [
+      {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Walker positioned closer to ego path with minimal weather change to preserve collision dynamics",
+        "mutation_intent": "Preserve collision with detected objects at moderate speed and vehicle_cmd/status mismatch by adjusting walker position minimally",
+        "expected_oracle": "collision",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 2,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": -1.0,
+                "y": 1.5
+              },
+              "speed_delta": 0.6
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "speed_delta": 0.0
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Walker spawn within 8m of original position and on collision trajectory with ego route"
+        ],
+        "post_execution_validation_rules": [
+          "Collision oracle triggered with 1-6 detected objects and ego speed 4-6 m/s before impact",
+          "Check vehicle_cmd vs vehicle_status consistency in critical window"
+        ],
+        "uncertainty": [
+          "Lane invasion label conflict may persist; vehicle_cmd/status mismatch root cause remains uncertain"
+        ]
+      },
+      {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Vehicle actor adjusted slightly with walker kept near original to test multi-actor detection",
+        "mutation_intent": "Preserve collision pattern with multiple detected objects by minor vehicle repositioning while maintaining walker interaction",
+        "expected_oracle": "collision",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": -0.5,
+                "y": 0.8
+              },
+              "speed_delta": 0.3
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": -2.0,
+                "y": 1.5
+              },
+              "speed_delta": -1.0
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Both actors remain within 8m of original positions and near ego route"
+        ],
+        "post_execution_validation_rules": [
+          "Collision oracle with multiple detected objects present before impact at moderate ego speed",
+          "Verify vehicle_cmd all-zero pattern persists with active vehicle_status"
+        ],
+        "uncertainty": [
+          "Multi-actor scenario may alter timing; module-level fault attribution remains uncertain"
+        ]
+      }
+    ]
+  },
+  "error_message": "",
+  "timestamp": "<REDACTED_TIMESTAMP>",
+  "raw_api_payload": {
+    "id": "<REDACTED_RESPONSE_ID>",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "```json\n{\n  \"case_id\": \"case_112\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Walker positioned closer to ego path with minimal weather change to preserve collision dynamics\",\n      \"mutation_intent\": \"Preserve collision with detected objects at moderate speed and vehicle_cmd/status mismatch by adjusting walker position minimally\",\n      \"expected_oracle\": \"collision\",\n      \"modifications\": {\n        \"weather_delta\": {\n          \"rain\": 0,\n          \"fog\": 2,\n          \"wetness\": 0,\n          \"puddle\": 0\n        },\n        \"actor_mutations\": [\n          {\n            \"actor_index\": 0,\n            \"position_offset\": {\n              \"x\": -1.0,\n              \"y\": 1.5\n            },\n            \"speed_delta\": 0.6\n          },\n          {\n            \"actor_index\": 1,\n            \"position_offset\": {\n              \"x\": 0.0,\n              \"y\": 0.0\n            },\n            \"speed_delta\": 0.0\n          }\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\n          \"keep_original\": true,\n          \"spawn_offset\": {\n            \"x\": 0.0,\n            \"y\": 0.0\n          },\n          \"destination_offset\": {\n            \"x\": 0.0,\n            \"y\": 0.0\n          }\n        }\n      },\n      \"pre_execution_validation_rules\": [\n        \"Walker spawn within 8m of original position and on collision trajectory with ego route\"\n      ],\n      \"post_execution_validation_rules\": [\n        \"Collision oracle triggered with 1-6 detected objects and ego speed 4-6 m/s before impact\",\n        \"Check vehicle_cmd vs vehicle_status consistency in critical window\"\n      ],\n      \"uncertainty\": [\n        \"Lane invasion label conflict may persist; vehicle_cmd/status mismatch root cause remains uncertain\"\n      ]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Vehicle actor adjusted slightly with walker kept near original to test multi-actor detection\",\n      \"mutation_intent\": \"Preserve collision pattern with multiple detected objects by minor vehicle repositioning while maintaining walker interaction\",\n      \"expected_oracle\": \"collision\",\n      \"modifications\": {\n        \"weather_delta\": {\n          \"rain\": 0,\n          \"fog\": 0,\n          \"wetness\": 0,\n          \"puddle\": 0\n        },\n        \"actor_mutations\": [\n          {\n            \"actor_index\": 0,\n            \"position_offset\": {\n              \"x\": -0.5,\n              \"y\": 0.8\n            },\n            \"speed_delta\": 0.3\n          },\n          {\n            \"actor_index\": 1,\n            \"position_offset\": {\n              \"x\": -2.0,\n              \"y\": 1.5\n            },\n            \"speed_delta\": -1.0\n          }\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\n          \"keep_original\": true,\n          \"spawn_offset\": {\n            \"x\": 0.0,\n            \"y\": 0.0\n          },\n          \"destination_offset\": {\n            \"x\": 0.0,\n            \"y\": 0.0\n          }\n        }\n      },\n      \"pre_execution_validation_rules\": [\n        \"Both actors remain within 8m of original positions and near ego route\"\n      ],\n      \"post_execution_validation_rules\": [\n        \"Collision oracle with multiple detected objects present before impact at moderate ego speed\",\n        \"Verify vehicle_cmd all-zero pattern persists with active vehicle_status\"\n      ],\n      \"uncertainty\": [\n        \"Multi-actor scenario may alter timing; module-level fault attribution remains uncertain\"\n      ]\n    }\n  ]\n}\n```",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "claude-sonnet-4-5",
+    "object": "chat.completion",
+    "service_tier": null,
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 978,
+      "prompt_tokens": 4422,
+      "total_tokens": 5400,
+      "completion_tokens_details": null,
+      "prompt_tokens_details": null
+    }
+  },
+  "elapsed_sec": 17.091
+}

@@ -1,0 +1,448 @@
+{
+  "case_id": "case_037",
+  "model_name": "claude-sonnet-4-5",
+  "workflow": "round3_feedback_guided_b2s",
+  "authoritative_target": "original_seed_and_original_phase1_root_cause",
+  "status": "completed",
+  "schema_valid": true,
+  "schema_errors": [],
+  "num_round1_feedback_records": 6,
+  "num_round2_feedback_records": 2,
+  "num_candidates_requested": 6,
+  "num_candidates_written": 6,
+  "num_pre_valid": 6,
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/round3_feedback/prompts/case_037.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/round3_feedback/api_outputs/case_037__claude-sonnet-4-5.json",
+  "prompt_estimated_tokens": 5202,
+  "usage": {
+    "prompt_tokens": 5902,
+    "completion_tokens": 2325,
+    "total_tokens": 8227
+  },
+  "candidate_records": [
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/round3_feedback/candidates/case_037__Round3_01.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/round3_feedback/metadata/case_037__Round3_01.metadata.json",
+      "pre_valid": true,
+      "pre_validation_errors": [],
+      "pre_validation_warnings": []
+    },
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/round3_feedback/candidates/case_037__Round3_02.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/round3_feedback/metadata/case_037__Round3_02.metadata.json",
+      "pre_valid": true,
+      "pre_validation_errors": [],
+      "pre_validation_warnings": []
+    },
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/round3_feedback/candidates/case_037__Round3_03.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/round3_feedback/metadata/case_037__Round3_03.metadata.json",
+      "pre_valid": true,
+      "pre_validation_errors": [],
+      "pre_validation_warnings": []
+    },
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/round3_feedback/candidates/case_037__Round3_04.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/round3_feedback/metadata/case_037__Round3_04.metadata.json",
+      "pre_valid": true,
+      "pre_validation_errors": [],
+      "pre_validation_warnings": []
+    },
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/round3_feedback/candidates/case_037__Round3_05.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/round3_feedback/metadata/case_037__Round3_05.metadata.json",
+      "pre_valid": true,
+      "pre_validation_errors": [],
+      "pre_validation_warnings": []
+    },
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/round3_feedback/candidates/case_037__Round3_06.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/round3_feedback/metadata/case_037__Round3_06.metadata.json",
+      "pre_valid": true,
+      "pre_validation_errors": [],
+      "pre_validation_warnings": []
+    }
+  ],
+  "raw_response": "```json\n{\n  \"case_id\": \"case_037\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Move vehicle actor laterally toward ego lane, keep original weather and mission\",\n      \"mutation_intent\": \"Preserve nearby actor within 3m and moderate ego speed. Lateral shift tests collision trigger while maintaining actuation mismatch pattern.\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 5.0, \"y\": -4.5}, \"speed_delta\": -1.5},\n          {\"actor_index\": 1, \"position_offset\": {\"x\": 0.0, \"y\": 0.0}, \"speed_delta\": 0.0}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Actor 0 must spawn within 15m of ego route\", \"Ego spawn matches original coordinates\"],\n      \"post_execution_validation_rules\": [\"Verify vehicle_cmd vs vehicle_status mismatch\", \"Confirm actor within 5m during critical window\", \"Check ego speed 2-5 m/s before failure\"],\n      \"uncertainty\": [\"Collision oracle may not trigger despite proximity\", \"Red-light violation may dominate oracle output\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Reduce vehicle actor speed significantly, shift slightly toward ego path\",\n      \"mutation_intent\": \"Slower actor increases dwell time near ego route. Tests whether prolonged proximity triggers collision while preserving actuation inconsistency.\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 3.5, \"y\": -2.5}, \"speed_delta\": -3.0},\n          {\"actor_index\": 1, \"position_offset\": {\"x\": 0.0, \"y\": 0.0}, \"speed_delta\": 0.0}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Actor 0 speed reduced by 3 m/s\", \"Original mission preserved\"],\n      \"post_execution_validation_rules\": [\"Verify actor remains near ego for extended duration\", \"Check vehicle_cmd zero with nonzero vehicle_status\", \"Confirm moderate ego speed\"],\n      \"uncertainty\": [\"Slower actor may not intersect ego trajectory\", \"Red-light may still be sole oracle trigger\"]\n    },\n    {\n      \"candidate_id\": \"cand_003\",\n      \"high_level_variant\": \"Increase rain and wetness, move vehicle actor diagonally closer to ego\",\n      \"mutation_intent\": \"Amplify weather conditions to stress perception while tightening actor geometry. Tests if weather plus proximity triggers collision oracle.\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 20, \"fog\": 0, \"wetness\": 20, \"puddle\": 10},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 6.0, \"y\": -3.5}, \"speed_delta\": -0.5},\n          {\"actor_index\": 1, \"position_offset\": {\"x\": 0.0, \"y\": 0.0}, \"speed_delta\": 0.0}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Weather intensified within bounds\", \"Actor position shifted toward ego lane\"],\n      \"post_execution_validation_rules\": [\"Verify perception outputs available in critical window\", \"Check actuation command-status mismatch\", \"Confirm actor proximity under 5m\"],\n      \"uncertainty\": [\"Heavy weather may obscure actor detection\", \"Collision oracle accuracy remains uncertain\"]\n    },\n    {\n      \"candidate_id\": \"cand_004\",\n      \"high_level_variant\": \"Shift walker actor toward ego path, keep vehicle actor and weather unchanged\",\n      \"mutation_intent\": \"Test if walker proximity triggers collision while vehicle actor maintains original geometry. Isolates pedestrian interaction effect.\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 0.0, \"y\": 0.0}, \"speed_delta\": 0.0},\n          {\"actor_index\": 1, \"position_offset\": {\"x\": 4.0, \"y\": -3.0}, \"speed_delta\": 0.0}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Walker actor shifted toward ego route\", \"Vehicle actor unchanged\"],\n      \"post_execution_validation_rules\": [\"Check walker proximity during critical window\", \"Verify vehicle_cmd zero pattern\", \"Confirm ego speed moderate\"],\n      \"uncertainty\": [\"Walker may not intersect ego trajectory\", \"Red-light violation may dominate\"]\n    },\n    {\n      \"candidate_id\": \"cand_005\",\n      \"high_level_variant\": \"Move both actors closer to ego spawn, reduce fog slightly\",\n      \"mutation_intent\": \"Dual actor proximity increases interaction complexity. Tests if multiple nearby actors trigger collision while preserving actuation mismatch.\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": -4, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 7.0, \"y\": -4.0}, \"speed_delta\": -1.0},\n          {\"actor_index\": 1, \"position_offset\": {\"x\": 3.0, \"y\": -2.5}, \"speed_delta\": 0.0}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Both actors shifted toward ego\", \"Fog reduced within bounds\"],\n      \"post_execution_validation_rules\": [\"Verify multiple actors within 5m during critical window\", \"Check vehicle_cmd vs vehicle_status mismatch\", \"Confirm ego speed 2-5 m/s\"],\n      \"uncertainty\": [\"Multiple actors may not trigger collision oracle\", \"Red-light may remain sole symptom\"]\n    },\n    {\n      \"candidate_id\": \"cand_006\",\n      \"high_level_variant\": \"Increase vehicle actor speed, shift laterally toward ego, reduce wetness\",\n      \"mutation_intent\": \"Faster actor with lateral shift tests dynamic collision scenario. Lower wetness isolates actuation behavior from weather confound.\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": -15, \"fog\": 0, \"wetness\": -20, \"puddle\": -10},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 4.5, \"y\": -3.0}, \"speed_delta\": 2.0},\n          {\"actor_index\": 1, \"position_offset\": {\"x\": 0.0, \"y\": 0.0}, \"speed_delta\": 0.0}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Actor speed increased within bounds\", \"Weather reduced to lower noise\"],\n      \"post_execution_validation_rules\": [\"Verify actor proximity and relative velocity\", \"Check vehicle_cmd zero with nonzero vehicle_status\", \"Confirm ego moderate speed\"],\n      \"uncertainty\": [\"Faster actor may pass before collision\", \"Collision oracle trigger remains uncertain\"]\n    }\n  ]\n}\n```",
+  "parsed_response": {
+    "case_id": "case_037",
+    "candidate_specs": [
+      {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Move vehicle actor laterally toward ego lane, keep original weather and mission",
+        "mutation_intent": "Preserve nearby actor within 3m and moderate ego speed. Lateral shift tests collision trigger while maintaining actuation mismatch pattern.",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 5.0,
+                "y": -4.5
+              },
+              "speed_delta": -1.5
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "speed_delta": 0.0
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Actor 0 must spawn within 15m of ego route",
+          "Ego spawn matches original coordinates"
+        ],
+        "post_execution_validation_rules": [
+          "Verify vehicle_cmd vs vehicle_status mismatch",
+          "Confirm actor within 5m during critical window",
+          "Check ego speed 2-5 m/s before failure"
+        ],
+        "uncertainty": [
+          "Collision oracle may not trigger despite proximity",
+          "Red-light violation may dominate oracle output"
+        ]
+      },
+      {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Reduce vehicle actor speed significantly, shift slightly toward ego path",
+        "mutation_intent": "Slower actor increases dwell time near ego route. Tests whether prolonged proximity triggers collision while preserving actuation inconsistency.",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 3.5,
+                "y": -2.5
+              },
+              "speed_delta": -3.0
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "speed_delta": 0.0
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Actor 0 speed reduced by 3 m/s",
+          "Original mission preserved"
+        ],
+        "post_execution_validation_rules": [
+          "Verify actor remains near ego for extended duration",
+          "Check vehicle_cmd zero with nonzero vehicle_status",
+          "Confirm moderate ego speed"
+        ],
+        "uncertainty": [
+          "Slower actor may not intersect ego trajectory",
+          "Red-light may still be sole oracle trigger"
+        ]
+      },
+      {
+        "candidate_id": "cand_003",
+        "high_level_variant": "Increase rain and wetness, move vehicle actor diagonally closer to ego",
+        "mutation_intent": "Amplify weather conditions to stress perception while tightening actor geometry. Tests if weather plus proximity triggers collision oracle.",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": 20,
+            "fog": 0,
+            "wetness": 20,
+            "puddle": 10
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 6.0,
+                "y": -3.5
+              },
+              "speed_delta": -0.5
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "speed_delta": 0.0
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Weather intensified within bounds",
+          "Actor position shifted toward ego lane"
+        ],
+        "post_execution_validation_rules": [
+          "Verify perception outputs available in critical window",
+          "Check actuation command-status mismatch",
+          "Confirm actor proximity under 5m"
+        ],
+        "uncertainty": [
+          "Heavy weather may obscure actor detection",
+          "Collision oracle accuracy remains uncertain"
+        ]
+      },
+      {
+        "candidate_id": "cand_004",
+        "high_level_variant": "Shift walker actor toward ego path, keep vehicle actor and weather unchanged",
+        "mutation_intent": "Test if walker proximity triggers collision while vehicle actor maintains original geometry. Isolates pedestrian interaction effect.",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "speed_delta": 0.0
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": 4.0,
+                "y": -3.0
+              },
+              "speed_delta": 0.0
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Walker actor shifted toward ego route",
+          "Vehicle actor unchanged"
+        ],
+        "post_execution_validation_rules": [
+          "Check walker proximity during critical window",
+          "Verify vehicle_cmd zero pattern",
+          "Confirm ego speed moderate"
+        ],
+        "uncertainty": [
+          "Walker may not intersect ego trajectory",
+          "Red-light violation may dominate"
+        ]
+      },
+      {
+        "candidate_id": "cand_005",
+        "high_level_variant": "Move both actors closer to ego spawn, reduce fog slightly",
+        "mutation_intent": "Dual actor proximity increases interaction complexity. Tests if multiple nearby actors trigger collision while preserving actuation mismatch.",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": -4,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 7.0,
+                "y": -4.0
+              },
+              "speed_delta": -1.0
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": 3.0,
+                "y": -2.5
+              },
+              "speed_delta": 0.0
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Both actors shifted toward ego",
+          "Fog reduced within bounds"
+        ],
+        "post_execution_validation_rules": [
+          "Verify multiple actors within 5m during critical window",
+          "Check vehicle_cmd vs vehicle_status mismatch",
+          "Confirm ego speed 2-5 m/s"
+        ],
+        "uncertainty": [
+          "Multiple actors may not trigger collision oracle",
+          "Red-light may remain sole symptom"
+        ]
+      },
+      {
+        "candidate_id": "cand_006",
+        "high_level_variant": "Increase vehicle actor speed, shift laterally toward ego, reduce wetness",
+        "mutation_intent": "Faster actor with lateral shift tests dynamic collision scenario. Lower wetness isolates actuation behavior from weather confound.",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": -15,
+            "fog": 0,
+            "wetness": -20,
+            "puddle": -10
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 4.5,
+                "y": -3.0
+              },
+              "speed_delta": 2.0
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "speed_delta": 0.0
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Actor speed increased within bounds",
+          "Weather reduced to lower noise"
+        ],
+        "post_execution_validation_rules": [
+          "Verify actor proximity and relative velocity",
+          "Check vehicle_cmd zero with nonzero vehicle_status",
+          "Confirm ego moderate speed"
+        ],
+        "uncertainty": [
+          "Faster actor may pass before collision",
+          "Collision oracle trigger remains uncertain"
+        ]
+      }
+    ]
+  },
+  "error_message": "",
+  "timestamp": "<REDACTED_TIMESTAMP>",
+  "raw_api_payload": {
+    "id": "<REDACTED_RESPONSE_ID>",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "```json\n{\n  \"case_id\": \"case_037\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Move vehicle actor laterally toward ego lane, keep original weather and mission\",\n      \"mutation_intent\": \"Preserve nearby actor within 3m and moderate ego speed. Lateral shift tests collision trigger while maintaining actuation mismatch pattern.\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 5.0, \"y\": -4.5}, \"speed_delta\": -1.5},\n          {\"actor_index\": 1, \"position_offset\": {\"x\": 0.0, \"y\": 0.0}, \"speed_delta\": 0.0}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Actor 0 must spawn within 15m of ego route\", \"Ego spawn matches original coordinates\"],\n      \"post_execution_validation_rules\": [\"Verify vehicle_cmd vs vehicle_status mismatch\", \"Confirm actor within 5m during critical window\", \"Check ego speed 2-5 m/s before failure\"],\n      \"uncertainty\": [\"Collision oracle may not trigger despite proximity\", \"Red-light violation may dominate oracle output\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Reduce vehicle actor speed significantly, shift slightly toward ego path\",\n      \"mutation_intent\": \"Slower actor increases dwell time near ego route. Tests whether prolonged proximity triggers collision while preserving actuation inconsistency.\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 3.5, \"y\": -2.5}, \"speed_delta\": -3.0},\n          {\"actor_index\": 1, \"position_offset\": {\"x\": 0.0, \"y\": 0.0}, \"speed_delta\": 0.0}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Actor 0 speed reduced by 3 m/s\", \"Original mission preserved\"],\n      \"post_execution_validation_rules\": [\"Verify actor remains near ego for extended duration\", \"Check vehicle_cmd zero with nonzero vehicle_status\", \"Confirm moderate ego speed\"],\n      \"uncertainty\": [\"Slower actor may not intersect ego trajectory\", \"Red-light may still be sole oracle trigger\"]\n    },\n    {\n      \"candidate_id\": \"cand_003\",\n      \"high_level_variant\": \"Increase rain and wetness, move vehicle actor diagonally closer to ego\",\n      \"mutation_intent\": \"Amplify weather conditions to stress perception while tightening actor geometry. Tests if weather plus proximity triggers collision oracle.\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 20, \"fog\": 0, \"wetness\": 20, \"puddle\": 10},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 6.0, \"y\": -3.5}, \"speed_delta\": -0.5},\n          {\"actor_index\": 1, \"position_offset\": {\"x\": 0.0, \"y\": 0.0}, \"speed_delta\": 0.0}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Weather intensified within bounds\", \"Actor position shifted toward ego lane\"],\n      \"post_execution_validation_rules\": [\"Verify perception outputs available in critical window\", \"Check actuation command-status mismatch\", \"Confirm actor proximity under 5m\"],\n      \"uncertainty\": [\"Heavy weather may obscure actor detection\", \"Collision oracle accuracy remains uncertain\"]\n    },\n    {\n      \"candidate_id\": \"cand_004\",\n      \"high_level_variant\": \"Shift walker actor toward ego path, keep vehicle actor and weather unchanged\",\n      \"mutation_intent\": \"Test if walker proximity triggers collision while vehicle actor maintains original geometry. Isolates pedestrian interaction effect.\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 0.0, \"y\": 0.0}, \"speed_delta\": 0.0},\n          {\"actor_index\": 1, \"position_offset\": {\"x\": 4.0, \"y\": -3.0}, \"speed_delta\": 0.0}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Walker actor shifted toward ego route\", \"Vehicle actor unchanged\"],\n      \"post_execution_validation_rules\": [\"Check walker proximity during critical window\", \"Verify vehicle_cmd zero pattern\", \"Confirm ego speed moderate\"],\n      \"uncertainty\": [\"Walker may not intersect ego trajectory\", \"Red-light violation may dominate\"]\n    },\n    {\n      \"candidate_id\": \"cand_005\",\n      \"high_level_variant\": \"Move both actors closer to ego spawn, reduce fog slightly\",\n      \"mutation_intent\": \"Dual actor proximity increases interaction complexity. Tests if multiple nearby actors trigger collision while preserving actuation mismatch.\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": -4, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 7.0, \"y\": -4.0}, \"speed_delta\": -1.0},\n          {\"actor_index\": 1, \"position_offset\": {\"x\": 3.0, \"y\": -2.5}, \"speed_delta\": 0.0}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Both actors shifted toward ego\", \"Fog reduced within bounds\"],\n      \"post_execution_validation_rules\": [\"Verify multiple actors within 5m during critical window\", \"Check vehicle_cmd vs vehicle_status mismatch\", \"Confirm ego speed 2-5 m/s\"],\n      \"uncertainty\": [\"Multiple actors may not trigger collision oracle\", \"Red-light may remain sole symptom\"]\n    },\n    {\n      \"candidate_id\": \"cand_006\",\n      \"high_level_variant\": \"Increase vehicle actor speed, shift laterally toward ego, reduce wetness\",\n      \"mutation_intent\": \"Faster actor with lateral shift tests dynamic collision scenario. Lower wetness isolates actuation behavior from weather confound.\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": -15, \"fog\": 0, \"wetness\": -20, \"puddle\": -10},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 4.5, \"y\": -3.0}, \"speed_delta\": 2.0},\n          {\"actor_index\": 1, \"position_offset\": {\"x\": 0.0, \"y\": 0.0}, \"speed_delta\": 0.0}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Actor speed increased within bounds\", \"Weather reduced to lower noise\"],\n      \"post_execution_validation_rules\": [\"Verify actor proximity and relative velocity\", \"Check vehicle_cmd zero with nonzero vehicle_status\", \"Confirm ego moderate speed\"],\n      \"uncertainty\": [\"Faster actor may pass before collision\", \"Collision oracle trigger remains uncertain\"]\n    }\n  ]\n}\n```",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "claude-sonnet-4-5",
+    "object": "chat.completion",
+    "service_tier": null,
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 2325,
+      "prompt_tokens": 5902,
+      "total_tokens": 8227,
+      "completion_tokens_details": null,
+      "prompt_tokens_details": null
+    }
+  },
+  "elapsed_sec": 34.822
+}

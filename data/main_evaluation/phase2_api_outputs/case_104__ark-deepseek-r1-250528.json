@@ -1,0 +1,363 @@
+{
+  "case_id": "case_104",
+  "model_name": "ark-deepseek-r1-250528",
+  "workflow": "phase2_grounded_generation",
+  "status": "completed",
+  "schema_valid": true,
+  "schema_errors": [],
+  "phase1_ready": "uncertain",
+  "num_candidates_requested": 2,
+  "num_candidates_written": 2,
+  "num_pre_valid": 2,
+  "candidate_records": [
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-deepseek-r1-250528/json/case_104/case_104__cand_001.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-deepseek-r1-250528/metadata/case_104/case_104__cand_001.metadata.json",
+      "case_id": "case_104",
+      "model_name": "ark-deepseek-r1-250528",
+      "candidate_index": 1,
+      "candidate_spec": {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Shift ego spawn 2 meters toward the nearest intersection with a red light, keep ego stationary with no dynamic actors",
+        "mutation_intent": "Preserves all Phase 1 root-cause constraints: retains conflicting red-light violation labeling between dataset and detection, maintains zero actuation commands and near-zero ego velocity in critical window, keeps no dynamic actors, leaves total map traffic light count at 36",
+        "expected_oracle": "unknown",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": 0.0,
+              "size_scale": 1.0
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": false,
+            "spawn_offset": {
+              "x": -2.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Ego must have zero actuation commands in the critical window",
+          "No dynamic actors may be added to the scenario",
+          "Total number of traffic lights on the map must remain 36"
+        ],
+        "post_execution_validation_rules": [
+          "Conflicting red-light violation status between dataset annotation and automated detection is preserved"
+        ],
+        "uncertainty": [
+          "Stop-line crossing by ego is not confirmed",
+          "Relation between ego route and active red light is not confirmed",
+          "No module-level failure is confirmed"
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 0.0,
+          "fog": 0.0,
+          "wetness": 0.0,
+          "puddle": 0.0
+        },
+        "actor_mutations": [],
+        "puddle_mutations": [
+          {
+            "puddle_index": 0,
+            "location_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "level_delta": 0.0,
+            "size_scale": 1.0
+          }
+        ],
+        "mission_mutation": {
+          "spawn_offset": {
+            "x": -2.0,
+            "y": 0.0
+          },
+          "destination_offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": [
+          "no actors in candidate scenario"
+        ]
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_104__ark-deepseek-r1-250528.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_104__ark-deepseek-r1-250528.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    },
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-deepseek-r1-250528/json/case_104/case_104__cand_002.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-deepseek-r1-250528/metadata/case_104/case_104__cand_002.metadata.json",
+      "case_id": "case_104",
+      "model_name": "ark-deepseek-r1-250528",
+      "candidate_index": 2,
+      "candidate_spec": {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Keep original ego mission, slightly increase fog and wetness, retain stationary ego with no dynamic actors",
+        "mutation_intent": "Preserves all Phase 1 root-cause constraints: conflicting red-light labels, zero actuation, near-zero ego speed, no dynamic actors, and 36 total map traffic lights are all retained",
+        "expected_oracle": "unknown",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 10,
+            "wetness": 10,
+            "puddle": 0
+          },
+          "actor_mutations": [],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": 0.05,
+              "size_scale": 1.0
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Ego must have zero actuation commands in the critical window",
+          "No dynamic actors may be added to the scenario",
+          "Total number of traffic lights on the map must remain 36",
+          "Weather modifications are within conservative allowed ranges"
+        ],
+        "post_execution_validation_rules": [
+          "Conflicting red-light violation status between dataset annotation and automated detection is preserved"
+        ],
+        "uncertainty": [
+          "Stop-line crossing by ego is not confirmed",
+          "Relation between ego route and active red light is not confirmed",
+          "No module-level failure is confirmed",
+          "Weather adjustment does not resolve conflicting label status"
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 0.0,
+          "fog": 10.0,
+          "wetness": 10.0,
+          "puddle": 0.0
+        },
+        "actor_mutations": [],
+        "puddle_mutations": [
+          {
+            "puddle_index": 0,
+            "location_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "level_delta": 0.05,
+            "size_scale": 1.0
+          }
+        ],
+        "mission_mutation": {
+          "keep_original": true
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": [
+          "no actors in candidate scenario"
+        ]
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_104__ark-deepseek-r1-250528.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_104__ark-deepseek-r1-250528.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    }
+  ],
+  "seed_artifact_zip": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-deepseek-r1-250528/seed-artifact/seed-artifact-case_104.zip",
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_prompts/case_104__ark-deepseek-r1-250528.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_104__ark-deepseek-r1-250528.json",
+  "prompt_estimated_tokens": 1029,
+  "usage": {
+    "prompt_tokens": 1291,
+    "completion_tokens": 2623,
+    "total_tokens": 3914
+  },
+  "raw_response": "{\n  \"case_id\": \"case_104\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Shift ego spawn 2 meters toward the nearest intersection with a red light, keep ego stationary with no dynamic actors\",\n      \"mutation_intent\": \"Preserves all Phase 1 root-cause constraints: retains conflicting red-light violation labeling between dataset and detection, maintains zero actuation commands and near-zero ego velocity in critical window, keeps no dynamic actors, leaves total map traffic light count at 36\",\n      \"expected_oracle\": \"unknown\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": 0.0, \"size_scale\": 1.0}\n        ],\n        \"mission_mutation\": {\"keep_original\": false, \"spawn_offset\": {\"x\": -2.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Ego must have zero actuation commands in the critical window\", \"No dynamic actors may be added to the scenario\", \"Total number of traffic lights on the map must remain 36\"],\n      \"post_execution_validation_rules\": [\"Conflicting red-light violation status between dataset annotation and automated detection is preserved\"],\n      \"uncertainty\": [\"Stop-line crossing by ego is not confirmed\", \"Relation between ego route and active red light is not confirmed\", \"No module-level failure is confirmed\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Keep original ego mission, slightly increase fog and wetness, retain stationary ego with no dynamic actors\",\n      \"mutation_intent\": \"Preserves all Phase 1 root-cause constraints: conflicting red-light labels, zero actuation, near-zero ego speed, no dynamic actors, and 36 total map traffic lights are all retained\",\n      \"expected_oracle\": \"unknown\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 10, \"wetness\": 10, \"puddle\": 0},\n        \"actor_mutations\": [],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": 0.05, \"size_scale\": 1.0}\n        ],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Ego must have zero actuation commands in the critical window\", \"No dynamic actors may be added to the scenario\", \"Total number of traffic lights on the map must remain 36\", \"Weather modifications are within conservative allowed ranges\"],\n      \"post_execution_validation_rules\": [\"Conflicting red-light violation status between dataset annotation and automated detection is preserved\"],\n      \"uncertainty\": [\"Stop-line crossing by ego is not confirmed\", \"Relation between ego route and active red light is not confirmed\", \"No module-level failure is confirmed\", \"Weather adjustment does not resolve conflicting label status\"]\n    }\n  ]\n}",
+  "parsed_response": {
+    "case_id": "case_104",
+    "candidate_specs": [
+      {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Shift ego spawn 2 meters toward the nearest intersection with a red light, keep ego stationary with no dynamic actors",
+        "mutation_intent": "Preserves all Phase 1 root-cause constraints: retains conflicting red-light violation labeling between dataset and detection, maintains zero actuation commands and near-zero ego velocity in critical window, keeps no dynamic actors, leaves total map traffic light count at 36",
+        "expected_oracle": "unknown",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": 0.0,
+              "size_scale": 1.0
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": false,
+            "spawn_offset": {
+              "x": -2.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Ego must have zero actuation commands in the critical window",
+          "No dynamic actors may be added to the scenario",
+          "Total number of traffic lights on the map must remain 36"
+        ],
+        "post_execution_validation_rules": [
+          "Conflicting red-light violation status between dataset annotation and automated detection is preserved"
+        ],
+        "uncertainty": [
+          "Stop-line crossing by ego is not confirmed",
+          "Relation between ego route and active red light is not confirmed",
+          "No module-level failure is confirmed"
+        ]
+      },
+      {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Keep original ego mission, slightly increase fog and wetness, retain stationary ego with no dynamic actors",
+        "mutation_intent": "Preserves all Phase 1 root-cause constraints: conflicting red-light labels, zero actuation, near-zero ego speed, no dynamic actors, and 36 total map traffic lights are all retained",
+        "expected_oracle": "unknown",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 10,
+            "wetness": 10,
+            "puddle": 0
+          },
+          "actor_mutations": [],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": 0.05,
+              "size_scale": 1.0
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Ego must have zero actuation commands in the critical window",
+          "No dynamic actors may be added to the scenario",
+          "Total number of traffic lights on the map must remain 36",
+          "Weather modifications are within conservative allowed ranges"
+        ],
+        "post_execution_validation_rules": [
+          "Conflicting red-light violation status between dataset annotation and automated detection is preserved"
+        ],
+        "uncertainty": [
+          "Stop-line crossing by ego is not confirmed",
+          "Relation between ego route and active red light is not confirmed",
+          "No module-level failure is confirmed",
+          "Weather adjustment does not resolve conflicting label status"
+        ]
+      }
+    ]
+  },
+  "raw_api_payload": {
+    "id": "021782923831449ed9c07a18069cfb59ad66daf7e7bd9212fd108",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "{\n  \"case_id\": \"case_104\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Shift ego spawn 2 meters toward the nearest intersection with a red light, keep ego stationary with no dynamic actors\",\n      \"mutation_intent\": \"Preserves all Phase 1 root-cause constraints: retains conflicting red-light violation labeling between dataset and detection, maintains zero actuation commands and near-zero ego velocity in critical window, keeps no dynamic actors, leaves total map traffic light count at 36\",\n      \"expected_oracle\": \"unknown\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": 0.0, \"size_scale\": 1.0}\n        ],\n        \"mission_mutation\": {\"keep_original\": false, \"spawn_offset\": {\"x\": -2.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Ego must have zero actuation commands in the critical window\", \"No dynamic actors may be added to the scenario\", \"Total number of traffic lights on the map must remain 36\"],\n      \"post_execution_validation_rules\": [\"Conflicting red-light violation status between dataset annotation and automated detection is preserved\"],\n      \"uncertainty\": [\"Stop-line crossing by ego is not confirmed\", \"Relation between ego route and active red light is not confirmed\", \"No module-level failure is confirmed\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Keep original ego mission, slightly increase fog and wetness, retain stationary ego with no dynamic actors\",\n      \"mutation_intent\": \"Preserves all Phase 1 root-cause constraints: conflicting red-light labels, zero actuation, near-zero ego speed, no dynamic actors, and 36 total map traffic lights are all retained\",\n      \"expected_oracle\": \"unknown\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 10, \"wetness\": 10, \"puddle\": 0},\n        \"actor_mutations\": [],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": 0.05, \"size_scale\": 1.0}\n        ],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Ego must have zero actuation commands in the critical window\", \"No dynamic actors may be added to the scenario\", \"Total number of traffic lights on the map must remain 36\", \"Weather modifications are within conservative allowed ranges\"],\n      \"post_execution_validation_rules\": [\"Conflicting red-light violation status between dataset annotation and automated detection is preserved\"],\n      \"uncertainty\": [\"Stop-line crossing by ego is not confirmed\", \"Relation between ego route and active red light is not confirmed\", \"No module-level failure is confirmed\", \"Weather adjustment does not resolve conflicting label status\"]\n    }\n  ]\n}",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null,
+          "reasoning_content": "\nGot it, let's build this step by step. First, the case_id is case_104, right? We need two candidate specs. Let's start with the first one, cand_001.\n\nFirst, high_level_variant for cand 001: Slightly move ego spawn closer to the nearest intersection with a red light, keep ego stationary and no other actors. Wait, mutation intent: Preserves all root cause constraints: conflicting red-light labels, zero actuation/near-zero ego speed, no dynamic actors, 36 total traffic lights. Expected oracle? Wait, the original is conflicting, so... wait the original says dataset labels red-light, error doesn't, so expected oracle is compound? No wait, wait the root cause is conflicting labels, so expected oracle is unknown? Wait no, let's check. The original says conflicting, so expected_oracle would be unknown? Wait no, let's see the input: dataset says red-light, error says no, so preserve that conflict. Let's do first candidate:\n\ncand_001: high_level_variant: \"Ego spawn shifted slightly toward nearest intersection with active red light, maintain zero actuation and no dynamic actors\". Mutation_intent: \"Preserves all Phase 1 root cause constraints: conflicting red-light violation labels between dataset and detection, zero actuation commands, near-zero stationary ego, no dynamic actors, full 36 map traffic lights retained\". Expected_oracle: \"unknown\" because it's conflicting, right?\n\nModifications: weather delta all 0, right? Actor mutations: there are no actors, original actors is empty, so actor_mutations is empty? Wait original actors is [] so yeah. Puddle mutations: let's keep it almost original, so puddle_index 0, offset 0, level delta 0, size 1.0. Mission mutation: keep_original false? Wait shift spawn a little, like x -2, y 0, that's within [-5,5]. Destination offset 0,0. Wait position offset for spawn is within range, yes, -2 is okay.\n\nPre-execution rules: [\"Ego must have zero actuation commands in critical window\", \"No dynamic actors added to scenario\", \"Total map traffic lights count remains 36\"]. Post execution: [\"Conflicting red-light label status between dataset-style annotation and error detection is preserved\"]. Uncertainty: [\"Stop-line crossing status unconfirmed\", \"Route-red-light relation unconfirmed\"].\n\nThen cand_002, second one. Let's make a variant that slightly adjusts fog and wetness, keep everything else same. High_level_variant: \"Slightly increase fog and wetness, keep original ego spawn, no dynamic actors, ego remains stationary\". Mutation_intent: \"Preserves all Phase 1 root cause constraints: conflicting red-light labels, zero actuation/near-zero ego velocity, no dynamic actors, 36 total traffic lights unchanged\". Expected_oracle: \"unknown\" again, because conflict.\n\nModifications: weather delta: rain 0, fog +10, wetness +10, puddle 0. That's within [-20,20], right, 10 is okay. Actor_mutations is still empty, because no actors. Puddle mutation: level delta +0.05, size scale 1.0, location offset 0, that's within the allowed delta, 0.05 is less than 0.2. Mission mutation: keep_original true, right? Pre execution rules: same as before plus \"Weather changes are within conservative bounds\". Post execution same as before. Uncertainty same as first, plus \"Weather adjustment does not resolve conflicting label status\".\n\nWait let's check all rules: two candidates, offsets are within limits, speed delta (no actors so that's okay), weather deltas are within 20, puddle delta is 0.05 which is within 0.2, size 1.0 which is within 0.8-1.2. All preservation constraints are met: preserve conflicting labels, zero actuation, no dynamic actors, 36 traffic lights. Uncertainty preserved, right.\n\nWait let's structure the JSON correctly. Let's fill in all fields properly. Let's check the schema:\n\ncase_id is \"case_104\", candidate_specs is array of two.\n\nFirst candidate:\ncandidate_id: \"cand_001\"\nhigh_level_variant: \"Shift ego spawn 2 meters toward the nearest intersection with a red light, keep ego stationary with no dynamic actors in the scenario\"\nmutation_intent: \"Preserves all Phase 1 root-cause constraints: retains conflicting red-light violation labeling between dataset and detection, maintains zero actuation commands and near-zero ego velocity in critical window, keeps no dynamic actors, leaves total map traffic light count at 36\"\nexpected_oracle: \"unknown\" (since it's conflicting, no confirmed oracle)\nmodifications:\nweather_delta all 0, right? Because this candidate doesn't change weather.\nactor_mutations: empty array, since original actors is empty, no actors.\npuddle_mutations: [{\"puddle_index\": 0, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": 0.0, \"size_scale\": 1.0}] that's correct.\nmission_mutation: {\"keep_original\": false, \"spawn_offset\": {\"x\": -2.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}} - that's within [-5,5], okay.\npre_execution_validation_rules: [\"Ego must have zero actuation commands in the critical window\", \"No dynamic actors may be added to the scenario\", \"Total number of traffic lights on the map must remain 36\"]\npost_execution_validation_rules: [\"Conflicting red-light violation status between dataset-style annotation and automated detection is preserved\"]\nuncertainty: [\"Stop-line crossing by ego is not confirmed\", \"Relation between ego route and active red light is not confirmed\", \"No module-level failure is confirmed\"]\n\nSecond candidate:\ncandidate_id: \"cand_002\"\nhigh_level_variant: \"Keep original ego mission, slightly increase fog and wetness, retain stationary ego with no dynamic actors\"\nmutation_intent: \"Preserves all Phase 1 root-cause constraints: conflicting red-light labels, zero actuation, near-zero ego speed, no dynamic actors, and 36 total map traffic lights are all retained\"\nexpected_oracle: \"unknown\"\nmodifications:\nweather_delta: {\"rain\": 0, \"fog\": 10, \"wetness\": 10, \"puddle\": 0} - 10 is within [-20,20], okay.\nactor_mutations: []\npuddle_mutations: [{\"puddle_index\": 0, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": 0.05, \"size_scale\": 1.0}] - 0.05 is within [-0.2, 0.2], okay.\nmission_mutation: {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\npre_execution_validation_rules: [\"Ego must have zero actuation commands in the critical window\", \"No dynamic actors may be added to the scenario\", \"Total number of traffic lights on the map must remain 36\", \"Weather modifications are within conservative allowed ranges\"]\npost_execution_validation_rules: [\"Conflicting red-light violation status between dataset-style annotation and automated detection is preserved\"]\nuncertainty: [\"Stop-line crossing by ego is not confirmed\", \"Relation between ego route and active red light is not confirmed\", \"No module-level failure is confirmed\", \"Weather adjustment does not resolve conflicting label status\"]\n\nWait that all checks out. Let's make sure no invented oracles, we kept expected as unknown which is correct because of the conflict. All offsets are within limits. Two candidates, exactly. Root cause preserved. Let's put it all into valid JSON now, no markdown, just the object."
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "doubao-seed-2-0-lite-260215",
+    "object": "chat.completion",
+    "service_tier": "default",
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 2623,
+      "prompt_tokens": 1291,
+      "total_tokens": 3914,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 1787,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": null,
+        "cached_tokens": 0
+      }
+    }
+  },
+  "error_message": "",
+  "elapsed_sec": 35.565,
+  "timestamp": "<REDACTED_TIMESTAMP>"
+}

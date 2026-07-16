@@ -1,0 +1,76 @@
+{
+  "case_id": "case_104",
+  "model_name": "claude-sonnet-4-5",
+  "candidate_index": 2,
+  "candidate_spec": {
+    "candidate_id": "cand_002",
+    "high_level_variant": "Ego spawn offset with reduced visibility",
+    "mutation_intent": "Shift spawn slightly to test traffic light detection robustness while preserving stationary behavior",
+    "expected_oracle": "unknown",
+    "modifications": {
+      "weather_delta": {
+        "rain": 10,
+        "fog": 15,
+        "wetness": 10,
+        "puddle": 5
+      },
+      "actor_mutations": [],
+      "puddle_mutations": [],
+      "mission_mutation": {
+        "keep_original": false,
+        "spawn_offset": {
+          "x": -2.0,
+          "y": 1.5
+        },
+        "destination_offset": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Spawn offset does not place ego in collision",
+      "Traffic light visible from new spawn"
+    ],
+    "post_execution_validation_rules": [
+      "Ego velocity max under 0.5 m/s",
+      "Odometry shows minimal movement",
+      "Traffic light state data available"
+    ],
+    "uncertainty": [
+      "Dataset vs error.json oracle mismatch preserved",
+      "Fault layer attribution unclear",
+      "Stationary behavior root cause unconfirmed"
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": 10.0,
+      "fog": 15.0,
+      "wetness": 10.0,
+      "puddle": 5.0
+    },
+    "actor_mutations": [],
+    "puddle_mutations": [],
+    "mission_mutation": {
+      "spawn_offset": {
+        "x": -2.0,
+        "y": 1.5
+      },
+      "destination_offset": {
+        "x": 0.0,
+        "y": 0.0
+      }
+    }
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": [
+      "no actors in candidate scenario"
+    ]
+  },
+  "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_104__claude-sonnet-4-5.json",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_104__claude-sonnet-4-5.json",
+  "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+}

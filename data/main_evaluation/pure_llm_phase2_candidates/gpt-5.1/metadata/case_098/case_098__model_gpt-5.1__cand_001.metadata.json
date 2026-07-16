@@ -1,0 +1,109 @@
+{
+  "case_id": "case_098",
+  "model_name": "gpt-5.1",
+  "workflow": "pure_llm_phase2_baseline",
+  "candidate_index": 1,
+  "candidate_spec": {
+    "candidate_id": "cand_001",
+    "high_level_variant": "Lead vehicle slows earlier near intersection approach",
+    "mutation_intent": "Encourage closer following distance to the lead car before turning section",
+    "expected_oracle": "collision",
+    "modifications": {
+      "weather_delta": {
+        "rain": 5,
+        "fog": 3,
+        "wetness": 8,
+        "puddle": 5
+      },
+      "actor_mutations": [
+        {
+          "actor_index": 0,
+          "position_offset": {
+            "x": 0.5,
+            "y": -4.0
+          },
+          "speed_delta": -1.8
+        }
+      ],
+      "puddle_mutations": [
+        {
+          "puddle_index": 0,
+          "location_offset": {
+            "x": -2.0,
+            "y": -3.0
+          },
+          "level_delta": 0.08,
+          "size_scale": 1.1
+        }
+      ],
+      "mission_mutation": {
+        "keep_original": false,
+        "spawn_offset": {
+          "x": 1.5,
+          "y": -2.0
+        },
+        "destination_offset": {
+          "x": -3.0,
+          "y": 4.0
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Ensure lead car remains ahead in same lane"
+    ],
+    "post_execution_validation_rules": [
+      "Check for rear-end contact with lead car"
+    ],
+    "uncertainty": [
+      "Lead car lane choice may reduce interaction"
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": 5.0,
+      "fog": 3.0,
+      "wetness": 8.0,
+      "puddle": 5.0
+    },
+    "actor_mutations": [
+      {
+        "actor_index": 0,
+        "position_offset": {
+          "x": 0.5,
+          "y": -4.0
+        },
+        "speed_delta": -1.8
+      }
+    ],
+    "puddle_mutations": [
+      {
+        "puddle_index": 0,
+        "location_offset": {
+          "x": -2.0,
+          "y": -3.0
+        },
+        "level_delta": 0.08,
+        "size_scale": 1.1
+      }
+    ],
+    "mission_mutation": {
+      "spawn_offset": {
+        "x": 1.5,
+        "y": -2.0
+      },
+      "destination_offset": {
+        "x": -3.0,
+        "y": 4.0
+      }
+    },
+    "safety_repairs": []
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/pure_llm_phase2_api_prompts/case_098__gpt-5.1.md",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/pure_llm_phase2_api_outputs/case_098__gpt-5.1.json",
+  "baseline_note": "Pure-LLM baseline: prompt used no root-cause pattern or critical-window evidence."
+}

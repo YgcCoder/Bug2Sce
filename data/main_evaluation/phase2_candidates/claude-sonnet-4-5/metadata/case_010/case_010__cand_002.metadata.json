@@ -1,0 +1,77 @@
+{
+  "case_id": "case_010",
+  "model_name": "claude-sonnet-4-5",
+  "candidate_index": 2,
+  "candidate_spec": {
+    "candidate_id": "cand_002",
+    "high_level_variant": "Shift spawn position slightly to test spatial sensitivity",
+    "mutation_intent": "Small spawn offset to check if zero-command movement and oracle conflict are position-dependent",
+    "expected_oracle": "unknown",
+    "modifications": {
+      "weather_delta": {
+        "rain": 0,
+        "fog": 0,
+        "wetness": 0,
+        "puddle": 0
+      },
+      "actor_mutations": [],
+      "puddle_mutations": [],
+      "mission_mutation": {
+        "keep_original": false,
+        "spawn_offset": {
+          "x": 2.0,
+          "y": -2.0
+        },
+        "destination_offset": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Confirm spawn offset applied within bounds",
+      "Verify destination remains unchanged",
+      "Check weather and puddle parameters unchanged"
+    ],
+    "post_execution_validation_rules": [
+      "Verify vehicle_cmd remains all zero in critical window",
+      "Confirm vehicle_status shows non-zero velocity",
+      "Check oracle label consistency between dataset and error.json"
+    ],
+    "uncertainty": [
+      "Oracle conflict unresolved; expected_oracle remains unknown",
+      "Spawn offset may not trigger different behavior",
+      "Root cause of zero-command movement unclear"
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": 0.0,
+      "fog": 0.0,
+      "wetness": 0.0,
+      "puddle": 0.0
+    },
+    "actor_mutations": [],
+    "puddle_mutations": [],
+    "mission_mutation": {
+      "spawn_offset": {
+        "x": 2.0,
+        "y": -2.0
+      },
+      "destination_offset": {
+        "x": 0.0,
+        "y": 0.0
+      }
+    }
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": [
+      "no actors in candidate scenario"
+    ]
+  },
+  "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_010__claude-sonnet-4-5.json",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_010__claude-sonnet-4-5.json",
+  "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+}

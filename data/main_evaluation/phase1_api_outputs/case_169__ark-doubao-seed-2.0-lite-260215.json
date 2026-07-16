@@ -1,0 +1,122 @@
+{
+  "case_id": "case_169",
+  "workflow": "phase1_causal_explanation",
+  "model_name": "ark-doubao-seed-2.0-lite-260215",
+  "model_id": "ark-doubao-seed-2.0-lite-260215",
+  "status": "completed",
+  "dry_run": false,
+  "schema_valid": true,
+  "schema_errors": [],
+  "quality_flags": [],
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_prompts/case_169__ark-doubao-seed-2.0-lite-260215.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_169__ark-doubao-seed-2.0-lite-260215.json",
+  "prompt_estimated_tokens": 2602,
+  "usage": {
+    "prompt_tokens": 3360,
+    "completion_tokens": 1529,
+    "total_tokens": 4889
+  },
+  "estimated_cost_usd": null,
+  "raw_response": "{\n  \"case_id\": \"case_169\",\n  \"fault_layer\": \"unknown\",\n  \"fault_component\": \"unknown\",\n  \"causal_explanation\": \"The consistent oracle label marks this as a red-light violation. Evidence shows the traffic light topic exists with sampled red states, but route-light relation and stop-line crossing are unconfirmed. Vehicle_cmd has all-zero commands while vehicle_status reports non-zero velocity, but no module-level failure is directly proven by available evidence.\",\n  \"root_cause_pattern\": \"Conservative preservation pattern: A reported red-light violation occurs in a scenario with no dynamic actors, available traffic light state data including red states, and no confirmed module-level attribution of the failure.\",\n  \"preservation_constraints\": [\n    \"Preserve the red-light violation oracle symptom\",\n    \"No dynamic actors are present in the generated scenario\",\n    \"Scenario uses the Town01 map\",\n    \"Preserve the original start-to-goal mission\",\n    \"Traffic light topic is available with sampled red traffic light states\"\n  ],\n  \"modifiable_factors\": [\"cloud_cover\", \"rain_intensity\", \"fog_density\", \"wind_speed\", \"wetness\", \"sun_angle\", \"sun_altitude\"],\n  \"non_modifiable_conditions\": [\"red-light violation oracle label\", \"zero dynamic actors\", \"Town01 map base\", \"available traffic light topic with red state samples\"],\n  \"uncertainty\": [\n    \"Route-light relation and stop-line crossing are not confirmed by provided evidence\",\n    \"All-zero vehicle_cmd conflicts with non-zero velocity in vehicle_status, no firm actuation fault attribution\",\n    \"No critical-window evidence directly localizes failure to a specific Autoware module\"\n  ],\n  \"evidence_support\": [\n    {\"evidence_id\": \"oracle_consistency\", \"claim\": \"Dataset and error.json labels are consistent for red-light violation\"},\n    {\"evidence_id\": \"critical_window_summary\", \"claim\": \"Traffic light topic exists with samples containing red (state 0) traffic light states\"},\n    {\"evidence_id\": \"trace_summary_compact\", \"claim\": \"All vehicle_cmd values are zero while vehicle_status reports velocity up to 9.75 m/s\"},\n    {\"evidence_id\": \"scenario_config\", \"claim\": \"Scenario has zero dynamic actors and zero puddle regions\"}\n  ],\n  \"confidence\": \"low\",\n  \"ready_for_phase2_generation\": \"yes\",\n  \"notes_for_validator\": [\n    \"Confirm stop-line crossing and route-light relation after generation to validate the reported violation\",\n    \"Check for vehicle_cmd/vehicle_status mismatch in the generated case to support module fault attribution\"\n  ]\n}",
+  "parsed_response": {
+    "case_id": "case_169",
+    "fault_layer": "unknown",
+    "fault_component": "unknown",
+    "causal_explanation": "The consistent oracle label marks this as a red-light violation. Evidence shows the traffic light topic exists with sampled red states, but route-light relation and stop-line crossing are unconfirmed. Vehicle_cmd has all-zero commands while vehicle_status reports non-zero velocity, but no module-level failure is directly proven by available evidence.",
+    "root_cause_pattern": "Conservative preservation pattern: A reported red-light violation occurs in a scenario with no dynamic actors, available traffic light state data including red states, and no confirmed module-level attribution of the failure.",
+    "preservation_constraints": [
+      "Preserve the red-light violation oracle symptom",
+      "No dynamic actors are present in the generated scenario",
+      "Scenario uses the Town01 map",
+      "Preserve the original start-to-goal mission",
+      "Traffic light topic is available with sampled red traffic light states"
+    ],
+    "modifiable_factors": [
+      "cloud_cover",
+      "rain_intensity",
+      "fog_density",
+      "wind_speed",
+      "wetness",
+      "sun_angle",
+      "sun_altitude"
+    ],
+    "non_modifiable_conditions": [
+      "red-light violation oracle label",
+      "zero dynamic actors",
+      "Town01 map base",
+      "available traffic light topic with red state samples"
+    ],
+    "uncertainty": [
+      "Route-light relation and stop-line crossing are not confirmed by provided evidence",
+      "All-zero vehicle_cmd conflicts with non-zero velocity in vehicle_status, no firm actuation fault attribution",
+      "No critical-window evidence directly localizes failure to a specific Autoware module"
+    ],
+    "evidence_support": [
+      {
+        "evidence_id": "oracle_consistency",
+        "claim": "Dataset and error.json labels are consistent for red-light violation"
+      },
+      {
+        "evidence_id": "critical_window_summary",
+        "claim": "Traffic light topic exists with samples containing red (state 0) traffic light states"
+      },
+      {
+        "evidence_id": "trace_summary_compact",
+        "claim": "All vehicle_cmd values are zero while vehicle_status reports velocity up to 9.75 m/s"
+      },
+      {
+        "evidence_id": "scenario_config",
+        "claim": "Scenario has zero dynamic actors and zero puddle regions"
+      }
+    ],
+    "confidence": "low",
+    "ready_for_phase2_generation": "yes",
+    "notes_for_validator": [
+      "Confirm stop-line crossing and route-light relation after generation to validate the reported violation",
+      "Check for vehicle_cmd/vehicle_status mismatch in the generated case to support module fault attribution"
+    ]
+  },
+  "raw_api_payload": {
+    "id": "021782920154365b5b9ce5b00a712e1e9ea0ccc356a2f779ca501",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "{\n  \"case_id\": \"case_169\",\n  \"fault_layer\": \"unknown\",\n  \"fault_component\": \"unknown\",\n  \"causal_explanation\": \"The consistent oracle label marks this as a red-light violation. Evidence shows the traffic light topic exists with sampled red states, but route-light relation and stop-line crossing are unconfirmed. Vehicle_cmd has all-zero commands while vehicle_status reports non-zero velocity, but no module-level failure is directly proven by available evidence.\",\n  \"root_cause_pattern\": \"Conservative preservation pattern: A reported red-light violation occurs in a scenario with no dynamic actors, available traffic light state data including red states, and no confirmed module-level attribution of the failure.\",\n  \"preservation_constraints\": [\n    \"Preserve the red-light violation oracle symptom\",\n    \"No dynamic actors are present in the generated scenario\",\n    \"Scenario uses the Town01 map\",\n    \"Preserve the original start-to-goal mission\",\n    \"Traffic light topic is available with sampled red traffic light states\"\n  ],\n  \"modifiable_factors\": [\"cloud_cover\", \"rain_intensity\", \"fog_density\", \"wind_speed\", \"wetness\", \"sun_angle\", \"sun_altitude\"],\n  \"non_modifiable_conditions\": [\"red-light violation oracle label\", \"zero dynamic actors\", \"Town01 map base\", \"available traffic light topic with red state samples\"],\n  \"uncertainty\": [\n    \"Route-light relation and stop-line crossing are not confirmed by provided evidence\",\n    \"All-zero vehicle_cmd conflicts with non-zero velocity in vehicle_status, no firm actuation fault attribution\",\n    \"No critical-window evidence directly localizes failure to a specific Autoware module\"\n  ],\n  \"evidence_support\": [\n    {\"evidence_id\": \"oracle_consistency\", \"claim\": \"Dataset and error.json labels are consistent for red-light violation\"},\n    {\"evidence_id\": \"critical_window_summary\", \"claim\": \"Traffic light topic exists with samples containing red (state 0) traffic light states\"},\n    {\"evidence_id\": \"trace_summary_compact\", \"claim\": \"All vehicle_cmd values are zero while vehicle_status reports velocity up to 9.75 m/s\"},\n    {\"evidence_id\": \"scenario_config\", \"claim\": \"Scenario has zero dynamic actors and zero puddle regions\"}\n  ],\n  \"confidence\": \"low\",\n  \"ready_for_phase2_generation\": \"yes\",\n  \"notes_for_validator\": [\n    \"Confirm stop-line crossing and route-light relation after generation to validate the reported violation\",\n    \"Check for vehicle_cmd/vehicle_status mismatch in the generated case to support module fault attribution\"\n  ]\n}",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null,
+          "reasoning_content": "\nGot it, let's work through this step by step. First, case_id is case_169 right from input.\n\nFault layer: Let's see. We have a red light violation reported, but route-light relation and stop line crossing aren't confirmed. Also, vehicle_cmd is all zero but vehicle status has velocity up to 9.75, so can't attribute to actuation. No evidence that any specific module failed, so fault_layer is unknown. Fault component is unknown too.\n\nCausal explanation: Let's write that. The oracle labels this as a red-light violation. Evidence confirms traffic light topic exists with red and other states sampled, but route-light association and stop-line crossing are unconfirmed. Vehicle_cmd has all zero commands while vehicle status shows non-zero velocity range, but no module-level failure is directly proven by the provided evidence.\n\nRoot cause pattern: Conservative pattern, right? Red-light violation reported when ego is approaching a traffic light intersection with available traffic light state data, but module-level failure attribution is unconfirmed.\n\nPreservation constraints: Let's make 3-6. Let's see: 1. Preserve the red-light violation oracle label. 2. Preserve 0 dynamic actors in the scenario. 3. Preserve the same starting mission and map (Town01). 4. Preserve that the traffic light topic provides multiple state samples including red states. Wait, let's make them proper: [\"Preserve the red-light violation oracle symptom\", \"No dynamic actors are present in the scenario\", \"Scenario is on Town01 map with the given start-to-goal mission\", \"Traffic light topic exists with multiple sampled traffic light states including red\"]. Yeah that works.\n\nModifiable factors: What can we change? Weather, right? The input has weather parameters, so let's list: [\"cloud_cover\", \"rain_intensity\", \"puddle_amount\", \"wind_speed\", \"fog_density\", \"sun_angle\", \"sun_altitude\"]. That makes sense, all the weather factors.\n\nNon-modifiable conditions: [\"Red-light violation oracle label\", \"Zero dynamic actors\", \"Town01 map base\", \"Traffic light topic is available with red state samples\"]. Yep.\n\nUncertainty: Let's list what's missing. 1. Route-light relation and stop-line crossing are not confirmed, so violation itself is not proven by current evidence. 2. Vehicle_cmd all zero vs non-zero velocity mismatch, no attribution to actuation. 3. No critical-window evidence localizes failure to any specific Autoware module. 4. Ego's position relative to stop line when the violation was supposed to occur is not confirmed. Let's put that: [\"Route-light relation and stop-line crossing are not confirmed by provided evidence\", \"All zero vehicle_cmd values conflict with non-zero velocity reported in vehicle status, no module attribution is possible\", \"No provided critical-window evidence directly proves which Autoware module caused the reported violation\"].\n\nEvidence support: Let's list each. First, {\"evidence_id\": \"oracle_consistency\", \"claim\": \"Dataset and error.json labels are consistent for red-light violation case\"}, {\"evidence_id\": \"critical_window_summary\", \"claim\": \"Traffic light topic exists with samples containing red (state 0) traffic light states\"}, {\"evidence_id\": \"trace_summary_compact\", \"claim\": \"vehicle_cmd has all zero steer, accel, brake, target speed commands while vehicle status reports velocity up to 9.75 m/s\"}, {\"evidence_id\": \"scenario_config\", \"claim\": \"Scenario has zero actors and zero puddle regions\"}. That's correct.\n\nConfidence: Low, right? Because attribution is unknown, lots of uncertainty. So confidence is low.\n\nReady_for_phase2_generation: Yes, because we have a conservative checkable pattern. Wait, let's confirm the rule: use yes when there is a checkable conservative preservation pattern. Yep, that's here. So ready_for_phase2_generation is yes.\n\nNotes_for_validator: [\"Check that stop-line crossing and route-light relation are confirmed after generation to validate the red-light violation root cause\", \"Verify any mismatch between vehicle_cmd and vehicle_status in the generated case to help attribute module failure\"].\n\nWait let's check all rules. Let's make sure we didn't infer anything we shouldn't. No route-light relation assumed, no stop line crossing inferred, that's all marked as uncertainty. Fault layer is unknown because no direct evidence, correct. Let's put it all together in JSON correctly."
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "doubao-seed-2-0-lite-260215",
+    "object": "chat.completion",
+    "service_tier": "default",
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 1529,
+      "prompt_tokens": 3360,
+      "total_tokens": 4889,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 943,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": null,
+        "cached_tokens": 0
+      }
+    }
+  },
+  "error_message": "",
+  "timestamp": "<REDACTED_TIMESTAMP>",
+  "elapsed_sec": 31.609
+}

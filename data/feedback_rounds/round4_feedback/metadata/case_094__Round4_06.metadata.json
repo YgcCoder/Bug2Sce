@@ -1,0 +1,139 @@
+{
+  "case_id": "case_094",
+  "round": 4,
+  "model_name": "claude-sonnet-4-5",
+  "candidate_index": 6,
+  "candidate_spec": {
+    "candidate_id": "cand_006",
+    "high_level_variant": "Walker 0 and walker 1 converging positions with speed boost",
+    "mutation_intent": "Create two-actor collision scenario by positioning both walkers closer to ego path with increased speeds to stress multi-object avoidance",
+    "expected_oracle": "collision",
+    "modifications": {
+      "weather_delta": {
+        "rain": 0,
+        "fog": 0,
+        "wetness": 0,
+        "puddle": 0
+      },
+      "actor_mutations": [
+        {
+          "actor_index": 0,
+          "position_offset": {
+            "x": 4.8,
+            "y": 3.0
+          },
+          "speed_delta": 0.6
+        },
+        {
+          "actor_index": 1,
+          "position_offset": {
+            "x": -2.5,
+            "y": 2.0
+          },
+          "speed_delta": 0.8
+        }
+      ],
+      "puddle_mutations": [
+        {
+          "puddle_index": 0,
+          "location_offset": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "level_delta": 0.0,
+          "size_scale": 1.0
+        },
+        {
+          "puddle_index": 1,
+          "location_offset": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "level_delta": 0.0,
+          "size_scale": 1.0
+        }
+      ],
+      "mission_mutation": {
+        "keep_original": true,
+        "spawn_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "destination_offset": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Both walkers must be within 15m of ego route at scenario start"
+    ],
+    "post_execution_validation_rules": [
+      "Collision with at least one walker while both remain detected"
+    ],
+    "uncertainty": [
+      "Two-actor convergence may trigger different avoidance behavior or cause stuck condition"
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": 0.0,
+      "fog": 0.0,
+      "wetness": 0.0,
+      "puddle": 0.0
+    },
+    "actor_mutations": [
+      {
+        "actor_index": 0,
+        "position_offset": {
+          "x": 4.8,
+          "y": 3.0
+        },
+        "speed_delta": 0.6
+      },
+      {
+        "actor_index": 1,
+        "position_offset": {
+          "x": -2.5,
+          "y": 2.0
+        },
+        "speed_delta": 0.8
+      }
+    ],
+    "puddle_mutations": [
+      {
+        "puddle_index": 0,
+        "location_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "level_delta": 0.0,
+        "size_scale": 1.0
+      },
+      {
+        "puddle_index": 1,
+        "location_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "level_delta": 0.0,
+        "size_scale": 1.0
+      }
+    ],
+    "mission_mutation": {
+      "keep_original": true
+    },
+    "safety_repairs": []
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "authoritative_original_phase1_output": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_094__claude-sonnet-4-5.json",
+  "round1_feedback_count": 6,
+  "round2_feedback_count": 2,
+  "round3_feedback_count": 6,
+  "feedback_memory_policy": "all_same_seed_outcomes_retained",
+  "round4_api_output": "<WORKSPACE_ROOT>/processed/experiments/round4_feedback/api_outputs/case_094__claude-sonnet-4-5.json"
+}

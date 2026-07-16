@@ -1,0 +1,105 @@
+{
+  "case_id": "case_151",
+  "model_name": "ark-deepseek-r1-250528",
+  "candidate_index": 2,
+  "candidate_spec": {
+    "candidate_id": "cand_002",
+    "high_level_variant": "Slightly shift the pedestrian actor position and adjust the level of the puddle near ego spawn to test environmental variation of the core pattern",
+    "mutation_intent": "Retains all required Phase 1 root cause properties: conflicting labels, available waypoints, zero control commands, and zero ego velocity, while introducing a conservative environmental change",
+    "expected_oracle": "compound",
+    "modifications": {
+      "weather_delta": {
+        "rain": -3,
+        "fog": 4,
+        "wetness": -2,
+        "puddle": 0
+      },
+      "actor_mutations": [
+        {
+          "actor_index": 1,
+          "position_offset": {
+            "x": -1.5,
+            "y": 0.9
+          },
+          "speed_delta": 0.2
+        }
+      ],
+      "puddle_mutations": [
+        {
+          "puddle_index": 0,
+          "location_offset": {
+            "x": -0.2,
+            "y": 0.4
+          },
+          "level_delta": 0.15,
+          "size_scale": 1.05
+        }
+      ],
+      "mission_mutation": {
+        "keep_original": true,
+        "spawn_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "destination_offset": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Confirm all control commands are set to zero during the critical window",
+      "Ensure final waypoints do not drop out during the critical window"
+    ],
+    "post_execution_validation_rules": [
+      "Resolve label conflict between dataset and error.json per Phase 1 requirements",
+      "Check for explicit lane crossing evidence to confirm lane invasion symptom",
+      "Validate zero ego velocity during the critical window"
+    ],
+    "uncertainty": [
+      "Root cause module localization remains uncertain as in original input",
+      "Conflicting symptom labels are preserved per original pattern",
+      "No lane boundary crossing evidence is pre-confirmed in this variant"
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": -3.0,
+      "fog": 4.0,
+      "wetness": -2.0,
+      "puddle": 0.0
+    },
+    "actor_mutations": [
+      {
+        "actor_index": 1,
+        "position_offset": {
+          "x": -1.5,
+          "y": 0.9
+        },
+        "speed_delta": 0.2
+      }
+    ],
+    "puddle_mutations": [
+      {
+        "puddle_index": 0,
+        "location_offset": {
+          "x": -0.2,
+          "y": 0.4
+        },
+        "level_delta": 0.15,
+        "size_scale": 1.05
+      }
+    ],
+    "mission_mutation": {
+      "keep_original": true
+    }
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_151__ark-deepseek-r1-250528.json",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_151__ark-deepseek-r1-250528.json",
+  "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+}

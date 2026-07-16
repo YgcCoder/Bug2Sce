@@ -1,0 +1,186 @@
+{
+  "case_id": "case_142",
+  "model_name": "gpt-5.1",
+  "candidate_index": 2,
+  "candidate_spec": {
+    "candidate_id": "cand_002",
+    "high_level_variant": "Ego follows a slightly shifted route with a slower cross-traffic vehicle introduced near a red or changing light, encouraging a side-impact collision while ego keeps moving without clear braking.",
+    "mutation_intent": "Reposition the linear-moving vehicle to act as cross-traffic near a controlled intersection and slightly adjust ego mission, so a collision occurs under active non-green signals with intact perception/prediction/waypoints and no clear braking, while keeping the underlying responsibility ambiguous across modules.",
+    "expected_oracle": "compound",
+    "modifications": {
+      "weather_delta": {
+        "rain": 0,
+        "fog": -5,
+        "wetness": 0,
+        "puddle": 0
+      },
+      "actor_mutations": [
+        {
+          "actor_index": 0,
+          "position_offset": {
+            "x": 1.5,
+            "y": -2.5
+          },
+          "speed_delta": 0.0
+        },
+        {
+          "actor_index": 1,
+          "position_offset": {
+            "x": -4.0,
+            "y": 6.0
+          },
+          "speed_delta": -2.0
+        },
+        {
+          "actor_index": 2,
+          "position_offset": {
+            "x": -2.0,
+            "y": 0.5
+          },
+          "speed_delta": 0.0
+        }
+      ],
+      "puddle_mutations": [
+        {
+          "puddle_index": 0,
+          "location_offset": {
+            "x": 1.0,
+            "y": 0.0
+          },
+          "level_delta": 0.0,
+          "size_scale": 1.0
+        },
+        {
+          "puddle_index": 1,
+          "location_offset": {
+            "x": -1.5,
+            "y": 1.0
+          },
+          "level_delta": 0.03,
+          "size_scale": 1.1
+        },
+        {
+          "puddle_index": 2,
+          "location_offset": {
+            "x": 0.0,
+            "y": -2.0
+          },
+          "level_delta": -0.05,
+          "size_scale": 0.9
+        }
+      ],
+      "mission_mutation": {
+        "keep_original": false,
+        "spawn_offset": {
+          "x": 1.0,
+          "y": 2.5
+        },
+        "destination_offset": {
+          "x": -4.0,
+          "y": -1.5
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Verify that the adjusted mission route still encounters at least one intersection controlled by traffic lights with proper signal scheduling.",
+      "Ensure actor_index 1 (linear vehicle) trajectory intersects or closely passes the ego route near a signalized junction within the run duration.",
+      "Confirm that ego and actor_index 1 are configured so they reach the intersection with overlapping time windows likely to create a collision opportunity.",
+      "Check that perception-related topics are enabled and not suppressed by the slight improvement in visibility (reduced fog)."
+    ],
+    "post_execution_validation_rules": [
+      "Require oracle to report a collision involving the ego; additionally, accept cases where a red_light violation is also reported, treating them as compound outcomes.",
+      "Confirm via logs that at least one traffic light affecting or near the ego path shows a red or transitioning state shortly before collision.",
+      "Check that ego maintains nonzero forward speed in the final seconds before collision; exclude runs where ego is fully stationary well before impact.",
+      "Verify presence of detection objects and prediction tracks for nearby actors (especially actor_index 1) in the pre-collision window, and continuous final_waypoints up to collision.",
+      "Inspect vehicle_cmd and vehicle_status to ensure there is no strong, sustained braking sufficiently ahead of impact to count as a successful avoidance maneuver.",
+      "Do not enforce lane_invasion as necessary; treat any reported lane_invasion as incidental and not defining for same-root-cause.",
+      "If the oracle only reports collision without red_light, still accept as same-root-cause as long as non-green traffic light states existed in the vicinity and time window of the collision."
+    ],
+    "uncertainty": [
+      "Whether the oracle will flag a red_light violation in addition to collision depends on the exact stop-line geometry and signal phase at crossing time.",
+      "The precise allocation of fault between perception (e.g., missed objects), planning (e.g., unadjusted waypoints), and actuation (e.g., ineffective braking) cannot be determined from scenario-level specification.",
+      "Lane-invasion behavior may or may not be present and is not constrained by this variant."
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": 0.0,
+      "fog": -5.0,
+      "wetness": 0.0,
+      "puddle": 0.0
+    },
+    "actor_mutations": [
+      {
+        "actor_index": 0,
+        "position_offset": {
+          "x": 1.5,
+          "y": -2.5
+        },
+        "speed_delta": 0.0
+      },
+      {
+        "actor_index": 1,
+        "position_offset": {
+          "x": -4.0,
+          "y": 6.0
+        },
+        "speed_delta": -2.0
+      },
+      {
+        "actor_index": 2,
+        "position_offset": {
+          "x": -2.0,
+          "y": 0.5
+        },
+        "speed_delta": 0.0
+      }
+    ],
+    "puddle_mutations": [
+      {
+        "puddle_index": 0,
+        "location_offset": {
+          "x": 1.0,
+          "y": 0.0
+        },
+        "level_delta": 0.0,
+        "size_scale": 1.0
+      },
+      {
+        "puddle_index": 1,
+        "location_offset": {
+          "x": -1.5,
+          "y": 1.0
+        },
+        "level_delta": 0.03,
+        "size_scale": 1.1
+      },
+      {
+        "puddle_index": 2,
+        "location_offset": {
+          "x": 0.0,
+          "y": -2.0
+        },
+        "level_delta": -0.05,
+        "size_scale": 0.9
+      }
+    ],
+    "mission_mutation": {
+      "spawn_offset": {
+        "x": 1.0,
+        "y": 2.5
+      },
+      "destination_offset": {
+        "x": -4.0,
+        "y": -1.5
+      }
+    }
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_142__gpt-5.1.json",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_142__gpt-5.1.json",
+  "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+}

@@ -1,0 +1,499 @@
+{
+  "case_id": "case_151",
+  "model_name": "claude-sonnet-4-5",
+  "workflow": "phase2_grounded_generation",
+  "status": "completed",
+  "schema_valid": true,
+  "schema_errors": [],
+  "phase1_ready": "uncertain",
+  "num_candidates_requested": 2,
+  "num_candidates_written": 2,
+  "num_pre_valid": 2,
+  "candidate_records": [
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/claude-sonnet-4-5/json/case_151/case_151__cand_001.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/claude-sonnet-4-5/metadata/case_151/case_151__cand_001.metadata.json",
+      "case_id": "case_151",
+      "model_name": "claude-sonnet-4-5",
+      "candidate_index": 1,
+      "candidate_spec": {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Reduce weather intensity to isolate vehicle_cmd zero mismatch",
+        "mutation_intent": "Lower rain, fog, wetness to test if weather triggers vehicle_cmd vs vehicle_status mismatch",
+        "expected_oracle": "unknown",
+        "modifications": {
+          "weather_delta": {
+            "rain": -10,
+            "fog": -15,
+            "wetness": -20,
+            "puddle": -10
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "speed_delta": 0.0
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "speed_delta": 0.0
+            }
+          ],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": -0.15,
+              "size_scale": 0.9
+            },
+            {
+              "puddle_index": 1,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": -0.2,
+              "size_scale": 0.85
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Verify spawn and destination are reachable",
+          "Confirm actor positions do not overlap with ego spawn"
+        ],
+        "post_execution_validation_rules": [
+          "Check vehicle_cmd all zero while vehicle_status shows non-zero actuation",
+          "Compare dataset oracle labels with error.json oracle labels",
+          "Verify final waypoints present and non-blocked"
+        ],
+        "uncertainty": [
+          "Oracle label conflict between dataset and error.json",
+          "vehicle_cmd vs vehicle_status mismatch cause unclear",
+          "Lane invasion label not confirmed by error.json"
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": -10.0,
+          "fog": -15.0,
+          "wetness": -20,
+          "puddle": -10.0
+        },
+        "actor_mutations": [
+          {
+            "actor_index": 0,
+            "position_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "speed_delta": 0.0
+          },
+          {
+            "actor_index": 1,
+            "position_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "speed_delta": 0.0
+          }
+        ],
+        "puddle_mutations": [
+          {
+            "puddle_index": 0,
+            "location_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "level_delta": -0.15,
+            "size_scale": 0.9
+          },
+          {
+            "puddle_index": 1,
+            "location_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "level_delta": -0.2,
+            "size_scale": 0.85
+          }
+        ],
+        "mission_mutation": {
+          "keep_original": true
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_151__claude-sonnet-4-5.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_151__claude-sonnet-4-5.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    },
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/claude-sonnet-4-5/json/case_151/case_151__cand_002.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/claude-sonnet-4-5/metadata/case_151/case_151__cand_002.metadata.json",
+      "case_id": "case_151",
+      "model_name": "claude-sonnet-4-5",
+      "candidate_index": 2,
+      "candidate_spec": {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Shift walker closer to ego path to test interaction",
+        "mutation_intent": "Move walker toward ego spawn to test if actor proximity triggers vehicle_cmd zero mismatch",
+        "expected_oracle": "unknown",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "speed_delta": 0.0
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": 4.0,
+                "y": 2.5
+              },
+              "speed_delta": 0.0
+            }
+          ],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": 0.0,
+              "size_scale": 1.0
+            },
+            {
+              "puddle_index": 1,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": 0.0,
+              "size_scale": 1.0
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Verify walker position does not overlap ego spawn",
+          "Confirm spawn and destination are reachable"
+        ],
+        "post_execution_validation_rules": [
+          "Check vehicle_cmd all zero while vehicle_status shows non-zero actuation",
+          "Compare dataset oracle labels with error.json oracle labels",
+          "Verify final waypoints present and non-blocked"
+        ],
+        "uncertainty": [
+          "Oracle label conflict between dataset and error.json",
+          "vehicle_cmd vs vehicle_status mismatch cause unclear",
+          "Lane invasion label not confirmed by error.json"
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 0.0,
+          "fog": 0.0,
+          "wetness": 0.0,
+          "puddle": 0.0
+        },
+        "actor_mutations": [
+          {
+            "actor_index": 0,
+            "position_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "speed_delta": 0.0
+          },
+          {
+            "actor_index": 1,
+            "position_offset": {
+              "x": 4.0,
+              "y": 2.5
+            },
+            "speed_delta": 0.0
+          }
+        ],
+        "puddle_mutations": [
+          {
+            "puddle_index": 0,
+            "location_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "level_delta": 0.0,
+            "size_scale": 1.0
+          },
+          {
+            "puddle_index": 1,
+            "location_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "level_delta": 0.0,
+            "size_scale": 1.0
+          }
+        ],
+        "mission_mutation": {
+          "keep_original": true
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_151__claude-sonnet-4-5.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_151__claude-sonnet-4-5.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    }
+  ],
+  "seed_artifact_zip": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/claude-sonnet-4-5/seed-artifact/seed-artifact-case_151.zip",
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_prompts/case_151__claude-sonnet-4-5.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_151__claude-sonnet-4-5.json",
+  "prompt_estimated_tokens": 1342,
+  "usage": {
+    "prompt_tokens": 1641,
+    "completion_tokens": 1065,
+    "total_tokens": 2706
+  },
+  "raw_response": "```json\n{\n  \"case_id\": \"case_151\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Reduce weather intensity to isolate vehicle_cmd zero mismatch\",\n      \"mutation_intent\": \"Lower rain, fog, wetness to test if weather triggers vehicle_cmd vs vehicle_status mismatch\",\n      \"expected_oracle\": \"unknown\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": -10, \"fog\": -15, \"wetness\": -20, \"puddle\": -10},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 0.0, \"y\": 0.0}, \"speed_delta\": 0.0},\n          {\"actor_index\": 1, \"position_offset\": {\"x\": 0.0, \"y\": 0.0}, \"speed_delta\": 0.0}\n        ],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": -0.15, \"size_scale\": 0.9},\n          {\"puddle_index\": 1, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": -0.2, \"size_scale\": 0.85}\n        ],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Verify spawn and destination are reachable\", \"Confirm actor positions do not overlap with ego spawn\"],\n      \"post_execution_validation_rules\": [\"Check vehicle_cmd all zero while vehicle_status shows non-zero actuation\", \"Compare dataset oracle labels with error.json oracle labels\", \"Verify final waypoints present and non-blocked\"],\n      \"uncertainty\": [\"Oracle label conflict between dataset and error.json\", \"vehicle_cmd vs vehicle_status mismatch cause unclear\", \"Lane invasion label not confirmed by error.json\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Shift walker closer to ego path to test interaction\",\n      \"mutation_intent\": \"Move walker toward ego spawn to test if actor proximity triggers vehicle_cmd zero mismatch\",\n      \"expected_oracle\": \"unknown\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 0.0, \"y\": 0.0}, \"speed_delta\": 0.0},\n          {\"actor_index\": 1, \"position_offset\": {\"x\": 4.0, \"y\": 2.5}, \"speed_delta\": 0.0}\n        ],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": 0.0, \"size_scale\": 1.0},\n          {\"puddle_index\": 1, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": 0.0, \"size_scale\": 1.0}\n        ],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Verify walker position does not overlap ego spawn\", \"Confirm spawn and destination are reachable\"],\n      \"post_execution_validation_rules\": [\"Check vehicle_cmd all zero while vehicle_status shows non-zero actuation\", \"Compare dataset oracle labels with error.json oracle labels\", \"Verify final waypoints present and non-blocked\"],\n      \"uncertainty\": [\"Oracle label conflict between dataset and error.json\", \"vehicle_cmd vs vehicle_status mismatch cause unclear\", \"Lane invasion label not confirmed by error.json\"]\n    }\n  ]\n}\n```",
+  "parsed_response": {
+    "case_id": "case_151",
+    "candidate_specs": [
+      {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Reduce weather intensity to isolate vehicle_cmd zero mismatch",
+        "mutation_intent": "Lower rain, fog, wetness to test if weather triggers vehicle_cmd vs vehicle_status mismatch",
+        "expected_oracle": "unknown",
+        "modifications": {
+          "weather_delta": {
+            "rain": -10,
+            "fog": -15,
+            "wetness": -20,
+            "puddle": -10
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "speed_delta": 0.0
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "speed_delta": 0.0
+            }
+          ],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": -0.15,
+              "size_scale": 0.9
+            },
+            {
+              "puddle_index": 1,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": -0.2,
+              "size_scale": 0.85
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Verify spawn and destination are reachable",
+          "Confirm actor positions do not overlap with ego spawn"
+        ],
+        "post_execution_validation_rules": [
+          "Check vehicle_cmd all zero while vehicle_status shows non-zero actuation",
+          "Compare dataset oracle labels with error.json oracle labels",
+          "Verify final waypoints present and non-blocked"
+        ],
+        "uncertainty": [
+          "Oracle label conflict between dataset and error.json",
+          "vehicle_cmd vs vehicle_status mismatch cause unclear",
+          "Lane invasion label not confirmed by error.json"
+        ]
+      },
+      {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Shift walker closer to ego path to test interaction",
+        "mutation_intent": "Move walker toward ego spawn to test if actor proximity triggers vehicle_cmd zero mismatch",
+        "expected_oracle": "unknown",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "speed_delta": 0.0
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": 4.0,
+                "y": 2.5
+              },
+              "speed_delta": 0.0
+            }
+          ],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": 0.0,
+              "size_scale": 1.0
+            },
+            {
+              "puddle_index": 1,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": 0.0,
+              "size_scale": 1.0
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Verify walker position does not overlap ego spawn",
+          "Confirm spawn and destination are reachable"
+        ],
+        "post_execution_validation_rules": [
+          "Check vehicle_cmd all zero while vehicle_status shows non-zero actuation",
+          "Compare dataset oracle labels with error.json oracle labels",
+          "Verify final waypoints present and non-blocked"
+        ],
+        "uncertainty": [
+          "Oracle label conflict between dataset and error.json",
+          "vehicle_cmd vs vehicle_status mismatch cause unclear",
+          "Lane invasion label not confirmed by error.json"
+        ]
+      }
+    ]
+  },
+  "raw_api_payload": {
+    "id": "<REDACTED_RESPONSE_ID>",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "```json\n{\n  \"case_id\": \"case_151\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Reduce weather intensity to isolate vehicle_cmd zero mismatch\",\n      \"mutation_intent\": \"Lower rain, fog, wetness to test if weather triggers vehicle_cmd vs vehicle_status mismatch\",\n      \"expected_oracle\": \"unknown\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": -10, \"fog\": -15, \"wetness\": -20, \"puddle\": -10},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 0.0, \"y\": 0.0}, \"speed_delta\": 0.0},\n          {\"actor_index\": 1, \"position_offset\": {\"x\": 0.0, \"y\": 0.0}, \"speed_delta\": 0.0}\n        ],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": -0.15, \"size_scale\": 0.9},\n          {\"puddle_index\": 1, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": -0.2, \"size_scale\": 0.85}\n        ],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Verify spawn and destination are reachable\", \"Confirm actor positions do not overlap with ego spawn\"],\n      \"post_execution_validation_rules\": [\"Check vehicle_cmd all zero while vehicle_status shows non-zero actuation\", \"Compare dataset oracle labels with error.json oracle labels\", \"Verify final waypoints present and non-blocked\"],\n      \"uncertainty\": [\"Oracle label conflict between dataset and error.json\", \"vehicle_cmd vs vehicle_status mismatch cause unclear\", \"Lane invasion label not confirmed by error.json\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Shift walker closer to ego path to test interaction\",\n      \"mutation_intent\": \"Move walker toward ego spawn to test if actor proximity triggers vehicle_cmd zero mismatch\",\n      \"expected_oracle\": \"unknown\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 0.0, \"y\": 0.0}, \"speed_delta\": 0.0},\n          {\"actor_index\": 1, \"position_offset\": {\"x\": 4.0, \"y\": 2.5}, \"speed_delta\": 0.0}\n        ],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": 0.0, \"size_scale\": 1.0},\n          {\"puddle_index\": 1, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": 0.0, \"size_scale\": 1.0}\n        ],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Verify walker position does not overlap ego spawn\", \"Confirm spawn and destination are reachable\"],\n      \"post_execution_validation_rules\": [\"Check vehicle_cmd all zero while vehicle_status shows non-zero actuation\", \"Compare dataset oracle labels with error.json oracle labels\", \"Verify final waypoints present and non-blocked\"],\n      \"uncertainty\": [\"Oracle label conflict between dataset and error.json\", \"vehicle_cmd vs vehicle_status mismatch cause unclear\", \"Lane invasion label not confirmed by error.json\"]\n    }\n  ]\n}\n```",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "claude-sonnet-4-5",
+    "object": "chat.completion",
+    "service_tier": null,
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 1065,
+      "prompt_tokens": 1641,
+      "total_tokens": 2706,
+      "completion_tokens_details": null,
+      "prompt_tokens_details": null
+    }
+  },
+  "error_message": "",
+  "elapsed_sec": 14.496,
+  "timestamp": "<REDACTED_TIMESTAMP>"
+}

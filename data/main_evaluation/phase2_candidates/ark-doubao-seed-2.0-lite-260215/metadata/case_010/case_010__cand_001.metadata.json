@@ -1,0 +1,125 @@
+{
+  "case_id": "case_010",
+  "model_name": "ark-doubao-seed-2.0-lite-260215",
+  "candidate_index": 1,
+  "candidate_spec": {
+    "candidate_id": "cand_001",
+    "high_level_variant": "Slight adjustment of all three puddle locations and intensities, keep all other original scenario properties unchanged",
+    "mutation_intent": "Preserves all required phase 1 constraints: maintains conflicting label status, zero dynamic actors, 3 puddle regions, original mission start/goal region, and wet high-puddle-coverage weather conditions, does not add new evidence that resolves existing uncertainty",
+    "expected_oracle": "lane_invasion",
+    "modifications": {
+      "weather_delta": {
+        "rain": 5,
+        "fog": 0,
+        "wetness": 3,
+        "puddle": 4
+      },
+      "actor_mutations": [],
+      "puddle_mutations": [
+        {
+          "puddle_index": 0,
+          "location_offset": {
+            "x": 0.5,
+            "y": -0.3
+          },
+          "level_delta": 0.05,
+          "size_scale": 1.0
+        },
+        {
+          "puddle_index": 1,
+          "location_offset": {
+            "x": -0.2,
+            "y": 0.4
+          },
+          "level_delta": -0.03,
+          "size_scale": 0.95
+        },
+        {
+          "puddle_index": 2,
+          "location_offset": {
+            "x": 0.3,
+            "y": -0.2
+          },
+          "level_delta": 0.02,
+          "size_scale": 1.05
+        }
+      ],
+      "mission_mutation": {
+        "keep_original": true,
+        "spawn_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "destination_offset": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Confirm 3 puddle regions are preserved",
+      "Confirm no dynamic actors are added",
+      "Confirm weather remains wet with high puddle coverage"
+    ],
+    "post_execution_validation_rules": [
+      "Check for label conflict between dataset-style oracle and error.json detection",
+      "Verify actuation mismatch (zero vehicle_cmd, non-zero vehicle status velocity) is still present"
+    ],
+    "uncertainty": [
+      "Label conflict between dataset and error.json remains unconfirmed",
+      "No module-level root cause is confirmed from available evidence",
+      "Actuation mismatch uncertainty is preserved"
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": 5.0,
+      "fog": 0.0,
+      "wetness": 3.0,
+      "puddle": 4.0
+    },
+    "actor_mutations": [],
+    "puddle_mutations": [
+      {
+        "puddle_index": 0,
+        "location_offset": {
+          "x": 0.5,
+          "y": -0.3
+        },
+        "level_delta": 0.05,
+        "size_scale": 1.0
+      },
+      {
+        "puddle_index": 1,
+        "location_offset": {
+          "x": -0.2,
+          "y": 0.4
+        },
+        "level_delta": -0.03,
+        "size_scale": 0.95
+      },
+      {
+        "puddle_index": 2,
+        "location_offset": {
+          "x": 0.3,
+          "y": -0.2
+        },
+        "level_delta": 0.02,
+        "size_scale": 1.05
+      }
+    ],
+    "mission_mutation": {
+      "keep_original": true
+    }
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": [
+      "no actors in candidate scenario"
+    ]
+  },
+  "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_010__ark-doubao-seed-2.0-lite-260215.json",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_010__ark-doubao-seed-2.0-lite-260215.json",
+  "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+}

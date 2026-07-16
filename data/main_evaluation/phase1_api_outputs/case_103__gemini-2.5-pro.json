@@ -1,0 +1,119 @@
+{
+  "case_id": "case_103",
+  "workflow": "phase1_causal_explanation",
+  "model_name": "gemini-2.5-pro",
+  "model_id": "gemini-2.5-pro",
+  "status": "completed",
+  "dry_run": false,
+  "schema_valid": true,
+  "schema_errors": [],
+  "quality_flags": [
+    "possible_overattribution_to_module_failure"
+  ],
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_prompts/case_103__gemini-2.5-pro.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_103__gemini-2.5-pro.json",
+  "prompt_estimated_tokens": 2643,
+  "usage": {
+    "prompt_tokens": 3551,
+    "completion_tokens": 2802,
+    "total_tokens": 6353
+  },
+  "estimated_cost_usd": null,
+  "raw_response": "```json\n{\n  \"case_id\": \"case_103\",\n  \"fault_layer\": \"planning\",\n  \"fault_component\": \"Behavior/motion planner\",\n  \"causal_explanation\": \"The ego vehicle violated a red light because the planner did not generate stop waypoints, as evidenced by the 'blocked' flag never being set.\",\n  \"root_cause_pattern\": \"Planner fails to command a stop for a red light on the vehicle's route.\",\n  \"preservation_constraints\": [\n    \"Oracle must report a red light violation.\",\n    \"Planner must not set 'blocked' flag on waypoints.\",\n    \"A red light is active on the ego's route.\"\n  ],\n  \"modifiable_factors\": [\n    \"weather\",\n    \"puddles\",\n    \"traffic_light_timing\"\n  ],\n  \"non_modifiable_conditions\": [\n    \"Red light violation occurs.\",\n    \"Planner does not issue stop command.\"\n  ],\n  \"uncertainty\": [\n    \"Dataset and error.json conflict on the lane invasion label.\",\n    \"Vehicle moves slightly despite zero-value vehicle commands.\"\n  ],\n  \"evidence_support\": [\n    {\n      \"evidence_id\": \"error.json_events\",\n      \"claim\": \"Confirms red light violation.\"\n    },\n    {\n      \"evidence_id\": \"final_waypoints\",\n      \"claim\": \"blocked_true_count_sample is 0, showing no stop plan.\"\n    },\n    {\n      \"evidence_id\": \"oracle_consistency\",\n      \"claim\": \"Documents dataset/error.json label conflict.\"\n    }\n  ],\n  \"confidence\": \"medium\",\n  \"ready_for_phase2_generation\": \"uncertain\",\n  \"notes_for_validator\": [\n    \"Resolve lane invasion label conflict before generation.\",\n    \"The primary failure is red light violation due to planning.\",\n    \"The vehicle_cmd/vehicle_status mismatch is secondary.\"\n  ]\n}\n```",
+  "parsed_response": {
+    "case_id": "case_103",
+    "fault_layer": "planning",
+    "fault_component": "Behavior/motion planner",
+    "causal_explanation": "The ego vehicle violated a red light because the planner did not generate stop waypoints, as evidenced by the 'blocked' flag never being set.",
+    "root_cause_pattern": "Planner fails to command a stop for a red light on the vehicle's route.",
+    "preservation_constraints": [
+      "Oracle must report a red light violation.",
+      "Planner must not set 'blocked' flag on waypoints.",
+      "A red light is active on the ego's route."
+    ],
+    "modifiable_factors": [
+      "weather",
+      "puddles",
+      "traffic_light_timing"
+    ],
+    "non_modifiable_conditions": [
+      "Red light violation occurs.",
+      "Planner does not issue stop command."
+    ],
+    "uncertainty": [
+      "Dataset and error.json conflict on the lane invasion label.",
+      "Vehicle moves slightly despite zero-value vehicle commands."
+    ],
+    "evidence_support": [
+      {
+        "evidence_id": "error.json_events",
+        "claim": "Confirms red light violation."
+      },
+      {
+        "evidence_id": "final_waypoints",
+        "claim": "blocked_true_count_sample is 0, showing no stop plan."
+      },
+      {
+        "evidence_id": "oracle_consistency",
+        "claim": "Documents dataset/error.json label conflict."
+      }
+    ],
+    "confidence": "medium",
+    "ready_for_phase2_generation": "uncertain",
+    "notes_for_validator": [
+      "Resolve lane invasion label conflict before generation.",
+      "The primary failure is red light violation due to planning.",
+      "The vehicle_cmd/vehicle_status mismatch is secondary."
+    ]
+  },
+  "raw_api_payload": {
+    "id": "<REDACTED_RESPONSE_ID>",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "```json\n{\n  \"case_id\": \"case_103\",\n  \"fault_layer\": \"planning\",\n  \"fault_component\": \"Behavior/motion planner\",\n  \"causal_explanation\": \"The ego vehicle violated a red light because the planner did not generate stop waypoints, as evidenced by the 'blocked' flag never being set.\",\n  \"root_cause_pattern\": \"Planner fails to command a stop for a red light on the vehicle's route.\",\n  \"preservation_constraints\": [\n    \"Oracle must report a red light violation.\",\n    \"Planner must not set 'blocked' flag on waypoints.\",\n    \"A red light is active on the ego's route.\"\n  ],\n  \"modifiable_factors\": [\n    \"weather\",\n    \"puddles\",\n    \"traffic_light_timing\"\n  ],\n  \"non_modifiable_conditions\": [\n    \"Red light violation occurs.\",\n    \"Planner does not issue stop command.\"\n  ],\n  \"uncertainty\": [\n    \"Dataset and error.json conflict on the lane invasion label.\",\n    \"Vehicle moves slightly despite zero-value vehicle commands.\"\n  ],\n  \"evidence_support\": [\n    {\n      \"evidence_id\": \"error.json_events\",\n      \"claim\": \"Confirms red light violation.\"\n    },\n    {\n      \"evidence_id\": \"final_waypoints\",\n      \"claim\": \"blocked_true_count_sample is 0, showing no stop plan.\"\n    },\n    {\n      \"evidence_id\": \"oracle_consistency\",\n      \"claim\": \"Documents dataset/error.json label conflict.\"\n    }\n  ],\n  \"confidence\": \"medium\",\n  \"ready_for_phase2_generation\": \"uncertain\",\n  \"notes_for_validator\": [\n    \"Resolve lane invasion label conflict before generation.\",\n    \"The primary failure is red light violation due to planning.\",\n    \"The vehicle_cmd/vehicle_status mismatch is secondary.\"\n  ]\n}\n```",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "gemini-2.5-pro",
+    "object": "chat.completion",
+    "service_tier": null,
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 2802,
+      "prompt_tokens": 3551,
+      "total_tokens": 6353,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": 0,
+        "reasoning_tokens": 2346,
+        "rejected_prediction_tokens": null,
+        "text_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 0,
+        "text_tokens": 3551,
+        "image_tokens": 0
+      },
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "input_tokens_details": null,
+      "claude_cache_creation_5_m_tokens": 0,
+      "claude_cache_creation_1_h_tokens": 0
+    }
+  },
+  "error_message": "",
+  "timestamp": "<REDACTED_TIMESTAMP>",
+  "elapsed_sec": 27.538
+}

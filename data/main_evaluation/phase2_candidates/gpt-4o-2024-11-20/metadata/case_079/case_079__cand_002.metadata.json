@@ -1,0 +1,106 @@
+{
+  "case_id": "case_079",
+  "model_name": "gpt-4o-2024-11-20",
+  "candidate_index": 2,
+  "candidate_spec": {
+    "candidate_id": "cand_002",
+    "high_level_variant": "Ego encounters a red-light violation with a slight mission offset and actor speed adjustments to test fault attribution.",
+    "mutation_intent": "This variant preserves the red-light violation symptom while introducing minor mission and actor changes to evaluate the impact on the fault pattern under uncertainty.",
+    "expected_oracle": "red_light",
+    "modifications": {
+      "weather_delta": {
+        "rain": 0,
+        "fog": -5,
+        "wetness": 10,
+        "puddle": 0
+      },
+      "actor_mutations": [
+        {
+          "actor_index": 0,
+          "position_offset": {
+            "x": -1.0,
+            "y": 3.0
+          },
+          "speed_delta": -1.0
+        },
+        {
+          "actor_index": 1,
+          "position_offset": {
+            "x": 1.0,
+            "y": -2.0
+          },
+          "speed_delta": -0.5
+        }
+      ],
+      "puddle_mutations": [],
+      "mission_mutation": {
+        "keep_original": false,
+        "spawn_offset": {
+          "x": -2.0,
+          "y": 1.0
+        },
+        "destination_offset": {
+          "x": 3.0,
+          "y": -1.0
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Ensure red-light violation symptom is preserved.",
+      "Validate that route-light relation and stop-line crossing remain unresolved."
+    ],
+    "post_execution_validation_rules": [
+      "Check for red-light violation consistency and oracle symptom preservation."
+    ],
+    "uncertainty": [
+      "Conflict between dataset and error.json for lane invasion.",
+      "Route-light relation and stop-line crossing are not confirmed.",
+      "Vehicle_cmd and vehicle_status mismatch complicates fault attribution."
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": 0.0,
+      "fog": -5.0,
+      "wetness": 10.0,
+      "puddle": 0.0
+    },
+    "actor_mutations": [
+      {
+        "actor_index": 0,
+        "position_offset": {
+          "x": -1.0,
+          "y": 3.0
+        },
+        "speed_delta": -1.0
+      },
+      {
+        "actor_index": 1,
+        "position_offset": {
+          "x": 1.0,
+          "y": -2.0
+        },
+        "speed_delta": -0.5
+      }
+    ],
+    "puddle_mutations": [],
+    "mission_mutation": {
+      "spawn_offset": {
+        "x": -2.0,
+        "y": 1.0
+      },
+      "destination_offset": {
+        "x": 3.0,
+        "y": -1.0
+      }
+    }
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_079__gpt-4o-2024-11-20.json",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_079__gpt-4o-2024-11-20.json",
+  "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+}

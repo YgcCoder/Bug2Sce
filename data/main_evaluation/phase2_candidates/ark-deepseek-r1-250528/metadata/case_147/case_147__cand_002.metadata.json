@@ -1,0 +1,90 @@
+{
+  "case_id": "case_147",
+  "model_name": "ark-deepseek-r1-250528",
+  "candidate_index": 2,
+  "candidate_spec": {
+    "candidate_id": "cand_002",
+    "high_level_variant": "Ego spawn position shifted slightly along route to adjust approach timing, with small speed adjustment to the nearby pedestrian",
+    "mutation_intent": "Retains all core root cause pattern properties: collision outcome, ~3m pre-collision object distance, zero pre-collision braking, control status mismatch, and preserves all original uncertainty per Phase 1 constraints",
+    "expected_oracle": "collision",
+    "modifications": {
+      "weather_delta": {
+        "rain": 0,
+        "fog": 0,
+        "wetness": 0,
+        "puddle": 0
+      },
+      "actor_mutations": [
+        {
+          "actor_index": 0,
+          "position_offset": {
+            "x": 0.3,
+            "y": 0.1
+          },
+          "speed_delta": -0.15
+        }
+      ],
+      "puddle_mutations": [],
+      "mission_mutation": {
+        "keep_original": false,
+        "spawn_offset": {
+          "x": 0.7,
+          "y": -0.4
+        },
+        "destination_offset": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Verify actor 0 is between 2.7 and 3.5 meters of ego pre-collision",
+      "Confirm zero applied braking is active in the pre-collision window"
+    ],
+    "post_execution_validation_rules": [
+      "Confirm collision occurs before scenario end",
+      "Resolve lane invasion label conflict via manual replay review per Phase 1 notes"
+    ],
+    "uncertainty": [
+      "Uncertainty around module-level root cause localization preserved",
+      "Conflicting fault group labels between dataset and error.json preserved"
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": 0.0,
+      "fog": 0.0,
+      "wetness": 0.0,
+      "puddle": 0.0
+    },
+    "actor_mutations": [
+      {
+        "actor_index": 0,
+        "position_offset": {
+          "x": 0.3,
+          "y": 0.1
+        },
+        "speed_delta": -0.15
+      }
+    ],
+    "puddle_mutations": [],
+    "mission_mutation": {
+      "spawn_offset": {
+        "x": 0.7,
+        "y": -0.4
+      },
+      "destination_offset": {
+        "x": 0.0,
+        "y": 0.0
+      }
+    }
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_147__ark-deepseek-r1-250528.json",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_147__ark-deepseek-r1-250528.json",
+  "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+}

@@ -1,0 +1,98 @@
+{
+  "case_id": "case_147",
+  "model_name": "gpt-4o-2024-11-20",
+  "candidate_index": 1,
+  "candidate_spec": {
+    "candidate_id": "cand_001",
+    "high_level_variant": "Ego encounters a nearby object with slightly adjusted walker position and reduced speed, maintaining collision conditions.",
+    "mutation_intent": "Preserves the Phase 1 root-cause pattern by ensuring a nearby object is present within a similar distance to the ego vehicle before the collision, with no braking or stopping observed.",
+    "expected_oracle": "collision",
+    "modifications": {
+      "weather_delta": {
+        "rain": 0,
+        "fog": -5,
+        "wetness": 0,
+        "puddle": 0
+      },
+      "actor_mutations": [
+        {
+          "actor_index": 0,
+          "position_offset": {
+            "x": -1.5,
+            "y": 0.5
+          },
+          "speed_delta": -0.5
+        },
+        {
+          "actor_index": 1,
+          "position_offset": {
+            "x": 1.0,
+            "y": -0.5
+          },
+          "speed_delta": 0.0
+        }
+      ],
+      "puddle_mutations": [],
+      "mission_mutation": {
+        "keep_original": true,
+        "spawn_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "destination_offset": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Ensure object proximity to ego vehicle is within 3.5 meters before collision.",
+      "Verify no braking or stopping evidence in the critical window."
+    ],
+    "post_execution_validation_rules": [
+      "Validate collision occurrence.",
+      "Check ego speed, object proximity, and braking evidence consistency."
+    ],
+    "uncertainty": [
+      "Controller behavior remains uncertain due to vehicle_cmd and vehicle_status mismatch."
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": 0.0,
+      "fog": -5.0,
+      "wetness": 0.0,
+      "puddle": 0.0
+    },
+    "actor_mutations": [
+      {
+        "actor_index": 0,
+        "position_offset": {
+          "x": -1.5,
+          "y": 0.5
+        },
+        "speed_delta": -0.5
+      },
+      {
+        "actor_index": 1,
+        "position_offset": {
+          "x": 1.0,
+          "y": -0.5
+        },
+        "speed_delta": 0.0
+      }
+    ],
+    "puddle_mutations": [],
+    "mission_mutation": {
+      "keep_original": true
+    }
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_147__gpt-4o-2024-11-20.json",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_147__gpt-4o-2024-11-20.json",
+  "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+}

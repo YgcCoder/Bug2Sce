@@ -1,0 +1,100 @@
+{
+  "case_id": "case_069",
+  "model_name": "ark-doubao-seed-2.0-lite-260215",
+  "candidate_index": 1,
+  "candidate_spec": {
+    "candidate_id": "cand_001",
+    "high_level_variant": "Slight positional adjustment of both existing actors with minor conservative weather increase, original mission kept unchanged",
+    "mutation_intent": "Preserves all Phase 1 root cause constraints: maintains two actors, no blocked waypoints, base map Town01, retains the required mismatch between zero commanded actuation and non-zero observed ego velocity, and keeps the original label conflict between dataset and error.json unresolved",
+    "expected_oracle": "unknown",
+    "modifications": {
+      "weather_delta": {
+        "rain": 3,
+        "fog": 2,
+        "wetness": 4,
+        "puddle": 2
+      },
+      "actor_mutations": [
+        {
+          "actor_index": 0,
+          "position_offset": {
+            "x": 1.2,
+            "y": -0.8
+          },
+          "speed_delta": 0.5
+        },
+        {
+          "actor_index": 1,
+          "position_offset": {
+            "x": -0.9,
+            "y": 1.1
+          },
+          "speed_delta": -0.3
+        }
+      ],
+      "puddle_mutations": [],
+      "mission_mutation": {
+        "keep_original": true,
+        "spawn_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "destination_offset": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Verify mismatch between zero actuation commands and non-zero ego velocity is configured for the critical window",
+      "Confirm exactly two actors are spawned in the scenario",
+      "Ensure base map is Town01 with no blocked waypoints in the critical pre-event window"
+    ],
+    "post_execution_validation_rules": [
+      "Check for actual collision and lane invasion events to resolve the original label conflict",
+      "Verify that the actuation command-vehicle state mismatch is reproduced during execution"
+    ],
+    "uncertainty": [
+      "Original label conflict between dataset (collision/lane invasion present) and error.json (no events) remains unresolved",
+      "No specific Autoware module failure can be confirmed from available evidence"
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": 3.0,
+      "fog": 2.0,
+      "wetness": 4.0,
+      "puddle": 2.0
+    },
+    "actor_mutations": [
+      {
+        "actor_index": 0,
+        "position_offset": {
+          "x": 1.2,
+          "y": -0.8
+        },
+        "speed_delta": 0.5
+      },
+      {
+        "actor_index": 1,
+        "position_offset": {
+          "x": -0.9,
+          "y": 1.1
+        },
+        "speed_delta": -0.3
+      }
+    ],
+    "puddle_mutations": [],
+    "mission_mutation": {
+      "keep_original": true
+    }
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_069__ark-doubao-seed-2.0-lite-260215.json",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_069__ark-doubao-seed-2.0-lite-260215.json",
+  "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+}

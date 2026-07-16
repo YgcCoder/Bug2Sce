@@ -1,0 +1,468 @@
+{
+  "case_id": "case_103",
+  "model_name": "ark-doubao-seed-2.0-lite-260215",
+  "workflow": "phase2_grounded_generation",
+  "status": "completed",
+  "schema_valid": true,
+  "schema_errors": [],
+  "phase1_ready": "uncertain",
+  "num_candidates_requested": 2,
+  "num_candidates_written": 2,
+  "num_pre_valid": 2,
+  "candidate_records": [
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-doubao-seed-2.0-lite-260215/json/case_103/case_103__cand_001.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-doubao-seed-2.0-lite-260215/metadata/case_103/case_103__cand_001.metadata.json",
+      "case_id": "case_103",
+      "model_name": "ark-doubao-seed-2.0-lite-260215",
+      "candidate_index": 1,
+      "candidate_spec": {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Move nearby actor slightly closer to ego's planned path, slightly increase puddle levels while preserving all original map, mission and weather conditions",
+        "mutation_intent": "Preserves all Phase 1 root cause pattern and constraints: keeps Town01 map, original mission spawn/destination, heavy rain/high wetness, 2 puddles, 1 nearby actor, confirmed red light event, and the label conflict between dataset and error.json for lane invasion",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": 4,
+            "fog": 0,
+            "wetness": 3,
+            "puddle": 2
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 2.1,
+                "y": -1.3
+              },
+              "speed_delta": 0.6
+            }
+          ],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": 0.08,
+              "size_scale": 1.05
+            },
+            {
+              "puddle_index": 1,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": 0.07,
+              "size_scale": 0.95
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Confirm map is Town01",
+          "Confirm mission spawn and destination match original",
+          "Confirm heavy rain, high wetness, 2 puddles and 1 nearby actor are present"
+        ],
+        "post_execution_validation_rules": [
+          "Check if confirmed red light violation is reproduced",
+          "Check if lane boundary crossing occurs to resolve label conflict",
+          "Check if mismatch between all-zero actuation commands and non-zero vehicle movement is reproduced"
+        ],
+        "uncertainty": [
+          "Lane invasion status remains unconfirmed per original label conflict",
+          "Stop-line crossing for red light is not pre-confirmed",
+          "Module-level root cause remains unlocalized",
+          "Actuation command mismatch does not confirm actuation failure"
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 4.0,
+          "fog": 0.0,
+          "wetness": 3.0,
+          "puddle": 2.0
+        },
+        "actor_mutations": [
+          {
+            "actor_index": 0,
+            "position_offset": {
+              "x": 2.1,
+              "y": -1.3
+            },
+            "speed_delta": 0.6
+          }
+        ],
+        "puddle_mutations": [
+          {
+            "puddle_index": 0,
+            "location_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "level_delta": 0.08,
+            "size_scale": 1.05
+          },
+          {
+            "puddle_index": 1,
+            "location_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "level_delta": 0.07,
+            "size_scale": 0.95
+          }
+        ],
+        "mission_mutation": {
+          "keep_original": true
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_103__ark-doubao-seed-2.0-lite-260215.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_103__ark-doubao-seed-2.0-lite-260215.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    },
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-doubao-seed-2.0-lite-260215/json/case_103/case_103__cand_002.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-doubao-seed-2.0-lite-260215/metadata/case_103/case_103__cand_002.metadata.json",
+      "case_id": "case_103",
+      "model_name": "ark-doubao-seed-2.0-lite-260215",
+      "candidate_index": 2,
+      "candidate_spec": {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Slightly shift both puddles toward ego's planned path, reduce nearby actor speed slightly while maintaining original core conditions",
+        "mutation_intent": "Preserves all Phase 1 root cause pattern and all preservation constraints, only makes minor positional adjustments to test reproducibility of the reported failure pattern, keeps the unconfirmed lane invasion label conflict and unlocalized root cause intact",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": -3,
+            "fog": 2,
+            "wetness": -2,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": -1.5,
+                "y": 2.0
+              },
+              "speed_delta": -0.7
+            }
+          ],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": -2.2,
+                "y": 1.1
+              },
+              "level_delta": -0.05,
+              "size_scale": 1.1
+            },
+            {
+              "puddle_index": 1,
+              "location_offset": {
+                "x": 1.8,
+                "y": -0.6
+              },
+              "level_delta": -0.04,
+              "size_scale": 1.02
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Confirm map is Town01",
+          "Confirm mission spawn and destination are unchanged",
+          "Confirm 2 puddles, 1 nearby actor, and heavy rain/wetness conditions are maintained"
+        ],
+        "post_execution_validation_rules": [
+          "Validate that the confirmed red light event is reproduced",
+          "Check if stop-line crossing and lane-boundary crossing occur",
+          "Check for reproduction of the mismatch between all-zero commands and non-zero vehicle movement"
+        ],
+        "uncertainty": [
+          "Label conflict between dataset and error.json for lane invasion is preserved",
+          "No pre-confirmation of lane boundary crossing or stop-line crossing",
+          "Root cause cannot be attributed to a specific module before execution",
+          "Actuation mismatch does not confirm actuation failure"
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": -3.0,
+          "fog": 2.0,
+          "wetness": -2.0,
+          "puddle": 0.0
+        },
+        "actor_mutations": [
+          {
+            "actor_index": 0,
+            "position_offset": {
+              "x": -1.5,
+              "y": 2.0
+            },
+            "speed_delta": -0.7
+          }
+        ],
+        "puddle_mutations": [
+          {
+            "puddle_index": 0,
+            "location_offset": {
+              "x": -2.2,
+              "y": 1.1
+            },
+            "level_delta": -0.05,
+            "size_scale": 1.1
+          },
+          {
+            "puddle_index": 1,
+            "location_offset": {
+              "x": 1.8,
+              "y": -0.6
+            },
+            "level_delta": -0.04,
+            "size_scale": 1.02
+          }
+        ],
+        "mission_mutation": {
+          "keep_original": true
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_103__ark-doubao-seed-2.0-lite-260215.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_103__ark-doubao-seed-2.0-lite-260215.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    }
+  ],
+  "seed_artifact_zip": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-doubao-seed-2.0-lite-260215/seed-artifact/seed-artifact-case_103.zip",
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_prompts/case_103__ark-doubao-seed-2.0-lite-260215.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_103__ark-doubao-seed-2.0-lite-260215.json",
+  "prompt_estimated_tokens": 1225,
+  "usage": {
+    "prompt_tokens": 1514,
+    "completion_tokens": 1981,
+    "total_tokens": 3495
+  },
+  "raw_response": "{\n  \"case_id\": \"case_103\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Move nearby actor slightly closer to ego's planned path, slightly increase puddle levels while preserving all original map, mission and weather conditions\",\n      \"mutation_intent\": \"Preserves all Phase 1 root cause pattern and constraints: keeps Town01 map, original mission spawn/destination, heavy rain/high wetness, 2 puddles, 1 nearby actor, confirmed red light event, and the label conflict between dataset and error.json for lane invasion\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 4, \"fog\": 0, \"wetness\": 3, \"puddle\": 2},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 2.1, \"y\": -1.3}, \"speed_delta\": 0.6}\n        ],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": 0.08, \"size_scale\": 1.05},\n          {\"puddle_index\": 1, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": 0.07, \"size_scale\": 0.95}\n        ],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Confirm map is Town01\", \"Confirm mission spawn and destination match original\", \"Confirm heavy rain, high wetness, 2 puddles and 1 nearby actor are present\"],\n      \"post_execution_validation_rules\": [\"Check if confirmed red light violation is reproduced\", \"Check if lane boundary crossing occurs to resolve label conflict\", \"Check if mismatch between all-zero actuation commands and non-zero vehicle movement is reproduced\"],\n      \"uncertainty\": [\"Lane invasion status remains unconfirmed per original label conflict\", \"Stop-line crossing for red light is not pre-confirmed\", \"Module-level root cause remains unlocalized\", \"Actuation command mismatch does not confirm actuation failure\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Slightly shift both puddles toward ego's planned path, reduce nearby actor speed slightly while maintaining original core conditions\",\n      \"mutation_intent\": \"Preserves all Phase 1 root cause pattern and all preservation constraints, only makes minor positional adjustments to test reproducibility of the reported failure pattern, keeps the unconfirmed lane invasion label conflict and unlocalized root cause intact\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": -3, \"fog\": 2, \"wetness\": -2, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": -1.5, \"y\": 2.0}, \"speed_delta\": -0.7}\n        ],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": -2.2, \"y\": 1.1}, \"level_delta\": -0.05, \"size_scale\": 1.1},\n          {\"puddle_index\": 1, \"location_offset\": {\"x\": 1.8, \"y\": -0.6}, \"level_delta\": -0.04, \"size_scale\": 1.02}\n        ],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Confirm map is Town01\", \"Confirm mission spawn and destination are unchanged\", \"Confirm 2 puddles, 1 nearby actor, and heavy rain/wetness conditions are maintained\"],\n      \"post_execution_validation_rules\": [\"Validate that the confirmed red light event is reproduced\", \"Check if stop-line crossing and lane-boundary crossing occur\", \"Check for reproduction of the mismatch between all-zero commands and non-zero vehicle movement\"],\n      \"uncertainty\": [\"Label conflict between dataset and error.json for lane invasion is preserved\", \"No pre-confirmation of lane boundary crossing or stop-line crossing\", \"Root cause cannot be attributed to a specific module before execution\", \"Actuation mismatch does not confirm actuation failure\"]\n    }\n  ]\n}",
+  "parsed_response": {
+    "case_id": "case_103",
+    "candidate_specs": [
+      {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Move nearby actor slightly closer to ego's planned path, slightly increase puddle levels while preserving all original map, mission and weather conditions",
+        "mutation_intent": "Preserves all Phase 1 root cause pattern and constraints: keeps Town01 map, original mission spawn/destination, heavy rain/high wetness, 2 puddles, 1 nearby actor, confirmed red light event, and the label conflict between dataset and error.json for lane invasion",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": 4,
+            "fog": 0,
+            "wetness": 3,
+            "puddle": 2
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 2.1,
+                "y": -1.3
+              },
+              "speed_delta": 0.6
+            }
+          ],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": 0.08,
+              "size_scale": 1.05
+            },
+            {
+              "puddle_index": 1,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": 0.07,
+              "size_scale": 0.95
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Confirm map is Town01",
+          "Confirm mission spawn and destination match original",
+          "Confirm heavy rain, high wetness, 2 puddles and 1 nearby actor are present"
+        ],
+        "post_execution_validation_rules": [
+          "Check if confirmed red light violation is reproduced",
+          "Check if lane boundary crossing occurs to resolve label conflict",
+          "Check if mismatch between all-zero actuation commands and non-zero vehicle movement is reproduced"
+        ],
+        "uncertainty": [
+          "Lane invasion status remains unconfirmed per original label conflict",
+          "Stop-line crossing for red light is not pre-confirmed",
+          "Module-level root cause remains unlocalized",
+          "Actuation command mismatch does not confirm actuation failure"
+        ]
+      },
+      {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Slightly shift both puddles toward ego's planned path, reduce nearby actor speed slightly while maintaining original core conditions",
+        "mutation_intent": "Preserves all Phase 1 root cause pattern and all preservation constraints, only makes minor positional adjustments to test reproducibility of the reported failure pattern, keeps the unconfirmed lane invasion label conflict and unlocalized root cause intact",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": -3,
+            "fog": 2,
+            "wetness": -2,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": -1.5,
+                "y": 2.0
+              },
+              "speed_delta": -0.7
+            }
+          ],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": -2.2,
+                "y": 1.1
+              },
+              "level_delta": -0.05,
+              "size_scale": 1.1
+            },
+            {
+              "puddle_index": 1,
+              "location_offset": {
+                "x": 1.8,
+                "y": -0.6
+              },
+              "level_delta": -0.04,
+              "size_scale": 1.02
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Confirm map is Town01",
+          "Confirm mission spawn and destination are unchanged",
+          "Confirm 2 puddles, 1 nearby actor, and heavy rain/wetness conditions are maintained"
+        ],
+        "post_execution_validation_rules": [
+          "Validate that the confirmed red light event is reproduced",
+          "Check if stop-line crossing and lane-boundary crossing occur",
+          "Check for reproduction of the mismatch between all-zero commands and non-zero vehicle movement"
+        ],
+        "uncertainty": [
+          "Label conflict between dataset and error.json for lane invasion is preserved",
+          "No pre-confirmation of lane boundary crossing or stop-line crossing",
+          "Root cause cannot be attributed to a specific module before execution",
+          "Actuation mismatch does not confirm actuation failure"
+        ]
+      }
+    ]
+  },
+  "raw_api_payload": {
+    "id": "0217829224689546a861da7d15ce34477456226ae15cbba8818e9",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "{\n  \"case_id\": \"case_103\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Move nearby actor slightly closer to ego's planned path, slightly increase puddle levels while preserving all original map, mission and weather conditions\",\n      \"mutation_intent\": \"Preserves all Phase 1 root cause pattern and constraints: keeps Town01 map, original mission spawn/destination, heavy rain/high wetness, 2 puddles, 1 nearby actor, confirmed red light event, and the label conflict between dataset and error.json for lane invasion\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 4, \"fog\": 0, \"wetness\": 3, \"puddle\": 2},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 2.1, \"y\": -1.3}, \"speed_delta\": 0.6}\n        ],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": 0.08, \"size_scale\": 1.05},\n          {\"puddle_index\": 1, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": 0.07, \"size_scale\": 0.95}\n        ],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Confirm map is Town01\", \"Confirm mission spawn and destination match original\", \"Confirm heavy rain, high wetness, 2 puddles and 1 nearby actor are present\"],\n      \"post_execution_validation_rules\": [\"Check if confirmed red light violation is reproduced\", \"Check if lane boundary crossing occurs to resolve label conflict\", \"Check if mismatch between all-zero actuation commands and non-zero vehicle movement is reproduced\"],\n      \"uncertainty\": [\"Lane invasion status remains unconfirmed per original label conflict\", \"Stop-line crossing for red light is not pre-confirmed\", \"Module-level root cause remains unlocalized\", \"Actuation command mismatch does not confirm actuation failure\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Slightly shift both puddles toward ego's planned path, reduce nearby actor speed slightly while maintaining original core conditions\",\n      \"mutation_intent\": \"Preserves all Phase 1 root cause pattern and all preservation constraints, only makes minor positional adjustments to test reproducibility of the reported failure pattern, keeps the unconfirmed lane invasion label conflict and unlocalized root cause intact\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": -3, \"fog\": 2, \"wetness\": -2, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": -1.5, \"y\": 2.0}, \"speed_delta\": -0.7}\n        ],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": -2.2, \"y\": 1.1}, \"level_delta\": -0.05, \"size_scale\": 1.1},\n          {\"puddle_index\": 1, \"location_offset\": {\"x\": 1.8, \"y\": -0.6}, \"level_delta\": -0.04, \"size_scale\": 1.02}\n        ],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Confirm map is Town01\", \"Confirm mission spawn and destination are unchanged\", \"Confirm 2 puddles, 1 nearby actor, and heavy rain/wetness conditions are maintained\"],\n      \"post_execution_validation_rules\": [\"Validate that the confirmed red light event is reproduced\", \"Check if stop-line crossing and lane-boundary crossing occur\", \"Check for reproduction of the mismatch between all-zero commands and non-zero vehicle movement\"],\n      \"uncertainty\": [\"Label conflict between dataset and error.json for lane invasion is preserved\", \"No pre-confirmation of lane boundary crossing or stop-line crossing\", \"Root cause cannot be attributed to a specific module before execution\", \"Actuation mismatch does not confirm actuation failure\"]\n    }\n  ]\n}",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null,
+          "reasoning_content": "\nGot it, let's build this JSON step by step. First, the case_id is case_103, right? Need two candidate specs. Let's start with the first one, cand_001.\n\nHigh level variant: Move the nearby actor slightly closer to ego's path, adjust puddle levels slightly while keeping rain and wetness high. Mutation intent: Preserves all original constraints: Town01, mission positions, heavy rain/wetness, two puddles, one nearby actor, confirmed red light event, and label conflict for lane invasion, keeps the actuation mismatch context. Expected oracle: compound, because we have confirmed red light and possible lane invasion, that fits.\n\nModifications: Weather delta, let's see, keep it conservative. Rain +5, fog 0, wetness +3, puddle +2, that's within [-20,20], good. Actor mutations: actor 0, position offset x 2, y -1, that's within [-8,8], speed delta +0.5, within [-3,3], right. Puddle mutations: puddle 0, location offset x 0, y 0, level delta +0.1, size scale 1.05, that's within the limits. Puddle 1: location offset 0,0, level delta +0.08, size scale 0.95, okay. Mission mutation: keep_original true, offsets 0,0 for spawn and destination, per the preservation constraint.\n\nPre execution rules: Check that map is Town01, mission spawn and destination match original, heavy rain/wetness conditions are maintained, 2 puddles and 1 nearby actor are present. Post execution: Check for red light violation, check if lane boundary crossing occurred, check actuation command vs vehicle status mismatch. Uncertainty: Same as phase 1, lane invasion status unconfirmed, module root cause unconfirmed, actuation failure unconfirmed.\n\nNow second candidate, cand_002. High level variant: Slightly shift both puddles toward ego's planned path, reduce nearby actor speed slightly, maintain all original weather conditions. Mutation intent: Preserves all root cause pattern and constraints, only makes minor positional adjustments to test if the failure pattern reproduces, keeps the label conflict and unconfirmed root cause intact. Expected oracle: still compound, same as before.\n\nModifications: Weather delta: rain -3, wetness -2, fog +2, puddle 0, all within 20, good. Actor mutations: actor 0, position offset x -1.5, y 2.0, speed delta -0.8, all within limits. Puddle mutations: puddle 0: location offset x -2, y 1, level delta -0.05, size scale 1.1. Puddle 1: location offset x 1.5, y -0.5, level delta -0.04, size scale 1.05, all within the delta rules. Mission mutation: keep_original true, offsets 0.\n\nPre execution rules: Same as first plus check that both puddles are positioned within original regions. Post execution same as first plus validate that the confirmed red light event occurs, check mismatch between all-zero commands and non-zero movement. Uncertainty: Still same, lane invasion status unconfirmed, stop-line crossing unconfirmed, module root cause unconfirmed, actuation failure not confirmed.\n\nWait let's check all the rules: exactly two candidates, all offsets are within limits. Let's structure it properly. Let's make sure the schema matches. Let's check the expected oracle: the original has confirmed red light, possible lane invasion, so compound is correct, right? Yes. Let's check preservation constraints: all are followed, keep original mission, keep Town01, keep heavy rain, two puddles, one actor, label conflict, confirmed red light. All good.\n\nWait let's write the uncertainty correctly for each candidate, as per phase 1's uncertainty. Let's put the uncertainty array correctly. Let me make sure all numbers are correct. Let's put it all together now."
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "doubao-seed-2-0-lite-260215",
+    "object": "chat.completion",
+    "service_tier": "default",
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 1981,
+      "prompt_tokens": 1514,
+      "total_tokens": 3495,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 878,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": null,
+        "cached_tokens": 0
+      }
+    }
+  },
+  "error_message": "",
+  "elapsed_sec": 31.562,
+  "timestamp": "<REDACTED_TIMESTAMP>"
+}

@@ -1,0 +1,405 @@
+{
+  "case_id": "case_027",
+  "model_name": "ark-doubao-seed-2.0-lite-260215",
+  "workflow": "phase2_grounded_generation",
+  "status": "completed",
+  "schema_valid": true,
+  "schema_errors": [],
+  "phase1_ready": "yes",
+  "num_candidates_requested": 2,
+  "num_candidates_written": 2,
+  "num_pre_valid": 2,
+  "candidate_records": [
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-doubao-seed-2.0-lite-260215/json/case_027/case_027__cand_001.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-doubao-seed-2.0-lite-260215/metadata/case_027/case_027__cand_001.metadata.json",
+      "case_id": "case_027",
+      "model_name": "ark-doubao-seed-2.0-lite-260215",
+      "candidate_index": 1,
+      "candidate_spec": {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Slightly shift the immobile blocking actor toward ego's planned path and moderately increase wetness and puddle level",
+        "mutation_intent": "Preserves all core root-cause constraints: stuck symptoms, command-brake mismatch, unblocked planning waypoints, only adjusts environment conditions to test failure reproducibility",
+        "expected_oracle": "stuck",
+        "modifications": {
+          "weather_delta": {
+            "rain": 5,
+            "fog": 0,
+            "wetness": 8,
+            "puddle": 3
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": -2.0,
+                "y": 1.0
+              },
+              "speed_delta": 0.0
+            }
+          ],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 1.0,
+                "y": 0.0
+              },
+              "level_delta": 0.1,
+              "size_scale": 1.0
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Confirm planning outputs unblocked final waypoints",
+          "Verify immobile actor is placed on valid road area"
+        ],
+        "post_execution_validation_rules": [
+          "Check ego has zero velocity and near-zero displacement in final 60s",
+          "Validate mismatch between zero vehicle commands and non-zero applied brake"
+        ],
+        "uncertainty": [
+          "Module-level root cause attribution remains unknown",
+          "Command-brake mismatch is still unexplained"
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 5.0,
+          "fog": 0.0,
+          "wetness": 8.0,
+          "puddle": 3.0
+        },
+        "actor_mutations": [
+          {
+            "actor_index": 0,
+            "position_offset": {
+              "x": -2.0,
+              "y": 1.0
+            },
+            "speed_delta": 0.0
+          }
+        ],
+        "puddle_mutations": [
+          {
+            "puddle_index": 0,
+            "location_offset": {
+              "x": 1.0,
+              "y": 0.0
+            },
+            "level_delta": 0.1,
+            "size_scale": 1.0
+          }
+        ],
+        "mission_mutation": {
+          "keep_original": true
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_027__ark-doubao-seed-2.0-lite-260215.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_027__ark-doubao-seed-2.0-lite-260215.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    },
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-doubao-seed-2.0-lite-260215/json/case_027/case_027__cand_002.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-doubao-seed-2.0-lite-260215/metadata/case_027/case_027__cand_002.metadata.json",
+      "case_id": "case_027",
+      "model_name": "ark-doubao-seed-2.0-lite-260215",
+      "candidate_index": 2,
+      "candidate_spec": {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Slightly shift ego's spawn and destination, reduce wetness slightly, keep original actor position",
+        "mutation_intent": "Alters ego's starting and end points within allowed bounds while preserving all core root-cause pattern conditions to test failure generality",
+        "expected_oracle": "stuck",
+        "modifications": {
+          "weather_delta": {
+            "rain": -2,
+            "fog": 0,
+            "wetness": -5,
+            "puddle": -2
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "speed_delta": 0.0
+            }
+          ],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": -0.1,
+              "size_scale": 0.9
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": false,
+            "spawn_offset": {
+              "x": 1.5,
+              "y": -1.0
+            },
+            "destination_offset": {
+              "x": 1.2,
+              "y": -0.8
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Confirm shifted mission spawn and destination are within valid map bounds",
+          "Check planning outputs unblocked final waypoints throughout critical window"
+        ],
+        "post_execution_validation_rules": [
+          "Verify ego remains stuck with zero velocity for 60 seconds",
+          "Confirm vehicle status reports non-zero applied brake when all commands are zero"
+        ],
+        "uncertainty": [
+          "Root cause module attribution is still unconfirmed",
+          "Total movement over 60s is not interpreted in available evidence"
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": -2.0,
+          "fog": 0.0,
+          "wetness": -5.0,
+          "puddle": -2.0
+        },
+        "actor_mutations": [
+          {
+            "actor_index": 0,
+            "position_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "speed_delta": 0.0
+          }
+        ],
+        "puddle_mutations": [
+          {
+            "puddle_index": 0,
+            "location_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "level_delta": -0.1,
+            "size_scale": 0.9
+          }
+        ],
+        "mission_mutation": {
+          "spawn_offset": {
+            "x": 1.5,
+            "y": -1.0
+          },
+          "destination_offset": {
+            "x": 1.2,
+            "y": -0.8
+          }
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_027__ark-doubao-seed-2.0-lite-260215.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_027__ark-doubao-seed-2.0-lite-260215.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    }
+  ],
+  "seed_artifact_zip": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-doubao-seed-2.0-lite-260215/seed-artifact/seed-artifact-case_027.zip",
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_prompts/case_027__ark-doubao-seed-2.0-lite-260215.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_027__ark-doubao-seed-2.0-lite-260215.json",
+  "prompt_estimated_tokens": 1125,
+  "usage": {
+    "prompt_tokens": 1427,
+    "completion_tokens": 1557,
+    "total_tokens": 2984
+  },
+  "raw_response": "{\n  \"case_id\": \"case_027\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Slightly shift the immobile blocking actor toward ego's planned path and moderately increase wetness and puddle level\",\n      \"mutation_intent\": \"Preserves all core root-cause constraints: stuck symptoms, command-brake mismatch, unblocked planning waypoints, only adjusts environment conditions to test failure reproducibility\",\n      \"expected_oracle\": \"stuck\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 5, \"fog\": 0, \"wetness\": 8, \"puddle\": 3},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": -2.0, \"y\": 1.0}, \"speed_delta\": 0.0}\n        ],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": 1.0, \"y\": 0.0}, \"level_delta\": 0.1, \"size_scale\": 1.0}\n        ],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Confirm planning outputs unblocked final waypoints\", \"Verify immobile actor is placed on valid road area\"],\n      \"post_execution_validation_rules\": [\"Check ego has zero velocity and near-zero displacement in final 60s\", \"Validate mismatch between zero vehicle commands and non-zero applied brake\"],\n      \"uncertainty\": [\"Module-level root cause attribution remains unknown\", \"Command-brake mismatch is still unexplained\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Slightly shift ego's spawn and destination, reduce wetness slightly, keep original actor position\",\n      \"mutation_intent\": \"Alters ego's starting and end points within allowed bounds while preserving all core root-cause pattern conditions to test failure generality\",\n      \"expected_oracle\": \"stuck\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": -2, \"fog\": 0, \"wetness\": -5, \"puddle\": -2},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 0.0, \"y\": 0.0}, \"speed_delta\": 0.0}\n        ],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": -0.1, \"size_scale\": 0.9}\n        ],\n        \"mission_mutation\": {\"keep_original\": false, \"spawn_offset\": {\"x\": 1.5, \"y\": -1.0}, \"destination_offset\": {\"x\": 1.2, \"y\": -0.8}}\n      },\n      \"pre_execution_validation_rules\": [\"Confirm shifted mission spawn and destination are within valid map bounds\", \"Check planning outputs unblocked final waypoints throughout critical window\"],\n      \"post_execution_validation_rules\": [\"Verify ego remains stuck with zero velocity for 60 seconds\", \"Confirm vehicle status reports non-zero applied brake when all commands are zero\"],\n      \"uncertainty\": [\"Root cause module attribution is still unconfirmed\", \"Total movement over 60s is not interpreted in available evidence\"]\n    }\n  ]\n}",
+  "parsed_response": {
+    "case_id": "case_027",
+    "candidate_specs": [
+      {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Slightly shift the immobile blocking actor toward ego's planned path and moderately increase wetness and puddle level",
+        "mutation_intent": "Preserves all core root-cause constraints: stuck symptoms, command-brake mismatch, unblocked planning waypoints, only adjusts environment conditions to test failure reproducibility",
+        "expected_oracle": "stuck",
+        "modifications": {
+          "weather_delta": {
+            "rain": 5,
+            "fog": 0,
+            "wetness": 8,
+            "puddle": 3
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": -2.0,
+                "y": 1.0
+              },
+              "speed_delta": 0.0
+            }
+          ],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 1.0,
+                "y": 0.0
+              },
+              "level_delta": 0.1,
+              "size_scale": 1.0
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Confirm planning outputs unblocked final waypoints",
+          "Verify immobile actor is placed on valid road area"
+        ],
+        "post_execution_validation_rules": [
+          "Check ego has zero velocity and near-zero displacement in final 60s",
+          "Validate mismatch between zero vehicle commands and non-zero applied brake"
+        ],
+        "uncertainty": [
+          "Module-level root cause attribution remains unknown",
+          "Command-brake mismatch is still unexplained"
+        ]
+      },
+      {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Slightly shift ego's spawn and destination, reduce wetness slightly, keep original actor position",
+        "mutation_intent": "Alters ego's starting and end points within allowed bounds while preserving all core root-cause pattern conditions to test failure generality",
+        "expected_oracle": "stuck",
+        "modifications": {
+          "weather_delta": {
+            "rain": -2,
+            "fog": 0,
+            "wetness": -5,
+            "puddle": -2
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "speed_delta": 0.0
+            }
+          ],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": -0.1,
+              "size_scale": 0.9
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": false,
+            "spawn_offset": {
+              "x": 1.5,
+              "y": -1.0
+            },
+            "destination_offset": {
+              "x": 1.2,
+              "y": -0.8
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Confirm shifted mission spawn and destination are within valid map bounds",
+          "Check planning outputs unblocked final waypoints throughout critical window"
+        ],
+        "post_execution_validation_rules": [
+          "Verify ego remains stuck with zero velocity for 60 seconds",
+          "Confirm vehicle status reports non-zero applied brake when all commands are zero"
+        ],
+        "uncertainty": [
+          "Root cause module attribution is still unconfirmed",
+          "Total movement over 60s is not interpreted in available evidence"
+        ]
+      }
+    ]
+  },
+  "raw_api_payload": {
+    "id": "02178292174587777f9606cef83fa80b3d313b2e208ca1c42689a",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "{\n  \"case_id\": \"case_027\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Slightly shift the immobile blocking actor toward ego's planned path and moderately increase wetness and puddle level\",\n      \"mutation_intent\": \"Preserves all core root-cause constraints: stuck symptoms, command-brake mismatch, unblocked planning waypoints, only adjusts environment conditions to test failure reproducibility\",\n      \"expected_oracle\": \"stuck\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 5, \"fog\": 0, \"wetness\": 8, \"puddle\": 3},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": -2.0, \"y\": 1.0}, \"speed_delta\": 0.0}\n        ],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": 1.0, \"y\": 0.0}, \"level_delta\": 0.1, \"size_scale\": 1.0}\n        ],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Confirm planning outputs unblocked final waypoints\", \"Verify immobile actor is placed on valid road area\"],\n      \"post_execution_validation_rules\": [\"Check ego has zero velocity and near-zero displacement in final 60s\", \"Validate mismatch between zero vehicle commands and non-zero applied brake\"],\n      \"uncertainty\": [\"Module-level root cause attribution remains unknown\", \"Command-brake mismatch is still unexplained\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Slightly shift ego's spawn and destination, reduce wetness slightly, keep original actor position\",\n      \"mutation_intent\": \"Alters ego's starting and end points within allowed bounds while preserving all core root-cause pattern conditions to test failure generality\",\n      \"expected_oracle\": \"stuck\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": -2, \"fog\": 0, \"wetness\": -5, \"puddle\": -2},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 0.0, \"y\": 0.0}, \"speed_delta\": 0.0}\n        ],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": -0.1, \"size_scale\": 0.9}\n        ],\n        \"mission_mutation\": {\"keep_original\": false, \"spawn_offset\": {\"x\": 1.5, \"y\": -1.0}, \"destination_offset\": {\"x\": 1.2, \"y\": -0.8}}\n      },\n      \"pre_execution_validation_rules\": [\"Confirm shifted mission spawn and destination are within valid map bounds\", \"Check planning outputs unblocked final waypoints throughout critical window\"],\n      \"post_execution_validation_rules\": [\"Verify ego remains stuck with zero velocity for 60 seconds\", \"Confirm vehicle status reports non-zero applied brake when all commands are zero\"],\n      \"uncertainty\": [\"Root cause module attribution is still unconfirmed\", \"Total movement over 60s is not interpreted in available evidence\"]\n    }\n  ]\n}",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null,
+          "reasoning_content": "\nGot it, let's build this JSON step by step. First, the case_id is case_027, right? Then we need exactly two candidate_specs. Let's start with cand_001 first.\n\nHigh level variant for cand 001: Slightly move the immobile actor closer to ego's planned path and increase wetness a bit, keeping all stuck conditions. Mutation intent: Preserves all root cause constraints, just changes environment slightly to test if the stuck failure reproduces, doesn't alter the command-brake mismatch and planning output pattern. Expected oracle is stuck, right? Because the original is stuck.\n\nModifications for cand 001: Weather delta: let's see, rain +5, fog 0, wetness +8, puddle +3. That's within 20, good. Actor mutations: actor index 0, position offset x: -2, y: 1. That's within [-8,8], right. Speed delta 0, since it's immobile. Puddle mutations: puddle index 0, location offset x 1, y 0, level delta 0.1, size scale 1.0. That's within the allowed ranges. Mission mutation: keep_original true, offsets 0. Pre execution rules: [\"Check that ego's mission path remains unobstructed per planning output\", \"Confirm actor position is within valid road bounds\"], post execution: [\"Verify ego has zero velocity for final 60 seconds\", \"Check that command-brake mismatch is present\"], uncertainty same as original, like [\"Module-level cause attribution remains unknown\"].\n\nNow cand_002. High level variant: Shift ego spawn and destination slightly, reduce wetness a little, keep immobile actor position same. Mutation intent: Alters ego starting position slightly while preserving all core root cause conditions (zero commands, non-zero brake, unblocked waypoints, stuck) to test reproducibility of the failure pattern. Expected oracle is stuck again.\n\nModifications for cand 002: Weather delta: rain -2, fog 0, wetness -5, puddle -2. All within [-20,20], good. Actor mutations: actor index 0, position offset x 0, y 0, speed delta 0, keep original. Puddle mutations: index 0, location offset 0,0, level delta -0.1, size scale 0.9, that's within allowed ranges. Mission mutation: keep_original false, spawn offset x 1.5, y -1.0, destination offset x 1.2, y -0.8, all within [-5,5], perfect.\n\nPre execution rules for cand 002: [\"Verify planning outputs unblocked final waypoints for the shifted mission\", \"Confirm all vehicle commands are set to zero during critical window\"], post execution: [\"Check that ego has near-zero net displacement after 60 seconds\", \"Validate that vehicle status reports non-zero applied brake\"], uncertainty: [\"Mismatch between zero command and non-zero applied brake remains unexplained\"].\n\nWait let's check all rules: exactly two candidates, all offsets are within the limits, oracle is stuck which is correct, preserves all root cause constraints. Let's structure it correctly according to the schema. Let's make sure all fields are there. Let me put it all together now."
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "doubao-seed-2-0-lite-260215",
+    "object": "chat.completion",
+    "service_tier": "default",
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 1557,
+      "prompt_tokens": 1427,
+      "total_tokens": 2984,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 715,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": null,
+        "cached_tokens": 0
+      }
+    }
+  },
+  "error_message": "",
+  "elapsed_sec": 25.624,
+  "timestamp": "<REDACTED_TIMESTAMP>"
+}

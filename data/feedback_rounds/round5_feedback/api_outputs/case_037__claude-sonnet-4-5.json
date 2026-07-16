@@ -1,0 +1,426 @@
+{
+  "case_id": "case_037",
+  "model_name": "claude-sonnet-4-5",
+  "workflow": "round5_cumulative_feedback_guided_b2s",
+  "authoritative_target": "original_seed_and_original_phase1_root_cause",
+  "status": "completed",
+  "schema_valid": true,
+  "schema_errors": [],
+  "num_round1_feedback_records": 6,
+  "num_round2_feedback_records": 2,
+  "num_round3_feedback_records": 6,
+  "num_round4_feedback_records": 6,
+  "num_candidates_requested": 6,
+  "num_candidates_written": 6,
+  "num_pre_valid": 6,
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/round5_feedback/prompts/case_037.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/round5_feedback/api_outputs/case_037__claude-sonnet-4-5.json",
+  "prompt_estimated_tokens": 8910,
+  "usage": {
+    "prompt_tokens": 10413,
+    "completion_tokens": 2239,
+    "total_tokens": 12652
+  },
+  "candidate_records": [
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/round5_feedback/candidates/case_037__Round5_01.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/round5_feedback/metadata/case_037__Round5_01.metadata.json",
+      "pre_valid": true,
+      "pre_validation_errors": [],
+      "pre_validation_warnings": []
+    },
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/round5_feedback/candidates/case_037__Round5_02.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/round5_feedback/metadata/case_037__Round5_02.metadata.json",
+      "pre_valid": true,
+      "pre_validation_errors": [],
+      "pre_validation_warnings": []
+    },
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/round5_feedback/candidates/case_037__Round5_03.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/round5_feedback/metadata/case_037__Round5_03.metadata.json",
+      "pre_valid": true,
+      "pre_validation_errors": [],
+      "pre_validation_warnings": []
+    },
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/round5_feedback/candidates/case_037__Round5_04.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/round5_feedback/metadata/case_037__Round5_04.metadata.json",
+      "pre_valid": true,
+      "pre_validation_errors": [],
+      "pre_validation_warnings": []
+    },
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/round5_feedback/candidates/case_037__Round5_05.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/round5_feedback/metadata/case_037__Round5_05.metadata.json",
+      "pre_valid": true,
+      "pre_validation_errors": [],
+      "pre_validation_warnings": []
+    },
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/round5_feedback/candidates/case_037__Round5_06.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/round5_feedback/metadata/case_037__Round5_06.metadata.json",
+      "pre_valid": true,
+      "pre_validation_errors": [],
+      "pre_validation_warnings": []
+    }
+  ],
+  "raw_response": "```json\n{\n  \"case_id\": \"case_037\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Vehicle actor placed directly ahead on ego route with minimal forward offset and zero lateral clearance\",\n      \"mutation_intent\": \"All prior rounds failed to trigger collision. Position actor directly in ego's forward path with minimal x-offset and zero y-offset to create unavoidable collision geometry while preserving actuation mismatch.\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 4.0, \"y\": 0.0}, \"speed_delta\": -2.0},\n          {\"actor_index\": 1, \"position_offset\": {\"x\": 0.0, \"y\": 0.0}, \"speed_delta\": 0.0}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Vehicle actor must be within 5m of ego spawn on route centerline\"],\n      \"post_execution_validation_rules\": [\"Confirm collision oracle triggered and vehicle_cmd vs vehicle_status mismatch present\"],\n      \"uncertainty\": [\"Actor placement may still miss collision window if ego stops early\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Walker actor moved directly into ego lane ahead with vehicle actor slightly repositioned\",\n      \"mutation_intent\": \"Prior walker shifts failed. Place walker directly in ego's forward path with small x-offset to test pedestrian collision trigger while vehicle actor provides secondary interaction.\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 3.0, \"y\": -1.0}, \"speed_delta\": -1.0},\n          {\"actor_index\": 1, \"position_offset\": {\"x\": 6.0, \"y\": 0.0}, \"speed_delta\": 0.0}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Walker must be within 7m of ego spawn on route\"],\n      \"post_execution_validation_rules\": [\"Check for collision with walker or vehicle and actuation mismatch\"],\n      \"uncertainty\": [\"Walker speed may allow ego to pass without collision\"]\n    },\n    {\n      \"candidate_id\": \"cand_003\",\n      \"high_level_variant\": \"Ego spawn advanced moderately forward with vehicle actor at original position\",\n      \"mutation_intent\": \"Round 4 cand_002 spawn offset caused no oracle. Use smaller forward spawn offset to reduce time-to-actor while avoiding premature failure, testing earlier encounter timing.\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 0.0, \"y\": 0.0}, \"speed_delta\": 0.0},\n          {\"actor_index\": 1, \"position_offset\": {\"x\": 0.0, \"y\": 0.0}, \"speed_delta\": 0.0}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": false, \"spawn_offset\": {\"x\": 2.5, \"y\": -1.5}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Ego spawn must remain within 3m of original position\"],\n      \"post_execution_validation_rules\": [\"Confirm oracle triggered and ego speed 2-5 m/s before failure\"],\n      \"uncertainty\": [\"Spawn offset may still cause initialization or early failure\"]\n    },\n    {\n      \"candidate_id\": \"cand_004\",\n      \"high_level_variant\": \"Vehicle actor at intersection approach with negative y-offset and stationary walker nearby\",\n      \"mutation_intent\": \"Position vehicle actor at intersection entry with negative lateral offset to create crossing trajectory. Stationary walker adds secondary obstacle to test multi-actor collision scenario.\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 5.0, \"y\": -2.0}, \"speed_delta\": -2.5},\n          {\"actor_index\": 1, \"position_offset\": {\"x\": 4.5, \"y\": -1.5}, \"speed_delta\": -0.53}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Both actors within 6m of ego route before intersection\"],\n      \"post_execution_validation_rules\": [\"Validate collision with either actor and red_light oracle consistency\"],\n      \"uncertainty\": [\"Crossing trajectory timing may miss collision window\"]\n    },\n    {\n      \"candidate_id\": \"cand_005\",\n      \"high_level_variant\": \"Heavy rain and wetness with vehicle actor positioned closer and slower\",\n      \"mutation_intent\": \"Combine maximum weather severity with tight actor geometry. Slower actor increases dwell time in collision zone while weather stresses perception to trigger compound failure.\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 20, \"fog\": 10, \"wetness\": 20, \"puddle\": 15},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 4.5, \"y\": -1.5}, \"speed_delta\": -3.0},\n          {\"actor_index\": 1, \"position_offset\": {\"x\": 0.0, \"y\": 0.0}, \"speed_delta\": 0.0}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Weather parameters within allowed bounds and actor within 5m of route\"],\n      \"post_execution_validation_rules\": [\"Confirm collision and red_light oracles with actuation mismatch under heavy weather\"],\n      \"uncertainty\": [\"Extreme weather may degrade perception but not guarantee collision trigger\"]\n    },\n    {\n      \"candidate_id\": \"cand_006\",\n      \"high_level_variant\": \"Vehicle actor with positive x and small negative y offset, increased speed, minimal weather\",\n      \"mutation_intent\": \"Test dynamic overtaking scenario: faster actor with forward and slight lateral offset creates passing geometry. Minimal weather isolates collision trigger from environmental confounds.\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": -20, \"fog\": -4, \"wetness\": -20, \"puddle\": -15},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 3.5, \"y\": -0.5}, \"speed_delta\": 2.5},\n          {\"actor_index\": 1, \"position_offset\": {\"x\": 0.0, \"y\": 0.0}, \"speed_delta\": 0.0}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Actor speed delta within bounds and position within 4m lateral of route\"],\n      \"post_execution_validation_rules\": [\"Check for collision during overtaking maneuver and actuation command consistency\"],\n      \"uncertainty\": [\"Faster actor may pass ego without collision if lateral clearance sufficient\"]\n    }\n  ]\n}\n```",
+  "parsed_response": {
+    "case_id": "case_037",
+    "candidate_specs": [
+      {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Vehicle actor placed directly ahead on ego route with minimal forward offset and zero lateral clearance",
+        "mutation_intent": "All prior rounds failed to trigger collision. Position actor directly in ego's forward path with minimal x-offset and zero y-offset to create unavoidable collision geometry while preserving actuation mismatch.",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 4.0,
+                "y": 0.0
+              },
+              "speed_delta": -2.0
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "speed_delta": 0.0
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Vehicle actor must be within 5m of ego spawn on route centerline"
+        ],
+        "post_execution_validation_rules": [
+          "Confirm collision oracle triggered and vehicle_cmd vs vehicle_status mismatch present"
+        ],
+        "uncertainty": [
+          "Actor placement may still miss collision window if ego stops early"
+        ]
+      },
+      {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Walker actor moved directly into ego lane ahead with vehicle actor slightly repositioned",
+        "mutation_intent": "Prior walker shifts failed. Place walker directly in ego's forward path with small x-offset to test pedestrian collision trigger while vehicle actor provides secondary interaction.",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 3.0,
+                "y": -1.0
+              },
+              "speed_delta": -1.0
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": 6.0,
+                "y": 0.0
+              },
+              "speed_delta": 0.0
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Walker must be within 7m of ego spawn on route"
+        ],
+        "post_execution_validation_rules": [
+          "Check for collision with walker or vehicle and actuation mismatch"
+        ],
+        "uncertainty": [
+          "Walker speed may allow ego to pass without collision"
+        ]
+      },
+      {
+        "candidate_id": "cand_003",
+        "high_level_variant": "Ego spawn advanced moderately forward with vehicle actor at original position",
+        "mutation_intent": "Round 4 cand_002 spawn offset caused no oracle. Use smaller forward spawn offset to reduce time-to-actor while avoiding premature failure, testing earlier encounter timing.",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "speed_delta": 0.0
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "speed_delta": 0.0
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": false,
+            "spawn_offset": {
+              "x": 2.5,
+              "y": -1.5
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Ego spawn must remain within 3m of original position"
+        ],
+        "post_execution_validation_rules": [
+          "Confirm oracle triggered and ego speed 2-5 m/s before failure"
+        ],
+        "uncertainty": [
+          "Spawn offset may still cause initialization or early failure"
+        ]
+      },
+      {
+        "candidate_id": "cand_004",
+        "high_level_variant": "Vehicle actor at intersection approach with negative y-offset and stationary walker nearby",
+        "mutation_intent": "Position vehicle actor at intersection entry with negative lateral offset to create crossing trajectory. Stationary walker adds secondary obstacle to test multi-actor collision scenario.",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 5.0,
+                "y": -2.0
+              },
+              "speed_delta": -2.5
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": 4.5,
+                "y": -1.5
+              },
+              "speed_delta": -0.53
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Both actors within 6m of ego route before intersection"
+        ],
+        "post_execution_validation_rules": [
+          "Validate collision with either actor and red_light oracle consistency"
+        ],
+        "uncertainty": [
+          "Crossing trajectory timing may miss collision window"
+        ]
+      },
+      {
+        "candidate_id": "cand_005",
+        "high_level_variant": "Heavy rain and wetness with vehicle actor positioned closer and slower",
+        "mutation_intent": "Combine maximum weather severity with tight actor geometry. Slower actor increases dwell time in collision zone while weather stresses perception to trigger compound failure.",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": 20,
+            "fog": 10,
+            "wetness": 20,
+            "puddle": 15
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 4.5,
+                "y": -1.5
+              },
+              "speed_delta": -3.0
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "speed_delta": 0.0
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Weather parameters within allowed bounds and actor within 5m of route"
+        ],
+        "post_execution_validation_rules": [
+          "Confirm collision and red_light oracles with actuation mismatch under heavy weather"
+        ],
+        "uncertainty": [
+          "Extreme weather may degrade perception but not guarantee collision trigger"
+        ]
+      },
+      {
+        "candidate_id": "cand_006",
+        "high_level_variant": "Vehicle actor with positive x and small negative y offset, increased speed, minimal weather",
+        "mutation_intent": "Test dynamic overtaking scenario: faster actor with forward and slight lateral offset creates passing geometry. Minimal weather isolates collision trigger from environmental confounds.",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": -20,
+            "fog": -4,
+            "wetness": -20,
+            "puddle": -15
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 3.5,
+                "y": -0.5
+              },
+              "speed_delta": 2.5
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "speed_delta": 0.0
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Actor speed delta within bounds and position within 4m lateral of route"
+        ],
+        "post_execution_validation_rules": [
+          "Check for collision during overtaking maneuver and actuation command consistency"
+        ],
+        "uncertainty": [
+          "Faster actor may pass ego without collision if lateral clearance sufficient"
+        ]
+      }
+    ]
+  },
+  "error_message": "",
+  "timestamp": "<REDACTED_TIMESTAMP>",
+  "raw_api_payload": {
+    "id": "<REDACTED_RESPONSE_ID>",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "```json\n{\n  \"case_id\": \"case_037\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Vehicle actor placed directly ahead on ego route with minimal forward offset and zero lateral clearance\",\n      \"mutation_intent\": \"All prior rounds failed to trigger collision. Position actor directly in ego's forward path with minimal x-offset and zero y-offset to create unavoidable collision geometry while preserving actuation mismatch.\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 4.0, \"y\": 0.0}, \"speed_delta\": -2.0},\n          {\"actor_index\": 1, \"position_offset\": {\"x\": 0.0, \"y\": 0.0}, \"speed_delta\": 0.0}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Vehicle actor must be within 5m of ego spawn on route centerline\"],\n      \"post_execution_validation_rules\": [\"Confirm collision oracle triggered and vehicle_cmd vs vehicle_status mismatch present\"],\n      \"uncertainty\": [\"Actor placement may still miss collision window if ego stops early\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Walker actor moved directly into ego lane ahead with vehicle actor slightly repositioned\",\n      \"mutation_intent\": \"Prior walker shifts failed. Place walker directly in ego's forward path with small x-offset to test pedestrian collision trigger while vehicle actor provides secondary interaction.\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 3.0, \"y\": -1.0}, \"speed_delta\": -1.0},\n          {\"actor_index\": 1, \"position_offset\": {\"x\": 6.0, \"y\": 0.0}, \"speed_delta\": 0.0}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Walker must be within 7m of ego spawn on route\"],\n      \"post_execution_validation_rules\": [\"Check for collision with walker or vehicle and actuation mismatch\"],\n      \"uncertainty\": [\"Walker speed may allow ego to pass without collision\"]\n    },\n    {\n      \"candidate_id\": \"cand_003\",\n      \"high_level_variant\": \"Ego spawn advanced moderately forward with vehicle actor at original position\",\n      \"mutation_intent\": \"Round 4 cand_002 spawn offset caused no oracle. Use smaller forward spawn offset to reduce time-to-actor while avoiding premature failure, testing earlier encounter timing.\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 0.0, \"y\": 0.0}, \"speed_delta\": 0.0},\n          {\"actor_index\": 1, \"position_offset\": {\"x\": 0.0, \"y\": 0.0}, \"speed_delta\": 0.0}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": false, \"spawn_offset\": {\"x\": 2.5, \"y\": -1.5}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Ego spawn must remain within 3m of original position\"],\n      \"post_execution_validation_rules\": [\"Confirm oracle triggered and ego speed 2-5 m/s before failure\"],\n      \"uncertainty\": [\"Spawn offset may still cause initialization or early failure\"]\n    },\n    {\n      \"candidate_id\": \"cand_004\",\n      \"high_level_variant\": \"Vehicle actor at intersection approach with negative y-offset and stationary walker nearby\",\n      \"mutation_intent\": \"Position vehicle actor at intersection entry with negative lateral offset to create crossing trajectory. Stationary walker adds secondary obstacle to test multi-actor collision scenario.\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 5.0, \"y\": -2.0}, \"speed_delta\": -2.5},\n          {\"actor_index\": 1, \"position_offset\": {\"x\": 4.5, \"y\": -1.5}, \"speed_delta\": -0.53}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Both actors within 6m of ego route before intersection\"],\n      \"post_execution_validation_rules\": [\"Validate collision with either actor and red_light oracle consistency\"],\n      \"uncertainty\": [\"Crossing trajectory timing may miss collision window\"]\n    },\n    {\n      \"candidate_id\": \"cand_005\",\n      \"high_level_variant\": \"Heavy rain and wetness with vehicle actor positioned closer and slower\",\n      \"mutation_intent\": \"Combine maximum weather severity with tight actor geometry. Slower actor increases dwell time in collision zone while weather stresses perception to trigger compound failure.\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 20, \"fog\": 10, \"wetness\": 20, \"puddle\": 15},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 4.5, \"y\": -1.5}, \"speed_delta\": -3.0},\n          {\"actor_index\": 1, \"position_offset\": {\"x\": 0.0, \"y\": 0.0}, \"speed_delta\": 0.0}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Weather parameters within allowed bounds and actor within 5m of route\"],\n      \"post_execution_validation_rules\": [\"Confirm collision and red_light oracles with actuation mismatch under heavy weather\"],\n      \"uncertainty\": [\"Extreme weather may degrade perception but not guarantee collision trigger\"]\n    },\n    {\n      \"candidate_id\": \"cand_006\",\n      \"high_level_variant\": \"Vehicle actor with positive x and small negative y offset, increased speed, minimal weather\",\n      \"mutation_intent\": \"Test dynamic overtaking scenario: faster actor with forward and slight lateral offset creates passing geometry. Minimal weather isolates collision trigger from environmental confounds.\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": -20, \"fog\": -4, \"wetness\": -20, \"puddle\": -15},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 3.5, \"y\": -0.5}, \"speed_delta\": 2.5},\n          {\"actor_index\": 1, \"position_offset\": {\"x\": 0.0, \"y\": 0.0}, \"speed_delta\": 0.0}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Actor speed delta within bounds and position within 4m lateral of route\"],\n      \"post_execution_validation_rules\": [\"Check for collision during overtaking maneuver and actuation command consistency\"],\n      \"uncertainty\": [\"Faster actor may pass ego without collision if lateral clearance sufficient\"]\n    }\n  ]\n}\n```",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "claude-sonnet-4-5",
+    "object": "chat.completion",
+    "service_tier": null,
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 2239,
+      "prompt_tokens": 10413,
+      "total_tokens": 12652,
+      "completion_tokens_details": null,
+      "prompt_tokens_details": null
+    }
+  },
+  "elapsed_sec": 35.515
+}

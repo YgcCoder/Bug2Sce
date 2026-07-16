@@ -1,0 +1,405 @@
+{
+  "case_id": "case_168",
+  "model_name": "claude-sonnet-4-5",
+  "workflow": "phase2_grounded_generation",
+  "status": "completed",
+  "schema_valid": true,
+  "schema_errors": [],
+  "phase1_ready": "uncertain",
+  "num_candidates_requested": 2,
+  "num_candidates_written": 2,
+  "num_pre_valid": 2,
+  "candidate_records": [
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/claude-sonnet-4-5/json/case_168/case_168__cand_001.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/claude-sonnet-4-5/metadata/case_168/case_168__cand_001.metadata.json",
+      "case_id": "case_168",
+      "model_name": "claude-sonnet-4-5",
+      "candidate_index": 1,
+      "candidate_spec": {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Reduce rain and fog to clarify traffic light visibility during acceleration",
+        "mutation_intent": "Test if reduced weather obscuration preserves red-light violation with ego accelerating through light transition",
+        "expected_oracle": "red_light",
+        "modifications": {
+          "weather_delta": {
+            "rain": -15,
+            "fog": -20,
+            "wetness": -10,
+            "puddle": -10
+          },
+          "actor_mutations": [],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": -0.15,
+              "size_scale": 0.9
+            },
+            {
+              "puddle_index": 1,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": -0.12,
+              "size_scale": 0.9
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Ego spawn near traffic light intersection",
+          "Route passes through traffic light",
+          "Weather parameters within safe bounds"
+        ],
+        "post_execution_validation_rules": [
+          "Red-light violation occurred",
+          "Traffic light transitioned green to yellow",
+          "Ego speed increased before failure"
+        ],
+        "uncertainty": [
+          "Lane invasion oracle conflict unresolved",
+          "Stop-line crossing not confirmed",
+          "Route-light relation requires validation"
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": -15.0,
+          "fog": -20,
+          "wetness": -10.0,
+          "puddle": -10.0
+        },
+        "actor_mutations": [],
+        "puddle_mutations": [
+          {
+            "puddle_index": 0,
+            "location_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "level_delta": -0.15,
+            "size_scale": 0.9
+          },
+          {
+            "puddle_index": 1,
+            "location_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "level_delta": -0.12,
+            "size_scale": 0.9
+          }
+        ],
+        "mission_mutation": {
+          "keep_original": true
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": [
+          "no actors in candidate scenario"
+        ]
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_168__claude-sonnet-4-5.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_168__claude-sonnet-4-5.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    },
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/claude-sonnet-4-5/json/case_168/case_168__cand_002.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/claude-sonnet-4-5/metadata/case_168/case_168__cand_002.metadata.json",
+      "case_id": "case_168",
+      "model_name": "claude-sonnet-4-5",
+      "candidate_index": 2,
+      "candidate_spec": {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Increase rain and wetness to amplify slippery conditions during light transition",
+        "mutation_intent": "Test if increased weather severity preserves red-light violation pattern with ego acceleration and steering",
+        "expected_oracle": "red_light",
+        "modifications": {
+          "weather_delta": {
+            "rain": 18,
+            "fog": 10,
+            "wetness": 15,
+            "puddle": 12
+          },
+          "actor_mutations": [],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": 0.18,
+              "size_scale": 1.15
+            },
+            {
+              "puddle_index": 1,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": 0.15,
+              "size_scale": 1.1
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Ego spawn near traffic light intersection",
+          "Route passes through traffic light",
+          "Weather parameters within safe bounds"
+        ],
+        "post_execution_validation_rules": [
+          "Red-light violation occurred",
+          "Traffic light transitioned green to yellow",
+          "Ego throttle and steering active"
+        ],
+        "uncertainty": [
+          "Lane invasion oracle conflict unresolved",
+          "Stop-line crossing not confirmed",
+          "Controller behavior uncertain"
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 18.0,
+          "fog": 10.0,
+          "wetness": 15.0,
+          "puddle": 12.0
+        },
+        "actor_mutations": [],
+        "puddle_mutations": [
+          {
+            "puddle_index": 0,
+            "location_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "level_delta": 0.18,
+            "size_scale": 1.15
+          },
+          {
+            "puddle_index": 1,
+            "location_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "level_delta": 0.15,
+            "size_scale": 1.1
+          }
+        ],
+        "mission_mutation": {
+          "keep_original": true
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": [
+          "no actors in candidate scenario"
+        ]
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_168__claude-sonnet-4-5.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_168__claude-sonnet-4-5.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    }
+  ],
+  "seed_artifact_zip": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/claude-sonnet-4-5/seed-artifact/seed-artifact-case_168.zip",
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_prompts/case_168__claude-sonnet-4-5.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_168__claude-sonnet-4-5.json",
+  "prompt_estimated_tokens": 1287,
+  "usage": {
+    "prompt_tokens": 1521,
+    "completion_tokens": 841,
+    "total_tokens": 2362
+  },
+  "raw_response": "```json\n{\n  \"case_id\": \"case_168\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Reduce rain and fog to clarify traffic light visibility during acceleration\",\n      \"mutation_intent\": \"Test if reduced weather obscuration preserves red-light violation with ego accelerating through light transition\",\n      \"expected_oracle\": \"red_light\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": -15, \"fog\": -20, \"wetness\": -10, \"puddle\": -10},\n        \"actor_mutations\": [],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": -0.15, \"size_scale\": 0.9},\n          {\"puddle_index\": 1, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": -0.12, \"size_scale\": 0.9}\n        ],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Ego spawn near traffic light intersection\", \"Route passes through traffic light\", \"Weather parameters within safe bounds\"],\n      \"post_execution_validation_rules\": [\"Red-light violation occurred\", \"Traffic light transitioned green to yellow\", \"Ego speed increased before failure\"],\n      \"uncertainty\": [\"Lane invasion oracle conflict unresolved\", \"Stop-line crossing not confirmed\", \"Route-light relation requires validation\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Increase rain and wetness to amplify slippery conditions during light transition\",\n      \"mutation_intent\": \"Test if increased weather severity preserves red-light violation pattern with ego acceleration and steering\",\n      \"expected_oracle\": \"red_light\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 18, \"fog\": 10, \"wetness\": 15, \"puddle\": 12},\n        \"actor_mutations\": [],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": 0.18, \"size_scale\": 1.15},\n          {\"puddle_index\": 1, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": 0.15, \"size_scale\": 1.1}\n        ],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Ego spawn near traffic light intersection\", \"Route passes through traffic light\", \"Weather parameters within safe bounds\"],\n      \"post_execution_validation_rules\": [\"Red-light violation occurred\", \"Traffic light transitioned green to yellow\", \"Ego throttle and steering active\"],\n      \"uncertainty\": [\"Lane invasion oracle conflict unresolved\", \"Stop-line crossing not confirmed\", \"Controller behavior uncertain\"]\n    }\n  ]\n}\n```",
+  "parsed_response": {
+    "case_id": "case_168",
+    "candidate_specs": [
+      {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Reduce rain and fog to clarify traffic light visibility during acceleration",
+        "mutation_intent": "Test if reduced weather obscuration preserves red-light violation with ego accelerating through light transition",
+        "expected_oracle": "red_light",
+        "modifications": {
+          "weather_delta": {
+            "rain": -15,
+            "fog": -20,
+            "wetness": -10,
+            "puddle": -10
+          },
+          "actor_mutations": [],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": -0.15,
+              "size_scale": 0.9
+            },
+            {
+              "puddle_index": 1,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": -0.12,
+              "size_scale": 0.9
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Ego spawn near traffic light intersection",
+          "Route passes through traffic light",
+          "Weather parameters within safe bounds"
+        ],
+        "post_execution_validation_rules": [
+          "Red-light violation occurred",
+          "Traffic light transitioned green to yellow",
+          "Ego speed increased before failure"
+        ],
+        "uncertainty": [
+          "Lane invasion oracle conflict unresolved",
+          "Stop-line crossing not confirmed",
+          "Route-light relation requires validation"
+        ]
+      },
+      {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Increase rain and wetness to amplify slippery conditions during light transition",
+        "mutation_intent": "Test if increased weather severity preserves red-light violation pattern with ego acceleration and steering",
+        "expected_oracle": "red_light",
+        "modifications": {
+          "weather_delta": {
+            "rain": 18,
+            "fog": 10,
+            "wetness": 15,
+            "puddle": 12
+          },
+          "actor_mutations": [],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": 0.18,
+              "size_scale": 1.15
+            },
+            {
+              "puddle_index": 1,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": 0.15,
+              "size_scale": 1.1
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Ego spawn near traffic light intersection",
+          "Route passes through traffic light",
+          "Weather parameters within safe bounds"
+        ],
+        "post_execution_validation_rules": [
+          "Red-light violation occurred",
+          "Traffic light transitioned green to yellow",
+          "Ego throttle and steering active"
+        ],
+        "uncertainty": [
+          "Lane invasion oracle conflict unresolved",
+          "Stop-line crossing not confirmed",
+          "Controller behavior uncertain"
+        ]
+      }
+    ]
+  },
+  "raw_api_payload": {
+    "id": "<REDACTED_RESPONSE_ID>",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "```json\n{\n  \"case_id\": \"case_168\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Reduce rain and fog to clarify traffic light visibility during acceleration\",\n      \"mutation_intent\": \"Test if reduced weather obscuration preserves red-light violation with ego accelerating through light transition\",\n      \"expected_oracle\": \"red_light\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": -15, \"fog\": -20, \"wetness\": -10, \"puddle\": -10},\n        \"actor_mutations\": [],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": -0.15, \"size_scale\": 0.9},\n          {\"puddle_index\": 1, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": -0.12, \"size_scale\": 0.9}\n        ],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Ego spawn near traffic light intersection\", \"Route passes through traffic light\", \"Weather parameters within safe bounds\"],\n      \"post_execution_validation_rules\": [\"Red-light violation occurred\", \"Traffic light transitioned green to yellow\", \"Ego speed increased before failure\"],\n      \"uncertainty\": [\"Lane invasion oracle conflict unresolved\", \"Stop-line crossing not confirmed\", \"Route-light relation requires validation\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Increase rain and wetness to amplify slippery conditions during light transition\",\n      \"mutation_intent\": \"Test if increased weather severity preserves red-light violation pattern with ego acceleration and steering\",\n      \"expected_oracle\": \"red_light\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 18, \"fog\": 10, \"wetness\": 15, \"puddle\": 12},\n        \"actor_mutations\": [],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": 0.18, \"size_scale\": 1.15},\n          {\"puddle_index\": 1, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": 0.15, \"size_scale\": 1.1}\n        ],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Ego spawn near traffic light intersection\", \"Route passes through traffic light\", \"Weather parameters within safe bounds\"],\n      \"post_execution_validation_rules\": [\"Red-light violation occurred\", \"Traffic light transitioned green to yellow\", \"Ego throttle and steering active\"],\n      \"uncertainty\": [\"Lane invasion oracle conflict unresolved\", \"Stop-line crossing not confirmed\", \"Controller behavior uncertain\"]\n    }\n  ]\n}\n```",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "claude-sonnet-4-5",
+    "object": "chat.completion",
+    "service_tier": null,
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 841,
+      "prompt_tokens": 1521,
+      "total_tokens": 2362,
+      "completion_tokens_details": null,
+      "prompt_tokens_details": null
+    }
+  },
+  "error_message": "",
+  "elapsed_sec": 15.963,
+  "timestamp": "<REDACTED_TIMESTAMP>"
+}

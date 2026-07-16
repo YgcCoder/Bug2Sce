@@ -1,0 +1,67 @@
+{
+  "case_id": "case_040",
+  "model_name": "claude-sonnet-4-5",
+  "candidate_index": 1,
+  "candidate_spec": {
+    "candidate_id": "cand_001",
+    "high_level_variant": "Increase rain and wetness to stress traffic light perception",
+    "mutation_intent": "Amplify weather conditions to test if degraded visibility affects red-light detection or stop decision",
+    "expected_oracle": "red_light",
+    "modifications": {
+      "weather_delta": {
+        "rain": 17,
+        "fog": 15,
+        "wetness": 14,
+        "puddle": 0
+      },
+      "actor_mutations": [],
+      "puddle_mutations": [],
+      "mission_mutation": {
+        "keep_original": true,
+        "spawn_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "destination_offset": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Traffic lights present near ego route",
+      "Ego spawn within 50m of traffic light"
+    ],
+    "post_execution_validation_rules": [
+      "Red-light violation oracle triggered",
+      "Traffic light state red in critical window",
+      "Ego velocity nonzero at stop line"
+    ],
+    "uncertainty": [
+      "Weather impact on perception uncertain",
+      "Stop-line crossing timing unknown",
+      "Planning vs actuation fault unresolved"
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": 17.0,
+      "fog": 15.0,
+      "wetness": 14.0,
+      "puddle": 0.0
+    },
+    "actor_mutations": [],
+    "puddle_mutations": [],
+    "mission_mutation": {
+      "keep_original": true
+    }
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_040__claude-sonnet-4-5.json",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_040__claude-sonnet-4-5.json",
+  "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+}

@@ -1,0 +1,138 @@
+{
+  "case_id": "case_137",
+  "model_name": "ark-deepseek-r1-250528",
+  "candidate_index": 2,
+  "candidate_spec": {
+    "candidate_id": "cand_002",
+    "high_level_variant": "Minor adjustment to the position and speed of the moving linear walker, all other elements (weather, mission, puddle, other actors) kept identical to original seed",
+    "mutation_intent": "Preserves all Phase 1 preservation constraints: maintains 3 actors count, 1 puddle, original ego mission in Town01, preserves red light violation labeling intent, uses minor actor offsets within allowed ranges, retains all original root cause uncertainty",
+    "expected_oracle": "red_light",
+    "modifications": {
+      "weather_delta": {
+        "rain": 0,
+        "fog": 0,
+        "wetness": 0,
+        "puddle": 0
+      },
+      "actor_mutations": [
+        {
+          "actor_index": 0,
+          "position_offset": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "speed_delta": 0.0
+        },
+        {
+          "actor_index": 1,
+          "position_offset": {
+            "x": 1.5,
+            "y": -1.0
+          },
+          "speed_delta": 0.6
+        },
+        {
+          "actor_index": 2,
+          "position_offset": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "speed_delta": 0.0
+        }
+      ],
+      "puddle_mutations": [
+        {
+          "puddle_index": 0,
+          "location_offset": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "level_delta": 0.0,
+          "size_scale": 1.0
+        }
+      ],
+      "mission_mutation": {
+        "keep_original": true,
+        "spawn_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "destination_offset": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Confirm 3 actors and 1 puddle region are present in the scenario",
+      "Confirm traffic light topic data is available",
+      "Confirm ego mission matches original spawn and destination"
+    ],
+    "post_execution_validation_rules": [
+      "Validate that stop-line crossing on red light exists to confirm genuine violation",
+      "Check that vehicle_cmd/vehicle_status mismatch is preserved in the critical window",
+      "Confirm red light violation labeling aligns with original dataset labeling"
+    ],
+    "uncertainty": [
+      "Route-light relation and stop-line crossing were unconfirmed in original evidence",
+      "No specific module-level failure is confirmed by available evidence",
+      "Unresolved actuation behavior mismatch between vehicle_cmd and vehicle_status remains"
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": 0.0,
+      "fog": 0.0,
+      "wetness": 0.0,
+      "puddle": 0.0
+    },
+    "actor_mutations": [
+      {
+        "actor_index": 0,
+        "position_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "speed_delta": 0.0
+      },
+      {
+        "actor_index": 1,
+        "position_offset": {
+          "x": 1.5,
+          "y": -1.0
+        },
+        "speed_delta": 0.6
+      },
+      {
+        "actor_index": 2,
+        "position_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "speed_delta": 0.0
+      }
+    ],
+    "puddle_mutations": [
+      {
+        "puddle_index": 0,
+        "location_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "level_delta": 0.0,
+        "size_scale": 1.0
+      }
+    ],
+    "mission_mutation": {
+      "keep_original": true
+    }
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_137__ark-deepseek-r1-250528.json",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_137__ark-deepseek-r1-250528.json",
+  "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+}

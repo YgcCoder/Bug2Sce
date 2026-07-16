@@ -1,0 +1,307 @@
+{
+  "case_id": "case_169",
+  "model_name": "ark-deepseek-r1-250528",
+  "workflow": "phase2_grounded_generation",
+  "status": "completed",
+  "schema_valid": true,
+  "schema_errors": [],
+  "phase1_ready": "yes",
+  "num_candidates_requested": 2,
+  "num_candidates_written": 2,
+  "num_pre_valid": 2,
+  "candidate_records": [
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-deepseek-r1-250528/json/case_169/case_169__cand_001.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-deepseek-r1-250528/metadata/case_169/case_169__cand_001.metadata.json",
+      "case_id": "case_169",
+      "model_name": "ark-deepseek-r1-250528",
+      "candidate_index": 1,
+      "candidate_spec": {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Shift ego spawn slightly along the original route toward the direction of travel to test if the red light lies on the planned route",
+        "mutation_intent": "Preserves all root cause pattern elements: zero dynamic actors, zero puddles, consistent red light violation labeling, all-zero critical window vehicle commands, and the original Town01 mission route. Only adjusts spawn position to test the unconfirmed route-light relation while keeping the core failure pattern intact",
+        "expected_oracle": "red_light",
+        "modifications": {
+          "weather_delta": {
+            "rain": 3,
+            "fog": -4,
+            "wetness": 3,
+            "puddle": 0
+          },
+          "actor_mutations": [],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": false,
+            "spawn_offset": {
+              "x": 1.8,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 1.2
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "No dynamic actors or puddles may be added",
+          "All-zero vehicle command values in the critical window must be preserved",
+          "Original Town01 route must be maintained"
+        ],
+        "post_execution_validation_rules": [
+          "Check that the red light violation label is consistent with original labeling",
+          "Record stop-line crossing status to verify the violation",
+          "Confirm mismatch between all-zero vehicle_cmd and non-zero ego velocity is preserved"
+        ],
+        "uncertainty": [
+          "Route-light relation is unconfirmed before execution",
+          "Stop-line crossing status is unconfirmed before execution",
+          "Command-velocity mismatch outcome is unconfirmed prior to execution"
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 3.0,
+          "fog": -4.0,
+          "wetness": 3.0,
+          "puddle": 0.0
+        },
+        "actor_mutations": [],
+        "puddle_mutations": [],
+        "mission_mutation": {
+          "spawn_offset": {
+            "x": 1.8,
+            "y": 0.0
+          },
+          "destination_offset": {
+            "x": 0.0,
+            "y": 1.2
+          }
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": [
+          "no actors in candidate scenario"
+        ]
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_169__ark-deepseek-r1-250528.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_169__ark-deepseek-r1-250528.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    },
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-deepseek-r1-250528/json/case_169/case_169__cand_002.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-deepseek-r1-250528/metadata/case_169/case_169__cand_002.metadata.json",
+      "case_id": "case_169",
+      "model_name": "ark-deepseek-r1-250528",
+      "candidate_index": 2,
+      "candidate_spec": {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Keep original spawn, destination and full route, apply minor conservative changes to weather conditions",
+        "mutation_intent": "Preserves all root cause constraints: zero actors, zero puddles, consistent red light labeling, all-zero critical window commands, original route and map. Tests if minor weather variation affects the command-velocity mismatch that leads to violation, without altering the core root cause pattern",
+        "expected_oracle": "red_light",
+        "modifications": {
+          "weather_delta": {
+            "rain": 8,
+            "fog": -8,
+            "wetness": 7,
+            "puddle": 0
+          },
+          "actor_mutations": [],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "No dynamic actors or puddles may be added",
+          "All-zero vehicle command values in the critical window must be preserved",
+          "Original mission spawn and destination must be kept unchanged"
+        ],
+        "post_execution_validation_rules": [
+          "Validate that red light violation labeling matches the original dataset/error.json",
+          "Check that the command-velocity mismatch is preserved",
+          "Record stop-line crossing status for uncertainty resolution"
+        ],
+        "uncertainty": [
+          "Impact of minor weather changes on the command-velocity mismatch is unconfirmed",
+          "Route-light relation remains unconfirmed prior to execution",
+          "Module-level fault cannot be predicted before execution"
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 8.0,
+          "fog": -8.0,
+          "wetness": 7.0,
+          "puddle": 0.0
+        },
+        "actor_mutations": [],
+        "puddle_mutations": [],
+        "mission_mutation": {
+          "keep_original": true
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": [
+          "no actors in candidate scenario"
+        ]
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_169__ark-deepseek-r1-250528.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_169__ark-deepseek-r1-250528.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    }
+  ],
+  "seed_artifact_zip": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-deepseek-r1-250528/seed-artifact/seed-artifact-case_169.zip",
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_prompts/case_169__ark-deepseek-r1-250528.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_169__ark-deepseek-r1-250528.json",
+  "prompt_estimated_tokens": 1056,
+  "usage": {
+    "prompt_tokens": 1248,
+    "completion_tokens": 2587,
+    "total_tokens": 3835
+  },
+  "raw_response": "{\n  \"case_id\": \"case_169\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Shift ego spawn slightly along the original route toward the direction of travel to test if the red light lies on the planned route\",\n      \"mutation_intent\": \"Preserves all root cause pattern elements: zero dynamic actors, zero puddles, consistent red light violation labeling, all-zero critical window vehicle commands, and the original Town01 mission route. Only adjusts spawn position to test the unconfirmed route-light relation while keeping the core failure pattern intact\",\n      \"expected_oracle\": \"red_light\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 3, \"fog\": -4, \"wetness\": 3, \"puddle\": 0},\n        \"actor_mutations\": [],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": false, \"spawn_offset\": {\"x\": 1.8, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 1.2}}\n      },\n      \"pre_execution_validation_rules\": [\"No dynamic actors or puddles may be added\", \"All-zero vehicle command values in the critical window must be preserved\", \"Original Town01 route must be maintained\"],\n      \"post_execution_validation_rules\": [\"Check that the red light violation label is consistent with original labeling\", \"Record stop-line crossing status to verify the violation\", \"Confirm mismatch between all-zero vehicle_cmd and non-zero ego velocity is preserved\"],\n      \"uncertainty\": [\"Route-light relation is unconfirmed before execution\", \"Stop-line crossing status is unconfirmed before execution\", \"Command-velocity mismatch outcome is unconfirmed prior to execution\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Keep original spawn, destination and full route, apply minor conservative changes to weather conditions\",\n      \"mutation_intent\": \"Preserves all root cause constraints: zero actors, zero puddles, consistent red light labeling, all-zero critical window commands, original route and map. Tests if minor weather variation affects the command-velocity mismatch that leads to violation, without altering the core root cause pattern\",\n      \"expected_oracle\": \"red_light\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 8, \"fog\": -8, \"wetness\": 7, \"puddle\": 0},\n        \"actor_mutations\": [],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"No dynamic actors or puddles may be added\", \"All-zero vehicle command values in the critical window must be preserved\", \"Original mission spawn and destination must be kept unchanged\"],\n      \"post_execution_validation_rules\": [\"Validate that red light violation labeling matches the original dataset/error.json\", \"Check that the command-velocity mismatch is preserved\", \"Record stop-line crossing status for uncertainty resolution\"],\n      \"uncertainty\": [\"Impact of minor weather changes on the command-velocity mismatch is unconfirmed\", \"Route-light relation remains unconfirmed prior to execution\", \"Module-level fault cannot be predicted before execution\"]\n    }\n  ]\n}",
+  "parsed_response": {
+    "case_id": "case_169",
+    "candidate_specs": [
+      {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Shift ego spawn slightly along the original route toward the direction of travel to test if the red light lies on the planned route",
+        "mutation_intent": "Preserves all root cause pattern elements: zero dynamic actors, zero puddles, consistent red light violation labeling, all-zero critical window vehicle commands, and the original Town01 mission route. Only adjusts spawn position to test the unconfirmed route-light relation while keeping the core failure pattern intact",
+        "expected_oracle": "red_light",
+        "modifications": {
+          "weather_delta": {
+            "rain": 3,
+            "fog": -4,
+            "wetness": 3,
+            "puddle": 0
+          },
+          "actor_mutations": [],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": false,
+            "spawn_offset": {
+              "x": 1.8,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 1.2
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "No dynamic actors or puddles may be added",
+          "All-zero vehicle command values in the critical window must be preserved",
+          "Original Town01 route must be maintained"
+        ],
+        "post_execution_validation_rules": [
+          "Check that the red light violation label is consistent with original labeling",
+          "Record stop-line crossing status to verify the violation",
+          "Confirm mismatch between all-zero vehicle_cmd and non-zero ego velocity is preserved"
+        ],
+        "uncertainty": [
+          "Route-light relation is unconfirmed before execution",
+          "Stop-line crossing status is unconfirmed before execution",
+          "Command-velocity mismatch outcome is unconfirmed prior to execution"
+        ]
+      },
+      {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Keep original spawn, destination and full route, apply minor conservative changes to weather conditions",
+        "mutation_intent": "Preserves all root cause constraints: zero actors, zero puddles, consistent red light labeling, all-zero critical window commands, original route and map. Tests if minor weather variation affects the command-velocity mismatch that leads to violation, without altering the core root cause pattern",
+        "expected_oracle": "red_light",
+        "modifications": {
+          "weather_delta": {
+            "rain": 8,
+            "fog": -8,
+            "wetness": 7,
+            "puddle": 0
+          },
+          "actor_mutations": [],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "No dynamic actors or puddles may be added",
+          "All-zero vehicle command values in the critical window must be preserved",
+          "Original mission spawn and destination must be kept unchanged"
+        ],
+        "post_execution_validation_rules": [
+          "Validate that red light violation labeling matches the original dataset/error.json",
+          "Check that the command-velocity mismatch is preserved",
+          "Record stop-line crossing status for uncertainty resolution"
+        ],
+        "uncertainty": [
+          "Impact of minor weather changes on the command-velocity mismatch is unconfirmed",
+          "Route-light relation remains unconfirmed prior to execution",
+          "Module-level fault cannot be predicted before execution"
+        ]
+      }
+    ]
+  },
+  "raw_api_payload": {
+    "id": "021782924350718b19f2272b96096885d7095f98214c210393094",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "{\n  \"case_id\": \"case_169\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Shift ego spawn slightly along the original route toward the direction of travel to test if the red light lies on the planned route\",\n      \"mutation_intent\": \"Preserves all root cause pattern elements: zero dynamic actors, zero puddles, consistent red light violation labeling, all-zero critical window vehicle commands, and the original Town01 mission route. Only adjusts spawn position to test the unconfirmed route-light relation while keeping the core failure pattern intact\",\n      \"expected_oracle\": \"red_light\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 3, \"fog\": -4, \"wetness\": 3, \"puddle\": 0},\n        \"actor_mutations\": [],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": false, \"spawn_offset\": {\"x\": 1.8, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 1.2}}\n      },\n      \"pre_execution_validation_rules\": [\"No dynamic actors or puddles may be added\", \"All-zero vehicle command values in the critical window must be preserved\", \"Original Town01 route must be maintained\"],\n      \"post_execution_validation_rules\": [\"Check that the red light violation label is consistent with original labeling\", \"Record stop-line crossing status to verify the violation\", \"Confirm mismatch between all-zero vehicle_cmd and non-zero ego velocity is preserved\"],\n      \"uncertainty\": [\"Route-light relation is unconfirmed before execution\", \"Stop-line crossing status is unconfirmed before execution\", \"Command-velocity mismatch outcome is unconfirmed prior to execution\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Keep original spawn, destination and full route, apply minor conservative changes to weather conditions\",\n      \"mutation_intent\": \"Preserves all root cause constraints: zero actors, zero puddles, consistent red light labeling, all-zero critical window commands, original route and map. Tests if minor weather variation affects the command-velocity mismatch that leads to violation, without altering the core root cause pattern\",\n      \"expected_oracle\": \"red_light\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 8, \"fog\": -8, \"wetness\": 7, \"puddle\": 0},\n        \"actor_mutations\": [],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"No dynamic actors or puddles may be added\", \"All-zero vehicle command values in the critical window must be preserved\", \"Original mission spawn and destination must be kept unchanged\"],\n      \"post_execution_validation_rules\": [\"Validate that red light violation labeling matches the original dataset/error.json\", \"Check that the command-velocity mismatch is preserved\", \"Record stop-line crossing status for uncertainty resolution\"],\n      \"uncertainty\": [\"Impact of minor weather changes on the command-velocity mismatch is unconfirmed\", \"Route-light relation remains unconfirmed prior to execution\", \"Module-level fault cannot be predicted before execution\"]\n    }\n  ]\n}",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null,
+          "reasoning_content": "\nOkay, let's build this JSON step by step. First, the case_id is case_169, right? We need two candidate specs. Let's start with the first one.\n\nFirst candidate, cand_001. High level variant: what? Oh, shift the ego spawn a little towards the traffic light on the planned route, keep everything else same. Wait, the preservation constraints say keep zero actors, zero puddles, preserve the route, all zero commands. Mutation intent: this variant tests if the red light is actually on ego's route, preserves all root cause pattern elements: zero actors, zero puddles, zero critical window commands, non-zero velocity expectation for red light violation. Expected oracle is red_light, right? Because the original is red light violation.\n\nModifications: weather delta. Let's make small changes, like rain +5, fog -5, wetness +5, puddle +5? Wait, within [-20,20], that's fine. Actor mutations: there are no actors, so empty array? Oh right, original actors are empty, preservation says keep zero actors, so actor_mutations is empty. Puddle mutations also empty, because original has none, keep zero. Mission mutation: keep_original? Wait no, first candidate: let's shift spawn a little, like x offset +2, y 0, destination offset 0, keep_original? Wait no, keep_original is false? Wait no, the preservation says preserve the mission route, so mission mutation can be spawn offset x 2.0, y 0.0, destination 0 0, keep_original? Wait let's see: the schema has keep_original, if keep_original is true it keeps everything, if not we apply offsets. Wait first candidate: let's do \"keep_original\": false, spawn_offset {\"x\": 1.5, \"y\": 0.0}, destination_offset {\"x\": 0.0, \"y\": 1.5}. Wait that's within [-5,5], right, 1.5 is fine. Weather delta: let's do rain 5, fog -5, wetness 5, puddle 0, that's conservative.\n\nPre execution rules: [\"Check that no dynamic actors are added, no puddles added\", \"Verify all-zero vehicle command in critical window is preserved\"], post execution: [\"Check for red light violation event\", \"Record stop-line crossing status\", \"Verify mismatch between zero command and non-zero velocity\"], uncertainty: [\"Route-light relation still unconfirmed until execution\", \"Stop-line crossing status unconfirmed before execution\"].\n\nThen second candidate, cand_002. High level variant: Slightly adjust weather parameters to increase wetness and fog, keep original spawn and destination route. Mutation intent: Preserves all root cause constraints (zero actors, zero puddles, zero critical commands, red light labeling) while testing if minor weather changes affect the command-velocity mismatch that causes the violation. Expected oracle is still red_light.\n\nModifications: weather delta: rain +10, fog +10, wetness +10, puddle 0. That's within 20, okay. Actor mutations is empty, puddle mutations empty. Mission mutation: keep_original: true, offsets all zero. Right, that fits.\n\nPre execution rules: [\"Confirm no actors or puddles added to scenario\", \"Ensure all-zero vehicle command is set for the critical window\"], post execution: [\"Validate the red light violation label matches original\", \"Check that command-velocity mismatch is preserved\", \"Record stop-line crossing status for verification\"]. Uncertainty: [\"Effect of weather on velocity with zero commands is unconfirmed\", \"Route-light relation remains unconfirmed prior to execution\"].\n\nWait let's check all rules: exactly two candidates, all offsets within limits, preserve all preservation constraints: zero actors, zero puddles, preserve route, preserve zero commands, preserve red light labeling. Uncertainty is preserved, right? The original has uncertainty, we keep it. Expected oracle is red_light, which is correct. Let's structure the JSON correctly.\n\nWait let's check the original input: actors are empty, puddles are empty, preservation says keep zero actors and zero puddles, so actor_mutations and puddle_mutations are empty arrays in both candidates, that's right.\n\nLet me put it all together now. Let's make sure the JSON is valid, no extra commas. Let's see:\n\n{\n  \"case_id\": \"case_169\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Shift ego spawn slightly toward the direction of travel along the original route to test if the red light lies on the planned route\",\n      \"mutation_intent\": \"Preserves all root cause pattern elements: zero dynamic actors, zero puddles, consistent red light violation labeling, all-zero critical window vehicle commands, and the original Town01 mission route. Only adjusts spawn position to test the unconfirmed route-light relation while keeping the root cause intact\",\n      \"expected_oracle\": \"red_light\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 3, \"fog\": -4, \"wetness\": 3, \"puddle\": 0},\n        \"actor_mutations\": [],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": false, \"spawn_offset\": {\"x\": 1.8, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 1.2}}\n      },\n      \"pre_execution_validation_rules\": [\"No dynamic actors or puddles may be added\", \"All-zero vehicle command values in the critical window must be preserved\", \"Original Town01 route must be maintained\"],\n      \"post_execution_validation_rules\": [\"Check that the red light violation label is consistent with original labeling\", \"Record stop-line crossing status to verify the violation\", \"Confirm mismatch between all-zero vehicle_cmd and non-zero ego velocity is preserved\"],\n      \"uncertainty\": [\"Route-light relation is unconfirmed before execution\", \"Stop-line crossing status is unconfirmed before execution\", \"Command-velocity mismatch outcome is still unconfirmed prior to run\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Keep original spawn, destination and route, apply minor conservative changes to weather conditions\",\n      \"mutation_intent\": \"Preserves all root cause constraints: zero actors, zero puddles, consistent red light labeling, all-zero critical commands, original route and map. Tests if minor weather variation affects the command-velocity mismatch that leads to violation, without changing the core root cause pattern\",\n      \"expected_oracle\": \"red_light\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 8, \"fog\": -8, \"wetness\": 7, \"puddle\": 0},\n        \"actor_mutations\": [],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"No dynamic actors or puddles may be added\", \"All-zero vehicle command values in the critical window must be preserved\", \"Original mission spawn and destination must be kept unchanged\"],\n      \"post_execution_validation_rules\": [\"Validate that red light violation labeling matches the original dataset/error.json\", \"Check that the command-velocity mismatch is preserved\", \"Record stop-line crossing status for uncertainty resolution\"],\n      \"uncertainty\": [\"Impact of minor weather changes on the command-velocity mismatch is unconfirmed\", \"Route-light relation remains unconfirmed prior to execution\", \"Module-level fault cannot be predicted before execution\"]\n    }\n  ]\n}\n\nWait that looks good. Let's check all the requirements: exactly two candidates, all offsets are within limits: spawn offsets 1.8, 1.2, that's within [-5,5], weather deltas are all within [-20,20], no actors added, which follows the preservation constraint, expected oracle is red_light which is correct, uncertainty is preserved, root cause is preserved. All the rules are followed. Yeah that should be it."
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "doubao-seed-2-0-lite-260215",
+    "object": "chat.completion",
+    "service_tier": "default",
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 2587,
+      "prompt_tokens": 1248,
+      "total_tokens": 3835,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 1810,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": null,
+        "cached_tokens": 0
+      }
+    }
+  },
+  "error_message": "",
+  "elapsed_sec": 41.057,
+  "timestamp": "<REDACTED_TIMESTAMP>"
+}

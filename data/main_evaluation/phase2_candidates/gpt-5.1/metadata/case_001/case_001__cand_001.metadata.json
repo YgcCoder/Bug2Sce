@@ -1,0 +1,111 @@
+{
+  "case_id": "case_001",
+  "model_name": "gpt-5.1",
+  "candidate_index": 1,
+  "candidate_spec": {
+    "candidate_id": "cand_001",
+    "high_level_variant": "Ego remains mostly stationary near spawn while another vehicle passes very closely in front, preserving a low-speed collision with nearby actor under normal weather.",
+    "mutation_intent": "Keep the other vehicle close to the ego at spawn with a modest speed so the ego can end up in a colliding pose without requiring complex maneuvers, while maintaining perception/prediction activity and an unblocked planner path. Minimal environmental and mission changes preserve the uncertainty about whether the issue is in planning, control, or simulator timing.",
+    "expected_oracle": "collision",
+    "modifications": {
+      "weather_delta": {
+        "rain": 0,
+        "fog": 0,
+        "wetness": 0,
+        "puddle": 0
+      },
+      "actor_mutations": [
+        {
+          "actor_index": 0,
+          "position_offset": {
+            "x": -2.5,
+            "y": -1.5
+          },
+          "speed_delta": -1.0
+        }
+      ],
+      "puddle_mutations": [
+        {
+          "puddle_index": 0,
+          "location_offset": {
+            "x": -1.0,
+            "y": -1.0
+          },
+          "level_delta": 0.0,
+          "size_scale": 1.0
+        }
+      ],
+      "mission_mutation": {
+        "keep_original": true,
+        "spawn_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "destination_offset": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Ensure the non-ego actor spawns within 5 m of the ego's spawn pose and on or very near the ego's nominal lane centerline.",
+      "Verify that the non-ego actor's planned trajectory passes within 1–2 m of the ego position within the first 25 s of simulation time.",
+      "Confirm that the ego is initialized normally (Autoware stack engaged, vehicle_status reporting valid motion-related signals) and not held artificially static by the scenario.",
+      "Check that weather and puddle parameters remain effectively the same as the seed to avoid introducing new environmental confounders."
+    ],
+    "post_execution_validation_rules": [
+      "Verify that a collision event involving the ego and the configured non-ego actor is reported by the simulator or Autoware collision topics.",
+      "Confirm that at least one object is reported in perception object and prediction topics in the 3 s window before collision.",
+      "Check that planning final_waypoints are published with a nonzero waypoint count and no blocked flag in the last message before collision.",
+      "Confirm that the closest object to the planned path is reported at or very near zero distance just prior to collision, indicating the path intersects or nearly intersects the other vehicle.",
+      "Verify that vehicle_cmd remains zero or effectively zero over the critical window before collision while vehicle_status indicates the ego is not simply in an uninitialized static state (e.g., some prior movement or braking behavior is present).",
+      "Do not attribute the fault to a specific module (perception, planning, control, or simulator) based solely on these logs; retain the same module-level uncertainty as the seed case."
+    ],
+    "uncertainty": [
+      "Whether the planner is intentionally ignoring the nearby actor or mis-evaluating its relevance remains unknown without internal planner diagnostics.",
+      "Perception association quality for the nearby vehicle, including classification and tracking stability, cannot be confirmed from high-level topic presence alone.",
+      "The observed zero vehicle_cmd versus nonzero vehicle_status behavior could still stem from control, interface, or simulator timing issues rather than high-level planning logic.",
+      "The exact motion pattern of the non-ego actor relative to the ego (e.g., passing vs. slight stop-and-go) may vary but should still lead to a close-proximity collision under this configuration."
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": 0.0,
+      "fog": 0.0,
+      "wetness": 0.0,
+      "puddle": 0.0
+    },
+    "actor_mutations": [
+      {
+        "actor_index": 0,
+        "position_offset": {
+          "x": -2.5,
+          "y": -1.5
+        },
+        "speed_delta": -1.0
+      }
+    ],
+    "puddle_mutations": [
+      {
+        "puddle_index": 0,
+        "location_offset": {
+          "x": -1.0,
+          "y": -1.0
+        },
+        "level_delta": 0.0,
+        "size_scale": 1.0
+      }
+    ],
+    "mission_mutation": {
+      "keep_original": true
+    }
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_001__gpt-5.1.json",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_001__gpt-5.1.json",
+  "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+}

@@ -1,0 +1,109 @@
+{
+  "case_id": "case_079",
+  "model_name": "ark-doubao-seed-2.0-lite-260215",
+  "candidate_index": 2,
+  "candidate_spec": {
+    "candidate_id": "cand_002",
+    "high_level_variant": "Small offset to ego mission spawn and destination, minor weather adjustment, preserves original actor count and map",
+    "mutation_intent": "Conservative small offset to mission spawn/destination within allowed range, preserves all required root cause properties including conflicting labels, red light event, all-zero vehicle_cmd, non-zero velocity, 2 actors and Town01",
+    "expected_oracle": "red_light",
+    "modifications": {
+      "weather_delta": {
+        "rain": -4,
+        "fog": 2,
+        "wetness": -3,
+        "puddle": -5
+      },
+      "actor_mutations": [
+        {
+          "actor_index": 0,
+          "position_offset": {
+            "x": -1.2,
+            "y": 0.8
+          },
+          "speed_delta": 0.0
+        },
+        {
+          "actor_index": 1,
+          "position_offset": {
+            "x": 0.6,
+            "y": -0.5
+          },
+          "speed_delta": -0.1
+        }
+      ],
+      "puddle_mutations": [],
+      "mission_mutation": {
+        "keep_original": false,
+        "spawn_offset": {
+          "x": 1.0,
+          "y": -0.5
+        },
+        "destination_offset": {
+          "x": -1.2,
+          "y": 0.8
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "red traffic light is present in the critical scenario window",
+      "2 actors are spawned in Town01 map",
+      "vehicle_cmd is all-zero during critical window"
+    ],
+    "post_execution_validation_rules": [
+      "non-zero velocity is present in vehicle_status during critical window",
+      "conflicting lane invasion labels between dataset and error.json are retained",
+      "vehicle_cmd-velocity mismatch is preserved as original"
+    ],
+    "uncertainty": [
+      "actuation fault cannot be confirmed from command-velocity mismatch per original rules",
+      "route-light relation and stop-line crossing are unconfirmed",
+      "module-level fault cannot be localized from available evidence"
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": -4.0,
+      "fog": 2.0,
+      "wetness": -3.0,
+      "puddle": -5.0
+    },
+    "actor_mutations": [
+      {
+        "actor_index": 0,
+        "position_offset": {
+          "x": -1.2,
+          "y": 0.8
+        },
+        "speed_delta": 0.0
+      },
+      {
+        "actor_index": 1,
+        "position_offset": {
+          "x": 0.6,
+          "y": -0.5
+        },
+        "speed_delta": -0.1
+      }
+    ],
+    "puddle_mutations": [],
+    "mission_mutation": {
+      "spawn_offset": {
+        "x": 1.0,
+        "y": -0.5
+      },
+      "destination_offset": {
+        "x": -1.2,
+        "y": 0.8
+      }
+    }
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_079__ark-doubao-seed-2.0-lite-260215.json",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_079__ark-doubao-seed-2.0-lite-260215.json",
+  "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+}

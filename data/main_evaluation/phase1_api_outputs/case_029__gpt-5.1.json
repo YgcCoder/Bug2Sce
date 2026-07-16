@@ -1,0 +1,132 @@
+{
+  "case_id": "case_029",
+  "workflow": "phase1_causal_explanation",
+  "model_name": "gpt-5.1",
+  "model_id": "gpt-5.1",
+  "status": "completed",
+  "dry_run": false,
+  "schema_valid": true,
+  "schema_errors": [],
+  "quality_flags": [],
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_prompts/case_029__gpt-5.1.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_029__gpt-5.1.json",
+  "prompt_estimated_tokens": 2724,
+  "usage": {
+    "prompt_tokens": 2803,
+    "completion_tokens": 1023,
+    "total_tokens": 3826
+  },
+  "estimated_cost_usd": null,
+  "raw_response": "{\n  \"case_id\": \"case_029\",\n  \"fault_layer\": \"unknown\",\n  \"fault_component\": \"unknown\",\n  \"causal_explanation\": \"The oracle error_json reports a red-light violation while dataset labels additionally report lane invasion, but the two disagree on lane invasion. Traffic light states and planning/actuation topics are present throughout the run, and error_json marks no collision or stuck. Route–light relation and stop-line crossing are explicitly unknown, so only a generic red-light violation symptom is supported without clear module-level attribution.\",\n  \"root_cause_pattern\": \"Conservative preservation pattern: ego is driving in a scenario with multiple active traffic lights, reaches the red-light oracle violation condition without crash or stuck, while route–light relation and lane-boundary behavior remain unconfirmed and module-level responsibility is unknown.\",\n  \"preservation_constraints\": [\n    \"The generated candidate should reproduce the same oracle symptom type: a red-light violation flagged in error_json, without collision or stuck.\",\n    \"Traffic lights should be present and publishing multiple state values (including a red state) during the critical window.\",\n    \"Planning outputs (final_waypoints) and vehicle_status should be available up to the violation time.\",\n    \"Route–light geometric relation and exact stop-line crossing may remain unconfirmed by summaries (unknown in evidence).\",\n    \"Lane invasion status may be absent or conflicting between dataset and oracle, preserving label uncertainty.\"\n  ],\n  \"modifiable_factors\": [\n    \"actor_position\",\n    \"weather\",\n    \"mission\",\n    \"puddles\",\n    \"traffic_light_timing\",\n    \"initial_speed\"\n  ],\n  \"non_modifiable_conditions\": [\n    \"Same oracle symptom pattern: red_light=true, collision=false, stuck=false in error_json.\",\n    \"Presence of a set of traffic lights with varying states during the scenario.\",\n    \"Autoware perception, planning, and actuation topics remain available near the violation time.\",\n    \"Label or group-level disagreement between dataset and error_json regarding lane_invasion or group classification is allowed to persist.\"\n  ],\n  \"uncertainty\": [\n    \"Dataset.xlsx reports lane_invasion=1 and group=L+R, while error_json reports lane_invasion=false and group=R only.\",\n    \"The exact relationship between the ego route and traffic lights (route-light relation) and stop-line crossing is explicitly marked unknown.\",\n    \"Internal behaviors of perception, prediction, planning, and control modules around the violation are not directly observable from the summaries.\",\n    \"The cause of the vehicle_cmd all-zero pattern relative to nonzero vehicle_status velocity is unclear and cannot be attributed to a specific layer.\"\n  ],\n  \"evidence_support\": [\n    {\n      \"evidence_id\": \"fault_label\",\n      \"claim\": \"Dataset labels indicate collision=0, stuck=0, lane_invasion=1, red_light=1 with group=L+R.\"\n    },\n    {\n      \"evidence_id\": \"oracle_consistency\",\n      \"claim\": \"error_json group is R with lane_invasion=false and red=true, creating a conflict with dataset on lane_invasion and group.\"\n    },\n    {\n      \"evidence_id\": \"critical_window_summary.red_light_window\",\n      \"claim\": \"Red-light violation from error_json is true; traffic_lights topic exists with multiple states, but route-light relation and stop-line crossing are marked unknown.\"\n    },\n    {\n      \"evidence_id\": \"trace_summary_compact.planning.final_waypoints\",\n      \"claim\": \"final_waypoints exist with consistent waypoint counts up to the end of the trace, indicating planning outputs were available during the scenario.\"\n    },\n    {\n      \"evidence_id\": \"trace_summary_compact.actuation\",\n      \"claim\": \"vehicle_cmd remains all zeros while vehicle_status shows velocity up to about 9.27, but this mismatch is not sufficient to localize a fault layer.\"\n    },\n    {\n      \"evidence_id\": \"trace_summary_compact.oracle.error_json_events\",\n      \"claim\": \"error_json_events show red=true, crash=false, stuck=false, and other=goal, supporting a non-crash, non-stuck red-light case.\"\n    }\n  ],\n  \"confidence\": \"low\",\n  \"ready_for_phase2_generation\": \"uncertain\",\n  \"notes_for_validator\": [\n    \"For same-root-cause candidates, verify post-execution that error_json reports a red-light violation without crash or stuck.\",\n    \"Check that traffic_lights messages are present with multiple states, including red, before the violation time.\",\n    \"Confirm that planning (final_waypoints) and vehicle_status data are available near the violation, without requiring proof of specific internal planning or control errors.\",\n    \"Do not require evidence of lane invasion or exact stop-line crossing; allow these to remain unknown or conflicting as in the original case.\",\n    \"Avoid attributing the cause to a specific module unless additional run-time evidence beyond these summaries becomes available.\"\n  ]\n}",
+  "parsed_response": {
+    "case_id": "case_029",
+    "fault_layer": "unknown",
+    "fault_component": "unknown",
+    "causal_explanation": "The oracle error_json reports a red-light violation while dataset labels additionally report lane invasion, but the two disagree on lane invasion. Traffic light states and planning/actuation topics are present throughout the run, and error_json marks no collision or stuck. Route–light relation and stop-line crossing are explicitly unknown, so only a generic red-light violation symptom is supported without clear module-level attribution.",
+    "root_cause_pattern": "Conservative preservation pattern: ego is driving in a scenario with multiple active traffic lights, reaches the red-light oracle violation condition without crash or stuck, while route–light relation and lane-boundary behavior remain unconfirmed and module-level responsibility is unknown.",
+    "preservation_constraints": [
+      "The generated candidate should reproduce the same oracle symptom type: a red-light violation flagged in error_json, without collision or stuck.",
+      "Traffic lights should be present and publishing multiple state values (including a red state) during the critical window.",
+      "Planning outputs (final_waypoints) and vehicle_status should be available up to the violation time.",
+      "Route–light geometric relation and exact stop-line crossing may remain unconfirmed by summaries (unknown in evidence).",
+      "Lane invasion status may be absent or conflicting between dataset and oracle, preserving label uncertainty."
+    ],
+    "modifiable_factors": [
+      "actor_position",
+      "weather",
+      "mission",
+      "puddles",
+      "traffic_light_timing",
+      "initial_speed"
+    ],
+    "non_modifiable_conditions": [
+      "Same oracle symptom pattern: red_light=true, collision=false, stuck=false in error_json.",
+      "Presence of a set of traffic lights with varying states during the scenario.",
+      "Autoware perception, planning, and actuation topics remain available near the violation time.",
+      "Label or group-level disagreement between dataset and error_json regarding lane_invasion or group classification is allowed to persist."
+    ],
+    "uncertainty": [
+      "Dataset.xlsx reports lane_invasion=1 and group=L+R, while error_json reports lane_invasion=false and group=R only.",
+      "The exact relationship between the ego route and traffic lights (route-light relation) and stop-line crossing is explicitly marked unknown.",
+      "Internal behaviors of perception, prediction, planning, and control modules around the violation are not directly observable from the summaries.",
+      "The cause of the vehicle_cmd all-zero pattern relative to nonzero vehicle_status velocity is unclear and cannot be attributed to a specific layer."
+    ],
+    "evidence_support": [
+      {
+        "evidence_id": "fault_label",
+        "claim": "Dataset labels indicate collision=0, stuck=0, lane_invasion=1, red_light=1 with group=L+R."
+      },
+      {
+        "evidence_id": "oracle_consistency",
+        "claim": "error_json group is R with lane_invasion=false and red=true, creating a conflict with dataset on lane_invasion and group."
+      },
+      {
+        "evidence_id": "critical_window_summary.red_light_window",
+        "claim": "Red-light violation from error_json is true; traffic_lights topic exists with multiple states, but route-light relation and stop-line crossing are marked unknown."
+      },
+      {
+        "evidence_id": "trace_summary_compact.planning.final_waypoints",
+        "claim": "final_waypoints exist with consistent waypoint counts up to the end of the trace, indicating planning outputs were available during the scenario."
+      },
+      {
+        "evidence_id": "trace_summary_compact.actuation",
+        "claim": "vehicle_cmd remains all zeros while vehicle_status shows velocity up to about 9.27, but this mismatch is not sufficient to localize a fault layer."
+      },
+      {
+        "evidence_id": "trace_summary_compact.oracle.error_json_events",
+        "claim": "error_json_events show red=true, crash=false, stuck=false, and other=goal, supporting a non-crash, non-stuck red-light case."
+      }
+    ],
+    "confidence": "low",
+    "ready_for_phase2_generation": "uncertain",
+    "notes_for_validator": [
+      "For same-root-cause candidates, verify post-execution that error_json reports a red-light violation without crash or stuck.",
+      "Check that traffic_lights messages are present with multiple states, including red, before the violation time.",
+      "Confirm that planning (final_waypoints) and vehicle_status data are available near the violation, without requiring proof of specific internal planning or control errors.",
+      "Do not require evidence of lane invasion or exact stop-line crossing; allow these to remain unknown or conflicting as in the original case.",
+      "Avoid attributing the cause to a specific module unless additional run-time evidence beyond these summaries becomes available."
+    ]
+  },
+  "raw_api_payload": {
+    "id": "<REDACTED_RESPONSE_ID>",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "{\n  \"case_id\": \"case_029\",\n  \"fault_layer\": \"unknown\",\n  \"fault_component\": \"unknown\",\n  \"causal_explanation\": \"The oracle error_json reports a red-light violation while dataset labels additionally report lane invasion, but the two disagree on lane invasion. Traffic light states and planning/actuation topics are present throughout the run, and error_json marks no collision or stuck. Route–light relation and stop-line crossing are explicitly unknown, so only a generic red-light violation symptom is supported without clear module-level attribution.\",\n  \"root_cause_pattern\": \"Conservative preservation pattern: ego is driving in a scenario with multiple active traffic lights, reaches the red-light oracle violation condition without crash or stuck, while route–light relation and lane-boundary behavior remain unconfirmed and module-level responsibility is unknown.\",\n  \"preservation_constraints\": [\n    \"The generated candidate should reproduce the same oracle symptom type: a red-light violation flagged in error_json, without collision or stuck.\",\n    \"Traffic lights should be present and publishing multiple state values (including a red state) during the critical window.\",\n    \"Planning outputs (final_waypoints) and vehicle_status should be available up to the violation time.\",\n    \"Route–light geometric relation and exact stop-line crossing may remain unconfirmed by summaries (unknown in evidence).\",\n    \"Lane invasion status may be absent or conflicting between dataset and oracle, preserving label uncertainty.\"\n  ],\n  \"modifiable_factors\": [\n    \"actor_position\",\n    \"weather\",\n    \"mission\",\n    \"puddles\",\n    \"traffic_light_timing\",\n    \"initial_speed\"\n  ],\n  \"non_modifiable_conditions\": [\n    \"Same oracle symptom pattern: red_light=true, collision=false, stuck=false in error_json.\",\n    \"Presence of a set of traffic lights with varying states during the scenario.\",\n    \"Autoware perception, planning, and actuation topics remain available near the violation time.\",\n    \"Label or group-level disagreement between dataset and error_json regarding lane_invasion or group classification is allowed to persist.\"\n  ],\n  \"uncertainty\": [\n    \"Dataset.xlsx reports lane_invasion=1 and group=L+R, while error_json reports lane_invasion=false and group=R only.\",\n    \"The exact relationship between the ego route and traffic lights (route-light relation) and stop-line crossing is explicitly marked unknown.\",\n    \"Internal behaviors of perception, prediction, planning, and control modules around the violation are not directly observable from the summaries.\",\n    \"The cause of the vehicle_cmd all-zero pattern relative to nonzero vehicle_status velocity is unclear and cannot be attributed to a specific layer.\"\n  ],\n  \"evidence_support\": [\n    {\n      \"evidence_id\": \"fault_label\",\n      \"claim\": \"Dataset labels indicate collision=0, stuck=0, lane_invasion=1, red_light=1 with group=L+R.\"\n    },\n    {\n      \"evidence_id\": \"oracle_consistency\",\n      \"claim\": \"error_json group is R with lane_invasion=false and red=true, creating a conflict with dataset on lane_invasion and group.\"\n    },\n    {\n      \"evidence_id\": \"critical_window_summary.red_light_window\",\n      \"claim\": \"Red-light violation from error_json is true; traffic_lights topic exists with multiple states, but route-light relation and stop-line crossing are marked unknown.\"\n    },\n    {\n      \"evidence_id\": \"trace_summary_compact.planning.final_waypoints\",\n      \"claim\": \"final_waypoints exist with consistent waypoint counts up to the end of the trace, indicating planning outputs were available during the scenario.\"\n    },\n    {\n      \"evidence_id\": \"trace_summary_compact.actuation\",\n      \"claim\": \"vehicle_cmd remains all zeros while vehicle_status shows velocity up to about 9.27, but this mismatch is not sufficient to localize a fault layer.\"\n    },\n    {\n      \"evidence_id\": \"trace_summary_compact.oracle.error_json_events\",\n      \"claim\": \"error_json_events show red=true, crash=false, stuck=false, and other=goal, supporting a non-crash, non-stuck red-light case.\"\n    }\n  ],\n  \"confidence\": \"low\",\n  \"ready_for_phase2_generation\": \"uncertain\",\n  \"notes_for_validator\": [\n    \"For same-root-cause candidates, verify post-execution that error_json reports a red-light violation without crash or stuck.\",\n    \"Check that traffic_lights messages are present with multiple states, including red, before the violation time.\",\n    \"Confirm that planning (final_waypoints) and vehicle_status data are available near the violation, without requiring proof of specific internal planning or control errors.\",\n    \"Do not require evidence of lane invasion or exact stop-line crossing; allow these to remain unknown or conflicting as in the original case.\",\n    \"Avoid attributing the cause to a specific module unless additional run-time evidence beyond these summaries becomes available.\"\n  ]\n}",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": [],
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "gpt-5.1-2025-11-13",
+    "object": "chat.completion",
+    "service_tier": "default",
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 1023,
+      "prompt_tokens": 2803,
+      "total_tokens": 3826,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": 0,
+        "audio_tokens": 0,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 0
+      }
+    }
+  },
+  "error_message": "",
+  "timestamp": "<REDACTED_TIMESTAMP>",
+  "elapsed_sec": 16.109
+}

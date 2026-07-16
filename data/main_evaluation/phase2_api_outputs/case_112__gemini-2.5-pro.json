@@ -1,0 +1,312 @@
+{
+  "case_id": "case_112",
+  "model_name": "gemini-2.5-pro",
+  "workflow": "phase2_grounded_generation",
+  "status": "completed",
+  "schema_valid": true,
+  "schema_errors": [],
+  "phase1_ready": "uncertain",
+  "num_candidates_requested": 2,
+  "num_candidates_written": 2,
+  "num_pre_valid": 2,
+  "candidate_records": [
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/gemini-2.5-pro/json/case_112/case_112__cand_001.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/gemini-2.5-pro/metadata/case_112/case_112__cand_001.metadata.json",
+      "case_id": "case_112",
+      "model_name": "gemini-2.5-pro",
+      "candidate_index": 1,
+      "candidate_spec": {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Slightly increase rain and wetness to test if perception degradation affects the planning failure.",
+        "mutation_intent": "Determine if worsening weather exacerbates the failure where the planner sends null commands but the vehicle continues to move and collides.",
+        "expected_oracle": "collision",
+        "modifications": {
+          "weather_delta": {
+            "rain": 15,
+            "fog": 0,
+            "wetness": 15,
+            "puddle": 0
+          },
+          "actor_mutations": [],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Ego vehicle is in motion at start."
+        ],
+        "post_execution_validation_rules": [
+          "A collision must occur.",
+          "Vehicle motion commands must be zero before collision."
+        ],
+        "uncertainty": [
+          "The discrepancy between zero commands and vehicle motion may be outside the planner."
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 15.0,
+          "fog": 0.0,
+          "wetness": 15.0,
+          "puddle": 0.0
+        },
+        "actor_mutations": [],
+        "puddle_mutations": [],
+        "mission_mutation": {
+          "keep_original": true
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_112__gemini-2.5-pro.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_112__gemini-2.5-pro.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    },
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/gemini-2.5-pro/json/case_112/case_112__cand_002.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/gemini-2.5-pro/metadata/case_112/case_112__cand_002.metadata.json",
+      "case_id": "case_112",
+      "model_name": "gemini-2.5-pro",
+      "candidate_index": 2,
+      "candidate_spec": {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Move the other vehicle closer to the ego's path to create a more immediate braking scenario.",
+        "mutation_intent": "Test if a more urgent braking requirement still triggers the same planning failure, leading to a collision despite null commands.",
+        "expected_oracle": "collision",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": 2.0,
+                "y": -2.0
+              },
+              "speed_delta": -1.0
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Vehicle actor is closer to the ego's initial path."
+        ],
+        "post_execution_validation_rules": [
+          "A collision must occur.",
+          "Ego must be in motion before the collision.",
+          "Vehicle commands must be zero before collision."
+        ],
+        "uncertainty": [
+          "Confirming the bug is not specific to the original actor's exact trajectory."
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 0.0,
+          "fog": 0.0,
+          "wetness": 0.0,
+          "puddle": 0.0
+        },
+        "actor_mutations": [
+          {
+            "actor_index": 1,
+            "position_offset": {
+              "x": 2.0,
+              "y": -2.0
+            },
+            "speed_delta": -1.0
+          }
+        ],
+        "puddle_mutations": [],
+        "mission_mutation": {
+          "keep_original": true
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_112__gemini-2.5-pro.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_112__gemini-2.5-pro.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    }
+  ],
+  "seed_artifact_zip": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/gemini-2.5-pro/seed-artifact/seed-artifact-case_112.zip",
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_prompts/case_112__gemini-2.5-pro.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_112__gemini-2.5-pro.json",
+  "prompt_estimated_tokens": 969,
+  "usage": {
+    "prompt_tokens": 1248,
+    "completion_tokens": 2494,
+    "total_tokens": 3742
+  },
+  "raw_response": "```json\n{\n  \"case_id\": \"case_112\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Slightly increase rain and wetness to test if perception degradation affects the planning failure.\",\n      \"mutation_intent\": \"Determine if worsening weather exacerbates the failure where the planner sends null commands but the vehicle continues to move and collides.\",\n      \"expected_oracle\": \"collision\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 15, \"fog\": 0, \"wetness\": 15, \"puddle\": 0},\n        \"actor_mutations\": [],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Ego vehicle is in motion at start.\"],\n      \"post_execution_validation_rules\": [\"A collision must occur.\", \"Vehicle motion commands must be zero before collision.\"],\n      \"uncertainty\": [\"The discrepancy between zero commands and vehicle motion may be outside the planner.\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Move the other vehicle closer to the ego's path to create a more immediate braking scenario.\",\n      \"mutation_intent\": \"Test if a more urgent braking requirement still triggers the same planning failure, leading to a collision despite null commands.\",\n      \"expected_oracle\": \"collision\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 1, \"position_offset\": {\"x\": 2.0, \"y\": -2.0}, \"speed_delta\": -1.0}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Vehicle actor is closer to the ego's initial path.\"],\n      \"post_execution_validation_rules\": [\"A collision must occur.\", \"Ego must be in motion before the collision.\", \"Vehicle commands must be zero before collision.\"],\n      \"uncertainty\": [\"Confirming the bug is not specific to the original actor's exact trajectory.\"]\n    }\n  ]\n}\n```",
+  "parsed_response": {
+    "case_id": "case_112",
+    "candidate_specs": [
+      {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Slightly increase rain and wetness to test if perception degradation affects the planning failure.",
+        "mutation_intent": "Determine if worsening weather exacerbates the failure where the planner sends null commands but the vehicle continues to move and collides.",
+        "expected_oracle": "collision",
+        "modifications": {
+          "weather_delta": {
+            "rain": 15,
+            "fog": 0,
+            "wetness": 15,
+            "puddle": 0
+          },
+          "actor_mutations": [],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Ego vehicle is in motion at start."
+        ],
+        "post_execution_validation_rules": [
+          "A collision must occur.",
+          "Vehicle motion commands must be zero before collision."
+        ],
+        "uncertainty": [
+          "The discrepancy between zero commands and vehicle motion may be outside the planner."
+        ]
+      },
+      {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Move the other vehicle closer to the ego's path to create a more immediate braking scenario.",
+        "mutation_intent": "Test if a more urgent braking requirement still triggers the same planning failure, leading to a collision despite null commands.",
+        "expected_oracle": "collision",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": 2.0,
+                "y": -2.0
+              },
+              "speed_delta": -1.0
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Vehicle actor is closer to the ego's initial path."
+        ],
+        "post_execution_validation_rules": [
+          "A collision must occur.",
+          "Ego must be in motion before the collision.",
+          "Vehicle commands must be zero before collision."
+        ],
+        "uncertainty": [
+          "Confirming the bug is not specific to the original actor's exact trajectory."
+        ]
+      }
+    ]
+  },
+  "raw_api_payload": {
+    "id": "<REDACTED_RESPONSE_ID>",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "```json\n{\n  \"case_id\": \"case_112\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Slightly increase rain and wetness to test if perception degradation affects the planning failure.\",\n      \"mutation_intent\": \"Determine if worsening weather exacerbates the failure where the planner sends null commands but the vehicle continues to move and collides.\",\n      \"expected_oracle\": \"collision\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 15, \"fog\": 0, \"wetness\": 15, \"puddle\": 0},\n        \"actor_mutations\": [],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Ego vehicle is in motion at start.\"],\n      \"post_execution_validation_rules\": [\"A collision must occur.\", \"Vehicle motion commands must be zero before collision.\"],\n      \"uncertainty\": [\"The discrepancy between zero commands and vehicle motion may be outside the planner.\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Move the other vehicle closer to the ego's path to create a more immediate braking scenario.\",\n      \"mutation_intent\": \"Test if a more urgent braking requirement still triggers the same planning failure, leading to a collision despite null commands.\",\n      \"expected_oracle\": \"collision\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 1, \"position_offset\": {\"x\": 2.0, \"y\": -2.0}, \"speed_delta\": -1.0}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Vehicle actor is closer to the ego's initial path.\"],\n      \"post_execution_validation_rules\": [\"A collision must occur.\", \"Ego must be in motion before the collision.\", \"Vehicle commands must be zero before collision.\"],\n      \"uncertainty\": [\"Confirming the bug is not specific to the original actor's exact trajectory.\"]\n    }\n  ]\n}\n```",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "gemini-2.5-pro",
+    "object": "chat.completion",
+    "service_tier": null,
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 2494,
+      "prompt_tokens": 1248,
+      "total_tokens": 3742,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": 0,
+        "reasoning_tokens": 1847,
+        "rejected_prediction_tokens": null,
+        "text_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 0,
+        "text_tokens": 1248,
+        "image_tokens": 0
+      },
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "input_tokens_details": null,
+      "claude_cache_creation_5_m_tokens": 0,
+      "claude_cache_creation_1_h_tokens": 0
+    }
+  },
+  "error_message": "",
+  "elapsed_sec": 25.311,
+  "timestamp": "<REDACTED_TIMESTAMP>"
+}

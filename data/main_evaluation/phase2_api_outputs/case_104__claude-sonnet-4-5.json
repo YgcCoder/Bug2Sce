@@ -1,0 +1,324 @@
+{
+  "case_id": "case_104",
+  "model_name": "claude-sonnet-4-5",
+  "workflow": "phase2_grounded_generation",
+  "status": "completed",
+  "schema_valid": true,
+  "schema_errors": [],
+  "phase1_ready": "uncertain",
+  "num_candidates_requested": 2,
+  "num_candidates_written": 2,
+  "num_pre_valid": 2,
+  "candidate_records": [
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/claude-sonnet-4-5/json/case_104/case_104__cand_001.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/claude-sonnet-4-5/metadata/case_104/case_104__cand_001.metadata.json",
+      "case_id": "case_104",
+      "model_name": "claude-sonnet-4-5",
+      "candidate_index": 1,
+      "candidate_spec": {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Ego near spawn with increased fog and wetness",
+        "mutation_intent": "Amplify perception difficulty while preserving near-stationary ego and traffic light state availability",
+        "expected_oracle": "unknown",
+        "modifications": {
+          "weather_delta": {
+            "rain": 5,
+            "fog": 10,
+            "wetness": 15,
+            "puddle": 0
+          },
+          "actor_mutations": [],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": 0.1,
+              "size_scale": 1.0
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Traffic light state available near spawn",
+          "No blocking actors within 15m of spawn"
+        ],
+        "post_execution_validation_rules": [
+          "Ego velocity remains below 0.5 m/s",
+          "Position drift under 5m from spawn",
+          "Traffic light state transitions recorded"
+        ],
+        "uncertainty": [
+          "Oracle conflict between dataset red_light=1 and error.json red=false unresolved",
+          "Root cause layer unknown",
+          "Manual review required for oracle validation"
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 5.0,
+          "fog": 10.0,
+          "wetness": 15.0,
+          "puddle": 0.0
+        },
+        "actor_mutations": [],
+        "puddle_mutations": [
+          {
+            "puddle_index": 0,
+            "location_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "level_delta": 0.1,
+            "size_scale": 1.0
+          }
+        ],
+        "mission_mutation": {
+          "keep_original": true
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": [
+          "no actors in candidate scenario"
+        ]
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_104__claude-sonnet-4-5.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_104__claude-sonnet-4-5.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    },
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/claude-sonnet-4-5/json/case_104/case_104__cand_002.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/claude-sonnet-4-5/metadata/case_104/case_104__cand_002.metadata.json",
+      "case_id": "case_104",
+      "model_name": "claude-sonnet-4-5",
+      "candidate_index": 2,
+      "candidate_spec": {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Ego spawn offset with reduced visibility",
+        "mutation_intent": "Shift spawn slightly to test traffic light detection robustness while preserving stationary behavior",
+        "expected_oracle": "unknown",
+        "modifications": {
+          "weather_delta": {
+            "rain": 10,
+            "fog": 15,
+            "wetness": 10,
+            "puddle": 5
+          },
+          "actor_mutations": [],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": false,
+            "spawn_offset": {
+              "x": -2.0,
+              "y": 1.5
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Spawn offset does not place ego in collision",
+          "Traffic light visible from new spawn"
+        ],
+        "post_execution_validation_rules": [
+          "Ego velocity max under 0.5 m/s",
+          "Odometry shows minimal movement",
+          "Traffic light state data available"
+        ],
+        "uncertainty": [
+          "Dataset vs error.json oracle mismatch preserved",
+          "Fault layer attribution unclear",
+          "Stationary behavior root cause unconfirmed"
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 10.0,
+          "fog": 15.0,
+          "wetness": 10.0,
+          "puddle": 5.0
+        },
+        "actor_mutations": [],
+        "puddle_mutations": [],
+        "mission_mutation": {
+          "spawn_offset": {
+            "x": -2.0,
+            "y": 1.5
+          },
+          "destination_offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": [
+          "no actors in candidate scenario"
+        ]
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_104__claude-sonnet-4-5.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_104__claude-sonnet-4-5.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    }
+  ],
+  "seed_artifact_zip": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/claude-sonnet-4-5/seed-artifact/seed-artifact-case_104.zip",
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_prompts/case_104__claude-sonnet-4-5.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_104__claude-sonnet-4-5.json",
+  "prompt_estimated_tokens": 1249,
+  "usage": {
+    "prompt_tokens": 1437,
+    "completion_tokens": 691,
+    "total_tokens": 2128
+  },
+  "raw_response": "```json\n{\n  \"case_id\": \"case_104\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Ego near spawn with increased fog and wetness\",\n      \"mutation_intent\": \"Amplify perception difficulty while preserving near-stationary ego and traffic light state availability\",\n      \"expected_oracle\": \"unknown\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 5, \"fog\": 10, \"wetness\": 15, \"puddle\": 0},\n        \"actor_mutations\": [],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": 0.1, \"size_scale\": 1.0}\n        ],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Traffic light state available near spawn\", \"No blocking actors within 15m of spawn\"],\n      \"post_execution_validation_rules\": [\"Ego velocity remains below 0.5 m/s\", \"Position drift under 5m from spawn\", \"Traffic light state transitions recorded\"],\n      \"uncertainty\": [\"Oracle conflict between dataset red_light=1 and error.json red=false unresolved\", \"Root cause layer unknown\", \"Manual review required for oracle validation\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Ego spawn offset with reduced visibility\",\n      \"mutation_intent\": \"Shift spawn slightly to test traffic light detection robustness while preserving stationary behavior\",\n      \"expected_oracle\": \"unknown\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 10, \"fog\": 15, \"wetness\": 10, \"puddle\": 5},\n        \"actor_mutations\": [],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": false, \"spawn_offset\": {\"x\": -2.0, \"y\": 1.5}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Spawn offset does not place ego in collision\", \"Traffic light visible from new spawn\"],\n      \"post_execution_validation_rules\": [\"Ego velocity max under 0.5 m/s\", \"Odometry shows minimal movement\", \"Traffic light state data available\"],\n      \"uncertainty\": [\"Dataset vs error.json oracle mismatch preserved\", \"Fault layer attribution unclear\", \"Stationary behavior root cause unconfirmed\"]\n    }\n  ]\n}\n```",
+  "parsed_response": {
+    "case_id": "case_104",
+    "candidate_specs": [
+      {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Ego near spawn with increased fog and wetness",
+        "mutation_intent": "Amplify perception difficulty while preserving near-stationary ego and traffic light state availability",
+        "expected_oracle": "unknown",
+        "modifications": {
+          "weather_delta": {
+            "rain": 5,
+            "fog": 10,
+            "wetness": 15,
+            "puddle": 0
+          },
+          "actor_mutations": [],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": 0.1,
+              "size_scale": 1.0
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Traffic light state available near spawn",
+          "No blocking actors within 15m of spawn"
+        ],
+        "post_execution_validation_rules": [
+          "Ego velocity remains below 0.5 m/s",
+          "Position drift under 5m from spawn",
+          "Traffic light state transitions recorded"
+        ],
+        "uncertainty": [
+          "Oracle conflict between dataset red_light=1 and error.json red=false unresolved",
+          "Root cause layer unknown",
+          "Manual review required for oracle validation"
+        ]
+      },
+      {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Ego spawn offset with reduced visibility",
+        "mutation_intent": "Shift spawn slightly to test traffic light detection robustness while preserving stationary behavior",
+        "expected_oracle": "unknown",
+        "modifications": {
+          "weather_delta": {
+            "rain": 10,
+            "fog": 15,
+            "wetness": 10,
+            "puddle": 5
+          },
+          "actor_mutations": [],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": false,
+            "spawn_offset": {
+              "x": -2.0,
+              "y": 1.5
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Spawn offset does not place ego in collision",
+          "Traffic light visible from new spawn"
+        ],
+        "post_execution_validation_rules": [
+          "Ego velocity max under 0.5 m/s",
+          "Odometry shows minimal movement",
+          "Traffic light state data available"
+        ],
+        "uncertainty": [
+          "Dataset vs error.json oracle mismatch preserved",
+          "Fault layer attribution unclear",
+          "Stationary behavior root cause unconfirmed"
+        ]
+      }
+    ]
+  },
+  "raw_api_payload": {
+    "id": "<REDACTED_RESPONSE_ID>",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "```json\n{\n  \"case_id\": \"case_104\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Ego near spawn with increased fog and wetness\",\n      \"mutation_intent\": \"Amplify perception difficulty while preserving near-stationary ego and traffic light state availability\",\n      \"expected_oracle\": \"unknown\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 5, \"fog\": 10, \"wetness\": 15, \"puddle\": 0},\n        \"actor_mutations\": [],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": 0.1, \"size_scale\": 1.0}\n        ],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Traffic light state available near spawn\", \"No blocking actors within 15m of spawn\"],\n      \"post_execution_validation_rules\": [\"Ego velocity remains below 0.5 m/s\", \"Position drift under 5m from spawn\", \"Traffic light state transitions recorded\"],\n      \"uncertainty\": [\"Oracle conflict between dataset red_light=1 and error.json red=false unresolved\", \"Root cause layer unknown\", \"Manual review required for oracle validation\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Ego spawn offset with reduced visibility\",\n      \"mutation_intent\": \"Shift spawn slightly to test traffic light detection robustness while preserving stationary behavior\",\n      \"expected_oracle\": \"unknown\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 10, \"fog\": 15, \"wetness\": 10, \"puddle\": 5},\n        \"actor_mutations\": [],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": false, \"spawn_offset\": {\"x\": -2.0, \"y\": 1.5}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Spawn offset does not place ego in collision\", \"Traffic light visible from new spawn\"],\n      \"post_execution_validation_rules\": [\"Ego velocity max under 0.5 m/s\", \"Odometry shows minimal movement\", \"Traffic light state data available\"],\n      \"uncertainty\": [\"Dataset vs error.json oracle mismatch preserved\", \"Fault layer attribution unclear\", \"Stationary behavior root cause unconfirmed\"]\n    }\n  ]\n}\n```",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "claude-sonnet-4-5",
+    "object": "chat.completion",
+    "service_tier": null,
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 691,
+      "prompt_tokens": 1437,
+      "total_tokens": 2128,
+      "completion_tokens_details": null,
+      "prompt_tokens_details": null
+    }
+  },
+  "error_message": "",
+  "elapsed_sec": 12.816,
+  "timestamp": "<REDACTED_TIMESTAMP>"
+}

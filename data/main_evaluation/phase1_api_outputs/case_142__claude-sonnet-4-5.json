@@ -1,0 +1,145 @@
+{
+  "case_id": "case_142",
+  "workflow": "phase1_causal_explanation",
+  "model_name": "claude-sonnet-4-5",
+  "model_id": "claude-sonnet-4-5",
+  "status": "completed",
+  "dry_run": false,
+  "schema_valid": true,
+  "schema_errors": [],
+  "quality_flags": [],
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_prompts/case_142__claude-sonnet-4-5.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_142__claude-sonnet-4-5.json",
+  "prompt_estimated_tokens": 3281,
+  "usage": {
+    "prompt_tokens": 4146,
+    "completion_tokens": 1391,
+    "total_tokens": 5537
+  },
+  "estimated_cost_usd": null,
+  "raw_response": "```json\n{\n  \"case_id\": \"case_142\",\n  \"fault_layer\": \"unknown\",\n  \"fault_component\": \"unknown\",\n  \"causal_explanation\": \"The oracle confirms a collision at 32.76s and error.json confirms a red-light violation. Critical-window evidence shows ego moving at 3.19 m/s before collision with throttle applied (0.498) and zero brake. Vehicle_cmd is all zero while vehicle_status shows active throttle and steering, indicating a control mismatch. Detected objects (1-3) and predicted objects (1-23) are present. Final waypoints exist with stop_line_ids=[4294967295] (invalid). Traffic lights show state transitions (0→2), but route-light relation and stop-line crossing are unconfirmed. Dataset labels collision+lane_invasion+red_light, but error.json labels only collision+red_light, creating a lane_invasion conflict. The evidence does not directly prove which module failed to stop at the red light or avoid the collision.\",\n  \"root_cause_pattern\": \"Conservative preservation pattern: ego approaches an intersection with traffic lights transitioning to red, encounters nearby actors, and collides without braking, while vehicle_cmd remains zero despite vehicle_status showing active control.\",\n  \"preservation_constraints\": [\n    \"The generated candidate should preserve collision and red-light violation oracles.\",\n    \"Traffic lights near the ego route should transition to red state before the collision.\",\n    \"Nearby actors should be present in the critical window.\",\n    \"Vehicle_cmd should remain zero or near-zero while vehicle_status shows active throttle/steering before collision.\",\n    \"Post-execution validation should check that ego does not brake before collision and that traffic light states are observable.\"\n  ],\n  \"modifiable_factors\": [\n    \"actor_position\",\n    \"actor_count\",\n    \"weather\",\n    \"puddles\",\n    \"traffic_light_timing\"\n  ],\n  \"non_modifiable_conditions\": [\n    \"collision oracle symptom\",\n    \"red-light violation oracle symptom\",\n    \"traffic light state transition observable\",\n    \"vehicle_cmd zero or near-zero with vehicle_status active control mismatch\",\n    \"no braking before collision\"\n  ],\n  \"uncertainty\": [\n    \"Dataset labels lane_invasion=1, but error.json labels lane_invasion=0; lane boundary crossing is not confirmed by evidence.\",\n    \"Route-light relation and stop-line crossing are not confirmed by current summaries.\",\n    \"Vehicle_cmd is all zero while vehicle_status shows throttle and steering; controller behavior is uncertain.\",\n    \"The evidence does not directly localize the failure to perception, planning, or actuation.\",\n    \"Stop_line_ids=[4294967295] indicates invalid or missing stop-line data.\"\n  ],\n  \"evidence_support\": [\n    {\n      \"evidence_id\": \"collision_window.collision_timestamp\",\n      \"claim\": \"Collision confirmed at 32.759873278s.\"\n    },\n    {\n      \"evidence_id\": \"error_json_events.crash\",\n      \"claim\": \"error.json confirms crash=true.\"\n    },\n    {\n      \"evidence_id\": \"error_json_events.red\",\n      \"claim\": \"error.json confirms red-light violation=true.\"\n    },\n    {\n      \"evidence_id\": \"collision_window.ego_speed_before_collision\",\n      \"claim\": \"Ego velocity 3.19 m/s before collision; speed decreases within window but no full stop.\"\n    },\n    {\n      \"evidence_id\": \"collision_window.ego_control_before_collision\",\n      \"claim\": \"vehicle_status shows throttle=0.498, brake=0.0, steer=-0.28 before collision; vehicle_cmd all zero.\"\n    },\n    {\n      \"evidence_id\": \"collision_window.evidence_of_braking_or_stopping\",\n      \"claim\": \"No brake applied (vehicle_status_brake_nonzero=false, vehicle_cmd_brake_nonzero=false).\"\n    },\n    {\n      \"evidence_id\": \"red_light_window.traffic_light_state_samples\",\n      \"claim\": \"Traffic lights transition from state 0 to state 2 (red) between 30.0s and 32.1s.\"\n    },\n    {\n      \"evidence_id\": \"collision_window.detected_object_count_before_collision\",\n      \"claim\": \"1-3 detected objects present before collision.\"\n    },\n    {\n      \"evidence_id\": \"collision_window.predicted_object_count_before_collision\",\n      \"claim\": \"1-23 predicted objects present before collision.\"\n    },\n    {\n      \"evidence_id\": \"collision_window.final_waypoints_before_collision\",\n      \"claim\": \"Final waypoints available with stop_line_ids=[4294967295] (invalid).\"\n    },\n    {\n      \"evidence_id\": \"oracle_consistency.conflict_details\",\n      \"claim\": \"Dataset labels lane_invasion=1, error.json labels lane_invasion=0; conflict requires manual review.\"\n    }\n  ],\n  \"confidence\": \"low\",\n  \"ready_for_phase2_generation\": \"uncertain\",\n  \"notes_for_validator\": [\n    \"Do not count a generated case as same-root-cause unless post-execution evidence preserves collision, red-light violation, traffic light state transition, vehicle_cmd zero with vehicle_status active control, and no braking before collision.\",\n    \"Manual review is required to resolve the lane_invasion label conflict before confirming oracle consistency.\",\n    \"Check that traffic lights are observable and transition to red state near the ego route.\",\n    \"Verify that vehicle_cmd remains zero or near-zero while vehicle_status shows active control in the critical window.\",\n    \"Do not assume stop-line crossing or route-light relation without explicit evidence.\"\n  ]\n}\n```",
+  "parsed_response": {
+    "case_id": "case_142",
+    "fault_layer": "unknown",
+    "fault_component": "unknown",
+    "causal_explanation": "The oracle confirms a collision at 32.76s and error.json confirms a red-light violation. Critical-window evidence shows ego moving at 3.19 m/s before collision with throttle applied (0.498) and zero brake. Vehicle_cmd is all zero while vehicle_status shows active throttle and steering, indicating a control mismatch. Detected objects (1-3) and predicted objects (1-23) are present. Final waypoints exist with stop_line_ids=[4294967295] (invalid). Traffic lights show state transitions (0→2), but route-light relation and stop-line crossing are unconfirmed. Dataset labels collision+lane_invasion+red_light, but error.json labels only collision+red_light, creating a lane_invasion conflict. The evidence does not directly prove which module failed to stop at the red light or avoid the collision.",
+    "root_cause_pattern": "Conservative preservation pattern: ego approaches an intersection with traffic lights transitioning to red, encounters nearby actors, and collides without braking, while vehicle_cmd remains zero despite vehicle_status showing active control.",
+    "preservation_constraints": [
+      "The generated candidate should preserve collision and red-light violation oracles.",
+      "Traffic lights near the ego route should transition to red state before the collision.",
+      "Nearby actors should be present in the critical window.",
+      "Vehicle_cmd should remain zero or near-zero while vehicle_status shows active throttle/steering before collision.",
+      "Post-execution validation should check that ego does not brake before collision and that traffic light states are observable."
+    ],
+    "modifiable_factors": [
+      "actor_position",
+      "actor_count",
+      "weather",
+      "puddles",
+      "traffic_light_timing"
+    ],
+    "non_modifiable_conditions": [
+      "collision oracle symptom",
+      "red-light violation oracle symptom",
+      "traffic light state transition observable",
+      "vehicle_cmd zero or near-zero with vehicle_status active control mismatch",
+      "no braking before collision"
+    ],
+    "uncertainty": [
+      "Dataset labels lane_invasion=1, but error.json labels lane_invasion=0; lane boundary crossing is not confirmed by evidence.",
+      "Route-light relation and stop-line crossing are not confirmed by current summaries.",
+      "Vehicle_cmd is all zero while vehicle_status shows throttle and steering; controller behavior is uncertain.",
+      "The evidence does not directly localize the failure to perception, planning, or actuation.",
+      "Stop_line_ids=[4294967295] indicates invalid or missing stop-line data."
+    ],
+    "evidence_support": [
+      {
+        "evidence_id": "collision_window.collision_timestamp",
+        "claim": "Collision confirmed at 32.759873278s."
+      },
+      {
+        "evidence_id": "error_json_events.crash",
+        "claim": "error.json confirms crash=true."
+      },
+      {
+        "evidence_id": "error_json_events.red",
+        "claim": "error.json confirms red-light violation=true."
+      },
+      {
+        "evidence_id": "collision_window.ego_speed_before_collision",
+        "claim": "Ego velocity 3.19 m/s before collision; speed decreases within window but no full stop."
+      },
+      {
+        "evidence_id": "collision_window.ego_control_before_collision",
+        "claim": "vehicle_status shows throttle=0.498, brake=0.0, steer=-0.28 before collision; vehicle_cmd all zero."
+      },
+      {
+        "evidence_id": "collision_window.evidence_of_braking_or_stopping",
+        "claim": "No brake applied (vehicle_status_brake_nonzero=false, vehicle_cmd_brake_nonzero=false)."
+      },
+      {
+        "evidence_id": "red_light_window.traffic_light_state_samples",
+        "claim": "Traffic lights transition from state 0 to state 2 (red) between 30.0s and 32.1s."
+      },
+      {
+        "evidence_id": "collision_window.detected_object_count_before_collision",
+        "claim": "1-3 detected objects present before collision."
+      },
+      {
+        "evidence_id": "collision_window.predicted_object_count_before_collision",
+        "claim": "1-23 predicted objects present before collision."
+      },
+      {
+        "evidence_id": "collision_window.final_waypoints_before_collision",
+        "claim": "Final waypoints available with stop_line_ids=[4294967295] (invalid)."
+      },
+      {
+        "evidence_id": "oracle_consistency.conflict_details",
+        "claim": "Dataset labels lane_invasion=1, error.json labels lane_invasion=0; conflict requires manual review."
+      }
+    ],
+    "confidence": "low",
+    "ready_for_phase2_generation": "uncertain",
+    "notes_for_validator": [
+      "Do not count a generated case as same-root-cause unless post-execution evidence preserves collision, red-light violation, traffic light state transition, vehicle_cmd zero with vehicle_status active control, and no braking before collision.",
+      "Manual review is required to resolve the lane_invasion label conflict before confirming oracle consistency.",
+      "Check that traffic lights are observable and transition to red state near the ego route.",
+      "Verify that vehicle_cmd remains zero or near-zero while vehicle_status shows active control in the critical window.",
+      "Do not assume stop-line crossing or route-light relation without explicit evidence."
+    ]
+  },
+  "raw_api_payload": {
+    "id": "<REDACTED_RESPONSE_ID>",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "```json\n{\n  \"case_id\": \"case_142\",\n  \"fault_layer\": \"unknown\",\n  \"fault_component\": \"unknown\",\n  \"causal_explanation\": \"The oracle confirms a collision at 32.76s and error.json confirms a red-light violation. Critical-window evidence shows ego moving at 3.19 m/s before collision with throttle applied (0.498) and zero brake. Vehicle_cmd is all zero while vehicle_status shows active throttle and steering, indicating a control mismatch. Detected objects (1-3) and predicted objects (1-23) are present. Final waypoints exist with stop_line_ids=[4294967295] (invalid). Traffic lights show state transitions (0→2), but route-light relation and stop-line crossing are unconfirmed. Dataset labels collision+lane_invasion+red_light, but error.json labels only collision+red_light, creating a lane_invasion conflict. The evidence does not directly prove which module failed to stop at the red light or avoid the collision.\",\n  \"root_cause_pattern\": \"Conservative preservation pattern: ego approaches an intersection with traffic lights transitioning to red, encounters nearby actors, and collides without braking, while vehicle_cmd remains zero despite vehicle_status showing active control.\",\n  \"preservation_constraints\": [\n    \"The generated candidate should preserve collision and red-light violation oracles.\",\n    \"Traffic lights near the ego route should transition to red state before the collision.\",\n    \"Nearby actors should be present in the critical window.\",\n    \"Vehicle_cmd should remain zero or near-zero while vehicle_status shows active throttle/steering before collision.\",\n    \"Post-execution validation should check that ego does not brake before collision and that traffic light states are observable.\"\n  ],\n  \"modifiable_factors\": [\n    \"actor_position\",\n    \"actor_count\",\n    \"weather\",\n    \"puddles\",\n    \"traffic_light_timing\"\n  ],\n  \"non_modifiable_conditions\": [\n    \"collision oracle symptom\",\n    \"red-light violation oracle symptom\",\n    \"traffic light state transition observable\",\n    \"vehicle_cmd zero or near-zero with vehicle_status active control mismatch\",\n    \"no braking before collision\"\n  ],\n  \"uncertainty\": [\n    \"Dataset labels lane_invasion=1, but error.json labels lane_invasion=0; lane boundary crossing is not confirmed by evidence.\",\n    \"Route-light relation and stop-line crossing are not confirmed by current summaries.\",\n    \"Vehicle_cmd is all zero while vehicle_status shows throttle and steering; controller behavior is uncertain.\",\n    \"The evidence does not directly localize the failure to perception, planning, or actuation.\",\n    \"Stop_line_ids=[4294967295] indicates invalid or missing stop-line data.\"\n  ],\n  \"evidence_support\": [\n    {\n      \"evidence_id\": \"collision_window.collision_timestamp\",\n      \"claim\": \"Collision confirmed at 32.759873278s.\"\n    },\n    {\n      \"evidence_id\": \"error_json_events.crash\",\n      \"claim\": \"error.json confirms crash=true.\"\n    },\n    {\n      \"evidence_id\": \"error_json_events.red\",\n      \"claim\": \"error.json confirms red-light violation=true.\"\n    },\n    {\n      \"evidence_id\": \"collision_window.ego_speed_before_collision\",\n      \"claim\": \"Ego velocity 3.19 m/s before collision; speed decreases within window but no full stop.\"\n    },\n    {\n      \"evidence_id\": \"collision_window.ego_control_before_collision\",\n      \"claim\": \"vehicle_status shows throttle=0.498, brake=0.0, steer=-0.28 before collision; vehicle_cmd all zero.\"\n    },\n    {\n      \"evidence_id\": \"collision_window.evidence_of_braking_or_stopping\",\n      \"claim\": \"No brake applied (vehicle_status_brake_nonzero=false, vehicle_cmd_brake_nonzero=false).\"\n    },\n    {\n      \"evidence_id\": \"red_light_window.traffic_light_state_samples\",\n      \"claim\": \"Traffic lights transition from state 0 to state 2 (red) between 30.0s and 32.1s.\"\n    },\n    {\n      \"evidence_id\": \"collision_window.detected_object_count_before_collision\",\n      \"claim\": \"1-3 detected objects present before collision.\"\n    },\n    {\n      \"evidence_id\": \"collision_window.predicted_object_count_before_collision\",\n      \"claim\": \"1-23 predicted objects present before collision.\"\n    },\n    {\n      \"evidence_id\": \"collision_window.final_waypoints_before_collision\",\n      \"claim\": \"Final waypoints available with stop_line_ids=[4294967295] (invalid).\"\n    },\n    {\n      \"evidence_id\": \"oracle_consistency.conflict_details\",\n      \"claim\": \"Dataset labels lane_invasion=1, error.json labels lane_invasion=0; conflict requires manual review.\"\n    }\n  ],\n  \"confidence\": \"low\",\n  \"ready_for_phase2_generation\": \"uncertain\",\n  \"notes_for_validator\": [\n    \"Do not count a generated case as same-root-cause unless post-execution evidence preserves collision, red-light violation, traffic light state transition, vehicle_cmd zero with vehicle_status active control, and no braking before collision.\",\n    \"Manual review is required to resolve the lane_invasion label conflict before confirming oracle consistency.\",\n    \"Check that traffic lights are observable and transition to red state near the ego route.\",\n    \"Verify that vehicle_cmd remains zero or near-zero while vehicle_status shows active control in the critical window.\",\n    \"Do not assume stop-line crossing or route-light relation without explicit evidence.\"\n  ]\n}\n```",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "claude-sonnet-4-5",
+    "object": "chat.completion",
+    "service_tier": null,
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 1391,
+      "prompt_tokens": 4146,
+      "total_tokens": 5537,
+      "completion_tokens_details": null,
+      "prompt_tokens_details": null
+    }
+  },
+  "error_message": "",
+  "timestamp": "<REDACTED_TIMESTAMP>",
+  "elapsed_sec": 25.869
+}

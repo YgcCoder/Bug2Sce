@@ -1,0 +1,355 @@
+{
+  "case_id": "case_104",
+  "model_name": "ark-doubao-seed-2.0-lite-260215",
+  "workflow": "phase2_grounded_generation",
+  "status": "completed",
+  "schema_valid": true,
+  "schema_errors": [],
+  "phase1_ready": "uncertain",
+  "num_candidates_requested": 2,
+  "num_candidates_written": 2,
+  "num_pre_valid": 2,
+  "candidate_records": [
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-doubao-seed-2.0-lite-260215/json/case_104/case_104__cand_001.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-doubao-seed-2.0-lite-260215/metadata/case_104/case_104__cand_001.metadata.json",
+      "case_id": "case_104",
+      "model_name": "ark-doubao-seed-2.0-lite-260215",
+      "candidate_index": 1,
+      "candidate_spec": {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Slightly increase rain, fog and puddle intensity while preserving all base scenario attributes",
+        "mutation_intent": "Preserves all Phase 1 root-cause constraints: zero dynamic actors, conflicting red light labels between dataset and error.json, high base fog/rain, one puddle, and ego spawn near traffic light intersection, only adjusts weather within conservative bounds to test visibility-related label ambiguity",
+        "expected_oracle": "unknown",
+        "modifications": {
+          "weather_delta": {
+            "rain": 8,
+            "fog": 10,
+            "wetness": 5,
+            "puddle": 3
+          },
+          "actor_mutations": [],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": 0.1,
+              "size_scale": 1.0
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Confirm zero dynamic actors are present in the scenario",
+          "Verify ego spawn position remains near the target traffic light intersection"
+        ],
+        "post_execution_validation_rules": [
+          "Compare red light violation labels between dataset and error.json",
+          "Check whether ego crossed the intersection stop line during the scenario"
+        ],
+        "uncertainty": [
+          "Original label conflict between dataset and error.json is preserved",
+          "Stop-line crossing and traffic light state for ego's route remains unconfirmed"
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 8.0,
+          "fog": 10.0,
+          "wetness": 5.0,
+          "puddle": 3.0
+        },
+        "actor_mutations": [],
+        "puddle_mutations": [
+          {
+            "puddle_index": 0,
+            "location_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "level_delta": 0.1,
+            "size_scale": 1.0
+          }
+        ],
+        "mission_mutation": {
+          "keep_original": true
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": [
+          "no actors in candidate scenario"
+        ]
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_104__ark-doubao-seed-2.0-lite-260215.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_104__ark-doubao-seed-2.0-lite-260215.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    },
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-doubao-seed-2.0-lite-260215/json/case_104/case_104__cand_002.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-doubao-seed-2.0-lite-260215/metadata/case_104/case_104__cand_002.metadata.json",
+      "case_id": "case_104",
+      "model_name": "ark-doubao-seed-2.0-lite-260215",
+      "candidate_index": 2,
+      "candidate_spec": {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Slightly shift ego spawn position closer to the intersection stop line while keeping all other base attributes unchanged",
+        "mutation_intent": "Preserves all core Phase 1 root-cause constraints: conflicting red light labels, zero dynamic actors, high fog/rain base weather, one puddle, only adjusts ego spawn within allowed offset bounds to test if spawn positioning contributes to the label conflict",
+        "expected_oracle": "unknown",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 1.5,
+                "y": -1.0
+              },
+              "level_delta": -0.05,
+              "size_scale": 1.0
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": false,
+            "spawn_offset": {
+              "x": 2.0,
+              "y": 1.5
+            },
+            "destination_offset": {
+              "x": 1.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Confirm no dynamic actors are added to the scenario",
+          "Verify shifted spawn position is still within the intersection near the target traffic light"
+        ],
+        "post_execution_validation_rules": [
+          "Validate matching of red light violation status between dataset and error.json",
+          "Check if stop-line crossing occurred while the traffic light was in red state"
+        ],
+        "uncertainty": [
+          "Original label conflict remains unresolved, manual review is still required",
+          "No confirmed module-level root cause can be derived from available evidence"
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 0.0,
+          "fog": 0.0,
+          "wetness": 0.0,
+          "puddle": 0.0
+        },
+        "actor_mutations": [],
+        "puddle_mutations": [
+          {
+            "puddle_index": 0,
+            "location_offset": {
+              "x": 1.5,
+              "y": -1.0
+            },
+            "level_delta": -0.05,
+            "size_scale": 1.0
+          }
+        ],
+        "mission_mutation": {
+          "spawn_offset": {
+            "x": 2.0,
+            "y": 1.5
+          },
+          "destination_offset": {
+            "x": 1.0,
+            "y": 0.0
+          }
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": [
+          "no actors in candidate scenario"
+        ]
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_104__ark-doubao-seed-2.0-lite-260215.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_104__ark-doubao-seed-2.0-lite-260215.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    }
+  ],
+  "seed_artifact_zip": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-doubao-seed-2.0-lite-260215/seed-artifact/seed-artifact-case_104.zip",
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_prompts/case_104__ark-doubao-seed-2.0-lite-260215.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_104__ark-doubao-seed-2.0-lite-260215.json",
+  "prompt_estimated_tokens": 1049,
+  "usage": {
+    "prompt_tokens": 1313,
+    "completion_tokens": 2667,
+    "total_tokens": 3980
+  },
+  "raw_response": "{\n  \"case_id\": \"case_104\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Slightly increase rain, fog and puddle intensity while preserving all base scenario attributes\",\n      \"mutation_intent\": \"Preserves all Phase 1 root-cause constraints: zero dynamic actors, conflicting red light labels between dataset and error.json, high base fog/rain, one puddle, and ego spawn near traffic light intersection, only adjusts weather within conservative bounds to test visibility-related label ambiguity\",\n      \"expected_oracle\": \"unknown\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 8, \"fog\": 10, \"wetness\": 5, \"puddle\": 3},\n        \"actor_mutations\": [],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": 0.1, \"size_scale\": 1.0}\n        ],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Confirm zero dynamic actors are present in the scenario\", \"Verify ego spawn position remains near the target traffic light intersection\"],\n      \"post_execution_validation_rules\": [\"Compare red light violation labels between dataset and error.json\", \"Check whether ego crossed the intersection stop line during the scenario\"],\n      \"uncertainty\": [\"Original label conflict between dataset and error.json is preserved\", \"Stop-line crossing and traffic light state for ego's route remains unconfirmed\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Slightly shift ego spawn position closer to the intersection stop line while keeping all other base attributes unchanged\",\n      \"mutation_intent\": \"Preserves all core Phase 1 root-cause constraints: conflicting red light labels, zero dynamic actors, high fog/rain base weather, one puddle, only adjusts ego spawn within allowed offset bounds to test if spawn positioning contributes to the label conflict\",\n      \"expected_oracle\": \"unknown\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": 1.5, \"y\": -1.0}, \"level_delta\": -0.05, \"size_scale\": 1.0}\n        ],\n        \"mission_mutation\": {\"keep_original\": false, \"spawn_offset\": {\"x\": 2.0, \"y\": 1.5}, \"destination_offset\": {\"x\": 1.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Confirm no dynamic actors are added to the scenario\", \"Verify shifted spawn position is still within the intersection near the target traffic light\"],\n      \"post_execution_validation_rules\": [\"Validate matching of red light violation status between dataset and error.json\", \"Check if stop-line crossing occurred while the traffic light was in red state\"],\n      \"uncertainty\": [\"Original label conflict remains unresolved, manual review is still required\", \"No confirmed module-level root cause can be derived from available evidence\"]\n    }\n  ]\n}",
+  "parsed_response": {
+    "case_id": "case_104",
+    "candidate_specs": [
+      {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Slightly increase rain, fog and puddle intensity while preserving all base scenario attributes",
+        "mutation_intent": "Preserves all Phase 1 root-cause constraints: zero dynamic actors, conflicting red light labels between dataset and error.json, high base fog/rain, one puddle, and ego spawn near traffic light intersection, only adjusts weather within conservative bounds to test visibility-related label ambiguity",
+        "expected_oracle": "unknown",
+        "modifications": {
+          "weather_delta": {
+            "rain": 8,
+            "fog": 10,
+            "wetness": 5,
+            "puddle": 3
+          },
+          "actor_mutations": [],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": 0.1,
+              "size_scale": 1.0
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Confirm zero dynamic actors are present in the scenario",
+          "Verify ego spawn position remains near the target traffic light intersection"
+        ],
+        "post_execution_validation_rules": [
+          "Compare red light violation labels between dataset and error.json",
+          "Check whether ego crossed the intersection stop line during the scenario"
+        ],
+        "uncertainty": [
+          "Original label conflict between dataset and error.json is preserved",
+          "Stop-line crossing and traffic light state for ego's route remains unconfirmed"
+        ]
+      },
+      {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Slightly shift ego spawn position closer to the intersection stop line while keeping all other base attributes unchanged",
+        "mutation_intent": "Preserves all core Phase 1 root-cause constraints: conflicting red light labels, zero dynamic actors, high fog/rain base weather, one puddle, only adjusts ego spawn within allowed offset bounds to test if spawn positioning contributes to the label conflict",
+        "expected_oracle": "unknown",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 1.5,
+                "y": -1.0
+              },
+              "level_delta": -0.05,
+              "size_scale": 1.0
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": false,
+            "spawn_offset": {
+              "x": 2.0,
+              "y": 1.5
+            },
+            "destination_offset": {
+              "x": 1.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Confirm no dynamic actors are added to the scenario",
+          "Verify shifted spawn position is still within the intersection near the target traffic light"
+        ],
+        "post_execution_validation_rules": [
+          "Validate matching of red light violation status between dataset and error.json",
+          "Check if stop-line crossing occurred while the traffic light was in red state"
+        ],
+        "uncertainty": [
+          "Original label conflict remains unresolved, manual review is still required",
+          "No confirmed module-level root cause can be derived from available evidence"
+        ]
+      }
+    ]
+  },
+  "raw_api_payload": {
+    "id": "021782922501275988bfabceb5f218095cf340564d9f2909d6acc",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "{\n  \"case_id\": \"case_104\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Slightly increase rain, fog and puddle intensity while preserving all base scenario attributes\",\n      \"mutation_intent\": \"Preserves all Phase 1 root-cause constraints: zero dynamic actors, conflicting red light labels between dataset and error.json, high base fog/rain, one puddle, and ego spawn near traffic light intersection, only adjusts weather within conservative bounds to test visibility-related label ambiguity\",\n      \"expected_oracle\": \"unknown\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 8, \"fog\": 10, \"wetness\": 5, \"puddle\": 3},\n        \"actor_mutations\": [],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": 0.1, \"size_scale\": 1.0}\n        ],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Confirm zero dynamic actors are present in the scenario\", \"Verify ego spawn position remains near the target traffic light intersection\"],\n      \"post_execution_validation_rules\": [\"Compare red light violation labels between dataset and error.json\", \"Check whether ego crossed the intersection stop line during the scenario\"],\n      \"uncertainty\": [\"Original label conflict between dataset and error.json is preserved\", \"Stop-line crossing and traffic light state for ego's route remains unconfirmed\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Slightly shift ego spawn position closer to the intersection stop line while keeping all other base attributes unchanged\",\n      \"mutation_intent\": \"Preserves all core Phase 1 root-cause constraints: conflicting red light labels, zero dynamic actors, high fog/rain base weather, one puddle, only adjusts ego spawn within allowed offset bounds to test if spawn positioning contributes to the label conflict\",\n      \"expected_oracle\": \"unknown\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": 1.5, \"y\": -1.0}, \"level_delta\": -0.05, \"size_scale\": 1.0}\n        ],\n        \"mission_mutation\": {\"keep_original\": false, \"spawn_offset\": {\"x\": 2.0, \"y\": 1.5}, \"destination_offset\": {\"x\": 1.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Confirm no dynamic actors are added to the scenario\", \"Verify shifted spawn position is still within the intersection near the target traffic light\"],\n      \"post_execution_validation_rules\": [\"Validate matching of red light violation status between dataset and error.json\", \"Check if stop-line crossing occurred while the traffic light was in red state\"],\n      \"uncertainty\": [\"Original label conflict remains unresolved, manual review is still required\", \"No confirmed module-level root cause can be derived from available evidence\"]\n    }\n  ]\n}",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null,
+          "reasoning_content": "\nGot it, let's build this JSON step by step. First, case_id is case_104, right? Then we need exactly two candidate_specs.\n\nFirst candidate: cand_001. High level variant: Slightly increase rain and fog to preserve existing weather conditions while adjusting for possible visibility-related label conflict. Mutation intent: Preserves all original constraints: zero dynamic actors, conflicting labels, high fog/rain, one puddle, ego near intersection. Keeps root cause pattern intact by only adjusting weather within conservative bounds. Expected oracle is... wait, the original has conflicting labels, so unknown? Wait no, original says dataset labels red light but error says no, so expected_oracle is unknown, right? Let's check modifications. Weather delta: rain +5, fog +5, others: wetness +3, puddle +2. Wait, keep within [-20,20], that's fine. Actor mutations: original actors are empty, so actor_mutations is empty? Wait original actors array is empty, so yeah. Puddle mutations: puddle index 0, position offset x 0, y 0, level delta +0.1, size scale 1.0. That's within the allowed bounds. Mission mutation: keep_original true, offsets 0. Pre execution rules: [\"Check that ego still spawns near target traffic light intersection\", \"Confirm zero dynamic actors are present in scenario\"], post execution: [\"Compare dataset and error.json labels for red light violation status\", \"Check if stop-line crossing occurred\"]. Uncertainty: [\"Label conflict between dataset and error.json remains unconfirmed\", \"Stop-line crossing status is still unvalidated\"].\n\nNow second candidate: cand_002. High level variant: Slightly shift ego spawn position closer to the intersection stop line to test if label conflict is due to spawn positioning. Mutation intent: Preserves all core root cause constraints: conflicting labels, zero dynamic actors, high base rain/fog, one puddle, only adjusts ego spawn within allowed offset bounds, keeps the original uncertainty pattern. Expected oracle: unknown again, right? Because we preserve the conflict. Modifications: weather delta: all 0, wait or maybe adjust a little? No, this variant is about spawn position. So weather delta: rain 0, fog 0, wetness 0, puddle 0. Actor mutations still empty, since zero actors required. Puddle mutation: puddle index 0, location offset x 1, y -1, level delta -0.05, size scale 1.0, that's okay. Mission mutation: keep_original false, spawn offset x 2, y 1, destination offset x 1, y 0, all within [-5,5], good. Pre execution rules: [\"Verify ego spawn offset is within allowed bounds near traffic light\", \"Confirm no dynamic actors are added to scenario\"], post execution: [\"Check for red light violation event in error.json against dataset label\", \"Validate if ego crossed stop line when traffic light was red\"]. Uncertainty: [\"Original label conflict is preserved, still requires manual review\", \"No confirmed root cause can be assigned from existing evidence\"].\n\nWait let's check all rules: actor position offsets within [-8,8], yes. Speed delta, since no actors, that's fine. Mission offsets within [-5,5], yes 2,1 is okay. Weather deltas within [-20,20], yes 5,5 is fine. Puddle level delta 0.1 is within [-0.2, 0.2], size 1.0 is between 0.8 and 1.2. Exactly two candidates, correct. Preserve all the preservation constraints from phase 1: yes, both have zero dynamic actors, preserve conflicting labels, high fog rain, one puddle, ego near intersection. Oracle is unknown because we have conflicting labels, can't confirm, that's correct.\n\nWait let's structure it properly. Let's make sure the JSON is correct. Let's write it out:\n\nFirst, top level: \"case_id\": \"case_104\", then \"candidate_specs\" array with two elements.\n\nFirst candidate:\n{\n  \"candidate_id\": \"cand_001\",\n  \"high_level_variant\": \"Slightly increase rain, fog and puddle intensity while preserving all base scenario attributes\",\n  \"mutation_intent\": \"Preserves all Phase 1 root-cause constraints: zero dynamic actors, conflicting red light labels between dataset and error.json, high base fog/rain, one puddle, and ego spawn near traffic light intersection, only adjusts weather within conservative bounds to test visibility-related label ambiguity\",\n  \"expected_oracle\": \"unknown\",\n  \"modifications\": {\n    \"weather_delta\": {\"rain\": 8, \"fog\": 10, \"wetness\": 5, \"puddle\": 3},\n    \"actor_mutations\": [],\n    \"puddle_mutations\": [\n      {\"puddle_index\": 0, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": 0.1, \"size_scale\": 1.0}\n    ],\n    \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n  },\n  \"pre_execution_validation_rules\": [\"Confirm zero dynamic actors are present in the scenario\", \"Verify ego spawn position remains near the target traffic light intersection\"],\n  \"post_execution_validation_rules\": [\"Compare red light violation labels between dataset and error.json\", \"Check whether ego crossed the intersection stop line during the scenario\"],\n  \"uncertainty\": [\"Original label conflict between dataset and error.json is preserved\", \"Stop-line crossing and traffic light state for ego's route remains unconfirmed\"]\n}\n\nThen second candidate:\n{\n  \"candidate_id\": \"cand_002\",\n  \"high_level_variant\": \"Slightly shift ego spawn position closer to the intersection stop line while keeping all other base attributes unchanged\",\n  \"mutation_intent\": \"Preserves all core Phase 1 root-cause constraints: conflicting red light labels, zero dynamic actors, high fog/rain base weather, one puddle, only adjusts ego spawn within allowed offset bounds to test if spawn positioning contributes to the label conflict\",\n  \"expected_oracle\": \"unknown\",\n  \"modifications\": {\n    \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n    \"actor_mutations\": [],\n    \"puddle_mutations\": [\n      {\"puddle_index\": 0, \"location_offset\": {\"x\": 1.5, \"y\": -1.0}, \"level_delta\": -0.05, \"size_scale\": 1.0}\n    ],\n    \"mission_mutation\": {\"keep_original\": false, \"spawn_offset\": {\"x\": 2.0, \"y\": 1.5}, \"destination_offset\": {\"x\": 1.0, \"y\": 0.0}}\n  },\n  \"pre_execution_validation_rules\": [\"Confirm no dynamic actors are added to the scenario\", \"Verify shifted spawn position is still within the intersection near the target traffic light\"],\n  \"post_execution_validation_rules\": [\"Validate matching of red light violation status between dataset and error.json\", \"Check if stop-line crossing occurred while the traffic light was in red state\"],\n  \"uncertainty\": [\"Original label conflict remains unresolved, manual review is still required\", \"No confirmed module-level root cause can be derived from available evidence\"]\n}\n\nWait check all offsets: mission spawn offset is 2, 1.5, that's within [-5,5], yes. Puddle location offset 1.5, -1, that's fine. Level delta -0.05 is within [-0.2, 0.2], yes. Size 1.0 is okay. Weather deltas: 8, 10, 5, 3, all within [-20,20], yes. Actor mutations are empty because we need zero dynamic actors, that's correct, preserves that constraint. Expected oracle is unknown because the original has conflicting labels, can't confirm, that's right, we don't invent new labels. Uncertainty is preserved, as per phase 1 being uncertainty-heavy, so we keep it.\n\nThat's all. Now put it all together into one valid JSON, no markdown fences, exactly as required."
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "doubao-seed-2-0-lite-260215",
+    "object": "chat.completion",
+    "service_tier": "default",
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 2667,
+      "prompt_tokens": 1313,
+      "total_tokens": 3980,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 1856,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": null,
+        "cached_tokens": 0
+      }
+    }
+  },
+  "error_message": "",
+  "elapsed_sec": 43.813,
+  "timestamp": "<REDACTED_TIMESTAMP>"
+}

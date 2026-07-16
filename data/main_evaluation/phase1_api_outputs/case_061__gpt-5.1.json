@@ -1,0 +1,155 @@
+{
+  "case_id": "case_061",
+  "workflow": "phase1_causal_explanation",
+  "model_name": "gpt-5.1",
+  "model_id": "gpt-5.1",
+  "status": "completed",
+  "dry_run": false,
+  "schema_valid": true,
+  "schema_errors": [],
+  "quality_flags": [],
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_prompts/case_061__gpt-5.1.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_061__gpt-5.1.json",
+  "prompt_estimated_tokens": 3302,
+  "usage": {
+    "prompt_tokens": 3560,
+    "completion_tokens": 1582,
+    "total_tokens": 5142
+  },
+  "estimated_cost_usd": null,
+  "raw_response": "{\n  \"case_id\": \"case_061\",\n  \"fault_layer\": \"unknown\",\n  \"fault_component\": \"unknown\",\n  \"causal_explanation\": \"A collision occurs around 46.611s while the ego is moving at about 5 m/s with nonzero throttle in vehicle_status and no braking, yet all vehicle_cmd fields remain zero throughout the critical window. Perception and prediction topics report at least one object before impact and planning continuously provides 101 unblocked final waypoints with closest_object_distance reported as 0.0 at the nearest pre-collision row. The evidence confirms a crash and a red-light oracle event, but does not show route–signal association, lane-boundary geometry, or internal decision logic, so the precise module-level cause of the collision and red-light violation remains uncertain.\",\n  \"root_cause_pattern\": \"Conservative preservation pattern: ego vehicle is under motion (nonzero velocity and throttle in vehicle_status) and collides with another actor while a red-light violation is reported and planning, perception, and prediction topics are populated, but actuation commands in vehicle_cmd remain zero and there is no clear evidence of braking or a blocked path before impact.\",\n  \"preservation_constraints\": [\n    \"The generated case should preserve the oracle symptom of a collision before scenario end.\",\n    \"The ego vehicle should have nonzero velocity in the last seconds before collision, with no clear deceleration trend within the critical window.\",\n    \"Perception and prediction object topics should be available with at least one object reported before the collision.\",\n    \"Planning final_waypoints should be available and non-null up to the collision, without blocked flags in the nearest pre-collision row.\",\n    \"A red-light violation event should be reported by the oracle or equivalent error-tracking mechanism.\",\n    \"vehicle_cmd should show zero (or effectively null) accel, brake, steer, and target speed commands throughout the critical window while vehicle_status indicates motion.\"\n  ],\n  \"modifiable_factors\": [\n    \"actor_position\",\n    \"actor_trajectory\",\n    \"weather\",\n    \"mission\",\n    \"ego_start_pose\",\n    \"ego_goal_pose\",\n    \"traffic_light_timings\",\n    \"traffic_light_phasing\"\n  ],\n  \"non_modifiable_conditions\": [\n    \"Same oracle symptom of a collision must occur.\",\n    \"A red-light violation must be reported by the oracle or equivalent.\",\n    \"Ego vehicle must be moving (nonzero speed) shortly before the collision.\",\n    \"Perception and prediction object topics must be available with at least one object in the critical window.\",\n    \"Planning final_waypoints must be available and non-blocked immediately before collision.\",\n    \"Actuation command topic must report zero (or effectively null) accel, brake, and steer commands during the critical window while vehicle_status indicates motion.\"\n  ],\n  \"uncertainty\": [\n    \"Dataset.xlsx marks lane_invasion=1 while error.json reports lane_invasion=false, so lane invasion is not confirmed.\",\n    \"The exact timing and spatial relation between the ego route, traffic lights, and any stop line are not confirmed; the mechanism of the red-light violation is unknown.\",\n    \"The other collision actor is only identified by ID in the collision oracle; its type, exact trajectory, and relation to ego waypoints are not detailed.\",\n    \"The reason vehicle_cmd remains all zeros despite ego motion is unclear; this may reflect logging configuration, controller behavior, or another integration issue rather than a pure actuation fault.\",\n    \"The internal behavior of perception, prediction, and planning modules (e.g., whether they correctly assessed risk or planned to stop) cannot be determined from the summaries.\"\n  ],\n  \"evidence_support\": [\n    {\n      \"evidence_id\": \"critical_window_summary.collision_window.collision_topic_exists\",\n      \"claim\": \"A collision event is reported at timestamp 46.611000852 with an active collision topic.\"\n    },\n    {\n      \"evidence_id\": \"critical_window_summary.collision_window.ego_speed_before_collision\",\n      \"claim\": \"Ego speed in the five seconds before collision ranges from about 3.0 to 5.0 m/s, with last pre-collision velocity near 5.0 m/s and no speed decrease within the window.\"\n    },\n    {\n      \"evidence_id\": \"critical_window_summary.collision_window.ego_control_before_collision.vehicle_status_control_stats\",\n      \"claim\": \"vehicle_status shows nonzero throttle and zero brake throughout the collision window, indicating commanded motion with no braking recorded at the status level.\"\n    },\n    {\n      \"evidence_id\": \"critical_window_summary.collision_window.ego_control_before_collision.vehicle_cmd_stats\",\n      \"claim\": \"vehicle_cmd accel_cmd, brake_cmd, steer_cmd, and linear_velocity_cmd are all zero (min=max=0.0, last=0.0) during the collision window.\"\n    },\n    {\n      \"evidence_id\": \"critical_window_summary.collision_window.detected_object_count_before_collision\",\n      \"claim\": \"Detection objects exist before collision, with 1–2 objects detected per row and labels including 'unknown'.\"\n    },\n    {\n      \"evidence_id\": \"critical_window_summary.collision_window.predicted_object_count_before_collision\",\n      \"claim\": \"Prediction objects exist before collision, with between 1 and 12 objects per row and labels including 'unknown'.\"\n    },\n    {\n      \"evidence_id\": \"critical_window_summary.collision_window.final_waypoints_before_collision\",\n      \"claim\": \"final_waypoints are continuously available before collision with 101 waypoints, zero blocked flags, and closest_object_distance reported as 0.0 at the nearest pre-collision row.\"\n    },\n    {\n      \"evidence_id\": \"trace_summary_compact.oracle.error_json_events\",\n      \"claim\": \"The error_json oracle reports crash=true and red=true, with lane_invasion=false, indicating a collision and red-light event but no lane invasion at oracle level.\"\n    },\n    {\n      \"evidence_id\": \"critical_window_summary.red_light_window.traffic_lights_topic_exists\",\n      \"claim\": \"Traffic lights topic is present with multiple traffic light states, and a red-light violation is reported, though route-light relation is marked unknown.\"\n    },\n    {\n      \"evidence_id\": \"oracle_consistency\",\n      \"claim\": \"Dataset.xlsx labels include lane_invasion=1 (group C+L+R) while error.json events indicate only C+R, showing a label conflict that must be treated as uncertain.\"\n    }\n  ],\n  \"confidence\": \"medium\",\n  \"ready_for_phase2_generation\": \"yes\",\n  \"notes_for_validator\": [\n    \"Verify that the generated case reproduces a collision and a red-light violation according to the same oracle/error_json mechanism used in this case.\",\n    \"Check that vehicle_status shows nonzero velocity in the last seconds before collision and that there is no significant speed decrease indicative of strong braking within the critical window.\",\n    \"Confirm that vehicle_cmd reports all-zero accel, brake, steer, and target speed commands during the critical window while ego is moving, matching the pattern in this case.\",\n    \"Ensure perception and prediction object topics contain at least one object in the pre-collision window and that planning final_waypoints are present, non-null, and not flagged as blocked up to the collision.\",\n    \"Do not require lane_invasion as a necessary symptom for same-root-cause, because lane invasion is disputed between Dataset.xlsx and error_json and should remain uncertain.\",\n    \"Because route–signal relation is unknown, treat any successful reproduction of a red-light oracle event plus collision under similar module/topic availability as satisfying the preserved root-cause pattern.\"\n  ]\n}",
+  "parsed_response": {
+    "case_id": "case_061",
+    "fault_layer": "unknown",
+    "fault_component": "unknown",
+    "causal_explanation": "A collision occurs around 46.611s while the ego is moving at about 5 m/s with nonzero throttle in vehicle_status and no braking, yet all vehicle_cmd fields remain zero throughout the critical window. Perception and prediction topics report at least one object before impact and planning continuously provides 101 unblocked final waypoints with closest_object_distance reported as 0.0 at the nearest pre-collision row. The evidence confirms a crash and a red-light oracle event, but does not show route–signal association, lane-boundary geometry, or internal decision logic, so the precise module-level cause of the collision and red-light violation remains uncertain.",
+    "root_cause_pattern": "Conservative preservation pattern: ego vehicle is under motion (nonzero velocity and throttle in vehicle_status) and collides with another actor while a red-light violation is reported and planning, perception, and prediction topics are populated, but actuation commands in vehicle_cmd remain zero and there is no clear evidence of braking or a blocked path before impact.",
+    "preservation_constraints": [
+      "The generated case should preserve the oracle symptom of a collision before scenario end.",
+      "The ego vehicle should have nonzero velocity in the last seconds before collision, with no clear deceleration trend within the critical window.",
+      "Perception and prediction object topics should be available with at least one object reported before the collision.",
+      "Planning final_waypoints should be available and non-null up to the collision, without blocked flags in the nearest pre-collision row.",
+      "A red-light violation event should be reported by the oracle or equivalent error-tracking mechanism.",
+      "vehicle_cmd should show zero (or effectively null) accel, brake, steer, and target speed commands throughout the critical window while vehicle_status indicates motion."
+    ],
+    "modifiable_factors": [
+      "actor_position",
+      "actor_trajectory",
+      "weather",
+      "mission",
+      "ego_start_pose",
+      "ego_goal_pose",
+      "traffic_light_timings",
+      "traffic_light_phasing"
+    ],
+    "non_modifiable_conditions": [
+      "Same oracle symptom of a collision must occur.",
+      "A red-light violation must be reported by the oracle or equivalent.",
+      "Ego vehicle must be moving (nonzero speed) shortly before the collision.",
+      "Perception and prediction object topics must be available with at least one object in the critical window.",
+      "Planning final_waypoints must be available and non-blocked immediately before collision.",
+      "Actuation command topic must report zero (or effectively null) accel, brake, and steer commands during the critical window while vehicle_status indicates motion."
+    ],
+    "uncertainty": [
+      "Dataset.xlsx marks lane_invasion=1 while error.json reports lane_invasion=false, so lane invasion is not confirmed.",
+      "The exact timing and spatial relation between the ego route, traffic lights, and any stop line are not confirmed; the mechanism of the red-light violation is unknown.",
+      "The other collision actor is only identified by ID in the collision oracle; its type, exact trajectory, and relation to ego waypoints are not detailed.",
+      "The reason vehicle_cmd remains all zeros despite ego motion is unclear; this may reflect logging configuration, controller behavior, or another integration issue rather than a pure actuation fault.",
+      "The internal behavior of perception, prediction, and planning modules (e.g., whether they correctly assessed risk or planned to stop) cannot be determined from the summaries."
+    ],
+    "evidence_support": [
+      {
+        "evidence_id": "critical_window_summary.collision_window.collision_topic_exists",
+        "claim": "A collision event is reported at timestamp 46.611000852 with an active collision topic."
+      },
+      {
+        "evidence_id": "critical_window_summary.collision_window.ego_speed_before_collision",
+        "claim": "Ego speed in the five seconds before collision ranges from about 3.0 to 5.0 m/s, with last pre-collision velocity near 5.0 m/s and no speed decrease within the window."
+      },
+      {
+        "evidence_id": "critical_window_summary.collision_window.ego_control_before_collision.vehicle_status_control_stats",
+        "claim": "vehicle_status shows nonzero throttle and zero brake throughout the collision window, indicating commanded motion with no braking recorded at the status level."
+      },
+      {
+        "evidence_id": "critical_window_summary.collision_window.ego_control_before_collision.vehicle_cmd_stats",
+        "claim": "vehicle_cmd accel_cmd, brake_cmd, steer_cmd, and linear_velocity_cmd are all zero (min=max=0.0, last=0.0) during the collision window."
+      },
+      {
+        "evidence_id": "critical_window_summary.collision_window.detected_object_count_before_collision",
+        "claim": "Detection objects exist before collision, with 1–2 objects detected per row and labels including 'unknown'."
+      },
+      {
+        "evidence_id": "critical_window_summary.collision_window.predicted_object_count_before_collision",
+        "claim": "Prediction objects exist before collision, with between 1 and 12 objects per row and labels including 'unknown'."
+      },
+      {
+        "evidence_id": "critical_window_summary.collision_window.final_waypoints_before_collision",
+        "claim": "final_waypoints are continuously available before collision with 101 waypoints, zero blocked flags, and closest_object_distance reported as 0.0 at the nearest pre-collision row."
+      },
+      {
+        "evidence_id": "trace_summary_compact.oracle.error_json_events",
+        "claim": "The error_json oracle reports crash=true and red=true, with lane_invasion=false, indicating a collision and red-light event but no lane invasion at oracle level."
+      },
+      {
+        "evidence_id": "critical_window_summary.red_light_window.traffic_lights_topic_exists",
+        "claim": "Traffic lights topic is present with multiple traffic light states, and a red-light violation is reported, though route-light relation is marked unknown."
+      },
+      {
+        "evidence_id": "oracle_consistency",
+        "claim": "Dataset.xlsx labels include lane_invasion=1 (group C+L+R) while error.json events indicate only C+R, showing a label conflict that must be treated as uncertain."
+      }
+    ],
+    "confidence": "medium",
+    "ready_for_phase2_generation": "yes",
+    "notes_for_validator": [
+      "Verify that the generated case reproduces a collision and a red-light violation according to the same oracle/error_json mechanism used in this case.",
+      "Check that vehicle_status shows nonzero velocity in the last seconds before collision and that there is no significant speed decrease indicative of strong braking within the critical window.",
+      "Confirm that vehicle_cmd reports all-zero accel, brake, steer, and target speed commands during the critical window while ego is moving, matching the pattern in this case.",
+      "Ensure perception and prediction object topics contain at least one object in the pre-collision window and that planning final_waypoints are present, non-null, and not flagged as blocked up to the collision.",
+      "Do not require lane_invasion as a necessary symptom for same-root-cause, because lane invasion is disputed between Dataset.xlsx and error_json and should remain uncertain.",
+      "Because route–signal relation is unknown, treat any successful reproduction of a red-light oracle event plus collision under similar module/topic availability as satisfying the preserved root-cause pattern."
+    ]
+  },
+  "raw_api_payload": {
+    "id": "<REDACTED_RESPONSE_ID>",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "{\n  \"case_id\": \"case_061\",\n  \"fault_layer\": \"unknown\",\n  \"fault_component\": \"unknown\",\n  \"causal_explanation\": \"A collision occurs around 46.611s while the ego is moving at about 5 m/s with nonzero throttle in vehicle_status and no braking, yet all vehicle_cmd fields remain zero throughout the critical window. Perception and prediction topics report at least one object before impact and planning continuously provides 101 unblocked final waypoints with closest_object_distance reported as 0.0 at the nearest pre-collision row. The evidence confirms a crash and a red-light oracle event, but does not show route–signal association, lane-boundary geometry, or internal decision logic, so the precise module-level cause of the collision and red-light violation remains uncertain.\",\n  \"root_cause_pattern\": \"Conservative preservation pattern: ego vehicle is under motion (nonzero velocity and throttle in vehicle_status) and collides with another actor while a red-light violation is reported and planning, perception, and prediction topics are populated, but actuation commands in vehicle_cmd remain zero and there is no clear evidence of braking or a blocked path before impact.\",\n  \"preservation_constraints\": [\n    \"The generated case should preserve the oracle symptom of a collision before scenario end.\",\n    \"The ego vehicle should have nonzero velocity in the last seconds before collision, with no clear deceleration trend within the critical window.\",\n    \"Perception and prediction object topics should be available with at least one object reported before the collision.\",\n    \"Planning final_waypoints should be available and non-null up to the collision, without blocked flags in the nearest pre-collision row.\",\n    \"A red-light violation event should be reported by the oracle or equivalent error-tracking mechanism.\",\n    \"vehicle_cmd should show zero (or effectively null) accel, brake, steer, and target speed commands throughout the critical window while vehicle_status indicates motion.\"\n  ],\n  \"modifiable_factors\": [\n    \"actor_position\",\n    \"actor_trajectory\",\n    \"weather\",\n    \"mission\",\n    \"ego_start_pose\",\n    \"ego_goal_pose\",\n    \"traffic_light_timings\",\n    \"traffic_light_phasing\"\n  ],\n  \"non_modifiable_conditions\": [\n    \"Same oracle symptom of a collision must occur.\",\n    \"A red-light violation must be reported by the oracle or equivalent.\",\n    \"Ego vehicle must be moving (nonzero speed) shortly before the collision.\",\n    \"Perception and prediction object topics must be available with at least one object in the critical window.\",\n    \"Planning final_waypoints must be available and non-blocked immediately before collision.\",\n    \"Actuation command topic must report zero (or effectively null) accel, brake, and steer commands during the critical window while vehicle_status indicates motion.\"\n  ],\n  \"uncertainty\": [\n    \"Dataset.xlsx marks lane_invasion=1 while error.json reports lane_invasion=false, so lane invasion is not confirmed.\",\n    \"The exact timing and spatial relation between the ego route, traffic lights, and any stop line are not confirmed; the mechanism of the red-light violation is unknown.\",\n    \"The other collision actor is only identified by ID in the collision oracle; its type, exact trajectory, and relation to ego waypoints are not detailed.\",\n    \"The reason vehicle_cmd remains all zeros despite ego motion is unclear; this may reflect logging configuration, controller behavior, or another integration issue rather than a pure actuation fault.\",\n    \"The internal behavior of perception, prediction, and planning modules (e.g., whether they correctly assessed risk or planned to stop) cannot be determined from the summaries.\"\n  ],\n  \"evidence_support\": [\n    {\n      \"evidence_id\": \"critical_window_summary.collision_window.collision_topic_exists\",\n      \"claim\": \"A collision event is reported at timestamp 46.611000852 with an active collision topic.\"\n    },\n    {\n      \"evidence_id\": \"critical_window_summary.collision_window.ego_speed_before_collision\",\n      \"claim\": \"Ego speed in the five seconds before collision ranges from about 3.0 to 5.0 m/s, with last pre-collision velocity near 5.0 m/s and no speed decrease within the window.\"\n    },\n    {\n      \"evidence_id\": \"critical_window_summary.collision_window.ego_control_before_collision.vehicle_status_control_stats\",\n      \"claim\": \"vehicle_status shows nonzero throttle and zero brake throughout the collision window, indicating commanded motion with no braking recorded at the status level.\"\n    },\n    {\n      \"evidence_id\": \"critical_window_summary.collision_window.ego_control_before_collision.vehicle_cmd_stats\",\n      \"claim\": \"vehicle_cmd accel_cmd, brake_cmd, steer_cmd, and linear_velocity_cmd are all zero (min=max=0.0, last=0.0) during the collision window.\"\n    },\n    {\n      \"evidence_id\": \"critical_window_summary.collision_window.detected_object_count_before_collision\",\n      \"claim\": \"Detection objects exist before collision, with 1–2 objects detected per row and labels including 'unknown'.\"\n    },\n    {\n      \"evidence_id\": \"critical_window_summary.collision_window.predicted_object_count_before_collision\",\n      \"claim\": \"Prediction objects exist before collision, with between 1 and 12 objects per row and labels including 'unknown'.\"\n    },\n    {\n      \"evidence_id\": \"critical_window_summary.collision_window.final_waypoints_before_collision\",\n      \"claim\": \"final_waypoints are continuously available before collision with 101 waypoints, zero blocked flags, and closest_object_distance reported as 0.0 at the nearest pre-collision row.\"\n    },\n    {\n      \"evidence_id\": \"trace_summary_compact.oracle.error_json_events\",\n      \"claim\": \"The error_json oracle reports crash=true and red=true, with lane_invasion=false, indicating a collision and red-light event but no lane invasion at oracle level.\"\n    },\n    {\n      \"evidence_id\": \"critical_window_summary.red_light_window.traffic_lights_topic_exists\",\n      \"claim\": \"Traffic lights topic is present with multiple traffic light states, and a red-light violation is reported, though route-light relation is marked unknown.\"\n    },\n    {\n      \"evidence_id\": \"oracle_consistency\",\n      \"claim\": \"Dataset.xlsx labels include lane_invasion=1 (group C+L+R) while error.json events indicate only C+R, showing a label conflict that must be treated as uncertain.\"\n    }\n  ],\n  \"confidence\": \"medium\",\n  \"ready_for_phase2_generation\": \"yes\",\n  \"notes_for_validator\": [\n    \"Verify that the generated case reproduces a collision and a red-light violation according to the same oracle/error_json mechanism used in this case.\",\n    \"Check that vehicle_status shows nonzero velocity in the last seconds before collision and that there is no significant speed decrease indicative of strong braking within the critical window.\",\n    \"Confirm that vehicle_cmd reports all-zero accel, brake, steer, and target speed commands during the critical window while ego is moving, matching the pattern in this case.\",\n    \"Ensure perception and prediction object topics contain at least one object in the pre-collision window and that planning final_waypoints are present, non-null, and not flagged as blocked up to the collision.\",\n    \"Do not require lane_invasion as a necessary symptom for same-root-cause, because lane invasion is disputed between Dataset.xlsx and error_json and should remain uncertain.\",\n    \"Because route–signal relation is unknown, treat any successful reproduction of a red-light oracle event plus collision under similar module/topic availability as satisfying the preserved root-cause pattern.\"\n  ]\n}",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": [],
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "gpt-5.1-2025-11-13",
+    "object": "chat.completion",
+    "service_tier": "default",
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 1582,
+      "prompt_tokens": 3560,
+      "total_tokens": 5142,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": 0,
+        "audio_tokens": 0,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 0
+      }
+    }
+  },
+  "error_message": "",
+  "timestamp": "<REDACTED_TIMESTAMP>",
+  "elapsed_sec": 22.569
+}

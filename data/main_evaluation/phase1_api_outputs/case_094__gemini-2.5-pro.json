@@ -1,0 +1,122 @@
+{
+  "case_id": "case_094",
+  "workflow": "phase1_causal_explanation",
+  "model_name": "gemini-2.5-pro",
+  "model_id": "gemini-2.5-pro",
+  "status": "completed",
+  "dry_run": false,
+  "schema_valid": true,
+  "schema_errors": [],
+  "quality_flags": [],
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_prompts/case_094__gemini-2.5-pro.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_094__gemini-2.5-pro.json",
+  "prompt_estimated_tokens": 3251,
+  "usage": {
+    "prompt_tokens": 4659,
+    "completion_tokens": 3862,
+    "total_tokens": 8521
+  },
+  "estimated_cost_usd": null,
+  "raw_response": "```json\n{\n  \"case_id\": \"case_094\",\n  \"fault_layer\": \"unknown\",\n  \"fault_component\": \"unknown\",\n  \"causal_explanation\": \"The ego vehicle accelerated into a collision while the planner did not report a blocked path and the controller published zero-value commands.\",\n  \"root_cause_pattern\": \"Vehicle collides while accelerating, with no blocked path from the planner and anomalous zero-value control commands.\",\n  \"preservation_constraints\": [\n    \"Preserve the collision oracle event.\",\n    \"Planner does not report a blocked path before collision.\",\n    \"Controller publishes no commands while vehicle accelerates.\"\n  ],\n  \"modifiable_factors\": [\n    \"actor_trajectory\",\n    \"weather\",\n    \"puddles\"\n  ],\n  \"non_modifiable_conditions\": [\n    \"Collision occurs.\",\n    \"Concurrent planning and control anomalies.\"\n  ],\n  \"uncertainty\": [\n    \"Dataset labels for 'stuck' and 'lane_invasion' are incorrect.\",\n    \"Root cause is unclear due to concurrent planning and control anomalies.\",\n    \"Controller commands are zero while vehicle status shows acceleration.\"\n  ],\n  \"evidence_support\": [\n    {\n      \"evidence_id\": \"oracle_consistency\",\n      \"claim\": \"Dataset labels for stuck/lane_invasion conflict with oracle.\"\n    },\n    {\n      \"evidence_id\": \"final_waypoints_before_collision\",\n      \"claim\": \"Planner waypoints are not marked as blocked before collision.\"\n    },\n    {\n      \"evidence_id\": \"ego_control_before_collision\",\n      \"claim\": \"vehicle_cmd is all zero while vehicle_status shows throttle.\"\n    },\n    {\n      \"evidence_id\": \"collision_window\",\n      \"claim\": \"Collision is confirmed by oracle and topic data.\"\n    }\n  ],\n  \"confidence\": \"low\",\n  \"ready_for_phase2_generation\": \"uncertain\",\n  \"notes_for_validator\": [\n    \"Dataset labels for stuck/lane invasion are invalid.\",\n    \"The vehicle_cmd vs vehicle_status discrepancy is a major anomaly.\",\n    \"Cannot isolate fault to a single module.\"\n  ]\n}\n```",
+  "parsed_response": {
+    "case_id": "case_094",
+    "fault_layer": "unknown",
+    "fault_component": "unknown",
+    "causal_explanation": "The ego vehicle accelerated into a collision while the planner did not report a blocked path and the controller published zero-value commands.",
+    "root_cause_pattern": "Vehicle collides while accelerating, with no blocked path from the planner and anomalous zero-value control commands.",
+    "preservation_constraints": [
+      "Preserve the collision oracle event.",
+      "Planner does not report a blocked path before collision.",
+      "Controller publishes no commands while vehicle accelerates."
+    ],
+    "modifiable_factors": [
+      "actor_trajectory",
+      "weather",
+      "puddles"
+    ],
+    "non_modifiable_conditions": [
+      "Collision occurs.",
+      "Concurrent planning and control anomalies."
+    ],
+    "uncertainty": [
+      "Dataset labels for 'stuck' and 'lane_invasion' are incorrect.",
+      "Root cause is unclear due to concurrent planning and control anomalies.",
+      "Controller commands are zero while vehicle status shows acceleration."
+    ],
+    "evidence_support": [
+      {
+        "evidence_id": "oracle_consistency",
+        "claim": "Dataset labels for stuck/lane_invasion conflict with oracle."
+      },
+      {
+        "evidence_id": "final_waypoints_before_collision",
+        "claim": "Planner waypoints are not marked as blocked before collision."
+      },
+      {
+        "evidence_id": "ego_control_before_collision",
+        "claim": "vehicle_cmd is all zero while vehicle_status shows throttle."
+      },
+      {
+        "evidence_id": "collision_window",
+        "claim": "Collision is confirmed by oracle and topic data."
+      }
+    ],
+    "confidence": "low",
+    "ready_for_phase2_generation": "uncertain",
+    "notes_for_validator": [
+      "Dataset labels for stuck/lane invasion are invalid.",
+      "The vehicle_cmd vs vehicle_status discrepancy is a major anomaly.",
+      "Cannot isolate fault to a single module."
+    ]
+  },
+  "raw_api_payload": {
+    "id": "<REDACTED_RESPONSE_ID>",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "```json\n{\n  \"case_id\": \"case_094\",\n  \"fault_layer\": \"unknown\",\n  \"fault_component\": \"unknown\",\n  \"causal_explanation\": \"The ego vehicle accelerated into a collision while the planner did not report a blocked path and the controller published zero-value commands.\",\n  \"root_cause_pattern\": \"Vehicle collides while accelerating, with no blocked path from the planner and anomalous zero-value control commands.\",\n  \"preservation_constraints\": [\n    \"Preserve the collision oracle event.\",\n    \"Planner does not report a blocked path before collision.\",\n    \"Controller publishes no commands while vehicle accelerates.\"\n  ],\n  \"modifiable_factors\": [\n    \"actor_trajectory\",\n    \"weather\",\n    \"puddles\"\n  ],\n  \"non_modifiable_conditions\": [\n    \"Collision occurs.\",\n    \"Concurrent planning and control anomalies.\"\n  ],\n  \"uncertainty\": [\n    \"Dataset labels for 'stuck' and 'lane_invasion' are incorrect.\",\n    \"Root cause is unclear due to concurrent planning and control anomalies.\",\n    \"Controller commands are zero while vehicle status shows acceleration.\"\n  ],\n  \"evidence_support\": [\n    {\n      \"evidence_id\": \"oracle_consistency\",\n      \"claim\": \"Dataset labels for stuck/lane_invasion conflict with oracle.\"\n    },\n    {\n      \"evidence_id\": \"final_waypoints_before_collision\",\n      \"claim\": \"Planner waypoints are not marked as blocked before collision.\"\n    },\n    {\n      \"evidence_id\": \"ego_control_before_collision\",\n      \"claim\": \"vehicle_cmd is all zero while vehicle_status shows throttle.\"\n    },\n    {\n      \"evidence_id\": \"collision_window\",\n      \"claim\": \"Collision is confirmed by oracle and topic data.\"\n    }\n  ],\n  \"confidence\": \"low\",\n  \"ready_for_phase2_generation\": \"uncertain\",\n  \"notes_for_validator\": [\n    \"Dataset labels for stuck/lane invasion are invalid.\",\n    \"The vehicle_cmd vs vehicle_status discrepancy is a major anomaly.\",\n    \"Cannot isolate fault to a single module.\"\n  ]\n}\n```",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "gemini-2.5-pro",
+    "object": "chat.completion",
+    "service_tier": null,
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 3862,
+      "prompt_tokens": 4659,
+      "total_tokens": 8521,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": 0,
+        "reasoning_tokens": 3357,
+        "rejected_prediction_tokens": null,
+        "text_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 0,
+        "text_tokens": 4659,
+        "image_tokens": 0
+      },
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "input_tokens_details": null,
+      "claude_cache_creation_5_m_tokens": 0,
+      "claude_cache_creation_1_h_tokens": 0
+    }
+  },
+  "error_message": "",
+  "timestamp": "<REDACTED_TIMESTAMP>",
+  "elapsed_sec": 40.028
+}

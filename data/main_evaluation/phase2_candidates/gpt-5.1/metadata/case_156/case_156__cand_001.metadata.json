@@ -1,0 +1,143 @@
+{
+  "case_id": "case_156",
+  "model_name": "gpt-5.1",
+  "candidate_index": 1,
+  "candidate_spec": {
+    "candidate_id": "cand_001",
+    "high_level_variant": "Same start and route in Town01, with ego starting from rest behind a nearby parked vehicle; no other dynamic traffic so that the ego has a clear, persistently valid route yet remains stationary with zero actuator commands.",
+    "mutation_intent": "Keep the original geometry and mission so that the planner can still generate a stable path, but simplify the scene to a single nearby static vehicle. This aims to preserve the pattern where planning outputs valid final_waypoints while the ego stays stuck at rest with vehicle_cmd target speed and actuators pinned at zero, without additional dynamic interactions that might introduce new stopping causes.",
+    "expected_oracle": "stuck",
+    "modifications": {
+      "weather_delta": {
+        "rain": 0,
+        "fog": 0,
+        "wetness": 0,
+        "puddle": 0
+      },
+      "actor_mutations": [
+        {
+          "actor_index": 0,
+          "position_offset": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "speed_delta": 0.0
+        }
+      ],
+      "puddle_mutations": [
+        {
+          "puddle_index": 0,
+          "location_offset": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "level_delta": 0.0,
+          "size_scale": 1.0
+        },
+        {
+          "puddle_index": 1,
+          "location_offset": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "level_delta": 0.0,
+          "size_scale": 1.0
+        },
+        {
+          "puddle_index": 2,
+          "location_offset": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "level_delta": 0.0,
+          "size_scale": 1.0
+        }
+      ],
+      "mission_mutation": {
+        "keep_original": true,
+        "spawn_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "destination_offset": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Ensure ego spawn pose matches the original mission spawn within a small tolerance so it starts from rest at the same map location.",
+      "Confirm that the single non-ego actor remains immobile for the full scenario duration.",
+      "Verify that sensors (image_raw, points_raw) and perception/prediction topics are configured and expected to be published continuously."
+    ],
+    "post_execution_validation_rules": [
+      "Check that the oracle labels the outcome as stuck with no collision, no lane invasion, and no red-light violation.",
+      "Verify via odometry/current_pose that the ego remains within a very small radius of its start position (centimeter-level displacement) and that velocity stays near zero throughout, especially in the final window.",
+      "Confirm that planning/final_waypoints are available and non-empty during the stuck period, with a stable waypoint count and route extending ahead of the ego.",
+      "Verify that vehicle_cmd is present and that target_speed and actuator commands (throttle/accel, brake, steer) remain effectively zero during the interval where ego is not moving.",
+      "Confirm that sensing and perception/prediction topics remain available during the entire period that the ego is stuck."
+    ],
+    "uncertainty": [
+      "The exact upstream reason for maintaining zero target_speed and actuator commands (planning vs. safety vs. control) is still unknown and is not constrained by this variant.",
+      "Interactions between the static nearby vehicle and the planner’s internal logic are not directly observable; only the resulting waypoints and commands can be checked."
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": 0.0,
+      "fog": 0.0,
+      "wetness": 0.0,
+      "puddle": 0.0
+    },
+    "actor_mutations": [
+      {
+        "actor_index": 0,
+        "position_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "speed_delta": 0.0
+      }
+    ],
+    "puddle_mutations": [
+      {
+        "puddle_index": 0,
+        "location_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "level_delta": 0.0,
+        "size_scale": 1.0
+      },
+      {
+        "puddle_index": 1,
+        "location_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "level_delta": 0.0,
+        "size_scale": 1.0
+      },
+      {
+        "puddle_index": 2,
+        "location_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "level_delta": 0.0,
+        "size_scale": 1.0
+      }
+    ],
+    "mission_mutation": {
+      "keep_original": true
+    }
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_156__gpt-5.1.json",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_156__gpt-5.1.json",
+  "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+}

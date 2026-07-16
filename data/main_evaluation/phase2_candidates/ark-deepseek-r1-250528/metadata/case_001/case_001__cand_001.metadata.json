@@ -1,0 +1,106 @@
+{
+  "case_id": "case_001",
+  "model_name": "ark-deepseek-r1-250528",
+  "candidate_index": 1,
+  "candidate_spec": {
+    "candidate_id": "cand_001",
+    "high_level_variant": "Shift collision actor closer to ego's planned path with minor speed adjustment",
+    "mutation_intent": "Preserves all Phase 1 root cause preconditions (zero vehicle_cmd, non-zero brake, no blocked waypoints, detected near actor) while adjusting actor position to maintain the original collision outcome pattern",
+    "expected_oracle": "collision",
+    "modifications": {
+      "weather_delta": {
+        "rain": 0,
+        "fog": 0,
+        "wetness": 0,
+        "puddle": 0
+      },
+      "actor_mutations": [
+        {
+          "actor_index": 0,
+          "position_offset": {
+            "x": -2.0,
+            "y": 1.2
+          },
+          "speed_delta": 0.5
+        }
+      ],
+      "puddle_mutations": [
+        {
+          "puddle_index": 0,
+          "location_offset": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "level_delta": 0.0,
+          "size_scale": 1.0
+        }
+      ],
+      "mission_mutation": {
+        "keep_original": true,
+        "spawn_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "destination_offset": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Verify all vehicle_cmd are zero in pre-collision critical window",
+      "Verify non-zero brake is reported by vehicle_status pre-collision",
+      "Verify planning reports no blocked waypoints pre-collision",
+      "Verify at least one actor is detected near ego pre-collision"
+    ],
+    "post_execution_validation_rules": [
+      "Validate collision outcome via oracle after execution",
+      "Confirm all root cause preservation constraints are satisfied"
+    ],
+    "uncertainty": [
+      "No direct planner decision logs available to confirm planning failure",
+      "Evidence does not confirm collision actor was correctly detected by perception",
+      "Actuation/controller behavior attribution remains uncertain due to vehicle_cmd/brake mismatch"
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": 0.0,
+      "fog": 0.0,
+      "wetness": 0.0,
+      "puddle": 0.0
+    },
+    "actor_mutations": [
+      {
+        "actor_index": 0,
+        "position_offset": {
+          "x": -2.0,
+          "y": 1.2
+        },
+        "speed_delta": 0.5
+      }
+    ],
+    "puddle_mutations": [
+      {
+        "puddle_index": 0,
+        "location_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "level_delta": 0.0,
+        "size_scale": 1.0
+      }
+    ],
+    "mission_mutation": {
+      "keep_original": true
+    }
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_001__ark-deepseek-r1-250528.json",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_001__ark-deepseek-r1-250528.json",
+  "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+}

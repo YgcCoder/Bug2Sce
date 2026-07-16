@@ -1,0 +1,121 @@
+{
+  "case_id": "case_061",
+  "workflow": "phase1_causal_explanation",
+  "model_name": "ark-doubao-seed-2.0-lite-260215",
+  "model_id": "ark-doubao-seed-2.0-lite-260215",
+  "status": "completed",
+  "dry_run": false,
+  "schema_valid": true,
+  "schema_errors": [],
+  "quality_flags": [],
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_prompts/case_061__ark-doubao-seed-2.0-lite-260215.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_061__ark-doubao-seed-2.0-lite-260215.json",
+  "prompt_estimated_tokens": 3302,
+  "usage": {
+    "prompt_tokens": 4462,
+    "completion_tokens": 3063,
+    "total_tokens": 7525
+  },
+  "estimated_cost_usd": null,
+  "raw_response": "{\n  \"case_id\": \"case_061\",\n  \"fault_layer\": \"unknown\",\n  \"fault_component\": \"unknown\",\n  \"causal_explanation\": \"Both dataset and error.json confirm collision and red light violation, but lane invasion status is conflicting. All Autoware actuation commands are zero in the pre-collision window, but vehicle_status shows non-zero throttle, zero braking, and ego moving at ~5m/s before collision. No blocked waypoints are detected, the closest detected object is 55m from ego, and no direct evidence attributes failure to a specific module.\",\n  \"root_cause_pattern\": \"Conservative preservation pattern: Ego proceeds to collision and confirmed red light violation when all Autoware actuation commands are zero, but ego continues moving with non-zero throttle and no braking in the pre-collision window, with module-level fault attribution unconfirmed.\",\n  \"preservation_constraints\": [\n    \"Preserve confirmed collision and red light violation as failure symptoms\",\n    \"Preserve all-zero actuation commands in the pre-collision critical window\",\n    \"Preserve non-zero throttle, zero brake, and forward ego movement in pre-collision vehicle status\",\n    \"Preserve no detected blocked waypoints before collision\",\n    \"Preserve the lane invasion label conflict between dataset and error.json\"\n  ],\n  \"modifiable_factors\": [\"actor_position\", \"start_position\", \"goal_position\", \"weather\", \"traffic_light_timing\"],\n  \"non_modifiable_conditions\": [\"confirmed collision and red light violation symptoms\", \"all-zero actuation commands in pre-collision critical window\", \"forward ego movement in pre-collision vehicle status\", \"no detected blocked waypoints before collision\"],\n  \"uncertainty\": [\n    \"Lane invasion label conflicts between dataset and error.json, so lane invasion failure is unconfirmed\",\n    \"Mismatch between all-zero vehicle_cmd and non-zero vehicle_status throttle is not sufficient to confirm actuation fault per rules\",\n    \"No direct evidence localizes failure to sensing, perception, or planning layers\",\n    \"Collision cause is unconfirmed because the closest detected object is far from ego before collision\"\n  ],\n  \"evidence_support\": [\n    {\"evidence_id\": \"oracle_consistency\", \"claim\": \"Collision and red light violation are confirmed by both sources, lane invasion status is conflicting\"},\n    {\"evidence_id\": \"collision_window\", \"claim\": \"All vehicle_cmd commands are zero pre-collision, while vehicle_status shows non-zero throttle, zero brake, and 5m/s ego speed\"},\n    {\"evidence_id\": \"final_waypoints_before_collision\", \"claim\": \"No blocked waypoints are detected before collision\"},\n    {\"evidence_id\": \"closest_available_object_info\", \"claim\": \"The closest detected object is 55.27m from ego before collision\"}\n  ],\n  \"confidence\": \"low\",\n  \"ready_for_phase2_generation\": \"yes\",\n  \"notes_for_validator\": [\n    \"Resolve the lane invasion label conflict before confirming generated case failure modes\",\n    \"Verify pre-collision all-zero vehicle_cmd and forward vehicle movement match the preserved root pattern\"\n  ]\n}",
+  "parsed_response": {
+    "case_id": "case_061",
+    "fault_layer": "unknown",
+    "fault_component": "unknown",
+    "causal_explanation": "Both dataset and error.json confirm collision and red light violation, but lane invasion status is conflicting. All Autoware actuation commands are zero in the pre-collision window, but vehicle_status shows non-zero throttle, zero braking, and ego moving at ~5m/s before collision. No blocked waypoints are detected, the closest detected object is 55m from ego, and no direct evidence attributes failure to a specific module.",
+    "root_cause_pattern": "Conservative preservation pattern: Ego proceeds to collision and confirmed red light violation when all Autoware actuation commands are zero, but ego continues moving with non-zero throttle and no braking in the pre-collision window, with module-level fault attribution unconfirmed.",
+    "preservation_constraints": [
+      "Preserve confirmed collision and red light violation as failure symptoms",
+      "Preserve all-zero actuation commands in the pre-collision critical window",
+      "Preserve non-zero throttle, zero brake, and forward ego movement in pre-collision vehicle status",
+      "Preserve no detected blocked waypoints before collision",
+      "Preserve the lane invasion label conflict between dataset and error.json"
+    ],
+    "modifiable_factors": [
+      "actor_position",
+      "start_position",
+      "goal_position",
+      "weather",
+      "traffic_light_timing"
+    ],
+    "non_modifiable_conditions": [
+      "confirmed collision and red light violation symptoms",
+      "all-zero actuation commands in pre-collision critical window",
+      "forward ego movement in pre-collision vehicle status",
+      "no detected blocked waypoints before collision"
+    ],
+    "uncertainty": [
+      "Lane invasion label conflicts between dataset and error.json, so lane invasion failure is unconfirmed",
+      "Mismatch between all-zero vehicle_cmd and non-zero vehicle_status throttle is not sufficient to confirm actuation fault per rules",
+      "No direct evidence localizes failure to sensing, perception, or planning layers",
+      "Collision cause is unconfirmed because the closest detected object is far from ego before collision"
+    ],
+    "evidence_support": [
+      {
+        "evidence_id": "oracle_consistency",
+        "claim": "Collision and red light violation are confirmed by both sources, lane invasion status is conflicting"
+      },
+      {
+        "evidence_id": "collision_window",
+        "claim": "All vehicle_cmd commands are zero pre-collision, while vehicle_status shows non-zero throttle, zero brake, and 5m/s ego speed"
+      },
+      {
+        "evidence_id": "final_waypoints_before_collision",
+        "claim": "No blocked waypoints are detected before collision"
+      },
+      {
+        "evidence_id": "closest_available_object_info",
+        "claim": "The closest detected object is 55.27m from ego before collision"
+      }
+    ],
+    "confidence": "low",
+    "ready_for_phase2_generation": "yes",
+    "notes_for_validator": [
+      "Resolve the lane invasion label conflict before confirming generated case failure modes",
+      "Verify pre-collision all-zero vehicle_cmd and forward vehicle movement match the preserved root pattern"
+    ]
+  },
+  "raw_api_payload": {
+    "id": "021782919169055cbe31712b8a2594f4e458beea699b0fa10650f",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "{\n  \"case_id\": \"case_061\",\n  \"fault_layer\": \"unknown\",\n  \"fault_component\": \"unknown\",\n  \"causal_explanation\": \"Both dataset and error.json confirm collision and red light violation, but lane invasion status is conflicting. All Autoware actuation commands are zero in the pre-collision window, but vehicle_status shows non-zero throttle, zero braking, and ego moving at ~5m/s before collision. No blocked waypoints are detected, the closest detected object is 55m from ego, and no direct evidence attributes failure to a specific module.\",\n  \"root_cause_pattern\": \"Conservative preservation pattern: Ego proceeds to collision and confirmed red light violation when all Autoware actuation commands are zero, but ego continues moving with non-zero throttle and no braking in the pre-collision window, with module-level fault attribution unconfirmed.\",\n  \"preservation_constraints\": [\n    \"Preserve confirmed collision and red light violation as failure symptoms\",\n    \"Preserve all-zero actuation commands in the pre-collision critical window\",\n    \"Preserve non-zero throttle, zero brake, and forward ego movement in pre-collision vehicle status\",\n    \"Preserve no detected blocked waypoints before collision\",\n    \"Preserve the lane invasion label conflict between dataset and error.json\"\n  ],\n  \"modifiable_factors\": [\"actor_position\", \"start_position\", \"goal_position\", \"weather\", \"traffic_light_timing\"],\n  \"non_modifiable_conditions\": [\"confirmed collision and red light violation symptoms\", \"all-zero actuation commands in pre-collision critical window\", \"forward ego movement in pre-collision vehicle status\", \"no detected blocked waypoints before collision\"],\n  \"uncertainty\": [\n    \"Lane invasion label conflicts between dataset and error.json, so lane invasion failure is unconfirmed\",\n    \"Mismatch between all-zero vehicle_cmd and non-zero vehicle_status throttle is not sufficient to confirm actuation fault per rules\",\n    \"No direct evidence localizes failure to sensing, perception, or planning layers\",\n    \"Collision cause is unconfirmed because the closest detected object is far from ego before collision\"\n  ],\n  \"evidence_support\": [\n    {\"evidence_id\": \"oracle_consistency\", \"claim\": \"Collision and red light violation are confirmed by both sources, lane invasion status is conflicting\"},\n    {\"evidence_id\": \"collision_window\", \"claim\": \"All vehicle_cmd commands are zero pre-collision, while vehicle_status shows non-zero throttle, zero brake, and 5m/s ego speed\"},\n    {\"evidence_id\": \"final_waypoints_before_collision\", \"claim\": \"No blocked waypoints are detected before collision\"},\n    {\"evidence_id\": \"closest_available_object_info\", \"claim\": \"The closest detected object is 55.27m from ego before collision\"}\n  ],\n  \"confidence\": \"low\",\n  \"ready_for_phase2_generation\": \"yes\",\n  \"notes_for_validator\": [\n    \"Resolve the lane invasion label conflict before confirming generated case failure modes\",\n    \"Verify pre-collision all-zero vehicle_cmd and forward vehicle movement match the preserved root pattern\"\n  ]\n}",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null,
+          "reasoning_content": "\nGot it, let's go step by step through this. First, case_id is case_061, right? Let's start with that.\n\nNext, fault_layer. Let's look at the evidence. Vehicle_cmd all zero, but vehicle_status has throttle non-zero, movement. Wait, the rule says if vehicle_cmd all zero but vehicle_status has movement, don't assign actuation fault from that alone. What else? There's a conflict between dataset and error.json on lane invasion. Confirmed collision and red light violation, but can't attribute to a specific module. Wait, let's check: vehicle_cmd all zero, but ego is moving, throttle non-zero in vehicle status. But rule says don't assign actuation from mismatch alone. So fault_layer would be unknown? Wait, let's see. Let's confirm: evidence says closest object before collision is 55m away, detected objects count last is 1, but classification unknown. No blocked waypoints. Vehicle_cmd all commands zero but vehicle is moving at 5m/s, throttle non-zero. But rule says mismatch alone doesn't mean actuation fault. Also label conflict on lane invasion. So fault_layer is unknown, fault_component unknown.\n\nCausal explanation: Let's write that. Confirmed collision and red light violation per both dataset and error.json, but lane invasion label is conflicting between dataset and error.json. All vehicle_cmd outputs are zero in the critical collision window, but vehicle_status shows non-zero throttle, no braking, and ego moving at ~5m/s before collision. No blocked waypoints are detected, closest detected object before collision is 55m from ego, so no direct evidence of which module caused the failure. That's concise.\n\nRoot cause pattern: Conservative pattern: Ego vehicle experiences collision and confirmed red light violation, with all zero commanded actuation values but continued forward motion in the critical window before collision, with module-level fault attribution uncertain due to conflicting labels and insufficient evidence. Wait, make it better. Let's adjust: Conservative preservation pattern: Ego proceeds toward collision and confirmed red light violation when all actuation commands from the Autoware stack are zero, but ego continues moving with non-zero throttle and no braking in the pre-collision window, with module-level fault unconfirmed. Yeah.\n\nPreservation constraints: Let's do 3-6. Let's see: 1. Preserve confirmed collision and red light violation as failure symptoms. 2. Preserve zero all actuation commands in the pre-collision critical window. 3. Preserve non-zero throttle, zero brake, and forward ego movement (~5m/s) in pre-collision vehicle status. 4. Preserve no detected blocked waypoints in final_waypoints before collision. 5. Preserve conflicting lane invasion label between dataset and error.json. Wait, that's good, 5 constraints, that's okay.\n\nModifiable factors: What can we change? Let's see, weather, actor position, starting position, goal position, traffic light timing, right? Let's list: [\"actor_position\", \"start_position\", \"goal_position\", \"weather\", \"traffic_light_timing\"] That's fine.\n\nNon-modifiable conditions: What must stay? [\"confirmed collision and red light violation symptoms\", \"zero actuation commands in pre-collision critical window\", \"forward ego movement in pre-collision vehicle status\", \"no detected blocked waypoints before collision\"] That's good.\n\nUncertainty: Let's list: 1. Lane invasion label conflicts between dataset and error.json, so lane invasion failure is unconfirmed. 2. All zero vehicle_cmd but non-zero throttle in vehicle_status, no direct evidence to confirm actuation layer fault from this mismatch alone. 3. No direct evidence localizes failure to sensing, perception, or planning layers. 4. Closest detected object is far from ego before collision, so collision cause is not confirmed. That's right.\n\nEvidence support: Let's list each evidence. First, {\"evidence_id\": \"oracle_consistency\", \"claim\": \"Collision and red light violation are confirmed by both dataset and error.json, lane invasion is conflicting.\"}, then {\"evidence_id\": \"collision_window\", \"claim\": \"All vehicle_cmd accel, brake, steer commands are zero in pre-collision window, while vehicle_status shows non-zero throttle, zero brake, and 5m/s ego speed.\"}, {\"evidence_id\": \"final_waypoints_before_collision\", \"claim\": \"No blocked waypoints are detected before collision.\"}, {\"evidence_id\": \"closest_available_object_info\", \"claim\": \"Closest detected object is 55.27m from ego before collision.\"} That's good.\n\nConfidence: Low? Wait, we have confirmed collision and red light, but fault attribution is unknown, so confidence low? Wait, or medium? Wait no, the root cause is not confirmed, so confidence low. Wait let's check: confidence is how confident we are in the causal explanation and root cause. Since it's a conservative pattern, but attribution is unknown, so low? Or medium? Wait let's see: the pattern we have is conservative, based on the evidence, so maybe low confidence on the root cause attribution. Yeah, low.\n\nReady_for_phase2_generation: Yes, because we have a checkable conservative pattern, right? Even though fault is unknown, the pattern is checkable. Wait, the rule says do not set no solely because fault is unknown, use yes when there is a checkable conservative pattern. So yes.\n\nNotes_for_validator: [\"Resolve lane invasion label conflict before confirming generated case failure mode\", \"Verify that pre-collision vehicle_cmd is all zero and vehicle_status shows forward movement in generated cases to match root pattern.\"] That's good.\n\nWait let's check all rules. Let's make sure we didn't infer anything not in evidence. For red light, we didn't infer stop line crossing, that's correct, we said it's unconfirmed. For lane invasion, we marked the conflict, that's correct. For vehicle_cmd mismatch, we didn't assign actuation fault, that's correct, per rule. We marked uncertainty where it's needed. Preservation constraints are semantic, not timestamps, right? Yeah.\n\nWait let's adjust fault_layer again: is there any reason it's not unknown? Let's see: vehicle_cmd is all zero, but vehicle is moving. Rule says if vehicle_cmd is all zero but vehicle_status shows movement, mark controller behavior as uncertain, do not assign fault_layer=actuation from this mismatch alone. So yes, fault_layer is unknown, fault_component unknown. Correct.\n\nLet me put it all together in JSON now, make sure it's valid, no trailing commas. Let's check:\n\nWait let's write it properly:\n\n{\n  \"case_id\": \"case_061\",\n  \"fault_layer\": \"unknown\",\n  \"fault_component\": \"unknown\",\n  \"causal_explanation\": \"Both dataset and error.json confirm collision and red light violation, but lane invasion status is conflicting. All Autoware vehicle actuation commands are zero in the pre-collision critical window, but vehicle_status shows non-zero throttle, zero braking, and ego moving at ~5m/s before collision. No blocked waypoints are detected, and the closest detected object is 55m from ego, with no direct evidence attributing failure to a specific module.\",\n  \"root_cause_pattern\": \"Conservative preservation pattern: Ego proceeds to collision and confirmed red light violation when all actuation commands from the Autoware stack are zero, but ego continues moving with non-zero throttle and no braking in the pre-collision window, with module-level fault attribution unconfirmed.\",\n  \"preservation_constraints\": [\n    \"Preserve confirmed collision and red light violation as failure symptoms\",\n    \"Preserve all-zero actuation commands in the pre-collision critical window\",\n    \"Preserve non-zero throttle, zero brake, and forward ego movement in pre-collision vehicle status\",\n    \"Preserve no detected blocked waypoints in final_waypoints before collision\",\n    \"Preserve the lane invasion label conflict between dataset and error.json\"\n  ],\n  \"modifiable_factors\": [\"actor_position\", \"start_position\", \"goal_position\", \"weather\", \"traffic_light_timing\"],\n  \"non_modifiable_conditions\": [\"confirmed collision and red light violation symptoms\", \"all-zero actuation commands in pre-collision critical window\", \"forward ego movement in pre-collision vehicle status\", \"no detected blocked waypoints before collision\"],\n  \"uncertainty\": [\n    \"Lane invasion label conflicts between dataset and error.json, so lane invasion failure is unconfirmed\",\n    \"Mismatch between all-zero vehicle_cmd and non-zero throttle in vehicle_status is not sufficient to confirm actuation layer fault per rules\",\n    \"No direct evidence localizes the failure to sensing, perception, or planning layers\",\n    \"Collision cause is unconfirmed because the closest detected object is far from ego before collision\"\n  ],\n  \"evidence_support\": [\n    {\"evidence_id\": \"oracle_consistency\", \"claim\": \"Collision and red light violation are confirmed by both dataset and error.json, lane invasion status is conflicting\"},\n    {\"evidence_id\": \"collision_window\", \"claim\": \"All vehicle_cmd accel, brake, and steer commands are zero in the pre-collision window, while vehicle_status reports non-zero throttle, zero brake, and 5m/s ego speed\"},\n    {\"evidence_id\": \"final_waypoints_before_collision\", \"claim\": \"No blocked waypoints are detected before collision\"},\n    {\"evidence_id\": \"closest_available_object_info\", \"claim\": \"The closest detected object is 55.27m away from ego before collision\"}\n  ],\n  \"confidence\": \"low\",\n  \"ready_for_phase2_generation\": \"yes\",\n  \"notes_for_validator\": [\n    \"Resolve the lane invasion label conflict before confirming the failure mode of generated cases\",\n    \"Verify that pre-collision vehicle_cmd is all zero and vehicle_status shows forward movement to match the preserved root pattern\"\n  ]\n}\n\nWait that looks good. Let's check all rules again:\n\n- Exactly one JSON, no markdown: yes.\n- Only use provided evidence: yes, no invention.\n- Don't treat topic existence as correct: yes, we didn't.\n- Dataset and error.json disagree: marked uncertainty, yes.\n- Red light: no inference of route-light or stop line crossing, correct, that's in uncertainty.\n- Lane invasion: no inference of crossing, correct, marked conflict.\n- Stuck is zero here, so no problem.\n- Vehicle_cmd all zero, vehicle status moving: didn't assign actuation, marked uncertain, correct.\n- Preservation constraints are semantic, no timestamps/IDs, correct.\n- Root cause is conservative pattern, correct, no unsupported claims.\n- Didn't say module fails to something without evidence, correct.\n- Cautious language, fault_layer unknown when attribution not supported, correct.\n- Ready for phase2: yes, because checkable pattern exists, correct.\n- Concise, 5 constraints, that's 3-6, correct.\n\nYeah that's all good."
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "doubao-seed-2-0-lite-260215",
+    "object": "chat.completion",
+    "service_tier": "default",
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 3063,
+      "prompt_tokens": 4462,
+      "total_tokens": 7525,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 2374,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": null,
+        "cached_tokens": 0
+      }
+    }
+  },
+  "error_message": "",
+  "timestamp": "<REDACTED_TIMESTAMP>",
+  "elapsed_sec": 61.794
+}

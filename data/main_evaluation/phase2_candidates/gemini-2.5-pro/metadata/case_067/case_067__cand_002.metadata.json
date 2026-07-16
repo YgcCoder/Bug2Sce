@@ -1,0 +1,73 @@
+{
+  "case_id": "case_067",
+  "model_name": "gemini-2.5-pro",
+  "candidate_index": 2,
+  "candidate_spec": {
+    "candidate_id": "cand_002",
+    "high_level_variant": "Slightly alter the mission start point.",
+    "mutation_intent": "Shift the ego's spawn point to see if the bug is tied to the exact initial waypoint plan.",
+    "expected_oracle": "red_light",
+    "modifications": {
+      "weather_delta": {
+        "rain": 0,
+        "fog": 0,
+        "wetness": 0,
+        "puddle": 0
+      },
+      "actor_mutations": [],
+      "puddle_mutations": [],
+      "mission_mutation": {
+        "keep_original": false,
+        "spawn_offset": {
+          "x": 2.5,
+          "y": -1.0
+        },
+        "destination_offset": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Verify ego spawn point is shifted."
+    ],
+    "post_execution_validation_rules": [
+      "Vehicle moves despite zero commands.",
+      "A red light violation occurs."
+    ],
+    "uncertainty": [
+      "Unclear if new route encounters a relevant traffic light.",
+      "Mechanism for vehicle motion is unknown."
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": 0.0,
+      "fog": 0.0,
+      "wetness": 0.0,
+      "puddle": 0.0
+    },
+    "actor_mutations": [],
+    "puddle_mutations": [],
+    "mission_mutation": {
+      "spawn_offset": {
+        "x": 2.5,
+        "y": -1.0
+      },
+      "destination_offset": {
+        "x": 0.0,
+        "y": 0.0
+      }
+    }
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": [
+      "no actors in candidate scenario"
+    ]
+  },
+  "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_067__gemini-2.5-pro.json",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_067__gemini-2.5-pro.json",
+  "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+}

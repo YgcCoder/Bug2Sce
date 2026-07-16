@@ -1,0 +1,151 @@
+{
+  "case_id": "case_151",
+  "model_name": "gpt-5.1",
+  "candidate_index": 1,
+  "candidate_spec": {
+    "candidate_id": "cand_001",
+    "high_level_variant": "Ego follows a nearby lead vehicle at low speed toward a slightly shifted goal while a pedestrian crosses far enough to be perceived but not to force a full stop, leading to slow progress and eventual goal deviation without explicit stuck or lane_invasion oracle events.",
+    "mutation_intent": "Keep perception/prediction rich (lead car ahead, walker in vicinity) and planning active while slightly altering spatial relationships so ego moves slowly but fails to reach the new destination in time. This preserves an oracle goal-deviation outcome with low-speed motion and allows dataset-style labels to still infer stuck/lane_invasion ambiguity without oracle confirmation.",
+    "expected_oracle": "unknown",
+    "modifications": {
+      "weather_delta": {
+        "rain": 5,
+        "fog": 0,
+        "wetness": 8,
+        "puddle": 0
+      },
+      "actor_mutations": [
+        {
+          "actor_index": 0,
+          "position_offset": {
+            "x": 3.0,
+            "y": -4.5
+          },
+          "speed_delta": -1.5
+        },
+        {
+          "actor_index": 1,
+          "position_offset": {
+            "x": -2.5,
+            "y": 2.0
+          },
+          "speed_delta": 0.5
+        }
+      ],
+      "puddle_mutations": [
+        {
+          "puddle_index": 0,
+          "location_offset": {
+            "x": 1.5,
+            "y": -2.0
+          },
+          "level_delta": 0.1,
+          "size_scale": 1.05
+        },
+        {
+          "puddle_index": 1,
+          "location_offset": {
+            "x": -1.0,
+            "y": 2.5
+          },
+          "level_delta": -0.1,
+          "size_scale": 0.95
+        }
+      ],
+      "mission_mutation": {
+        "keep_original": false,
+        "spawn_offset": {
+          "x": -3.0,
+          "y": 1.5
+        },
+        "destination_offset": {
+          "x": 4.0,
+          "y": -3.5
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Ensure oracle configuration is capable of reporting goal deviation / goal not reached events separately from stuck, lane_invasion, collision, and red_light.",
+      "Verify that modified mission spawn and destination remain on valid drivable lanes in Town01 and that a route exists.",
+      "Confirm that both actors (lead vehicle and walker) are spawned successfully and are expected to be within sensor range of the ego for a sustained period.",
+      "Check that puddle mutations do not flood the entire road but maintain localized wet areas near the ego path."
+    ],
+    "post_execution_validation_rules": [
+      "Verify that error_json reports a goal-related failure (e.g., goal not reached or significant deviation) without any collision, stuck, lane_invasion, red_light, or speeding oracle flags.",
+      "Confirm perception and prediction topics contain at least one object (vehicle or walker) throughout the critical window.",
+      "Confirm that planning final_waypoints are published and nonempty for the entire critical window.",
+      "Measure ego speed profile to confirm low but nonzero motion over an extended interval prior to termination (no full immediate stop and no sustained high-speed cruise).",
+      "Check higher-level/dataset labels to see if stuck and/or lane_invasion tags appear despite the runtime oracle lacking such events, preserving label-oracle mismatch.",
+      "Ensure that any lane-boundary crossings, if present, are not reported as lane_invasion in error_json; if they are, discard this run for this root-cause pattern."
+    ],
+    "uncertainty": [
+      "It is uncertain whether the ego will fail to reach the shifted destination within scenario time limits, so goal-deviation must be verified post-execution.",
+      "Resulting lane behavior relative to markings may or may not trigger dataset lane_invasion tagging; this ambiguity is intentional and must not be forced.",
+      "Controller internals (throttle/brake vs vehicle_cmd) may not reproduce the exact statistics mismatch seen in the seed case and cannot be constrained directly here."
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": 5.0,
+      "fog": 0.0,
+      "wetness": 8.0,
+      "puddle": 0.0
+    },
+    "actor_mutations": [
+      {
+        "actor_index": 0,
+        "position_offset": {
+          "x": 3.0,
+          "y": -4.5
+        },
+        "speed_delta": -1.5
+      },
+      {
+        "actor_index": 1,
+        "position_offset": {
+          "x": -2.5,
+          "y": 2.0
+        },
+        "speed_delta": 0.5
+      }
+    ],
+    "puddle_mutations": [
+      {
+        "puddle_index": 0,
+        "location_offset": {
+          "x": 1.5,
+          "y": -2.0
+        },
+        "level_delta": 0.1,
+        "size_scale": 1.05
+      },
+      {
+        "puddle_index": 1,
+        "location_offset": {
+          "x": -1.0,
+          "y": 2.5
+        },
+        "level_delta": -0.1,
+        "size_scale": 0.95
+      }
+    ],
+    "mission_mutation": {
+      "spawn_offset": {
+        "x": -3.0,
+        "y": 1.5
+      },
+      "destination_offset": {
+        "x": 4.0,
+        "y": -3.5
+      }
+    }
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_151__gpt-5.1.json",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_151__gpt-5.1.json",
+  "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+}

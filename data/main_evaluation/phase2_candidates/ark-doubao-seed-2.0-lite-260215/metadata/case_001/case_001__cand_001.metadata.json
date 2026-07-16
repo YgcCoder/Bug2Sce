@@ -1,0 +1,103 @@
+{
+  "case_id": "case_001",
+  "model_name": "ark-doubao-seed-2.0-lite-260215",
+  "candidate_index": 1,
+  "candidate_spec": {
+    "candidate_id": "cand_001",
+    "high_level_variant": "Collision actor shifted forward along ego path with moderate speed increase, minor rain intensity increase",
+    "mutation_intent": "Preserves all Phase 1 root cause constraints: collision with a single detected actor, planning reports no blocked final waypoints, all-zero pre-collision vehicle commands, and retains unconfirmed module-level fault attribution per original pattern",
+    "expected_oracle": "collision",
+    "modifications": {
+      "weather_delta": {
+        "rain": 5,
+        "fog": 0,
+        "wetness": 3,
+        "puddle": 2
+      },
+      "actor_mutations": [
+        {
+          "actor_index": 0,
+          "position_offset": {
+            "x": 2.0,
+            "y": 0.0
+          },
+          "speed_delta": 1.2
+        }
+      ],
+      "puddle_mutations": [
+        {
+          "puddle_index": 0,
+          "location_offset": {
+            "x": 1.0,
+            "y": 0.0
+          },
+          "level_delta": 0.08,
+          "size_scale": 1.05
+        }
+      ],
+      "mission_mutation": {
+        "keep_original": true,
+        "spawn_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "destination_offset": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Confirm collision actor is detected by perception in pre-collision critical window",
+      "Confirm planning reports no blocked final waypoints before collision"
+    ],
+    "post_execution_validation_rules": [
+      "Confirm collision between ego and collision actor occurred",
+      "Confirm all vehicle command values are zero in the final pre-collision window"
+    ],
+    "uncertainty": [
+      "Direct planner decision logs are not available to confirm planning fault",
+      "No evidence proves the collision actor was correctly associated by perception"
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": 5.0,
+      "fog": 0.0,
+      "wetness": 3.0,
+      "puddle": 2.0
+    },
+    "actor_mutations": [
+      {
+        "actor_index": 0,
+        "position_offset": {
+          "x": 2.0,
+          "y": 0.0
+        },
+        "speed_delta": 1.2
+      }
+    ],
+    "puddle_mutations": [
+      {
+        "puddle_index": 0,
+        "location_offset": {
+          "x": 1.0,
+          "y": 0.0
+        },
+        "level_delta": 0.08,
+        "size_scale": 1.05
+      }
+    ],
+    "mission_mutation": {
+      "keep_original": true
+    }
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_001__ark-doubao-seed-2.0-lite-260215.json",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_001__ark-doubao-seed-2.0-lite-260215.json",
+  "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+}

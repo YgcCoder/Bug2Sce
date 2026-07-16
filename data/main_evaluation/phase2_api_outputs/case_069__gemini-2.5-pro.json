@@ -1,0 +1,337 @@
+{
+  "case_id": "case_069",
+  "model_name": "gemini-2.5-pro",
+  "workflow": "phase2_grounded_generation",
+  "status": "completed",
+  "schema_valid": true,
+  "schema_errors": [],
+  "phase1_ready": "yes",
+  "num_candidates_requested": 2,
+  "num_candidates_written": 2,
+  "num_pre_valid": 2,
+  "candidate_records": [
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/gemini-2.5-pro/json/case_069/case_069__cand_001.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/gemini-2.5-pro/metadata/case_069/case_069__cand_001.metadata.json",
+      "case_id": "case_069",
+      "model_name": "gemini-2.5-pro",
+      "candidate_index": 1,
+      "candidate_spec": {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Test if the control mismatch bug persists with slightly different weather and actor starting positions.",
+        "mutation_intent": "Slightly alter initial conditions to see if the bug is sensitive to minor environmental changes, while preserving the core control failure.",
+        "expected_oracle": "collision",
+        "modifications": {
+          "weather_delta": {
+            "rain": 15,
+            "fog": 0,
+            "wetness": 15,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 1.0,
+                "y": -1.0
+              },
+              "speed_delta": 0.5
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": -1.0,
+                "y": 1.0
+              },
+              "speed_delta": -0.5
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Verify actors are on road.",
+          "Verify weather is rainier."
+        ],
+        "post_execution_validation_rules": [
+          "Verify vehicle_cmd is zero before crash.",
+          "Verify vehicle moves before crash.",
+          "Verify collision occurs."
+        ],
+        "uncertainty": [
+          "Root cause of control mismatch is unknown.",
+          "Exact trigger conditions are unclear."
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 15.0,
+          "fog": 0.0,
+          "wetness": 15.0,
+          "puddle": 0.0
+        },
+        "actor_mutations": [
+          {
+            "actor_index": 0,
+            "position_offset": {
+              "x": 1.0,
+              "y": -1.0
+            },
+            "speed_delta": 0.5
+          },
+          {
+            "actor_index": 1,
+            "position_offset": {
+              "x": -1.0,
+              "y": 1.0
+            },
+            "speed_delta": -0.5
+          }
+        ],
+        "puddle_mutations": [],
+        "mission_mutation": {
+          "keep_original": true
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_069__gemini-2.5-pro.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_069__gemini-2.5-pro.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    },
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/gemini-2.5-pro/json/case_069/case_069__cand_002.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/gemini-2.5-pro/metadata/case_069/case_069__cand_002.metadata.json",
+      "case_id": "case_069",
+      "model_name": "gemini-2.5-pro",
+      "candidate_index": 2,
+      "candidate_spec": {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Test if the control mismatch bug occurs with a slightly different mission start and destination.",
+        "mutation_intent": "Change the ego's route to see if the bug is tied to a specific location or if it's a general system failure.",
+        "expected_oracle": "collision",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": false,
+            "spawn_offset": {
+              "x": -2.0,
+              "y": 2.0
+            },
+            "destination_offset": {
+              "x": 2.0,
+              "y": -2.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Verify new mission is valid.",
+          "Verify ego spawns on road."
+        ],
+        "post_execution_validation_rules": [
+          "Verify vehicle_cmd is zero before crash.",
+          "Verify vehicle moves before crash.",
+          "Verify collision occurs."
+        ],
+        "uncertainty": [
+          "Root cause of control mismatch is unknown.",
+          "Uncertain if bug is location-specific."
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 0.0,
+          "fog": 0.0,
+          "wetness": 0.0,
+          "puddle": 0.0
+        },
+        "actor_mutations": [],
+        "puddle_mutations": [],
+        "mission_mutation": {
+          "spawn_offset": {
+            "x": -2.0,
+            "y": 2.0
+          },
+          "destination_offset": {
+            "x": 2.0,
+            "y": -2.0
+          }
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_069__gemini-2.5-pro.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_069__gemini-2.5-pro.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    }
+  ],
+  "seed_artifact_zip": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/gemini-2.5-pro/seed-artifact/seed-artifact-case_069.zip",
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_prompts/case_069__gemini-2.5-pro.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_069__gemini-2.5-pro.json",
+  "prompt_estimated_tokens": 992,
+  "usage": {
+    "prompt_tokens": 1279,
+    "completion_tokens": 2260,
+    "total_tokens": 3539
+  },
+  "raw_response": "```json\n{\n  \"case_id\": \"case_069\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Test if the control mismatch bug persists with slightly different weather and actor starting positions.\",\n      \"mutation_intent\": \"Slightly alter initial conditions to see if the bug is sensitive to minor environmental changes, while preserving the core control failure.\",\n      \"expected_oracle\": \"collision\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 15, \"fog\": 0, \"wetness\": 15, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 1.0, \"y\": -1.0}, \"speed_delta\": 0.5},\n          {\"actor_index\": 1, \"position_offset\": {\"x\": -1.0, \"y\": 1.0}, \"speed_delta\": -0.5}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true}\n      },\n      \"pre_execution_validation_rules\": [\"Verify actors are on road.\", \"Verify weather is rainier.\"],\n      \"post_execution_validation_rules\": [\"Verify vehicle_cmd is zero before crash.\", \"Verify vehicle moves before crash.\", \"Verify collision occurs.\"],\n      \"uncertainty\": [\"Root cause of control mismatch is unknown.\", \"Exact trigger conditions are unclear.\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Test if the control mismatch bug occurs with a slightly different mission start and destination.\",\n      \"mutation_intent\": \"Change the ego's route to see if the bug is tied to a specific location or if it's a general system failure.\",\n      \"expected_oracle\": \"collision\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": false, \"spawn_offset\": {\"x\": -2.0, \"y\": 2.0}, \"destination_offset\": {\"x\": 2.0, \"y\": -2.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Verify new mission is valid.\", \"Verify ego spawns on road.\"],\n      \"post_execution_validation_rules\": [\"Verify vehicle_cmd is zero before crash.\", \"Verify vehicle moves before crash.\", \"Verify collision occurs.\"],\n      \"uncertainty\": [\"Root cause of control mismatch is unknown.\", \"Uncertain if bug is location-specific.\"]\n    }\n  ]\n}\n```",
+  "parsed_response": {
+    "case_id": "case_069",
+    "candidate_specs": [
+      {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Test if the control mismatch bug persists with slightly different weather and actor starting positions.",
+        "mutation_intent": "Slightly alter initial conditions to see if the bug is sensitive to minor environmental changes, while preserving the core control failure.",
+        "expected_oracle": "collision",
+        "modifications": {
+          "weather_delta": {
+            "rain": 15,
+            "fog": 0,
+            "wetness": 15,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 1.0,
+                "y": -1.0
+              },
+              "speed_delta": 0.5
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": -1.0,
+                "y": 1.0
+              },
+              "speed_delta": -0.5
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Verify actors are on road.",
+          "Verify weather is rainier."
+        ],
+        "post_execution_validation_rules": [
+          "Verify vehicle_cmd is zero before crash.",
+          "Verify vehicle moves before crash.",
+          "Verify collision occurs."
+        ],
+        "uncertainty": [
+          "Root cause of control mismatch is unknown.",
+          "Exact trigger conditions are unclear."
+        ]
+      },
+      {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Test if the control mismatch bug occurs with a slightly different mission start and destination.",
+        "mutation_intent": "Change the ego's route to see if the bug is tied to a specific location or if it's a general system failure.",
+        "expected_oracle": "collision",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": false,
+            "spawn_offset": {
+              "x": -2.0,
+              "y": 2.0
+            },
+            "destination_offset": {
+              "x": 2.0,
+              "y": -2.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Verify new mission is valid.",
+          "Verify ego spawns on road."
+        ],
+        "post_execution_validation_rules": [
+          "Verify vehicle_cmd is zero before crash.",
+          "Verify vehicle moves before crash.",
+          "Verify collision occurs."
+        ],
+        "uncertainty": [
+          "Root cause of control mismatch is unknown.",
+          "Uncertain if bug is location-specific."
+        ]
+      }
+    ]
+  },
+  "raw_api_payload": {
+    "id": "<REDACTED_RESPONSE_ID>",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "```json\n{\n  \"case_id\": \"case_069\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Test if the control mismatch bug persists with slightly different weather and actor starting positions.\",\n      \"mutation_intent\": \"Slightly alter initial conditions to see if the bug is sensitive to minor environmental changes, while preserving the core control failure.\",\n      \"expected_oracle\": \"collision\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 15, \"fog\": 0, \"wetness\": 15, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 1.0, \"y\": -1.0}, \"speed_delta\": 0.5},\n          {\"actor_index\": 1, \"position_offset\": {\"x\": -1.0, \"y\": 1.0}, \"speed_delta\": -0.5}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true}\n      },\n      \"pre_execution_validation_rules\": [\"Verify actors are on road.\", \"Verify weather is rainier.\"],\n      \"post_execution_validation_rules\": [\"Verify vehicle_cmd is zero before crash.\", \"Verify vehicle moves before crash.\", \"Verify collision occurs.\"],\n      \"uncertainty\": [\"Root cause of control mismatch is unknown.\", \"Exact trigger conditions are unclear.\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Test if the control mismatch bug occurs with a slightly different mission start and destination.\",\n      \"mutation_intent\": \"Change the ego's route to see if the bug is tied to a specific location or if it's a general system failure.\",\n      \"expected_oracle\": \"collision\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": false, \"spawn_offset\": {\"x\": -2.0, \"y\": 2.0}, \"destination_offset\": {\"x\": 2.0, \"y\": -2.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Verify new mission is valid.\", \"Verify ego spawns on road.\"],\n      \"post_execution_validation_rules\": [\"Verify vehicle_cmd is zero before crash.\", \"Verify vehicle moves before crash.\", \"Verify collision occurs.\"],\n      \"uncertainty\": [\"Root cause of control mismatch is unknown.\", \"Uncertain if bug is location-specific.\"]\n    }\n  ]\n}\n```",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "gemini-2.5-pro",
+    "object": "chat.completion",
+    "service_tier": null,
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 2260,
+      "prompt_tokens": 1279,
+      "total_tokens": 3539,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": 0,
+        "reasoning_tokens": 1602,
+        "rejected_prediction_tokens": null,
+        "text_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 0,
+        "text_tokens": 1279,
+        "image_tokens": 0
+      },
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "input_tokens_details": null,
+      "claude_cache_creation_5_m_tokens": 0,
+      "claude_cache_creation_1_h_tokens": 0
+    }
+  },
+  "error_message": "",
+  "elapsed_sec": 21.932,
+  "timestamp": "<REDACTED_TIMESTAMP>"
+}

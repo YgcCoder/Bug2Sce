@@ -1,0 +1,132 @@
+{
+  "case_id": "case_156",
+  "workflow": "phase1_causal_explanation",
+  "model_name": "gpt-5.1",
+  "model_id": "gpt-5.1",
+  "status": "completed",
+  "dry_run": false,
+  "schema_valid": true,
+  "schema_errors": [],
+  "quality_flags": [],
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_prompts/case_156__gpt-5.1.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_156__gpt-5.1.json",
+  "prompt_estimated_tokens": 2663,
+  "usage": {
+    "prompt_tokens": 2829,
+    "completion_tokens": 1099,
+    "total_tokens": 3928
+  },
+  "estimated_cost_usd": null,
+  "raw_response": "{\n  \"case_id\": \"case_156\",\n  \"fault_layer\": \"unknown\",\n  \"fault_component\": \"unknown\",\n  \"causal_explanation\": \"The oracle reports a stuck outcome over ~237 seconds. Throughout the run the ego remains essentially stationary, with odometry and current_pose showing only centimeter-level displacement. In the final 60 seconds, ego velocity is zero and both vehicle_cmd and vehicle_status controls (throttle, brake, steer) stay at zero while planning continues to publish a full set of final_waypoints. This indicates that the system reaches a state where it has a valid route but no longitudinal or steering commands are issued to move the vehicle, though the evidence does not show why upstream modules choose (or are forced) to keep target speed and actuator commands at zero.\",\n  \"root_cause_pattern\": \"Conservative preservation pattern: ego starts from rest, receives continuous final_waypoints and perception/prediction/object topics, but remains effectively stationary for an extended duration while vehicle_cmd target speed and actuator-related commands stay at zero.\",\n  \"preservation_constraints\": [\n    \"The oracle should report a stuck outcome (no collision, no lane invasion, no red-light violation).\",\n    \"Ego odometry and pose should show only negligible displacement over the full scenario duration, especially in the final window.\",\n    \"Planning/final_waypoints should remain available with a stable, non-empty set of waypoints during the stuck period.\",\n    \"vehicle_cmd should be present with target_speed and accel/brake/steer commands effectively zero in the critical stuck window.\",\n    \"Sensing (image_raw and points_raw) and basic perception/prediction topics should remain available during the stuck period.\"\n  ],\n  \"modifiable_factors\": [\n    \"actor_position\",\n    \"weather\",\n    \"puddles\",\n    \"mission\",\n    \"traffic_light_states\",\n    \"background_traffic_density\"\n  ],\n  \"non_modifiable_conditions\": [\n    \"Same oracle symptom: the ego is classified as stuck without collision or red-light violation.\",\n    \"Ego remains near its start position with near-zero velocity throughout most of the scenario.\",\n    \"Planning continues to publish valid, populated final_waypoints in the critical window.\",\n    \"vehicle_cmd exists and maintains near-zero target speed and actuator commands in the critical window.\",\n    \"Core sensing and basic perception/prediction topics remain available while the stuck behavior is observed.\"\n  ],\n  \"uncertainty\": [\n    \"The evidence does not reveal why target_speed and actuator commands remain zero (e.g., whether due to planning, safety logic, or controller constraints).\",\n    \"No direct internal state or cost-function information is available from planning or control modules.\",\n    \"The relation between nearby actors, traffic lights, or map features and the decision to keep the ego stopped is not observable from the provided summaries.\"\n  ],\n  \"evidence_support\": [\n    {\n      \"evidence_id\": \"critical_window_summary.stuck_window\",\n      \"claim\": \"Oracle marks the case as stuck for ~237 seconds; in the last 60 seconds ego velocity stats are all zero and commanded throttle, brake, and steer are zero.\"\n    },\n    {\n      \"evidence_id\": \"critical_window_summary.stuck_window.final_waypoints_present\",\n      \"claim\": \"Final_waypoints are present with a constant count of 101 waypoints during the last 60 seconds, indicating a stable planned path.\"\n    },\n    {\n      \"evidence_id\": \"trace_summary_compact.oracle.odometry\",\n      \"claim\": \"Start and end odometry positions are nearly identical, showing the ego remains essentially at its start location for the entire scenario.\"\n    },\n    {\n      \"evidence_id\": \"trace_summary_compact.actuation.vehicle_cmd\",\n      \"claim\": \"Vehicle_cmd exists through to the end timestamp, with accel_cmd, brake_cmd, steer_cmd, and target_speed ranges all zero over sampled rows.\"\n    },\n    {\n      \"evidence_id\": \"trace_summary_compact.sensing.image_raw_and_points_raw\",\n      \"claim\": \"Camera and lidar topics exist and publish from early in the scenario through the end, so sensing data is available while the ego is stuck.\"\n    },\n    {\n      \"evidence_id\": \"trace_summary_compact.perception.detection_and_prediction_objects\",\n      \"claim\": \"Perception and prediction object topics are present across the run, suggesting upstream environment understanding outputs are available during the stuck state.\"\n    }\n  ],\n  \"confidence\": \"medium\",\n  \"ready_for_phase2_generation\": \"yes\",\n  \"notes_for_validator\": [\n    \"Post-execution, confirm that the oracle again flags the scenario as stuck with no collision, lane invasion, or red-light violation.\",\n    \"Verify via odometry and current_pose that the ego remains within a very small radius of its start position and that velocity stays near zero in the critical window.\",\n    \"Check that final_waypoints remain continuously available with a non-zero, stable count during the period when the ego is stuck.\",\n    \"Check that vehicle_cmd is present and that target_speed and actuator commands (accel, brake, steer) remain effectively zero during the stuck interval.\",\n    \"Do not assign module-level blame in validation; only confirm that the same high-level pattern (planned route plus persistent zero commands and no movement) is reproduced.\"\n  ]\n}",
+  "parsed_response": {
+    "case_id": "case_156",
+    "fault_layer": "unknown",
+    "fault_component": "unknown",
+    "causal_explanation": "The oracle reports a stuck outcome over ~237 seconds. Throughout the run the ego remains essentially stationary, with odometry and current_pose showing only centimeter-level displacement. In the final 60 seconds, ego velocity is zero and both vehicle_cmd and vehicle_status controls (throttle, brake, steer) stay at zero while planning continues to publish a full set of final_waypoints. This indicates that the system reaches a state where it has a valid route but no longitudinal or steering commands are issued to move the vehicle, though the evidence does not show why upstream modules choose (or are forced) to keep target speed and actuator commands at zero.",
+    "root_cause_pattern": "Conservative preservation pattern: ego starts from rest, receives continuous final_waypoints and perception/prediction/object topics, but remains effectively stationary for an extended duration while vehicle_cmd target speed and actuator-related commands stay at zero.",
+    "preservation_constraints": [
+      "The oracle should report a stuck outcome (no collision, no lane invasion, no red-light violation).",
+      "Ego odometry and pose should show only negligible displacement over the full scenario duration, especially in the final window.",
+      "Planning/final_waypoints should remain available with a stable, non-empty set of waypoints during the stuck period.",
+      "vehicle_cmd should be present with target_speed and accel/brake/steer commands effectively zero in the critical stuck window.",
+      "Sensing (image_raw and points_raw) and basic perception/prediction topics should remain available during the stuck period."
+    ],
+    "modifiable_factors": [
+      "actor_position",
+      "weather",
+      "puddles",
+      "mission",
+      "traffic_light_states",
+      "background_traffic_density"
+    ],
+    "non_modifiable_conditions": [
+      "Same oracle symptom: the ego is classified as stuck without collision or red-light violation.",
+      "Ego remains near its start position with near-zero velocity throughout most of the scenario.",
+      "Planning continues to publish valid, populated final_waypoints in the critical window.",
+      "vehicle_cmd exists and maintains near-zero target speed and actuator commands in the critical window.",
+      "Core sensing and basic perception/prediction topics remain available while the stuck behavior is observed."
+    ],
+    "uncertainty": [
+      "The evidence does not reveal why target_speed and actuator commands remain zero (e.g., whether due to planning, safety logic, or controller constraints).",
+      "No direct internal state or cost-function information is available from planning or control modules.",
+      "The relation between nearby actors, traffic lights, or map features and the decision to keep the ego stopped is not observable from the provided summaries."
+    ],
+    "evidence_support": [
+      {
+        "evidence_id": "critical_window_summary.stuck_window",
+        "claim": "Oracle marks the case as stuck for ~237 seconds; in the last 60 seconds ego velocity stats are all zero and commanded throttle, brake, and steer are zero."
+      },
+      {
+        "evidence_id": "critical_window_summary.stuck_window.final_waypoints_present",
+        "claim": "Final_waypoints are present with a constant count of 101 waypoints during the last 60 seconds, indicating a stable planned path."
+      },
+      {
+        "evidence_id": "trace_summary_compact.oracle.odometry",
+        "claim": "Start and end odometry positions are nearly identical, showing the ego remains essentially at its start location for the entire scenario."
+      },
+      {
+        "evidence_id": "trace_summary_compact.actuation.vehicle_cmd",
+        "claim": "Vehicle_cmd exists through to the end timestamp, with accel_cmd, brake_cmd, steer_cmd, and target_speed ranges all zero over sampled rows."
+      },
+      {
+        "evidence_id": "trace_summary_compact.sensing.image_raw_and_points_raw",
+        "claim": "Camera and lidar topics exist and publish from early in the scenario through the end, so sensing data is available while the ego is stuck."
+      },
+      {
+        "evidence_id": "trace_summary_compact.perception.detection_and_prediction_objects",
+        "claim": "Perception and prediction object topics are present across the run, suggesting upstream environment understanding outputs are available during the stuck state."
+      }
+    ],
+    "confidence": "medium",
+    "ready_for_phase2_generation": "yes",
+    "notes_for_validator": [
+      "Post-execution, confirm that the oracle again flags the scenario as stuck with no collision, lane invasion, or red-light violation.",
+      "Verify via odometry and current_pose that the ego remains within a very small radius of its start position and that velocity stays near zero in the critical window.",
+      "Check that final_waypoints remain continuously available with a non-zero, stable count during the period when the ego is stuck.",
+      "Check that vehicle_cmd is present and that target_speed and actuator commands (accel, brake, steer) remain effectively zero during the stuck interval.",
+      "Do not assign module-level blame in validation; only confirm that the same high-level pattern (planned route plus persistent zero commands and no movement) is reproduced."
+    ]
+  },
+  "raw_api_payload": {
+    "id": "<REDACTED_RESPONSE_ID>",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "{\n  \"case_id\": \"case_156\",\n  \"fault_layer\": \"unknown\",\n  \"fault_component\": \"unknown\",\n  \"causal_explanation\": \"The oracle reports a stuck outcome over ~237 seconds. Throughout the run the ego remains essentially stationary, with odometry and current_pose showing only centimeter-level displacement. In the final 60 seconds, ego velocity is zero and both vehicle_cmd and vehicle_status controls (throttle, brake, steer) stay at zero while planning continues to publish a full set of final_waypoints. This indicates that the system reaches a state where it has a valid route but no longitudinal or steering commands are issued to move the vehicle, though the evidence does not show why upstream modules choose (or are forced) to keep target speed and actuator commands at zero.\",\n  \"root_cause_pattern\": \"Conservative preservation pattern: ego starts from rest, receives continuous final_waypoints and perception/prediction/object topics, but remains effectively stationary for an extended duration while vehicle_cmd target speed and actuator-related commands stay at zero.\",\n  \"preservation_constraints\": [\n    \"The oracle should report a stuck outcome (no collision, no lane invasion, no red-light violation).\",\n    \"Ego odometry and pose should show only negligible displacement over the full scenario duration, especially in the final window.\",\n    \"Planning/final_waypoints should remain available with a stable, non-empty set of waypoints during the stuck period.\",\n    \"vehicle_cmd should be present with target_speed and accel/brake/steer commands effectively zero in the critical stuck window.\",\n    \"Sensing (image_raw and points_raw) and basic perception/prediction topics should remain available during the stuck period.\"\n  ],\n  \"modifiable_factors\": [\n    \"actor_position\",\n    \"weather\",\n    \"puddles\",\n    \"mission\",\n    \"traffic_light_states\",\n    \"background_traffic_density\"\n  ],\n  \"non_modifiable_conditions\": [\n    \"Same oracle symptom: the ego is classified as stuck without collision or red-light violation.\",\n    \"Ego remains near its start position with near-zero velocity throughout most of the scenario.\",\n    \"Planning continues to publish valid, populated final_waypoints in the critical window.\",\n    \"vehicle_cmd exists and maintains near-zero target speed and actuator commands in the critical window.\",\n    \"Core sensing and basic perception/prediction topics remain available while the stuck behavior is observed.\"\n  ],\n  \"uncertainty\": [\n    \"The evidence does not reveal why target_speed and actuator commands remain zero (e.g., whether due to planning, safety logic, or controller constraints).\",\n    \"No direct internal state or cost-function information is available from planning or control modules.\",\n    \"The relation between nearby actors, traffic lights, or map features and the decision to keep the ego stopped is not observable from the provided summaries.\"\n  ],\n  \"evidence_support\": [\n    {\n      \"evidence_id\": \"critical_window_summary.stuck_window\",\n      \"claim\": \"Oracle marks the case as stuck for ~237 seconds; in the last 60 seconds ego velocity stats are all zero and commanded throttle, brake, and steer are zero.\"\n    },\n    {\n      \"evidence_id\": \"critical_window_summary.stuck_window.final_waypoints_present\",\n      \"claim\": \"Final_waypoints are present with a constant count of 101 waypoints during the last 60 seconds, indicating a stable planned path.\"\n    },\n    {\n      \"evidence_id\": \"trace_summary_compact.oracle.odometry\",\n      \"claim\": \"Start and end odometry positions are nearly identical, showing the ego remains essentially at its start location for the entire scenario.\"\n    },\n    {\n      \"evidence_id\": \"trace_summary_compact.actuation.vehicle_cmd\",\n      \"claim\": \"Vehicle_cmd exists through to the end timestamp, with accel_cmd, brake_cmd, steer_cmd, and target_speed ranges all zero over sampled rows.\"\n    },\n    {\n      \"evidence_id\": \"trace_summary_compact.sensing.image_raw_and_points_raw\",\n      \"claim\": \"Camera and lidar topics exist and publish from early in the scenario through the end, so sensing data is available while the ego is stuck.\"\n    },\n    {\n      \"evidence_id\": \"trace_summary_compact.perception.detection_and_prediction_objects\",\n      \"claim\": \"Perception and prediction object topics are present across the run, suggesting upstream environment understanding outputs are available during the stuck state.\"\n    }\n  ],\n  \"confidence\": \"medium\",\n  \"ready_for_phase2_generation\": \"yes\",\n  \"notes_for_validator\": [\n    \"Post-execution, confirm that the oracle again flags the scenario as stuck with no collision, lane invasion, or red-light violation.\",\n    \"Verify via odometry and current_pose that the ego remains within a very small radius of its start position and that velocity stays near zero in the critical window.\",\n    \"Check that final_waypoints remain continuously available with a non-zero, stable count during the period when the ego is stuck.\",\n    \"Check that vehicle_cmd is present and that target_speed and actuator commands (accel, brake, steer) remain effectively zero during the stuck interval.\",\n    \"Do not assign module-level blame in validation; only confirm that the same high-level pattern (planned route plus persistent zero commands and no movement) is reproduced.\"\n  ]\n}",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": [],
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "gpt-5.1-2025-11-13",
+    "object": "chat.completion",
+    "service_tier": "default",
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 1099,
+      "prompt_tokens": 2829,
+      "total_tokens": 3928,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": 0,
+        "audio_tokens": 0,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 0
+      }
+    }
+  },
+  "error_message": "",
+  "timestamp": "<REDACTED_TIMESTAMP>",
+  "elapsed_sec": 14.188
+}

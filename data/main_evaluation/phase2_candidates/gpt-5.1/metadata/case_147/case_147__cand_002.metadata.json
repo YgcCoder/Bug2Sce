@@ -1,0 +1,115 @@
+{
+  "case_id": "case_147",
+  "model_name": "gpt-5.1",
+  "candidate_index": 2,
+  "candidate_spec": {
+    "candidate_id": "cand_002",
+    "high_level_variant": "Slightly alter ego mission alignment and move both walkers to flank the ego path symmetrically, keeping close proximity and similar timing to induce a collision under nearly unchanged environmental conditions and the same ambiguous zero-command pattern.",
+    "mutation_intent": "Create a variant where multiple nearby actors are present on both sides of the ego’s nominal lane, still triggering perception/prediction and leaving planning waypoints unblocked, while maintaining the condition that high-level vehicle_cmd remains near zero despite a collision, preserving the ambiguous controller responsibility.",
+    "expected_oracle": "collision",
+    "modifications": {
+      "weather_delta": {
+        "rain": 0,
+        "fog": -5,
+        "wetness": 0,
+        "puddle": 0
+      },
+      "actor_mutations": [
+        {
+          "actor_index": 0,
+          "position_offset": {
+            "x": -2.0,
+            "y": -0.5
+          },
+          "speed_delta": -0.3
+        },
+        {
+          "actor_index": 1,
+          "position_offset": {
+            "x": 2.0,
+            "y": -0.5
+          },
+          "speed_delta": 0.2
+        }
+      ],
+      "puddle_mutations": [],
+      "mission_mutation": {
+        "keep_original": false,
+        "spawn_offset": {
+          "x": 1.0,
+          "y": -1.5
+        },
+        "destination_offset": {
+          "x": 1.0,
+          "y": -1.5
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "After applying mission offsets, confirm the ego’s initial heading still follows a drivable lane in Town01 without immediate collisions at spawn.",
+      "Validate that both walkers (actor_index 0 and 1) spawn on or near drivable or sidewalk surfaces, not inside buildings or off-map.",
+      "Ensure that within the first 15 s, at least one walker comes within 5 m of the ego’s predicted path corridor according to the route planner.",
+      "Confirm perception and prediction pipelines are active and expected to detect pedestrians in the ego’s forward field of view.",
+      "Check that planning final_waypoints are generated continuously from scenario start and are not blocked by map configuration changes from the spawn/destination offsets."
+    ],
+    "post_execution_validation_rules": [
+      "Verify that the collision oracle flags at least one collision event within 0–60 s of simulation start.",
+      "In the 3 s preceding the first collision, confirm that at least one walker is within 5 m of the ego based on simulator objects or closest-object metrics, and that this actor is represented in perception/prediction outputs.",
+      "Check that perception object lists and prediction outputs include at least one pedestrian object with reasonable position estimates in the pre-collision window.",
+      "Ensure planning final_waypoints are present and not marked as blocked in the 2 s before the collision; the waypoint list size should remain approximately constant (no drastic replan anomalies).",
+      "Inspect vehicle_cmd logs to ensure target speed, accel, brake, and steering commands remain at or near zero during the 2 s window prior to collision, mirroring the seed’s high-level zero-command pattern.",
+      "Compare vehicle_status (throttle, velocity) and/or collision-window summaries against vehicle_cmd to identify any nonzero motion or throttle, or at least a collision event, despite near-zero commands, maintaining the core command–status inconsistency.",
+      "If ego appears nearly stationary by odometry but a collision is still reported, treat this as acceptable ambiguity consistent with the original case, as long as perception/prediction and nearby-actor conditions are satisfied."
+    ],
+    "uncertainty": [
+      "Small mission spawn and destination offsets may slightly alter which actor is closest at collision time, leading to different exact relative positions than in the seed scenario.",
+      "Reduced fog may change perception confidence or range; the scenario still counts as same-root-cause if at least one object is detected and the collision plus command–status mismatch is preserved.",
+      "It is uncertain whether both walkers will be simultaneously influential in the collision; the core requirement is that at least one is involved or nearby, not that both contribute equally."
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": 0.0,
+      "fog": -5.0,
+      "wetness": 0.0,
+      "puddle": 0.0
+    },
+    "actor_mutations": [
+      {
+        "actor_index": 0,
+        "position_offset": {
+          "x": -2.0,
+          "y": -0.5
+        },
+        "speed_delta": -0.3
+      },
+      {
+        "actor_index": 1,
+        "position_offset": {
+          "x": 2.0,
+          "y": -0.5
+        },
+        "speed_delta": 0.2
+      }
+    ],
+    "puddle_mutations": [],
+    "mission_mutation": {
+      "spawn_offset": {
+        "x": 1.0,
+        "y": -1.5
+      },
+      "destination_offset": {
+        "x": 1.0,
+        "y": -1.5
+      }
+    }
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_147__gpt-5.1.json",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_147__gpt-5.1.json",
+  "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+}

@@ -1,0 +1,367 @@
+{
+  "case_id": "case_004",
+  "model_name": "gemini-2.5-pro",
+  "workflow": "phase2_grounded_generation",
+  "status": "completed",
+  "schema_valid": true,
+  "schema_errors": [],
+  "phase1_ready": "uncertain",
+  "num_candidates_requested": 2,
+  "num_candidates_written": 2,
+  "num_pre_valid": 2,
+  "candidate_records": [
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/gemini-2.5-pro/json/case_004/case_004__cand_001.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/gemini-2.5-pro/metadata/case_004/case_004__cand_001.metadata.json",
+      "case_id": "case_004",
+      "model_name": "gemini-2.5-pro",
+      "candidate_index": 1,
+      "candidate_spec": {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Replicate the stuck state with minor environmental perturbations.",
+        "mutation_intent": "Confirm the baseline failure where the planner freezes when a red light is on its route, but with slightly different weather and position.",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": 10,
+            "fog": 0,
+            "wetness": 10,
+            "puddle": 0
+          },
+          "actor_mutations": [],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": 0.05,
+              "size_scale": 1.05
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": false,
+            "spawn_offset": {
+              "x": 1.0,
+              "y": -1.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Ego starts near an intersection with a red light on its path."
+        ],
+        "post_execution_validation_rules": [
+          "Ego remains stationary (stuck).",
+          "Oracle reports a red light violation."
+        ],
+        "uncertainty": [
+          "Unclear if planner freeze is due to red light or other factors.",
+          "Oracle may report red light violation for a stuck ego."
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 10.0,
+          "fog": 0.0,
+          "wetness": 10.0,
+          "puddle": 0.0
+        },
+        "actor_mutations": [],
+        "puddle_mutations": [
+          {
+            "puddle_index": 0,
+            "location_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "level_delta": 0.05,
+            "size_scale": 1.05
+          }
+        ],
+        "mission_mutation": {
+          "spawn_offset": {
+            "x": 1.0,
+            "y": -1.0
+          },
+          "destination_offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": [
+          "no actors in candidate scenario"
+        ]
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_004__gemini-2.5-pro.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_004__gemini-2.5-pro.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    },
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/gemini-2.5-pro/json/case_004/case_004__cand_002.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/gemini-2.5-pro/metadata/case_004/case_004__cand_002.metadata.json",
+      "case_id": "case_004",
+      "model_name": "gemini-2.5-pro",
+      "candidate_index": 2,
+      "candidate_spec": {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Isolate the red light trigger by removing adverse weather conditions.",
+        "mutation_intent": "Test if the planner freeze is specifically tied to the red light by removing potential perception confounders like rain and fog.",
+        "expected_oracle": "red_light",
+        "modifications": {
+          "weather_delta": {
+            "rain": -7,
+            "fog": -19,
+            "wetness": -29,
+            "puddle": -9
+          },
+          "actor_mutations": [],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": -0.09,
+              "size_scale": 1.0
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": false,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": -2.0,
+              "y": 2.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Ego's planned route passes through a red light.",
+          "Weather is clear."
+        ],
+        "post_execution_validation_rules": [
+          "Planner commands zero velocity.",
+          "Oracle reports a red light violation."
+        ],
+        "uncertainty": [
+          "Root cause of planner's failure to see stop line is unknown.",
+          "Dataset label conflict (Lane Invasion) remains unresolved."
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": -7.0,
+          "fog": -19.0,
+          "wetness": -20,
+          "puddle": -9.0
+        },
+        "actor_mutations": [],
+        "puddle_mutations": [
+          {
+            "puddle_index": 0,
+            "location_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "level_delta": -0.09,
+            "size_scale": 1.0
+          }
+        ],
+        "mission_mutation": {
+          "spawn_offset": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "destination_offset": {
+            "x": -2.0,
+            "y": 2.0
+          }
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": [
+          "no actors in candidate scenario"
+        ]
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_004__gemini-2.5-pro.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_004__gemini-2.5-pro.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    }
+  ],
+  "seed_artifact_zip": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/gemini-2.5-pro/seed-artifact/seed-artifact-case_004.zip",
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_prompts/case_004__gemini-2.5-pro.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_004__gemini-2.5-pro.json",
+  "prompt_estimated_tokens": 933,
+  "usage": {
+    "prompt_tokens": 1219,
+    "completion_tokens": 3146,
+    "total_tokens": 4365
+  },
+  "raw_response": "```json\n{\n  \"case_id\": \"case_004\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Replicate the stuck state with minor environmental perturbations.\",\n      \"mutation_intent\": \"Confirm the baseline failure where the planner freezes when a red light is on its route, but with slightly different weather and position.\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 10, \"fog\": 0, \"wetness\": 10, \"puddle\": 0},\n        \"actor_mutations\": [],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": 0.05, \"size_scale\": 1.05}\n        ],\n        \"mission_mutation\": {\"keep_original\": false, \"spawn_offset\": {\"x\": 1.0, \"y\": -1.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Ego starts near an intersection with a red light on its path.\"],\n      \"post_execution_validation_rules\": [\"Ego remains stationary (stuck).\", \"Oracle reports a red light violation.\"],\n      \"uncertainty\": [\"Unclear if planner freeze is due to red light or other factors.\", \"Oracle may report red light violation for a stuck ego.\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Isolate the red light trigger by removing adverse weather conditions.\",\n      \"mutation_intent\": \"Test if the planner freeze is specifically tied to the red light by removing potential perception confounders like rain and fog.\",\n      \"expected_oracle\": \"red_light\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": -7, \"fog\": -19, \"wetness\": -29, \"puddle\": -9},\n        \"actor_mutations\": [],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": -0.09, \"size_scale\": 1.0}\n        ],\n        \"mission_mutation\": {\"keep_original\": false, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": -2.0, \"y\": 2.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Ego's planned route passes through a red light.\", \"Weather is clear.\"],\n      \"post_execution_validation_rules\": [\"Planner commands zero velocity.\", \"Oracle reports a red light violation.\"],\n      \"uncertainty\": [\"Root cause of planner's failure to see stop line is unknown.\", \"Dataset label conflict (Lane Invasion) remains unresolved.\"]\n    }\n  ]\n}\n```",
+  "parsed_response": {
+    "case_id": "case_004",
+    "candidate_specs": [
+      {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Replicate the stuck state with minor environmental perturbations.",
+        "mutation_intent": "Confirm the baseline failure where the planner freezes when a red light is on its route, but with slightly different weather and position.",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": 10,
+            "fog": 0,
+            "wetness": 10,
+            "puddle": 0
+          },
+          "actor_mutations": [],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": 0.05,
+              "size_scale": 1.05
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": false,
+            "spawn_offset": {
+              "x": 1.0,
+              "y": -1.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Ego starts near an intersection with a red light on its path."
+        ],
+        "post_execution_validation_rules": [
+          "Ego remains stationary (stuck).",
+          "Oracle reports a red light violation."
+        ],
+        "uncertainty": [
+          "Unclear if planner freeze is due to red light or other factors.",
+          "Oracle may report red light violation for a stuck ego."
+        ]
+      },
+      {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Isolate the red light trigger by removing adverse weather conditions.",
+        "mutation_intent": "Test if the planner freeze is specifically tied to the red light by removing potential perception confounders like rain and fog.",
+        "expected_oracle": "red_light",
+        "modifications": {
+          "weather_delta": {
+            "rain": -7,
+            "fog": -19,
+            "wetness": -29,
+            "puddle": -9
+          },
+          "actor_mutations": [],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": -0.09,
+              "size_scale": 1.0
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": false,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": -2.0,
+              "y": 2.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Ego's planned route passes through a red light.",
+          "Weather is clear."
+        ],
+        "post_execution_validation_rules": [
+          "Planner commands zero velocity.",
+          "Oracle reports a red light violation."
+        ],
+        "uncertainty": [
+          "Root cause of planner's failure to see stop line is unknown.",
+          "Dataset label conflict (Lane Invasion) remains unresolved."
+        ]
+      }
+    ]
+  },
+  "raw_api_payload": {
+    "id": "<REDACTED_RESPONSE_ID>",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "```json\n{\n  \"case_id\": \"case_004\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Replicate the stuck state with minor environmental perturbations.\",\n      \"mutation_intent\": \"Confirm the baseline failure where the planner freezes when a red light is on its route, but with slightly different weather and position.\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 10, \"fog\": 0, \"wetness\": 10, \"puddle\": 0},\n        \"actor_mutations\": [],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": 0.05, \"size_scale\": 1.05}\n        ],\n        \"mission_mutation\": {\"keep_original\": false, \"spawn_offset\": {\"x\": 1.0, \"y\": -1.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Ego starts near an intersection with a red light on its path.\"],\n      \"post_execution_validation_rules\": [\"Ego remains stationary (stuck).\", \"Oracle reports a red light violation.\"],\n      \"uncertainty\": [\"Unclear if planner freeze is due to red light or other factors.\", \"Oracle may report red light violation for a stuck ego.\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Isolate the red light trigger by removing adverse weather conditions.\",\n      \"mutation_intent\": \"Test if the planner freeze is specifically tied to the red light by removing potential perception confounders like rain and fog.\",\n      \"expected_oracle\": \"red_light\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": -7, \"fog\": -19, \"wetness\": -29, \"puddle\": -9},\n        \"actor_mutations\": [],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": -0.09, \"size_scale\": 1.0}\n        ],\n        \"mission_mutation\": {\"keep_original\": false, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": -2.0, \"y\": 2.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Ego's planned route passes through a red light.\", \"Weather is clear.\"],\n      \"post_execution_validation_rules\": [\"Planner commands zero velocity.\", \"Oracle reports a red light violation.\"],\n      \"uncertainty\": [\"Root cause of planner's failure to see stop line is unknown.\", \"Dataset label conflict (Lane Invasion) remains unresolved.\"]\n    }\n  ]\n}\n```",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "gemini-2.5-pro",
+    "object": "chat.completion",
+    "service_tier": null,
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 3146,
+      "prompt_tokens": 1219,
+      "total_tokens": 4365,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": 0,
+        "reasoning_tokens": 2418,
+        "rejected_prediction_tokens": null,
+        "text_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 0,
+        "text_tokens": 1219,
+        "image_tokens": 0
+      },
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "input_tokens_details": null,
+      "claude_cache_creation_5_m_tokens": 0,
+      "claude_cache_creation_1_h_tokens": 0
+    }
+  },
+  "error_message": "",
+  "elapsed_sec": 32.383,
+  "timestamp": "<REDACTED_TIMESTAMP>"
+}

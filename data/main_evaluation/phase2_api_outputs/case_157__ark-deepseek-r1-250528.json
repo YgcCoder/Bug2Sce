@@ -1,0 +1,342 @@
+{
+  "case_id": "case_157",
+  "model_name": "ark-deepseek-r1-250528",
+  "workflow": "phase2_grounded_generation",
+  "status": "completed",
+  "schema_valid": true,
+  "schema_errors": [],
+  "phase1_ready": "yes",
+  "num_candidates_requested": 2,
+  "num_candidates_written": 2,
+  "num_pre_valid": 2,
+  "candidate_records": [
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-deepseek-r1-250528/json/case_157/case_157__cand_001.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-deepseek-r1-250528/metadata/case_157/case_157__cand_001.metadata.json",
+      "case_id": "case_157",
+      "model_name": "ark-deepseek-r1-250528",
+      "candidate_index": 1,
+      "candidate_spec": {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Colliding approaching vehicle is spawned 2 meters closer to ego's planned route, with a slight speed increase to ensure intersection collision",
+        "mutation_intent": "Preserves all Phase 1 root cause constraints: retains collision outcome, requires zero pre-collision control commands, non-zero ego speed with no braking, and planning reports no blocked waypoints before collision",
+        "expected_oracle": "collision",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 2,
+              "position_offset": {
+                "x": -2.0,
+                "y": 0.0
+              },
+              "speed_delta": 0.8
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Confirm colliding actor is positioned on ego's planned route before collision",
+          "Confirm pre-collision critical window zero control command requirement can be enforced"
+        ],
+        "post_execution_validation_rules": [
+          "Confirm collision between ego and colliding actor occurred",
+          "Confirm pre-collision ego maintains non-zero speed with no braking",
+          "Confirm planning reported no blocked waypoints immediately before collision"
+        ],
+        "uncertainty": [
+          "Module-level fault attribution remains unconfirmed per Phase 1 rules",
+          "Cannot confirm actuation vs perception vs planning failure without post-execution critical window evidence"
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 0.0,
+          "fog": 0.0,
+          "wetness": 0.0,
+          "puddle": 0.0
+        },
+        "actor_mutations": [
+          {
+            "actor_index": 2,
+            "position_offset": {
+              "x": -2.0,
+              "y": 0.0
+            },
+            "speed_delta": 0.8
+          }
+        ],
+        "puddle_mutations": [],
+        "mission_mutation": {
+          "keep_original": true
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_157__ark-deepseek-r1-250528.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_157__ark-deepseek-r1-250528.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    },
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-deepseek-r1-250528/json/case_157/case_157__cand_002.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-deepseek-r1-250528/metadata/case_157/case_157__cand_002.metadata.json",
+      "case_id": "case_157",
+      "model_name": "ark-deepseek-r1-250528",
+      "candidate_index": 2,
+      "candidate_spec": {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Oncoming crossing walker is adjusted to enter ego's planned path, becoming the colliding actor with slight position and speed adjustment",
+        "mutation_intent": "Preserves all core Phase 1 failure constraints while varying colliding actor type, retains the zero control command, non-zero ego speed, no blocked planning waypoints, and collision outcome requirements",
+        "expected_oracle": "collision",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 0.0,
+                "y": 2.5
+              },
+              "speed_delta": 1.2
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Confirm walker is positioned to enter ego's path during pre-collision critical window",
+          "Confirm pre-collision zero control command requirement can be enforced"
+        ],
+        "post_execution_validation_rules": [
+          "Confirm collision between ego and walker occurred",
+          "Confirm pre-collision ego maintains non-zero speed with no braking",
+          "Confirm planning reported no blocked waypoints immediately before collision"
+        ],
+        "uncertainty": [
+          "Module-level fault attribution remains unconfirmed per Phase 1 rules",
+          "Mismatch between zero control commands and moving ego still cannot confirm specific module fault"
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 0.0,
+          "fog": 0.0,
+          "wetness": 0.0,
+          "puddle": 0.0
+        },
+        "actor_mutations": [
+          {
+            "actor_index": 0,
+            "position_offset": {
+              "x": 0.0,
+              "y": 2.5
+            },
+            "speed_delta": 1.2
+          }
+        ],
+        "puddle_mutations": [],
+        "mission_mutation": {
+          "keep_original": true
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_157__ark-deepseek-r1-250528.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_157__ark-deepseek-r1-250528.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    }
+  ],
+  "seed_artifact_zip": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-deepseek-r1-250528/seed-artifact/seed-artifact-case_157.zip",
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_prompts/case_157__ark-deepseek-r1-250528.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_157__ark-deepseek-r1-250528.json",
+  "prompt_estimated_tokens": 1173,
+  "usage": {
+    "prompt_tokens": 1523,
+    "completion_tokens": 2268,
+    "total_tokens": 3791
+  },
+  "raw_response": "{\n  \"case_id\": \"case_157\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Colliding approaching vehicle is spawned 2 meters closer to ego's planned route, with a slight speed increase to ensure intersection collision\",\n      \"mutation_intent\": \"Preserves all Phase 1 root cause constraints: retains collision outcome, requires zero pre-collision control commands, non-zero ego speed with no braking, and planning reports no blocked waypoints before collision\",\n      \"expected_oracle\": \"collision\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 2, \"position_offset\": {\"x\": -2.0, \"y\": 0.0}, \"speed_delta\": 0.8}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Confirm colliding actor is positioned on ego's planned route before collision\", \"Confirm pre-collision critical window zero control command requirement can be enforced\"],\n      \"post_execution_validation_rules\": [\"Confirm collision between ego and colliding actor occurred\", \"Confirm pre-collision ego maintains non-zero speed with no braking\", \"Confirm planning reported no blocked waypoints immediately before collision\"],\n      \"uncertainty\": [\"Module-level fault attribution remains unconfirmed per Phase 1 rules\", \"Cannot confirm actuation vs perception vs planning failure without post-execution critical window evidence\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Oncoming crossing walker is adjusted to enter ego's planned path, becoming the colliding actor with slight position and speed adjustment\",\n      \"mutation_intent\": \"Preserves all core Phase 1 failure constraints while varying colliding actor type, retains the zero control command, non-zero ego speed, no blocked planning waypoints, and collision outcome requirements\",\n      \"expected_oracle\": \"collision\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 0.0, \"y\": 2.5}, \"speed_delta\": 1.2}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Confirm walker is positioned to enter ego's path during pre-collision critical window\", \"Confirm pre-collision zero control command requirement can be enforced\"],\n      \"post_execution_validation_rules\": [\"Confirm collision between ego and walker occurred\", \"Confirm pre-collision ego maintains non-zero speed with no braking\", \"Confirm planning reported no blocked waypoints immediately before collision\"],\n      \"uncertainty\": [\"Module-level fault attribution remains unconfirmed per Phase 1 rules\", \"Mismatch between zero control commands and moving ego still cannot confirm specific module fault\"]\n    }\n  ]\n}",
+  "parsed_response": {
+    "case_id": "case_157",
+    "candidate_specs": [
+      {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Colliding approaching vehicle is spawned 2 meters closer to ego's planned route, with a slight speed increase to ensure intersection collision",
+        "mutation_intent": "Preserves all Phase 1 root cause constraints: retains collision outcome, requires zero pre-collision control commands, non-zero ego speed with no braking, and planning reports no blocked waypoints before collision",
+        "expected_oracle": "collision",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 2,
+              "position_offset": {
+                "x": -2.0,
+                "y": 0.0
+              },
+              "speed_delta": 0.8
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Confirm colliding actor is positioned on ego's planned route before collision",
+          "Confirm pre-collision critical window zero control command requirement can be enforced"
+        ],
+        "post_execution_validation_rules": [
+          "Confirm collision between ego and colliding actor occurred",
+          "Confirm pre-collision ego maintains non-zero speed with no braking",
+          "Confirm planning reported no blocked waypoints immediately before collision"
+        ],
+        "uncertainty": [
+          "Module-level fault attribution remains unconfirmed per Phase 1 rules",
+          "Cannot confirm actuation vs perception vs planning failure without post-execution critical window evidence"
+        ]
+      },
+      {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Oncoming crossing walker is adjusted to enter ego's planned path, becoming the colliding actor with slight position and speed adjustment",
+        "mutation_intent": "Preserves all core Phase 1 failure constraints while varying colliding actor type, retains the zero control command, non-zero ego speed, no blocked planning waypoints, and collision outcome requirements",
+        "expected_oracle": "collision",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 0.0,
+                "y": 2.5
+              },
+              "speed_delta": 1.2
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Confirm walker is positioned to enter ego's path during pre-collision critical window",
+          "Confirm pre-collision zero control command requirement can be enforced"
+        ],
+        "post_execution_validation_rules": [
+          "Confirm collision between ego and walker occurred",
+          "Confirm pre-collision ego maintains non-zero speed with no braking",
+          "Confirm planning reported no blocked waypoints immediately before collision"
+        ],
+        "uncertainty": [
+          "Module-level fault attribution remains unconfirmed per Phase 1 rules",
+          "Mismatch between zero control commands and moving ego still cannot confirm specific module fault"
+        ]
+      }
+    ]
+  },
+  "raw_api_payload": {
+    "id": "02178292428497544a0c29b4a29aed28235da222addf5f1fae4cc",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "{\n  \"case_id\": \"case_157\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Colliding approaching vehicle is spawned 2 meters closer to ego's planned route, with a slight speed increase to ensure intersection collision\",\n      \"mutation_intent\": \"Preserves all Phase 1 root cause constraints: retains collision outcome, requires zero pre-collision control commands, non-zero ego speed with no braking, and planning reports no blocked waypoints before collision\",\n      \"expected_oracle\": \"collision\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 2, \"position_offset\": {\"x\": -2.0, \"y\": 0.0}, \"speed_delta\": 0.8}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Confirm colliding actor is positioned on ego's planned route before collision\", \"Confirm pre-collision critical window zero control command requirement can be enforced\"],\n      \"post_execution_validation_rules\": [\"Confirm collision between ego and colliding actor occurred\", \"Confirm pre-collision ego maintains non-zero speed with no braking\", \"Confirm planning reported no blocked waypoints immediately before collision\"],\n      \"uncertainty\": [\"Module-level fault attribution remains unconfirmed per Phase 1 rules\", \"Cannot confirm actuation vs perception vs planning failure without post-execution critical window evidence\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Oncoming crossing walker is adjusted to enter ego's planned path, becoming the colliding actor with slight position and speed adjustment\",\n      \"mutation_intent\": \"Preserves all core Phase 1 failure constraints while varying colliding actor type, retains the zero control command, non-zero ego speed, no blocked planning waypoints, and collision outcome requirements\",\n      \"expected_oracle\": \"collision\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 0.0, \"y\": 2.5}, \"speed_delta\": 1.2}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Confirm walker is positioned to enter ego's path during pre-collision critical window\", \"Confirm pre-collision zero control command requirement can be enforced\"],\n      \"post_execution_validation_rules\": [\"Confirm collision between ego and walker occurred\", \"Confirm pre-collision ego maintains non-zero speed with no braking\", \"Confirm planning reported no blocked waypoints immediately before collision\"],\n      \"uncertainty\": [\"Module-level fault attribution remains unconfirmed per Phase 1 rules\", \"Mismatch between zero control commands and moving ego still cannot confirm specific module fault\"]\n    }\n  ]\n}",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null,
+          "reasoning_content": "\nGot it, let's build this JSON step by step. First, case_id is case_157, right? We need two candidate_specs.\n\nFirst candidate, cand_001. Let's think of the variant: shifting the colliding vehicle (actor index 2, that's the one approaching) a bit closer to ego's route. High level variant could be \"Colliding vehicle is spawned 2 meters closer to ego's planned route, maintains original speed trend\". Mutation intent: preserves the root cause pattern because we keep the zero control commands, non-zero ego speed, planning doesn't detect blocked waypoints, still leads to collision. Expected oracle is collision, that's confirmed.\n\nModifications: Let's do weather delta same as original first? Wait, maybe no change to weather first. Actor mutation: actor 2, position offset x -2, y 0, speed delta 0.5? Wait speed delta has to be within [-3,3], that's fine. Puddles are empty so puddle mutations is empty. Mission mutation keep_original true. Pre-execution rules: need to confirm that pre-collision window has all zero control commands, right? Post execution: confirm collision occurs, confirm no braking, non-zero ego speed. Uncertainty: same as phase1, module-level fault attribution still unconfirmed.\n\nWait, second candidate, cand_002. Let's make it a walker crossing variant? Wait original has a walker at index 0. Oh right, variant could be \"Colliding actor changed from vehicle to the oncoming walker, spawned slightly offset into ego's path\". Mutation intent: preserves the core root cause pattern (zero actuation commands, non-zero ego speed, no blocked waypoints reported, collision outcome) just changes the actor type to test the same failure condition, keeps all constraints. Expected oracle is collision.\n\nModifications: Let's see, actor 0 (the walker) position offset x 0, y 3 meters? Wait that's within [-8,8], yes. Speed delta 1, within [-3,3]. Weather delta all zero, mission keep original, puddle empty. Pre execution rules: confirm that colliding actor is on ego's route before collision, confirm pre-collision zero control command requirement is met. Post execution: confirm collision outcome, confirm non-zero ego speed with no braking. Uncertainty same as before, module-level fault not assumed.\n\nWait let's check all constraints. Actor positions offsets are within [-8,8], yes. Speed delta within [-3,3], yes. Mission offsets, we set keep_original true for both, that's okay. Weather deltas all within [-20,20], yes. Puddles are empty so mutations are empty. Two candidates, exactly. Expected oracle is collision for both, which preserves the original. Root cause is preserved, meets all preservation constraints from phase1.\n\nLet me structure it properly. Let's fill in all fields correctly.\n\nFirst, case_id is \"case_157\". Then candidate_specs array with two elements.\n\nFirst candidate:\ncandidate_id: \"cand_001\"\nhigh_level_variant: \"Colliding approaching vehicle is spawned 2 meters closer to ego's planned route, with a slight speed increase to ensure intersection collision\"\nmutation_intent: \"Preserves all Phase 1 root cause constraints: confirms collision outcome, requires zero pre-collision control commands, non-zero ego speed with no braking, and planning reports no blocked waypoints before collision\"\nexpected_oracle: \"collision\"\nmodifications:\nweather_delta: all zero, {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0}\nactor_mutations: [{\"actor_index\": 2, \"position_offset\": {\"x\": -2.0, \"y\": 0.0}, \"speed_delta\": 0.8}] that's good, 0.8 is within [-3,3], offset 2 is within [-8,8]\npuddle_mutations: [] because original has no puddles.\nmission_mutation: {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\npre_execution_validation_rules: [\"Confirm colliding actor is positioned on ego's planned route before collision\", \"Confirm pre-collision critical window zero control command requirement can be enforced\"]\npost_execution_validation_rules: [\"Confirm collision between ego and colliding actor occurred\", \"Confirm pre-collision ego maintains non-zero speed with no braking\", \"Confirm planning reported no blocked waypoints immediately before collision\"]\nuncertainty: [\"Module-level fault attribution remains unconfirmed per Phase 1 rules\", \"Cannot confirm actuation vs perception vs planning failure without post-execution evidence\"]\n\nSecond candidate:\ncandidate_id: \"cand_002\"\nhigh_level_variant: \"Oncoming crossing walker is adjusted to enter ego's planned path, replacing the vehicle as the colliding actor, with slight position and speed adjustment\"\nmutation_intent: \"Preserves all core Phase 1 failure constraints while varying colliding actor type, retains the zero control command, non-zero ego speed, no blocked planning waypoints, and collision outcome requirements\"\nexpected_oracle: \"collision\"\nmodifications:\nweather_delta: {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0}\nactor_mutations: [{\"actor_index\": 0, \"position_offset\": {\"x\": 0.0, \"y\": 2.5}, \"speed_delta\": 1.2}] that's okay, 2.5 within 8, 1.2 within 3.\npuddle_mutations: []\nmission_mutation: {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\npre_execution_validation_rules: [\"Confirm walker is positioned to enter ego's path during pre-collision critical window\", \"Confirm pre-collision zero control command requirement can be enforced\"]\npost_execution_validation_rules: [\"Confirm collision between ego and walker occurred\", \"Confirm pre-collision ego maintains non-zero speed with no braking\", \"Confirm planning reported no blocked waypoints immediately before collision\"]\nuncertainty: [\"Module-level fault attribution remains unconfirmed per Phase 1 rules\", \"Mismatch between zero control commands and moving ego still cannot confirm specific module fault\"]\n\nWait that all checks out. Let's make sure the JSON is valid, no missing commas, all fields are there. Let's put it all together now."
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "doubao-seed-2-0-lite-260215",
+    "object": "chat.completion",
+    "service_tier": "default",
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 2268,
+      "prompt_tokens": 1523,
+      "total_tokens": 3791,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 1455,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": null,
+        "cached_tokens": 0
+      }
+    }
+  },
+  "error_message": "",
+  "elapsed_sec": 36.153,
+  "timestamp": "<REDACTED_TIMESTAMP>"
+}

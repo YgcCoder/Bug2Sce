@@ -1,0 +1,593 @@
+{
+  "schema_version": "bug2scenario.feedback.v1",
+  "case_id": "case_069",
+  "record_policy": "retain_failed_boundary_and_successful_same_seed_attempts",
+  "records": [
+    {
+      "schema_version": "bug2scenario.feedback.v1",
+      "case_id": "case_069",
+      "round": 1,
+      "generator": "ark-deepseek-r1-250528",
+      "candidate_id": "cand_001",
+      "candidate_spec": {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Small positional adjustment of both existing actors with minor weather change, preserves full base mission route",
+        "mutation_intent": "Preserves all phase 1 constraints: 2 actors, same base map and mission, retains the command-status mismatch and label conflict between dataset and error logs",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": 5,
+            "fog": 0,
+            "wetness": 5,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 1.2,
+                "y": -0.8
+              },
+              "speed_delta": 0.5
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": -0.9,
+                "y": 1.1
+              },
+              "speed_delta": -0.7
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        }
+      },
+      "execution": {
+        "status": "partial_artifacts_no_oracle",
+        "expected_oracle_codes": "C+L",
+        "observed_oracle_codes": "",
+        "oracle_match_status": "no_observed_oracle",
+        "events": {
+          "collision": "",
+          "stuck": "",
+          "lane_invasion": "",
+          "red_light": ""
+        }
+      },
+      "automatic_analysis": {
+        "decision": "likely_no_failure_or_no_oracle",
+        "reasons": "No observed DriveFuzz oracle; status=partial_artifacts_no_oracle.",
+        "root_cause_pattern_summary": "Conservative pattern: Ego vehicle exhibits a mismatch between all-zero commanded actuation values in the vehicle_cmd topic and non-zero actual throttle/velocity reported in vehicle_status, with conflicting oracle labels for collision and lane invasion."
+      },
+      "manual_review": {
+        "preservation_result": "not_preserved",
+        "observed_failure_type": "L",
+        "notes": ""
+      },
+      "memory_role": "historical_outcome_not_authoritative_target"
+    },
+    {
+      "schema_version": "bug2scenario.feedback.v1",
+      "case_id": "case_069",
+      "round": 1,
+      "generator": "ark-doubao-seed-2.0-lite-260215",
+      "candidate_id": "cand_001",
+      "candidate_spec": {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Slight positional adjustment of both existing actors with minor conservative weather increase, original mission kept unchanged",
+        "mutation_intent": "Preserves all Phase 1 root cause constraints: maintains two actors, no blocked waypoints, base map Town01, retains the required mismatch between zero commanded actuation and non-zero observed ego velocity, and keeps the original label conflict between dataset and error.json unresolved",
+        "expected_oracle": "unknown",
+        "modifications": {
+          "weather_delta": {
+            "rain": 3,
+            "fog": 2,
+            "wetness": 4,
+            "puddle": 2
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 1.2,
+                "y": -0.8
+              },
+              "speed_delta": 0.5
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": -0.9,
+                "y": 1.1
+              },
+              "speed_delta": -0.3
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        }
+      },
+      "execution": {
+        "status": "partial_artifacts_no_oracle",
+        "expected_oracle_codes": "C+L",
+        "observed_oracle_codes": "",
+        "oracle_match_status": "no_observed_oracle",
+        "events": {
+          "collision": "",
+          "stuck": "",
+          "lane_invasion": "",
+          "red_light": ""
+        }
+      },
+      "automatic_analysis": {
+        "decision": "likely_no_failure_or_no_oracle",
+        "reasons": "No observed DriveFuzz oracle; status=partial_artifacts_no_oracle.",
+        "root_cause_pattern_summary": "Conservative pattern: Unresolved label conflict between dataset and error.json oracle labels, paired with an unexplained mismatch between commanded zero actuation and observed moving ego vehicle state, with unconfirmed collision and lane invasion symptoms."
+      },
+      "manual_review": {
+        "preservation_result": "not_preserved",
+        "observed_failure_type": "L",
+        "notes": ""
+      },
+      "memory_role": "historical_outcome_not_authoritative_target"
+    },
+    {
+      "schema_version": "bug2scenario.feedback.v1",
+      "case_id": "case_069",
+      "round": 1,
+      "generator": "claude-sonnet-4-5",
+      "candidate_id": "cand_001",
+      "candidate_spec": {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Preserve collision with detected object at moderate ego speed",
+        "mutation_intent": "Keep actor positions and ego route unchanged to reproduce collision topic impulse with nearby object",
+        "expected_oracle": "collision",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "speed_delta": 0.0
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "speed_delta": 0.0
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        }
+      },
+      "execution": {
+        "status": "partial_artifacts_no_oracle",
+        "expected_oracle_codes": "C+L",
+        "observed_oracle_codes": "",
+        "oracle_match_status": "no_observed_oracle",
+        "events": {
+          "collision": "",
+          "stuck": "",
+          "lane_invasion": "",
+          "red_light": ""
+        }
+      },
+      "automatic_analysis": {
+        "decision": "likely_no_failure_or_no_oracle",
+        "reasons": "No observed DriveFuzz oracle; status=partial_artifacts_no_oracle.",
+        "root_cause_pattern_summary": "Conservative preservation pattern: ego encounters a nearby detected object (last count=1, classification=6, distance=11.225m) while moving at moderate speed (~5.46 m/s) before a collision event (per collision topic), with oracle label conflict (dataset vs. error.json) and vehicle_cmd-status mismatch present."
+      },
+      "manual_review": {
+        "preservation_result": "not_preserved",
+        "observed_failure_type": "L",
+        "notes": ""
+      },
+      "memory_role": "historical_outcome_not_authoritative_target"
+    },
+    {
+      "schema_version": "bug2scenario.feedback.v1",
+      "case_id": "case_069",
+      "round": 1,
+      "generator": "gemini-2.5-pro",
+      "candidate_id": "cand_001",
+      "candidate_spec": {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Test if the control mismatch bug persists with slightly different weather and actor starting positions.",
+        "mutation_intent": "Slightly alter initial conditions to see if the bug is sensitive to minor environmental changes, while preserving the core control failure.",
+        "expected_oracle": "collision",
+        "modifications": {
+          "weather_delta": {
+            "rain": 15,
+            "fog": 0,
+            "wetness": 15,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 1.0,
+                "y": -1.0
+              },
+              "speed_delta": 0.5
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": -1.0,
+                "y": 1.0
+              },
+              "speed_delta": -0.5
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true
+          }
+        }
+      },
+      "execution": {
+        "status": "partial_artifacts_no_oracle",
+        "expected_oracle_codes": "C+L",
+        "observed_oracle_codes": "",
+        "oracle_match_status": "no_observed_oracle",
+        "events": {
+          "collision": "",
+          "stuck": "",
+          "lane_invasion": "",
+          "red_light": ""
+        }
+      },
+      "automatic_analysis": {
+        "decision": "likely_no_failure_or_no_oracle",
+        "reasons": "No observed DriveFuzz oracle; status=partial_artifacts_no_oracle.",
+        "root_cause_pattern_summary": "A mismatch where vehicle_cmd is zero but vehicle_status shows motion leads to a collision."
+      },
+      "manual_review": {
+        "preservation_result": "not_preserved",
+        "observed_failure_type": "L",
+        "notes": ""
+      },
+      "memory_role": "historical_outcome_not_authoritative_target"
+    },
+    {
+      "schema_version": "bug2scenario.feedback.v1",
+      "case_id": "case_069",
+      "round": 1,
+      "generator": "gpt-4o-2024-11-20",
+      "candidate_id": "cand_001",
+      "candidate_spec": {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Ego vehicle encounters a closer object with slight weather adjustments.",
+        "mutation_intent": "Preserves the Phase 1 pattern by ensuring the closest object remains within 12m while introducing minor weather changes to test robustness.",
+        "expected_oracle": "collision",
+        "modifications": {
+          "weather_delta": {
+            "rain": 5,
+            "fog": 10,
+            "wetness": 5,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 1.5,
+                "y": -2.0
+              },
+              "speed_delta": -0.5
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": -1.0,
+                "y": 2.0
+              },
+              "speed_delta": 0.5
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        }
+      },
+      "execution": {
+        "status": "oracle_triggered",
+        "expected_oracle_codes": "C+L",
+        "observed_oracle_codes": "C",
+        "oracle_match_status": "partial_oracle_overlap",
+        "events": {
+          "collision": "TRUE",
+          "stuck": "FALSE",
+          "lane_invasion": "FALSE",
+          "red_light": "FALSE"
+        }
+      },
+      "automatic_analysis": {
+        "decision": "possible_same_root_cause_needs_video",
+        "reasons": "score=15/22; orig_min_actor_route_dist=23.834; cand_min_actor_route_dist=21.428; orig_min_dist=11.874; cand_min_dist=24.933; start_delta=0.000; goal_delta=0.000; oracle symptom differs or only partially overlaps; map preserved; mission start remains close; mission goal remains close; actor type family overlaps; actor count remains comparable; actor remains near ego mission route; runtime min_dist remains close; la...",
+        "root_cause_pattern_summary": "Conservative preservation pattern: ego vehicle moves with non-zero velocity and throttle, while no braking or blocked waypoints are observed. Closest object is within 12m, but module-level attribution is uncertain."
+      },
+      "manual_review": {
+        "preservation_result": "not_preserved",
+        "observed_failure_type": "L",
+        "notes": ""
+      },
+      "memory_role": "historical_outcome_not_authoritative_target"
+    },
+    {
+      "schema_version": "bug2scenario.feedback.v1",
+      "case_id": "case_069",
+      "round": 1,
+      "generator": "gpt-5.1",
+      "candidate_id": "cand_001",
+      "candidate_spec": {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Maintain original mission, bring the nearby linear vehicle closer into ego’s lane corridor with slightly reduced speed to encourage a low-speed lateral/offset collision near the end of the route.",
+        "mutation_intent": "Preserves the pattern of a collision oracle firing while ego continues at a few m/s with valid final_waypoints and nearby actors, without clear braking. Tightening the proximity and alignment of the linear vehicle increases the chance of a contact event late in the run while keeping perception/prediction populated a...",
+        "expected_oracle": "collision",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 1.5,
+                "y": -2.0
+              },
+              "speed_delta": -1.0
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": 2.0,
+                "y": -1.5
+              },
+              "speed_delta": -1.5
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        }
+      },
+      "execution": {
+        "status": "oracle_triggered",
+        "expected_oracle_codes": "C+L",
+        "observed_oracle_codes": "C+R",
+        "oracle_match_status": "partial_oracle_overlap",
+        "events": {
+          "collision": "TRUE",
+          "stuck": "FALSE",
+          "lane_invasion": "FALSE",
+          "red_light": "TRUE"
+        }
+      },
+      "automatic_analysis": {
+        "decision": "possible_same_root_cause_needs_video",
+        "reasons": "score=13/22; orig_min_actor_route_dist=23.834; cand_min_actor_route_dist=21.428; orig_min_dist=11.874; cand_min_dist=23.834; start_delta=0.000; goal_delta=0.000; oracle symptom differs or only partially overlaps; map preserved; mission start remains close; mission goal remains close; actor type family overlaps; actor count remains comparable; actor remains near ego mission route; runtime min_dist remains close; la...",
+        "root_cause_pattern_summary": "Conservative preservation pattern: the ego vehicle is moving at nonzero speed with nearby actors present and valid final_waypoints available when the collision oracle fires, while braking commands and blocked-waypoint flags remain absent and the precise internal module fault is unknown."
+      },
+      "manual_review": {
+        "preservation_result": "partial_or_boundary",
+        "observed_failure_type": "C+R+L",
+        "notes": ""
+      },
+      "memory_role": "historical_outcome_not_authoritative_target"
+    },
+    {
+      "schema_version": "bug2scenario.feedback.v1",
+      "case_id": "case_069",
+      "round": 2,
+      "generator": "",
+      "candidate_id": "cand_001",
+      "candidate_spec": {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Bring actor 0 closer laterally to ego route, reduce speed moderately",
+        "mutation_intent": "Increase collision likelihood by tightening actor proximity to ego path while maintaining moderate ego speed and detected object presence",
+        "expected_oracle": "collision",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 2.5,
+                "y": -3.0
+              },
+              "speed_delta": -1.5
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "speed_delta": 0.0
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        }
+      },
+      "execution": {
+        "status": "partial_artifacts_no_oracle",
+        "expected_oracle_codes": "C+L",
+        "observed_oracle_codes": "30",
+        "oracle_match_status": "no_observed_oracle",
+        "events": {
+          "collision": "30",
+          "stuck": "30",
+          "lane_invasion": "30",
+          "red_light": "30"
+        },
+        "artifact_counts": {
+          "bags": 0,
+          "scores": 0,
+          "cameras": 2
+        }
+      },
+      "automatic_analysis": {},
+      "manual_review": {
+        "preservation_result": "not_preserved",
+        "observed_failure_type": "L",
+        "notes": "30"
+      },
+      "memory_role": "historical_outcome_not_authoritative_target"
+    },
+    {
+      "schema_version": "bug2scenario.feedback.v1",
+      "case_id": "case_069",
+      "round": 2,
+      "generator": "",
+      "candidate_id": "cand_002",
+      "candidate_spec": {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Adjust both actors laterally toward ego corridor, add moderate rain and wetness",
+        "mutation_intent": "Test if weather degradation combined with tighter actor spacing preserves collision pattern with detected objects near ego",
+        "expected_oracle": "collision",
+        "modifications": {
+          "weather_delta": {
+            "rain": 12,
+            "fog": 5,
+            "wetness": 12,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 1.8,
+                "y": -2.5
+              },
+              "speed_delta": -1.0
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": 1.5,
+                "y": -2.0
+              },
+              "speed_delta": -1.0
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        }
+      },
+      "execution": {
+        "status": "trace_ready_no_oracle",
+        "expected_oracle_codes": "C+L",
+        "observed_oracle_codes": "30",
+        "oracle_match_status": "no_observed_oracle",
+        "events": {
+          "collision": "False",
+          "stuck": "False",
+          "lane_invasion": "False",
+          "red_light": "False"
+        },
+        "artifact_counts": {
+          "bags": 1,
+          "scores": 0,
+          "cameras": 2
+        }
+      },
+      "automatic_analysis": {},
+      "manual_review": {
+        "preservation_result": "strictly_preserved",
+        "observed_failure_type": "C+L",
+        "notes": "30"
+      },
+      "memory_role": "historical_outcome_not_authoritative_target"
+    }
+  ]
+}

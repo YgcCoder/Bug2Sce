@@ -1,0 +1,122 @@
+{
+  "case_id": "case_061",
+  "round": 2,
+  "model_name": "claude-sonnet-4-5",
+  "candidate_index": 1,
+  "candidate_spec": {
+    "candidate_id": "cand_001",
+    "high_level_variant": "Move walker 0 significantly closer to ego path, minimal weather change",
+    "mutation_intent": "Force tighter actor-route interaction to trigger collision while preserving red-light and vehicle_cmd/status mismatch pattern",
+    "expected_oracle": "collision",
+    "modifications": {
+      "weather_delta": {
+        "rain": 0,
+        "fog": 0,
+        "wetness": 0,
+        "puddle": 0
+      },
+      "actor_mutations": [
+        {
+          "actor_index": 0,
+          "position_offset": {
+            "x": -3.5,
+            "y": 3.2
+          },
+          "speed_delta": 0.8
+        },
+        {
+          "actor_index": 1,
+          "position_offset": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "speed_delta": 0.0
+        }
+      ],
+      "puddle_mutations": [],
+      "mission_mutation": {
+        "keep_original": true,
+        "spawn_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "destination_offset": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Verify walker 0 spawns within 10m of ego route"
+    ],
+    "post_execution_validation_rules": [
+      "Check collision oracle triggered and red-light violation present",
+      "Verify vehicle_cmd remains zero while vehicle_status shows nonzero throttle and speed"
+    ],
+    "uncertainty": [
+      "Collision timing depends on walker crossing ego path during red-light approach",
+      "Vehicle_cmd/status mismatch may not reproduce if simulator behavior differs"
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": 0.0,
+      "fog": 0.0,
+      "wetness": 0.0,
+      "puddle": 0.0
+    },
+    "actor_mutations": [
+      {
+        "actor_index": 0,
+        "position_offset": {
+          "x": -3.5,
+          "y": 3.2
+        },
+        "speed_delta": 0.8
+      },
+      {
+        "actor_index": 1,
+        "position_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "speed_delta": 0.0
+      }
+    ],
+    "puddle_mutations": [],
+    "mission_mutation": {
+      "keep_original": true
+    },
+    "safety_repairs": [
+      {
+        "type": "actor_min_distance",
+        "actor_index": 0,
+        "old_spawn": {
+          "x": 303.606,
+          "y": 329.917
+        },
+        "new_spawn": {
+          "x": 303.7505286237279,
+          "y": 329.8772661964626
+        },
+        "old_distance": 2.35,
+        "min_distance": 2.5
+      }
+    ]
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "original_phase1_output": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_061__claude-sonnet-4-5.json",
+  "round1_feedback_models": [
+    "ark-deepseek-r1-250528",
+    "ark-doubao-seed-2.0-lite-260215",
+    "claude-sonnet-4-5",
+    "gemini-2.5-pro",
+    "gpt-4o-2024-11-20",
+    "gpt-5.1"
+  ],
+  "round2_api_output": "<WORKSPACE_ROOT>/processed/experiments/round2_feedback/api_outputs/case_061__claude-sonnet-4-5.json"
+}

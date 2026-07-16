@@ -1,0 +1,136 @@
+{
+  "case_id": "case_151",
+  "model_name": "claude-sonnet-4-5",
+  "workflow": "pure_llm_phase2_baseline",
+  "candidate_index": 1,
+  "candidate_spec": {
+    "candidate_id": "cand_001",
+    "high_level_variant": "Increase walker speed and shift closer to ego spawn lane",
+    "mutation_intent": "Amplify stuck and lane invasion by making walker cross faster and closer to ego path",
+    "expected_oracle": "stuck",
+    "modifications": {
+      "weather_delta": {
+        "rain": 5,
+        "fog": 10,
+        "wetness": 8,
+        "puddle": 5
+      },
+      "actor_mutations": [
+        {
+          "actor_index": 0,
+          "position_offset": {
+            "x": 2.0,
+            "y": -1.5
+          },
+          "speed_delta": 1.2
+        },
+        {
+          "actor_index": 1,
+          "position_offset": {
+            "x": 3.0,
+            "y": 0.8
+          },
+          "speed_delta": 0.5
+        }
+      ],
+      "puddle_mutations": [
+        {
+          "puddle_index": 0,
+          "location_offset": {
+            "x": 1.0,
+            "y": 0.5
+          },
+          "level_delta": 0.1,
+          "size_scale": 1.1
+        },
+        {
+          "puddle_index": 1,
+          "location_offset": {
+            "x": -0.5,
+            "y": 1.0
+          },
+          "level_delta": 0.05,
+          "size_scale": 1.05
+        }
+      ],
+      "mission_mutation": {
+        "keep_original": true,
+        "spawn_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "destination_offset": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Walker must spawn ahead of ego vehicle on crossing trajectory"
+    ],
+    "post_execution_validation_rules": [
+      "Ego must exhibit stuck or lane invasion behavior near walker"
+    ],
+    "uncertainty": [
+      "Walker timing and ego reaction may vary under weather changes"
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": 5.0,
+      "fog": 10.0,
+      "wetness": 8.0,
+      "puddle": 5.0
+    },
+    "actor_mutations": [
+      {
+        "actor_index": 0,
+        "position_offset": {
+          "x": 2.0,
+          "y": -1.5
+        },
+        "speed_delta": 1.2
+      },
+      {
+        "actor_index": 1,
+        "position_offset": {
+          "x": 3.0,
+          "y": 0.8
+        },
+        "speed_delta": 0.5
+      }
+    ],
+    "puddle_mutations": [
+      {
+        "puddle_index": 0,
+        "location_offset": {
+          "x": 1.0,
+          "y": 0.5
+        },
+        "level_delta": 0.1,
+        "size_scale": 1.1
+      },
+      {
+        "puddle_index": 1,
+        "location_offset": {
+          "x": -0.5,
+          "y": 1.0
+        },
+        "level_delta": 0.05,
+        "size_scale": 1.05
+      }
+    ],
+    "mission_mutation": {
+      "keep_original": true
+    },
+    "safety_repairs": []
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/pure_llm_phase2_api_prompts/case_151__claude-sonnet-4-5.md",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/pure_llm_phase2_api_outputs/case_151__claude-sonnet-4-5.json",
+  "baseline_note": "Pure-LLM baseline: prompt used no root-cause pattern or critical-window evidence."
+}

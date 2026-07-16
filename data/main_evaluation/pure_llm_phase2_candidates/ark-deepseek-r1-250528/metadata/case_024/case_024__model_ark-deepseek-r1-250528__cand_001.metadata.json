@@ -1,0 +1,102 @@
+{
+  "case_id": "case_024",
+  "model_name": "ark-deepseek-r1-250528",
+  "workflow": "pure_llm_phase2_baseline",
+  "candidate_index": 1,
+  "candidate_spec": {
+    "candidate_id": "cand_001",
+    "high_level_variant": "Shift NPC and increase surrounding rain",
+    "mutation_intent": "Trigger combined collision and red light violation",
+    "expected_oracle": "compound",
+    "modifications": {
+      "weather_delta": {
+        "rain": 10,
+        "fog": 0,
+        "wetness": 5,
+        "puddle": 0
+      },
+      "actor_mutations": [
+        {
+          "actor_index": 0,
+          "position_offset": {
+            "x": 2.0,
+            "y": -1.0
+          },
+          "speed_delta": 1.5
+        }
+      ],
+      "puddle_mutations": [
+        {
+          "puddle_index": 0,
+          "location_offset": {
+            "x": 0.0,
+            "y": 2.0
+          },
+          "level_delta": 0.1,
+          "size_scale": 1.0
+        }
+      ],
+      "mission_mutation": {
+        "keep_original": true,
+        "spawn_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "destination_offset": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "All actors spawn on valid road"
+    ],
+    "post_execution_validation_rules": [
+      "Verify collision and red light fault"
+    ],
+    "uncertainty": [
+      "Mutation may not trigger target fault"
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": 10.0,
+      "fog": 0.0,
+      "wetness": 5.0,
+      "puddle": 0.0
+    },
+    "actor_mutations": [
+      {
+        "actor_index": 0,
+        "position_offset": {
+          "x": 2.0,
+          "y": -1.0
+        },
+        "speed_delta": 1.5
+      }
+    ],
+    "puddle_mutations": [
+      {
+        "puddle_index": 0,
+        "location_offset": {
+          "x": 0.0,
+          "y": 2.0
+        },
+        "level_delta": 0.1,
+        "size_scale": 1.0
+      }
+    ],
+    "mission_mutation": {
+      "keep_original": true
+    },
+    "safety_repairs": []
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/pure_llm_phase2_api_prompts/case_024__ark-deepseek-r1-250528.md",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/pure_llm_phase2_api_outputs/case_024__ark-deepseek-r1-250528.json",
+  "baseline_note": "Pure-LLM baseline: prompt used no root-cause pattern or critical-window evidence."
+}

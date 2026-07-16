@@ -1,0 +1,118 @@
+{
+  "case_id": "case_104",
+  "workflow": "phase1_causal_explanation",
+  "model_name": "ark-deepseek-r1-250528",
+  "model_id": "ark-deepseek-r1-250528",
+  "status": "completed",
+  "dry_run": false,
+  "schema_valid": true,
+  "schema_errors": [],
+  "quality_flags": [],
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_prompts/case_104__ark-deepseek-r1-250528.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_104__ark-deepseek-r1-250528.json",
+  "prompt_estimated_tokens": 2869,
+  "usage": {
+    "prompt_tokens": 3770,
+    "completion_tokens": 1860,
+    "total_tokens": 5630
+  },
+  "estimated_cost_usd": null,
+  "raw_response": "{\n  \"case_id\": \"case_104\",\n  \"fault_layer\": \"unknown\",\n  \"fault_component\": \"unknown\",\n  \"causal_explanation\": \"Dataset labels this case as a red-light violation, but error_json detects no red-light violation. Available evidence does not confirm stop-line crossing or relation between ego's route and a red traffic light. Ego has all-zero actuation commands and near-zero velocity in the critical window, with no other failures detected.\",\n  \"root_cause_pattern\": \"Conflicting oracle labels for red-light violation exist, with no confirmed module-level failure, and ego is stationary with zero actuation commands in the critical window.\",\n  \"preservation_constraints\": [\n    \"Preserve conflicting red-light violation status between dataset and error_json\",\n    \"Preserve zero actuation commands and near-zero ego velocity in the critical window\",\n    \"Preserve no dynamic actors in the scenario\",\n    \"Preserve 36 total traffic lights available in the map during the critical window\"\n  ],\n  \"modifiable_factors\": [\"weather\", \"fog_density\", \"rain_intensity\", \"puddle_position\", \"ego_start_position\"],\n  \"non_modifiable_conditions\": [\"no dynamic actors present\", \"conflicting red-light oracle labels\"],\n  \"uncertainty\": [\n    \"Dataset and error.json disagree on red-light violation status\",\n    \"Stop-line crossing is not confirmed by available evidence\",\n    \"Route-light relation is not confirmed by available evidence\",\n    \"No module failure is directly proven by critical window evidence\"\n  ],\n  \"evidence_support\": [\n    {\"evidence_id\": \"oracle_consistency\", \"claim\": \"Dataset labels red-light violation as present, error.json labels it as absent, creating a conflict\"},\n    {\"evidence_id\": \"critical_window_summary\", \"claim\": \"Route-light relation and stop-line crossing are unconfirmed\"},\n    {\"evidence_id\": \"actuation_trace_summary\", \"claim\": \"All vehicle_cmd values are zero in the critical window, final velocity is near zero\"},\n    {\"evidence_id\": \"scenario_config\", \"claim\": \"No dynamic actors are present in the scenario\"}\n  ],\n  \"confidence\": \"low\",\n  \"ready_for_phase2_generation\": \"uncertain\",\n  \"notes_for_validator\": [\n    \"Manual review is required to resolve the conflicting red-light labels before same-root-cause classification\",\n    \"Generated cases must be validated for confirmed stop-line crossing and red-light violation before any module attribution\"\n  ]\n}",
+  "parsed_response": {
+    "case_id": "case_104",
+    "fault_layer": "unknown",
+    "fault_component": "unknown",
+    "causal_explanation": "Dataset labels this case as a red-light violation, but error_json detects no red-light violation. Available evidence does not confirm stop-line crossing or relation between ego's route and a red traffic light. Ego has all-zero actuation commands and near-zero velocity in the critical window, with no other failures detected.",
+    "root_cause_pattern": "Conflicting oracle labels for red-light violation exist, with no confirmed module-level failure, and ego is stationary with zero actuation commands in the critical window.",
+    "preservation_constraints": [
+      "Preserve conflicting red-light violation status between dataset and error_json",
+      "Preserve zero actuation commands and near-zero ego velocity in the critical window",
+      "Preserve no dynamic actors in the scenario",
+      "Preserve 36 total traffic lights available in the map during the critical window"
+    ],
+    "modifiable_factors": [
+      "weather",
+      "fog_density",
+      "rain_intensity",
+      "puddle_position",
+      "ego_start_position"
+    ],
+    "non_modifiable_conditions": [
+      "no dynamic actors present",
+      "conflicting red-light oracle labels"
+    ],
+    "uncertainty": [
+      "Dataset and error.json disagree on red-light violation status",
+      "Stop-line crossing is not confirmed by available evidence",
+      "Route-light relation is not confirmed by available evidence",
+      "No module failure is directly proven by critical window evidence"
+    ],
+    "evidence_support": [
+      {
+        "evidence_id": "oracle_consistency",
+        "claim": "Dataset labels red-light violation as present, error.json labels it as absent, creating a conflict"
+      },
+      {
+        "evidence_id": "critical_window_summary",
+        "claim": "Route-light relation and stop-line crossing are unconfirmed"
+      },
+      {
+        "evidence_id": "actuation_trace_summary",
+        "claim": "All vehicle_cmd values are zero in the critical window, final velocity is near zero"
+      },
+      {
+        "evidence_id": "scenario_config",
+        "claim": "No dynamic actors are present in the scenario"
+      }
+    ],
+    "confidence": "low",
+    "ready_for_phase2_generation": "uncertain",
+    "notes_for_validator": [
+      "Manual review is required to resolve the conflicting red-light labels before same-root-cause classification",
+      "Generated cases must be validated for confirmed stop-line crossing and red-light violation before any module attribution"
+    ]
+  },
+  "raw_api_payload": {
+    "id": "0217829211114863b2b0407ffd677ecb32e5e07988358b9fb5b57",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "{\n  \"case_id\": \"case_104\",\n  \"fault_layer\": \"unknown\",\n  \"fault_component\": \"unknown\",\n  \"causal_explanation\": \"Dataset labels this case as a red-light violation, but error_json detects no red-light violation. Available evidence does not confirm stop-line crossing or relation between ego's route and a red traffic light. Ego has all-zero actuation commands and near-zero velocity in the critical window, with no other failures detected.\",\n  \"root_cause_pattern\": \"Conflicting oracle labels for red-light violation exist, with no confirmed module-level failure, and ego is stationary with zero actuation commands in the critical window.\",\n  \"preservation_constraints\": [\n    \"Preserve conflicting red-light violation status between dataset and error_json\",\n    \"Preserve zero actuation commands and near-zero ego velocity in the critical window\",\n    \"Preserve no dynamic actors in the scenario\",\n    \"Preserve 36 total traffic lights available in the map during the critical window\"\n  ],\n  \"modifiable_factors\": [\"weather\", \"fog_density\", \"rain_intensity\", \"puddle_position\", \"ego_start_position\"],\n  \"non_modifiable_conditions\": [\"no dynamic actors present\", \"conflicting red-light oracle labels\"],\n  \"uncertainty\": [\n    \"Dataset and error.json disagree on red-light violation status\",\n    \"Stop-line crossing is not confirmed by available evidence\",\n    \"Route-light relation is not confirmed by available evidence\",\n    \"No module failure is directly proven by critical window evidence\"\n  ],\n  \"evidence_support\": [\n    {\"evidence_id\": \"oracle_consistency\", \"claim\": \"Dataset labels red-light violation as present, error.json labels it as absent, creating a conflict\"},\n    {\"evidence_id\": \"critical_window_summary\", \"claim\": \"Route-light relation and stop-line crossing are unconfirmed\"},\n    {\"evidence_id\": \"actuation_trace_summary\", \"claim\": \"All vehicle_cmd values are zero in the critical window, final velocity is near zero\"},\n    {\"evidence_id\": \"scenario_config\", \"claim\": \"No dynamic actors are present in the scenario\"}\n  ],\n  \"confidence\": \"low\",\n  \"ready_for_phase2_generation\": \"uncertain\",\n  \"notes_for_validator\": [\n    \"Manual review is required to resolve the conflicting red-light labels before same-root-cause classification\",\n    \"Generated cases must be validated for confirmed stop-line crossing and red-light violation before any module attribution\"\n  ]\n}",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null,
+          "reasoning_content": "\nGot it, let's work through this step by step. First, case_id is case_104, right? Then fault_layer: there's a conflict between dataset says red light 1, error_json says 0, and we don't have confirmed stop line crossing or route-light relation, so fault_layer should be unknown? Wait, let's check the rules: if they disagree, mark uncertainty, don't take dataset as ground truth. So fault_layer is unknown, fault_component unknown.\n\nCausal explanation: Let's see. The dataset labels this as a red-light violation, but error.json has no red-light violation detected, no confirmed stop-line crossing or route-light relation from available evidence. All vehicle commands are zero, velocity is near zero, no other failures detected in error.json. So that's the explanation. Let me phrase that concisely: \"Dataset labels this case as a red-light violation, but error.json detects no red-light violation, and available evidence does not confirm stop-line crossing or relation between ego's route and the red traffic light. Ego's actuation commands are all zero in the critical window, with near-zero final velocity.\"\n\nRoot cause pattern: Since we have conflicting labels and no confirmed module failure, it's a conservative pattern: \"Conflicting oracle labels for red-light violation exist, with no confirmed module-level failure, and ego is stationary with zero actuation commands in the critical window.\" Wait, or more like, the pattern is \"Possible unconfirmed red-light violation label with conflicting oracle reports, no proven module failure, ego stationary in critical window.\" Yeah.\n\nPreservation constraints: Let's list 3-6. Let's see: 1. Preserve the conflicting red-light label status between dataset and error.json. 2. Preserve zero actuation commands and near-zero ego velocity in the critical window. 3. Preserve the presence of 36 total traffic lights on the map in the critical window. 4. Preserve no dynamic actors in the scenario. That makes sense.\n\nModifiable factors: What can we change? Weather, fog density, rain intensity, puddle position, start position of ego, goal position. Wait, let's list: [\"weather\", \"fog_density\", \"rain_intensity\", \"puddle_position\", \"ego_start_position\"] that's good.\n\nNon-modifiable conditions: [\"no dynamic actors present in the scenario\", \"conflicting red-light oracle labels between dataset and error_json\", \"zero actuation commands in critical window\"] right?\n\nUncertainty: Let's list the conflicts and missing stuff. [\"Dataset and error.json disagree on red-light violation status\", \"stop-line crossing is not confirmed by evidence\", \"route-light relation is not confirmed by evidence\", \"no module failure is directly proven by critical window evidence\"] that's correct.\n\nEvidence support: Let's go through the evidence. Let's make each entry: First {\"evidence_id\": \"oracle_consistency\", \"claim\": \"Dataset labels red-light violation as 1, error.json labels it as 0, creating a conflict\"}, then {\"evidence_id\": \"critical_window_summary\", \"claim\": \"Route-light relation and stop-line crossing are not confirmed\"}, {\"evidence_id\": \"actuation_trace\", \"claim\": \"All vehicle_cmd values are zero in the critical window, final velocity is near zero\"}, {\"evidence_id\": \"scenario_config\", \"claim\": \"No dynamic actors are present in the scenario\"}. That's right.\n\nConfidence: Low, right? Because of all the uncertainty and conflict. So confidence is low.\n\nReady_for_phase2_generation: Wait, the rules say use yes when there's a checkable conservative pattern, even if fault_layer is unknown. Wait, but there's a conflict, but we can still generate with the constraints, right? Wait, the guidance says use as uncertainty-aware input. So ready_for_phase2_generation is yes? Wait no, wait the oracle says needs manual review, but the rule says do not set no solely because fault_layer is unknown. The pattern is checkable. Let's see: the preservation constraints are checkable, so ready is yes? Or uncertain? Wait, the conflict is there, but the question says use uncertain when labels conflict or key condition missing. Wait let's check the rule: \"use yes when there is a checkable conservative preservation pattern; use uncertain when labels conflict or a key condition is missing.\" Oh right! So labels conflict, so ready_for_phase2_generation is uncertain? Wait let me recheck that rule: \"Be concise: prefer short strings and 3-6 constraints. Do not set ready_for_phase2_generation=no solely because fault_layer is unknown. Use yes when there is a checkable conservative preservation pattern; use uncertain when labels conflict or a key condition is missing.\" Oh okay, so labels conflict here, so it's uncertain? Wait but let's see: the conflict is known, we can include it in constraints. Wait no, the rule says use uncertain when labels conflict. So let's put uncertain? Wait no, let's read again: the conflict is between dataset and error json, that's a label conflict, so according to the rule, use uncertain. Got it.\n\nNotes_for_validator: [\"Manual review is required to resolve the conflicting red-light labels before confirming same-root-cause classification.\", \"Generated cases must be checked for confirmed stop-line crossing and red-light violation before attribution.\"] That's good.\n\nWait let's check all the rules again. Let's make sure: For red-light cases, don't infer route-light or stop-line crossing unless evidence, which we didn't, correct. If dataset and error json disagree, mark uncertainty, which we did. Fault layer is unknown because no module attribution, correct. Preservation constraints are semantic, no timestamps or ids, correct. Let's put it all together in JSON correctly.\n\nWait let's check the actuation part: vehicle_cmd is all zero, vehicle status has velocity up to 0.22, so movement is almost zero, but we don't assign fault to actuation because the rule says if vehicle_cmd is all zero but status shows movement, don't assign actuation fault from that alone. So we didn't, fault layer is unknown, that's correct.\n\nOkay, let's build the JSON now."
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "doubao-seed-2-0-lite-260215",
+    "object": "chat.completion",
+    "service_tier": "default",
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 1860,
+      "prompt_tokens": 3770,
+      "total_tokens": 5630,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 1309,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": null,
+        "cached_tokens": 0
+      }
+    }
+  },
+  "error_message": "",
+  "timestamp": "<REDACTED_TIMESTAMP>",
+  "elapsed_sec": 32.697
+}

@@ -1,0 +1,340 @@
+{
+  "case_id": "case_002",
+  "model_name": "ark-deepseek-r1-250528",
+  "workflow": "phase2_grounded_generation",
+  "status": "completed",
+  "schema_valid": true,
+  "schema_errors": [],
+  "phase1_ready": "yes",
+  "num_candidates_requested": 2,
+  "num_candidates_written": 2,
+  "num_pre_valid": 2,
+  "candidate_records": [
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-deepseek-r1-250528/json/case_002/case_002__cand_001.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-deepseek-r1-250528/metadata/case_002/case_002__cand_001.metadata.json",
+      "case_id": "case_002",
+      "model_name": "ark-deepseek-r1-250528",
+      "candidate_index": 1,
+      "candidate_spec": {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Slightly reduce speed of the oncoming linear-motion vehicle near the intersection",
+        "mutation_intent": "Preserves all phase 1 root cause requirements: retains the original red light violation label, keeps all-zero ego control commands in the critical window, and preserves original mission spawn and destination positions, aligning with all preservation constraints",
+        "expected_oracle": "red_light",
+        "modifications": {
+          "weather_delta": {
+            "rain": 5,
+            "fog": 3,
+            "wetness": 4,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": 0.5,
+                "y": -1.0
+              },
+              "speed_delta": -1.2
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Confirm all-zero vehicle control commands in the critical window",
+          "Confirm mission spawn and destination are unchanged"
+        ],
+        "post_execution_validation_rules": [
+          "Validate stop-line crossing and route-red-light relation",
+          "Confirm red light violation label consistency"
+        ],
+        "uncertainty": [
+          "Actuation mismatch between all-zero command and non-zero velocity remains uncertain",
+          "No confirmed module-level root cause, root attribution is unknown"
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 5.0,
+          "fog": 3.0,
+          "wetness": 4.0,
+          "puddle": 0.0
+        },
+        "actor_mutations": [
+          {
+            "actor_index": 1,
+            "position_offset": {
+              "x": 0.5,
+              "y": -1.0
+            },
+            "speed_delta": -1.2
+          }
+        ],
+        "puddle_mutations": [],
+        "mission_mutation": {
+          "keep_original": true
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_002__ark-deepseek-r1-250528.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_002__ark-deepseek-r1-250528.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    },
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-deepseek-r1-250528/json/case_002/case_002__cand_002.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-deepseek-r1-250528/metadata/case_002/case_002__cand_002.metadata.json",
+      "case_id": "case_002",
+      "model_name": "ark-deepseek-r1-250528",
+      "candidate_index": 2,
+      "candidate_spec": {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Slightly offset the position of the immobile vehicle near the intersection to prolong the ego's critical all-zero command window",
+        "mutation_intent": "Retains all core root cause properties from phase 1: preserves the original red light violation label, maintains all-zero control commands in the critical window, keeps original mission positions, and adheres to all preservation constraints",
+        "expected_oracle": "red_light",
+        "modifications": {
+          "weather_delta": {
+            "rain": -4,
+            "fog": 2,
+            "wetness": -3,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": -1.5,
+                "y": 0.8
+              },
+              "speed_delta": 0.0
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Confirm all-zero vehicle control commands in the critical window",
+          "Confirm actor position offset is within allowed range",
+          "Confirm mission spawn and destination are unchanged"
+        ],
+        "post_execution_validation_rules": [
+          "Validate stop-line crossing and route-red-light relation",
+          "Confirm red light violation label matches original dataset labeling"
+        ],
+        "uncertainty": [
+          "Route-light relation and stop-line crossing are not confirmed by original evidence",
+          "No module-level root cause is identified, so root attribution remains uncertain"
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": -4.0,
+          "fog": 2.0,
+          "wetness": -3.0,
+          "puddle": 0.0
+        },
+        "actor_mutations": [
+          {
+            "actor_index": 0,
+            "position_offset": {
+              "x": -1.5,
+              "y": 0.8
+            },
+            "speed_delta": 0.0
+          }
+        ],
+        "puddle_mutations": [],
+        "mission_mutation": {
+          "keep_original": true
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_002__ark-deepseek-r1-250528.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_002__ark-deepseek-r1-250528.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    }
+  ],
+  "seed_artifact_zip": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-deepseek-r1-250528/seed-artifact/seed-artifact-case_002.zip",
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_prompts/case_002__ark-deepseek-r1-250528.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_002__ark-deepseek-r1-250528.json",
+  "prompt_estimated_tokens": 1078,
+  "usage": {
+    "prompt_tokens": 1363,
+    "completion_tokens": 3085,
+    "total_tokens": 4448
+  },
+  "raw_response": "{\n  \"case_id\": \"case_002\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Slightly reduce speed of the oncoming linear-motion vehicle near the intersection\",\n      \"mutation_intent\": \"Preserves all phase 1 root cause requirements: retains the original red light violation label, keeps all-zero ego control commands in the critical window, and preserves original mission spawn and destination positions, aligning with all preservation constraints\",\n      \"expected_oracle\": \"red_light\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 5, \"fog\": 3, \"wetness\": 4, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 1, \"position_offset\": {\"x\": 0.5, \"y\": -1.0}, \"speed_delta\": -1.2}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Confirm all-zero vehicle control commands in the critical window\", \"Confirm mission spawn and destination are unchanged\"],\n      \"post_execution_validation_rules\": [\"Validate stop-line crossing and route-red-light relation\", \"Confirm red light violation label consistency\"],\n      \"uncertainty\": [\"Actuation mismatch between all-zero command and non-zero velocity remains uncertain\", \"No confirmed module-level root cause, root attribution is unknown\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Slightly offset the position of the immobile vehicle near the intersection to prolong the ego's critical all-zero command window\",\n      \"mutation_intent\": \"Retains all core root cause properties from phase 1: preserves the original red light violation label, maintains all-zero control commands in the critical window, keeps original mission positions, and adheres to all preservation constraints\",\n      \"expected_oracle\": \"red_light\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": -4, \"fog\": 2, \"wetness\": -3, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": -1.5, \"y\": 0.8}, \"speed_delta\": 0.0}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Confirm all-zero vehicle control commands in the critical window\", \"Confirm actor position offset is within allowed range\", \"Confirm mission spawn and destination are unchanged\"],\n      \"post_execution_validation_rules\": [\"Validate stop-line crossing and route-red-light relation\", \"Confirm red light violation label matches original dataset labeling\"],\n      \"uncertainty\": [\"Route-light relation and stop-line crossing are not confirmed by original evidence\", \"No module-level root cause is identified, so root attribution remains uncertain\"]\n    }\n  ]\n}",
+  "parsed_response": {
+    "case_id": "case_002",
+    "candidate_specs": [
+      {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Slightly reduce speed of the oncoming linear-motion vehicle near the intersection",
+        "mutation_intent": "Preserves all phase 1 root cause requirements: retains the original red light violation label, keeps all-zero ego control commands in the critical window, and preserves original mission spawn and destination positions, aligning with all preservation constraints",
+        "expected_oracle": "red_light",
+        "modifications": {
+          "weather_delta": {
+            "rain": 5,
+            "fog": 3,
+            "wetness": 4,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": 0.5,
+                "y": -1.0
+              },
+              "speed_delta": -1.2
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Confirm all-zero vehicle control commands in the critical window",
+          "Confirm mission spawn and destination are unchanged"
+        ],
+        "post_execution_validation_rules": [
+          "Validate stop-line crossing and route-red-light relation",
+          "Confirm red light violation label consistency"
+        ],
+        "uncertainty": [
+          "Actuation mismatch between all-zero command and non-zero velocity remains uncertain",
+          "No confirmed module-level root cause, root attribution is unknown"
+        ]
+      },
+      {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Slightly offset the position of the immobile vehicle near the intersection to prolong the ego's critical all-zero command window",
+        "mutation_intent": "Retains all core root cause properties from phase 1: preserves the original red light violation label, maintains all-zero control commands in the critical window, keeps original mission positions, and adheres to all preservation constraints",
+        "expected_oracle": "red_light",
+        "modifications": {
+          "weather_delta": {
+            "rain": -4,
+            "fog": 2,
+            "wetness": -3,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": -1.5,
+                "y": 0.8
+              },
+              "speed_delta": 0.0
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Confirm all-zero vehicle control commands in the critical window",
+          "Confirm actor position offset is within allowed range",
+          "Confirm mission spawn and destination are unchanged"
+        ],
+        "post_execution_validation_rules": [
+          "Validate stop-line crossing and route-red-light relation",
+          "Confirm red light violation label matches original dataset labeling"
+        ],
+        "uncertainty": [
+          "Route-light relation and stop-line crossing are not confirmed by original evidence",
+          "No module-level root cause is identified, so root attribution remains uncertain"
+        ]
+      }
+    ]
+  },
+  "raw_api_payload": {
+    "id": "02178292309479263833ef1b46575706fd366729440fd359f73fa",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "{\n  \"case_id\": \"case_002\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Slightly reduce speed of the oncoming linear-motion vehicle near the intersection\",\n      \"mutation_intent\": \"Preserves all phase 1 root cause requirements: retains the original red light violation label, keeps all-zero ego control commands in the critical window, and preserves original mission spawn and destination positions, aligning with all preservation constraints\",\n      \"expected_oracle\": \"red_light\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 5, \"fog\": 3, \"wetness\": 4, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 1, \"position_offset\": {\"x\": 0.5, \"y\": -1.0}, \"speed_delta\": -1.2}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Confirm all-zero vehicle control commands in the critical window\", \"Confirm mission spawn and destination are unchanged\"],\n      \"post_execution_validation_rules\": [\"Validate stop-line crossing and route-red-light relation\", \"Confirm red light violation label consistency\"],\n      \"uncertainty\": [\"Actuation mismatch between all-zero command and non-zero velocity remains uncertain\", \"No confirmed module-level root cause, root attribution is unknown\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Slightly offset the position of the immobile vehicle near the intersection to prolong the ego's critical all-zero command window\",\n      \"mutation_intent\": \"Retains all core root cause properties from phase 1: preserves the original red light violation label, maintains all-zero control commands in the critical window, keeps original mission positions, and adheres to all preservation constraints\",\n      \"expected_oracle\": \"red_light\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": -4, \"fog\": 2, \"wetness\": -3, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": -1.5, \"y\": 0.8}, \"speed_delta\": 0.0}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Confirm all-zero vehicle control commands in the critical window\", \"Confirm actor position offset is within allowed range\", \"Confirm mission spawn and destination are unchanged\"],\n      \"post_execution_validation_rules\": [\"Validate stop-line crossing and route-red-light relation\", \"Confirm red light violation label matches original dataset labeling\"],\n      \"uncertainty\": [\"Route-light relation and stop-line crossing are not confirmed by original evidence\", \"No module-level root cause is identified, so root attribution remains uncertain\"]\n    }\n  ]\n}",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null,
+          "reasoning_content": "\nGot it, let's build this JSON step by step. First, the case_id is case_002 right? Then we need two candidate_specs, cand_001 and cand_002.\n\nFirst, let's remember the constraints: preserve red light violation label, all-zero control in critical window, keep original mission spawn and destination, validate stop-line crossing. Let's start with the first candidate.\n\nFirst candidate (cand_001): high level variant could be \"Slightly slower oncoming vehicle approaching the intersection to maintain critical window for ego's all-zero command\". Wait, mutation intent: preserves the original root cause pattern, keeps all-zero ego control, red light violation label, all constraints. Expected oracle is red_light, right? Because the label is red light violation.\n\nModifications: weather delta, let's make small changes? Wait, original weather is rain 64, fog 23, wetness 99. Let's do small deltas, like maybe rain +5, fog +3, wetness +2, puddle 0? Wait no, keep conservative. Or wait, first candidate, actor mutation: actor 1 (the oncoming one) speed delta: let's say -1.5, which is within [-3,3]. Position offset, x +1, y 0, that's within [-8,8]. Mission mutation keep_original true, right? Because the constraint says preserve original mission start and goal. Puddles are empty in seed, so puddle mutations empty? Wait seed has puddles: [], so yeah. Pre execution rules: need \"Confirm all-zero vehicle control commands in critical window\", \"Confirm original mission spawn and destination are unchanged\" right? Post execution: \"Validate stop-line crossing and red light route relation\" as per the constraints. Uncertainty: same as phase1, \"Actuation behavior mismatch between zero command and non-zero velocity remains uncertain\", \"Root cause module attribution unknown\" something like that.\n\nThen second candidate (cand_002): high level variant: \"Slightly offset position of the leading immobile vehicle to extend the critical all-zero command window before entering the intersection\". Mutation intent: preserves all original constraints, keeps red light violation label, maintains all-zero ego control in critical window, doesn't change mission positions. Expected oracle is still red_light. Modifications: actor 0 (the immobile one) position offset x -1.2, y +0.8, speed delta 0, that's within ranges. Weather delta: maybe rain -3, fog 0, wetness -4, puddle 0, all within [-20,20]. Mission mutation keep_original true, right? Puddle mutations empty again because seed has no puddles. Pre execution rules: [\"Confirm all-zero vehicle control commands in critical window\", \"Confirm actor position offset is within allowed range\", \"Confirm mission spawn and destination unchanged\"], post execution: [\"Validate stop-line crossing and red light route relation\", \"Confirm red light violation label consistency\"], uncertainty: [\"Route-light relation unconfirmed in original evidence\", \"Root cause module attribution remains unknown\"], that fits.\n\nWait let's check all rules: exactly two candidates, all offsets within ranges. Let's check the schema:\n\ncase_id is case_002, correct. candidate_specs array has two objects. Let's fill each correctly.\n\nWait for modifications, actor_mutations: for cand 001, let's have actor index 1, position x 0.5, y -1.0, speed delta -1.2, that's good. Weather delta: let's do rain 5, fog 3, wetness 4, puddle 0, all within [-20,20]. Mission mutation keep_original true, so spawn and destination offsets can be 0, that's fine. Puddle_mutations is empty because seed has no puddles.\n\nWait seed's puddles is [], right, yes, input says \"puddles\":[] so puddle_mutations is empty array.\n\nExpected oracle: red_light, because the label is red light violation, that's what we need to preserve.\n\nPre execution rules: for cand 001: [\"Confirm all-zero vehicle control commands in the critical window\", \"Confirm mission spawn and destination are unchanged per constraints\"], post execution: [\"Validate stop-line crossing and route-red-light relation to confirm consistency\", \"Confirm the scenario retains the red light violation label\"], uncertainty: [\"Actuation mismatch between zero control command and non-zero velocity remains uncertain\", \"No confirmed module-level root cause, so root attribution is still unknown\"], that matches phase 1 uncertainty.\n\nThen cand 002: high_level_variant: \"Slightly offset the position of the immobile actor near the intersection intersection to prolong the ego's critical all-zero command window\", mutation_intent: \"Preserves all core root cause properties: retains the dataset's red light violation label, keeps all-zero control commands in the critical window, and preserves original mission positions, aligning with all phase 1 preservation constraints\", expected_oracle: \"red_light\".\n\nModifications: weather_delta: {\"rain\": -4, \"fog\": 2, \"wetness\": -3, \"puddle\": 0}, actor_mutations: [{\"actor_index\": 0, \"position_offset\": {\"x\": -1.5, \"y\": 0.8}, \"speed_delta\": 0.0}], puddle_mutations: [], mission_mutation: {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}. That's all within ranges. Position offset is 1.5 and 0.8, well within [-8,8], speed delta 0 is within [-3,3], weather deltas all within [-20,20]. Correct.\n\nPre execution rules for cand 002: [\"Confirm all-zero vehicle control commands are retained in the critical window\", \"Confirm original mission spawn and destination are unchanged\"], post execution: [\"Validate stop-line crossing and route-red-light relation\", \"Verify red light violation label is consistent with original dataset labeling\"], uncertainty: [\"Route-light relation and stop-line crossing are not confirmed by original evidence\", \"Root cause module attribution remains unknown per original evidence\"].\n\nWait that all checks out. Let's put it all together correctly as JSON, no extra stuff, exactly what's needed. Let's make sure the JSON is valid, no commas at the end of arrays. Let's write it:\n\nWait let's check the root:\n\n{\n  \"case_id\": \"case_002\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Slightly reduce speed of the oncoming linear-motion vehicle near the intersection\",\n      \"mutation_intent\": \"Preserves all phase 1 root cause requirements: retains the original red light violation label, keeps all-zero ego control commands in the critical window, and preserves original mission spawn and destination positions, aligning with all preservation constraints\",\n      \"expected_oracle\": \"red_light\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 5, \"fog\": 3, \"wetness\": 4, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 1, \"position_offset\": {\"x\": 0.5, \"y\": -1.0}, \"speed_delta\": -1.2}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Confirm all-zero vehicle control commands in the critical window\", \"Confirm mission spawn and destination are unchanged\"],\n      \"post_execution_validation_rules\": [\"Validate stop-line crossing and route-red-light relation\", \"Confirm red light violation label consistency\"],\n      \"uncertainty\": [\"Actuation mismatch between all-zero command and non-zero velocity remains uncertain\", \"No confirmed module-level root cause, root attribution is unknown\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Slightly offset the position of the immobile vehicle near the intersection to prolong the ego's critical all-zero command window\",\n      \"mutation_intent\": \"Retains all core root cause properties from phase 1: preserves the original red light violation label, maintains all-zero control commands in the critical window, keeps original mission positions, and adheres to all preservation constraints\",\n      \"expected_oracle\": \"red_light\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": -4, \"fog\": 2, \"wetness\": -3, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": -1.5, \"y\": 0.8}, \"speed_delta\": 0.0}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Confirm all-zero vehicle control commands in the critical window\", \"Confirm actor position offset is within allowed range\", \"Confirm mission spawn and destination are unchanged\"],\n      \"post_execution_validation_rules\": [\"Validate stop-line crossing and route-red-light relation\", \"Confirm red light violation label matches original dataset labeling\"],\n      \"uncertainty\": [\"Route-light relation and stop-line crossing are not confirmed by original evidence\", \"No module-level root cause is identified, so root attribution remains uncertain\"]\n    }\n  ]\n}\n\nWait that's perfect. Let's check all constraints:\n\n- Exactly two candidates: yes.\n- All offsets: position offsets are all within [-8,8], yes. Speed delta -1.2, 0, within [-3,3], yes. Mission is keep_original, which is allowed. Weather deltas all between -20 and 20, yes. No puddles so puddle mutations are empty, that's fine. Preserved the expected oracle red_light, which is what the original label says. Preserved the root cause pattern, all constraints from phase 1 are followed. Uncertainty is preserved as per phase 1. All good. JSON is valid. Yeah that's the answer."
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "doubao-seed-2-0-lite-260215",
+    "object": "chat.completion",
+    "service_tier": "default",
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 3085,
+      "prompt_tokens": 1363,
+      "total_tokens": 4448,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 2320,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": null,
+        "cached_tokens": 0
+      }
+    }
+  },
+  "error_message": "",
+  "elapsed_sec": 45.312,
+  "timestamp": "<REDACTED_TIMESTAMP>"
+}

@@ -1,0 +1,108 @@
+{
+  "case_id": "case_061",
+  "round": 2,
+  "model_name": "claude-sonnet-4-5",
+  "candidate_index": 2,
+  "candidate_spec": {
+    "candidate_id": "cand_002",
+    "high_level_variant": "Both walkers moved closer with increased rain and fog for perception stress",
+    "mutation_intent": "Combine tighter actor proximity with degraded visibility to preserve collision and red-light while testing perception robustness",
+    "expected_oracle": "compound",
+    "modifications": {
+      "weather_delta": {
+        "rain": 18,
+        "fog": 12,
+        "wetness": 15,
+        "puddle": 8
+      },
+      "actor_mutations": [
+        {
+          "actor_index": 0,
+          "position_offset": {
+            "x": -2.8,
+            "y": 2.5
+          },
+          "speed_delta": 0.6
+        },
+        {
+          "actor_index": 1,
+          "position_offset": {
+            "x": -1.8,
+            "y": 1.5
+          },
+          "speed_delta": 0.4
+        }
+      ],
+      "puddle_mutations": [],
+      "mission_mutation": {
+        "keep_original": true,
+        "spawn_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "destination_offset": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Confirm both walkers spawn near ego route with increased weather severity"
+    ],
+    "post_execution_validation_rules": [
+      "Verify collision and red-light oracles triggered",
+      "Check vehicle_cmd zero with nonzero vehicle_status throttle and moderate speed",
+      "Confirm traffic light state and route-light relation if red-light claimed"
+    ],
+    "uncertainty": [
+      "Heavy weather may alter perception quality and detection timing",
+      "Actor interaction timing uncertain with combined proximity and weather changes"
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": 18.0,
+      "fog": 12.0,
+      "wetness": 15.0,
+      "puddle": 8.0
+    },
+    "actor_mutations": [
+      {
+        "actor_index": 0,
+        "position_offset": {
+          "x": -2.8,
+          "y": 2.5
+        },
+        "speed_delta": 0.6
+      },
+      {
+        "actor_index": 1,
+        "position_offset": {
+          "x": -1.8,
+          "y": 1.5
+        },
+        "speed_delta": 0.4
+      }
+    ],
+    "puddle_mutations": [],
+    "mission_mutation": {
+      "keep_original": true
+    },
+    "safety_repairs": []
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "original_phase1_output": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_061__claude-sonnet-4-5.json",
+  "round1_feedback_models": [
+    "ark-deepseek-r1-250528",
+    "ark-doubao-seed-2.0-lite-260215",
+    "claude-sonnet-4-5",
+    "gemini-2.5-pro",
+    "gpt-4o-2024-11-20",
+    "gpt-5.1"
+  ],
+  "round2_api_output": "<WORKSPACE_ROOT>/processed/experiments/round2_feedback/api_outputs/case_061__claude-sonnet-4-5.json"
+}

@@ -1,0 +1,121 @@
+{
+  "case_id": "case_039",
+  "workflow": "phase1_causal_explanation",
+  "model_name": "ark-doubao-seed-2.0-lite-260215",
+  "model_id": "ark-doubao-seed-2.0-lite-260215",
+  "status": "completed",
+  "dry_run": false,
+  "schema_valid": true,
+  "schema_errors": [],
+  "quality_flags": [],
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_prompts/case_039__ark-doubao-seed-2.0-lite-260215.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_039__ark-doubao-seed-2.0-lite-260215.json",
+  "prompt_estimated_tokens": 2808,
+  "usage": {
+    "prompt_tokens": 3733,
+    "completion_tokens": 2362,
+    "total_tokens": 6095
+  },
+  "estimated_cost_usd": null,
+  "raw_response": "{\n  \"case_id\": \"case_039\",\n  \"fault_layer\": \"unknown\",\n  \"fault_component\": \"unknown\",\n  \"causal_explanation\": \"Dataset labels this case as stuck and lane invasion, but error.json does not detect either failure. All published vehicle_cmd commands are zero in the critical window, but the ego vehicle exhibits non-zero velocity and movement. No module-level failure can be confirmed due to label conflict and unproven mismatch cause.\",\n  \"root_cause_pattern\": \"Conservative candidate pattern: Ego vehicle maintains non-zero movement and velocity when all published actuation commands are zero, with conflicting failure annotations between the dataset and error.json.\",\n  \"preservation_constraints\": [\n    \"Preserve conflicting stuck and lane invasion labels between dataset and error.json\",\n    \"Preserve all-zero accel, brake, and steer commands in vehicle_cmd during the critical window\",\n    \"Preserve non-zero ego velocity and movement during the critical window\",\n    \"Preserve consistent availability of final waypoints throughout the critical window\",\n    \"Preserve 1 actor and 3 puddle regions on the Town01 map\"\n  ],\n  \"modifiable_factors\": [\n    \"actor_position\",\n    \"weather\",\n    \"puddle_position\",\n    \"start_pose_offset\",\n    \"mission_goal_offset\"\n  ],\n  \"non_modifiable_conditions\": [\n    \"Map is Town01\",\n    \"All vehicle_cmd commands are zero during the critical window\",\n    \"Ego has non-zero velocity and movement during the critical window\",\n    \"Conflicting failure labels between dataset and error.json\",\n    \"Final waypoints are available throughout the critical window\"\n  ],\n  \"uncertainty\": [\n    \"Dataset and error.json have conflicting labels: dataset labels stuck=1, lane_invasion=1; error.json labels both 0\",\n    \"Mismatch between zero vehicle_cmd and non-zero ego movement has no confirmed module-level cause per available evidence\",\n    \"No direct evidence of lane boundary crossing to confirm lane invasion is present\"\n  ],\n  \"evidence_support\": [\n    {\"evidence_id\": \"label_conflict\", \"claim\": \"Dataset and error.json failure labels conflict for this case\"},\n    {\"evidence_id\": \"vehicle_cmd_stats\", \"claim\": \"All accel, brake, and steer commands in vehicle_cmd are zero in the critical window\"},\n    {\"evidence_id\": \"velocity_stats\", \"claim\": \"Ego has non-zero velocity (last velocity 4.17 m/s) and movement in the critical window\"},\n    {\"evidence_id\": \"final_waypoints_summary\", \"claim\": \"Final waypoints are consistently present throughout the critical window\"}\n  ],\n  \"confidence\": \"low\",\n  \"ready_for_phase2_generation\": \"uncertain\",\n  \"notes_for_validator\": [\n    \"Resolve conflicting failure labels via manual review before confirming generated cases match this root cause\",\n    \"Verify the mismatch between zero vehicle_cmd and non-zero ego movement in all generated candidate cases\"\n  ]\n}",
+  "parsed_response": {
+    "case_id": "case_039",
+    "fault_layer": "unknown",
+    "fault_component": "unknown",
+    "causal_explanation": "Dataset labels this case as stuck and lane invasion, but error.json does not detect either failure. All published vehicle_cmd commands are zero in the critical window, but the ego vehicle exhibits non-zero velocity and movement. No module-level failure can be confirmed due to label conflict and unproven mismatch cause.",
+    "root_cause_pattern": "Conservative candidate pattern: Ego vehicle maintains non-zero movement and velocity when all published actuation commands are zero, with conflicting failure annotations between the dataset and error.json.",
+    "preservation_constraints": [
+      "Preserve conflicting stuck and lane invasion labels between dataset and error.json",
+      "Preserve all-zero accel, brake, and steer commands in vehicle_cmd during the critical window",
+      "Preserve non-zero ego velocity and movement during the critical window",
+      "Preserve consistent availability of final waypoints throughout the critical window",
+      "Preserve 1 actor and 3 puddle regions on the Town01 map"
+    ],
+    "modifiable_factors": [
+      "actor_position",
+      "weather",
+      "puddle_position",
+      "start_pose_offset",
+      "mission_goal_offset"
+    ],
+    "non_modifiable_conditions": [
+      "Map is Town01",
+      "All vehicle_cmd commands are zero during the critical window",
+      "Ego has non-zero velocity and movement during the critical window",
+      "Conflicting failure labels between dataset and error.json",
+      "Final waypoints are available throughout the critical window"
+    ],
+    "uncertainty": [
+      "Dataset and error.json have conflicting labels: dataset labels stuck=1, lane_invasion=1; error.json labels both 0",
+      "Mismatch between zero vehicle_cmd and non-zero ego movement has no confirmed module-level cause per available evidence",
+      "No direct evidence of lane boundary crossing to confirm lane invasion is present"
+    ],
+    "evidence_support": [
+      {
+        "evidence_id": "label_conflict",
+        "claim": "Dataset and error.json failure labels conflict for this case"
+      },
+      {
+        "evidence_id": "vehicle_cmd_stats",
+        "claim": "All accel, brake, and steer commands in vehicle_cmd are zero in the critical window"
+      },
+      {
+        "evidence_id": "velocity_stats",
+        "claim": "Ego has non-zero velocity (last velocity 4.17 m/s) and movement in the critical window"
+      },
+      {
+        "evidence_id": "final_waypoints_summary",
+        "claim": "Final waypoints are consistently present throughout the critical window"
+      }
+    ],
+    "confidence": "low",
+    "ready_for_phase2_generation": "uncertain",
+    "notes_for_validator": [
+      "Resolve conflicting failure labels via manual review before confirming generated cases match this root cause",
+      "Verify the mismatch between zero vehicle_cmd and non-zero ego movement in all generated candidate cases"
+    ]
+  },
+  "raw_api_payload": {
+    "id": "021782919068650fc7bcbb7d43fe183dbed5bfff3b26ba256037f",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "{\n  \"case_id\": \"case_039\",\n  \"fault_layer\": \"unknown\",\n  \"fault_component\": \"unknown\",\n  \"causal_explanation\": \"Dataset labels this case as stuck and lane invasion, but error.json does not detect either failure. All published vehicle_cmd commands are zero in the critical window, but the ego vehicle exhibits non-zero velocity and movement. No module-level failure can be confirmed due to label conflict and unproven mismatch cause.\",\n  \"root_cause_pattern\": \"Conservative candidate pattern: Ego vehicle maintains non-zero movement and velocity when all published actuation commands are zero, with conflicting failure annotations between the dataset and error.json.\",\n  \"preservation_constraints\": [\n    \"Preserve conflicting stuck and lane invasion labels between dataset and error.json\",\n    \"Preserve all-zero accel, brake, and steer commands in vehicle_cmd during the critical window\",\n    \"Preserve non-zero ego velocity and movement during the critical window\",\n    \"Preserve consistent availability of final waypoints throughout the critical window\",\n    \"Preserve 1 actor and 3 puddle regions on the Town01 map\"\n  ],\n  \"modifiable_factors\": [\n    \"actor_position\",\n    \"weather\",\n    \"puddle_position\",\n    \"start_pose_offset\",\n    \"mission_goal_offset\"\n  ],\n  \"non_modifiable_conditions\": [\n    \"Map is Town01\",\n    \"All vehicle_cmd commands are zero during the critical window\",\n    \"Ego has non-zero velocity and movement during the critical window\",\n    \"Conflicting failure labels between dataset and error.json\",\n    \"Final waypoints are available throughout the critical window\"\n  ],\n  \"uncertainty\": [\n    \"Dataset and error.json have conflicting labels: dataset labels stuck=1, lane_invasion=1; error.json labels both 0\",\n    \"Mismatch between zero vehicle_cmd and non-zero ego movement has no confirmed module-level cause per available evidence\",\n    \"No direct evidence of lane boundary crossing to confirm lane invasion is present\"\n  ],\n  \"evidence_support\": [\n    {\"evidence_id\": \"label_conflict\", \"claim\": \"Dataset and error.json failure labels conflict for this case\"},\n    {\"evidence_id\": \"vehicle_cmd_stats\", \"claim\": \"All accel, brake, and steer commands in vehicle_cmd are zero in the critical window\"},\n    {\"evidence_id\": \"velocity_stats\", \"claim\": \"Ego has non-zero velocity (last velocity 4.17 m/s) and movement in the critical window\"},\n    {\"evidence_id\": \"final_waypoints_summary\", \"claim\": \"Final waypoints are consistently present throughout the critical window\"}\n  ],\n  \"confidence\": \"low\",\n  \"ready_for_phase2_generation\": \"uncertain\",\n  \"notes_for_validator\": [\n    \"Resolve conflicting failure labels via manual review before confirming generated cases match this root cause\",\n    \"Verify the mismatch between zero vehicle_cmd and non-zero ego movement in all generated candidate cases\"\n  ]\n}",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null,
+          "reasoning_content": "\nOkay, let's build this JSON step by step. First, case_id is case_039, right?\n\nFirst, fault_layer. Let's look at the evidence: vehicle_cmd is all zero, but vehicle_status shows movement, throttle, brake non-zero sometimes? Wait no, let's check: vehicle_cmd all commands are zero, but vehicle status has non-zero velocity, last velocity is 4.17. Oh and there's conflict between dataset and error.json. Fault layer: let's see, actuation has mismatch, but the rule says if vehicle_cmd all zero but vehicle moves, don't assign actuation from mismatch alone. So fault_layer is unknown? Wait wait, let's check: dataset says stuck and lane invasion, error json says no. So fault attribution can't be confirmed. Fault component is unknown.\n\nCausal explanation: Let's write that. Dataset labels this case as stuck and lane invasion, but error.json does not detect either failure. Critical window evidence shows all vehicle_cmd commands are zero in the critical window, but ego vehicle has non-zero velocity and movement. No module-level failure is directly confirmed due to label conflict and mismatched command/actuation status.\n\nRoot cause pattern: Conservative pattern: mismatch between published zero vehicle command messages and actual ego movement, with conflicting failure labels between dataset and error.json. Wait, or more accurate: Candidate root cause pattern: ego vehicle exhibits movement even when all published actuation commands are zero, with conflicting failure annotations between dataset and error json.\n\nPreservation constraints: Let's do 3-6. 1. Preserve conflicting failure annotations between dataset and error.json. 2. Preserve all zero actuation command values in vehicle_cmd topic during critical window. 3. Preserve non-zero ego velocity and movement during critical window. 4. Preserve presence of 1 nearby actor and 3 puddle regions on Town01 map. 5. Preserve final waypoints being available throughout the critical window. That's good.\n\nModifiable factors: Let's see, what can change? actor position, weather, start goal position within the same map, puddle positions? Wait existing has 3 puddles, so modifiable: actor_position, weather, puddle_position, start yaw, goal position. Yeah: [\"actor_position\", \"weather\", \"puddle_position\", \"mission_goal_offset\", \"start_pose_offset\"]\n\nNon_modifiable_conditions: [\"same map (Town01)\", \"all zero commands in vehicle_cmd during critical window\", \"non-zero ego movement/velocity during critical window\", \"conflicting labels between dataset and error.json\", \"final_waypoints available throughout critical window\"]\n\nUncertainty: [\"Dataset labels and error.json labels conflict for stuck and lane invasion: dataset labels 1, error.json labels 0\", \"vehicle_cmd is all zero but vehicle shows movement, no direct evidence of which module causes the mismatch\", \"module-level failure attribution can not be confirmed from available evidence\"]\n\nEvidence support: Let's list each. {\"evidence_id\": \"oracle_consistency\", \"claim\": \"Dataset and error.json have conflicting labels for stuck and lane_invasion\"}, {\"evidence_id\": \"critical_window_stuck\", \"claim\": \"All vehicle_cmd accel, brake, steer commands are zero in the critical window\"}, {\"evidence_id\": \"critical_window_ego\", \"claim\": \"Ego has non-zero velocity and movement in the last 60 second critical window\"}, {\"evidence_id\": \"planning_summary\", \"claim\": \"Final waypoints are consistently present throughout the critical window\"}\n\nConfidence: low? Wait because of all the uncertainty, right? Yeah confidence is low.\n\nReady_for_phase2_generation: uncertain? Wait no, wait the rule: use uncertain when labels conflict. Wait let's check the rule: \"use yes when there is a checkable conservative preservation pattern; use uncertain when labels conflict or a key condition is missing.\" Oh right labels conflict here, so ready_for_phase2_generation is uncertain? Wait wait no, let's check: the guidance says use uncertainty-aware input, so ready is uncertain? Let me see: the conflict exists, so yes, uncertain.\n\nNotes_for_validator: [\"Manual review is required to resolve conflicting failure labels before confirming same-root-cause status\", \"Validate that vehicle_cmd is all zero and ego has non-zero movement in generated cases to match the root pattern\"]\n\nWait let's put all this together correctly, follow the schema. Let me check all the rules again. Oh right, the rule says if dataset and error json disagree, mark uncertainty, don't treat dataset label as confirmed. That's done. The rule says if vehicle_cmd all zero but vehicle moves, don't assign fault_layer=actuation from mismatch alone, so we have fault_layer=unknown, that's correct.\n\nLet me adjust each field properly:\n\ncase_id: \"case_039\"\n\nfault_layer: \"unknown\"\n\nfault_component: \"unknown\"\n\ncausal_explanation: \"Dataset labels this case as stuck and lane invasion, but error.json does not detect either failure. All published vehicle_cmd commands are zero in the critical window, but the ego vehicle exhibits non-zero velocity and movement. No module-level failure can be confirmed due to label conflict and unproven mismatch cause.\"\n\nroot_cause_pattern: \"Conservative candidate pattern: Ego vehicle maintains non-zero movement and velocity when all published actuation commands are zero, with conflicting failure annotations between the dataset and error.json.\"\n\npreservation_constraints: [\n  \"Preserve conflicting stuck and lane invasion labels between dataset and error.json\",\n  \"Preserve all-zero accel, brake, and steer commands in the vehicle_cmd topic during the critical window\",\n  \"Preserve non-zero ego velocity and movement during the critical window\",\n  \"Preserve consistent availability of final waypoints throughout the critical window\",\n  \"Preserve 1 actor and 3 puddle regions on the Town01 map\"\n]\n\nmodifiable_factors: [\n  \"actor_position\",\n  \"weather\",\n  \"puddle_position\",\n  \"start_pose_offset\",\n  \"mission_goal_offset\"\n]\n\nnon_modifiable_conditions: [\n  \"Map is Town01\",\n  \"All vehicle_cmd commands are zero during the critical window\",\n  \"Ego has non-zero velocity and movement during the critical window\",\n  \"Conflicting failure labels between dataset and error.json\",\n  \"Final waypoints are available throughout the critical window\"\n]\n\nuncertainty: [\n  \"Dataset and error.json have conflicting labels: dataset labels stuck=1, lane_invasion=1; error.json labels both 0\",\n  \"Mismatch between zero vehicle_cmd and non-zero ego movement has no confirmed module-level cause per available evidence\",\n  \"No direct evidence of lane boundary crossing to confirm lane invasion is present\"\n]\n\nevidence_support: [\n  {\"evidence_id\": \"label_conflict\", \"claim\": \"Dataset and error.json failure labels conflict for this case\"},\n  {\"evidence_id\": \"vehicle_cmd_stats\", \"claim\": \"All accel, brake, and steer commands in vehicle_cmd are zero in the critical window\"},\n  {\"evidence_id\": \"velocity_stats\", \"claim\": \"Ego has non-zero velocity (last velocity 4.17 m/s) and movement in the critical window\"},\n  {\"evidence_id\": \"final_waypoints_summary\", \"claim\": \"Final waypoints are consistently present throughout the critical window\"}\n]\n\nconfidence: \"low\"\n\nready_for_phase2_generation: \"uncertain\"\n\nnotes_for_validator: [\n  \"Resolve conflicting failure labels via manual review before confirming generated cases match this root cause\",\n  \"Verify the mismatch between zero vehicle_cmd and non-zero ego movement in all generated candidate cases\"\n]\n\nWait that all checks out. Let me make sure I didn't invent anything, all from the evidence. Yeah, no invented stuff. All constraints are semantic, no timestamps. That's good. Now put it into valid JSON."
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "doubao-seed-2-0-lite-260215",
+    "object": "chat.completion",
+    "service_tier": "default",
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 2362,
+      "prompt_tokens": 3733,
+      "total_tokens": 6095,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 1693,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": null,
+        "cached_tokens": 0
+      }
+    }
+  },
+  "error_message": "",
+  "timestamp": "<REDACTED_TIMESTAMP>",
+  "elapsed_sec": 54.074
+}

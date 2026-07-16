@@ -1,0 +1,419 @@
+{
+  "case_id": "case_137",
+  "model_name": "gpt-5.1",
+  "workflow": "phase2_grounded_generation",
+  "status": "completed",
+  "schema_valid": true,
+  "schema_errors": [],
+  "phase1_ready": "yes",
+  "num_candidates_requested": 2,
+  "num_candidates_written": 2,
+  "num_pre_valid": 2,
+  "candidate_records": [
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/gpt-5.1/json/case_137/case_137__cand_001.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/gpt-5.1/metadata/case_137/case_137__cand_001.metadata.json",
+      "case_id": "case_137",
+      "model_name": "gpt-5.1",
+      "candidate_index": 1,
+      "candidate_spec": {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Same route, slightly shifted spawn near intersection",
+        "mutation_intent": "Keep red-light oracle and motion while gently perturbing ego start and nearby pedestrian",
+        "expected_oracle": "red_light",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": 2.0,
+                "y": -1.5
+              },
+              "speed_delta": 0.5
+            }
+          ],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 1.5,
+                "y": -2.0
+              },
+              "level_delta": 0.05,
+              "size_scale": 1.05
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": false,
+            "spawn_offset": {
+              "x": 3.0,
+              "y": -2.0
+            },
+            "destination_offset": {
+              "x": -2.0,
+              "y": 1.5
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Ensure traffic_lights topic is active with at least one red state",
+          "Confirm mission initialized and ego spawn near original lane",
+          "Verify final_waypoints and vehicle_cmd are being published"
+        ],
+        "post_execution_validation_rules": [
+          "Check oracle error_json flags only red-light violation",
+          "Confirm ego had non-zero speed before violation timestamp",
+          "Do not assert explicit stop-line or route-signal relationship"
+        ],
+        "uncertainty": [
+          "Leave exact ego relation to red light unspecified",
+          "Do not infer which module caused violation"
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 0.0,
+          "fog": 0.0,
+          "wetness": 0.0,
+          "puddle": 0.0
+        },
+        "actor_mutations": [
+          {
+            "actor_index": 1,
+            "position_offset": {
+              "x": 2.0,
+              "y": -1.5
+            },
+            "speed_delta": 0.5
+          }
+        ],
+        "puddle_mutations": [
+          {
+            "puddle_index": 0,
+            "location_offset": {
+              "x": 1.5,
+              "y": -2.0
+            },
+            "level_delta": 0.05,
+            "size_scale": 1.05
+          }
+        ],
+        "mission_mutation": {
+          "spawn_offset": {
+            "x": 3.0,
+            "y": -2.0
+          },
+          "destination_offset": {
+            "x": -2.0,
+            "y": 1.5
+          }
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_137__gpt-5.1.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_137__gpt-5.1.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    },
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/gpt-5.1/json/case_137/case_137__cand_002.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/gpt-5.1/metadata/case_137/case_137__cand_002.metadata.json",
+      "case_id": "case_137",
+      "model_name": "gpt-5.1",
+      "candidate_index": 2,
+      "candidate_spec": {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Slightly altered destination and wetter critical region",
+        "mutation_intent": "Probe robustness of red-light handling with minor path and puddle tweaks",
+        "expected_oracle": "red_light",
+        "modifications": {
+          "weather_delta": {
+            "rain": 5,
+            "fog": 5,
+            "wetness": 10,
+            "puddle": 5
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 2,
+              "position_offset": {
+                "x": -3.0,
+                "y": 2.5
+              },
+              "speed_delta": 0.0
+            }
+          ],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": -2.0,
+                "y": 1.0
+              },
+              "level_delta": 0.08,
+              "size_scale": 1.1
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": false,
+            "spawn_offset": {
+              "x": -1.5,
+              "y": 1.0
+            },
+            "destination_offset": {
+              "x": 4.0,
+              "y": -3.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Ensure traffic_lights and final_waypoints topics remain available",
+          "Verify ego odometry shows capability to move",
+          "Confirm red state present near probable conflict time"
+        ],
+        "post_execution_validation_rules": [
+          "Oracle must report red-light violation as primary failure",
+          "Ego must be moving before violation event",
+          "Do not validate any concrete stop-line crossing"
+        ],
+        "uncertainty": [
+          "Retain unknown route-signal geometry",
+          "Controller versus simulator responsibility stays unresolved"
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 5.0,
+          "fog": 5.0,
+          "wetness": 10.0,
+          "puddle": 5.0
+        },
+        "actor_mutations": [
+          {
+            "actor_index": 2,
+            "position_offset": {
+              "x": -3.0,
+              "y": 2.5
+            },
+            "speed_delta": 0.0
+          }
+        ],
+        "puddle_mutations": [
+          {
+            "puddle_index": 0,
+            "location_offset": {
+              "x": -2.0,
+              "y": 1.0
+            },
+            "level_delta": 0.08,
+            "size_scale": 1.1
+          }
+        ],
+        "mission_mutation": {
+          "spawn_offset": {
+            "x": -1.5,
+            "y": 1.0
+          },
+          "destination_offset": {
+            "x": 4.0,
+            "y": -3.0
+          }
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_137__gpt-5.1.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_137__gpt-5.1.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    }
+  ],
+  "seed_artifact_zip": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/gpt-5.1/seed-artifact/seed-artifact-case_137.zip",
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_prompts/case_137__gpt-5.1.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_137__gpt-5.1.json",
+  "prompt_estimated_tokens": 1411,
+  "usage": {
+    "prompt_tokens": 1463,
+    "completion_tokens": 881,
+    "total_tokens": 2344
+  },
+  "raw_response": "{\n  \"case_id\": \"case_137\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Same route, slightly shifted spawn near intersection\",\n      \"mutation_intent\": \"Keep red-light oracle and motion while gently perturbing ego start and nearby pedestrian\",\n      \"expected_oracle\": \"red_light\",\n      \"modifications\": {\n        \"weather_delta\": {\n          \"rain\": 0,\n          \"fog\": 0,\n          \"wetness\": 0,\n          \"puddle\": 0\n        },\n        \"actor_mutations\": [\n          {\n            \"actor_index\": 1,\n            \"position_offset\": {\n              \"x\": 2.0,\n              \"y\": -1.5\n            },\n            \"speed_delta\": 0.5\n          }\n        ],\n        \"puddle_mutations\": [\n          {\n            \"puddle_index\": 0,\n            \"location_offset\": {\n              \"x\": 1.5,\n              \"y\": -2.0\n            },\n            \"level_delta\": 0.05,\n            \"size_scale\": 1.05\n          }\n        ],\n        \"mission_mutation\": {\n          \"keep_original\": false,\n          \"spawn_offset\": {\n            \"x\": 3.0,\n            \"y\": -2.0\n          },\n          \"destination_offset\": {\n            \"x\": -2.0,\n            \"y\": 1.5\n          }\n        }\n      },\n      \"pre_execution_validation_rules\": [\n        \"Ensure traffic_lights topic is active with at least one red state\",\n        \"Confirm mission initialized and ego spawn near original lane\",\n        \"Verify final_waypoints and vehicle_cmd are being published\"\n      ],\n      \"post_execution_validation_rules\": [\n        \"Check oracle error_json flags only red-light violation\",\n        \"Confirm ego had non-zero speed before violation timestamp\",\n        \"Do not assert explicit stop-line or route-signal relationship\"\n      ],\n      \"uncertainty\": [\n        \"Leave exact ego relation to red light unspecified\",\n        \"Do not infer which module caused violation\"\n      ]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Slightly altered destination and wetter critical region\",\n      \"mutation_intent\": \"Probe robustness of red-light handling with minor path and puddle tweaks\",\n      \"expected_oracle\": \"red_light\",\n      \"modifications\": {\n        \"weather_delta\": {\n          \"rain\": 5,\n          \"fog\": 5,\n          \"wetness\": 10,\n          \"puddle\": 5\n        },\n        \"actor_mutations\": [\n          {\n            \"actor_index\": 2,\n            \"position_offset\": {\n              \"x\": -3.0,\n              \"y\": 2.5\n            },\n            \"speed_delta\": 0.0\n          }\n        ],\n        \"puddle_mutations\": [\n          {\n            \"puddle_index\": 0,\n            \"location_offset\": {\n              \"x\": -2.0,\n              \"y\": 1.0\n            },\n            \"level_delta\": 0.08,\n            \"size_scale\": 1.1\n          }\n        ],\n        \"mission_mutation\": {\n          \"keep_original\": false,\n          \"spawn_offset\": {\n            \"x\": -1.5,\n            \"y\": 1.0\n          },\n          \"destination_offset\": {\n            \"x\": 4.0,\n            \"y\": -3.0\n          }\n        }\n      },\n      \"pre_execution_validation_rules\": [\n        \"Ensure traffic_lights and final_waypoints topics remain available\",\n        \"Verify ego odometry shows capability to move\",\n        \"Confirm red state present near probable conflict time\"\n      ],\n      \"post_execution_validation_rules\": [\n        \"Oracle must report red-light violation as primary failure\",\n        \"Ego must be moving before violation event\",\n        \"Do not validate any concrete stop-line crossing\"\n      ],\n      \"uncertainty\": [\n        \"Retain unknown route-signal geometry\",\n        \"Controller versus simulator responsibility stays unresolved\"\n      ]\n    }\n  ]\n}",
+  "parsed_response": {
+    "case_id": "case_137",
+    "candidate_specs": [
+      {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Same route, slightly shifted spawn near intersection",
+        "mutation_intent": "Keep red-light oracle and motion while gently perturbing ego start and nearby pedestrian",
+        "expected_oracle": "red_light",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": 2.0,
+                "y": -1.5
+              },
+              "speed_delta": 0.5
+            }
+          ],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 1.5,
+                "y": -2.0
+              },
+              "level_delta": 0.05,
+              "size_scale": 1.05
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": false,
+            "spawn_offset": {
+              "x": 3.0,
+              "y": -2.0
+            },
+            "destination_offset": {
+              "x": -2.0,
+              "y": 1.5
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Ensure traffic_lights topic is active with at least one red state",
+          "Confirm mission initialized and ego spawn near original lane",
+          "Verify final_waypoints and vehicle_cmd are being published"
+        ],
+        "post_execution_validation_rules": [
+          "Check oracle error_json flags only red-light violation",
+          "Confirm ego had non-zero speed before violation timestamp",
+          "Do not assert explicit stop-line or route-signal relationship"
+        ],
+        "uncertainty": [
+          "Leave exact ego relation to red light unspecified",
+          "Do not infer which module caused violation"
+        ]
+      },
+      {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Slightly altered destination and wetter critical region",
+        "mutation_intent": "Probe robustness of red-light handling with minor path and puddle tweaks",
+        "expected_oracle": "red_light",
+        "modifications": {
+          "weather_delta": {
+            "rain": 5,
+            "fog": 5,
+            "wetness": 10,
+            "puddle": 5
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 2,
+              "position_offset": {
+                "x": -3.0,
+                "y": 2.5
+              },
+              "speed_delta": 0.0
+            }
+          ],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": -2.0,
+                "y": 1.0
+              },
+              "level_delta": 0.08,
+              "size_scale": 1.1
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": false,
+            "spawn_offset": {
+              "x": -1.5,
+              "y": 1.0
+            },
+            "destination_offset": {
+              "x": 4.0,
+              "y": -3.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Ensure traffic_lights and final_waypoints topics remain available",
+          "Verify ego odometry shows capability to move",
+          "Confirm red state present near probable conflict time"
+        ],
+        "post_execution_validation_rules": [
+          "Oracle must report red-light violation as primary failure",
+          "Ego must be moving before violation event",
+          "Do not validate any concrete stop-line crossing"
+        ],
+        "uncertainty": [
+          "Retain unknown route-signal geometry",
+          "Controller versus simulator responsibility stays unresolved"
+        ]
+      }
+    ]
+  },
+  "raw_api_payload": {
+    "id": "<REDACTED_RESPONSE_ID>",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "{\n  \"case_id\": \"case_137\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Same route, slightly shifted spawn near intersection\",\n      \"mutation_intent\": \"Keep red-light oracle and motion while gently perturbing ego start and nearby pedestrian\",\n      \"expected_oracle\": \"red_light\",\n      \"modifications\": {\n        \"weather_delta\": {\n          \"rain\": 0,\n          \"fog\": 0,\n          \"wetness\": 0,\n          \"puddle\": 0\n        },\n        \"actor_mutations\": [\n          {\n            \"actor_index\": 1,\n            \"position_offset\": {\n              \"x\": 2.0,\n              \"y\": -1.5\n            },\n            \"speed_delta\": 0.5\n          }\n        ],\n        \"puddle_mutations\": [\n          {\n            \"puddle_index\": 0,\n            \"location_offset\": {\n              \"x\": 1.5,\n              \"y\": -2.0\n            },\n            \"level_delta\": 0.05,\n            \"size_scale\": 1.05\n          }\n        ],\n        \"mission_mutation\": {\n          \"keep_original\": false,\n          \"spawn_offset\": {\n            \"x\": 3.0,\n            \"y\": -2.0\n          },\n          \"destination_offset\": {\n            \"x\": -2.0,\n            \"y\": 1.5\n          }\n        }\n      },\n      \"pre_execution_validation_rules\": [\n        \"Ensure traffic_lights topic is active with at least one red state\",\n        \"Confirm mission initialized and ego spawn near original lane\",\n        \"Verify final_waypoints and vehicle_cmd are being published\"\n      ],\n      \"post_execution_validation_rules\": [\n        \"Check oracle error_json flags only red-light violation\",\n        \"Confirm ego had non-zero speed before violation timestamp\",\n        \"Do not assert explicit stop-line or route-signal relationship\"\n      ],\n      \"uncertainty\": [\n        \"Leave exact ego relation to red light unspecified\",\n        \"Do not infer which module caused violation\"\n      ]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Slightly altered destination and wetter critical region\",\n      \"mutation_intent\": \"Probe robustness of red-light handling with minor path and puddle tweaks\",\n      \"expected_oracle\": \"red_light\",\n      \"modifications\": {\n        \"weather_delta\": {\n          \"rain\": 5,\n          \"fog\": 5,\n          \"wetness\": 10,\n          \"puddle\": 5\n        },\n        \"actor_mutations\": [\n          {\n            \"actor_index\": 2,\n            \"position_offset\": {\n              \"x\": -3.0,\n              \"y\": 2.5\n            },\n            \"speed_delta\": 0.0\n          }\n        ],\n        \"puddle_mutations\": [\n          {\n            \"puddle_index\": 0,\n            \"location_offset\": {\n              \"x\": -2.0,\n              \"y\": 1.0\n            },\n            \"level_delta\": 0.08,\n            \"size_scale\": 1.1\n          }\n        ],\n        \"mission_mutation\": {\n          \"keep_original\": false,\n          \"spawn_offset\": {\n            \"x\": -1.5,\n            \"y\": 1.0\n          },\n          \"destination_offset\": {\n            \"x\": 4.0,\n            \"y\": -3.0\n          }\n        }\n      },\n      \"pre_execution_validation_rules\": [\n        \"Ensure traffic_lights and final_waypoints topics remain available\",\n        \"Verify ego odometry shows capability to move\",\n        \"Confirm red state present near probable conflict time\"\n      ],\n      \"post_execution_validation_rules\": [\n        \"Oracle must report red-light violation as primary failure\",\n        \"Ego must be moving before violation event\",\n        \"Do not validate any concrete stop-line crossing\"\n      ],\n      \"uncertainty\": [\n        \"Retain unknown route-signal geometry\",\n        \"Controller versus simulator responsibility stays unresolved\"\n      ]\n    }\n  ]\n}",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": [],
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "gpt-5.1-2025-11-13",
+    "object": "chat.completion",
+    "service_tier": "default",
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 881,
+      "prompt_tokens": 1463,
+      "total_tokens": 2344,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": 0,
+        "audio_tokens": 0,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 0
+      }
+    }
+  },
+  "error_message": "",
+  "elapsed_sec": 15.302,
+  "timestamp": "<REDACTED_TIMESTAMP>"
+}

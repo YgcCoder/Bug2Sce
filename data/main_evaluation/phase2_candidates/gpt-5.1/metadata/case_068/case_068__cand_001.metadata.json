@@ -1,0 +1,96 @@
+{
+  "case_id": "case_068",
+  "model_name": "gpt-5.1",
+  "candidate_index": 1,
+  "candidate_spec": {
+    "candidate_id": "cand_001",
+    "high_level_variant": "Ego starts slightly offset near the same straight road segment with one nearby parked vehicle; low-motion crawl near an ambiguous signalized area where traffic light states are present but route–light linkage remains unresolved.",
+    "mutation_intent": "Keep the ego near the original start but introduce a modest lateral/longitudinal offset so the route still approaches a signalized region without clearly binding the ego lane to a specific light or stop line. Maintain low ego motion so any red-light oracle trigger cannot be trivially attributed to a clear high-speed run-through. Preserve traffic light activity while avoiding strong geometric evidence tying ego to a particular stop line.",
+    "expected_oracle": "red_light",
+    "modifications": {
+      "weather_delta": {
+        "rain": 0,
+        "fog": 0,
+        "wetness": 0,
+        "puddle": 0
+      },
+      "actor_mutations": [
+        {
+          "actor_index": 0,
+          "position_offset": {
+            "x": 2.0,
+            "y": -3.0
+          },
+          "speed_delta": 0.0
+        }
+      ],
+      "puddle_mutations": [],
+      "mission_mutation": {
+        "keep_original": false,
+        "spawn_offset": {
+          "x": -3.0,
+          "y": 4.0
+        },
+        "destination_offset": {
+          "x": 2.0,
+          "y": -1.0
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Ensure at least one active traffic signalized intersection exists along plausible ego paths within 80 m of the mutated spawn-to-destination line.",
+      "Verify that the ego’s planned route does not have an explicitly annotated controlling traffic light or linked stop line in the configuration metadata.",
+      "Constrain ego initial speed and planned cruise speed such that typical displacement over the scenario horizon remains modest (e.g., < 40 m) unless forced by the stack.",
+      "Confirm that the nearby parked vehicle (actor_index 0) remains non-blocking for basic route generation but close enough to be visible in perception."
+    ],
+    "post_execution_validation_rules": [
+      "Check that the oracle or evaluator reports a red-light violation at least once during the run.",
+      "Verify that a traffic_lights-like topic is present and publishes multiple signals and state changes during the time window around the oracle-reported violation.",
+      "Confirm that analysis results keep route_light_relation_confirmed == unknown and stop_line_crossing_confirmed == unknown (no explicit evidence tying ego lane to a particular light or stop line).",
+      "Ensure ego displacement over the full run remains limited or modest, consistent with low-speed or low-motion behavior, and that there is no clear high-speed crossing of a known intersection stop line.",
+      "If logs show an unambiguous mapping from the ego lane to a specific red light with a clearly crossed stop line at nontrivial speed, then reject this as not matching the intended root-cause pattern."
+    ],
+    "uncertainty": [
+      "Exact oracle definition and timing of the red-light violation remain unknown and must be inferred from evaluator logs.",
+      "The actual physical relationship between ego pose and nearby traffic lights may still be ambiguous depending on map specifics.",
+      "Controller-level actuation versus reported vehicle_status may again be difficult to interpret if low-speed creeping or simulation artifacts occur."
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": 0.0,
+      "fog": 0.0,
+      "wetness": 0.0,
+      "puddle": 0.0
+    },
+    "actor_mutations": [
+      {
+        "actor_index": 0,
+        "position_offset": {
+          "x": 2.0,
+          "y": -3.0
+        },
+        "speed_delta": 0.0
+      }
+    ],
+    "puddle_mutations": [],
+    "mission_mutation": {
+      "spawn_offset": {
+        "x": -3.0,
+        "y": 4.0
+      },
+      "destination_offset": {
+        "x": 2.0,
+        "y": -1.0
+      }
+    }
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_068__gpt-5.1.json",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_068__gpt-5.1.json",
+  "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+}

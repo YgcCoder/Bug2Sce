@@ -1,0 +1,118 @@
+{
+  "case_id": "case_137",
+  "model_name": "claude-sonnet-4-5",
+  "candidate_index": 2,
+  "candidate_spec": {
+    "candidate_id": "cand_002",
+    "high_level_variant": "Shift walker positions, preserve red-light violation setup",
+    "mutation_intent": "Move walkers slightly to test if red-light violation is independent of pedestrian positions",
+    "expected_oracle": "red_light",
+    "modifications": {
+      "weather_delta": {
+        "rain": 0,
+        "fog": 0,
+        "wetness": 0,
+        "puddle": 0
+      },
+      "actor_mutations": [
+        {
+          "actor_index": 0,
+          "position_offset": {
+            "x": 3.0,
+            "y": 2.0
+          },
+          "speed_delta": 0.0
+        },
+        {
+          "actor_index": 1,
+          "position_offset": {
+            "x": -2.0,
+            "y": 3.0
+          },
+          "speed_delta": 0.5
+        },
+        {
+          "actor_index": 2,
+          "position_offset": {
+            "x": 2.0,
+            "y": -2.0
+          },
+          "speed_delta": 0.0
+        }
+      ],
+      "puddle_mutations": [],
+      "mission_mutation": {
+        "keep_original": true,
+        "spawn_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "destination_offset": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Traffic light states available",
+      "Final waypoints exist",
+      "Stop-line ID is 4294967295"
+    ],
+    "post_execution_validation_rules": [
+      "Red-light violation reproduced",
+      "Ego velocity non-zero near red light",
+      "Traffic light states logged"
+    ],
+    "uncertainty": [
+      "Route-light relation unconfirmed",
+      "Stop-line crossing not verified",
+      "Controller behavior unclear"
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": 0.0,
+      "fog": 0.0,
+      "wetness": 0.0,
+      "puddle": 0.0
+    },
+    "actor_mutations": [
+      {
+        "actor_index": 0,
+        "position_offset": {
+          "x": 3.0,
+          "y": 2.0
+        },
+        "speed_delta": 0.0
+      },
+      {
+        "actor_index": 1,
+        "position_offset": {
+          "x": -2.0,
+          "y": 3.0
+        },
+        "speed_delta": 0.5
+      },
+      {
+        "actor_index": 2,
+        "position_offset": {
+          "x": 2.0,
+          "y": -2.0
+        },
+        "speed_delta": 0.0
+      }
+    ],
+    "puddle_mutations": [],
+    "mission_mutation": {
+      "keep_original": true
+    }
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_137__claude-sonnet-4-5.json",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_137__claude-sonnet-4-5.json",
+  "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+}

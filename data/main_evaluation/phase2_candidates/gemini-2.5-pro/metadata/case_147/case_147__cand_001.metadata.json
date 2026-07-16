@@ -1,0 +1,63 @@
+{
+  "case_id": "case_147",
+  "model_name": "gemini-2.5-pro",
+  "candidate_index": 1,
+  "candidate_spec": {
+    "candidate_id": "cand_001",
+    "high_level_variant": "Increase fog and wetness to stress the perception and planning systems.",
+    "mutation_intent": "Test if increased environmental difficulty exacerbates the planner failure, causing it to output zero commands while the vehicle is moving.",
+    "expected_oracle": "collision",
+    "modifications": {
+      "weather_delta": {
+        "rain": 0,
+        "fog": 20,
+        "wetness": 20,
+        "puddle": 0
+      },
+      "actor_mutations": [],
+      "puddle_mutations": [],
+      "mission_mutation": {
+        "keep_original": true,
+        "spawn_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "destination_offset": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Vehicle must be in motion initially."
+    ],
+    "post_execution_validation_rules": [
+      "Planner must output all-zero commands.",
+      "A collision must occur."
+    ],
+    "uncertainty": [
+      "Root cause of planner's zero-output is unknown."
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": 0.0,
+      "fog": 20,
+      "wetness": 20,
+      "puddle": 0.0
+    },
+    "actor_mutations": [],
+    "puddle_mutations": [],
+    "mission_mutation": {
+      "keep_original": true
+    }
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_147__gemini-2.5-pro.json",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_147__gemini-2.5-pro.json",
+  "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+}

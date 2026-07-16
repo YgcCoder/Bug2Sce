@@ -1,0 +1,108 @@
+{
+  "case_id": "case_061",
+  "model_name": "ark-deepseek-r1-250528",
+  "candidate_index": 2,
+  "candidate_spec": {
+    "candidate_id": "cand_002",
+    "high_level_variant": "Slightly shift ego spawn position to approach the red light intersection earlier, minor adjustments to actor positions and speeds while keeping them far from ego pre-collision",
+    "mutation_intent": "Triggers the core actuation mismatch scenario earlier at the intersection while preserving all required root cause properties and all Phase 1 preservation constraints",
+    "expected_oracle": "compound",
+    "modifications": {
+      "weather_delta": {
+        "rain": -3,
+        "fog": 2,
+        "wetness": -4,
+        "puddle": 0
+      },
+      "actor_mutations": [
+        {
+          "actor_index": 0,
+          "position_offset": {
+            "x": 2.1,
+            "y": -1.5
+          },
+          "speed_delta": 0.5
+        },
+        {
+          "actor_index": 1,
+          "position_offset": {
+            "x": 1.8,
+            "y": -1.2
+          },
+          "speed_delta": 0.4
+        }
+      ],
+      "puddle_mutations": [],
+      "mission_mutation": {
+        "keep_original": false,
+        "spawn_offset": {
+          "x": -2.5,
+          "y": 1.2
+        },
+        "destination_offset": {
+          "x": 1.0,
+          "y": 0.8
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Confirm closest pre-collision object is >50m from ego after spawn adjustment",
+      "Validate red light is active when ego arrives at the intersection",
+      "Confirm no blocked waypoints are detected pre-collision"
+    ],
+    "post_execution_validation_rules": [
+      "Verify collision and red light violation are both observed post-execution",
+      "Check that the actuation command/vehicle status mismatch is preserved pre-collision"
+    ],
+    "uncertainty": [
+      "lane invasion label conflict remains unresolved",
+      "stop-line crossing for red light violation is not explicitly confirmed",
+      "root cause attribution remains unconfirmed by available evidence"
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": -3.0,
+      "fog": 2.0,
+      "wetness": -4.0,
+      "puddle": 0.0
+    },
+    "actor_mutations": [
+      {
+        "actor_index": 0,
+        "position_offset": {
+          "x": 2.1,
+          "y": -1.5
+        },
+        "speed_delta": 0.5
+      },
+      {
+        "actor_index": 1,
+        "position_offset": {
+          "x": 1.8,
+          "y": -1.2
+        },
+        "speed_delta": 0.4
+      }
+    ],
+    "puddle_mutations": [],
+    "mission_mutation": {
+      "spawn_offset": {
+        "x": -2.5,
+        "y": 1.2
+      },
+      "destination_offset": {
+        "x": 1.0,
+        "y": 0.8
+      }
+    }
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_061__ark-deepseek-r1-250528.json",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_061__ark-deepseek-r1-250528.json",
+  "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+}

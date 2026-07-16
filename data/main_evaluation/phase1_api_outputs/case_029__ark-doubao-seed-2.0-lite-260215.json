@@ -1,0 +1,117 @@
+{
+  "case_id": "case_029",
+  "workflow": "phase1_causal_explanation",
+  "model_name": "ark-doubao-seed-2.0-lite-260215",
+  "model_id": "ark-doubao-seed-2.0-lite-260215",
+  "status": "completed",
+  "dry_run": false,
+  "schema_valid": true,
+  "schema_errors": [],
+  "quality_flags": [],
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_prompts/case_029__ark-doubao-seed-2.0-lite-260215.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_029__ark-doubao-seed-2.0-lite-260215.json",
+  "prompt_estimated_tokens": 2724,
+  "usage": {
+    "prompt_tokens": 3514,
+    "completion_tokens": 2016,
+    "total_tokens": 5530
+  },
+  "estimated_cost_usd": null,
+  "raw_response": "{\n  \"case_id\": \"case_029\",\n  \"fault_layer\": \"unknown\",\n  \"fault_component\": \"unknown\",\n  \"causal_explanation\": \"Conflicting labels exist between the dataset (lane invasion + red light violation, group L+R) and error.json (only red light violation, group R). No direct evidence attributes failure to a specific Autoware module, and route-light relation, stop-line crossing, and lane invasion event are unconfirmed.\",\n  \"root_cause_pattern\": \"Conservative pattern: a Town01 map scenario with conflicting oracle labels for lane invasion and a confirmed red light event in error.json, with unknown module-level root cause.\",\n  \"preservation_constraints\": [\n    \"Preserve conflicting label status between dataset and error.json\",\n    \"Preserve traffic light state data availability in the critical window\",\n    \"Preserve original mission start and goal on Town01 map\",\n    \"Preserve 2 actors in the scenario\"\n  ],\n  \"modifiable_factors\": [\"actor_position\", \"cloud_coverage\", \"rain_intensity\", \"wind_speed\", \"fog_density\", \"wetness\"],\n  \"non_modifiable_conditions\": [\"map is Town01\", \"original mission start and end positions are unchanged\", \"traffic lights topic is available\", \"conflicting label state is preserved\"],\n  \"uncertainty\": [\n    \"Dataset and error.json have conflicting labels for lane invasion and case group\",\n    \"Route-light relation and stop-line crossing for red light violation are not confirmed\",\n    \"Lane invasion event is not confirmed by error.json\",\n    \"No critical-window evidence directly localizes failure to a specific module\"\n  ],\n  \"evidence_support\": [\n    {\"evidence_id\": \"oracle_consistency\", \"claim\": \"Dataset and error.json have conflicting labels for lane invasion and case group\"},\n    {\"evidence_id\": \"red_light_window_summary\", \"claim\": \"Route-light relation and stop-line crossing are unconfirmed for the red light event\"},\n    {\"evidence_id\": \"trace_summary_compact\", \"claim\": \"All core topics are available but no module-level failure is directly proven\"}\n  ],\n  \"confidence\": \"low\",\n  \"ready_for_phase2_generation\": \"uncertain\",\n  \"notes_for_validator\": [\n    \"Resolve the label conflict between dataset and error.json via manual review before root cause generalization\",\n    \"Post-execution validation must check for both lane invasion and red light violation to confirm the actual failure mode\"\n  ]\n}",
+  "parsed_response": {
+    "case_id": "case_029",
+    "fault_layer": "unknown",
+    "fault_component": "unknown",
+    "causal_explanation": "Conflicting labels exist between the dataset (lane invasion + red light violation, group L+R) and error.json (only red light violation, group R). No direct evidence attributes failure to a specific Autoware module, and route-light relation, stop-line crossing, and lane invasion event are unconfirmed.",
+    "root_cause_pattern": "Conservative pattern: a Town01 map scenario with conflicting oracle labels for lane invasion and a confirmed red light event in error.json, with unknown module-level root cause.",
+    "preservation_constraints": [
+      "Preserve conflicting label status between dataset and error.json",
+      "Preserve traffic light state data availability in the critical window",
+      "Preserve original mission start and goal on Town01 map",
+      "Preserve 2 actors in the scenario"
+    ],
+    "modifiable_factors": [
+      "actor_position",
+      "cloud_coverage",
+      "rain_intensity",
+      "wind_speed",
+      "fog_density",
+      "wetness"
+    ],
+    "non_modifiable_conditions": [
+      "map is Town01",
+      "original mission start and end positions are unchanged",
+      "traffic lights topic is available",
+      "conflicting label state is preserved"
+    ],
+    "uncertainty": [
+      "Dataset and error.json have conflicting labels for lane invasion and case group",
+      "Route-light relation and stop-line crossing for red light violation are not confirmed",
+      "Lane invasion event is not confirmed by error.json",
+      "No critical-window evidence directly localizes failure to a specific module"
+    ],
+    "evidence_support": [
+      {
+        "evidence_id": "oracle_consistency",
+        "claim": "Dataset and error.json have conflicting labels for lane invasion and case group"
+      },
+      {
+        "evidence_id": "red_light_window_summary",
+        "claim": "Route-light relation and stop-line crossing are unconfirmed for the red light event"
+      },
+      {
+        "evidence_id": "trace_summary_compact",
+        "claim": "All core topics are available but no module-level failure is directly proven"
+      }
+    ],
+    "confidence": "low",
+    "ready_for_phase2_generation": "uncertain",
+    "notes_for_validator": [
+      "Resolve the label conflict between dataset and error.json via manual review before root cause generalization",
+      "Post-execution validation must check for both lane invasion and red light violation to confirm the actual failure mode"
+    ]
+  },
+  "raw_api_payload": {
+    "id": "0217829189788313241b311c503e35c7cc1aa7d524c57e5a787e7",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "{\n  \"case_id\": \"case_029\",\n  \"fault_layer\": \"unknown\",\n  \"fault_component\": \"unknown\",\n  \"causal_explanation\": \"Conflicting labels exist between the dataset (lane invasion + red light violation, group L+R) and error.json (only red light violation, group R). No direct evidence attributes failure to a specific Autoware module, and route-light relation, stop-line crossing, and lane invasion event are unconfirmed.\",\n  \"root_cause_pattern\": \"Conservative pattern: a Town01 map scenario with conflicting oracle labels for lane invasion and a confirmed red light event in error.json, with unknown module-level root cause.\",\n  \"preservation_constraints\": [\n    \"Preserve conflicting label status between dataset and error.json\",\n    \"Preserve traffic light state data availability in the critical window\",\n    \"Preserve original mission start and goal on Town01 map\",\n    \"Preserve 2 actors in the scenario\"\n  ],\n  \"modifiable_factors\": [\"actor_position\", \"cloud_coverage\", \"rain_intensity\", \"wind_speed\", \"fog_density\", \"wetness\"],\n  \"non_modifiable_conditions\": [\"map is Town01\", \"original mission start and end positions are unchanged\", \"traffic lights topic is available\", \"conflicting label state is preserved\"],\n  \"uncertainty\": [\n    \"Dataset and error.json have conflicting labels for lane invasion and case group\",\n    \"Route-light relation and stop-line crossing for red light violation are not confirmed\",\n    \"Lane invasion event is not confirmed by error.json\",\n    \"No critical-window evidence directly localizes failure to a specific module\"\n  ],\n  \"evidence_support\": [\n    {\"evidence_id\": \"oracle_consistency\", \"claim\": \"Dataset and error.json have conflicting labels for lane invasion and case group\"},\n    {\"evidence_id\": \"red_light_window_summary\", \"claim\": \"Route-light relation and stop-line crossing are unconfirmed for the red light event\"},\n    {\"evidence_id\": \"trace_summary_compact\", \"claim\": \"All core topics are available but no module-level failure is directly proven\"}\n  ],\n  \"confidence\": \"low\",\n  \"ready_for_phase2_generation\": \"uncertain\",\n  \"notes_for_validator\": [\n    \"Resolve the label conflict between dataset and error.json via manual review before root cause generalization\",\n    \"Post-execution validation must check for both lane invasion and red light violation to confirm the actual failure mode\"\n  ]\n}",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null,
+          "reasoning_content": "\nOkay, let's build this JSON step by step. First, case_id is case_029, right?\n\nFirst, fault_layer. There's a conflict between dataset and error.json. Dataset says lane invasion + red light, error.json only red light. No direct evidence for which module is wrong. So fault_layer is unknown. Fault component is unknown too.\n\nCausal explanation: There's a label conflict between dataset (lane invasion + red light violation, group L+R) and error.json (only red light violation, group R). No direct module-level failure evidence is available, route-light relation and stop-line crossing are unconfirmed, lane invasion is not confirmed by error.json.\n\nRoot cause pattern: Conservative preservation pattern: the case has conflicting lane invasion and red light violation labels between dataset and error.json, with no confirmed module-level failure.\n\nPreservation constraints: Let's make 3-6. 1. Preserve conflicting labels between dataset and error.json for this case. 2. Preserve the presence of red light signal state data. 3. Keep the same mission start and goal on Town01 map. 4. Preserve the 2 actors in the scenario. That's good.\n\nModifiable factors: Let's see, what can be changed? actor_position, weather, wind, fog, cloud, right? Wait, the existing has weather with rain 1, puddles 0. So modifiable_factors: [\"actor_position\", \"weather_cloud\", \"weather_rain\", \"weather_wind\", \"weather_fog\"] that works.\n\nNon_modifiable_conditions: [\"same map Town01\", \"same mission route start and end points\", \"presence of traffic light state data\", \"conflicting label status between dataset and error.json\"] right?\n\nUncertainty: Let's list them. 1. Dataset and error.json have conflicting labels: dataset labels lane_invasion=1, group L+R; error.json labels lane_invasion=0, group R. 2. Route-light relation and stop-line crossing for red light violation are not confirmed. 3. No critical-window evidence directly attributes failure to a specific Autoware module. 4. Lane invasion event is not confirmed by error.json.\n\nEvidence support: Let's add each evidence. First, {\"evidence_id\": \"oracle_consistency\", \"claim\": \"Dataset and error.json have conflicting labels for lane invasion and case group.\"}, then {\"evidence_id\": \"red_light_window_summary\", \"claim\": \"Route-light relation and stop-line crossing are unconfirmed for red light violation.\"}, {\"evidence_id\": \"trace_summary_compact\", \"claim\": \"All required topics exist but no module-level failure is directly proven.\"} That's good.\n\nConfidence: low, right? Because of all the uncertainty. Wait, medium? No, because labels conflict and no module attribution, so low. Wait, let's see: confidence is low because we can't attribute the fault, labels conflict. Yeah.\n\nReady_for_phase2_generation: It's uncertain? Wait no, wait the rule says use yes when there's a checkable conservative pattern, uncertain when labels conflict. Wait the guidance says it needs manual review, labels conflict. Wait let's check the rule: \"use uncertain when labels conflict or a key condition is missing.\" Oh right, labels conflict here, so ready_for_phase2_generation is uncertain? Wait no, let's recheck: \"Do not set ready_for_phase2_generation=no solely because fault_layer is unknown. Use yes when there is a checkable conservative preservation pattern; use uncertain when labels conflict or a key condition is missing.\" Oh right, labels conflict, so it's uncertain.\n\nNotes_for_validator: [\"Manual review is required to resolve the label conflict between dataset and error.json before confirming root cause.\", \"Post-generation check must confirm if both lane invasion and red light violation occur, or only red light violation.\"]\n\nWait let's put it all together correctly, make sure it follows all rules. Let's check each field:\n\ncase_id: \"case_029\" correct.\n\nfault_layer: \"unknown\" correct, because no module attribution.\n\nfault_component: \"unknown\" correct.\n\ncausal_explanation: \"Conflicting labels exist between the dataset (labels lane invasion + red light violation, group L+R) and error.json (labels only red light violation, group R). No direct evidence attributes the failure to a specific Autoware module, and route-light relation, stop-line crossing, and lane invasion event are unconfirmed by critical-window summaries.\" That's concise, correct.\n\nroot_cause_pattern: \"Conservative pattern: a scenario on Town01 map with conflicting oracle labels for lane invasion and confirmed red light event in error.json, with unknown module-level root cause.\" That's good.\n\npreservation_constraints: Let's list:\n[\"Preserve conflicting label status between dataset and error.json\", \"Preserve the presence of traffic light state data in the critical window\", \"Preserve the same start and goal mission on Town01 map\", \"Preserve 2 actors in the scenario\"] That's 4, good.\n\nmodifiable_factors: [\"actor_position\", \"cloud_coverage\", \"rain_intensity\", \"wind_speed\", \"fog_density\", \"wetness\"] Correct.\n\nnon_modifiable_conditions: [\"map is Town01\", \"mission start and goal positions are unchanged\", \"traffic lights topic is available\", \"conflicting label state between dataset and error.json is preserved\"] Correct.\n\nuncertainty: [\"Dataset and error.json have conflicting labels for lane invasion and case group\", \"Route-light relation and stop-line crossing for red light violation are not confirmed\", \"Lane invasion event is not confirmed by error.json\", \"No critical-window evidence directly localizes failure to a specific module\"] Correct.\n\nevidence_support:\n[\n{\"evidence_id\": \"oracle_consistency\", \"claim\": \"Dataset and error.json have conflicting labels for lane invasion and case group\"},\n{\"evidence_id\": \"red_light_window_summary\", \"claim\": \"Route-light relation and stop-line crossing are unconfirmed for the red light event\"},\n{\"evidence_id\": \"trace_summary_compact\", \"claim\": \"All core topics are available but no module-level failure is directly proven\"}\n] Correct.\n\nconfidence: \"low\" Correct, because of all the uncertainty.\n\nready_for_phase2_generation: \"uncertain\" Because labels conflict, per rule.\n\nnotes_for_validator: [\"Resolve the label conflict between dataset and error.json via manual review before using this case for root cause generalization\", \"Post-execution validation must check for both lane invasion and red light violation to confirm the failure mode\"] Correct.\n\nWait let's check all rules: Did we invent anything? No, all from evidence. We marked uncertainty for the conflict, didn't infer stop line crossing, didn't assign fault layer because no evidence. That's all good. Now put it into valid JSON."
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "doubao-seed-2-0-lite-260215",
+    "object": "chat.completion",
+    "service_tier": "default",
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 2016,
+      "prompt_tokens": 3514,
+      "total_tokens": 5530,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 1463,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": null,
+        "cached_tokens": 0
+      }
+    }
+  },
+  "error_message": "",
+  "timestamp": "<REDACTED_TIMESTAMP>",
+  "elapsed_sec": 41.217
+}

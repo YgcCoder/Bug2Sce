@@ -1,0 +1,123 @@
+{
+  "case_id": "case_098",
+  "model_name": "ark-deepseek-r1-250528",
+  "candidate_index": 1,
+  "candidate_spec": {
+    "candidate_id": "cand_001",
+    "high_level_variant": "Nearby actor in ego's planned path positioned closer to ego spawn, slightly reduced speed to keep it nearby through the pre-collision critical window",
+    "mutation_intent": "Preserves all root cause pattern constraints: maintains presence of nearby actor pre-collision, keeps all required pre-collision conditions (zero vehicle_cmd, non-zero throttle, no blocked waypoints reported) and preserves the expected collision outcome",
+    "expected_oracle": "collision",
+    "modifications": {
+      "weather_delta": {
+        "rain": 0,
+        "fog": 0,
+        "wetness": 5,
+        "puddle": 0
+      },
+      "actor_mutations": [
+        {
+          "actor_index": 1,
+          "position_offset": {
+            "x": 0.0,
+            "y": 2.1,
+            "z": 0.0
+          },
+          "speed_delta": -1.2
+        }
+      ],
+      "puddle_mutations": [
+        {
+          "puddle_index": 0,
+          "location_offset": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "level_delta": 0.0,
+          "size_scale": 1.0
+        },
+        {
+          "puddle_index": 1,
+          "location_offset": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "level_delta": 0.0,
+          "size_scale": 1.0
+        }
+      ],
+      "mission_mutation": {
+        "keep_original": true,
+        "spawn_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "destination_offset": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Nearby actor must be present in ego's planned path pre-collision",
+      "All vehicle_cmd commands must be zero in pre-collision critical window"
+    ],
+    "post_execution_validation_rules": [
+      "Collision between ego and nearby actor must be confirmed",
+      "Planning must not report any blocked waypoints before collision"
+    ],
+    "uncertainty": [
+      "Actuation behavior mismatch between zero vehicle_cmd and non-zero throttle remains unconfirmed",
+      "No direct evidence localizes failure to a specific Autoware module",
+      "It is unknown why no avoidance or braking commands were issued before collision"
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": 0.0,
+      "fog": 0.0,
+      "wetness": 5.0,
+      "puddle": 0.0
+    },
+    "actor_mutations": [
+      {
+        "actor_index": 1,
+        "position_offset": {
+          "x": 0.0,
+          "y": 2.1
+        },
+        "speed_delta": -1.2
+      }
+    ],
+    "puddle_mutations": [
+      {
+        "puddle_index": 0,
+        "location_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "level_delta": 0.0,
+        "size_scale": 1.0
+      },
+      {
+        "puddle_index": 1,
+        "location_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "level_delta": 0.0,
+        "size_scale": 1.0
+      }
+    ],
+    "mission_mutation": {
+      "keep_original": true
+    }
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_098__ark-deepseek-r1-250528.json",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_098__ark-deepseek-r1-250528.json",
+  "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+}

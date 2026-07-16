@@ -1,0 +1,102 @@
+{
+  "case_id": "case_103",
+  "model_name": "gemini-2.5-pro",
+  "workflow": "pure_llm_phase2_baseline",
+  "candidate_index": 1,
+  "candidate_spec": {
+    "candidate_id": "cand_001",
+    "high_level_variant": "Increase rain and fog, and slightly slow down the other vehicle at the intersection.",
+    "mutation_intent": "Test if worsening weather conditions exacerbates the red light and lane invasion failure, despite a slower actor.",
+    "expected_oracle": "compound",
+    "modifications": {
+      "weather_delta": {
+        "rain": 4,
+        "fog": 15,
+        "wetness": 10,
+        "puddle": 0
+      },
+      "actor_mutations": [
+        {
+          "actor_index": 0,
+          "position_offset": {
+            "x": 1.0,
+            "y": -1.0
+          },
+          "speed_delta": -0.5
+        }
+      ],
+      "puddle_mutations": [
+        {
+          "puddle_index": 0,
+          "location_offset": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "level_delta": 0.05,
+          "size_scale": 1.0
+        }
+      ],
+      "mission_mutation": {
+        "keep_original": true,
+        "spawn_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "destination_offset": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Ego and actor must not spawn in collision."
+    ],
+    "post_execution_validation_rules": [
+      "Ego must reach destination without new failures."
+    ],
+    "uncertainty": [
+      "Uncertain if weather or actor speed is the dominant factor for the failure."
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": 4.0,
+      "fog": 15.0,
+      "wetness": 10.0,
+      "puddle": 0.0
+    },
+    "actor_mutations": [
+      {
+        "actor_index": 0,
+        "position_offset": {
+          "x": 1.0,
+          "y": -1.0
+        },
+        "speed_delta": -0.5
+      }
+    ],
+    "puddle_mutations": [
+      {
+        "puddle_index": 0,
+        "location_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "level_delta": 0.05,
+        "size_scale": 1.0
+      }
+    ],
+    "mission_mutation": {
+      "keep_original": true
+    },
+    "safety_repairs": []
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/pure_llm_phase2_api_prompts/case_103__gemini-2.5-pro.md",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/pure_llm_phase2_api_outputs/case_103__gemini-2.5-pro.json",
+  "baseline_note": "Pure-LLM baseline: prompt used no root-cause pattern or critical-window evidence."
+}

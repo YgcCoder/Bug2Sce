@@ -1,0 +1,298 @@
+{
+  "case_id": "case_067",
+  "model_name": "ark-deepseek-r1-250528",
+  "workflow": "phase2_grounded_generation",
+  "status": "completed",
+  "schema_valid": true,
+  "schema_errors": [],
+  "phase1_ready": "uncertain",
+  "num_candidates_requested": 2,
+  "num_candidates_written": 2,
+  "num_pre_valid": 2,
+  "candidate_records": [
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-deepseek-r1-250528/json/case_067/case_067__cand_001.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-deepseek-r1-250528/metadata/case_067/case_067__cand_001.metadata.json",
+      "case_id": "case_067",
+      "model_name": "ark-deepseek-r1-250528",
+      "candidate_index": 1,
+      "candidate_spec": {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Conservative weather variant with slightly increased wetness, retains original zero actors, zero puddles and original mission",
+        "mutation_intent": "Preserves all root-cause constraints: keeps label conflict between dataset and error.json, retains confirmed red light violation status, keeps zero dynamic actors and zero puddle regions, preserves original mission on Town01, only adjusts weather within allowed conservative bounds",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": 5,
+            "fog": -5,
+            "wetness": 5,
+            "puddle": 0
+          },
+          "actor_mutations": [],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "No dynamic actors shall be added to the scenario",
+          "No new puddle regions shall be added",
+          "Original mission spawn and destination must be retained"
+        ],
+        "post_execution_validation_rules": [
+          "Confirm label conflict between dataset and error.json labeling is preserved",
+          "Verify stop-line crossing for red light violation to confirm error.json status",
+          "Check for presence of stuck behavior and lane boundary crossing to resolve original label conflict"
+        ],
+        "uncertainty": [
+          "Label conflict for stuck and lane invasion symptoms remains unresolved as in original phase 1",
+          "No module-level failure can be attributed from available evidence",
+          "Stop-line crossing for the reported red light violation is not confirmed prior to execution"
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 5.0,
+          "fog": -5.0,
+          "wetness": 5.0,
+          "puddle": 0.0
+        },
+        "actor_mutations": [],
+        "puddle_mutations": [],
+        "mission_mutation": {
+          "keep_original": true
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": [
+          "no actors in candidate scenario"
+        ]
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_067__ark-deepseek-r1-250528.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_067__ark-deepseek-r1-250528.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    },
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-deepseek-r1-250528/json/case_067/case_067__cand_002.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-deepseek-r1-250528/metadata/case_067/case_067__cand_002.metadata.json",
+      "case_id": "case_067",
+      "model_name": "ark-deepseek-r1-250528",
+      "candidate_index": 2,
+      "candidate_spec": {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Conservative weather variant with slightly increased fog, retains all original scenario structure and constraints",
+        "mutation_intent": "Creates a second conservative uncertainty-aligned variant that preserves all root-cause requirements: retains label conflict between oracles, confirmed red light status, zero actors/puddles, original Town01 mission, only adjusts weather within allowed conservative bounds",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": -3,
+            "fog": 4,
+            "wetness": -4,
+            "puddle": 0
+          },
+          "actor_mutations": [],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "No dynamic actors or new puddle regions are added to the scenario",
+          "Original spawn and destination positions must remain unchanged"
+        ],
+        "post_execution_validation_rules": [
+          "Verify red light violation occurrence per error.json confirmation",
+          "Evaluate presence of stuck behavior and lane invasion to resolve original label conflict",
+          "Check for any unconfirmed module-level failures not reported in original evidence"
+        ],
+        "uncertainty": [
+          "Original label conflict between dataset and error.json for non-red-light symptoms is preserved",
+          "Controller behavior remains uncertain as in original phase 1",
+          "Module-level failure attribution is not supported by available evidence prior to execution"
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": -3.0,
+          "fog": 4.0,
+          "wetness": -4.0,
+          "puddle": 0.0
+        },
+        "actor_mutations": [],
+        "puddle_mutations": [],
+        "mission_mutation": {
+          "keep_original": true
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": [
+          "no actors in candidate scenario"
+        ]
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_067__ark-deepseek-r1-250528.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_067__ark-deepseek-r1-250528.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    }
+  ],
+  "seed_artifact_zip": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-deepseek-r1-250528/seed-artifact/seed-artifact-case_067.zip",
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_prompts/case_067__ark-deepseek-r1-250528.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_067__ark-deepseek-r1-250528.json",
+  "prompt_estimated_tokens": 1092,
+  "usage": {
+    "prompt_tokens": 1257,
+    "completion_tokens": 2255,
+    "total_tokens": 3512
+  },
+  "raw_response": "{\n  \"case_id\": \"case_067\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Conservative weather variant with slightly increased wetness, retains original zero actors, zero puddles and original mission\",\n      \"mutation_intent\": \"Preserves all root-cause constraints: keeps label conflict between dataset and error.json, retains confirmed red light violation status, keeps zero dynamic actors and zero puddle regions, preserves original mission on Town01, only adjusts weather within allowed conservative bounds\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 5, \"fog\": -5, \"wetness\": 5, \"puddle\": 0},\n        \"actor_mutations\": [],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"No dynamic actors shall be added to the scenario\", \"No new puddle regions shall be added\", \"Original mission spawn and destination must be retained\"],\n      \"post_execution_validation_rules\": [\"Confirm label conflict between dataset and error.json labeling is preserved\", \"Verify stop-line crossing for red light violation to confirm error.json status\", \"Check for presence of stuck behavior and lane boundary crossing to resolve original label conflict\"],\n      \"uncertainty\": [\"Label conflict for stuck and lane invasion symptoms remains unresolved as in original phase 1\", \"No module-level failure can be attributed from available evidence\", \"Stop-line crossing for the reported red light violation is not confirmed prior to execution\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Conservative weather variant with slightly increased fog, retains all original scenario structure and constraints\",\n      \"mutation_intent\": \"Creates a second conservative uncertainty-aligned variant that preserves all root-cause requirements: retains label conflict between oracles, confirmed red light status, zero actors/puddles, original Town01 mission, only adjusts weather within allowed conservative bounds\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": -3, \"fog\": 4, \"wetness\": -4, \"puddle\": 0},\n        \"actor_mutations\": [],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"No dynamic actors or new puddle regions are added to the scenario\", \"Original spawn and destination positions must remain unchanged\"],\n      \"post_execution_validation_rules\": [\"Verify red light violation occurrence per error.json confirmation\", \"Evaluate presence of stuck behavior and lane invasion to resolve original label conflict\", \"Check for any unconfirmed module-level failures not reported in original evidence\"],\n      \"uncertainty\": [\"Original label conflict between dataset and error.json for non-red-light symptoms is preserved\", \"Controller behavior remains uncertain as in original phase 1\", \"Module-level failure attribution is not supported by available evidence prior to execution\"]\n    }\n  ]\n}",
+  "parsed_response": {
+    "case_id": "case_067",
+    "candidate_specs": [
+      {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Conservative weather variant with slightly increased wetness, retains original zero actors, zero puddles and original mission",
+        "mutation_intent": "Preserves all root-cause constraints: keeps label conflict between dataset and error.json, retains confirmed red light violation status, keeps zero dynamic actors and zero puddle regions, preserves original mission on Town01, only adjusts weather within allowed conservative bounds",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": 5,
+            "fog": -5,
+            "wetness": 5,
+            "puddle": 0
+          },
+          "actor_mutations": [],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "No dynamic actors shall be added to the scenario",
+          "No new puddle regions shall be added",
+          "Original mission spawn and destination must be retained"
+        ],
+        "post_execution_validation_rules": [
+          "Confirm label conflict between dataset and error.json labeling is preserved",
+          "Verify stop-line crossing for red light violation to confirm error.json status",
+          "Check for presence of stuck behavior and lane boundary crossing to resolve original label conflict"
+        ],
+        "uncertainty": [
+          "Label conflict for stuck and lane invasion symptoms remains unresolved as in original phase 1",
+          "No module-level failure can be attributed from available evidence",
+          "Stop-line crossing for the reported red light violation is not confirmed prior to execution"
+        ]
+      },
+      {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Conservative weather variant with slightly increased fog, retains all original scenario structure and constraints",
+        "mutation_intent": "Creates a second conservative uncertainty-aligned variant that preserves all root-cause requirements: retains label conflict between oracles, confirmed red light status, zero actors/puddles, original Town01 mission, only adjusts weather within allowed conservative bounds",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": -3,
+            "fog": 4,
+            "wetness": -4,
+            "puddle": 0
+          },
+          "actor_mutations": [],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "No dynamic actors or new puddle regions are added to the scenario",
+          "Original spawn and destination positions must remain unchanged"
+        ],
+        "post_execution_validation_rules": [
+          "Verify red light violation occurrence per error.json confirmation",
+          "Evaluate presence of stuck behavior and lane invasion to resolve original label conflict",
+          "Check for any unconfirmed module-level failures not reported in original evidence"
+        ],
+        "uncertainty": [
+          "Original label conflict between dataset and error.json for non-red-light symptoms is preserved",
+          "Controller behavior remains uncertain as in original phase 1",
+          "Module-level failure attribution is not supported by available evidence prior to execution"
+        ]
+      }
+    ]
+  },
+  "raw_api_payload": {
+    "id": "021782923545096ca53c98b4a9847edf4b59a94723c611e5bcc68",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "{\n  \"case_id\": \"case_067\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Conservative weather variant with slightly increased wetness, retains original zero actors, zero puddles and original mission\",\n      \"mutation_intent\": \"Preserves all root-cause constraints: keeps label conflict between dataset and error.json, retains confirmed red light violation status, keeps zero dynamic actors and zero puddle regions, preserves original mission on Town01, only adjusts weather within allowed conservative bounds\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 5, \"fog\": -5, \"wetness\": 5, \"puddle\": 0},\n        \"actor_mutations\": [],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"No dynamic actors shall be added to the scenario\", \"No new puddle regions shall be added\", \"Original mission spawn and destination must be retained\"],\n      \"post_execution_validation_rules\": [\"Confirm label conflict between dataset and error.json labeling is preserved\", \"Verify stop-line crossing for red light violation to confirm error.json status\", \"Check for presence of stuck behavior and lane boundary crossing to resolve original label conflict\"],\n      \"uncertainty\": [\"Label conflict for stuck and lane invasion symptoms remains unresolved as in original phase 1\", \"No module-level failure can be attributed from available evidence\", \"Stop-line crossing for the reported red light violation is not confirmed prior to execution\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Conservative weather variant with slightly increased fog, retains all original scenario structure and constraints\",\n      \"mutation_intent\": \"Creates a second conservative uncertainty-aligned variant that preserves all root-cause requirements: retains label conflict between oracles, confirmed red light status, zero actors/puddles, original Town01 mission, only adjusts weather within allowed conservative bounds\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": -3, \"fog\": 4, \"wetness\": -4, \"puddle\": 0},\n        \"actor_mutations\": [],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"No dynamic actors or new puddle regions are added to the scenario\", \"Original spawn and destination positions must remain unchanged\"],\n      \"post_execution_validation_rules\": [\"Verify red light violation occurrence per error.json confirmation\", \"Evaluate presence of stuck behavior and lane invasion to resolve original label conflict\", \"Check for any unconfirmed module-level failures not reported in original evidence\"],\n      \"uncertainty\": [\"Original label conflict between dataset and error.json for non-red-light symptoms is preserved\", \"Controller behavior remains uncertain as in original phase 1\", \"Module-level failure attribution is not supported by available evidence prior to execution\"]\n    }\n  ]\n}",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null,
+          "reasoning_content": "\nGot it, let's build this JSON step by step. First, the case_id is case_067, right? We need two candidate specs.\n\nFirst, let's remember the preservation constraints: preserve label conflict, preserve confirmed red light, zero dynamic actors, zero puddles, original start and goal. So mission should keep_original true, actors and puddles are empty.\n\nFirst candidate, cand_001. High level variant: Slight weather adjustment to increase wetness while keeping zero actors/puddles and original mission. Mutation intent: Preserves all original constraints, only adjusts weather slightly to retain the label conflict and confirmed red light status without adding new elements. Expected oracle: compound? Wait no, wait the original has dataset says stuck, lane invasion, red light, error only confirms red. Wait expected oracle: compound? Wait no, let's check. Wait the labels are multiple, but only red is confirmed. Wait let's see: the original has label conflict, so expected oracle would be compound? Or wait, let's see: first candidate, let's do expected oracle compound, because dataset labels multiple, so that preserves the conflict. Wait modifications: weather delta, let's do rain +5, fog -5, wetness +5, puddle 0, right? Because keep deltas within 20, that's fine. Actor mutations is empty because there are zero actors, right? Puddle mutations empty because zero puddles. Mission mutation keep_original true. Pre execution rules: [\"Ensure no dynamic actors are added, original mission spawn/destination preserved\"], post execution: [\"Check for label conflict between generated output oracle and original dataset/error.json labels\", \"Verify if red light violation occurred to confirm error.json status\"], uncertainty same as phase1, let's carry that over.\n\nSecond candidate, cand_002. High level variant: Slight weather reduction in fog while keeping all original scenario structure. Mutation intent: Preserves the original label conflict, confirmed red light violation status, zero actors/puddles, and original mission per preservation constraints, only adjusts weather to create a conservative variant under uncertainty. Expected oracle: compound, same as before. Wait or is it okay? Wait let's check modifications: weather delta: rain -3, fog +4, wetness -4, puddle 0. Again all within [-20,20]. Actors empty, puddles empty, mission keep_original true. Pre execution rules: [\"Confirm no additional dynamic actors or puddles are added to the scenario\"], post execution: [\"Validate label conflict between dataset and error.json labeling after scenario execution\", \"Check for stop-line crossing to confirm red light violation status\"], uncertainty same as phase1's uncertainty, right?\n\nWait let's make sure all constraints are met: actor position offsets don't apply because no actors, speed delta none. Mission keep_original is true, which is allowed. Weather deltas are all within [-20,20], yes. No puddles so no puddle mutations, that's fine. Exactly two candidates, right?\n\nWait let's structure it correctly. Let's fill in all fields properly. Let's check the schema:\n\ncase_id is case_067, correct. candidate_specs is array of two.\n\nFirst candidate:\ncandidate_id: cand_001\nhigh_level_variant: \"Conservative weather variant with increased wetness, retains original zero actors, zero puddles, and original mission\"\nmutation_intent: \"Preserves all root-cause constraints: keeps label conflict between dataset and error.json, retains confirmed red light violation status, keeps zero dynamic actors and puddles, preserves original mission on Town01, only adjusts weather within allowed bounds to create a valid variant\"\nexpected_oracle: \"compound\" (because dataset labels multiple issues, so that's correct, preserves the conflict)\nmodifications:\nweather_delta: {\"rain\": 5, \"fog\": -5, \"wetness\": 5, \"puddle\": 0} that's all within 20, good.\nactor_mutations: [] because original actors are empty, right?\npuddle_mutations: [] same, original puddles empty.\nmission_mutation: {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}} correct.\npre_execution_validation_rules: [\"No dynamic actors shall be added to the scenario\", \"No puddle regions shall be added\", \"Original mission spawn and destination must be retained\"]\npost_execution_validation_rules: [\"Confirm label conflict between dataset and error.json labeling is preserved\", \"Verify occurrence of red light violation to align with error.json confirmation\", \"Check for presence of stuck behavior and lane invasion to resolve original label conflict\"]\nuncertainty: [\"Label conflict for stuck and lane invasion symptoms remains unresolved as in original phase 1\", \"No module-level failure can be attributed from available evidence\", \"Stop-line crossing for red light violation is not confirmed prior to execution\"] that's matching the original uncertainty.\n\nSecond candidate: cand_002\nhigh_level_variant: \"Conservative weather variant with reduced fog, retains all original scenario structure and constraints\"\nmutation_intent: \"Creates a conservative uncertainty-aligned variant that preserves all root-cause requirements: retains label conflict, confirmed red light status, zero actors/puddles, original Town01 mission, only adjusts weather within conservative bounds\"\nexpected_oracle: \"compound\"\nmodifications:\nweather_delta: {\"rain\": -4, \"fog\": 6, \"wetness\": -3, \"puddle\": 0} all within 20, good.\nactor_mutations: []\npuddle_mutations: []\nmission_mutation: {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\npre_execution_validation_rules: [\"No dynamic actors or new puddle regions are added to the scenario\", \"Original spawn and destination positions must remain unchanged\"]\npost_execution_validation_rules: [\"Check for red light violation confirmation per error.json\", \"Evaluate presence of stuck and lane invasion symptoms to resolve original label conflict\", \"Verify no unexpected module failures occur that were not present in original scenario\"]\nuncertainty: [\"Original label conflict between dataset and error.json for non-red-light symptoms is preserved\", \"Controller behavior remains uncertain as in original phase 1\", \"No module-level failure attribution is possible prior to execution\"]\n\nWait that's all correct, right? Let's check all rules: exactly two candidates, all deltas are within allowed ranges, no new actors or puddles which matches the preservation constraint, mission is keep_original, which matches, preserves the label conflict, preserves the red light confirmed. All good. Now put it into valid JSON, no extra stuff, exactly the structure."
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "doubao-seed-2-0-lite-260215",
+    "object": "chat.completion",
+    "service_tier": "default",
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 2255,
+      "prompt_tokens": 1257,
+      "total_tokens": 3512,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 1479,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": null,
+        "cached_tokens": 0
+      }
+    }
+  },
+  "error_message": "",
+  "elapsed_sec": 33.09,
+  "timestamp": "<REDACTED_TIMESTAMP>"
+}

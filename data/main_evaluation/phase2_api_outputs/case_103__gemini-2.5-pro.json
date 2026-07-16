@@ -1,0 +1,280 @@
+{
+  "case_id": "case_103",
+  "model_name": "gemini-2.5-pro",
+  "workflow": "phase2_grounded_generation",
+  "status": "completed",
+  "schema_valid": true,
+  "schema_errors": [],
+  "phase1_ready": "uncertain",
+  "num_candidates_requested": 2,
+  "num_candidates_written": 2,
+  "num_pre_valid": 2,
+  "candidate_records": [
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/gemini-2.5-pro/json/case_103/case_103__cand_001.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/gemini-2.5-pro/metadata/case_103/case_103__cand_001.metadata.json",
+      "case_id": "case_103",
+      "model_name": "gemini-2.5-pro",
+      "candidate_index": 1,
+      "candidate_spec": {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Increase rain and fog to test planner's perception of the red light.",
+        "mutation_intent": "Worsen weather to stress the perception system and see if it affects the planner's failure to stop for the red light.",
+        "expected_oracle": "red_light",
+        "modifications": {
+          "weather_delta": {
+            "rain": 4,
+            "fog": 20,
+            "wetness": 20,
+            "puddle": 0
+          },
+          "actor_mutations": [],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Ego path intersects a red light."
+        ],
+        "post_execution_validation_rules": [
+          "Oracle must report red light violation.",
+          "Planner 'blocked' flag is not set."
+        ],
+        "uncertainty": [
+          "Original scenario has lane invasion label conflict."
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 4.0,
+          "fog": 20,
+          "wetness": 20,
+          "puddle": 0.0
+        },
+        "actor_mutations": [],
+        "puddle_mutations": [],
+        "mission_mutation": {
+          "keep_original": true
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_103__gemini-2.5-pro.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_103__gemini-2.5-pro.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    },
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/gemini-2.5-pro/json/case_103/case_103__cand_002.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/gemini-2.5-pro/metadata/case_103/case_103__cand_002.metadata.json",
+      "case_id": "case_103",
+      "model_name": "gemini-2.5-pro",
+      "candidate_index": 2,
+      "candidate_spec": {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Move the other vehicle closer to the intersection as a potential distraction.",
+        "mutation_intent": "Introduce a dynamic actor near the intersection to test if the planner's red light detection is sensitive to other traffic.",
+        "expected_oracle": "red_light",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": -4.0,
+                "y": -8.0
+              },
+              "speed_delta": 1.0
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Ego path intersects a red light.",
+          "Actor 0 is near the intersection."
+        ],
+        "post_execution_validation_rules": [
+          "Oracle must report red light violation.",
+          "Planner 'blocked' flag is not set."
+        ],
+        "uncertainty": [
+          "Original scenario has lane invasion label conflict."
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 0.0,
+          "fog": 0.0,
+          "wetness": 0.0,
+          "puddle": 0.0
+        },
+        "actor_mutations": [
+          {
+            "actor_index": 0,
+            "position_offset": {
+              "x": -4.0,
+              "y": -8
+            },
+            "speed_delta": 1.0
+          }
+        ],
+        "puddle_mutations": [],
+        "mission_mutation": {
+          "keep_original": true
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_103__gemini-2.5-pro.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_103__gemini-2.5-pro.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    }
+  ],
+  "seed_artifact_zip": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/gemini-2.5-pro/seed-artifact/seed-artifact-case_103.zip",
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_prompts/case_103__gemini-2.5-pro.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_103__gemini-2.5-pro.json",
+  "prompt_estimated_tokens": 983,
+  "usage": {
+    "prompt_tokens": 1349,
+    "completion_tokens": 2493,
+    "total_tokens": 3842
+  },
+  "raw_response": "```json\n{\n  \"case_id\": \"case_103\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Increase rain and fog to test planner's perception of the red light.\",\n      \"mutation_intent\": \"Worsen weather to stress the perception system and see if it affects the planner's failure to stop for the red light.\",\n      \"expected_oracle\": \"red_light\",\n      \"modifications\": {\n        \"weather_delta\": {\n          \"rain\": 4,\n          \"fog\": 20,\n          \"wetness\": 20,\n          \"puddle\": 0\n        },\n        \"actor_mutations\": [],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\n          \"keep_original\": true\n        }\n      },\n      \"pre_execution_validation_rules\": [\n        \"Ego path intersects a red light.\"\n      ],\n      \"post_execution_validation_rules\": [\n        \"Oracle must report red light violation.\",\n        \"Planner 'blocked' flag is not set.\"\n      ],\n      \"uncertainty\": [\n        \"Original scenario has lane invasion label conflict.\"\n      ]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Move the other vehicle closer to the intersection as a potential distraction.\",\n      \"mutation_intent\": \"Introduce a dynamic actor near the intersection to test if the planner's red light detection is sensitive to other traffic.\",\n      \"expected_oracle\": \"red_light\",\n      \"modifications\": {\n        \"weather_delta\": {\n          \"rain\": 0,\n          \"fog\": 0,\n          \"wetness\": 0,\n          \"puddle\": 0\n        },\n        \"actor_mutations\": [\n          {\n            \"actor_index\": 0,\n            \"position_offset\": {\n              \"x\": -4.0,\n              \"y\": -8.0\n            },\n            \"speed_delta\": 1.0\n          }\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\n          \"keep_original\": true\n        }\n      },\n      \"pre_execution_validation_rules\": [\n        \"Ego path intersects a red light.\",\n        \"Actor 0 is near the intersection.\"\n      ],\n      \"post_execution_validation_rules\": [\n        \"Oracle must report red light violation.\",\n        \"Planner 'blocked' flag is not set.\"\n      ],\n      \"uncertainty\": [\n        \"Original scenario has lane invasion label conflict.\"\n      ]\n    }\n  ]\n}\n```",
+  "parsed_response": {
+    "case_id": "case_103",
+    "candidate_specs": [
+      {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Increase rain and fog to test planner's perception of the red light.",
+        "mutation_intent": "Worsen weather to stress the perception system and see if it affects the planner's failure to stop for the red light.",
+        "expected_oracle": "red_light",
+        "modifications": {
+          "weather_delta": {
+            "rain": 4,
+            "fog": 20,
+            "wetness": 20,
+            "puddle": 0
+          },
+          "actor_mutations": [],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Ego path intersects a red light."
+        ],
+        "post_execution_validation_rules": [
+          "Oracle must report red light violation.",
+          "Planner 'blocked' flag is not set."
+        ],
+        "uncertainty": [
+          "Original scenario has lane invasion label conflict."
+        ]
+      },
+      {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Move the other vehicle closer to the intersection as a potential distraction.",
+        "mutation_intent": "Introduce a dynamic actor near the intersection to test if the planner's red light detection is sensitive to other traffic.",
+        "expected_oracle": "red_light",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": -4.0,
+                "y": -8.0
+              },
+              "speed_delta": 1.0
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Ego path intersects a red light.",
+          "Actor 0 is near the intersection."
+        ],
+        "post_execution_validation_rules": [
+          "Oracle must report red light violation.",
+          "Planner 'blocked' flag is not set."
+        ],
+        "uncertainty": [
+          "Original scenario has lane invasion label conflict."
+        ]
+      }
+    ]
+  },
+  "raw_api_payload": {
+    "id": "<REDACTED_RESPONSE_ID>",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "```json\n{\n  \"case_id\": \"case_103\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Increase rain and fog to test planner's perception of the red light.\",\n      \"mutation_intent\": \"Worsen weather to stress the perception system and see if it affects the planner's failure to stop for the red light.\",\n      \"expected_oracle\": \"red_light\",\n      \"modifications\": {\n        \"weather_delta\": {\n          \"rain\": 4,\n          \"fog\": 20,\n          \"wetness\": 20,\n          \"puddle\": 0\n        },\n        \"actor_mutations\": [],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\n          \"keep_original\": true\n        }\n      },\n      \"pre_execution_validation_rules\": [\n        \"Ego path intersects a red light.\"\n      ],\n      \"post_execution_validation_rules\": [\n        \"Oracle must report red light violation.\",\n        \"Planner 'blocked' flag is not set.\"\n      ],\n      \"uncertainty\": [\n        \"Original scenario has lane invasion label conflict.\"\n      ]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Move the other vehicle closer to the intersection as a potential distraction.\",\n      \"mutation_intent\": \"Introduce a dynamic actor near the intersection to test if the planner's red light detection is sensitive to other traffic.\",\n      \"expected_oracle\": \"red_light\",\n      \"modifications\": {\n        \"weather_delta\": {\n          \"rain\": 0,\n          \"fog\": 0,\n          \"wetness\": 0,\n          \"puddle\": 0\n        },\n        \"actor_mutations\": [\n          {\n            \"actor_index\": 0,\n            \"position_offset\": {\n              \"x\": -4.0,\n              \"y\": -8.0\n            },\n            \"speed_delta\": 1.0\n          }\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\n          \"keep_original\": true\n        }\n      },\n      \"pre_execution_validation_rules\": [\n        \"Ego path intersects a red light.\",\n        \"Actor 0 is near the intersection.\"\n      ],\n      \"post_execution_validation_rules\": [\n        \"Oracle must report red light violation.\",\n        \"Planner 'blocked' flag is not set.\"\n      ],\n      \"uncertainty\": [\n        \"Original scenario has lane invasion label conflict.\"\n      ]\n    }\n  ]\n}\n```",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "gemini-2.5-pro",
+    "object": "chat.completion",
+    "service_tier": null,
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 2493,
+      "prompt_tokens": 1349,
+      "total_tokens": 3842,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": 0,
+        "reasoning_tokens": 1858,
+        "rejected_prediction_tokens": null,
+        "text_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 0,
+        "text_tokens": 1349,
+        "image_tokens": 0
+      },
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "input_tokens_details": null,
+      "claude_cache_creation_5_m_tokens": 0,
+      "claude_cache_creation_1_h_tokens": 0
+    }
+  },
+  "error_message": "",
+  "elapsed_sec": 21.929,
+  "timestamp": "<REDACTED_TIMESTAMP>"
+}

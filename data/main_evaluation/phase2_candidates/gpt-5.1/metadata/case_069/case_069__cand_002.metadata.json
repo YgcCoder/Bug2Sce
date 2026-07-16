@@ -1,0 +1,112 @@
+{
+  "case_id": "case_069",
+  "model_name": "gpt-5.1",
+  "candidate_index": 2,
+  "candidate_spec": {
+    "candidate_id": "cand_002",
+    "high_level_variant": "Slightly shift the ego’s mission path laterally and place the linear actor ahead on a near-parallel trajectory at modest relative speed to promote a rear-end or side-scrape collision late in the drive under similar environmental conditions.",
+    "mutation_intent": "By nudging the mission path and positioning the linear actor modestly ahead and closer to ego’s expected lane, the ego should perceive and predict a lead vehicle, maintain valid final_waypoints, and continue moving at a few m/s without strong braking, preserving the unknown-module collision pattern near the end of the run.",
+    "expected_oracle": "collision",
+    "modifications": {
+      "weather_delta": {
+        "rain": 2,
+        "fog": 3,
+        "wetness": 5,
+        "puddle": 0
+      },
+      "actor_mutations": [
+        {
+          "actor_index": 0,
+          "position_offset": {
+            "x": 0.5,
+            "y": -1.0
+          },
+          "speed_delta": -0.5
+        },
+        {
+          "actor_index": 1,
+          "position_offset": {
+            "x": 4.0,
+            "y": -2.0
+          },
+          "speed_delta": -0.8
+        }
+      ],
+      "puddle_mutations": [],
+      "mission_mutation": {
+        "keep_original": false,
+        "spawn_offset": {
+          "x": 0.5,
+          "y": -1.0
+        },
+        "destination_offset": {
+          "x": 1.0,
+          "y": -1.5
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Ensure the shifted spawn and destination remain on navigable road segments of Town01.",
+      "Confirm that actor 1 starts ahead of the ego along the general direction of travel, not behind it.",
+      "Verify there is at least one feasible planned route from the shifted spawn to destination without initial dead-ends.",
+      "Ensure weather changes do not produce extreme visibility loss; fog < 30 and rain < 30."
+    ],
+    "post_execution_validation_rules": [
+      "Verify a collision oracle is emitted after t>20s with ego_speed between 2.0 and 10.0 m/s within 3s before collision.",
+      "Check that perception and prediction topics consistently track at least one actor (0 or 1) within 30m ahead of ego in the final 5s before collision.",
+      "Confirm planning publishes nonempty final_waypoints and does not raise blocked-waypoint flags during the 3s leading to collision.",
+      "Ensure there is no clear full-stop braking event (ego_speed not dropping below 0.5 m/s for more than 1s) in the 3s before collision.",
+      "Record but do not enforce any lane_invasion or additional oracles; treat collision as primary."
+    ],
+    "uncertainty": [
+      "Whether the collision manifests as rear-end vs side impact cannot be predetermined.",
+      "Small weather changes may slightly alter perception performance without a clear module attribution.",
+      "Oracle timing relative to exact end-of-mission position may differ from the original run."
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": 2.0,
+      "fog": 3.0,
+      "wetness": 5.0,
+      "puddle": 0.0
+    },
+    "actor_mutations": [
+      {
+        "actor_index": 0,
+        "position_offset": {
+          "x": 0.5,
+          "y": -1.0
+        },
+        "speed_delta": -0.5
+      },
+      {
+        "actor_index": 1,
+        "position_offset": {
+          "x": 4.0,
+          "y": -2.0
+        },
+        "speed_delta": -0.8
+      }
+    ],
+    "puddle_mutations": [],
+    "mission_mutation": {
+      "spawn_offset": {
+        "x": 0.5,
+        "y": -1.0
+      },
+      "destination_offset": {
+        "x": 1.0,
+        "y": -1.5
+      }
+    }
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_069__gpt-5.1.json",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_069__gpt-5.1.json",
+  "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+}

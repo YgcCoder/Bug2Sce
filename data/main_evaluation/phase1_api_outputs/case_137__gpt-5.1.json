@@ -1,0 +1,128 @@
+{
+  "case_id": "case_137",
+  "workflow": "phase1_causal_explanation",
+  "model_name": "gpt-5.1",
+  "model_id": "gpt-5.1",
+  "status": "completed",
+  "dry_run": false,
+  "schema_valid": true,
+  "schema_errors": [],
+  "quality_flags": [],
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_prompts/case_137__gpt-5.1.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_137__gpt-5.1.json",
+  "prompt_estimated_tokens": 2586,
+  "usage": {
+    "prompt_tokens": 2652,
+    "completion_tokens": 1035,
+    "total_tokens": 3687
+  },
+  "estimated_cost_usd": null,
+  "raw_response": "{\n  \"case_id\": \"case_137\",\n  \"fault_layer\": \"unknown\",\n  \"fault_component\": \"unknown\",\n  \"causal_explanation\": \"The oracle reports a red-light violation, and traffic light states are available, but the summaries do not confirm whether the ego route intersected a red signal or whether any stop line was crossed. Planning and control topics appear continuously populated (final_waypoints and vehicle_cmd exist through the run), while vehicle_status and odometry indicate the ego moved and later nearly returned to its start position. Without explicit evidence linking ego pose, route, and a specific red-phase signal, the mechanism of the violation and the responsible module cannot be localized.\",\n  \"root_cause_pattern\": \"Conservative preservation pattern: a red-light violation is flagged by the oracle in a scenario where traffic light states are published and the ego vehicle is moving under an active mission, but the route–signal relation and stop-line crossing are not directly evidenced, leaving the internal cause within the Autoware stack or simulator unknown.\",\n  \"preservation_constraints\": [\n    \"The generated candidate should preserve the oracle red-light violation symptom (error_json red=true).\",\n    \"Traffic light state information should be available on the traffic_lights topic during the critical window.\",\n    \"The ego vehicle should be executing a mission and show non-zero velocity in vehicle_status or odometry before the reported violation.\",\n    \"The route–traffic-light relation and stop-line crossing should remain unconfirmed by high-level summaries (i.e., not explicitly established).\",\n    \"Final waypoints and vehicle_cmd topics should remain present throughout the critical window.\"\n  ],\n  \"modifiable_factors\": [\n    \"actor_position\",\n    \"weather\",\n    \"puddles\",\n    \"mission\",\n    \"traffic_light_timing\",\n    \"ego_speed_profile\"\n  ],\n  \"non_modifiable_conditions\": [\n    \"Same oracle symptom: red-light violation must be reported by error_json.\",\n    \"Traffic lights topic must exist with varying states including a red phase.\",\n    \"Ego must be under an active navigation mission on the same map (Town01 or an equivalent with signalized intersections).\",\n    \"Ego must exhibit movement according to vehicle_status or odometry before the violation.\"\n  ],\n  \"uncertainty\": [\n    \"Route–traffic-light relation is marked unknown; no direct evidence that the ego path intersected a specific red signal.\",\n    \"Stop-line crossing is unconfirmed by the summaries; actual legality of the ego trajectory relative to the signal cannot be verified.\",\n    \"Module-level attribution (perception vs. planning vs. actuation vs. simulator) is not supported by the available high-level data.\",\n    \"Vehicle_cmd fields are all zero while vehicle_status shows motion; without lower-level details this mismatch cannot be interpreted as a controller or simulator fault.\"\n  ],\n  \"evidence_support\": [\n    {\n      \"evidence_id\": \"fault_label_and_error_json\",\n      \"claim\": \"The case is labeled as a red-light violation (group R) and error_json_events.red is true while other failure types are false.\"\n    },\n    {\n      \"evidence_id\": \"traffic_light_window_summary\",\n      \"claim\": \"Traffic light states are available with multiple ids and states, including red (state 2), but route_light_relation_confirmed and stop_line_crossing_confirmed are both unknown.\"\n    },\n    {\n      \"evidence_id\": \"planning_final_waypoints_summary\",\n      \"claim\": \"final_waypoints exist throughout the run with a stable waypoint count and no null rows, indicating continuous route planning.\"\n    },\n    {\n      \"evidence_id\": \"actuation_vehicle_cmd_and_status_summary\",\n      \"claim\": \"vehicle_cmd exists with all-zero steer, accel, brake, and target_speed ranges, while vehicle_status shows non-zero velocity and throttle and steering activity during the run.\"\n    },\n    {\n      \"evidence_id\": \"odometry_summary\",\n      \"claim\": \"Odometry indicates that the ego moved and later is near its starting x,y position by the end sample, consistent with mission execution rather than a trivially static ego.\"\n    }\n  ],\n  \"confidence\": \"low\",\n  \"ready_for_phase2_generation\": \"yes\",\n  \"notes_for_validator\": [\n    \"Post-execution validation must confirm that error_json (or equivalent oracle) reports a red-light violation and not other primary failures (collision, stuck, lane invasion).\",\n    \"Check that the traffic_lights topic is present with at least one red state sample before or around the violation time.\",\n    \"Verify that ego odometry or vehicle_status shows movement prior to the violation, confirming an active driving scenario.\",\n    \"Do not attempt to infer or enforce a specific route–signal or stop-line relationship in validation; it is sufficient that the oracle flags a red violation while route-light linkage remains unquantified by high-level summaries.\",\n    \"Do not attribute the reproduced failure to a specific module unless additional, more detailed evidence is available beyond the summarized topics.\"\n  ]\n}",
+  "parsed_response": {
+    "case_id": "case_137",
+    "fault_layer": "unknown",
+    "fault_component": "unknown",
+    "causal_explanation": "The oracle reports a red-light violation, and traffic light states are available, but the summaries do not confirm whether the ego route intersected a red signal or whether any stop line was crossed. Planning and control topics appear continuously populated (final_waypoints and vehicle_cmd exist through the run), while vehicle_status and odometry indicate the ego moved and later nearly returned to its start position. Without explicit evidence linking ego pose, route, and a specific red-phase signal, the mechanism of the violation and the responsible module cannot be localized.",
+    "root_cause_pattern": "Conservative preservation pattern: a red-light violation is flagged by the oracle in a scenario where traffic light states are published and the ego vehicle is moving under an active mission, but the route–signal relation and stop-line crossing are not directly evidenced, leaving the internal cause within the Autoware stack or simulator unknown.",
+    "preservation_constraints": [
+      "The generated candidate should preserve the oracle red-light violation symptom (error_json red=true).",
+      "Traffic light state information should be available on the traffic_lights topic during the critical window.",
+      "The ego vehicle should be executing a mission and show non-zero velocity in vehicle_status or odometry before the reported violation.",
+      "The route–traffic-light relation and stop-line crossing should remain unconfirmed by high-level summaries (i.e., not explicitly established).",
+      "Final waypoints and vehicle_cmd topics should remain present throughout the critical window."
+    ],
+    "modifiable_factors": [
+      "actor_position",
+      "weather",
+      "puddles",
+      "mission",
+      "traffic_light_timing",
+      "ego_speed_profile"
+    ],
+    "non_modifiable_conditions": [
+      "Same oracle symptom: red-light violation must be reported by error_json.",
+      "Traffic lights topic must exist with varying states including a red phase.",
+      "Ego must be under an active navigation mission on the same map (Town01 or an equivalent with signalized intersections).",
+      "Ego must exhibit movement according to vehicle_status or odometry before the violation."
+    ],
+    "uncertainty": [
+      "Route–traffic-light relation is marked unknown; no direct evidence that the ego path intersected a specific red signal.",
+      "Stop-line crossing is unconfirmed by the summaries; actual legality of the ego trajectory relative to the signal cannot be verified.",
+      "Module-level attribution (perception vs. planning vs. actuation vs. simulator) is not supported by the available high-level data.",
+      "Vehicle_cmd fields are all zero while vehicle_status shows motion; without lower-level details this mismatch cannot be interpreted as a controller or simulator fault."
+    ],
+    "evidence_support": [
+      {
+        "evidence_id": "fault_label_and_error_json",
+        "claim": "The case is labeled as a red-light violation (group R) and error_json_events.red is true while other failure types are false."
+      },
+      {
+        "evidence_id": "traffic_light_window_summary",
+        "claim": "Traffic light states are available with multiple ids and states, including red (state 2), but route_light_relation_confirmed and stop_line_crossing_confirmed are both unknown."
+      },
+      {
+        "evidence_id": "planning_final_waypoints_summary",
+        "claim": "final_waypoints exist throughout the run with a stable waypoint count and no null rows, indicating continuous route planning."
+      },
+      {
+        "evidence_id": "actuation_vehicle_cmd_and_status_summary",
+        "claim": "vehicle_cmd exists with all-zero steer, accel, brake, and target_speed ranges, while vehicle_status shows non-zero velocity and throttle and steering activity during the run."
+      },
+      {
+        "evidence_id": "odometry_summary",
+        "claim": "Odometry indicates that the ego moved and later is near its starting x,y position by the end sample, consistent with mission execution rather than a trivially static ego."
+      }
+    ],
+    "confidence": "low",
+    "ready_for_phase2_generation": "yes",
+    "notes_for_validator": [
+      "Post-execution validation must confirm that error_json (or equivalent oracle) reports a red-light violation and not other primary failures (collision, stuck, lane invasion).",
+      "Check that the traffic_lights topic is present with at least one red state sample before or around the violation time.",
+      "Verify that ego odometry or vehicle_status shows movement prior to the violation, confirming an active driving scenario.",
+      "Do not attempt to infer or enforce a specific route–signal or stop-line relationship in validation; it is sufficient that the oracle flags a red violation while route-light linkage remains unquantified by high-level summaries.",
+      "Do not attribute the reproduced failure to a specific module unless additional, more detailed evidence is available beyond the summarized topics."
+    ]
+  },
+  "raw_api_payload": {
+    "id": "<REDACTED_RESPONSE_ID>",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "{\n  \"case_id\": \"case_137\",\n  \"fault_layer\": \"unknown\",\n  \"fault_component\": \"unknown\",\n  \"causal_explanation\": \"The oracle reports a red-light violation, and traffic light states are available, but the summaries do not confirm whether the ego route intersected a red signal or whether any stop line was crossed. Planning and control topics appear continuously populated (final_waypoints and vehicle_cmd exist through the run), while vehicle_status and odometry indicate the ego moved and later nearly returned to its start position. Without explicit evidence linking ego pose, route, and a specific red-phase signal, the mechanism of the violation and the responsible module cannot be localized.\",\n  \"root_cause_pattern\": \"Conservative preservation pattern: a red-light violation is flagged by the oracle in a scenario where traffic light states are published and the ego vehicle is moving under an active mission, but the route–signal relation and stop-line crossing are not directly evidenced, leaving the internal cause within the Autoware stack or simulator unknown.\",\n  \"preservation_constraints\": [\n    \"The generated candidate should preserve the oracle red-light violation symptom (error_json red=true).\",\n    \"Traffic light state information should be available on the traffic_lights topic during the critical window.\",\n    \"The ego vehicle should be executing a mission and show non-zero velocity in vehicle_status or odometry before the reported violation.\",\n    \"The route–traffic-light relation and stop-line crossing should remain unconfirmed by high-level summaries (i.e., not explicitly established).\",\n    \"Final waypoints and vehicle_cmd topics should remain present throughout the critical window.\"\n  ],\n  \"modifiable_factors\": [\n    \"actor_position\",\n    \"weather\",\n    \"puddles\",\n    \"mission\",\n    \"traffic_light_timing\",\n    \"ego_speed_profile\"\n  ],\n  \"non_modifiable_conditions\": [\n    \"Same oracle symptom: red-light violation must be reported by error_json.\",\n    \"Traffic lights topic must exist with varying states including a red phase.\",\n    \"Ego must be under an active navigation mission on the same map (Town01 or an equivalent with signalized intersections).\",\n    \"Ego must exhibit movement according to vehicle_status or odometry before the violation.\"\n  ],\n  \"uncertainty\": [\n    \"Route–traffic-light relation is marked unknown; no direct evidence that the ego path intersected a specific red signal.\",\n    \"Stop-line crossing is unconfirmed by the summaries; actual legality of the ego trajectory relative to the signal cannot be verified.\",\n    \"Module-level attribution (perception vs. planning vs. actuation vs. simulator) is not supported by the available high-level data.\",\n    \"Vehicle_cmd fields are all zero while vehicle_status shows motion; without lower-level details this mismatch cannot be interpreted as a controller or simulator fault.\"\n  ],\n  \"evidence_support\": [\n    {\n      \"evidence_id\": \"fault_label_and_error_json\",\n      \"claim\": \"The case is labeled as a red-light violation (group R) and error_json_events.red is true while other failure types are false.\"\n    },\n    {\n      \"evidence_id\": \"traffic_light_window_summary\",\n      \"claim\": \"Traffic light states are available with multiple ids and states, including red (state 2), but route_light_relation_confirmed and stop_line_crossing_confirmed are both unknown.\"\n    },\n    {\n      \"evidence_id\": \"planning_final_waypoints_summary\",\n      \"claim\": \"final_waypoints exist throughout the run with a stable waypoint count and no null rows, indicating continuous route planning.\"\n    },\n    {\n      \"evidence_id\": \"actuation_vehicle_cmd_and_status_summary\",\n      \"claim\": \"vehicle_cmd exists with all-zero steer, accel, brake, and target_speed ranges, while vehicle_status shows non-zero velocity and throttle and steering activity during the run.\"\n    },\n    {\n      \"evidence_id\": \"odometry_summary\",\n      \"claim\": \"Odometry indicates that the ego moved and later is near its starting x,y position by the end sample, consistent with mission execution rather than a trivially static ego.\"\n    }\n  ],\n  \"confidence\": \"low\",\n  \"ready_for_phase2_generation\": \"yes\",\n  \"notes_for_validator\": [\n    \"Post-execution validation must confirm that error_json (or equivalent oracle) reports a red-light violation and not other primary failures (collision, stuck, lane invasion).\",\n    \"Check that the traffic_lights topic is present with at least one red state sample before or around the violation time.\",\n    \"Verify that ego odometry or vehicle_status shows movement prior to the violation, confirming an active driving scenario.\",\n    \"Do not attempt to infer or enforce a specific route–signal or stop-line relationship in validation; it is sufficient that the oracle flags a red violation while route-light linkage remains unquantified by high-level summaries.\",\n    \"Do not attribute the reproduced failure to a specific module unless additional, more detailed evidence is available beyond the summarized topics.\"\n  ]\n}",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": [],
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "gpt-5.1-2025-11-13",
+    "object": "chat.completion",
+    "service_tier": "default",
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 1035,
+      "prompt_tokens": 2652,
+      "total_tokens": 3687,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": 0,
+        "audio_tokens": 0,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 0
+      }
+    }
+  },
+  "error_message": "",
+  "timestamp": "<REDACTED_TIMESTAMP>",
+  "elapsed_sec": 14.141
+}

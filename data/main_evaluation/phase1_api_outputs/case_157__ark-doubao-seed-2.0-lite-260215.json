@@ -1,0 +1,124 @@
+{
+  "case_id": "case_157",
+  "workflow": "phase1_causal_explanation",
+  "model_name": "ark-doubao-seed-2.0-lite-260215",
+  "model_id": "ark-doubao-seed-2.0-lite-260215",
+  "status": "completed",
+  "dry_run": false,
+  "schema_valid": true,
+  "schema_errors": [],
+  "quality_flags": [],
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_prompts/case_157__ark-doubao-seed-2.0-lite-260215.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_157__ark-doubao-seed-2.0-lite-260215.json",
+  "prompt_estimated_tokens": 2968,
+  "usage": {
+    "prompt_tokens": 4035,
+    "completion_tokens": 2683,
+    "total_tokens": 6718
+  },
+  "estimated_cost_usd": null,
+  "raw_response": "{\n  \"case_id\": \"case_157\",\n  \"fault_layer\": \"unknown\",\n  \"fault_component\": \"unknown\",\n  \"causal_explanation\": \"A confirmed collision occurred. All vehicle commands (accel, brake, steer) are zero in the pre-collision critical window, while ego maintained positive speed (~4.7 m/s) with non-zero throttle reported by vehicle status. Perception detected one object ahead, but planning reported no blocked waypoints on the planned route, and no braking occurred before collision.\",\n  \"root_cause_pattern\": \"Candidate conservative pattern: Zero commanded output in vehicle_cmd despite a colliding object on the planned route, with ongoing ego movement leading to collision, while module-level root cause is unconfirmed.\",\n  \"preservation_constraints\": [\n    \"Ego travels toward its goal on the Town01 map\",\n    \"A colliding object is present ahead of ego on the planned route pre-collision\",\n    \"All acceleration, brake, and steer commands in vehicle_cmd are zero in the pre-collision critical window\",\n    \"Ego maintains positive forward speed with non-zero throttle reported by vehicle status pre-collision\",\n    \"Collision with the forward object is confirmed by oracle\"\n  ],\n  \"modifiable_factors\": [\"actor_position\", \"actor_speed\", \"weather_conditions\", \"number of non-colliding actors\"],\n  \"non_modifiable_conditions\": [\"Map is Town01\", \"Consistent collision oracle label\", \"Zero all motion commands in pre-collision vehicle_cmd\", \"Mismatch between zero vehicle_cmd and non-zero ego speed/throttle\"],\n  \"uncertainty\": [\n    \"Zero vehicle_cmd vs non-zero ego movement mismatch prevents confirmed attribution to actuation per rules\",\n    \"It is unknown if zero vehicle_cmd stems from planning failure, actuation failure, or logging error\",\n    \"No direct internal evidence proves planning failed to detect the blocking object, only that the blocked waypoint flag was false\"\n  ],\n  \"evidence_support\": [\n    {\"evidence_id\": \"oracle_consistency\", \"claim\": \"Collision label is consistent between dataset and error.json\"},\n    {\"evidence_id\": \"critical_window_vehicle_cmd\", \"claim\": \"All acceleration, brake, and steer commands are zero in the full pre-collision window\"},\n    {\"evidence_id\": \"critical_window_vehicle_status\", \"claim\": \"Ego has positive pre-collision speed (last 4.699 m/s) and non-zero throttle in vehicle status\"},\n    {\"evidence_id\": \"planning_final_waypoints\", \"claim\": \"No blocked waypoints were reported pre-collision despite an object ahead on route\"},\n    {\"evidence_id\": \"oracle_collision\", \"claim\": \"Collision with the forward actor is confirmed\"}\n  ],\n  \"confidence\": \"medium\",\n  \"ready_for_phase2_generation\": \"yes\",\n  \"notes_for_validator\": [\n    \"Verify vehicle_cmd is all zero in the pre-collision critical window after generation\",\n    \"Confirm the mismatch between zero vehicle commands and non-zero ego speed/throttle in vehicle status\",\n    \"Check that collision with the forward object occurs as in the original case\"\n  ]\n}",
+  "parsed_response": {
+    "case_id": "case_157",
+    "fault_layer": "unknown",
+    "fault_component": "unknown",
+    "causal_explanation": "A confirmed collision occurred. All vehicle commands (accel, brake, steer) are zero in the pre-collision critical window, while ego maintained positive speed (~4.7 m/s) with non-zero throttle reported by vehicle status. Perception detected one object ahead, but planning reported no blocked waypoints on the planned route, and no braking occurred before collision.",
+    "root_cause_pattern": "Candidate conservative pattern: Zero commanded output in vehicle_cmd despite a colliding object on the planned route, with ongoing ego movement leading to collision, while module-level root cause is unconfirmed.",
+    "preservation_constraints": [
+      "Ego travels toward its goal on the Town01 map",
+      "A colliding object is present ahead of ego on the planned route pre-collision",
+      "All acceleration, brake, and steer commands in vehicle_cmd are zero in the pre-collision critical window",
+      "Ego maintains positive forward speed with non-zero throttle reported by vehicle status pre-collision",
+      "Collision with the forward object is confirmed by oracle"
+    ],
+    "modifiable_factors": [
+      "actor_position",
+      "actor_speed",
+      "weather_conditions",
+      "number of non-colliding actors"
+    ],
+    "non_modifiable_conditions": [
+      "Map is Town01",
+      "Consistent collision oracle label",
+      "Zero all motion commands in pre-collision vehicle_cmd",
+      "Mismatch between zero vehicle_cmd and non-zero ego speed/throttle"
+    ],
+    "uncertainty": [
+      "Zero vehicle_cmd vs non-zero ego movement mismatch prevents confirmed attribution to actuation per rules",
+      "It is unknown if zero vehicle_cmd stems from planning failure, actuation failure, or logging error",
+      "No direct internal evidence proves planning failed to detect the blocking object, only that the blocked waypoint flag was false"
+    ],
+    "evidence_support": [
+      {
+        "evidence_id": "oracle_consistency",
+        "claim": "Collision label is consistent between dataset and error.json"
+      },
+      {
+        "evidence_id": "critical_window_vehicle_cmd",
+        "claim": "All acceleration, brake, and steer commands are zero in the full pre-collision window"
+      },
+      {
+        "evidence_id": "critical_window_vehicle_status",
+        "claim": "Ego has positive pre-collision speed (last 4.699 m/s) and non-zero throttle in vehicle status"
+      },
+      {
+        "evidence_id": "planning_final_waypoints",
+        "claim": "No blocked waypoints were reported pre-collision despite an object ahead on route"
+      },
+      {
+        "evidence_id": "oracle_collision",
+        "claim": "Collision with the forward actor is confirmed"
+      }
+    ],
+    "confidence": "medium",
+    "ready_for_phase2_generation": "yes",
+    "notes_for_validator": [
+      "Verify vehicle_cmd is all zero in the pre-collision critical window after generation",
+      "Confirm the mismatch between zero vehicle commands and non-zero ego speed/throttle in vehicle status",
+      "Check that collision with the forward object occurs as in the original case"
+    ]
+  },
+  "raw_api_payload": {
+    "id": "021782920041210480c9da16195717d454d02a438d86eb7d17e3e",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "{\n  \"case_id\": \"case_157\",\n  \"fault_layer\": \"unknown\",\n  \"fault_component\": \"unknown\",\n  \"causal_explanation\": \"A confirmed collision occurred. All vehicle commands (accel, brake, steer) are zero in the pre-collision critical window, while ego maintained positive speed (~4.7 m/s) with non-zero throttle reported by vehicle status. Perception detected one object ahead, but planning reported no blocked waypoints on the planned route, and no braking occurred before collision.\",\n  \"root_cause_pattern\": \"Candidate conservative pattern: Zero commanded output in vehicle_cmd despite a colliding object on the planned route, with ongoing ego movement leading to collision, while module-level root cause is unconfirmed.\",\n  \"preservation_constraints\": [\n    \"Ego travels toward its goal on the Town01 map\",\n    \"A colliding object is present ahead of ego on the planned route pre-collision\",\n    \"All acceleration, brake, and steer commands in vehicle_cmd are zero in the pre-collision critical window\",\n    \"Ego maintains positive forward speed with non-zero throttle reported by vehicle status pre-collision\",\n    \"Collision with the forward object is confirmed by oracle\"\n  ],\n  \"modifiable_factors\": [\"actor_position\", \"actor_speed\", \"weather_conditions\", \"number of non-colliding actors\"],\n  \"non_modifiable_conditions\": [\"Map is Town01\", \"Consistent collision oracle label\", \"Zero all motion commands in pre-collision vehicle_cmd\", \"Mismatch between zero vehicle_cmd and non-zero ego speed/throttle\"],\n  \"uncertainty\": [\n    \"Zero vehicle_cmd vs non-zero ego movement mismatch prevents confirmed attribution to actuation per rules\",\n    \"It is unknown if zero vehicle_cmd stems from planning failure, actuation failure, or logging error\",\n    \"No direct internal evidence proves planning failed to detect the blocking object, only that the blocked waypoint flag was false\"\n  ],\n  \"evidence_support\": [\n    {\"evidence_id\": \"oracle_consistency\", \"claim\": \"Collision label is consistent between dataset and error.json\"},\n    {\"evidence_id\": \"critical_window_vehicle_cmd\", \"claim\": \"All acceleration, brake, and steer commands are zero in the full pre-collision window\"},\n    {\"evidence_id\": \"critical_window_vehicle_status\", \"claim\": \"Ego has positive pre-collision speed (last 4.699 m/s) and non-zero throttle in vehicle status\"},\n    {\"evidence_id\": \"planning_final_waypoints\", \"claim\": \"No blocked waypoints were reported pre-collision despite an object ahead on route\"},\n    {\"evidence_id\": \"oracle_collision\", \"claim\": \"Collision with the forward actor is confirmed\"}\n  ],\n  \"confidence\": \"medium\",\n  \"ready_for_phase2_generation\": \"yes\",\n  \"notes_for_validator\": [\n    \"Verify vehicle_cmd is all zero in the pre-collision critical window after generation\",\n    \"Confirm the mismatch between zero vehicle commands and non-zero ego speed/throttle in vehicle status\",\n    \"Check that collision with the forward object occurs as in the original case\"\n  ]\n}",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null,
+          "reasoning_content": "\nGot it, let's work through this step by step. First, case_id is case_157, right from input.\n\nNext, fault_layer. Let's check the evidence. Vehicle_cmd has all zero commands, but vehicle_status shows throttle non-zero, ego moving at ~4.7 m/s right before collision. Oh right, rule says if vehicle_cmd is all zero but vehicle status shows movement, controller behavior is uncertain, can't just assign actuation. What do we have? Planning: final waypoints don't show any blocked waypoints even though there's a colliding object 3.486m away. Perception detected 1 object, prediction had 1 object. Wait but let's see: vehicle_cmd is all zero commands, which is weird, but mismatch with vehicle status. Wait let's go step by step.\n\nFault_layer: Wait, let's check the facts. Vehicle_cmd all accel, brake, steer are zero. But vehicle_status has throttle non-zero (last 0.1796), brake zero, ego speed 4.699 before collision. So the mismatch, can't assign actuation for sure. Do we have proof perception missed? No, detected the object, last count was 1. Planning said no waypoints blocked, even though object is on the route? Closest object distance 0.0 in the nearest pre-collision row? Wait wait, critical window says nearest pre-collision row closest_object_distance 0.0. But final waypoints marked is_blocked false. Hmm. But module attribution not direct. Wait let's check rules: prefer fault_layer unknown when module-level attribution not directly supported.\n\nWait, let's list the facts: collision happened, vehicle_cmd is all zero commands, but ego is still moving (speed 4.7 m/s, throttle non-zero in vehicle status). Detected 1 object, predicted 1 object, planning reported no blocked waypoints. No braking commands, no speed decrease. Oracle says collision, labels consistent between dataset and error json.\n\nCausal explanation: A confirmed collision occurred. All vehicle commands (accel, brake, steer) in /vehicle_cmd are zero in the pre-collision window, while ego vehicle maintained positive speed (last 4.7 m/s) with non-zero throttle reported by vehicle status. Perception detected at least one object, planning reported no blocked waypoints on the planned route, and no braking was commanded or applied before collision.\n\nRoot cause pattern: Possible mismatch between planned vehicle command output and reported vehicle actuation, or failure of planning to detect a blocked route despite a detected colliding object ahead.\n\nPreservation constraints: Need to make them semantic. Let's see: 1. Ego vehicle is on a straight route towards the goal in Town01. 2. A detected object is located ahead of ego on the planned route before collision. 3. All fields of the vehicle_cmd topic are zero in the pre-collision critical window. 4. Ego maintains positive forward speed with non-zero throttle in vehicle status pre-collision. 5. Collision occurs with the forward object.\n\nModifiable factors: actor position, weather, number of other actors, fog density, wind speed. Wait, original has 4 actors, rain 47, etc. So modifiable: actor_position, weather_conditions, number_of_actors, actor_speed.\n\nNon_modifiable_conditions: consistent collision oracle label, all vehicle_cmd commands are zero pre-collision, ego maintains positive speed pre-collision, map is Town01.\n\nUncertainty: Why? 1. Vehicle_cmd all zero vs vehicle_status movement mismatch means actuation fault cannot be confirmed per rules. 2. No direct evidence that planning failed to detect the blocked route, only that is_blocked was false. 3. It is unknown whether the zero vehicle_cmd is a planner output failure or a topic logging error.\n\nEvidence support: Let's list each. 1. evidence_id: oracle_consistency, claim: collision label is consistent between dataset and error.json. 2. evidence_id: critical_window_vehicle_cmd, claim: all acceleration, brake, and steer commands are zero in the entire pre-collision window. 3. evidence_id: critical_window_ego_status, claim: ego has positive pre-collision speed (last 4.699 m/s) and non-zero throttle in vehicle status. 4. evidence_id: planning_final_waypoints, claim: no blocked waypoints were reported in pre-collision window despite an object ahead on route. 5. evidence_id: collision_event, claim: collision with the forward object is confirmed by oracle.\n\nConfidence: Medium? Wait, what's the confidence. We have consistent labels, clear mismatch between vehicle_cmd and status, but can't attribute to module. So medium? Or low? Wait, let's see: the evidence for the collision is solid, the vehicle_cmd zero is solid, the mismatch is solid. Attribution is uncertain, so confidence medium?\n\nReady_for_phase2_generation: Yes, because we have a checkable conservative pattern.\n\nNotes_for_validator: 1. Check if vehicle_cmd is all zero in the pre-collision window after generation. 2. Confirm mismatch between zero vehicle_cmd and non-zero ego speed/throttle in vehicle status. 3. Verify collision with the forward object occurs as in the original case.\n\nWait let's fit this into the schema correctly, follow all rules. Let's check the rules again: if vehicle_cmd all zero but vehicle status shows movement, mark controller behavior uncertain, don't assign fault_layer actuation from mismatch alone. So fault_layer is unknown, fault_component unknown. That's correct.\n\nWait let's adjust: fault_layer is unknown, right? Because we can't confirm which layer. Yes, per rule, prefer unknown when module attribution not directly supported.\n\nLet me put it all together now, make sure it's valid JSON, no extra stuff. Let's check:\n\ncase_id is case_157, correct.\n\nfault_layer: unknown, yes.\n\nfault_component: unknown.\n\ncausal_explanation: \"A confirmed collision occurred. All vehicle commands (accel, brake, steer) are zero in the pre-collision critical window, while the ego vehicle maintained positive speed (~4.7 m/s) with non-zero throttle reported by vehicle status. Perception detected one object ahead, but planning reported no blocked waypoints on the planned route, and no braking was commanded or applied before collision.\" That's concise, evidence-based.\n\nroot_cause_pattern: \"Candidate pattern: Zero commanded output in the vehicle_cmd topic despite an object on the planned route, with ongoing ego movement leading to collision, while module-level root cause is not confirmed.\" That's good, conservative.\n\npreservation_constraints: Let's make 4-5, as per rules: [\"Ego travels toward its goal on Town01 map\", \"A colliding object is present ahead of ego on the planned route pre-collision\", \"All acceleration, brake, and steer commands in vehicle_cmd are zero in the pre-collision critical window\", \"Ego maintains positive forward speed with non-zero throttle reported by vehicle status pre-collision\", \"Collision with the forward object is confirmed by oracle\"] That's good, semantic, no timestamps.\n\nmodifiable_factors: [\"actor_position\", \"actor_speed\", \"weather_conditions\", \"number of other non-colliding actors\"] Correct.\n\nnon_modifiable_conditions: [\"Map is Town01\", \"Consistent collision oracle label\", \"Zero all commands in pre-collision vehicle_cmd\", \"Mismatch between zero vehicle_cmd and non-zero ego speed/throttle in vehicle status\"] Correct.\n\nuncertainty: [\"Zero vehicle_cmd vs non-zero ego movement mismatch prevents confirmed attribution to actuation layer per rules\", \"It is unknown if zero vehicle_cmd stems from planning output failure, actuation failure, or logging error\", \"No direct internal evidence proves planning failed to detect the blocking object, only that blocked waypoint flag was false\"] Correct.\n\nevidence_support: Let's list each correctly:\n[\n{\"evidence_id\": \"oracle_consistency\", \"claim\": \"Collision label is consistent between dataset and error.json\"},\n{\"evidence_id\": \"critical_window_vehicle_cmd\", \"claim\": All acceleration, brake, and steer commands are zero in the full pre-collision window\"},\n{\"evidence_id\": \"critical_window_vehicle_status\", \"claim\": Ego has positive pre-collision speed (last 4.699 m/s) and non-zero throttle in vehicle status\"},\n{\"evidence_id\": \"planning_final_waypoints\", \"claim\": No blocked waypoints were reported pre-collision despite an object ahead on route\"},\n{\"evidence_id\": \"oracle_collision\", \"claim\": Collision with the forward actor is confirmed\"}\n] Wait, quote the strings, right.\n\nconfidence: medium, because the event is confirmed, the observed mismatch is confirmed, only root cause attribution is uncertain. So medium.\n\nready_for_phase2_generation: yes, because we have a checkable pattern.\n\nnotes_for_validator: [\"Verify that vehicle_cmd is all zero in the pre-collision critical window after generation\", \"Confirm the mismatch between zero vehicle commands and non-zero ego speed/throttle in vehicle status\", \"Check that collision with the forward object occurs as in the original case\"] Correct.\n\nWait let's make sure all quotes are correct, no syntax errors. Let's write it properly as JSON."
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "doubao-seed-2-0-lite-260215",
+    "object": "chat.completion",
+    "service_tier": "default",
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 2683,
+      "prompt_tokens": 4035,
+      "total_tokens": 6718,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 1988,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": null,
+        "cached_tokens": 0
+      }
+    }
+  },
+  "error_message": "",
+  "timestamp": "<REDACTED_TIMESTAMP>",
+  "elapsed_sec": 71.19
+}

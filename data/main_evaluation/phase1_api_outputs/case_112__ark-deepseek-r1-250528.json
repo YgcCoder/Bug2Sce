@@ -1,0 +1,125 @@
+{
+  "case_id": "case_112",
+  "workflow": "phase1_causal_explanation",
+  "model_name": "ark-deepseek-r1-250528",
+  "model_id": "ark-deepseek-r1-250528",
+  "status": "completed",
+  "dry_run": false,
+  "schema_valid": true,
+  "schema_errors": [],
+  "quality_flags": [],
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_prompts/case_112__ark-deepseek-r1-250528.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_112__ark-deepseek-r1-250528.json",
+  "prompt_estimated_tokens": 3079,
+  "usage": {
+    "prompt_tokens": 4118,
+    "completion_tokens": 1849,
+    "total_tokens": 5967
+  },
+  "estimated_cost_usd": null,
+  "raw_response": "{\n  \"case_id\": \"case_112\",\n  \"fault_layer\": \"unknown\",\n  \"fault_component\": \"unknown\",\n  \"causal_explanation\": \"Both dataset and error.json confirm a collision occurred, but labels conflict for lane invasion. All actuation commands in vehicle_cmd are zero in the pre-collision window, but the ego vehicle maintains ~5.5 m/s speed with non-zero throttle and no braking per vehicle_status. No blocked waypoints are reported by planning before collision, and the closest detected object is ~10m from ego. No direct evidence localizes failure to a specific module.\",\n  \"root_cause_pattern\": \"Conservative pattern: a collision occurs when all output actuation commands from the Autoware control pipeline are zero, while the ego vehicle continues moving forward with no braking before the collision, with conflicting lane invasion labels between dataset and error.json.\",\n  \"preservation_constraints\": [\n    \"Preserve the confirmed collision symptom agreed by both labels\",\n    \"Preserve the condition that all vehicle_cmd commands are zero in the pre-collision critical window\",\n    \"Preserve the condition that ego maintains positive non-decreasing speed with no braking reported by vehicle_status before collision\",\n    \"Preserve that planning reports no blocked waypoints before collision\",\n    \"Preserve the lane invasion label conflict for post-generation validation\"\n  ],\n  \"modifiable_factors\": [\"actor_position\", \"weather\", \"start_position\", \"goal_position\", \"actor_count\"],\n  \"non_modifiable_conditions\": [\"confirmed collision event\", \"all zero vehicle_cmd in pre-collision window\", \"positive non-zero ego speed with no braking in vehicle_status\", \"no blocked waypoints reported before collision\"],\n  \"uncertainty\": [\n    \"Label conflict between dataset and error.json for lane invasion and failure group\",\n    \"No direct evidence of internal module failure to localize fault to a specific layer\",\n    \"Mismatch between all-zero vehicle_cmd and moving ego cannot confirm actuation failure per rules\",\n    \"Raw sensor data was not decoded so sensing/perception internal behavior cannot be verified\"\n  ],\n  \"evidence_support\": [\n    {\"evidence_id\": \"oracle_consistency\", \"claim\": \"Both dataset and error.json confirm a collision occurred\"},\n    {\"evidence_id\": \"collision_window\", \"claim\": \"All vehicle_cmd acceleration, brake, and steering commands are zero pre-collision\"},\n    {\"evidence_id\": \"collision_window\", \"claim\": \"Ego has ~5.56 m/s speed, zero brake, non-zero throttle in vehicle_status pre-collision\"},\n    {\"evidence_id\": \"final_waypoints_before_collision\", \"claim\": \"No blocked waypoints are reported before collision\"},\n    {\"evidence_id\": \"label_conflict\", \"claim\": \"Lane invasion label conflicts between dataset and error.json\"}\n  ],\n  \"confidence\": \"low\",\n  \"ready_for_phase2_generation\": \"yes\",\n  \"notes_for_validator\": [\n    \"Verify that the generated case preserves the all-zero vehicle_cmd and non-zero moving ego condition before collision\",\n    \"Post-generation validation should check for lane invasion to resolve the existing label conflict\"\n  ]\n}",
+  "parsed_response": {
+    "case_id": "case_112",
+    "fault_layer": "unknown",
+    "fault_component": "unknown",
+    "causal_explanation": "Both dataset and error.json confirm a collision occurred, but labels conflict for lane invasion. All actuation commands in vehicle_cmd are zero in the pre-collision window, but the ego vehicle maintains ~5.5 m/s speed with non-zero throttle and no braking per vehicle_status. No blocked waypoints are reported by planning before collision, and the closest detected object is ~10m from ego. No direct evidence localizes failure to a specific module.",
+    "root_cause_pattern": "Conservative pattern: a collision occurs when all output actuation commands from the Autoware control pipeline are zero, while the ego vehicle continues moving forward with no braking before the collision, with conflicting lane invasion labels between dataset and error.json.",
+    "preservation_constraints": [
+      "Preserve the confirmed collision symptom agreed by both labels",
+      "Preserve the condition that all vehicle_cmd commands are zero in the pre-collision critical window",
+      "Preserve the condition that ego maintains positive non-decreasing speed with no braking reported by vehicle_status before collision",
+      "Preserve that planning reports no blocked waypoints before collision",
+      "Preserve the lane invasion label conflict for post-generation validation"
+    ],
+    "modifiable_factors": [
+      "actor_position",
+      "weather",
+      "start_position",
+      "goal_position",
+      "actor_count"
+    ],
+    "non_modifiable_conditions": [
+      "confirmed collision event",
+      "all zero vehicle_cmd in pre-collision window",
+      "positive non-zero ego speed with no braking in vehicle_status",
+      "no blocked waypoints reported before collision"
+    ],
+    "uncertainty": [
+      "Label conflict between dataset and error.json for lane invasion and failure group",
+      "No direct evidence of internal module failure to localize fault to a specific layer",
+      "Mismatch between all-zero vehicle_cmd and moving ego cannot confirm actuation failure per rules",
+      "Raw sensor data was not decoded so sensing/perception internal behavior cannot be verified"
+    ],
+    "evidence_support": [
+      {
+        "evidence_id": "oracle_consistency",
+        "claim": "Both dataset and error.json confirm a collision occurred"
+      },
+      {
+        "evidence_id": "collision_window",
+        "claim": "All vehicle_cmd acceleration, brake, and steering commands are zero pre-collision"
+      },
+      {
+        "evidence_id": "collision_window",
+        "claim": "Ego has ~5.56 m/s speed, zero brake, non-zero throttle in vehicle_status pre-collision"
+      },
+      {
+        "evidence_id": "final_waypoints_before_collision",
+        "claim": "No blocked waypoints are reported before collision"
+      },
+      {
+        "evidence_id": "label_conflict",
+        "claim": "Lane invasion label conflicts between dataset and error.json"
+      }
+    ],
+    "confidence": "low",
+    "ready_for_phase2_generation": "yes",
+    "notes_for_validator": [
+      "Verify that the generated case preserves the all-zero vehicle_cmd and non-zero moving ego condition before collision",
+      "Post-generation validation should check for lane invasion to resolve the existing label conflict"
+    ]
+  },
+  "raw_api_payload": {
+    "id": "02178292114785804294245a7216c83957935f5a9394e3b2e258d",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "{\n  \"case_id\": \"case_112\",\n  \"fault_layer\": \"unknown\",\n  \"fault_component\": \"unknown\",\n  \"causal_explanation\": \"Both dataset and error.json confirm a collision occurred, but labels conflict for lane invasion. All actuation commands in vehicle_cmd are zero in the pre-collision window, but the ego vehicle maintains ~5.5 m/s speed with non-zero throttle and no braking per vehicle_status. No blocked waypoints are reported by planning before collision, and the closest detected object is ~10m from ego. No direct evidence localizes failure to a specific module.\",\n  \"root_cause_pattern\": \"Conservative pattern: a collision occurs when all output actuation commands from the Autoware control pipeline are zero, while the ego vehicle continues moving forward with no braking before the collision, with conflicting lane invasion labels between dataset and error.json.\",\n  \"preservation_constraints\": [\n    \"Preserve the confirmed collision symptom agreed by both labels\",\n    \"Preserve the condition that all vehicle_cmd commands are zero in the pre-collision critical window\",\n    \"Preserve the condition that ego maintains positive non-decreasing speed with no braking reported by vehicle_status before collision\",\n    \"Preserve that planning reports no blocked waypoints before collision\",\n    \"Preserve the lane invasion label conflict for post-generation validation\"\n  ],\n  \"modifiable_factors\": [\"actor_position\", \"weather\", \"start_position\", \"goal_position\", \"actor_count\"],\n  \"non_modifiable_conditions\": [\"confirmed collision event\", \"all zero vehicle_cmd in pre-collision window\", \"positive non-zero ego speed with no braking in vehicle_status\", \"no blocked waypoints reported before collision\"],\n  \"uncertainty\": [\n    \"Label conflict between dataset and error.json for lane invasion and failure group\",\n    \"No direct evidence of internal module failure to localize fault to a specific layer\",\n    \"Mismatch between all-zero vehicle_cmd and moving ego cannot confirm actuation failure per rules\",\n    \"Raw sensor data was not decoded so sensing/perception internal behavior cannot be verified\"\n  ],\n  \"evidence_support\": [\n    {\"evidence_id\": \"oracle_consistency\", \"claim\": \"Both dataset and error.json confirm a collision occurred\"},\n    {\"evidence_id\": \"collision_window\", \"claim\": \"All vehicle_cmd acceleration, brake, and steering commands are zero pre-collision\"},\n    {\"evidence_id\": \"collision_window\", \"claim\": \"Ego has ~5.56 m/s speed, zero brake, non-zero throttle in vehicle_status pre-collision\"},\n    {\"evidence_id\": \"final_waypoints_before_collision\", \"claim\": \"No blocked waypoints are reported before collision\"},\n    {\"evidence_id\": \"label_conflict\", \"claim\": \"Lane invasion label conflicts between dataset and error.json\"}\n  ],\n  \"confidence\": \"low\",\n  \"ready_for_phase2_generation\": \"yes\",\n  \"notes_for_validator\": [\n    \"Verify that the generated case preserves the all-zero vehicle_cmd and non-zero moving ego condition before collision\",\n    \"Post-generation validation should check for lane invasion to resolve the existing label conflict\"\n  ]\n}",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null,
+          "reasoning_content": "\nOkay, I need to generate the JSON for this case_112 following all the rules. Let's start step by step.\n\nFirst, case_id is case_112, right. Then fault_layer. Let's see the evidence. There's a conflict between dataset and error_json: dataset says collision + lane invasion, error json says only collision, no lane invasion. Also, vehicle_cmd all zero but vehicle_status has non-zero throttle and movement, right? Wait vehicle_cmd stats all zero, but vehicle_status has throttle non-zero, ego moving at ~5m/s before collision. Oh right, the rule says if vehicle_cmd all zero but vehicle has movement, don't assign actuation fault just from that. And we can't attribute to a specific module directly. So fault_layer is unknown? Wait let's check: what do we have. Confirmed collision from both dataset and error json, lane invasion is conflicting. The closest object before collision is 10m away, planning didn't detect any blocked waypoints. Vehicle_cmd all zero, but ego is moving. No direct evidence of which module failed. So fault_layer is unknown, fault_component is unknown.\n\nCausal explanation: Let's write that. Both dataset and error.json confirm a collision occurred, but there is a label conflict for lane invasion (dataset=1, error_json=0). All acceleration, brake, and steering commands in vehicle_cmd are zero in the critical pre-collision window, but ego vehicle maintains a speed of ~5.5 m/s with non-zero throttle reported by vehicle_status, no braking. No blocked waypoints are reported by planning before collision, 1 detected object ~10m away from ego. No direct evidence localizes the failure to a specific Autoware layer.\n\nRoot cause pattern: Conservative pattern: collision occurs when all actuation commands from the planning/control pipeline are zero while ego vehicle continues moving forward with no braking before collision, with conflicting lane invasion labels.\n\nPreservation constraints: Let's make 3-6. 1. Preserve the confirmed collision symptom from both labels. 2. Preserve the condition that all vehicle_cmd commands are zero in the pre-collision critical window. 3. Preserve that ego maintains positive non-decreasing speed with no braking reported in vehicle_status before collision. 4. Preserve the label conflict for lane invasion for validation. 5. Preserve that planning reports no blocked waypoints before collision. That's good.\n\nModifiable factors: Let's see, what can change? actor position, weather, start position, goal position, number of non-ego actors. Wait the scenario has 2 actors, weather has certain values, so modifiable: [\"actor_position\", \"weather\", \"start_position\", \"goal_position\", \"actor_count\"] that makes sense.\n\nNon_modifiable_conditions: [\"confirmed collision event\", \"all zero vehicle_cmd in pre-collision critical window\", \"non-zero ego speed with no braking in vehicle_status pre-collision\", \"no blocked waypoints reported by planning before collision\"] that's right.\n\nUncertainty: Let's list the conflicts and missing info. 1. Conflict between dataset and error.json labels for lane invasion and failure group. 2. No direct evidence of internal module failure to localize fault to a specific layer. 3. Vehicle_cmd all zero vs vehicle_status movement mismatch cannot confirm actuation failure per rules. 4. Raw sensor data was not decoded, so sensing/perception internal behavior cannot be verified. That's correct.\n\nEvidence support: Let's list each. First, {\"evidence_id\": \"oracle_consistency\", \"claim\": \"Both dataset and error.json confirm a collision occurred.\"}, then {\"evidence_id\": \"collision_window\", \"claim\": \"All vehicle_cmd fields are zero in the pre-collision critical window.\"}, {\"evidence_id\": \"collision_window\", \"claim\": \"Ego speed is ~5.56 m/s with zero brake and non-zero throttle in vehicle_status pre-collision.\"}, {\"evidence_id\": \"final_waypoints_before_collision\", \"claim\": \"No blocked waypoints are reported before collision.\"}, {\"evidence_id\": \"label_conflict\", \"claim\": \"Lane invasion label conflicts between dataset and error.json.\"} that's good.\n\nConfidence: low? Wait, because we can't localize the fault, so confidence is low. Yeah.\n\nReady_for_phase2_generation: yes, because we have a checkable conservative pattern, even with uncertainty. Wait the rule says use yes when there is a checkable conservative preservation pattern. So yes.\n\nNotes_for_validator: [\"Check that the generated case preserves the all-zero vehicle_cmd and non-zero moving ego condition before collision.\", \"Validate both collision and any lane invasion symptom to resolve label conflict.\"] that's good.\n\nWait let me check all rules again. Let's see: if dataset and error json disagree, mark uncertainty, which we did. Do not infer lane crossing unless evidence, which we didn't, we just noted the conflict. Vehicle cmd all zero but vehicle moving, controller uncertain, don't assign actuation, which we did, fault layer unknown. Correct. Preservation constraints are semantic, no timestamps or IDs, correct. Root cause is conservative pattern, correct. Cautious language, yes. Fault layer unknown when attribution not supported, correct. Ready for phase 2 yes because checkable pattern, correct.\n\nOkay let's put it all together now into the JSON correctly. Let me make sure the syntax is right, no trailing commas, etc."
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "doubao-seed-2-0-lite-260215",
+    "object": "chat.completion",
+    "service_tier": "default",
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 1849,
+      "prompt_tokens": 4118,
+      "total_tokens": 5967,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 1155,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": null,
+        "cached_tokens": 0
+      }
+    }
+  },
+  "error_message": "",
+  "timestamp": "<REDACTED_TIMESTAMP>",
+  "elapsed_sec": 33.332
+}

@@ -1,0 +1,98 @@
+{
+  "case_id": "case_112",
+  "model_name": "claude-sonnet-4-5",
+  "workflow": "pure_llm_phase2_baseline",
+  "candidate_index": 1,
+  "candidate_spec": {
+    "candidate_id": "cand_001",
+    "high_level_variant": "Increase walker speed and shift vehicle closer to intersection",
+    "mutation_intent": "Amplify collision and lane invasion risk by accelerating walker and repositioning vehicle toward ego path",
+    "expected_oracle": "compound",
+    "modifications": {
+      "weather_delta": {
+        "rain": 5,
+        "fog": 8,
+        "wetness": 10,
+        "puddle": 0
+      },
+      "actor_mutations": [
+        {
+          "actor_index": 0,
+          "position_offset": {
+            "x": 2.0,
+            "y": -1.5
+          },
+          "speed_delta": 1.2
+        },
+        {
+          "actor_index": 1,
+          "position_offset": {
+            "x": 3.0,
+            "y": 2.0
+          },
+          "speed_delta": 2.0
+        }
+      ],
+      "puddle_mutations": [],
+      "mission_mutation": {
+        "keep_original": true,
+        "spawn_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "destination_offset": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Walker and vehicle must spawn before ego reaches intersection"
+    ],
+    "post_execution_validation_rules": [
+      "Check collision and lane invasion events occur within scenario duration"
+    ],
+    "uncertainty": [
+      "Exact timing of walker crossing and vehicle trajectory interaction uncertain"
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": 5.0,
+      "fog": 8.0,
+      "wetness": 10.0,
+      "puddle": 0.0
+    },
+    "actor_mutations": [
+      {
+        "actor_index": 0,
+        "position_offset": {
+          "x": 2.0,
+          "y": -1.5
+        },
+        "speed_delta": 1.2
+      },
+      {
+        "actor_index": 1,
+        "position_offset": {
+          "x": 3.0,
+          "y": 2.0
+        },
+        "speed_delta": 2.0
+      }
+    ],
+    "puddle_mutations": [],
+    "mission_mutation": {
+      "keep_original": true
+    },
+    "safety_repairs": []
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/pure_llm_phase2_api_prompts/case_112__claude-sonnet-4-5.md",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/pure_llm_phase2_api_outputs/case_112__claude-sonnet-4-5.json",
+  "baseline_note": "Pure-LLM baseline: prompt used no root-cause pattern or critical-window evidence."
+}

@@ -1,0 +1,409 @@
+{
+  "case_id": "case_024",
+  "model_name": "ark-doubao-seed-2.0-lite-260215",
+  "workflow": "phase2_grounded_generation",
+  "status": "completed",
+  "schema_valid": true,
+  "schema_errors": [],
+  "phase1_ready": "yes",
+  "num_candidates_requested": 2,
+  "num_candidates_written": 2,
+  "num_pre_valid": 2,
+  "candidate_records": [
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-doubao-seed-2.0-lite-260215/json/case_024/case_024__cand_001.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-doubao-seed-2.0-lite-260215/metadata/case_024/case_024__cand_001.metadata.json",
+      "case_id": "case_024",
+      "model_name": "ark-doubao-seed-2.0-lite-260215",
+      "candidate_index": 1,
+      "candidate_spec": {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Nearby foreground actor shifted slightly closer to ego's travel path, minor increase in rain and wetness to preserve scenario context",
+        "mutation_intent": "Preserves all core root-cause constraints: zero vehicle_cmd in pre-collision window, nearby actor within 3m of ego, active red traffic light, and the required compound collision+red-light oracle",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": 5,
+            "fog": 0,
+            "wetness": 3,
+            "puddle": 2
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": -1.2,
+                "y": 0.8
+              },
+              "speed_delta": 0.5
+            }
+          ],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": 0.1,
+              "size_scale": 1.0
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Confirm nearby actor is within 3 meters of ego in pre-collision critical window",
+          "Verify red traffic light is active in critical window",
+          "Check that all vehicle_cmd output is zero pre-collision"
+        ],
+        "post_execution_validation_rules": [
+          "Confirm both collision and red-light events are present in oracle output",
+          "Verify the mismatch between zero vehicle_cmd and non-zero braking status is preserved"
+        ],
+        "uncertainty": [
+          "Actuation controller behavior remains uncertain",
+          "Red-light violation timestamp is unconfirmed"
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 5.0,
+          "fog": 0.0,
+          "wetness": 3.0,
+          "puddle": 2.0
+        },
+        "actor_mutations": [
+          {
+            "actor_index": 0,
+            "position_offset": {
+              "x": -1.2,
+              "y": 0.8
+            },
+            "speed_delta": 0.5
+          }
+        ],
+        "puddle_mutations": [
+          {
+            "puddle_index": 0,
+            "location_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "level_delta": 0.1,
+            "size_scale": 1.0
+          }
+        ],
+        "mission_mutation": {
+          "keep_original": true
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_024__ark-doubao-seed-2.0-lite-260215.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_024__ark-doubao-seed-2.0-lite-260215.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    },
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-doubao-seed-2.0-lite-260215/json/case_024/case_024__cand_002.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-doubao-seed-2.0-lite-260215/metadata/case_024/case_024__cand_002.metadata.json",
+      "case_id": "case_024",
+      "model_name": "ark-doubao-seed-2.0-lite-260215",
+      "candidate_index": 2,
+      "candidate_spec": {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Ego spawn shifted slightly toward the nearby actor, nearby actor speed reduced to maintain proximity longer in the critical pre-collision window",
+        "mutation_intent": "Retains all root-cause pattern requirements: zero actuation commands pre-collision, nearby actor within 3m, active red light, and the intended compound failure oracle",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 0.5,
+                "y": -1.0
+              },
+              "speed_delta": -1.2
+            }
+          ],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": 0.0,
+              "size_scale": 1.0
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": false,
+            "spawn_offset": {
+              "x": 1.5,
+              "y": -0.8
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Check that nearby actor stays within 3m of ego through the entire pre-collision critical window",
+          "Confirm all vehicle_cmd output is zero pre-collision",
+          "Verify at least one red traffic light is active in the critical window"
+        ],
+        "post_execution_validation_rules": [
+          "Validate both collision and red-light oracle labels are recorded",
+          "Confirm the core mismatch between zero vehicle_cmd and non-zero vehicle_status braking is preserved"
+        ],
+        "uncertainty": [
+          "No specific module failure can be confirmed from available evidence",
+          "Stop-line crossing for red-light violation remains unconfirmed"
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 0.0,
+          "fog": 0.0,
+          "wetness": 0.0,
+          "puddle": 0.0
+        },
+        "actor_mutations": [
+          {
+            "actor_index": 0,
+            "position_offset": {
+              "x": 0.5,
+              "y": -1.0
+            },
+            "speed_delta": -1.2
+          }
+        ],
+        "puddle_mutations": [
+          {
+            "puddle_index": 0,
+            "location_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "level_delta": 0.0,
+            "size_scale": 1.0
+          }
+        ],
+        "mission_mutation": {
+          "spawn_offset": {
+            "x": 1.5,
+            "y": -0.8
+          },
+          "destination_offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_024__ark-doubao-seed-2.0-lite-260215.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_024__ark-doubao-seed-2.0-lite-260215.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    }
+  ],
+  "seed_artifact_zip": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-doubao-seed-2.0-lite-260215/seed-artifact/seed-artifact-case_024.zip",
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_prompts/case_024__ark-doubao-seed-2.0-lite-260215.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_024__ark-doubao-seed-2.0-lite-260215.json",
+  "prompt_estimated_tokens": 1119,
+  "usage": {
+    "prompt_tokens": 1418,
+    "completion_tokens": 1858,
+    "total_tokens": 3276
+  },
+  "raw_response": "{\n  \"case_id\": \"case_024\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Nearby foreground actor shifted slightly closer to ego's travel path, minor increase in rain and wetness to preserve scenario context\",\n      \"mutation_intent\": \"Preserves all core root-cause constraints: zero vehicle_cmd in pre-collision window, nearby actor within 3m of ego, active red traffic light, and the required compound collision+red-light oracle\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 5, \"fog\": 0, \"wetness\": 3, \"puddle\": 2},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": -1.2, \"y\": 0.8}, \"speed_delta\": 0.5}\n        ],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": 0.1, \"size_scale\": 1.0}\n        ],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Confirm nearby actor is within 3 meters of ego in pre-collision critical window\", \"Verify red traffic light is active in critical window\", \"Check that all vehicle_cmd output is zero pre-collision\"],\n      \"post_execution_validation_rules\": [\"Confirm both collision and red-light events are present in oracle output\", \"Verify the mismatch between zero vehicle_cmd and non-zero braking status is preserved\"],\n      \"uncertainty\": [\"Actuation controller behavior remains uncertain\", \"Red-light violation timestamp is unconfirmed\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Ego spawn shifted slightly toward the nearby actor, nearby actor speed reduced to maintain proximity longer in the critical pre-collision window\",\n      \"mutation_intent\": \"Retains all root-cause pattern requirements: zero actuation commands pre-collision, nearby actor within 3m, active red light, and the intended compound failure oracle\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 0.5, \"y\": -1.0}, \"speed_delta\": -1.2}\n        ],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": 0.0, \"size_scale\": 1.0}\n        ],\n        \"mission_mutation\": {\"keep_original\": false, \"spawn_offset\": {\"x\": 1.5, \"y\": -0.8}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Check that nearby actor stays within 3m of ego through the entire pre-collision critical window\", \"Confirm all vehicle_cmd output is zero pre-collision\", \"Verify at least one red traffic light is active in the critical window\"],\n      \"post_execution_validation_rules\": [\"Validate both collision and red-light oracle labels are recorded\", \"Confirm the core mismatch between zero vehicle_cmd and non-zero vehicle_status braking is preserved\"],\n      \"uncertainty\": [\"No specific module failure can be confirmed from available evidence\", \"Stop-line crossing for red-light violation remains unconfirmed\"]\n    }\n  ]\n}",
+  "parsed_response": {
+    "case_id": "case_024",
+    "candidate_specs": [
+      {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Nearby foreground actor shifted slightly closer to ego's travel path, minor increase in rain and wetness to preserve scenario context",
+        "mutation_intent": "Preserves all core root-cause constraints: zero vehicle_cmd in pre-collision window, nearby actor within 3m of ego, active red traffic light, and the required compound collision+red-light oracle",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": 5,
+            "fog": 0,
+            "wetness": 3,
+            "puddle": 2
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": -1.2,
+                "y": 0.8
+              },
+              "speed_delta": 0.5
+            }
+          ],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": 0.1,
+              "size_scale": 1.0
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Confirm nearby actor is within 3 meters of ego in pre-collision critical window",
+          "Verify red traffic light is active in critical window",
+          "Check that all vehicle_cmd output is zero pre-collision"
+        ],
+        "post_execution_validation_rules": [
+          "Confirm both collision and red-light events are present in oracle output",
+          "Verify the mismatch between zero vehicle_cmd and non-zero braking status is preserved"
+        ],
+        "uncertainty": [
+          "Actuation controller behavior remains uncertain",
+          "Red-light violation timestamp is unconfirmed"
+        ]
+      },
+      {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Ego spawn shifted slightly toward the nearby actor, nearby actor speed reduced to maintain proximity longer in the critical pre-collision window",
+        "mutation_intent": "Retains all root-cause pattern requirements: zero actuation commands pre-collision, nearby actor within 3m, active red light, and the intended compound failure oracle",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 0.5,
+                "y": -1.0
+              },
+              "speed_delta": -1.2
+            }
+          ],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": 0.0,
+              "size_scale": 1.0
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": false,
+            "spawn_offset": {
+              "x": 1.5,
+              "y": -0.8
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Check that nearby actor stays within 3m of ego through the entire pre-collision critical window",
+          "Confirm all vehicle_cmd output is zero pre-collision",
+          "Verify at least one red traffic light is active in the critical window"
+        ],
+        "post_execution_validation_rules": [
+          "Validate both collision and red-light oracle labels are recorded",
+          "Confirm the core mismatch between zero vehicle_cmd and non-zero vehicle_status braking is preserved"
+        ],
+        "uncertainty": [
+          "No specific module failure can be confirmed from available evidence",
+          "Stop-line crossing for red-light violation remains unconfirmed"
+        ]
+      }
+    ]
+  },
+  "raw_api_payload": {
+    "id": "02178292171326574362bddaa0737e4d4745c12c1558f84f9f388",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "{\n  \"case_id\": \"case_024\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Nearby foreground actor shifted slightly closer to ego's travel path, minor increase in rain and wetness to preserve scenario context\",\n      \"mutation_intent\": \"Preserves all core root-cause constraints: zero vehicle_cmd in pre-collision window, nearby actor within 3m of ego, active red traffic light, and the required compound collision+red-light oracle\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 5, \"fog\": 0, \"wetness\": 3, \"puddle\": 2},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": -1.2, \"y\": 0.8}, \"speed_delta\": 0.5}\n        ],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": 0.1, \"size_scale\": 1.0}\n        ],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Confirm nearby actor is within 3 meters of ego in pre-collision critical window\", \"Verify red traffic light is active in critical window\", \"Check that all vehicle_cmd output is zero pre-collision\"],\n      \"post_execution_validation_rules\": [\"Confirm both collision and red-light events are present in oracle output\", \"Verify the mismatch between zero vehicle_cmd and non-zero braking status is preserved\"],\n      \"uncertainty\": [\"Actuation controller behavior remains uncertain\", \"Red-light violation timestamp is unconfirmed\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Ego spawn shifted slightly toward the nearby actor, nearby actor speed reduced to maintain proximity longer in the critical pre-collision window\",\n      \"mutation_intent\": \"Retains all root-cause pattern requirements: zero actuation commands pre-collision, nearby actor within 3m, active red light, and the intended compound failure oracle\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 0.5, \"y\": -1.0}, \"speed_delta\": -1.2}\n        ],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": 0.0, \"size_scale\": 1.0}\n        ],\n        \"mission_mutation\": {\"keep_original\": false, \"spawn_offset\": {\"x\": 1.5, \"y\": -0.8}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Check that nearby actor stays within 3m of ego through the entire pre-collision critical window\", \"Confirm all vehicle_cmd output is zero pre-collision\", \"Verify at least one red traffic light is active in the critical window\"],\n      \"post_execution_validation_rules\": [\"Validate both collision and red-light oracle labels are recorded\", \"Confirm the core mismatch between zero vehicle_cmd and non-zero vehicle_status braking is preserved\"],\n      \"uncertainty\": [\"No specific module failure can be confirmed from available evidence\", \"Stop-line crossing for red-light violation remains unconfirmed\"]\n    }\n  ]\n}",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null,
+          "reasoning_content": "\nOkay, let's generate this JSON correctly. First, the case_id is case_024, right? We need two candidate specs.\n\nFirst candidate, cand_001. Let's think of the high level variant. Maybe \"Nearby actor moved slightly closer to ego spawn path, slight increase in rain to add minor road slippage\". Mutation intent: preserves all core constraints: zero vehicle_cmd pre-collision, nearby actor within 3m, red light present, keeps the collision+red light oracle. Expected oracle is compound, since it's both collision and red light.\n\nModifications: Let's do weather delta. Rain +5, fog 0, wetness +3, puddle +2. That's within 20, okay. Actor mutations: actor index 0, that's the nearby one. Position offset x: -1.2, y: 0.8, speed delta +0.5. That's within [-8,8] x/y, speed within [-3,3]. Puddle mutation: puddle 0, location offset x 0, y 0, level delta +0.1, size scale 1.0, that's within limits. Mission mutation keep_original true. Pre execution rules: [\"Verify nearby actor is within 3m of ego in pre-collision window\", \"Confirm red traffic light is present in critical window\", \"Check that all vehicle_cmd are zero pre-collision\"]. Post execution: [\"Confirm both collision and red-light events are recorded in oracle\", \"Verify mismatch between zero vehicle_cmd and non-zero brake status is preserved\"]. Uncertainty: [\"Actuation controller behavior remains unconfirmed\", \"Red-light violation timestamp is still unconfirmed\"].\n\nThen second candidate, cand_002. High level variant: \"Ego mission spawn shifted slightly toward the nearby actor, nearby actor speed reduced slightly to maintain proximity longer in critical window\". Mutation intent: preserves all root cause constraints, keeps the required nearby actor proximity, zero actuation commands, red light present, retains the compound collision+red-light oracle. Expected oracle is compound again.\n\nModifications: Weather delta all zero, right? Because we're changing actor and mission. Actor mutations: actor 0, position offset x 0.5, y -1.0, speed delta -1.2, that's okay. Puddle mutations: keep original, so puddle index 0, offset 0, level delta 0, size scale 1.0. Mission mutation: keep_original false, spawn offset x 1.5, y -0.8, destination offset 0, 0. That's within [-5,5], okay. Pre execution rules: [\"Check that nearby actor is within 3m of ego during pre-collision critical window\", \"Confirm all zero vehicle_cmd output pre-collision\", \"Verify red traffic light is active in critical window\"]. Post execution: [\"Validate both collision and red-light oracle labels are present\", \"Check that the zero vehicle_cmd / non-zero brake status mismatch is preserved\"]. Uncertainty: [\"No specific module failure can be confirmed\", \"Stop-line crossing for red-light violation remains unconfirmed\"].\n\nWait let's check all constraints. Root cause is preserved, right? Both have collision and red light, so expected oracle is compound, that's correct. All offsets are within limits. Actor position offsets are within [-8,8], speed delta within [-3,3]. Mission offsets within [-5,5]. Weather deltas within [-20,20]. Puddle level delta within [-0.2, 0.2], size between 0.8 and 1.2. Exactly two candidates. Let's structure the JSON correctly.\n\nWait let's make sure the schema matches. Let's put it all together. Let's check:\n\ncase_id is case_024. candidate_specs is an array of two. First is cand_001, second cand_002. Let's check all fields. Oh right, the preservation constraints from phase 1 are all followed. Let's make the high level descriptions correct. Mutation intents correctly say they preserve the pattern. Expected oracle is compound because it's both collision and red light, that's right.\n\nWait let's write it properly. Let me check the input again: phase 1 says oracle has both collision and red light, so expected oracle is compound, yes. Uncertainty is preserved as per phase 1. Okay. Let's put it all into JSON now, no markdown, exactly one object."
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "doubao-seed-2-0-lite-260215",
+    "object": "chat.completion",
+    "service_tier": "default",
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 1858,
+      "prompt_tokens": 1418,
+      "total_tokens": 3276,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 951,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": null,
+        "cached_tokens": 0
+      }
+    }
+  },
+  "error_message": "",
+  "elapsed_sec": 33.007,
+  "timestamp": "<REDACTED_TIMESTAMP>"
+}

@@ -1,0 +1,92 @@
+{
+  "case_id": "case_069",
+  "model_name": "gemini-2.5-pro",
+  "candidate_index": 1,
+  "candidate_spec": {
+    "candidate_id": "cand_001",
+    "high_level_variant": "Test if the control mismatch bug persists with slightly different weather and actor starting positions.",
+    "mutation_intent": "Slightly alter initial conditions to see if the bug is sensitive to minor environmental changes, while preserving the core control failure.",
+    "expected_oracle": "collision",
+    "modifications": {
+      "weather_delta": {
+        "rain": 15,
+        "fog": 0,
+        "wetness": 15,
+        "puddle": 0
+      },
+      "actor_mutations": [
+        {
+          "actor_index": 0,
+          "position_offset": {
+            "x": 1.0,
+            "y": -1.0
+          },
+          "speed_delta": 0.5
+        },
+        {
+          "actor_index": 1,
+          "position_offset": {
+            "x": -1.0,
+            "y": 1.0
+          },
+          "speed_delta": -0.5
+        }
+      ],
+      "puddle_mutations": [],
+      "mission_mutation": {
+        "keep_original": true
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Verify actors are on road.",
+      "Verify weather is rainier."
+    ],
+    "post_execution_validation_rules": [
+      "Verify vehicle_cmd is zero before crash.",
+      "Verify vehicle moves before crash.",
+      "Verify collision occurs."
+    ],
+    "uncertainty": [
+      "Root cause of control mismatch is unknown.",
+      "Exact trigger conditions are unclear."
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": 15.0,
+      "fog": 0.0,
+      "wetness": 15.0,
+      "puddle": 0.0
+    },
+    "actor_mutations": [
+      {
+        "actor_index": 0,
+        "position_offset": {
+          "x": 1.0,
+          "y": -1.0
+        },
+        "speed_delta": 0.5
+      },
+      {
+        "actor_index": 1,
+        "position_offset": {
+          "x": -1.0,
+          "y": 1.0
+        },
+        "speed_delta": -0.5
+      }
+    ],
+    "puddle_mutations": [],
+    "mission_mutation": {
+      "keep_original": true
+    }
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_069__gemini-2.5-pro.json",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_069__gemini-2.5-pro.json",
+  "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+}

@@ -1,0 +1,137 @@
+{
+  "case_id": "case_118",
+  "workflow": "phase1_causal_explanation",
+  "model_name": "claude-sonnet-4-5",
+  "model_id": "claude-sonnet-4-5",
+  "status": "completed",
+  "dry_run": false,
+  "schema_valid": true,
+  "schema_errors": [],
+  "quality_flags": [],
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_prompts/case_118__claude-sonnet-4-5.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_118__claude-sonnet-4-5.json",
+  "prompt_estimated_tokens": 3228,
+  "usage": {
+    "prompt_tokens": 4045,
+    "completion_tokens": 1390,
+    "total_tokens": 5435
+  },
+  "estimated_cost_usd": null,
+  "raw_response": "```json\n{\n  \"case_id\": \"case_118\",\n  \"fault_layer\": \"unknown\",\n  \"fault_component\": \"unknown\",\n  \"causal_explanation\": \"The oracle confirms a collision at 66.41s and error.json reports a red-light violation. Critical-window evidence shows ego was accelerating (throttle 0.41, speed 5.07 m/s) immediately before collision, with detected objects present (1-3 objects) and final waypoints available (101 waypoints, not blocked). However, vehicle_cmd is all zero throughout the trace while vehicle_status shows active throttle and steering, indicating a controller behavior mismatch. Dataset labels collision+lane_invasion+red_light, but error.json reports only collision+red_light, creating label conflict. The evidence does not directly prove which module failed to prevent the collision or red-light violation, nor does it confirm lane-boundary crossing or route-light relation.\",\n  \"root_cause_pattern\": \"Conservative preservation pattern: ego accelerates toward a collision while detected objects are present, final waypoints are available but not marked blocked, and vehicle_cmd remains zero despite active vehicle_status control, with unresolved red-light and lane-invasion label conflicts.\",\n  \"preservation_constraints\": [\n    \"The generated candidate should preserve the collision oracle symptom.\",\n    \"Detected objects (1-3 count) should be present in the critical window before collision.\",\n    \"Final waypoints should be available and not marked as blocked before the collision.\",\n    \"Ego should exhibit non-zero velocity and throttle in vehicle_status before collision.\",\n    \"Post-execution validation should check for vehicle_cmd vs vehicle_status mismatch and label consistency.\",\n    \"Red-light violation label should be preserved, though route-light relation remains unconfirmed.\"\n  ],\n  \"modifiable_factors\": [\n    \"actor_position\",\n    \"weather\",\n    \"puddles\",\n    \"mission\"\n  ],\n  \"non_modifiable_conditions\": [\n    \"collision oracle symptom\",\n    \"detected objects present before collision\",\n    \"final waypoints available and not blocked\",\n    \"vehicle_status shows active control (throttle, steering)\",\n    \"vehicle_cmd all zero throughout trace\"\n  ],\n  \"uncertainty\": [\n    \"Dataset labels lane_invasion=1 but error.json reports lane_invasion=0; lane-boundary crossing not confirmed by evidence.\",\n    \"Red-light violation reported by error.json, but route-light relation and stop-line crossing are not confirmed by summaries.\",\n    \"vehicle_cmd is all zero while vehicle_status shows throttle and steering; controller behavior is uncertain and fault_layer cannot be attributed to actuation from this mismatch alone.\",\n    \"Evidence shows detected and predicted objects, final waypoints, but does not directly prove which module (perception, planning, or actuation) failed to prevent the collision.\",\n    \"Closest object distance in final_waypoints is 0.0, which may indicate missing data rather than actual proximity.\"\n  ],\n  \"evidence_support\": [\n    {\n      \"evidence_id\": \"collision_window.collision_timestamp\",\n      \"claim\": \"Collision confirmed at 66.409877199s.\"\n    },\n    {\n      \"evidence_id\": \"collision_window.ego_speed_before_collision\",\n      \"claim\": \"Ego velocity was 5.07 m/s immediately before collision, with speed increasing in the window (min 1.54, max 5.11).\"\n    },\n    {\n      \"evidence_id\": \"collision_window.ego_control_before_collision\",\n      \"claim\": \"vehicle_status shows throttle 0.41 and steer 0.018 before collision, but vehicle_cmd is all zero.\"\n    },\n    {\n      \"evidence_id\": \"collision_window.detected_object_count_before_collision\",\n      \"claim\": \"1-3 detected objects present in the critical window (last count: 1).\"\n    },\n    {\n      \"evidence_id\": \"collision_window.final_waypoints_before_collision\",\n      \"claim\": \"101 waypoints available, not blocked, before collision.\"\n    },\n    {\n      \"evidence_id\": \"red_light_window.red_light_violation_from_error_json\",\n      \"claim\": \"error.json reports red-light violation, but route-light relation and stop-line crossing are not confirmed.\"\n    },\n    {\n      \"evidence_id\": \"label_conflict\",\n      \"claim\": \"Dataset labels C+L+R, error.json labels C+R; lane_invasion conflict requires manual review.\"\n    },\n    {\n      \"evidence_id\": \"actuation.vehicle_cmd\",\n      \"claim\": \"vehicle_cmd steer, accel, brake, and target_speed are all zero throughout the trace.\"\n    },\n    {\n      \"evidence_id\": \"actuation.vehicle_status\",\n      \"claim\": \"vehicle_status shows non-zero throttle (max 0.17) and steer (range -0.14 to 0.0).\"\n    }\n  ],\n  \"confidence\": \"low\",\n  \"ready_for_phase2_generation\": \"uncertain\",\n  \"notes_for_validator\": [\n    \"Do not count a generated case as same-root-cause unless post-execution evidence preserves: collision symptom, detected objects in critical window, final waypoints available and not blocked, and vehicle_cmd vs vehicle_status mismatch.\",\n    \"Manually review dataset vs error.json label conflict for lane_invasion before finalizing root-cause attribution.\",\n    \"Check whether red-light violation can be confirmed by route-light relation and stop-line crossing in post-execution validation.\",\n    \"Verify that vehicle_cmd all-zero with active vehicle_status control is reproducible; if not, re-assess fault_layer.\",\n    \"Do not assume lane-boundary crossing or stop-line crossing without direct evidence from post-execution validation.\"\n  ]\n}\n```",
+  "parsed_response": {
+    "case_id": "case_118",
+    "fault_layer": "unknown",
+    "fault_component": "unknown",
+    "causal_explanation": "The oracle confirms a collision at 66.41s and error.json reports a red-light violation. Critical-window evidence shows ego was accelerating (throttle 0.41, speed 5.07 m/s) immediately before collision, with detected objects present (1-3 objects) and final waypoints available (101 waypoints, not blocked). However, vehicle_cmd is all zero throughout the trace while vehicle_status shows active throttle and steering, indicating a controller behavior mismatch. Dataset labels collision+lane_invasion+red_light, but error.json reports only collision+red_light, creating label conflict. The evidence does not directly prove which module failed to prevent the collision or red-light violation, nor does it confirm lane-boundary crossing or route-light relation.",
+    "root_cause_pattern": "Conservative preservation pattern: ego accelerates toward a collision while detected objects are present, final waypoints are available but not marked blocked, and vehicle_cmd remains zero despite active vehicle_status control, with unresolved red-light and lane-invasion label conflicts.",
+    "preservation_constraints": [
+      "The generated candidate should preserve the collision oracle symptom.",
+      "Detected objects (1-3 count) should be present in the critical window before collision.",
+      "Final waypoints should be available and not marked as blocked before the collision.",
+      "Ego should exhibit non-zero velocity and throttle in vehicle_status before collision.",
+      "Post-execution validation should check for vehicle_cmd vs vehicle_status mismatch and label consistency.",
+      "Red-light violation label should be preserved, though route-light relation remains unconfirmed."
+    ],
+    "modifiable_factors": [
+      "actor_position",
+      "weather",
+      "puddles",
+      "mission"
+    ],
+    "non_modifiable_conditions": [
+      "collision oracle symptom",
+      "detected objects present before collision",
+      "final waypoints available and not blocked",
+      "vehicle_status shows active control (throttle, steering)",
+      "vehicle_cmd all zero throughout trace"
+    ],
+    "uncertainty": [
+      "Dataset labels lane_invasion=1 but error.json reports lane_invasion=0; lane-boundary crossing not confirmed by evidence.",
+      "Red-light violation reported by error.json, but route-light relation and stop-line crossing are not confirmed by summaries.",
+      "vehicle_cmd is all zero while vehicle_status shows throttle and steering; controller behavior is uncertain and fault_layer cannot be attributed to actuation from this mismatch alone.",
+      "Evidence shows detected and predicted objects, final waypoints, but does not directly prove which module (perception, planning, or actuation) failed to prevent the collision.",
+      "Closest object distance in final_waypoints is 0.0, which may indicate missing data rather than actual proximity."
+    ],
+    "evidence_support": [
+      {
+        "evidence_id": "collision_window.collision_timestamp",
+        "claim": "Collision confirmed at 66.409877199s."
+      },
+      {
+        "evidence_id": "collision_window.ego_speed_before_collision",
+        "claim": "Ego velocity was 5.07 m/s immediately before collision, with speed increasing in the window (min 1.54, max 5.11)."
+      },
+      {
+        "evidence_id": "collision_window.ego_control_before_collision",
+        "claim": "vehicle_status shows throttle 0.41 and steer 0.018 before collision, but vehicle_cmd is all zero."
+      },
+      {
+        "evidence_id": "collision_window.detected_object_count_before_collision",
+        "claim": "1-3 detected objects present in the critical window (last count: 1)."
+      },
+      {
+        "evidence_id": "collision_window.final_waypoints_before_collision",
+        "claim": "101 waypoints available, not blocked, before collision."
+      },
+      {
+        "evidence_id": "red_light_window.red_light_violation_from_error_json",
+        "claim": "error.json reports red-light violation, but route-light relation and stop-line crossing are not confirmed."
+      },
+      {
+        "evidence_id": "label_conflict",
+        "claim": "Dataset labels C+L+R, error.json labels C+R; lane_invasion conflict requires manual review."
+      },
+      {
+        "evidence_id": "actuation.vehicle_cmd",
+        "claim": "vehicle_cmd steer, accel, brake, and target_speed are all zero throughout the trace."
+      },
+      {
+        "evidence_id": "actuation.vehicle_status",
+        "claim": "vehicle_status shows non-zero throttle (max 0.17) and steer (range -0.14 to 0.0)."
+      }
+    ],
+    "confidence": "low",
+    "ready_for_phase2_generation": "uncertain",
+    "notes_for_validator": [
+      "Do not count a generated case as same-root-cause unless post-execution evidence preserves: collision symptom, detected objects in critical window, final waypoints available and not blocked, and vehicle_cmd vs vehicle_status mismatch.",
+      "Manually review dataset vs error.json label conflict for lane_invasion before finalizing root-cause attribution.",
+      "Check whether red-light violation can be confirmed by route-light relation and stop-line crossing in post-execution validation.",
+      "Verify that vehicle_cmd all-zero with active vehicle_status control is reproducible; if not, re-assess fault_layer.",
+      "Do not assume lane-boundary crossing or stop-line crossing without direct evidence from post-execution validation."
+    ]
+  },
+  "raw_api_payload": {
+    "id": "<REDACTED_RESPONSE_ID>",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "```json\n{\n  \"case_id\": \"case_118\",\n  \"fault_layer\": \"unknown\",\n  \"fault_component\": \"unknown\",\n  \"causal_explanation\": \"The oracle confirms a collision at 66.41s and error.json reports a red-light violation. Critical-window evidence shows ego was accelerating (throttle 0.41, speed 5.07 m/s) immediately before collision, with detected objects present (1-3 objects) and final waypoints available (101 waypoints, not blocked). However, vehicle_cmd is all zero throughout the trace while vehicle_status shows active throttle and steering, indicating a controller behavior mismatch. Dataset labels collision+lane_invasion+red_light, but error.json reports only collision+red_light, creating label conflict. The evidence does not directly prove which module failed to prevent the collision or red-light violation, nor does it confirm lane-boundary crossing or route-light relation.\",\n  \"root_cause_pattern\": \"Conservative preservation pattern: ego accelerates toward a collision while detected objects are present, final waypoints are available but not marked blocked, and vehicle_cmd remains zero despite active vehicle_status control, with unresolved red-light and lane-invasion label conflicts.\",\n  \"preservation_constraints\": [\n    \"The generated candidate should preserve the collision oracle symptom.\",\n    \"Detected objects (1-3 count) should be present in the critical window before collision.\",\n    \"Final waypoints should be available and not marked as blocked before the collision.\",\n    \"Ego should exhibit non-zero velocity and throttle in vehicle_status before collision.\",\n    \"Post-execution validation should check for vehicle_cmd vs vehicle_status mismatch and label consistency.\",\n    \"Red-light violation label should be preserved, though route-light relation remains unconfirmed.\"\n  ],\n  \"modifiable_factors\": [\n    \"actor_position\",\n    \"weather\",\n    \"puddles\",\n    \"mission\"\n  ],\n  \"non_modifiable_conditions\": [\n    \"collision oracle symptom\",\n    \"detected objects present before collision\",\n    \"final waypoints available and not blocked\",\n    \"vehicle_status shows active control (throttle, steering)\",\n    \"vehicle_cmd all zero throughout trace\"\n  ],\n  \"uncertainty\": [\n    \"Dataset labels lane_invasion=1 but error.json reports lane_invasion=0; lane-boundary crossing not confirmed by evidence.\",\n    \"Red-light violation reported by error.json, but route-light relation and stop-line crossing are not confirmed by summaries.\",\n    \"vehicle_cmd is all zero while vehicle_status shows throttle and steering; controller behavior is uncertain and fault_layer cannot be attributed to actuation from this mismatch alone.\",\n    \"Evidence shows detected and predicted objects, final waypoints, but does not directly prove which module (perception, planning, or actuation) failed to prevent the collision.\",\n    \"Closest object distance in final_waypoints is 0.0, which may indicate missing data rather than actual proximity.\"\n  ],\n  \"evidence_support\": [\n    {\n      \"evidence_id\": \"collision_window.collision_timestamp\",\n      \"claim\": \"Collision confirmed at 66.409877199s.\"\n    },\n    {\n      \"evidence_id\": \"collision_window.ego_speed_before_collision\",\n      \"claim\": \"Ego velocity was 5.07 m/s immediately before collision, with speed increasing in the window (min 1.54, max 5.11).\"\n    },\n    {\n      \"evidence_id\": \"collision_window.ego_control_before_collision\",\n      \"claim\": \"vehicle_status shows throttle 0.41 and steer 0.018 before collision, but vehicle_cmd is all zero.\"\n    },\n    {\n      \"evidence_id\": \"collision_window.detected_object_count_before_collision\",\n      \"claim\": \"1-3 detected objects present in the critical window (last count: 1).\"\n    },\n    {\n      \"evidence_id\": \"collision_window.final_waypoints_before_collision\",\n      \"claim\": \"101 waypoints available, not blocked, before collision.\"\n    },\n    {\n      \"evidence_id\": \"red_light_window.red_light_violation_from_error_json\",\n      \"claim\": \"error.json reports red-light violation, but route-light relation and stop-line crossing are not confirmed.\"\n    },\n    {\n      \"evidence_id\": \"label_conflict\",\n      \"claim\": \"Dataset labels C+L+R, error.json labels C+R; lane_invasion conflict requires manual review.\"\n    },\n    {\n      \"evidence_id\": \"actuation.vehicle_cmd\",\n      \"claim\": \"vehicle_cmd steer, accel, brake, and target_speed are all zero throughout the trace.\"\n    },\n    {\n      \"evidence_id\": \"actuation.vehicle_status\",\n      \"claim\": \"vehicle_status shows non-zero throttle (max 0.17) and steer (range -0.14 to 0.0).\"\n    }\n  ],\n  \"confidence\": \"low\",\n  \"ready_for_phase2_generation\": \"uncertain\",\n  \"notes_for_validator\": [\n    \"Do not count a generated case as same-root-cause unless post-execution evidence preserves: collision symptom, detected objects in critical window, final waypoints available and not blocked, and vehicle_cmd vs vehicle_status mismatch.\",\n    \"Manually review dataset vs error.json label conflict for lane_invasion before finalizing root-cause attribution.\",\n    \"Check whether red-light violation can be confirmed by route-light relation and stop-line crossing in post-execution validation.\",\n    \"Verify that vehicle_cmd all-zero with active vehicle_status control is reproducible; if not, re-assess fault_layer.\",\n    \"Do not assume lane-boundary crossing or stop-line crossing without direct evidence from post-execution validation.\"\n  ]\n}\n```",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "claude-sonnet-4-5",
+    "object": "chat.completion",
+    "service_tier": null,
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 1390,
+      "prompt_tokens": 4045,
+      "total_tokens": 5435,
+      "completion_tokens_details": null,
+      "prompt_tokens_details": null
+    }
+  },
+  "error_message": "",
+  "timestamp": "<REDACTED_TIMESTAMP>",
+  "elapsed_sec": 26.529
+}

@@ -1,0 +1,106 @@
+{
+  "case_id": "case_039",
+  "model_name": "claude-sonnet-4-5",
+  "candidate_index": 1,
+  "candidate_spec": {
+    "candidate_id": "cand_001",
+    "high_level_variant": "Reduce puddle wetness and move immobile actor closer to ego path",
+    "mutation_intent": "Test if reduced wetness preserves vehicle_cmd=0 with vehicle_status actuation and low-speed movement pattern",
+    "expected_oracle": "unknown",
+    "modifications": {
+      "weather_delta": {
+        "rain": -2,
+        "fog": 0,
+        "wetness": -2,
+        "puddle": 0
+      },
+      "actor_mutations": [
+        {
+          "actor_index": 0,
+          "position_offset": {
+            "x": -3.0,
+            "y": -2.0
+          },
+          "speed_delta": 0.0
+        }
+      ],
+      "puddle_mutations": [
+        {
+          "puddle_index": 1,
+          "location_offset": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "level_delta": -0.1,
+          "size_scale": 0.9
+        }
+      ],
+      "mission_mutation": {
+        "keep_original": true,
+        "spawn_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "destination_offset": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Immobile actor within 10m of ego spawn",
+      "Puddle level remains non-negative",
+      "Weather parameters within valid range"
+    ],
+    "post_execution_validation_rules": [
+      "Check vehicle_cmd all zero while vehicle_status shows actuation",
+      "Verify mean velocity under 1.5 m/s over 60s window",
+      "Compare dataset vs error.json oracle labels"
+    ],
+    "uncertainty": [
+      "Oracle conflict unresolved; mutation may not preserve stuck or lane_invasion labels",
+      "Vehicle_cmd/vehicle_status mismatch cause unknown",
+      "Unclear if wetness reduction affects controller behavior"
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": -2.0,
+      "fog": 0.0,
+      "wetness": -2.0,
+      "puddle": 0.0
+    },
+    "actor_mutations": [
+      {
+        "actor_index": 0,
+        "position_offset": {
+          "x": -3.0,
+          "y": -2.0
+        },
+        "speed_delta": 0.0
+      }
+    ],
+    "puddle_mutations": [
+      {
+        "puddle_index": 1,
+        "location_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "level_delta": -0.1,
+        "size_scale": 0.9
+      }
+    ],
+    "mission_mutation": {
+      "keep_original": true
+    }
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_039__claude-sonnet-4-5.json",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_039__claude-sonnet-4-5.json",
+  "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+}

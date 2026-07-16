@@ -1,0 +1,146 @@
+{
+  "case_id": "case_094",
+  "model_name": "gpt-5.1",
+  "workflow": "pure_llm_phase2_baseline",
+  "candidate_index": 1,
+  "candidate_spec": {
+    "candidate_id": "cand_001",
+    "high_level_variant": "Pedestrian slows and shifts nearer ego route in light rain",
+    "mutation_intent": "Increase interaction with walker near ego path to trigger collision, lane invasion, or stuck",
+    "expected_oracle": "compound",
+    "modifications": {
+      "weather_delta": {
+        "rain": 10,
+        "fog": 5,
+        "wetness": 10,
+        "puddle": 5
+      },
+      "actor_mutations": [
+        {
+          "actor_index": 0,
+          "position_offset": {
+            "x": 2.0,
+            "y": 3.0
+          },
+          "speed_delta": -0.2
+        },
+        {
+          "actor_index": 1,
+          "position_offset": {
+            "x": -3.0,
+            "y": 4.0
+          },
+          "speed_delta": -0.5
+        }
+      ],
+      "puddle_mutations": [
+        {
+          "puddle_index": 0,
+          "location_offset": {
+            "x": 1.5,
+            "y": 2.5
+          },
+          "level_delta": 0.1,
+          "size_scale": 1.1
+        },
+        {
+          "puddle_index": 1,
+          "location_offset": {
+            "x": -2.0,
+            "y": 1.5
+          },
+          "level_delta": 0.05,
+          "size_scale": 1.0
+        }
+      ],
+      "mission_mutation": {
+        "keep_original": false,
+        "spawn_offset": {
+          "x": -3.0,
+          "y": 2.0
+        },
+        "destination_offset": {
+          "x": 4.0,
+          "y": -2.0
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Ensure walkers stay on or near drivable or crossing areas",
+      "Confirm ego route still passes near both walkers"
+    ],
+    "post_execution_validation_rules": [
+      "Check for any collision with walkers or environment",
+      "Detect lane boundary crossing or prolonged zero-speed blocking"
+    ],
+    "uncertainty": [
+      "Walker paths relative to ego lane after offsets",
+      "Ego replanning behavior under mild rain and puddles"
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": 10.0,
+      "fog": 5.0,
+      "wetness": 10.0,
+      "puddle": 5.0
+    },
+    "actor_mutations": [
+      {
+        "actor_index": 0,
+        "position_offset": {
+          "x": 2.0,
+          "y": 3.0
+        },
+        "speed_delta": -0.2
+      },
+      {
+        "actor_index": 1,
+        "position_offset": {
+          "x": -3.0,
+          "y": 4.0
+        },
+        "speed_delta": -0.5
+      }
+    ],
+    "puddle_mutations": [
+      {
+        "puddle_index": 0,
+        "location_offset": {
+          "x": 1.5,
+          "y": 2.5
+        },
+        "level_delta": 0.1,
+        "size_scale": 1.1
+      },
+      {
+        "puddle_index": 1,
+        "location_offset": {
+          "x": -2.0,
+          "y": 1.5
+        },
+        "level_delta": 0.05,
+        "size_scale": 1.0
+      }
+    ],
+    "mission_mutation": {
+      "spawn_offset": {
+        "x": -3.0,
+        "y": 2.0
+      },
+      "destination_offset": {
+        "x": 4.0,
+        "y": -2.0
+      }
+    },
+    "safety_repairs": []
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/pure_llm_phase2_api_prompts/case_094__gpt-5.1.md",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/pure_llm_phase2_api_outputs/case_094__gpt-5.1.json",
+  "baseline_note": "Pure-LLM baseline: prompt used no root-cause pattern or critical-window evidence."
+}

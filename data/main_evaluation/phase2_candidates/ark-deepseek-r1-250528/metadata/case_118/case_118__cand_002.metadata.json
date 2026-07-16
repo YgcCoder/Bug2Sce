@@ -1,0 +1,97 @@
+{
+  "case_id": "case_118",
+  "model_name": "ark-deepseek-r1-250528",
+  "candidate_index": 2,
+  "candidate_spec": {
+    "candidate_id": "cand_002",
+    "high_level_variant": "Slightly shift ego spawn and destination along the original route, reduce fog density, and adjust an existing off-intersection puddle to test if the command-movement mismatch persists across minor condition changes",
+    "mutation_intent": "Preserves all Phase 1 core root-cause constraints, including zero dynamic actors, all-zero pre-collision vehicle commands, non-zero ego speed with zero braking, collision and red-light violation outcomes, and Town01 map. Minor positional and visibility changes do not alter the core mismatch pattern",
+    "expected_oracle": "compound",
+    "modifications": {
+      "weather_delta": {
+        "rain": 0,
+        "fog": -10,
+        "wetness": 0,
+        "puddle": 0
+      },
+      "actor_mutations": [],
+      "puddle_mutations": [
+        {
+          "puddle_index": 1,
+          "location_offset": {
+            "x": 1.5,
+            "y": -1.0
+          },
+          "level_delta": -0.1,
+          "size_scale": 0.9
+        }
+      ],
+      "mission_mutation": {
+        "keep_original": false,
+        "spawn_offset": {
+          "x": 2.0,
+          "y": 1.0
+        },
+        "destination_offset": {
+          "x": 2.0,
+          "y": 1.0
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Confirm no dynamic actors added to the scenario",
+      "Confirm spawn and destination offsets stay within allowed bounds",
+      "Confirm route remains on original Town01 road alignment"
+    ],
+    "post_execution_validation_rules": [
+      "Confirm all-zero vehicle control command output before collision is preserved",
+      "Confirm non-zero ego velocity and zero braking are reported in vehicle_status before collision",
+      "Confirm collision and red-light violation outcomes are achieved"
+    ],
+    "uncertainty": [
+      "Root cause module localization remains unconfirmed per original evidence",
+      "Lane invasion label conflict remains unresolved as in the original scenario",
+      "No additional module failure evidence is introduced"
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": 0.0,
+      "fog": -10.0,
+      "wetness": 0.0,
+      "puddle": 0.0
+    },
+    "actor_mutations": [],
+    "puddle_mutations": [
+      {
+        "puddle_index": 1,
+        "location_offset": {
+          "x": 1.5,
+          "y": -1.0
+        },
+        "level_delta": -0.1,
+        "size_scale": 0.9
+      }
+    ],
+    "mission_mutation": {
+      "spawn_offset": {
+        "x": 2.0,
+        "y": 1.0
+      },
+      "destination_offset": {
+        "x": 2.0,
+        "y": 1.0
+      }
+    }
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": [
+      "no actors in candidate scenario"
+    ]
+  },
+  "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_118__ark-deepseek-r1-250528.json",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_118__ark-deepseek-r1-250528.json",
+  "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+}

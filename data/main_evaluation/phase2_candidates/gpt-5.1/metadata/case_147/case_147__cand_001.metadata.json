@@ -1,0 +1,106 @@
+{
+  "case_id": "case_147",
+  "model_name": "gpt-5.1",
+  "candidate_index": 1,
+  "candidate_spec": {
+    "candidate_id": "cand_001",
+    "high_level_variant": "Keep ego spawn/destination and both walkers but shift the primary nearby walker slightly closer into ego’s path to encourage an early low-speed collision while preserving ambiguous zero vehicle_cmd behavior.",
+    "mutation_intent": "Strengthen the likelihood that a non-ego actor is within a few meters and involved in a collision shortly after start, without materially changing mission or environment, so that perception/prediction still see an object, planning still outputs unblocked waypoints, and the controller can exhibit the same command–status mismatch pattern.",
+    "expected_oracle": "collision",
+    "modifications": {
+      "weather_delta": {
+        "rain": 0,
+        "fog": 0,
+        "wetness": 0,
+        "puddle": 0
+      },
+      "actor_mutations": [
+        {
+          "actor_index": 0,
+          "position_offset": {
+            "x": -1.5,
+            "y": -1.0
+          },
+          "speed_delta": -0.5
+        },
+        {
+          "actor_index": 1,
+          "position_offset": {
+            "x": 1.0,
+            "y": 0.0
+          },
+          "speed_delta": 0.0
+        }
+      ],
+      "puddle_mutations": [],
+      "mission_mutation": {
+        "keep_original": true,
+        "spawn_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "destination_offset": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Ensure that at scenario start, the ego and at least one non-ego actor (preferably actor_index 0) are within 5 m Euclidean distance within the first 10 s of simulation.",
+      "Verify that perception object and prediction topics are configured to publish for pedestrian actors and are not disabled.",
+      "Confirm that planning final_waypoints are being generated for the ego route from the given Town01 spawn and are initially marked as unblocked.",
+      "Check that no additional, unintended actors or obstacles are spawned within 3 m of the ego that could dominate the closest_object_distance before interaction with the mutated primary walker."
+    ],
+    "post_execution_validation_rules": [
+      "Check collision oracle logs and confirm a collision event occurs within 0–60 s from scenario start.",
+      "In the 3 s before collision, verify that at least one non-ego actor (any index) is reported by simulator objects or closest-actor summaries within 5 m, and ideally within ~3 m, of the ego.",
+      "Confirm perception and prediction topics each report at least one object corresponding to a nearby actor in the 3 s window prior to collision.",
+      "Verify that planning final_waypoints remain available, have a stable waypoint count (no sudden large drops or spikes), and are not flagged as blocked in the 2 s before collision.",
+      "Inspect vehicle_cmd in the 2 s before collision to ensure target speed, accel, brake, and steer remain effectively zero (or close to zero within logging precision).",
+      "Cross-check vehicle_status or collision-window statistics to confirm nonzero throttle and/or nonzero reported velocity or displacement, or at minimum a collision event, indicating a command–status ambiguity similar to the seed case.",
+      "If lane invasion events are logged, do not use them as a requirement for same-root-cause; classify based on the presence of collision with nearby actor and ambiguous vehicle_cmd vs status behavior."
+    ],
+    "uncertainty": [
+      "The precise ego velocity and displacement at collision may differ from the seed trace due to small actor position and speed changes, but same-root-cause classification relies on the qualitative command–status mismatch, not exact kinematics.",
+      "It is uncertain whether the collision will be with actor_index 0 or another nearby actor if secondary interactions occur; validation should focus on at least one nearby actor being present, not the exact actor index."
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": 0.0,
+      "fog": 0.0,
+      "wetness": 0.0,
+      "puddle": 0.0
+    },
+    "actor_mutations": [
+      {
+        "actor_index": 0,
+        "position_offset": {
+          "x": -1.5,
+          "y": -1.0
+        },
+        "speed_delta": -0.5
+      },
+      {
+        "actor_index": 1,
+        "position_offset": {
+          "x": 1.0,
+          "y": 0.0
+        },
+        "speed_delta": 0.0
+      }
+    ],
+    "puddle_mutations": [],
+    "mission_mutation": {
+      "keep_original": true
+    }
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_147__gpt-5.1.json",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_147__gpt-5.1.json",
+  "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+}

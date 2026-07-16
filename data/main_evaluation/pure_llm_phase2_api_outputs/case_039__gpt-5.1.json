@@ -1,0 +1,231 @@
+{
+  "case_id": "case_039",
+  "model_name": "gpt-5.1",
+  "workflow": "pure_llm_phase2_baseline",
+  "status": "completed",
+  "schema_valid": true,
+  "schema_errors": [],
+  "num_candidates_requested": 1,
+  "num_candidates_written": 1,
+  "num_pre_valid": 1,
+  "candidate_records": [
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/pure_llm_phase2_candidates/gpt-5.1/json/case_039/case_039__model_gpt-5.1__cand_001.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/pure_llm_phase2_candidates/gpt-5.1/metadata/case_039/case_039__model_gpt-5.1__cand_001.metadata.json",
+      "case_id": "case_039",
+      "model_name": "gpt-5.1",
+      "candidate_index": 1,
+      "candidate_spec": {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Ego starts slightly offset toward parked vehicle and nearer destination",
+        "mutation_intent": "Increase chance of lateral drift causing lane invasion or blockage near static vehicle",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": 5,
+            "fog": 5,
+            "wetness": 10,
+            "puddle": 5
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": -2.0,
+                "y": -1.5
+              },
+              "speed_delta": 0.5
+            }
+          ],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 1.0,
+                "y": 2.0
+              },
+              "level_delta": 0.1,
+              "size_scale": 1.1
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": false,
+            "spawn_offset": {
+              "x": 1.5,
+              "y": -2.0
+            },
+            "destination_offset": {
+              "x": -2.0,
+              "y": 1.5
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Ensure ego and vehicle do not initially overlap"
+        ],
+        "post_execution_validation_rules": [
+          "Check for ego immobility and boundary crossing events"
+        ],
+        "uncertainty": [
+          "Ego reaction to closer lateral constraints may vary"
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 5.0,
+          "fog": 5.0,
+          "wetness": 10.0,
+          "puddle": 5.0
+        },
+        "actor_mutations": [
+          {
+            "actor_index": 0,
+            "position_offset": {
+              "x": -2.0,
+              "y": -1.5
+            },
+            "speed_delta": 0.5
+          }
+        ],
+        "puddle_mutations": [
+          {
+            "puddle_index": 0,
+            "location_offset": {
+              "x": 1.0,
+              "y": 2.0
+            },
+            "level_delta": 0.1,
+            "size_scale": 1.1
+          }
+        ],
+        "mission_mutation": {
+          "spawn_offset": {
+            "x": 1.5,
+            "y": -2.0
+          },
+          "destination_offset": {
+            "x": -2.0,
+            "y": 1.5
+          }
+        },
+        "safety_repairs": []
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": []
+      }
+    }
+  ],
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/pure_llm_phase2_api_prompts/case_039__gpt-5.1.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/pure_llm_phase2_api_outputs/case_039__gpt-5.1.json",
+  "prompt_estimated_tokens": 838,
+  "usage": {
+    "prompt_tokens": 1066,
+    "completion_tokens": 397,
+    "total_tokens": 1463
+  },
+  "raw_response": "{\n  \"case_id\": \"case_039\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Ego starts slightly offset toward parked vehicle and nearer destination\",\n      \"mutation_intent\": \"Increase chance of lateral drift causing lane invasion or blockage near static vehicle\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\n          \"rain\": 5,\n          \"fog\": 5,\n          \"wetness\": 10,\n          \"puddle\": 5\n        },\n        \"actor_mutations\": [\n          {\n            \"actor_index\": 0,\n            \"position_offset\": {\n              \"x\": -2.0,\n              \"y\": -1.5\n            },\n            \"speed_delta\": 0.5\n          }\n        ],\n        \"puddle_mutations\": [\n          {\n            \"puddle_index\": 0,\n            \"location_offset\": {\n              \"x\": 1.0,\n              \"y\": 2.0\n            },\n            \"level_delta\": 0.1,\n            \"size_scale\": 1.1\n          }\n        ],\n        \"mission_mutation\": {\n          \"keep_original\": false,\n          \"spawn_offset\": {\n            \"x\": 1.5,\n            \"y\": -2.0\n          },\n          \"destination_offset\": {\n            \"x\": -2.0,\n            \"y\": 1.5\n          }\n        }\n      },\n      \"pre_execution_validation_rules\": [\n        \"Ensure ego and vehicle do not initially overlap\"\n      ],\n      \"post_execution_validation_rules\": [\n        \"Check for ego immobility and boundary crossing events\"\n      ],\n      \"uncertainty\": [\n        \"Ego reaction to closer lateral constraints may vary\"\n      ]\n    }\n  ]\n}",
+  "parsed_response": {
+    "case_id": "case_039",
+    "candidate_specs": [
+      {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Ego starts slightly offset toward parked vehicle and nearer destination",
+        "mutation_intent": "Increase chance of lateral drift causing lane invasion or blockage near static vehicle",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": 5,
+            "fog": 5,
+            "wetness": 10,
+            "puddle": 5
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": -2.0,
+                "y": -1.5
+              },
+              "speed_delta": 0.5
+            }
+          ],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 1.0,
+                "y": 2.0
+              },
+              "level_delta": 0.1,
+              "size_scale": 1.1
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": false,
+            "spawn_offset": {
+              "x": 1.5,
+              "y": -2.0
+            },
+            "destination_offset": {
+              "x": -2.0,
+              "y": 1.5
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Ensure ego and vehicle do not initially overlap"
+        ],
+        "post_execution_validation_rules": [
+          "Check for ego immobility and boundary crossing events"
+        ],
+        "uncertainty": [
+          "Ego reaction to closer lateral constraints may vary"
+        ]
+      }
+    ]
+  },
+  "raw_api_payload": {
+    "id": "<REDACTED_RESPONSE_ID>",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "{\n  \"case_id\": \"case_039\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Ego starts slightly offset toward parked vehicle and nearer destination\",\n      \"mutation_intent\": \"Increase chance of lateral drift causing lane invasion or blockage near static vehicle\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\n          \"rain\": 5,\n          \"fog\": 5,\n          \"wetness\": 10,\n          \"puddle\": 5\n        },\n        \"actor_mutations\": [\n          {\n            \"actor_index\": 0,\n            \"position_offset\": {\n              \"x\": -2.0,\n              \"y\": -1.5\n            },\n            \"speed_delta\": 0.5\n          }\n        ],\n        \"puddle_mutations\": [\n          {\n            \"puddle_index\": 0,\n            \"location_offset\": {\n              \"x\": 1.0,\n              \"y\": 2.0\n            },\n            \"level_delta\": 0.1,\n            \"size_scale\": 1.1\n          }\n        ],\n        \"mission_mutation\": {\n          \"keep_original\": false,\n          \"spawn_offset\": {\n            \"x\": 1.5,\n            \"y\": -2.0\n          },\n          \"destination_offset\": {\n            \"x\": -2.0,\n            \"y\": 1.5\n          }\n        }\n      },\n      \"pre_execution_validation_rules\": [\n        \"Ensure ego and vehicle do not initially overlap\"\n      ],\n      \"post_execution_validation_rules\": [\n        \"Check for ego immobility and boundary crossing events\"\n      ],\n      \"uncertainty\": [\n        \"Ego reaction to closer lateral constraints may vary\"\n      ]\n    }\n  ]\n}",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": [],
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "gpt-5.1-2025-11-13",
+    "object": "chat.completion",
+    "service_tier": "default",
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 397,
+      "prompt_tokens": 1066,
+      "total_tokens": 1463,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": 0,
+        "audio_tokens": 0,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 0
+      }
+    }
+  },
+  "error_message": "",
+  "elapsed_sec": 6.219,
+  "timestamp": "<REDACTED_TIMESTAMP>"
+}

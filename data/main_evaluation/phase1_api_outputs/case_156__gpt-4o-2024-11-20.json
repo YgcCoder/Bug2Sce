@@ -1,0 +1,105 @@
+{
+  "case_id": "case_156",
+  "workflow": "phase1_causal_explanation",
+  "model_name": "gpt-4o-2024-11-20",
+  "model_id": "gpt-4o-2024-11-20",
+  "status": "completed",
+  "dry_run": false,
+  "schema_valid": true,
+  "schema_errors": [],
+  "quality_flags": [],
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_prompts/case_156__gpt-4o-2024-11-20.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_156__gpt-4o-2024-11-20.json",
+  "prompt_estimated_tokens": 2663,
+  "usage": {
+    "prompt_tokens": 2830,
+    "completion_tokens": 404,
+    "total_tokens": 3234
+  },
+  "estimated_cost_usd": null,
+  "raw_response": "{\n  \"case_id\": \"case_156\",\n  \"fault_layer\": \"unknown\",\n  \"fault_component\": \"unknown\",\n  \"causal_explanation\": \"The vehicle is stuck for 237.15 seconds with zero velocity and no movement despite final waypoints being available and vehicle_cmd showing all-zero commands. However, vehicle_status shows minimal movement (displacement of 0.01m), creating uncertainty about controller behavior.\",\n  \"root_cause_pattern\": \"Conservative preservation pattern: ego vehicle remains stationary with final waypoints available and no actuation commands issued, while vehicle_status indicates minimal displacement.\",\n  \"preservation_constraints\": [\n    \"The generated candidate should preserve the stuck symptom as observed by the oracle.\",\n    \"Final waypoints must remain available during the critical window.\",\n    \"Post-execution validation should check vehicle_cmd and vehicle_status consistency, as well as ego velocity and displacement.\"\n  ],\n  \"modifiable_factors\": [\"actor_position\", \"weather\", \"mission\", \"puddles\"],\n  \"non_modifiable_conditions\": [\"same oracle symptom\", \"final waypoints availability\"],\n  \"uncertainty\": [\n    \"Controller behavior is uncertain due to mismatch between vehicle_cmd (all zero) and vehicle_status (minimal displacement).\",\n    \"No direct evidence localizes the failure to a specific module.\"\n  ],\n  \"evidence_support\": [\n    {\"evidence_id\": \"critical_window_summary\", \"claim\": \"Stuck symptom confirmed with zero velocity and minimal displacement over 237.15 seconds.\"},\n    {\"evidence_id\": \"trace_summary_compact\", \"claim\": \"Final waypoints are present with consistent counts, but vehicle_cmd shows no actuation commands.\"}\n  ],\n  \"confidence\": \"medium\",\n  \"ready_for_phase2_generation\": \"yes\",\n  \"notes_for_validator\": [\n    \"Ensure generated cases preserve the stuck symptom and final waypoints availability.\",\n    \"Validate vehicle_cmd and vehicle_status consistency post-execution.\"\n  ]\n}",
+  "parsed_response": {
+    "case_id": "case_156",
+    "fault_layer": "unknown",
+    "fault_component": "unknown",
+    "causal_explanation": "The vehicle is stuck for 237.15 seconds with zero velocity and no movement despite final waypoints being available and vehicle_cmd showing all-zero commands. However, vehicle_status shows minimal movement (displacement of 0.01m), creating uncertainty about controller behavior.",
+    "root_cause_pattern": "Conservative preservation pattern: ego vehicle remains stationary with final waypoints available and no actuation commands issued, while vehicle_status indicates minimal displacement.",
+    "preservation_constraints": [
+      "The generated candidate should preserve the stuck symptom as observed by the oracle.",
+      "Final waypoints must remain available during the critical window.",
+      "Post-execution validation should check vehicle_cmd and vehicle_status consistency, as well as ego velocity and displacement."
+    ],
+    "modifiable_factors": [
+      "actor_position",
+      "weather",
+      "mission",
+      "puddles"
+    ],
+    "non_modifiable_conditions": [
+      "same oracle symptom",
+      "final waypoints availability"
+    ],
+    "uncertainty": [
+      "Controller behavior is uncertain due to mismatch between vehicle_cmd (all zero) and vehicle_status (minimal displacement).",
+      "No direct evidence localizes the failure to a specific module."
+    ],
+    "evidence_support": [
+      {
+        "evidence_id": "critical_window_summary",
+        "claim": "Stuck symptom confirmed with zero velocity and minimal displacement over 237.15 seconds."
+      },
+      {
+        "evidence_id": "trace_summary_compact",
+        "claim": "Final waypoints are present with consistent counts, but vehicle_cmd shows no actuation commands."
+      }
+    ],
+    "confidence": "medium",
+    "ready_for_phase2_generation": "yes",
+    "notes_for_validator": [
+      "Ensure generated cases preserve the stuck symptom and final waypoints availability.",
+      "Validate vehicle_cmd and vehicle_status consistency post-execution."
+    ]
+  },
+  "raw_api_payload": {
+    "id": "<REDACTED_RESPONSE_ID>",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "{\n  \"case_id\": \"case_156\",\n  \"fault_layer\": \"unknown\",\n  \"fault_component\": \"unknown\",\n  \"causal_explanation\": \"The vehicle is stuck for 237.15 seconds with zero velocity and no movement despite final waypoints being available and vehicle_cmd showing all-zero commands. However, vehicle_status shows minimal movement (displacement of 0.01m), creating uncertainty about controller behavior.\",\n  \"root_cause_pattern\": \"Conservative preservation pattern: ego vehicle remains stationary with final waypoints available and no actuation commands issued, while vehicle_status indicates minimal displacement.\",\n  \"preservation_constraints\": [\n    \"The generated candidate should preserve the stuck symptom as observed by the oracle.\",\n    \"Final waypoints must remain available during the critical window.\",\n    \"Post-execution validation should check vehicle_cmd and vehicle_status consistency, as well as ego velocity and displacement.\"\n  ],\n  \"modifiable_factors\": [\"actor_position\", \"weather\", \"mission\", \"puddles\"],\n  \"non_modifiable_conditions\": [\"same oracle symptom\", \"final waypoints availability\"],\n  \"uncertainty\": [\n    \"Controller behavior is uncertain due to mismatch between vehicle_cmd (all zero) and vehicle_status (minimal displacement).\",\n    \"No direct evidence localizes the failure to a specific module.\"\n  ],\n  \"evidence_support\": [\n    {\"evidence_id\": \"critical_window_summary\", \"claim\": \"Stuck symptom confirmed with zero velocity and minimal displacement over 237.15 seconds.\"},\n    {\"evidence_id\": \"trace_summary_compact\", \"claim\": \"Final waypoints are present with consistent counts, but vehicle_cmd shows no actuation commands.\"}\n  ],\n  \"confidence\": \"medium\",\n  \"ready_for_phase2_generation\": \"yes\",\n  \"notes_for_validator\": [\n    \"Ensure generated cases preserve the stuck symptom and final waypoints availability.\",\n    \"Validate vehicle_cmd and vehicle_status consistency post-execution.\"\n  ]\n}",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": [],
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "gpt-4o-2024-11-20",
+    "object": "chat.completion",
+    "service_tier": "default",
+    "system_fingerprint": "<REDACTED_SYSTEM_FINGERPRINT>",
+    "usage": {
+      "completion_tokens": 404,
+      "prompt_tokens": 2830,
+      "total_tokens": 3234,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": 0,
+        "audio_tokens": 0,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 0
+      }
+    }
+  },
+  "error_message": "",
+  "timestamp": "<REDACTED_TIMESTAMP>",
+  "elapsed_sec": 3.886
+}

@@ -1,0 +1,102 @@
+{
+  "case_id": "case_068",
+  "workflow": "phase1_causal_explanation",
+  "model_name": "gpt-4o-2024-11-20",
+  "model_id": "gpt-4o-2024-11-20",
+  "status": "completed",
+  "dry_run": false,
+  "schema_valid": true,
+  "schema_errors": [],
+  "quality_flags": [],
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_prompts/case_068__gpt-4o-2024-11-20.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_068__gpt-4o-2024-11-20.json",
+  "prompt_estimated_tokens": 2661,
+  "usage": {
+    "prompt_tokens": 2751,
+    "completion_tokens": 344,
+    "total_tokens": 3095
+  },
+  "estimated_cost_usd": null,
+  "raw_response": "{\n  \"case_id\": \"case_068\",\n  \"fault_layer\": \"unknown\",\n  \"fault_component\": \"unknown\",\n  \"causal_explanation\": \"The oracle confirms a red-light violation, but the evidence does not confirm whether the ego vehicle crossed a stop line or had a route-light relation. Traffic light states are available, but no direct stop-line crossing evidence is provided.\",\n  \"root_cause_pattern\": \"Conservative preservation pattern: ego encounters a red-light violation with unknown route-light relation and stop-line crossing status.\",\n  \"preservation_constraints\": [\n    \"The generated candidate should preserve the oracle red-light symptom.\",\n    \"Traffic light states should remain available in the critical window.\",\n    \"Post-execution validation should check for stop-line crossing and route-light relation.\"\n  ],\n  \"modifiable_factors\": [\"actor_position\", \"weather\", \"mission\"],\n  \"non_modifiable_conditions\": [\"same oracle red-light symptom\", \"traffic light state availability\"],\n  \"uncertainty\": [\"Route-light relation and stop-line crossing are not confirmed by the evidence.\"],\n  \"evidence_support\": [\n    {\"evidence_id\": \"critical_window_summary\", \"claim\": \"Red-light violation confirmed by oracle, but stop-line crossing and route-light relation are unknown.\"},\n    {\"evidence_id\": \"trace_summary_compact\", \"claim\": \"Traffic light states are available, but no direct evidence of stop-line crossing is provided.\"}\n  ],\n  \"confidence\": \"medium\",\n  \"ready_for_phase2_generation\": \"yes\",\n  \"notes_for_validator\": [\"Ensure generated cases preserve the red-light symptom and validate stop-line crossing and route-light relation post-execution.\"]\n}",
+  "parsed_response": {
+    "case_id": "case_068",
+    "fault_layer": "unknown",
+    "fault_component": "unknown",
+    "causal_explanation": "The oracle confirms a red-light violation, but the evidence does not confirm whether the ego vehicle crossed a stop line or had a route-light relation. Traffic light states are available, but no direct stop-line crossing evidence is provided.",
+    "root_cause_pattern": "Conservative preservation pattern: ego encounters a red-light violation with unknown route-light relation and stop-line crossing status.",
+    "preservation_constraints": [
+      "The generated candidate should preserve the oracle red-light symptom.",
+      "Traffic light states should remain available in the critical window.",
+      "Post-execution validation should check for stop-line crossing and route-light relation."
+    ],
+    "modifiable_factors": [
+      "actor_position",
+      "weather",
+      "mission"
+    ],
+    "non_modifiable_conditions": [
+      "same oracle red-light symptom",
+      "traffic light state availability"
+    ],
+    "uncertainty": [
+      "Route-light relation and stop-line crossing are not confirmed by the evidence."
+    ],
+    "evidence_support": [
+      {
+        "evidence_id": "critical_window_summary",
+        "claim": "Red-light violation confirmed by oracle, but stop-line crossing and route-light relation are unknown."
+      },
+      {
+        "evidence_id": "trace_summary_compact",
+        "claim": "Traffic light states are available, but no direct evidence of stop-line crossing is provided."
+      }
+    ],
+    "confidence": "medium",
+    "ready_for_phase2_generation": "yes",
+    "notes_for_validator": [
+      "Ensure generated cases preserve the red-light symptom and validate stop-line crossing and route-light relation post-execution."
+    ]
+  },
+  "raw_api_payload": {
+    "id": "<REDACTED_RESPONSE_ID>",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "{\n  \"case_id\": \"case_068\",\n  \"fault_layer\": \"unknown\",\n  \"fault_component\": \"unknown\",\n  \"causal_explanation\": \"The oracle confirms a red-light violation, but the evidence does not confirm whether the ego vehicle crossed a stop line or had a route-light relation. Traffic light states are available, but no direct stop-line crossing evidence is provided.\",\n  \"root_cause_pattern\": \"Conservative preservation pattern: ego encounters a red-light violation with unknown route-light relation and stop-line crossing status.\",\n  \"preservation_constraints\": [\n    \"The generated candidate should preserve the oracle red-light symptom.\",\n    \"Traffic light states should remain available in the critical window.\",\n    \"Post-execution validation should check for stop-line crossing and route-light relation.\"\n  ],\n  \"modifiable_factors\": [\"actor_position\", \"weather\", \"mission\"],\n  \"non_modifiable_conditions\": [\"same oracle red-light symptom\", \"traffic light state availability\"],\n  \"uncertainty\": [\"Route-light relation and stop-line crossing are not confirmed by the evidence.\"],\n  \"evidence_support\": [\n    {\"evidence_id\": \"critical_window_summary\", \"claim\": \"Red-light violation confirmed by oracle, but stop-line crossing and route-light relation are unknown.\"},\n    {\"evidence_id\": \"trace_summary_compact\", \"claim\": \"Traffic light states are available, but no direct evidence of stop-line crossing is provided.\"}\n  ],\n  \"confidence\": \"medium\",\n  \"ready_for_phase2_generation\": \"yes\",\n  \"notes_for_validator\": [\"Ensure generated cases preserve the red-light symptom and validate stop-line crossing and route-light relation post-execution.\"]\n}",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": [],
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "gpt-4o-2024-11-20",
+    "object": "chat.completion",
+    "service_tier": "default",
+    "system_fingerprint": "<REDACTED_SYSTEM_FINGERPRINT>",
+    "usage": {
+      "completion_tokens": 344,
+      "prompt_tokens": 2751,
+      "total_tokens": 3095,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": 0,
+        "audio_tokens": 0,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 0
+      }
+    }
+  },
+  "error_message": "",
+  "timestamp": "<REDACTED_TIMESTAMP>",
+  "elapsed_sec": 3.399
+}

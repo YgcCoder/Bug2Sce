@@ -1,0 +1,121 @@
+{
+  "case_id": "case_067",
+  "workflow": "phase1_causal_explanation",
+  "model_name": "ark-deepseek-r1-250528",
+  "model_id": "ark-deepseek-r1-250528",
+  "status": "completed",
+  "dry_run": false,
+  "schema_valid": true,
+  "schema_errors": [],
+  "quality_flags": [],
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_prompts/case_067__ark-deepseek-r1-250528.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_067__ark-deepseek-r1-250528.json",
+  "prompt_estimated_tokens": 2987,
+  "usage": {
+    "prompt_tokens": 3985,
+    "completion_tokens": 1949,
+    "total_tokens": 5934
+  },
+  "estimated_cost_usd": null,
+  "raw_response": "{\n  \"case_id\": \"case_067\",\n  \"fault_layer\": \"unknown\",\n  \"fault_component\": \"unknown\",\n  \"causal_explanation\": \"Label conflict exists between dataset and error.json: dataset labels stuck, lane invasion, and red light violation, while error.json only confirms red light violation. No evidence confirms stop-line crossing, route-light relation for red light, lane-boundary crossing for lane invasion, or stuck behavior per error.json. No module failure is directly confirmed by critical window evidence.\",\n  \"root_cause_pattern\": \"Conservative pattern: Label conflict between dataset and error.json oracle outputs, with only red light violation confirmed by error.json, no module-level failure can be attributed from available evidence.\",\n  \"preservation_constraints\": [\n    \"Preserve the label conflict between dataset and error.json for stuck and lane invasion symptoms\",\n    \"Preserve confirmed red light violation status per error.json\",\n    \"Preserve zero dynamic actors and zero puddle regions in the scenario\",\n    \"Preserve the original start and goal mission on Town01 map\"\n  ],\n  \"modifiable_factors\": [\"weather_parameters\", \"ego_start_position_offset\", \"ego_start_yaw_offset\"],\n  \"non_modifiable_conditions\": [\"zero dynamic actors\", \"zero puddle regions\", \"Town01 map\", \"same general mission direction\", \"persist existing label conflict\"],\n  \"uncertainty\": [\n    \"Dataset and error.json labels conflict for stuck, lane invasion, and failure group\",\n    \"No evidence confirms stop-line crossing or route-light relation for the reported red light violation\",\n    \"No evidence confirms lane-boundary crossing for the labeled lane invasion symptom\",\n    \"All vehicle_cmd are zero in the critical window but vehicle_status recorded prior movement, so controller behavior is uncertain\",\n    \"Module-level failure attribution is not supported by available critical window evidence\"\n  ],\n  \"evidence_support\": [\n    {\"evidence_id\": \"label_conflict\", \"claim\": \"Dataset labels group S+L+R while error.json labels only R, conflict on stuck and lane invasion status\"},\n    {\"evidence_id\": \"red_light_window_summary\", \"claim\": \"error.json confirms red light violation, but route-light relation and stop-line crossing are unconfirmed\"},\n    {\"evidence_id\": \"stuck_window_summary\", \"claim\": \"error.json reports no stuck, final ego velocity is zero, all vehicle_cmd are zero, vehicle_status had non-zero throttle prior to the final window\"},\n    {\"evidence_id\": \"lane_invasion_evidence\", \"claim\": \"No evidence of lane-boundary crossing is provided for the labeled lane invasion symptom\"}\n  ],\n  \"confidence\": \"low\",\n  \"ready_for_phase2_generation\": \"uncertain\",\n  \"notes_for_validator\": [\n    \"Resolve the label conflict between dataset and error.json before confirming generated case root cause\",\n    \"Verify stop-line crossing and route-light relation after execution to confirm red light violation\",\n    \"Check for lane boundary crossing if lane invasion symptom is being evaluated\"\n  ]\n}",
+  "parsed_response": {
+    "case_id": "case_067",
+    "fault_layer": "unknown",
+    "fault_component": "unknown",
+    "causal_explanation": "Label conflict exists between dataset and error.json: dataset labels stuck, lane invasion, and red light violation, while error.json only confirms red light violation. No evidence confirms stop-line crossing, route-light relation for red light, lane-boundary crossing for lane invasion, or stuck behavior per error.json. No module failure is directly confirmed by critical window evidence.",
+    "root_cause_pattern": "Conservative pattern: Label conflict between dataset and error.json oracle outputs, with only red light violation confirmed by error.json, no module-level failure can be attributed from available evidence.",
+    "preservation_constraints": [
+      "Preserve the label conflict between dataset and error.json for stuck and lane invasion symptoms",
+      "Preserve confirmed red light violation status per error.json",
+      "Preserve zero dynamic actors and zero puddle regions in the scenario",
+      "Preserve the original start and goal mission on Town01 map"
+    ],
+    "modifiable_factors": [
+      "weather_parameters",
+      "ego_start_position_offset",
+      "ego_start_yaw_offset"
+    ],
+    "non_modifiable_conditions": [
+      "zero dynamic actors",
+      "zero puddle regions",
+      "Town01 map",
+      "same general mission direction",
+      "persist existing label conflict"
+    ],
+    "uncertainty": [
+      "Dataset and error.json labels conflict for stuck, lane invasion, and failure group",
+      "No evidence confirms stop-line crossing or route-light relation for the reported red light violation",
+      "No evidence confirms lane-boundary crossing for the labeled lane invasion symptom",
+      "All vehicle_cmd are zero in the critical window but vehicle_status recorded prior movement, so controller behavior is uncertain",
+      "Module-level failure attribution is not supported by available critical window evidence"
+    ],
+    "evidence_support": [
+      {
+        "evidence_id": "label_conflict",
+        "claim": "Dataset labels group S+L+R while error.json labels only R, conflict on stuck and lane invasion status"
+      },
+      {
+        "evidence_id": "red_light_window_summary",
+        "claim": "error.json confirms red light violation, but route-light relation and stop-line crossing are unconfirmed"
+      },
+      {
+        "evidence_id": "stuck_window_summary",
+        "claim": "error.json reports no stuck, final ego velocity is zero, all vehicle_cmd are zero, vehicle_status had non-zero throttle prior to the final window"
+      },
+      {
+        "evidence_id": "lane_invasion_evidence",
+        "claim": "No evidence of lane-boundary crossing is provided for the labeled lane invasion symptom"
+      }
+    ],
+    "confidence": "low",
+    "ready_for_phase2_generation": "uncertain",
+    "notes_for_validator": [
+      "Resolve the label conflict between dataset and error.json before confirming generated case root cause",
+      "Verify stop-line crossing and route-light relation after execution to confirm red light violation",
+      "Check for lane boundary crossing if lane invasion symptom is being evaluated"
+    ]
+  },
+  "raw_api_payload": {
+    "id": "02178292077869020cfcaf0410bba00355b4c276f44ffeda712e6",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "{\n  \"case_id\": \"case_067\",\n  \"fault_layer\": \"unknown\",\n  \"fault_component\": \"unknown\",\n  \"causal_explanation\": \"Label conflict exists between dataset and error.json: dataset labels stuck, lane invasion, and red light violation, while error.json only confirms red light violation. No evidence confirms stop-line crossing, route-light relation for red light, lane-boundary crossing for lane invasion, or stuck behavior per error.json. No module failure is directly confirmed by critical window evidence.\",\n  \"root_cause_pattern\": \"Conservative pattern: Label conflict between dataset and error.json oracle outputs, with only red light violation confirmed by error.json, no module-level failure can be attributed from available evidence.\",\n  \"preservation_constraints\": [\n    \"Preserve the label conflict between dataset and error.json for stuck and lane invasion symptoms\",\n    \"Preserve confirmed red light violation status per error.json\",\n    \"Preserve zero dynamic actors and zero puddle regions in the scenario\",\n    \"Preserve the original start and goal mission on Town01 map\"\n  ],\n  \"modifiable_factors\": [\"weather_parameters\", \"ego_start_position_offset\", \"ego_start_yaw_offset\"],\n  \"non_modifiable_conditions\": [\"zero dynamic actors\", \"zero puddle regions\", \"Town01 map\", \"same general mission direction\", \"persist existing label conflict\"],\n  \"uncertainty\": [\n    \"Dataset and error.json labels conflict for stuck, lane invasion, and failure group\",\n    \"No evidence confirms stop-line crossing or route-light relation for the reported red light violation\",\n    \"No evidence confirms lane-boundary crossing for the labeled lane invasion symptom\",\n    \"All vehicle_cmd are zero in the critical window but vehicle_status recorded prior movement, so controller behavior is uncertain\",\n    \"Module-level failure attribution is not supported by available critical window evidence\"\n  ],\n  \"evidence_support\": [\n    {\"evidence_id\": \"label_conflict\", \"claim\": \"Dataset labels group S+L+R while error.json labels only R, conflict on stuck and lane invasion status\"},\n    {\"evidence_id\": \"red_light_window_summary\", \"claim\": \"error.json confirms red light violation, but route-light relation and stop-line crossing are unconfirmed\"},\n    {\"evidence_id\": \"stuck_window_summary\", \"claim\": \"error.json reports no stuck, final ego velocity is zero, all vehicle_cmd are zero, vehicle_status had non-zero throttle prior to the final window\"},\n    {\"evidence_id\": \"lane_invasion_evidence\", \"claim\": \"No evidence of lane-boundary crossing is provided for the labeled lane invasion symptom\"}\n  ],\n  \"confidence\": \"low\",\n  \"ready_for_phase2_generation\": \"uncertain\",\n  \"notes_for_validator\": [\n    \"Resolve the label conflict between dataset and error.json before confirming generated case root cause\",\n    \"Verify stop-line crossing and route-light relation after execution to confirm red light violation\",\n    \"Check for lane boundary crossing if lane invasion symptom is being evaluated\"\n  ]\n}",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null,
+          "reasoning_content": "\nGot it, let's work through this step by step. First, case_id is case_067, right?\n\nNext, fault_layer. There's label conflict between dataset (S+L+R: stuck, lane invasion, red light) and error.json only R (red light). Let's see the evidence: vehicle_cmd all zero, but vehicle_status had movement earlier, last velocity 0. But error.json says stuck is false. Also lane invasion no evidence for crossing. Red light has confirmed violation from error json but no route-light relation or stop line crossing. So fault_layer should be unknown? Wait, let's check rules: prefer unknown when module attribution not supported. Yeah, because we don't know which module is wrong. Fault component is unknown too.\n\nCausal explanation: Let's write that. There's a conflict between dataset labels (marking stuck, lane invasion, red light violation) and error.json (only red light violation confirmed, stuck and lane invasion false). No stop line crossing or route-light relation confirmed for red light, no lane boundary crossing evidence for lane invasion, error.json says no stuck even though last velocity is zero. Module-level failure can't be confirmed from available evidence. Wait, make it concise. Like \"Label conflict exists: dataset labels stuck, lane invasion, and red light violation, while error.json only confirms red light violation. No evidence confirms stop-line crossing, route-light relation (for red light), lane-boundary crossing (for lane invasion), or stuck behavior (error.json reports no stuck). No module failure is directly confirmed by critical window evidence.\"\n\nRoot cause pattern: Conservative, right. Because attribution is unknown, we just have confirmed red light violation per error json, with conflicting other labels. So something like \"Candidate root-cause pattern: Unconfirmed multi-symptom label conflict with only red light violation confirmed by error.json, no module-level failure can be attributed from available evidence.\"\n\nPreservation constraints: Let's do 3-6. Like:\n1. Preserve the label conflict between dataset and error.json for stuck and lane invasion symptoms.\n2. Preserve confirmed red light violation per error.json.\n3. Preserve 0 dynamic actors and 0 puddles in the scenario.\n4. Preserve the ego start and goal mission on Town01 map.\nWait, that's good, right? Let's check: semantic, no timestamps. Yeah.\n\nModifiable factors: What can we change? Weather, right? Because the weather has values, that's modifiable. Also start yaw, goal position slightly? Wait, let's list: [\"weather_parameters\", \"ego_start_position_offset\", \"ego_start_yaw_offset\"] that makes sense. Because actors and puddles are 0, so non-modifiable there.\n\nNon-modifiable conditions: Let's see: [\"zero dynamic actors in scenario\", \"zero puddle regions\", \"same map (Town01)\", \"same overall mission route direction\", \"persist label conflict between dataset and error.json\"]. Yeah.\n\nUncertainty: Let's list the things. First: \"Dataset labels and error.json labels conflict for stuck, lane invasion, and failure group.\" Second: \"No evidence confirms stop-line crossing or route-light relation for the red light violation.\" Third: \"No evidence confirms lane-boundary crossing for lane invasion.\" Fourth: \"Vehicle_cmd is all zero in critical window but vehicle_status reported prior movement, so controller behavior is uncertain.\" Fifth: \"Module-level failure attribution is not supported by available critical window evidence.\" That's right.\n\nEvidence support: Let's add each evidence. First: {\"evidence_id\": \"label_conflict\", \"claim\": \"Dataset reports S+L+R group while error.json reports only R group, conflict for stuck and lane invasion labels.\"}, then {\"evidence_id\": \"red_light_window_summary\", \"claim\": \"Red light violation is reported by error.json, but route-light relation and stop-line crossing are unconfirmed.\"}, {\"evidence_id\": \"stuck_window_summary\", \"claim\": \"error.json reports no stuck, final ego velocity is zero, vehicle_cmd all commands are zero, vehicle_status had non-zero throttle prior to final window.\"}, {\"evidence_id\": \"lane_invasion_evidence\", \"claim\": \"No evidence of lane-boundary crossing is provided for the labeled lane invasion symptom.\"} That's good.\n\nConfidence: Low, right? Because lots of uncertainty, label conflict. So low.\n\nReady for phase 2 generation: Wait, rules say use yes when there's a checkable conservative pattern. Wait, but there's a conflict, but we can preserve the conflict. Wait, let's check: the oracle consistency says needs manual review, but the guidance says use as uncertainty-aware input. Wait, ready_for_phase2_generation: uncertain? Wait no, let's check the rule: \"use uncertain when labels conflict or a key condition is missing.\" Oh right! Labels conflict, so uncertain? Wait let's see: rule says \"use yes when there is a checkable conservative preservation pattern; use uncertain when labels conflict or a key condition is missing.\" Yeah, labels conflict here, so ready_for_phase2_generation is uncertain? Wait, let's confirm: the conflict is there, so yeah.\n\nNotes for validator: [\"Must resolve the label conflict between dataset and error.json before confirming generated case root cause.\", \"Must verify stop-line crossing and route-light relation after execution to confirm red light violation.\", \"Must check for lane boundary crossing if lane invasion symptom is being tested.\"] That's good.\n\nWait let's put it all together correctly, make sure it follows the schema, no extra stuff. Let's check all the rules: if dataset and error json disagree, mark uncertainty, don't take dataset as ground truth. Correct. For red light, don't infer route light or stop line crossing unless evidence, which we didn't. For lane invasion, no crossing evidence, so we didn't infer. For stuck, error json says no stuck, so we note that. Vehicle cmd all zero, vehicle status had movement, so controller is uncertain, which we marked. Fault layer unknown because attribution not supported. Correct.\n\nLet me write the JSON properly now."
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "doubao-seed-2-0-lite-260215",
+    "object": "chat.completion",
+    "service_tier": "default",
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 1949,
+      "prompt_tokens": 3985,
+      "total_tokens": 5934,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 1287,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": null,
+        "cached_tokens": 0
+      }
+    }
+  },
+  "error_message": "",
+  "timestamp": "<REDACTED_TIMESTAMP>",
+  "elapsed_sec": 35.824
+}

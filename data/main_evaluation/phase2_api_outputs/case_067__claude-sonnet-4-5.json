@@ -1,0 +1,290 @@
+{
+  "case_id": "case_067",
+  "model_name": "claude-sonnet-4-5",
+  "workflow": "phase2_grounded_generation",
+  "status": "completed",
+  "schema_valid": true,
+  "schema_errors": [],
+  "phase1_ready": "uncertain",
+  "num_candidates_requested": 2,
+  "num_candidates_written": 2,
+  "num_pre_valid": 2,
+  "candidate_records": [
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/claude-sonnet-4-5/json/case_067/case_067__cand_001.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/claude-sonnet-4-5/metadata/case_067/case_067__cand_001.metadata.json",
+      "case_id": "case_067",
+      "model_name": "claude-sonnet-4-5",
+      "candidate_index": 1,
+      "candidate_spec": {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Increase rain and wetness to stress actuation layer",
+        "mutation_intent": "Amplify weather conditions to test if vehicle_cmd/vehicle_status mismatch persists under higher rain and wetness",
+        "expected_oracle": "red_light",
+        "modifications": {
+          "weather_delta": {
+            "rain": 15,
+            "fog": 0,
+            "wetness": 15,
+            "puddle": 0
+          },
+          "actor_mutations": [],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Route must include traffic light",
+          "Spawn point must be upstream of light"
+        ],
+        "post_execution_validation_rules": [
+          "Confirm vehicle_cmd zero while vehicle_status non-zero",
+          "Verify red-light violation in error.json"
+        ],
+        "uncertainty": [
+          "Unclear if weather amplification affects cmd/status mismatch",
+          "Stop-line crossing not confirmed in seed",
+          "Actuation vs simulator artifact unresolved"
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 15.0,
+          "fog": 0.0,
+          "wetness": 15.0,
+          "puddle": 0.0
+        },
+        "actor_mutations": [],
+        "puddle_mutations": [],
+        "mission_mutation": {
+          "keep_original": true
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": [
+          "no actors in candidate scenario"
+        ]
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_067__claude-sonnet-4-5.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_067__claude-sonnet-4-5.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    },
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/claude-sonnet-4-5/json/case_067/case_067__cand_002.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/claude-sonnet-4-5/metadata/case_067/case_067__cand_002.metadata.json",
+      "case_id": "case_067",
+      "model_name": "claude-sonnet-4-5",
+      "candidate_index": 2,
+      "candidate_spec": {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Shift spawn closer to light to reduce reaction time",
+        "mutation_intent": "Move spawn forward to test if reduced distance to light preserves vehicle_cmd/vehicle_status mismatch and red-light violation",
+        "expected_oracle": "red_light",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": false,
+            "spawn_offset": {
+              "x": 5.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Spawn must remain on valid lane",
+          "Route must still include traffic light"
+        ],
+        "post_execution_validation_rules": [
+          "Confirm vehicle_cmd zero while vehicle_status non-zero",
+          "Verify red-light violation in error.json"
+        ],
+        "uncertainty": [
+          "Spawn offset may not reduce distance to light",
+          "Route-light relation not confirmed in seed",
+          "Cmd/status mismatch root cause uncertain"
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 0.0,
+          "fog": 0.0,
+          "wetness": 0.0,
+          "puddle": 0.0
+        },
+        "actor_mutations": [],
+        "puddle_mutations": [],
+        "mission_mutation": {
+          "spawn_offset": {
+            "x": 5,
+            "y": 0.0
+          },
+          "destination_offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": [
+          "no actors in candidate scenario"
+        ]
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_067__claude-sonnet-4-5.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_067__claude-sonnet-4-5.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    }
+  ],
+  "seed_artifact_zip": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/claude-sonnet-4-5/seed-artifact/seed-artifact-case_067.zip",
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_prompts/case_067__claude-sonnet-4-5.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_067__claude-sonnet-4-5.json",
+  "prompt_estimated_tokens": 1211,
+  "usage": {
+    "prompt_tokens": 1411,
+    "completion_tokens": 651,
+    "total_tokens": 2062
+  },
+  "raw_response": "```json\n{\n  \"case_id\": \"case_067\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Increase rain and wetness to stress actuation layer\",\n      \"mutation_intent\": \"Amplify weather conditions to test if vehicle_cmd/vehicle_status mismatch persists under higher rain and wetness\",\n      \"expected_oracle\": \"red_light\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 15, \"fog\": 0, \"wetness\": 15, \"puddle\": 0},\n        \"actor_mutations\": [],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Route must include traffic light\", \"Spawn point must be upstream of light\"],\n      \"post_execution_validation_rules\": [\"Confirm vehicle_cmd zero while vehicle_status non-zero\", \"Verify red-light violation in error.json\"],\n      \"uncertainty\": [\"Unclear if weather amplification affects cmd/status mismatch\", \"Stop-line crossing not confirmed in seed\", \"Actuation vs simulator artifact unresolved\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Shift spawn closer to light to reduce reaction time\",\n      \"mutation_intent\": \"Move spawn forward to test if reduced distance to light preserves vehicle_cmd/vehicle_status mismatch and red-light violation\",\n      \"expected_oracle\": \"red_light\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": false, \"spawn_offset\": {\"x\": 5.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Spawn must remain on valid lane\", \"Route must still include traffic light\"],\n      \"post_execution_validation_rules\": [\"Confirm vehicle_cmd zero while vehicle_status non-zero\", \"Verify red-light violation in error.json\"],\n      \"uncertainty\": [\"Spawn offset may not reduce distance to light\", \"Route-light relation not confirmed in seed\", \"Cmd/status mismatch root cause uncertain\"]\n    }\n  ]\n}\n```",
+  "parsed_response": {
+    "case_id": "case_067",
+    "candidate_specs": [
+      {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Increase rain and wetness to stress actuation layer",
+        "mutation_intent": "Amplify weather conditions to test if vehicle_cmd/vehicle_status mismatch persists under higher rain and wetness",
+        "expected_oracle": "red_light",
+        "modifications": {
+          "weather_delta": {
+            "rain": 15,
+            "fog": 0,
+            "wetness": 15,
+            "puddle": 0
+          },
+          "actor_mutations": [],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Route must include traffic light",
+          "Spawn point must be upstream of light"
+        ],
+        "post_execution_validation_rules": [
+          "Confirm vehicle_cmd zero while vehicle_status non-zero",
+          "Verify red-light violation in error.json"
+        ],
+        "uncertainty": [
+          "Unclear if weather amplification affects cmd/status mismatch",
+          "Stop-line crossing not confirmed in seed",
+          "Actuation vs simulator artifact unresolved"
+        ]
+      },
+      {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Shift spawn closer to light to reduce reaction time",
+        "mutation_intent": "Move spawn forward to test if reduced distance to light preserves vehicle_cmd/vehicle_status mismatch and red-light violation",
+        "expected_oracle": "red_light",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": false,
+            "spawn_offset": {
+              "x": 5.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Spawn must remain on valid lane",
+          "Route must still include traffic light"
+        ],
+        "post_execution_validation_rules": [
+          "Confirm vehicle_cmd zero while vehicle_status non-zero",
+          "Verify red-light violation in error.json"
+        ],
+        "uncertainty": [
+          "Spawn offset may not reduce distance to light",
+          "Route-light relation not confirmed in seed",
+          "Cmd/status mismatch root cause uncertain"
+        ]
+      }
+    ]
+  },
+  "raw_api_payload": {
+    "id": "<REDACTED_RESPONSE_ID>",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "```json\n{\n  \"case_id\": \"case_067\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Increase rain and wetness to stress actuation layer\",\n      \"mutation_intent\": \"Amplify weather conditions to test if vehicle_cmd/vehicle_status mismatch persists under higher rain and wetness\",\n      \"expected_oracle\": \"red_light\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 15, \"fog\": 0, \"wetness\": 15, \"puddle\": 0},\n        \"actor_mutations\": [],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Route must include traffic light\", \"Spawn point must be upstream of light\"],\n      \"post_execution_validation_rules\": [\"Confirm vehicle_cmd zero while vehicle_status non-zero\", \"Verify red-light violation in error.json\"],\n      \"uncertainty\": [\"Unclear if weather amplification affects cmd/status mismatch\", \"Stop-line crossing not confirmed in seed\", \"Actuation vs simulator artifact unresolved\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Shift spawn closer to light to reduce reaction time\",\n      \"mutation_intent\": \"Move spawn forward to test if reduced distance to light preserves vehicle_cmd/vehicle_status mismatch and red-light violation\",\n      \"expected_oracle\": \"red_light\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": false, \"spawn_offset\": {\"x\": 5.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Spawn must remain on valid lane\", \"Route must still include traffic light\"],\n      \"post_execution_validation_rules\": [\"Confirm vehicle_cmd zero while vehicle_status non-zero\", \"Verify red-light violation in error.json\"],\n      \"uncertainty\": [\"Spawn offset may not reduce distance to light\", \"Route-light relation not confirmed in seed\", \"Cmd/status mismatch root cause uncertain\"]\n    }\n  ]\n}\n```",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "claude-sonnet-4-5",
+    "object": "chat.completion",
+    "service_tier": null,
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 651,
+      "prompt_tokens": 1411,
+      "total_tokens": 2062,
+      "completion_tokens_details": null,
+      "prompt_tokens_details": null
+    }
+  },
+  "error_message": "",
+  "elapsed_sec": 11.325,
+  "timestamp": "<REDACTED_TIMESTAMP>"
+}

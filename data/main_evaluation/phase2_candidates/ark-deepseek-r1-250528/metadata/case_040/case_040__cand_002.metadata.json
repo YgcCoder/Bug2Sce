@@ -1,0 +1,85 @@
+{
+  "case_id": "case_040",
+  "model_name": "ark-deepseek-r1-250528",
+  "candidate_index": 2,
+  "candidate_spec": {
+    "candidate_id": "cand_002",
+    "high_level_variant": "Slightly shift the immobile walker and add conservative wetness increase to test scenario robustness",
+    "mutation_intent": "Retains all core Phase 1 preservation constraints: original map, mission positions, 2 actors, red light in critical window, and red-light violation oracle label",
+    "expected_oracle": "red_light",
+    "modifications": {
+      "weather_delta": {
+        "rain": 0,
+        "fog": 0,
+        "wetness": 4,
+        "puddle": 2
+      },
+      "actor_mutations": [
+        {
+          "actor_index": 0,
+          "position_offset": {
+            "x": -1.1,
+            "y": 0.9,
+            "z": 0.0
+          },
+          "speed_delta": 0.0
+        }
+      ],
+      "puddle_mutations": [],
+      "mission_mutation": {
+        "keep_original": true,
+        "spawn_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "destination_offset": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Red-state traffic light is present in ego's critical window",
+      "Total actor count remains 2",
+      "Town01 map and original mission positions are unchanged"
+    ],
+    "post_execution_validation_rules": [
+      "Confirm red-light violation occurs to match original labeling",
+      "Validate that the command/velocity mismatch pattern is retained for root cause analysis"
+    ],
+    "uncertainty": [
+      "Root cause module localization remains unconfirmed per original evidence",
+      "Stop-line crossing during red light is not confirmed pre-generation"
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": 0.0,
+      "fog": 0.0,
+      "wetness": 4.0,
+      "puddle": 2.0
+    },
+    "actor_mutations": [
+      {
+        "actor_index": 0,
+        "position_offset": {
+          "x": -1.1,
+          "y": 0.9
+        },
+        "speed_delta": 0.0
+      }
+    ],
+    "puddle_mutations": [],
+    "mission_mutation": {
+      "keep_original": true
+    }
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_040__ark-deepseek-r1-250528.json",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_040__ark-deepseek-r1-250528.json",
+  "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+}

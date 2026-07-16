@@ -1,0 +1,137 @@
+{
+  "case_id": "case_157",
+  "model_name": "gpt-5.1",
+  "candidate_index": 1,
+  "candidate_spec": {
+    "candidate_id": "cand_001",
+    "high_level_variant": "Ego continues straight along the original route and rear-ends a slower lead vehicle that starts slightly closer ahead in the same lane, under similar moderate rain and wetness, with nearby pedestrians preserved.",
+    "mutation_intent": "Tighten the longitudinal interaction with a lead vehicle to reliably produce a forward collision while preserving the pattern that ego is moving, perception/prediction and planning are active with unblocked waypoints, but vehicle_cmd remains all zeros despite continued motion. Only small spatial and speed adjustments are applied so the same command–status mismatch and collision timing can re-emerge without changing the root-cause hypothesis.",
+    "expected_oracle": "collision",
+    "modifications": {
+      "weather_delta": {
+        "rain": 5,
+        "fog": 0,
+        "wetness": 5,
+        "puddle": 0
+      },
+      "actor_mutations": [
+        {
+          "actor_index": 2,
+          "position_offset": {
+            "x": -6.0,
+            "y": 0.5
+          },
+          "speed_delta": -1.5
+        },
+        {
+          "actor_index": 3,
+          "position_offset": {
+            "x": 2.0,
+            "y": -1.0
+          },
+          "speed_delta": 0.0
+        },
+        {
+          "actor_index": 0,
+          "position_offset": {
+            "x": -3.0,
+            "y": 1.5
+          },
+          "speed_delta": 0.0
+        },
+        {
+          "actor_index": 1,
+          "position_offset": {
+            "x": 1.0,
+            "y": -2.0
+          },
+          "speed_delta": 0.5
+        }
+      ],
+      "puddle_mutations": [],
+      "mission_mutation": {
+        "keep_original": true,
+        "spawn_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "destination_offset": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Ensure at least one non-ego vehicle (e.g., actor_index 2 or 3) ends up in the ego lane ahead of the ego within 0–40 m along the route shortly after spawn.",
+      "Verify that perception and prediction object topics are configured to publish and that at least one dynamic object is expected to be in sensor range during the mid-mission segment.",
+      "Confirm that planning final_waypoints generation is enabled with no scenario-level configuration that marks the route as blocked.",
+      "Check that controller configuration allows a zeroed vehicle_cmd stream (accel, brake, steer, target_speed all zero) even while vehicle_status reports motion (e.g., via external or default throttle behavior), to preserve the command–status mismatch possibility."
+    ],
+    "post_execution_validation_rules": [
+      "Confirm oracle collision reports a collision between ego and a non-ego vehicle (preferably actor_index 2) near the end of the run.",
+      "Check ego vehicle_status or odometry shows sustained nonzero forward velocity in the several seconds before collision, with brake_cmd remaining effectively zero (no significant braking).",
+      "Verify detection and prediction topics contain at least one nearby dynamic actor ahead of ego in the 3–5 s window before collision.",
+      "Ensure final_waypoints are present with normal waypoint counts and no blocked flags in the same pre-collision window.",
+      "Validate that vehicle_cmd accel_cmd, brake_cmd, steer_cmd, and target_speed remain at or extremely close to zero while ego velocity stays nonzero, matching the command–status mismatch pattern.",
+      "Confirm that any closest-object-distance or similar waypoint summary value does not prevent planning from publishing waypoints (no emergency stop/blocked plan triggered)."
+    ],
+    "uncertainty": [
+      "This variant assumes the root cause is upstream of or parallel to control, but still does not distinguish among perception mislocalization, planning logic, controller behavior, or simulator/vehicle interface issues.",
+      "The adjusted longitudinal spacing and speed may alter exact collision timing compared to the seed, but the underlying mismatch between vehicle_cmd and vehicle_status is expected to remain if the same software stack behavior persists."
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": 5.0,
+      "fog": 0.0,
+      "wetness": 5.0,
+      "puddle": 0.0
+    },
+    "actor_mutations": [
+      {
+        "actor_index": 2,
+        "position_offset": {
+          "x": -6.0,
+          "y": 0.5
+        },
+        "speed_delta": -1.5
+      },
+      {
+        "actor_index": 3,
+        "position_offset": {
+          "x": 2.0,
+          "y": -1.0
+        },
+        "speed_delta": 0.0
+      },
+      {
+        "actor_index": 0,
+        "position_offset": {
+          "x": -3.0,
+          "y": 1.5
+        },
+        "speed_delta": 0.0
+      },
+      {
+        "actor_index": 1,
+        "position_offset": {
+          "x": 1.0,
+          "y": -2.0
+        },
+        "speed_delta": 0.5
+      }
+    ],
+    "puddle_mutations": [],
+    "mission_mutation": {
+      "keep_original": true
+    }
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_157__gpt-5.1.json",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_157__gpt-5.1.json",
+  "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+}

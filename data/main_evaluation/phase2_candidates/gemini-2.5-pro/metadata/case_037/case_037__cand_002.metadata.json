@@ -1,0 +1,82 @@
+{
+  "case_id": "case_037",
+  "model_name": "gemini-2.5-pro",
+  "candidate_index": 2,
+  "candidate_spec": {
+    "candidate_id": "cand_002",
+    "high_level_variant": "Ego runs red light in worse weather but narrowly avoids collision with a slower vehicle.",
+    "mutation_intent": "Induce a near-miss by slowing the other vehicle, testing if a collision is necessary for failure in worse weather.",
+    "expected_oracle": "red_light",
+    "modifications": {
+      "weather_delta": {
+        "rain": 10,
+        "fog": 20,
+        "wetness": 10,
+        "puddle": 0
+      },
+      "actor_mutations": [
+        {
+          "actor_index": 0,
+          "position_offset": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "speed_delta": -1.5
+        }
+      ],
+      "puddle_mutations": [],
+      "mission_mutation": {
+        "keep_original": true,
+        "spawn_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "destination_offset": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Ego vehicle must receive zero-value commands while moving."
+    ],
+    "post_execution_validation_rules": [
+      "A red light violation must be reported.",
+      "No collision with actor 0 should occur."
+    ],
+    "uncertainty": [
+      "Uncertain if a different failure like lane invasion will occur.",
+      "The root cause of the vehicle command mismatch is unknown."
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": 10.0,
+      "fog": 20,
+      "wetness": 10.0,
+      "puddle": 0.0
+    },
+    "actor_mutations": [
+      {
+        "actor_index": 0,
+        "position_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "speed_delta": -1.5
+      }
+    ],
+    "puddle_mutations": [],
+    "mission_mutation": {
+      "keep_original": true
+    }
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_037__gemini-2.5-pro.json",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_037__gemini-2.5-pro.json",
+  "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+}

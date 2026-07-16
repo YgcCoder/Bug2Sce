@@ -1,0 +1,119 @@
+{
+  "case_id": "case_068",
+  "workflow": "phase1_causal_explanation",
+  "model_name": "claude-sonnet-4-5",
+  "model_id": "claude-sonnet-4-5",
+  "status": "completed",
+  "dry_run": false,
+  "schema_valid": true,
+  "schema_errors": [],
+  "quality_flags": [],
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_prompts/case_068__claude-sonnet-4-5.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_068__claude-sonnet-4-5.json",
+  "prompt_estimated_tokens": 2661,
+  "usage": {
+    "prompt_tokens": 3202,
+    "completion_tokens": 881,
+    "total_tokens": 4083
+  },
+  "estimated_cost_usd": null,
+  "raw_response": "```json\n{\n  \"case_id\": \"case_068\",\n  \"fault_layer\": \"unknown\",\n  \"fault_component\": \"unknown\",\n  \"causal_explanation\": \"The oracle confirms a red-light violation. Critical-window evidence shows traffic light states are available (36 lights, states 0/1/2 sampled), final waypoints exist with stop_line_id=4294967295, and vehicle_status shows movement (velocity up to 5.73 m/s). However, the evidence does not confirm which traffic light was on the ego route, whether a stop line was crossed, or which Autoware module failed to stop.\",\n  \"root_cause_pattern\": \"Conservative preservation pattern: ego proceeds through a scenario with traffic lights present while a red-light violation is recorded, but route-light relation and stop-line crossing are not confirmed by evidence.\",\n  \"preservation_constraints\": [\n    \"The generated candidate should preserve the red-light violation oracle symptom.\",\n    \"Traffic lights should be present in the scenario.\",\n    \"Ego should exhibit movement (non-zero velocity) in the critical window.\",\n    \"Post-execution validation should check for red-light violation, traffic light presence on route, and ego velocity profile.\"\n  ],\n  \"modifiable_factors\": [\n    \"actor_position\",\n    \"weather\",\n    \"puddles\",\n    \"traffic_light_timing\"\n  ],\n  \"non_modifiable_conditions\": [\n    \"red-light violation oracle symptom\",\n    \"traffic lights present in scenario\",\n    \"ego exhibits movement\"\n  ],\n  \"uncertainty\": [\n    \"Route-light relation is not confirmed; which traffic light was violated is unknown.\",\n    \"Stop-line crossing is not confirmed by evidence.\",\n    \"Module-level attribution (perception, planning, actuation) is not directly supported by critical-window evidence.\",\n    \"vehicle_cmd shows all-zero commands while vehicle_status shows movement, creating actuation uncertainty.\"\n  ],\n  \"evidence_support\": [\n    {\n      \"evidence_id\": \"error_json_events\",\n      \"claim\": \"Red-light violation oracle is confirmed (red=true).\"\n    },\n    {\n      \"evidence_id\": \"traffic_light_state_samples\",\n      \"claim\": \"Traffic lights exist with 36 lights and states 0, 1, 2 sampled in the critical window.\"\n    },\n    {\n      \"evidence_id\": \"vehicle_status\",\n      \"claim\": \"Ego velocity ranges from 0.0 to 5.73 m/s, confirming movement.\"\n    },\n    {\n      \"evidence_id\": \"final_waypoints\",\n      \"claim\": \"Final waypoints exist with stop_line_id=4294967295 (invalid/unknown stop line).\"\n    },\n    {\n      \"evidence_id\": \"vehicle_cmd\",\n      \"claim\": \"All vehicle commands are zero (steer, accel, brake, target_speed), conflicting with observed movement.\"\n    },\n    {\n      \"evidence_id\": \"red_light_window.notes\",\n      \"claim\": \"Route-light relation and stop-line crossing are not confirmed by current summaries.\"\n    }\n  ],\n  \"confidence\": \"low\",\n  \"ready_for_phase2_generation\": \"yes\",\n  \"notes_for_validator\": [\n    \"Do not count a generated case as same-root-cause unless post-execution confirms red-light violation and traffic light presence on ego route.\",\n    \"Verify that ego exhibits non-zero velocity in the critical window.\",\n    \"Check whether the generated scenario provides route-light relation evidence that was missing in the original case.\",\n    \"Do not assume planning or actuation fault without direct evidence of stop-line crossing or command failure.\"\n  ]\n}\n```",
+  "parsed_response": {
+    "case_id": "case_068",
+    "fault_layer": "unknown",
+    "fault_component": "unknown",
+    "causal_explanation": "The oracle confirms a red-light violation. Critical-window evidence shows traffic light states are available (36 lights, states 0/1/2 sampled), final waypoints exist with stop_line_id=4294967295, and vehicle_status shows movement (velocity up to 5.73 m/s). However, the evidence does not confirm which traffic light was on the ego route, whether a stop line was crossed, or which Autoware module failed to stop.",
+    "root_cause_pattern": "Conservative preservation pattern: ego proceeds through a scenario with traffic lights present while a red-light violation is recorded, but route-light relation and stop-line crossing are not confirmed by evidence.",
+    "preservation_constraints": [
+      "The generated candidate should preserve the red-light violation oracle symptom.",
+      "Traffic lights should be present in the scenario.",
+      "Ego should exhibit movement (non-zero velocity) in the critical window.",
+      "Post-execution validation should check for red-light violation, traffic light presence on route, and ego velocity profile."
+    ],
+    "modifiable_factors": [
+      "actor_position",
+      "weather",
+      "puddles",
+      "traffic_light_timing"
+    ],
+    "non_modifiable_conditions": [
+      "red-light violation oracle symptom",
+      "traffic lights present in scenario",
+      "ego exhibits movement"
+    ],
+    "uncertainty": [
+      "Route-light relation is not confirmed; which traffic light was violated is unknown.",
+      "Stop-line crossing is not confirmed by evidence.",
+      "Module-level attribution (perception, planning, actuation) is not directly supported by critical-window evidence.",
+      "vehicle_cmd shows all-zero commands while vehicle_status shows movement, creating actuation uncertainty."
+    ],
+    "evidence_support": [
+      {
+        "evidence_id": "error_json_events",
+        "claim": "Red-light violation oracle is confirmed (red=true)."
+      },
+      {
+        "evidence_id": "traffic_light_state_samples",
+        "claim": "Traffic lights exist with 36 lights and states 0, 1, 2 sampled in the critical window."
+      },
+      {
+        "evidence_id": "vehicle_status",
+        "claim": "Ego velocity ranges from 0.0 to 5.73 m/s, confirming movement."
+      },
+      {
+        "evidence_id": "final_waypoints",
+        "claim": "Final waypoints exist with stop_line_id=4294967295 (invalid/unknown stop line)."
+      },
+      {
+        "evidence_id": "vehicle_cmd",
+        "claim": "All vehicle commands are zero (steer, accel, brake, target_speed), conflicting with observed movement."
+      },
+      {
+        "evidence_id": "red_light_window.notes",
+        "claim": "Route-light relation and stop-line crossing are not confirmed by current summaries."
+      }
+    ],
+    "confidence": "low",
+    "ready_for_phase2_generation": "yes",
+    "notes_for_validator": [
+      "Do not count a generated case as same-root-cause unless post-execution confirms red-light violation and traffic light presence on ego route.",
+      "Verify that ego exhibits non-zero velocity in the critical window.",
+      "Check whether the generated scenario provides route-light relation evidence that was missing in the original case.",
+      "Do not assume planning or actuation fault without direct evidence of stop-line crossing or command failure."
+    ]
+  },
+  "raw_api_payload": {
+    "id": "<REDACTED_RESPONSE_ID>",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "```json\n{\n  \"case_id\": \"case_068\",\n  \"fault_layer\": \"unknown\",\n  \"fault_component\": \"unknown\",\n  \"causal_explanation\": \"The oracle confirms a red-light violation. Critical-window evidence shows traffic light states are available (36 lights, states 0/1/2 sampled), final waypoints exist with stop_line_id=4294967295, and vehicle_status shows movement (velocity up to 5.73 m/s). However, the evidence does not confirm which traffic light was on the ego route, whether a stop line was crossed, or which Autoware module failed to stop.\",\n  \"root_cause_pattern\": \"Conservative preservation pattern: ego proceeds through a scenario with traffic lights present while a red-light violation is recorded, but route-light relation and stop-line crossing are not confirmed by evidence.\",\n  \"preservation_constraints\": [\n    \"The generated candidate should preserve the red-light violation oracle symptom.\",\n    \"Traffic lights should be present in the scenario.\",\n    \"Ego should exhibit movement (non-zero velocity) in the critical window.\",\n    \"Post-execution validation should check for red-light violation, traffic light presence on route, and ego velocity profile.\"\n  ],\n  \"modifiable_factors\": [\n    \"actor_position\",\n    \"weather\",\n    \"puddles\",\n    \"traffic_light_timing\"\n  ],\n  \"non_modifiable_conditions\": [\n    \"red-light violation oracle symptom\",\n    \"traffic lights present in scenario\",\n    \"ego exhibits movement\"\n  ],\n  \"uncertainty\": [\n    \"Route-light relation is not confirmed; which traffic light was violated is unknown.\",\n    \"Stop-line crossing is not confirmed by evidence.\",\n    \"Module-level attribution (perception, planning, actuation) is not directly supported by critical-window evidence.\",\n    \"vehicle_cmd shows all-zero commands while vehicle_status shows movement, creating actuation uncertainty.\"\n  ],\n  \"evidence_support\": [\n    {\n      \"evidence_id\": \"error_json_events\",\n      \"claim\": \"Red-light violation oracle is confirmed (red=true).\"\n    },\n    {\n      \"evidence_id\": \"traffic_light_state_samples\",\n      \"claim\": \"Traffic lights exist with 36 lights and states 0, 1, 2 sampled in the critical window.\"\n    },\n    {\n      \"evidence_id\": \"vehicle_status\",\n      \"claim\": \"Ego velocity ranges from 0.0 to 5.73 m/s, confirming movement.\"\n    },\n    {\n      \"evidence_id\": \"final_waypoints\",\n      \"claim\": \"Final waypoints exist with stop_line_id=4294967295 (invalid/unknown stop line).\"\n    },\n    {\n      \"evidence_id\": \"vehicle_cmd\",\n      \"claim\": \"All vehicle commands are zero (steer, accel, brake, target_speed), conflicting with observed movement.\"\n    },\n    {\n      \"evidence_id\": \"red_light_window.notes\",\n      \"claim\": \"Route-light relation and stop-line crossing are not confirmed by current summaries.\"\n    }\n  ],\n  \"confidence\": \"low\",\n  \"ready_for_phase2_generation\": \"yes\",\n  \"notes_for_validator\": [\n    \"Do not count a generated case as same-root-cause unless post-execution confirms red-light violation and traffic light presence on ego route.\",\n    \"Verify that ego exhibits non-zero velocity in the critical window.\",\n    \"Check whether the generated scenario provides route-light relation evidence that was missing in the original case.\",\n    \"Do not assume planning or actuation fault without direct evidence of stop-line crossing or command failure.\"\n  ]\n}\n```",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "claude-sonnet-4-5",
+    "object": "chat.completion",
+    "service_tier": null,
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 881,
+      "prompt_tokens": 3202,
+      "total_tokens": 4083,
+      "completion_tokens_details": null,
+      "prompt_tokens_details": null
+    }
+  },
+  "error_message": "",
+  "timestamp": "<REDACTED_TIMESTAMP>",
+  "elapsed_sec": 16.887
+}

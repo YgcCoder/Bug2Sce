@@ -1,0 +1,118 @@
+{
+  "case_id": "case_010",
+  "workflow": "phase1_causal_explanation",
+  "model_name": "gemini-2.5-pro",
+  "model_id": "gemini-2.5-pro",
+  "status": "completed",
+  "dry_run": false,
+  "schema_valid": true,
+  "schema_errors": [],
+  "quality_flags": [],
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_prompts/case_010__gemini-2.5-pro.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_010__gemini-2.5-pro.json",
+  "prompt_estimated_tokens": 2434,
+  "usage": {
+    "prompt_tokens": 3164,
+    "completion_tokens": 2795,
+    "total_tokens": 5959
+  },
+  "estimated_cost_usd": null,
+  "raw_response": "```json\n{\n  \"case_id\": \"case_010\",\n  \"fault_layer\": \"unknown\",\n  \"fault_component\": \"unknown, possible data logging or labeling error\",\n  \"causal_explanation\": \"The dataset labels a lane invasion, but simulator logs and odometry show the vehicle barely moved and reached its goal, indicating a likely labeling or data logging error.\",\n  \"root_cause_pattern\": \"A scenario where dataset labels conflict with simulator oracle events and odometry data.\",\n  \"preservation_constraints\": [\n    \"Preserve dataset label vs. oracle event conflict.\",\n    \"Preserve zero-value vehicle commands.\",\n    \"Preserve goal proximity to start.\"\n  ],\n  \"modifiable_factors\": [\n    \"weather\",\n    \"puddles\",\n    \"map\"\n  ],\n  \"non_modifiable_conditions\": [\n    \"Dataset label vs. oracle event conflict.\",\n    \"Goal is near start position.\"\n  ],\n  \"uncertainty\": [\n    \"Dataset label (lane invasion) is contradicted by simulator events.\",\n    \"Vehicle velocity data is inconsistent across topics.\",\n    \"The actual vehicle behavior is unclear due to conflicting data.\"\n  ],\n  \"evidence_support\": [\n    {\n      \"evidence_id\": \"oracle_consistency\",\n      \"claim\": \"Dataset claims lane invasion, error.json does not.\"\n    },\n    {\n      \"evidence_id\": \"trace_summary_compact.actuation\",\n      \"claim\": \"vehicle_cmd is zero while vehicle_status shows velocity.\"\n    },\n    {\n      \"evidence_id\": \"trace_summary_compact.oracle.odometry\",\n      \"claim\": \"Oracle odometry shows minimal vehicle movement.\"\n    }\n  ],\n  \"confidence\": \"low\",\n  \"ready_for_phase2_generation\": \"uncertain\",\n  \"notes_for_validator\": [\n    \"The lane invasion label is unconfirmed and contradicted.\",\n    \"The case appears to be a false positive in the dataset.\",\n    \"Resolve data conflict before generating new scenarios.\"\n  ]\n}\n```",
+  "parsed_response": {
+    "case_id": "case_010",
+    "fault_layer": "unknown",
+    "fault_component": "unknown, possible data logging or labeling error",
+    "causal_explanation": "The dataset labels a lane invasion, but simulator logs and odometry show the vehicle barely moved and reached its goal, indicating a likely labeling or data logging error.",
+    "root_cause_pattern": "A scenario where dataset labels conflict with simulator oracle events and odometry data.",
+    "preservation_constraints": [
+      "Preserve dataset label vs. oracle event conflict.",
+      "Preserve zero-value vehicle commands.",
+      "Preserve goal proximity to start."
+    ],
+    "modifiable_factors": [
+      "weather",
+      "puddles",
+      "map"
+    ],
+    "non_modifiable_conditions": [
+      "Dataset label vs. oracle event conflict.",
+      "Goal is near start position."
+    ],
+    "uncertainty": [
+      "Dataset label (lane invasion) is contradicted by simulator events.",
+      "Vehicle velocity data is inconsistent across topics.",
+      "The actual vehicle behavior is unclear due to conflicting data."
+    ],
+    "evidence_support": [
+      {
+        "evidence_id": "oracle_consistency",
+        "claim": "Dataset claims lane invasion, error.json does not."
+      },
+      {
+        "evidence_id": "trace_summary_compact.actuation",
+        "claim": "vehicle_cmd is zero while vehicle_status shows velocity."
+      },
+      {
+        "evidence_id": "trace_summary_compact.oracle.odometry",
+        "claim": "Oracle odometry shows minimal vehicle movement."
+      }
+    ],
+    "confidence": "low",
+    "ready_for_phase2_generation": "uncertain",
+    "notes_for_validator": [
+      "The lane invasion label is unconfirmed and contradicted.",
+      "The case appears to be a false positive in the dataset.",
+      "Resolve data conflict before generating new scenarios."
+    ]
+  },
+  "raw_api_payload": {
+    "id": "<REDACTED_RESPONSE_ID>",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "```json\n{\n  \"case_id\": \"case_010\",\n  \"fault_layer\": \"unknown\",\n  \"fault_component\": \"unknown, possible data logging or labeling error\",\n  \"causal_explanation\": \"The dataset labels a lane invasion, but simulator logs and odometry show the vehicle barely moved and reached its goal, indicating a likely labeling or data logging error.\",\n  \"root_cause_pattern\": \"A scenario where dataset labels conflict with simulator oracle events and odometry data.\",\n  \"preservation_constraints\": [\n    \"Preserve dataset label vs. oracle event conflict.\",\n    \"Preserve zero-value vehicle commands.\",\n    \"Preserve goal proximity to start.\"\n  ],\n  \"modifiable_factors\": [\n    \"weather\",\n    \"puddles\",\n    \"map\"\n  ],\n  \"non_modifiable_conditions\": [\n    \"Dataset label vs. oracle event conflict.\",\n    \"Goal is near start position.\"\n  ],\n  \"uncertainty\": [\n    \"Dataset label (lane invasion) is contradicted by simulator events.\",\n    \"Vehicle velocity data is inconsistent across topics.\",\n    \"The actual vehicle behavior is unclear due to conflicting data.\"\n  ],\n  \"evidence_support\": [\n    {\n      \"evidence_id\": \"oracle_consistency\",\n      \"claim\": \"Dataset claims lane invasion, error.json does not.\"\n    },\n    {\n      \"evidence_id\": \"trace_summary_compact.actuation\",\n      \"claim\": \"vehicle_cmd is zero while vehicle_status shows velocity.\"\n    },\n    {\n      \"evidence_id\": \"trace_summary_compact.oracle.odometry\",\n      \"claim\": \"Oracle odometry shows minimal vehicle movement.\"\n    }\n  ],\n  \"confidence\": \"low\",\n  \"ready_for_phase2_generation\": \"uncertain\",\n  \"notes_for_validator\": [\n    \"The lane invasion label is unconfirmed and contradicted.\",\n    \"The case appears to be a false positive in the dataset.\",\n    \"Resolve data conflict before generating new scenarios.\"\n  ]\n}\n```",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "gemini-2.5-pro",
+    "object": "chat.completion",
+    "service_tier": null,
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 2795,
+      "prompt_tokens": 3164,
+      "total_tokens": 5959,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": 0,
+        "reasoning_tokens": 2322,
+        "rejected_prediction_tokens": null,
+        "text_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 0,
+        "text_tokens": 3164,
+        "image_tokens": 0
+      },
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "input_tokens_details": null,
+      "claude_cache_creation_5_m_tokens": 0,
+      "claude_cache_creation_1_h_tokens": 0
+    }
+  },
+  "error_message": "",
+  "timestamp": "<REDACTED_TIMESTAMP>",
+  "elapsed_sec": 27.097
+}

@@ -1,0 +1,156 @@
+{
+  "case_id": "case_039",
+  "round": 2,
+  "model_name": "claude-sonnet-4-5",
+  "candidate_index": 2,
+  "candidate_spec": {
+    "candidate_id": "cand_002",
+    "high_level_variant": "Reduce wetness and shift mission destination slightly to test goal-reaching behavior",
+    "mutation_intent": "Test if small destination offset preserves low-speed movement with vehicle_cmd=0 pattern while avoiding collision/red_light triggers seen in Round 1",
+    "expected_oracle": "unknown",
+    "modifications": {
+      "weather_delta": {
+        "rain": -2,
+        "fog": 0,
+        "wetness": -2,
+        "puddle": 0
+      },
+      "actor_mutations": [
+        {
+          "actor_index": 0,
+          "position_offset": {
+            "x": 0.5,
+            "y": 0.8
+          },
+          "speed_delta": 0.0
+        }
+      ],
+      "puddle_mutations": [
+        {
+          "puddle_index": 0,
+          "location_offset": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "level_delta": 0.0,
+          "size_scale": 1.0
+        },
+        {
+          "puddle_index": 1,
+          "location_offset": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "level_delta": -0.08,
+          "size_scale": 0.95
+        },
+        {
+          "puddle_index": 2,
+          "location_offset": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "level_delta": 0.0,
+          "size_scale": 1.0
+        }
+      ],
+      "mission_mutation": {
+        "keep_original": false,
+        "spawn_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "destination_offset": {
+          "x": -1.5,
+          "y": 1.0
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Destination offset within 5m bounds and spawn unchanged",
+      "Weather deltas within conservative bounds"
+    ],
+    "post_execution_validation_rules": [
+      "Verify vehicle_cmd=0 with vehicle_status actuation mismatch persists",
+      "Check for low-speed sustained movement pattern",
+      "Validate oracle consistency between dataset and error.json outputs"
+    ],
+    "uncertainty": [
+      "Round 1 partial_or_boundary cases showed mission offsets may trigger red_light or lane_invasion",
+      "Reduced wetness may alter control behavior and eliminate vehicle_cmd/vehicle_status mismatch"
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": -2.0,
+      "fog": 0.0,
+      "wetness": -2.0,
+      "puddle": 0.0
+    },
+    "actor_mutations": [
+      {
+        "actor_index": 0,
+        "position_offset": {
+          "x": 0.5,
+          "y": 0.8
+        },
+        "speed_delta": 0.0
+      }
+    ],
+    "puddle_mutations": [
+      {
+        "puddle_index": 0,
+        "location_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "level_delta": 0.0,
+        "size_scale": 1.0
+      },
+      {
+        "puddle_index": 1,
+        "location_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "level_delta": -0.08,
+        "size_scale": 0.95
+      },
+      {
+        "puddle_index": 2,
+        "location_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "level_delta": 0.0,
+        "size_scale": 1.0
+      }
+    ],
+    "mission_mutation": {
+      "spawn_offset": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "destination_offset": {
+        "x": -1.5,
+        "y": 1.0
+      }
+    },
+    "safety_repairs": []
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "original_phase1_output": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_039__claude-sonnet-4-5.json",
+  "round1_feedback_models": [
+    "ark-deepseek-r1-250528",
+    "ark-doubao-seed-2.0-lite-260215",
+    "claude-sonnet-4-5",
+    "gemini-2.5-pro",
+    "gpt-4o-2024-11-20",
+    "gpt-5.1"
+  ],
+  "round2_api_output": "<WORKSPACE_ROOT>/processed/experiments/round2_feedback/api_outputs/case_039__claude-sonnet-4-5.json"
+}

@@ -1,0 +1,90 @@
+{
+  "case_id": "case_002",
+  "model_name": "gemini-2.5-pro",
+  "candidate_index": 1,
+  "candidate_spec": {
+    "candidate_id": "cand_001",
+    "high_level_variant": "Simplify scene by reducing weather and removing actor interactions.",
+    "mutation_intent": "Confirm the planner's red light failure is not caused by weather or other actors, isolating the root cause.",
+    "expected_oracle": "red_light",
+    "modifications": {
+      "weather_delta": {
+        "rain": -20,
+        "fog": -20,
+        "wetness": -20,
+        "puddle": -20
+      },
+      "actor_mutations": [
+        {
+          "actor_index": 0,
+          "position_offset": {
+            "x": 8.0,
+            "y": 8.0
+          },
+          "speed_delta": 0.0
+        },
+        {
+          "actor_index": 1,
+          "position_offset": {
+            "x": -8.0,
+            "y": -8.0
+          },
+          "speed_delta": 0.0
+        }
+      ],
+      "puddle_mutations": [],
+      "mission_mutation": {
+        "keep_original": true
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Ego's route intersects a red light.",
+      "Scene is clear of other actors."
+    ],
+    "post_execution_validation_rules": [
+      "Ego vehicle crosses stop line on red."
+    ],
+    "uncertainty": [
+      "Control system discrepancy may still be present.",
+      "Failure might be weather-dependent."
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": -20,
+      "fog": -20,
+      "wetness": -20,
+      "puddle": -20
+    },
+    "actor_mutations": [
+      {
+        "actor_index": 0,
+        "position_offset": {
+          "x": 8,
+          "y": 8
+        },
+        "speed_delta": 0.0
+      },
+      {
+        "actor_index": 1,
+        "position_offset": {
+          "x": -8,
+          "y": -8
+        },
+        "speed_delta": 0.0
+      }
+    ],
+    "puddle_mutations": [],
+    "mission_mutation": {
+      "keep_original": true
+    }
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_002__gemini-2.5-pro.json",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_002__gemini-2.5-pro.json",
+  "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+}

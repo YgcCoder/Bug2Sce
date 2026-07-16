@@ -1,0 +1,99 @@
+{
+  "case_id": "case_069",
+  "model_name": "ark-deepseek-r1-250528",
+  "candidate_index": 1,
+  "candidate_spec": {
+    "candidate_id": "cand_001",
+    "high_level_variant": "Small positional adjustment of both existing actors with minor weather change, preserves full base mission route",
+    "mutation_intent": "Preserves all phase 1 constraints: 2 actors, same base map and mission, retains the command-status mismatch and label conflict between dataset and error logs",
+    "expected_oracle": "compound",
+    "modifications": {
+      "weather_delta": {
+        "rain": 5,
+        "fog": 0,
+        "wetness": 5,
+        "puddle": 0
+      },
+      "actor_mutations": [
+        {
+          "actor_index": 0,
+          "position_offset": {
+            "x": 1.2,
+            "y": -0.8
+          },
+          "speed_delta": 0.5
+        },
+        {
+          "actor_index": 1,
+          "position_offset": {
+            "x": -0.9,
+            "y": 1.1
+          },
+          "speed_delta": -0.7
+        }
+      ],
+      "puddle_mutations": [],
+      "mission_mutation": {
+        "keep_original": true,
+        "spawn_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "destination_offset": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Confirm 2 actors are spawned per requirement",
+      "Verify all-zero actuation commands exist in vehicle_cmd for the critical window"
+    ],
+    "post_execution_validation_rules": [
+      "Check that mismatch between commanded actuation and reported non-zero throttle/velocity exists",
+      "Confirm label conflict between original dataset labels and error.json event records is preserved"
+    ],
+    "uncertainty": [
+      "Collision and lane invasion occurrence remains unconfirmed due to original label conflict",
+      "Actuation fault root cause is not directly confirmed per original evidence"
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": 5.0,
+      "fog": 0.0,
+      "wetness": 5.0,
+      "puddle": 0.0
+    },
+    "actor_mutations": [
+      {
+        "actor_index": 0,
+        "position_offset": {
+          "x": 1.2,
+          "y": -0.8
+        },
+        "speed_delta": 0.5
+      },
+      {
+        "actor_index": 1,
+        "position_offset": {
+          "x": -0.9,
+          "y": 1.1
+        },
+        "speed_delta": -0.7
+      }
+    ],
+    "puddle_mutations": [],
+    "mission_mutation": {
+      "keep_original": true
+    }
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_069__ark-deepseek-r1-250528.json",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_069__ark-deepseek-r1-250528.json",
+  "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+}

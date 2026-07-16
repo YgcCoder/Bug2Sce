@@ -1,0 +1,44 @@
+You are the Phase 2 scenario amplifier for Bug2Scenario.
+Task: generate high-level, root-cause-preserving candidate scenario specs.
+
+Rules:
+- Return exactly one JSON object. Do not use markdown fences.
+- Use the Phase 1 root-cause pattern and preservation constraints from the same LLM backbone.
+- Do not invent new oracle labels. Preserve the intended oracle/failure pattern when evidence supports it.
+- Generate candidate specs only; local rule-based code will concretize them into DriveFuzz-style JSON.
+- Keep actor position offsets within [-8, 8] meters on x/y.
+- Keep actor speed_delta within [-3, 3].
+- Keep mission spawn/destination offsets within [-5, 5] meters, or set keep_original=true.
+- Keep weather deltas conservative: each weather_delta should be within [-20, 20].
+- Keep puddle level_delta within [-0.2, 0.2] and size_scale within [0.8, 1.2].
+- If Phase 1 is uncertainty-heavy, create conservative variants and preserve uncertainty in the output.
+- Generate exactly 2 candidate_specs.
+
+Return JSON schema:
+{
+  "case_id": "case_XXX",
+  "candidate_specs": [
+    {
+      "candidate_id": "cand_001",
+      "high_level_variant": "short scenario variant description",
+      "mutation_intent": "why this variant preserves the Phase 1 pattern",
+      "expected_oracle": "collision | red_light | lane_invasion | stuck | compound | unknown",
+      "modifications": {
+        "weather_delta": {"rain": 0, "fog": 0, "wetness": 0, "puddle": 0},
+        "actor_mutations": [
+          {"actor_index": 0, "position_offset": {"x": 0.0, "y": 0.0}, "speed_delta": 0.0}
+        ],
+        "puddle_mutations": [
+          {"puddle_index": 0, "location_offset": {"x": 0.0, "y": 0.0}, "level_delta": 0.0, "size_scale": 1.0}
+        ],
+        "mission_mutation": {"keep_original": true, "spawn_offset": {"x": 0.0, "y": 0.0}, "destination_offset": {"x": 0.0, "y": 0.0}}
+      },
+      "pre_execution_validation_rules": ["rule"],
+      "post_execution_validation_rules": ["rule"],
+      "uncertainty": ["missing evidence"]
+    }
+  ]
+}
+
+Input JSON:
+{"case_id":"case_061","model_name":"ark-deepseek-r1-250528","phase1_output":{"case_id":"case_061","fault_layer":"unknown","causal_explanation":"Confirmed collision and red light violation occurred. Pre-collision, all /vehicle_cmd actuation commands are zero, but vehicle_status reports non-zero throttle, no braking, and increasing ego velocity reaching ~5 m/s at collision. No blocked final waypoints are detected, and the closest detected object is 55m from ego. Labels conflict between dataset and error.json for lane invasion.","root_cause_pattern":"Ego continues moving toward collision with all-zero published actuation commands on /vehicle_cmd, while vehicle status reports non-zero throttle and movement, with no detected blocked waypoints or close obstacles before impact.","preservation_constraints":["Preserve confirmed collision and red light violation outcomes","Preserve the mismatch between all-zero /vehicle_cmd commands and non-zero throttle / moving ego in pre-collision vehicle status","Preserve no detected blocked final waypoints before collision","Preserve the closest detected pre-collision object being more than 50m from ego"],"uncertainty":["lane invasion label conflicts between dataset and error.json","module-level failure attribution not directly supported by critical window evidence","route-light relation and stop-line crossing not confirmed for red light violation","actuation mismatch cannot be confirmed as root cause from available evidence alone"],"ready_for_phase2_generation":"yes","notes_for_validator":["Check that the pre-collision actuation command/vehicle status mismatch is preserved in generated cases","Resolve the lane invasion label conflict before classifying a generated case as matching this root cause","Validate that collision and red light violation outcomes are preserved post-execution"]},"seed_scenario":{"mission":{"map":"Town01","spawn":{"x":301.3399658203125,"y":330.53997802734375,"z":0.29999998211860657,"pitch":0.0,"yaw":-9.1552734375e-05,"roll":0.0},"destination":{"x":339.01873779296875,"y":116.54576110839844,"z":0.29999998211860657,"yaw":-89.99993896484375}},"weather":{"cloud":22,"rain":1,"puddle":72,"wind":86,"fog":3,"wetness":33,"angle":47,"altitude":40},"actors":[{"index":0,"type":"walker","nav_type":"linear","speed":2.52,"spawn":{"x":307.106,"y":326.717,"z":1.5,"pitch":0.0,"yaw":273.916,"roll":0.0}},{"index":1,"type":"walker","nav_type":"linear","speed":1.91,"spawn":{"x":312.164,"y":331.0,"z":1.5,"pitch":0.0,"yaw":340.961,"roll":0.0}}],"puddles":[]}}

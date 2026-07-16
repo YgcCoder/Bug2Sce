@@ -1,0 +1,395 @@
+{
+  "case_id": "case_094",
+  "model_name": "gemini-2.5-pro",
+  "workflow": "phase2_grounded_generation",
+  "status": "completed",
+  "schema_valid": true,
+  "schema_errors": [],
+  "phase1_ready": "uncertain",
+  "num_candidates_requested": 2,
+  "num_candidates_written": 2,
+  "num_pre_valid": 2,
+  "candidate_records": [
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/gemini-2.5-pro/json/case_094/case_094__cand_001.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/gemini-2.5-pro/metadata/case_094/case_094__cand_001.metadata.json",
+      "case_id": "case_094",
+      "model_name": "gemini-2.5-pro",
+      "candidate_index": 1,
+      "candidate_spec": {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Increase rain and wetness to test environmental effects on the anomalous behavior.",
+        "mutation_intent": "Probe if worsening weather affects the planner's failure to see an obstacle or the controller's anomalous commands.",
+        "expected_oracle": "collision",
+        "modifications": {
+          "weather_delta": {
+            "rain": 20,
+            "fog": 0,
+            "wetness": 20,
+            "puddle": 0
+          },
+          "actor_mutations": [],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": 0.1,
+              "size_scale": 1.0
+            },
+            {
+              "puddle_index": 1,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": 0.1,
+              "size_scale": 1.0
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Planner must not report a blocked path before collision."
+        ],
+        "post_execution_validation_rules": [
+          "Verify collision occurs.",
+          "Verify vehicle accelerates with zero-value control commands."
+        ],
+        "uncertainty": [
+          "Root cause of acceleration with zero commands is unknown.",
+          "Unclear if weather changes will alter the bug's manifestation."
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 20,
+          "fog": 0.0,
+          "wetness": 20,
+          "puddle": 0.0
+        },
+        "actor_mutations": [],
+        "puddle_mutations": [
+          {
+            "puddle_index": 0,
+            "location_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "level_delta": 0.1,
+            "size_scale": 1.0
+          },
+          {
+            "puddle_index": 1,
+            "location_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "level_delta": 0.1,
+            "size_scale": 1.0
+          }
+        ],
+        "mission_mutation": {
+          "keep_original": true
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_094__gemini-2.5-pro.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_094__gemini-2.5-pro.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    },
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/gemini-2.5-pro/json/case_094/case_094__cand_002.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/gemini-2.5-pro/metadata/case_094/case_094__cand_002.metadata.json",
+      "case_id": "case_094",
+      "model_name": "gemini-2.5-pro",
+      "candidate_index": 2,
+      "candidate_spec": {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Slightly alter actor positions and speeds to test planner sensitivity.",
+        "mutation_intent": "Determine if the planner's failure to report a blocked path is specific to the original actor trajectories.",
+        "expected_oracle": "collision",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 1.0,
+                "y": -1.0
+              },
+              "speed_delta": 0.2
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": -1.0,
+                "y": 1.0
+              },
+              "speed_delta": -0.2
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Planner must not report a blocked path before collision."
+        ],
+        "post_execution_validation_rules": [
+          "Verify collision occurs.",
+          "Verify vehicle accelerates with zero-value control commands."
+        ],
+        "uncertainty": [
+          "Root cause of acceleration with zero commands is unknown.",
+          "Unclear if actor geometry changes will alter the bug."
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 0.0,
+          "fog": 0.0,
+          "wetness": 0.0,
+          "puddle": 0.0
+        },
+        "actor_mutations": [
+          {
+            "actor_index": 0,
+            "position_offset": {
+              "x": 1.0,
+              "y": -1.0
+            },
+            "speed_delta": 0.2
+          },
+          {
+            "actor_index": 1,
+            "position_offset": {
+              "x": -1.0,
+              "y": 1.0
+            },
+            "speed_delta": -0.2
+          }
+        ],
+        "puddle_mutations": [],
+        "mission_mutation": {
+          "keep_original": true
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_094__gemini-2.5-pro.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_094__gemini-2.5-pro.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    }
+  ],
+  "seed_artifact_zip": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/gemini-2.5-pro/seed-artifact/seed-artifact-case_094.zip",
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_prompts/case_094__gemini-2.5-pro.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_094__gemini-2.5-pro.json",
+  "prompt_estimated_tokens": 1058,
+  "usage": {
+    "prompt_tokens": 1449,
+    "completion_tokens": 2608,
+    "total_tokens": 4057
+  },
+  "raw_response": "```json\n{\n  \"case_id\": \"case_094\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Increase rain and wetness to test environmental effects on the anomalous behavior.\",\n      \"mutation_intent\": \"Probe if worsening weather affects the planner's failure to see an obstacle or the controller's anomalous commands.\",\n      \"expected_oracle\": \"collision\",\n      \"modifications\": {\n        \"weather_delta\": {\n          \"rain\": 20,\n          \"fog\": 0,\n          \"wetness\": 20,\n          \"puddle\": 0\n        },\n        \"actor_mutations\": [],\n        \"puddle_mutations\": [\n          {\n            \"puddle_index\": 0,\n            \"location_offset\": {\n              \"x\": 0.0,\n              \"y\": 0.0\n            },\n            \"level_delta\": 0.1,\n            \"size_scale\": 1.0\n          },\n          {\n            \"puddle_index\": 1,\n            \"location_offset\": {\n              \"x\": 0.0,\n              \"y\": 0.0\n            },\n            \"level_delta\": 0.1,\n            \"size_scale\": 1.0\n          }\n        ],\n        \"mission_mutation\": {\n          \"keep_original\": true,\n          \"spawn_offset\": {\n            \"x\": 0.0,\n            \"y\": 0.0\n          },\n          \"destination_offset\": {\n            \"x\": 0.0,\n            \"y\": 0.0\n          }\n        }\n      },\n      \"pre_execution_validation_rules\": [\n        \"Planner must not report a blocked path before collision.\"\n      ],\n      \"post_execution_validation_rules\": [\n        \"Verify collision occurs.\",\n        \"Verify vehicle accelerates with zero-value control commands.\"\n      ],\n      \"uncertainty\": [\n        \"Root cause of acceleration with zero commands is unknown.\",\n        \"Unclear if weather changes will alter the bug's manifestation.\"\n      ]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Slightly alter actor positions and speeds to test planner sensitivity.\",\n      \"mutation_intent\": \"Determine if the planner's failure to report a blocked path is specific to the original actor trajectories.\",\n      \"expected_oracle\": \"collision\",\n      \"modifications\": {\n        \"weather_delta\": {\n          \"rain\": 0,\n          \"fog\": 0,\n          \"wetness\": 0,\n          \"puddle\": 0\n        },\n        \"actor_mutations\": [\n          {\n            \"actor_index\": 0,\n            \"position_offset\": {\n              \"x\": 1.0,\n              \"y\": -1.0\n            },\n            \"speed_delta\": 0.2\n          },\n          {\n            \"actor_index\": 1,\n            \"position_offset\": {\n              \"x\": -1.0,\n              \"y\": 1.0\n            },\n            \"speed_delta\": -0.2\n          }\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\n          \"keep_original\": true,\n          \"spawn_offset\": {\n            \"x\": 0.0,\n            \"y\": 0.0\n          },\n          \"destination_offset\": {\n            \"x\": 0.0,\n            \"y\": 0.0\n          }\n        }\n      },\n      \"pre_execution_validation_rules\": [\n        \"Planner must not report a blocked path before collision.\"\n      ],\n      \"post_execution_validation_rules\": [\n        \"Verify collision occurs.\",\n        \"Verify vehicle accelerates with zero-value control commands.\"\n      ],\n      \"uncertainty\": [\n        \"Root cause of acceleration with zero commands is unknown.\",\n        \"Unclear if actor geometry changes will alter the bug.\"\n      ]\n    }\n  ]\n}\n```",
+  "parsed_response": {
+    "case_id": "case_094",
+    "candidate_specs": [
+      {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Increase rain and wetness to test environmental effects on the anomalous behavior.",
+        "mutation_intent": "Probe if worsening weather affects the planner's failure to see an obstacle or the controller's anomalous commands.",
+        "expected_oracle": "collision",
+        "modifications": {
+          "weather_delta": {
+            "rain": 20,
+            "fog": 0,
+            "wetness": 20,
+            "puddle": 0
+          },
+          "actor_mutations": [],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": 0.1,
+              "size_scale": 1.0
+            },
+            {
+              "puddle_index": 1,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": 0.1,
+              "size_scale": 1.0
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Planner must not report a blocked path before collision."
+        ],
+        "post_execution_validation_rules": [
+          "Verify collision occurs.",
+          "Verify vehicle accelerates with zero-value control commands."
+        ],
+        "uncertainty": [
+          "Root cause of acceleration with zero commands is unknown.",
+          "Unclear if weather changes will alter the bug's manifestation."
+        ]
+      },
+      {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Slightly alter actor positions and speeds to test planner sensitivity.",
+        "mutation_intent": "Determine if the planner's failure to report a blocked path is specific to the original actor trajectories.",
+        "expected_oracle": "collision",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 1.0,
+                "y": -1.0
+              },
+              "speed_delta": 0.2
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": -1.0,
+                "y": 1.0
+              },
+              "speed_delta": -0.2
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Planner must not report a blocked path before collision."
+        ],
+        "post_execution_validation_rules": [
+          "Verify collision occurs.",
+          "Verify vehicle accelerates with zero-value control commands."
+        ],
+        "uncertainty": [
+          "Root cause of acceleration with zero commands is unknown.",
+          "Unclear if actor geometry changes will alter the bug."
+        ]
+      }
+    ]
+  },
+  "raw_api_payload": {
+    "id": "<REDACTED_RESPONSE_ID>",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "```json\n{\n  \"case_id\": \"case_094\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Increase rain and wetness to test environmental effects on the anomalous behavior.\",\n      \"mutation_intent\": \"Probe if worsening weather affects the planner's failure to see an obstacle or the controller's anomalous commands.\",\n      \"expected_oracle\": \"collision\",\n      \"modifications\": {\n        \"weather_delta\": {\n          \"rain\": 20,\n          \"fog\": 0,\n          \"wetness\": 20,\n          \"puddle\": 0\n        },\n        \"actor_mutations\": [],\n        \"puddle_mutations\": [\n          {\n            \"puddle_index\": 0,\n            \"location_offset\": {\n              \"x\": 0.0,\n              \"y\": 0.0\n            },\n            \"level_delta\": 0.1,\n            \"size_scale\": 1.0\n          },\n          {\n            \"puddle_index\": 1,\n            \"location_offset\": {\n              \"x\": 0.0,\n              \"y\": 0.0\n            },\n            \"level_delta\": 0.1,\n            \"size_scale\": 1.0\n          }\n        ],\n        \"mission_mutation\": {\n          \"keep_original\": true,\n          \"spawn_offset\": {\n            \"x\": 0.0,\n            \"y\": 0.0\n          },\n          \"destination_offset\": {\n            \"x\": 0.0,\n            \"y\": 0.0\n          }\n        }\n      },\n      \"pre_execution_validation_rules\": [\n        \"Planner must not report a blocked path before collision.\"\n      ],\n      \"post_execution_validation_rules\": [\n        \"Verify collision occurs.\",\n        \"Verify vehicle accelerates with zero-value control commands.\"\n      ],\n      \"uncertainty\": [\n        \"Root cause of acceleration with zero commands is unknown.\",\n        \"Unclear if weather changes will alter the bug's manifestation.\"\n      ]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Slightly alter actor positions and speeds to test planner sensitivity.\",\n      \"mutation_intent\": \"Determine if the planner's failure to report a blocked path is specific to the original actor trajectories.\",\n      \"expected_oracle\": \"collision\",\n      \"modifications\": {\n        \"weather_delta\": {\n          \"rain\": 0,\n          \"fog\": 0,\n          \"wetness\": 0,\n          \"puddle\": 0\n        },\n        \"actor_mutations\": [\n          {\n            \"actor_index\": 0,\n            \"position_offset\": {\n              \"x\": 1.0,\n              \"y\": -1.0\n            },\n            \"speed_delta\": 0.2\n          },\n          {\n            \"actor_index\": 1,\n            \"position_offset\": {\n              \"x\": -1.0,\n              \"y\": 1.0\n            },\n            \"speed_delta\": -0.2\n          }\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\n          \"keep_original\": true,\n          \"spawn_offset\": {\n            \"x\": 0.0,\n            \"y\": 0.0\n          },\n          \"destination_offset\": {\n            \"x\": 0.0,\n            \"y\": 0.0\n          }\n        }\n      },\n      \"pre_execution_validation_rules\": [\n        \"Planner must not report a blocked path before collision.\"\n      ],\n      \"post_execution_validation_rules\": [\n        \"Verify collision occurs.\",\n        \"Verify vehicle accelerates with zero-value control commands.\"\n      ],\n      \"uncertainty\": [\n        \"Root cause of acceleration with zero commands is unknown.\",\n        \"Unclear if actor geometry changes will alter the bug.\"\n      ]\n    }\n  ]\n}\n```",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "gemini-2.5-pro",
+    "object": "chat.completion",
+    "service_tier": null,
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 2608,
+      "prompt_tokens": 1449,
+      "total_tokens": 4057,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": 0,
+        "reasoning_tokens": 1640,
+        "rejected_prediction_tokens": null,
+        "text_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 0,
+        "text_tokens": 1449,
+        "image_tokens": 0
+      },
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "input_tokens_details": null,
+      "claude_cache_creation_5_m_tokens": 0,
+      "claude_cache_creation_1_h_tokens": 0
+    }
+  },
+  "error_message": "",
+  "elapsed_sec": 25.214,
+  "timestamp": "<REDACTED_TIMESTAMP>"
+}

@@ -1,0 +1,103 @@
+{
+  "case_id": "case_040",
+  "model_name": "gpt-4o-2024-11-20",
+  "candidate_index": 2,
+  "candidate_spec": {
+    "candidate_id": "cand_002",
+    "high_level_variant": "Ego vehicle approaches the intersection with slightly altered mission destination and actor speeds.",
+    "mutation_intent": "This variant maintains the red-light violation symptom while testing the impact of minor mission and actor speed adjustments on stop-line crossing and route-light interaction.",
+    "expected_oracle": "red_light",
+    "modifications": {
+      "weather_delta": {
+        "rain": 0,
+        "fog": 0,
+        "wetness": 0,
+        "puddle": 0
+      },
+      "actor_mutations": [
+        {
+          "actor_index": 0,
+          "position_offset": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "speed_delta": 0.0
+        },
+        {
+          "actor_index": 1,
+          "position_offset": {
+            "x": -1.5,
+            "y": 0.5
+          },
+          "speed_delta": 1.5
+        }
+      ],
+      "puddle_mutations": [],
+      "mission_mutation": {
+        "keep_original": false,
+        "spawn_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "destination_offset": {
+          "x": 2.0,
+          "y": -3.0
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Ensure traffic light state samples are available during the critical window."
+    ],
+    "post_execution_validation_rules": [
+      "Validate stop-line crossing and route-light interaction."
+    ],
+    "uncertainty": [
+      "Route-light relation and stop-line crossing are not confirmed."
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": 0.0,
+      "fog": 0.0,
+      "wetness": 0.0,
+      "puddle": 0.0
+    },
+    "actor_mutations": [
+      {
+        "actor_index": 0,
+        "position_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "speed_delta": 0.0
+      },
+      {
+        "actor_index": 1,
+        "position_offset": {
+          "x": -1.5,
+          "y": 0.5
+        },
+        "speed_delta": 1.5
+      }
+    ],
+    "puddle_mutations": [],
+    "mission_mutation": {
+      "spawn_offset": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "destination_offset": {
+        "x": 2.0,
+        "y": -3.0
+      }
+    }
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_040__gpt-4o-2024-11-20.json",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_040__gpt-4o-2024-11-20.json",
+  "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+}

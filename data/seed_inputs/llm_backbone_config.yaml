@@ -1,0 +1,41 @@
+# Bug2Scenario LLM backbone config
+#
+# Source checked from:
+# <PRIVATE_CONFIG_ROOT>/compsac26-1原始代码/config_7models.yaml
+#
+# The real API key is not copied here. Export OPAPI_KEY before running, or let
+# the runner load it from a local .env file.
+
+provider: openai_compatible
+api_key_env: OPAPI_KEY
+base_url: https://YOUR_OPENAI_COMPATIBLE_ENDPOINT/v1
+
+default_generation:
+  temperature: 0.2
+  max_tokens: 2048
+  timeout: 120
+  retry: 3
+
+models:
+  - name: gpt-4o-2024-11-20
+    model_id: gpt-4o-2024-11-20
+    family: gpt
+  - name: gpt-5.1
+    model_id: gpt-5.1
+    family: gpt
+    token_parameter: max_completion_tokens
+    omit_temperature: true
+  - name: claude-sonnet-4-5
+    model_id: claude-sonnet-4-5
+    family: claude
+  - name: gemini-2.5-pro
+    model_id: gemini-2.5-pro
+    family: gemini
+  - name: ark-deepseek-r1-250528
+    model_id: ark-deepseek-r1-250528
+    family: deepseek
+  - name: ark-doubao-seed-2.0-lite-260215
+    model_id: ark-doubao-seed-2.0-lite-260215
+    family: doubao
+
+candidates_per_seed_per_model: 2

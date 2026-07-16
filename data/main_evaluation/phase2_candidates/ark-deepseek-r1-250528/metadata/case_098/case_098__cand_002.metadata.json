@@ -1,0 +1,124 @@
+{
+  "case_id": "case_098",
+  "model_name": "ark-deepseek-r1-250528",
+  "candidate_index": 2,
+  "candidate_spec": {
+    "candidate_id": "cand_002",
+    "high_level_variant": "Slightly increased road wetness and puddle level near ego path, nearby actor positioned slightly further along ego route with minor speed increase",
+    "mutation_intent": "Preserves all core root cause conditions while testing a conservative wet road variant, maintains nearby actor presence, all required pre-collision semantic conditions and expected collision outcome",
+    "expected_oracle": "collision",
+    "modifications": {
+      "weather_delta": {
+        "rain": 3,
+        "fog": 0,
+        "wetness": 7,
+        "puddle": 2
+      },
+      "actor_mutations": [
+        {
+          "actor_index": 1,
+          "position_offset": {
+            "x": 0.0,
+            "y": -1.8,
+            "z": 0.0
+          },
+          "speed_delta": 0.7
+        }
+      ],
+      "puddle_mutations": [
+        {
+          "puddle_index": 0,
+          "location_offset": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "level_delta": 0.0,
+          "size_scale": 1.0
+        },
+        {
+          "puddle_index": 1,
+          "location_offset": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "level_delta": 0.1,
+          "size_scale": 1.05
+        }
+      ],
+      "mission_mutation": {
+        "keep_original": true,
+        "spawn_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "destination_offset": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Nearby actor must be in ego's planned path pre-collision",
+      "All vehicle_cmd commands must be zero in pre-collision critical window",
+      "Weather and puddle changes are within allowed conservative ranges"
+    ],
+    "post_execution_validation_rules": [
+      "Collision between ego and nearby actor must be confirmed",
+      "Planning must not mark any waypoints as blocked before collision",
+      "Pre-collision state must show non-zero throttle and no braking"
+    ],
+    "uncertainty": [
+      "Actuation mismatch root cause remains unlocalized to a specific module",
+      "It is still unknown why no avoidance or braking commands were generated pre-collision"
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": 3.0,
+      "fog": 0.0,
+      "wetness": 7.0,
+      "puddle": 2.0
+    },
+    "actor_mutations": [
+      {
+        "actor_index": 1,
+        "position_offset": {
+          "x": 0.0,
+          "y": -1.8
+        },
+        "speed_delta": 0.7
+      }
+    ],
+    "puddle_mutations": [
+      {
+        "puddle_index": 0,
+        "location_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "level_delta": 0.0,
+        "size_scale": 1.0
+      },
+      {
+        "puddle_index": 1,
+        "location_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "level_delta": 0.1,
+        "size_scale": 1.05
+      }
+    ],
+    "mission_mutation": {
+      "keep_original": true
+    }
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_098__ark-deepseek-r1-250528.json",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_098__ark-deepseek-r1-250528.json",
+  "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+}

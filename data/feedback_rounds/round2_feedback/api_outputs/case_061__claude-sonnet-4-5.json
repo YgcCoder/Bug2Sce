@@ -1,0 +1,188 @@
+{
+  "case_id": "case_061",
+  "model_name": "claude-sonnet-4-5",
+  "workflow": "round2_feedback_guided_b2s",
+  "experimental_difference": "six_models_round1_feedback_added_to_original_b2s_input",
+  "status": "completed",
+  "schema_valid": true,
+  "schema_errors": [],
+  "num_round1_feedback_records": 6,
+  "num_candidates_requested": 2,
+  "num_candidates_written": 2,
+  "num_pre_valid": 2,
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/round2_feedback/prompts/case_061.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/round2_feedback/api_outputs/case_061__claude-sonnet-4-5.json",
+  "prompt_estimated_tokens": 4599,
+  "usage": {
+    "prompt_tokens": 5124,
+    "completion_tokens": 1011,
+    "total_tokens": 6135
+  },
+  "candidate_records": [
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/round2_feedback/candidates/case_061__Round2_01.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/round2_feedback/metadata/case_061__Round2_01.metadata.json",
+      "pre_valid": true,
+      "pre_validation_errors": [],
+      "pre_validation_warnings": []
+    },
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/round2_feedback/candidates/case_061__Round2_02.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/round2_feedback/metadata/case_061__Round2_02.metadata.json",
+      "pre_valid": true,
+      "pre_validation_errors": [],
+      "pre_validation_warnings": []
+    }
+  ],
+  "raw_response": "```json\n{\n  \"case_id\": \"case_061\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Move walker 0 significantly closer to ego path, minimal weather change\",\n      \"mutation_intent\": \"Force tighter actor-route interaction to trigger collision while preserving red-light and vehicle_cmd/status mismatch pattern\",\n      \"expected_oracle\": \"collision\",\n      \"modifications\": {\n        \"weather_delta\": {\n          \"rain\": 0,\n          \"fog\": 0,\n          \"wetness\": 0,\n          \"puddle\": 0\n        },\n        \"actor_mutations\": [\n          {\n            \"actor_index\": 0,\n            \"position_offset\": {\n              \"x\": -3.5,\n              \"y\": 3.2\n            },\n            \"speed_delta\": 0.8\n          },\n          {\n            \"actor_index\": 1,\n            \"position_offset\": {\n              \"x\": 0.0,\n              \"y\": 0.0\n            },\n            \"speed_delta\": 0.0\n          }\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\n          \"keep_original\": true,\n          \"spawn_offset\": {\n            \"x\": 0.0,\n            \"y\": 0.0\n          },\n          \"destination_offset\": {\n            \"x\": 0.0,\n            \"y\": 0.0\n          }\n        }\n      },\n      \"pre_execution_validation_rules\": [\n        \"Verify walker 0 spawns within 10m of ego route\"\n      ],\n      \"post_execution_validation_rules\": [\n        \"Check collision oracle triggered and red-light violation present\",\n        \"Verify vehicle_cmd remains zero while vehicle_status shows nonzero throttle and speed\"\n      ],\n      \"uncertainty\": [\n        \"Collision timing depends on walker crossing ego path during red-light approach\",\n        \"Vehicle_cmd/status mismatch may not reproduce if simulator behavior differs\"\n      ]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Both walkers moved closer with increased rain and fog for perception stress\",\n      \"mutation_intent\": \"Combine tighter actor proximity with degraded visibility to preserve collision and red-light while testing perception robustness\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\n          \"rain\": 18,\n          \"fog\": 12,\n          \"wetness\": 15,\n          \"puddle\": 8\n        },\n        \"actor_mutations\": [\n          {\n            \"actor_index\": 0,\n            \"position_offset\": {\n              \"x\": -2.8,\n              \"y\": 2.5\n            },\n            \"speed_delta\": 0.6\n          },\n          {\n            \"actor_index\": 1,\n            \"position_offset\": {\n              \"x\": -1.8,\n              \"y\": 1.5\n            },\n            \"speed_delta\": 0.4\n          }\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\n          \"keep_original\": true,\n          \"spawn_offset\": {\n            \"x\": 0.0,\n            \"y\": 0.0\n          },\n          \"destination_offset\": {\n            \"x\": 0.0,\n            \"y\": 0.0\n          }\n        }\n      },\n      \"pre_execution_validation_rules\": [\n        \"Confirm both walkers spawn near ego route with increased weather severity\"\n      ],\n      \"post_execution_validation_rules\": [\n        \"Verify collision and red-light oracles triggered\",\n        \"Check vehicle_cmd zero with nonzero vehicle_status throttle and moderate speed\",\n        \"Confirm traffic light state and route-light relation if red-light claimed\"\n      ],\n      \"uncertainty\": [\n        \"Heavy weather may alter perception quality and detection timing\",\n        \"Actor interaction timing uncertain with combined proximity and weather changes\"\n      ]\n    }\n  ]\n}\n```",
+  "parsed_response": {
+    "case_id": "case_061",
+    "candidate_specs": [
+      {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Move walker 0 significantly closer to ego path, minimal weather change",
+        "mutation_intent": "Force tighter actor-route interaction to trigger collision while preserving red-light and vehicle_cmd/status mismatch pattern",
+        "expected_oracle": "collision",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": -3.5,
+                "y": 3.2
+              },
+              "speed_delta": 0.8
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "speed_delta": 0.0
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Verify walker 0 spawns within 10m of ego route"
+        ],
+        "post_execution_validation_rules": [
+          "Check collision oracle triggered and red-light violation present",
+          "Verify vehicle_cmd remains zero while vehicle_status shows nonzero throttle and speed"
+        ],
+        "uncertainty": [
+          "Collision timing depends on walker crossing ego path during red-light approach",
+          "Vehicle_cmd/status mismatch may not reproduce if simulator behavior differs"
+        ]
+      },
+      {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Both walkers moved closer with increased rain and fog for perception stress",
+        "mutation_intent": "Combine tighter actor proximity with degraded visibility to preserve collision and red-light while testing perception robustness",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": 18,
+            "fog": 12,
+            "wetness": 15,
+            "puddle": 8
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": -2.8,
+                "y": 2.5
+              },
+              "speed_delta": 0.6
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": -1.8,
+                "y": 1.5
+              },
+              "speed_delta": 0.4
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Confirm both walkers spawn near ego route with increased weather severity"
+        ],
+        "post_execution_validation_rules": [
+          "Verify collision and red-light oracles triggered",
+          "Check vehicle_cmd zero with nonzero vehicle_status throttle and moderate speed",
+          "Confirm traffic light state and route-light relation if red-light claimed"
+        ],
+        "uncertainty": [
+          "Heavy weather may alter perception quality and detection timing",
+          "Actor interaction timing uncertain with combined proximity and weather changes"
+        ]
+      }
+    ]
+  },
+  "error_message": "",
+  "timestamp": "<REDACTED_TIMESTAMP>",
+  "raw_api_payload": {
+    "id": "<REDACTED_RESPONSE_ID>",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "```json\n{\n  \"case_id\": \"case_061\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Move walker 0 significantly closer to ego path, minimal weather change\",\n      \"mutation_intent\": \"Force tighter actor-route interaction to trigger collision while preserving red-light and vehicle_cmd/status mismatch pattern\",\n      \"expected_oracle\": \"collision\",\n      \"modifications\": {\n        \"weather_delta\": {\n          \"rain\": 0,\n          \"fog\": 0,\n          \"wetness\": 0,\n          \"puddle\": 0\n        },\n        \"actor_mutations\": [\n          {\n            \"actor_index\": 0,\n            \"position_offset\": {\n              \"x\": -3.5,\n              \"y\": 3.2\n            },\n            \"speed_delta\": 0.8\n          },\n          {\n            \"actor_index\": 1,\n            \"position_offset\": {\n              \"x\": 0.0,\n              \"y\": 0.0\n            },\n            \"speed_delta\": 0.0\n          }\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\n          \"keep_original\": true,\n          \"spawn_offset\": {\n            \"x\": 0.0,\n            \"y\": 0.0\n          },\n          \"destination_offset\": {\n            \"x\": 0.0,\n            \"y\": 0.0\n          }\n        }\n      },\n      \"pre_execution_validation_rules\": [\n        \"Verify walker 0 spawns within 10m of ego route\"\n      ],\n      \"post_execution_validation_rules\": [\n        \"Check collision oracle triggered and red-light violation present\",\n        \"Verify vehicle_cmd remains zero while vehicle_status shows nonzero throttle and speed\"\n      ],\n      \"uncertainty\": [\n        \"Collision timing depends on walker crossing ego path during red-light approach\",\n        \"Vehicle_cmd/status mismatch may not reproduce if simulator behavior differs\"\n      ]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Both walkers moved closer with increased rain and fog for perception stress\",\n      \"mutation_intent\": \"Combine tighter actor proximity with degraded visibility to preserve collision and red-light while testing perception robustness\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\n          \"rain\": 18,\n          \"fog\": 12,\n          \"wetness\": 15,\n          \"puddle\": 8\n        },\n        \"actor_mutations\": [\n          {\n            \"actor_index\": 0,\n            \"position_offset\": {\n              \"x\": -2.8,\n              \"y\": 2.5\n            },\n            \"speed_delta\": 0.6\n          },\n          {\n            \"actor_index\": 1,\n            \"position_offset\": {\n              \"x\": -1.8,\n              \"y\": 1.5\n            },\n            \"speed_delta\": 0.4\n          }\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\n          \"keep_original\": true,\n          \"spawn_offset\": {\n            \"x\": 0.0,\n            \"y\": 0.0\n          },\n          \"destination_offset\": {\n            \"x\": 0.0,\n            \"y\": 0.0\n          }\n        }\n      },\n      \"pre_execution_validation_rules\": [\n        \"Confirm both walkers spawn near ego route with increased weather severity\"\n      ],\n      \"post_execution_validation_rules\": [\n        \"Verify collision and red-light oracles triggered\",\n        \"Check vehicle_cmd zero with nonzero vehicle_status throttle and moderate speed\",\n        \"Confirm traffic light state and route-light relation if red-light claimed\"\n      ],\n      \"uncertainty\": [\n        \"Heavy weather may alter perception quality and detection timing\",\n        \"Actor interaction timing uncertain with combined proximity and weather changes\"\n      ]\n    }\n  ]\n}\n```",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "claude-sonnet-4-5",
+    "object": "chat.completion",
+    "service_tier": null,
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 1011,
+      "prompt_tokens": 5124,
+      "total_tokens": 6135,
+      "completion_tokens_details": null,
+      "prompt_tokens_details": null
+    }
+  },
+  "elapsed_sec": 17.809
+}

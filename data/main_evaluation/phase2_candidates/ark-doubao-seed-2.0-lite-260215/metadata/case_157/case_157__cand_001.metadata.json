@@ -1,0 +1,83 @@
+{
+  "case_id": "case_157",
+  "model_name": "ark-doubao-seed-2.0-lite-260215",
+  "candidate_index": 1,
+  "candidate_spec": {
+    "candidate_id": "cand_001",
+    "high_level_variant": "Slight forward shift of the colliding forward vehicle on ego's route to reduce distance to collision",
+    "mutation_intent": "Preserves all Phase 1 root cause constraints: colliding object remains on ego's planned route, retains the zero vehicle_cmd condition in pre-collision window, keeps ego's positive speed with non-zero throttle, only adjusts the colliding object's position to maintain collision outcome without altering the core mismatch pattern",
+    "expected_oracle": "collision",
+    "modifications": {
+      "weather_delta": {
+        "rain": 0,
+        "fog": 0,
+        "wetness": 0,
+        "puddle": 0
+      },
+      "actor_mutations": [
+        {
+          "actor_index": 2,
+          "position_offset": {
+            "x": 2.1,
+            "y": 0.4
+          },
+          "speed_delta": -1.0
+        }
+      ],
+      "puddle_mutations": [],
+      "mission_mutation": {
+        "keep_original": true,
+        "spawn_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "destination_offset": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Verify vehicle_cmd all zero in pre-collision critical window",
+      "Confirm colliding vehicle is located on ego's planned route ahead"
+    ],
+    "post_execution_validation_rules": [
+      "Confirm collision with forward actor occurs",
+      "Check that ego maintains positive speed with non-zero throttle pre-collision"
+    ],
+    "uncertainty": [
+      "Zero vehicle_cmd vs non-zero ego movement mismatch attribution remains unconfirmed",
+      "It is still unknown if root cause is planning, actuation, or logging error"
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": 0.0,
+      "fog": 0.0,
+      "wetness": 0.0,
+      "puddle": 0.0
+    },
+    "actor_mutations": [
+      {
+        "actor_index": 2,
+        "position_offset": {
+          "x": 2.1,
+          "y": 0.4
+        },
+        "speed_delta": -1.0
+      }
+    ],
+    "puddle_mutations": [],
+    "mission_mutation": {
+      "keep_original": true
+    }
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_157__ark-doubao-seed-2.0-lite-260215.json",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_157__ark-doubao-seed-2.0-lite-260215.json",
+  "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+}

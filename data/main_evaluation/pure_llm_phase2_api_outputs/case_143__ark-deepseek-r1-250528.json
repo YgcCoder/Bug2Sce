@@ -1,0 +1,188 @@
+{
+  "case_id": "case_143",
+  "model_name": "ark-deepseek-r1-250528",
+  "workflow": "pure_llm_phase2_baseline",
+  "status": "completed",
+  "schema_valid": true,
+  "schema_errors": [],
+  "num_candidates_requested": 1,
+  "num_candidates_written": 1,
+  "num_pre_valid": 1,
+  "candidate_records": [
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/pure_llm_phase2_candidates/ark-deepseek-r1-250528/json/case_143/case_143__model_ark-deepseek-r1-250528__cand_001.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/pure_llm_phase2_candidates/ark-deepseek-r1-250528/metadata/case_143/case_143__model_ark-deepseek-r1-250528__cand_001.metadata.json",
+      "case_id": "case_143",
+      "model_name": "ark-deepseek-r1-250528",
+      "candidate_index": 1,
+      "candidate_spec": {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Shift ego path to cause lane and red violations",
+        "mutation_intent": "Induce both lane invasion and red light violation",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": 5,
+            "fog": 0,
+            "wetness": 5,
+            "puddle": 2
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 0.5,
+                "y": 1.2
+              },
+              "speed_delta": -0.5
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "All parameters within allowed bounds"
+        ],
+        "post_execution_validation_rules": [
+          "Verify both fault types occur"
+        ],
+        "uncertainty": [
+          "Only one fault may trigger"
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 5.0,
+          "fog": 0.0,
+          "wetness": 5.0,
+          "puddle": 2.0
+        },
+        "actor_mutations": [],
+        "puddle_mutations": [],
+        "mission_mutation": {
+          "keep_original": true
+        },
+        "safety_repairs": []
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": [
+          "no actors in candidate scenario"
+        ]
+      }
+    }
+  ],
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/pure_llm_phase2_api_prompts/case_143__ark-deepseek-r1-250528.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/pure_llm_phase2_api_outputs/case_143__ark-deepseek-r1-250528.json",
+  "prompt_estimated_tokens": 722,
+  "usage": {
+    "prompt_tokens": 1029,
+    "completion_tokens": 1410,
+    "total_tokens": 2439
+  },
+  "raw_response": "{\n  \"case_id\": \"case_143\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Shift ego path to cause lane and red violations\",\n      \"mutation_intent\": \"Induce both lane invasion and red light violation\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 5, \"fog\": 0, \"wetness\": 5, \"puddle\": 2},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 0.5, \"y\": 1.2}, \"speed_delta\": -0.5}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"All parameters within allowed bounds\"],\n      \"post_execution_validation_rules\": [\"Verify both fault types occur\"],\n      \"uncertainty\": [\"Only one fault may trigger\"]\n    }\n  ]\n}",
+  "parsed_response": {
+    "case_id": "case_143",
+    "candidate_specs": [
+      {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Shift ego path to cause lane and red violations",
+        "mutation_intent": "Induce both lane invasion and red light violation",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": 5,
+            "fog": 0,
+            "wetness": 5,
+            "puddle": 2
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 0.5,
+                "y": 1.2
+              },
+              "speed_delta": -0.5
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "All parameters within allowed bounds"
+        ],
+        "post_execution_validation_rules": [
+          "Verify both fault types occur"
+        ],
+        "uncertainty": [
+          "Only one fault may trigger"
+        ]
+      }
+    ]
+  },
+  "raw_api_payload": {
+    "id": "021783587009156fbcc013cde10a689f8f390ac862f8b043612d1",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "{\n  \"case_id\": \"case_143\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Shift ego path to cause lane and red violations\",\n      \"mutation_intent\": \"Induce both lane invasion and red light violation\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 5, \"fog\": 0, \"wetness\": 5, \"puddle\": 2},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 0.5, \"y\": 1.2}, \"speed_delta\": -0.5}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"All parameters within allowed bounds\"],\n      \"post_execution_validation_rules\": [\"Verify both fault types occur\"],\n      \"uncertainty\": [\"Only one fault may trigger\"]\n    }\n  ]\n}",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null,
+          "reasoning_content": "\nGot it, let's build this step by step. First, case_id is case_143, right? Then candidate_specs has one entry, candidate_id cand_001. High level variant: what's the fault? Lane invasion and red light, so maybe \"Slightly shift ego path to cross lane and pass red light\". Wait, keep under 20 words. Yeah, that works. Mutation intent: induce both lane crossing and red light violation. That's under 30 words. Expected oracle is compound because two faults, right? Because fault label has lane_invasion 1 and red_light 1, so compound.\n\nNow modifications: weather delta. Let's see, original rain is 43, maybe add a little? Wait, keep within -20 to 20. Let's say maybe rain +5, fog 0, wetness +5, puddle +3? Wait no, wait seed has no actors or puddles, right? Actors is empty, so actor_mutations... wait seed actors is empty, can we leave it? Wait no, schema has it. Wait, if actors are empty, actor index 0? Wait no, maybe since actors are empty, maybe just keep it but... wait wait seed actors is [], so maybe mutation... wait no, let's think. The mission, keep original true? Yeah. Wait, let's do weather delta: rain +5, fog 0, wetness +5, puddle +2, all within range. That's okay. Actor mutations: wait seed has no actors, so can we have an empty array? Wait no, schema example has one entry, but wait, if no actors, maybe leave it as empty? Wait no, wait let's check the input: seed actors is [], puddles is []. So actor_mutations can be empty? Wait no, let's see, maybe we can modify the ego? Wait actor index, ego is actor 0? Wait maybe. Let's do position offset x 0.5, y 1.2, that's within [-8,8], speed delta -0.5, that's within [-3,3]. That's okay. Puddle mutations: since original has no puddles, maybe leave as empty? Or keep the example but it's okay, wait no, original has no puddles, but the schema allows it, let's do it. Wait mission mutation: keep_original true, right? So that's fine.\n\nPre execution validation rules: \"All offsets within allowed ranges\". That's short, under 18 words. Post execution: \"Check oracle for lane and red violation\". Yep, under 18. Uncertainty: \"Mutation may trigger only one fault\". That's under 18 words.\n\nWait let's check all the rules. Expected oracle is compound, right, because it's both lane invasion and red light, so that's compound. Let's check all deltas: position offsets 0.5, 1.2, within [-8,8], speed delta -0.5 within [-3,3]. Weather deltas: rain 5, fog 0, wetness 5, puddle 2, all within [-20,20]. Mission keep_original true, that's okay. All strings are short. No extra stuff. Let's put it all together correctly.\n\nWait case_id is case_143, right, from input. Candidate id cand_001. High level variant: \"Shift ego path to cause lane and red light violations\" that's 11 words, under 20. Mutation intent: \"Induce both lane invasion and red light violation\" that's 8 words, under 30. Expected oracle: \"compound\". Correct, because two faults. Modifications: weather_delta {\"rain\":5, \"fog\":0, \"wetness\":5, \"puddle\":2} that's good. Actor_mutations: let's see, ego is actor 0, so {\"actor_index\": 0, \"position_offset\": {\"x\": 0.5, \"y\": 1.2}, \"speed_delta\": -0.5} that's right. Puddle_mutations: original has no puddles, so empty array? Wait or leave it as empty, that's okay. Wait schema example has one entry, but if there are no puddles, empty is fine. Mission mutation: {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}} that's correct. Pre_execution_validation_rules: [\"All parameters within allowed bounds\"] that's 7 words, good. Post_execution_validation_rules: [\"Verify both fault types occur\"] that's 6 words, good. Uncertainty: [\"Only one fault may trigger\"] that's 5 words, good.\n\nWait let's check all rules again. No root cause stuff, just high level. Offsets all within range. Speed delta is -0.5, within [-3,3]. Weather deltas all within [-20,20]. Correct. JSON is valid, no trailing commas. Let's write it properly."
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "doubao-seed-2-0-lite-260215",
+    "object": "chat.completion",
+    "service_tier": "default",
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 1410,
+      "prompt_tokens": 1029,
+      "total_tokens": 2439,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 1112,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": null,
+        "cached_tokens": 0
+      }
+    }
+  },
+  "error_message": "",
+  "elapsed_sec": 34.908,
+  "timestamp": "<REDACTED_TIMESTAMP>"
+}

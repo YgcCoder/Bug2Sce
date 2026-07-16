@@ -1,0 +1,397 @@
+{
+  "case_id": "case_112",
+  "model_name": "ark-doubao-seed-2.0-lite-260215",
+  "workflow": "phase2_grounded_generation",
+  "status": "completed",
+  "schema_valid": true,
+  "schema_errors": [],
+  "phase1_ready": "yes",
+  "num_candidates_requested": 2,
+  "num_candidates_written": 2,
+  "num_pre_valid": 2,
+  "candidate_records": [
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-doubao-seed-2.0-lite-260215/json/case_112/case_112__cand_001.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-doubao-seed-2.0-lite-260215/metadata/case_112/case_112__cand_001.metadata.json",
+      "case_id": "case_112",
+      "model_name": "ark-doubao-seed-2.0-lite-260215",
+      "candidate_index": 1,
+      "candidate_spec": {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Shift the crossing walker slightly closer to ego's planned path while keeping all other original scenario elements",
+        "mutation_intent": "Adjusts pedestrian position to ensure the confirmed collision outcome while preserving all root-cause constraints: zero pre-collision vehicle_cmd, positive ego speed with no braking, and conflicting lane invasion annotations between dataset and error.json",
+        "expected_oracle": "collision",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 1.2,
+                "y": -0.8
+              },
+              "speed_delta": 0.4
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "speed_delta": 0.0
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Verify all vehicle_cmd outputs are zero in pre-collision critical window",
+          "Verify lane invasion label conflict between dataset and error.json is preserved",
+          "Verify ego maintains positive speed with zero braking before collision"
+        ],
+        "post_execution_validation_rules": [
+          "Verify collision outcome occurs",
+          "Do not attribute module-level failure without direct post-execution evidence"
+        ],
+        "uncertainty": [
+          "Conflicting lane invasion labels preserved per original evidence",
+          "Mismatch between zero vehicle_cmd and non-zero throttle movement cannot be attributed to actuation failure"
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 0.0,
+          "fog": 0.0,
+          "wetness": 0.0,
+          "puddle": 0.0
+        },
+        "actor_mutations": [
+          {
+            "actor_index": 0,
+            "position_offset": {
+              "x": 1.2,
+              "y": -0.8
+            },
+            "speed_delta": 0.4
+          },
+          {
+            "actor_index": 1,
+            "position_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "speed_delta": 0.0
+          }
+        ],
+        "puddle_mutations": [],
+        "mission_mutation": {
+          "keep_original": true
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_112__ark-doubao-seed-2.0-lite-260215.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_112__ark-doubao-seed-2.0-lite-260215.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    },
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-doubao-seed-2.0-lite-260215/json/case_112/case_112__cand_002.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-doubao-seed-2.0-lite-260215/metadata/case_112/case_112__cand_002.metadata.json",
+      "case_id": "case_112",
+      "model_name": "ark-doubao-seed-2.0-lite-260215",
+      "candidate_index": 2,
+      "candidate_spec": {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Slightly shift ego spawn position closer to the collision point and reduce the speed of the background vehicle",
+        "mutation_intent": "Adjusts time-to-collision while strictly preserving all root-cause requirements: confirmed collision, zero pre-collision vehicle_cmd, positive ego speed with no braking, and conflicting lane invasion annotations",
+        "expected_oracle": "collision",
+        "modifications": {
+          "weather_delta": {
+            "rain": 5,
+            "fog": -5,
+            "wetness": 3,
+            "puddle": 2
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "speed_delta": 0.0
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": -0.6,
+                "y": 0.4
+              },
+              "speed_delta": -1.1
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": false,
+            "spawn_offset": {
+              "x": 1.8,
+              "y": 1.2
+            },
+            "destination_offset": {
+              "x": -1.0,
+              "y": 0.8
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Verify all vehicle_cmd outputs are zero in pre-collision critical window",
+          "Verify lane invasion label conflict between dataset and error.json is preserved",
+          "Verify ego maintains positive speed with zero braking before collision"
+        ],
+        "post_execution_validation_rules": [
+          "Verify collision outcome occurs",
+          "Check for module-level failure evidence only if direct evidence exists post-execution"
+        ],
+        "uncertainty": [
+          "Conflicting lane invasion labels preserved per original evidence",
+          "No proven module-level failure in sensing, perception or planning per original uncertainty"
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 5.0,
+          "fog": -5.0,
+          "wetness": 3.0,
+          "puddle": 2.0
+        },
+        "actor_mutations": [
+          {
+            "actor_index": 0,
+            "position_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "speed_delta": 0.0
+          },
+          {
+            "actor_index": 1,
+            "position_offset": {
+              "x": -0.6,
+              "y": 0.4
+            },
+            "speed_delta": -1.1
+          }
+        ],
+        "puddle_mutations": [],
+        "mission_mutation": {
+          "spawn_offset": {
+            "x": 1.8,
+            "y": 1.2
+          },
+          "destination_offset": {
+            "x": -1.0,
+            "y": 0.8
+          }
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_112__ark-doubao-seed-2.0-lite-260215.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_112__ark-doubao-seed-2.0-lite-260215.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    }
+  ],
+  "seed_artifact_zip": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-doubao-seed-2.0-lite-260215/seed-artifact/seed-artifact-case_112.zip",
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_prompts/case_112__ark-doubao-seed-2.0-lite-260215.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_112__ark-doubao-seed-2.0-lite-260215.json",
+  "prompt_estimated_tokens": 1152,
+  "usage": {
+    "prompt_tokens": 1380,
+    "completion_tokens": 1879,
+    "total_tokens": 3259
+  },
+  "raw_response": "{\n  \"case_id\": \"case_112\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Shift the crossing walker slightly closer to ego's planned path while keeping all other original scenario elements\",\n      \"mutation_intent\": \"Adjusts pedestrian position to ensure the confirmed collision outcome while preserving all root-cause constraints: zero pre-collision vehicle_cmd, positive ego speed with no braking, and conflicting lane invasion annotations between dataset and error.json\",\n      \"expected_oracle\": \"collision\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 1.2, \"y\": -0.8}, \"speed_delta\": 0.4},\n          {\"actor_index\": 1, \"position_offset\": {\"x\": 0.0, \"y\": 0.0}, \"speed_delta\": 0.0}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Verify all vehicle_cmd outputs are zero in pre-collision critical window\", \"Verify lane invasion label conflict between dataset and error.json is preserved\", \"Verify ego maintains positive speed with zero braking before collision\"],\n      \"post_execution_validation_rules\": [\"Verify collision outcome occurs\", \"Do not attribute module-level failure without direct post-execution evidence\"],\n      \"uncertainty\": [\"Conflicting lane invasion labels preserved per original evidence\", \"Mismatch between zero vehicle_cmd and non-zero throttle movement cannot be attributed to actuation failure\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Slightly shift ego spawn position closer to the collision point and reduce the speed of the background vehicle\",\n      \"mutation_intent\": \"Adjusts time-to-collision while strictly preserving all root-cause requirements: confirmed collision, zero pre-collision vehicle_cmd, positive ego speed with no braking, and conflicting lane invasion annotations\",\n      \"expected_oracle\": \"collision\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 5, \"fog\": -5, \"wetness\": 3, \"puddle\": 2},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 0.0, \"y\": 0.0}, \"speed_delta\": 0.0},\n          {\"actor_index\": 1, \"position_offset\": {\"x\": -0.6, \"y\": 0.4}, \"speed_delta\": -1.1}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": false, \"spawn_offset\": {\"x\": 1.8, \"y\": 1.2}, \"destination_offset\": {\"x\": -1.0, \"y\": 0.8}}\n      },\n      \"pre_execution_validation_rules\": [\"Verify all vehicle_cmd outputs are zero in pre-collision critical window\", \"Verify lane invasion label conflict between dataset and error.json is preserved\", \"Verify ego maintains positive speed with zero braking before collision\"],\n      \"post_execution_validation_rules\": [\"Verify collision outcome occurs\", \"Check for module-level failure evidence only if direct evidence exists post-execution\"],\n      \"uncertainty\": [\"Conflicting lane invasion labels preserved per original evidence\", \"No proven module-level failure in sensing, perception or planning per original uncertainty\"]\n    }\n  ]\n}",
+  "parsed_response": {
+    "case_id": "case_112",
+    "candidate_specs": [
+      {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Shift the crossing walker slightly closer to ego's planned path while keeping all other original scenario elements",
+        "mutation_intent": "Adjusts pedestrian position to ensure the confirmed collision outcome while preserving all root-cause constraints: zero pre-collision vehicle_cmd, positive ego speed with no braking, and conflicting lane invasion annotations between dataset and error.json",
+        "expected_oracle": "collision",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 1.2,
+                "y": -0.8
+              },
+              "speed_delta": 0.4
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "speed_delta": 0.0
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Verify all vehicle_cmd outputs are zero in pre-collision critical window",
+          "Verify lane invasion label conflict between dataset and error.json is preserved",
+          "Verify ego maintains positive speed with zero braking before collision"
+        ],
+        "post_execution_validation_rules": [
+          "Verify collision outcome occurs",
+          "Do not attribute module-level failure without direct post-execution evidence"
+        ],
+        "uncertainty": [
+          "Conflicting lane invasion labels preserved per original evidence",
+          "Mismatch between zero vehicle_cmd and non-zero throttle movement cannot be attributed to actuation failure"
+        ]
+      },
+      {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Slightly shift ego spawn position closer to the collision point and reduce the speed of the background vehicle",
+        "mutation_intent": "Adjusts time-to-collision while strictly preserving all root-cause requirements: confirmed collision, zero pre-collision vehicle_cmd, positive ego speed with no braking, and conflicting lane invasion annotations",
+        "expected_oracle": "collision",
+        "modifications": {
+          "weather_delta": {
+            "rain": 5,
+            "fog": -5,
+            "wetness": 3,
+            "puddle": 2
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "speed_delta": 0.0
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": -0.6,
+                "y": 0.4
+              },
+              "speed_delta": -1.1
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": false,
+            "spawn_offset": {
+              "x": 1.8,
+              "y": 1.2
+            },
+            "destination_offset": {
+              "x": -1.0,
+              "y": 0.8
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Verify all vehicle_cmd outputs are zero in pre-collision critical window",
+          "Verify lane invasion label conflict between dataset and error.json is preserved",
+          "Verify ego maintains positive speed with zero braking before collision"
+        ],
+        "post_execution_validation_rules": [
+          "Verify collision outcome occurs",
+          "Check for module-level failure evidence only if direct evidence exists post-execution"
+        ],
+        "uncertainty": [
+          "Conflicting lane invasion labels preserved per original evidence",
+          "No proven module-level failure in sensing, perception or planning per original uncertainty"
+        ]
+      }
+    ]
+  },
+  "raw_api_payload": {
+    "id": "021782922544743275a44fd862e8b57dcd33414ced196967bab9b",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "{\n  \"case_id\": \"case_112\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Shift the crossing walker slightly closer to ego's planned path while keeping all other original scenario elements\",\n      \"mutation_intent\": \"Adjusts pedestrian position to ensure the confirmed collision outcome while preserving all root-cause constraints: zero pre-collision vehicle_cmd, positive ego speed with no braking, and conflicting lane invasion annotations between dataset and error.json\",\n      \"expected_oracle\": \"collision\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 1.2, \"y\": -0.8}, \"speed_delta\": 0.4},\n          {\"actor_index\": 1, \"position_offset\": {\"x\": 0.0, \"y\": 0.0}, \"speed_delta\": 0.0}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Verify all vehicle_cmd outputs are zero in pre-collision critical window\", \"Verify lane invasion label conflict between dataset and error.json is preserved\", \"Verify ego maintains positive speed with zero braking before collision\"],\n      \"post_execution_validation_rules\": [\"Verify collision outcome occurs\", \"Do not attribute module-level failure without direct post-execution evidence\"],\n      \"uncertainty\": [\"Conflicting lane invasion labels preserved per original evidence\", \"Mismatch between zero vehicle_cmd and non-zero throttle movement cannot be attributed to actuation failure\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Slightly shift ego spawn position closer to the collision point and reduce the speed of the background vehicle\",\n      \"mutation_intent\": \"Adjusts time-to-collision while strictly preserving all root-cause requirements: confirmed collision, zero pre-collision vehicle_cmd, positive ego speed with no braking, and conflicting lane invasion annotations\",\n      \"expected_oracle\": \"collision\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 5, \"fog\": -5, \"wetness\": 3, \"puddle\": 2},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 0.0, \"y\": 0.0}, \"speed_delta\": 0.0},\n          {\"actor_index\": 1, \"position_offset\": {\"x\": -0.6, \"y\": 0.4}, \"speed_delta\": -1.1}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": false, \"spawn_offset\": {\"x\": 1.8, \"y\": 1.2}, \"destination_offset\": {\"x\": -1.0, \"y\": 0.8}}\n      },\n      \"pre_execution_validation_rules\": [\"Verify all vehicle_cmd outputs are zero in pre-collision critical window\", \"Verify lane invasion label conflict between dataset and error.json is preserved\", \"Verify ego maintains positive speed with zero braking before collision\"],\n      \"post_execution_validation_rules\": [\"Verify collision outcome occurs\", \"Check for module-level failure evidence only if direct evidence exists post-execution\"],\n      \"uncertainty\": [\"Conflicting lane invasion labels preserved per original evidence\", \"No proven module-level failure in sensing, perception or planning per original uncertainty\"]\n    }\n  ]\n}",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null,
+          "reasoning_content": "\nGot it, let's build this JSON step by step. First, the case_id is case_112, right? We need two candidate specs.\n\nFirst candidate, cand_001. Let's think of the high level variant. Maybe \"Slightly shift the walker position closer to ego's path while maintaining all root cause constraints\". Mutation intent: \"Adjusts pedestrian position to keep the confirmed collision outcome, preserves all required pre-collision conditions (zero vehicle_cmd, positive ego speed, no braking) and retains the conflicting lane invasion annotation\". Expected oracle is collision, right? Because it's confirmed.\n\nNow modifications: weather delta, let's keep it mostly same, maybe small, like rain 0, fog 0, wetness 0, puddle 0. Actor mutations: walker is index 0, position offset x 1.5, y -1.0, speed delta +0.5, that's within [-8,8] x/y, speed delta within [-3,3], good. The other actor index 1, position offset 0, 0, speed delta 0. Puddles are empty, so puddle mutations empty? Wait original seed has no puddles, so that's okay. Mission mutation keep_original true. Pre execution rules: [\"Verify all vehicle_cmd outputs are zero in pre-collision window\", \"Verify lane invasion label conflict between dataset and error.json is preserved\", \"Verify ego maintains positive speed with zero braking pre-collision\"]. Post execution: [\"Verify collision occurs as expected\", \"Check for module-level failure evidence per original constraints\"]. Uncertainty: [\"Retain conflicting lane invasion labels per original uncertainty\", \"No proven module-level failure attribution\"].\n\nNow second candidate, cand_002. High level variant: \"Slightly reduce the speed of the oncoming vehicle and shift ego spawn position closer to the collision point, keeping root cause constraints\". Mutation intent: \"Adjusts vehicle speed and ego spawn to reduce time to collision while preserving all required root cause conditions: confirmed collision, zero pre-collision vehicle_cmd, positive ego speed with no braking, and conflicting lane invasion labels\". Expected oracle is collision again.\n\nModifications: weather delta still all zero, or maybe small? Wait let's do weather delta all zero, that's fine. Actor mutations: actor 1 (the vehicle) speed delta -1.2, that's within range, position offset x -0.8, y 0.5, that's okay. Actor 0 (walker) position offset 0,0 speed delta 0. Mission mutation: keep_original false? Wait no, spawn offset x 2.0, y 1.0, destination offset -1.5, 0.5, that's within [-5,5], right. Wait or keep_original? No, mutation here is shifting spawn, so keep_original false, offsets within range. Puddle mutations still empty, original has no puddles. Pre execution rules: same as first but add \"Verify ego spawn and destination offsets are within allowed bounds\", [\"Verify all vehicle_cmd outputs are zero in pre-collision window\", \"Verify lane invasion label conflict is preserved\", \"Verify ego maintains positive speed with zero braking pre-collision\"]. Post execution: [\"Confirm collision occurs\", \"Do not attribute module failure without direct evidence per original constraints\"]. Uncertainty: [\"Conflicting lane invasion labels remain as original\", \"Actuation mismatch cannot be confirmed as root cause per available evidence\"].\n\nWait let's check all rules: exactly two candidates, all offsets within ranges, preserve root cause, expected oracle is collision, which is correct. Let's fit into the schema.\n\nWait let's make sure all fields are there. Let's check the schema: case_id is case_112, candidate_specs array of two. Each has candidate_id, high_level_variant, mutation_intent, expected_oracle, modifications, pre, post, uncertainty.\n\nLet me write it out properly. Let's check the speed deltas: first candidate walker speed delta +0.5, that's within [-3,3], good. Position offsets 1.5 and -1, within [-8,8], yes. Second candidate vehicle speed delta -1.2, that's okay, position offset -0.8 0.5, okay. Mission spawn offset 2 1, destination -1.5 0.5, all within [-5,5], good. Weather deltas all zero, which is within [-20,20], correct. Puddles are empty so puddle_mutations is empty array, that's fine.\n\nPreservation constraints are all met: we preserve collision, zero vehicle_cmd, positive speed, label conflict. Correct. Uncertainty is preserved as per phase 1.\n\nOkay let's put it all together into JSON now."
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "doubao-seed-2-0-lite-260215",
+    "object": "chat.completion",
+    "service_tier": "default",
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 1879,
+      "prompt_tokens": 1380,
+      "total_tokens": 3259,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 1012,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": null,
+        "cached_tokens": 0
+      }
+    }
+  },
+  "error_message": "",
+  "elapsed_sec": 36.238,
+  "timestamp": "<REDACTED_TIMESTAMP>"
+}

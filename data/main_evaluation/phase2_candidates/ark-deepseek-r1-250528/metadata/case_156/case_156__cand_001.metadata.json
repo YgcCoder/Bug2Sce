@@ -1,0 +1,82 @@
+{
+  "case_id": "case_156",
+  "model_name": "ark-deepseek-r1-250528",
+  "candidate_index": 1,
+  "candidate_spec": {
+    "candidate_id": "cand_001",
+    "high_level_variant": "Shift the existing immobile actor 2.5m closer to the ego's spawn path, retain all original environmental and mission conditions",
+    "mutation_intent": "Slightly adjusts actor position to maintain the stuck trigger while preserving all core phase 1 constraints: no added collision or red light interference, available sensing/perception/final waypoints, and the stuck state with zero velocity/zero controls",
+    "expected_oracle": "stuck",
+    "modifications": {
+      "weather_delta": {
+        "rain": 0,
+        "fog": 0,
+        "wetness": 0,
+        "puddle": 0
+      },
+      "actor_mutations": [
+        {
+          "actor_index": 0,
+          "position_offset": {
+            "x": -2.5,
+            "y": 0.0
+          },
+          "speed_delta": 0.0
+        }
+      ],
+      "puddle_mutations": [],
+      "mission_mutation": {
+        "keep_original": true,
+        "spawn_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "destination_offset": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Confirm no collision or red light events are introduced before the stuck window",
+      "Verify sensing, perception and final waypoint topics are available prior to the stuck state"
+    ],
+    "post_execution_validation_rules": [
+      "Confirm ego exhibits zero velocity and all-zero control commands in the final 60 seconds of the stuck window",
+      "Validate the stuck failure symptom is present"
+    ],
+    "uncertainty": [
+      "No direct evidence localizes the zero command issue to a specific module, original uncertainty is preserved"
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": 0.0,
+      "fog": 0.0,
+      "wetness": 0.0,
+      "puddle": 0.0
+    },
+    "actor_mutations": [
+      {
+        "actor_index": 0,
+        "position_offset": {
+          "x": -2.5,
+          "y": 0.0
+        },
+        "speed_delta": 0.0
+      }
+    ],
+    "puddle_mutations": [],
+    "mission_mutation": {
+      "keep_original": true
+    }
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_156__ark-deepseek-r1-250528.json",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_156__ark-deepseek-r1-250528.json",
+  "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+}

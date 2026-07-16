@@ -1,0 +1,86 @@
+{
+  "case_id": "case_061",
+  "model_name": "claude-sonnet-4-5",
+  "candidate_index": 1,
+  "candidate_spec": {
+    "candidate_id": "cand_001",
+    "high_level_variant": "Increase rain and wetness to amplify intersection collision scenario",
+    "mutation_intent": "Preserve collision with traffic light and actor presence, test under degraded visibility and traction conditions",
+    "expected_oracle": "collision",
+    "modifications": {
+      "weather_delta": {
+        "rain": 15,
+        "fog": 5,
+        "wetness": 10,
+        "puddle": 0
+      },
+      "actor_mutations": [
+        {
+          "actor_index": 0,
+          "position_offset": {
+            "x": 1.5,
+            "y": -1.0
+          },
+          "speed_delta": 0.3
+        }
+      ],
+      "puddle_mutations": [],
+      "mission_mutation": {
+        "keep_original": true,
+        "spawn_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "destination_offset": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Traffic light infrastructure present near ego route",
+      "Actor within 60m of ego spawn",
+      "Intersection geometry preserved"
+    ],
+    "post_execution_validation_rules": [
+      "Collision oracle triggered",
+      "Ego speed 3-6 m/s in critical window",
+      "Vehicle_cmd vs vehicle_status consistency checked"
+    ],
+    "uncertainty": [
+      "Red-light violation route-light relation unconfirmed",
+      "vehicle_cmd/vehicle_status mismatch may persist",
+      "Actor collision timing not detailed"
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": 15.0,
+      "fog": 5.0,
+      "wetness": 10.0,
+      "puddle": 0.0
+    },
+    "actor_mutations": [
+      {
+        "actor_index": 0,
+        "position_offset": {
+          "x": 1.5,
+          "y": -1.0
+        },
+        "speed_delta": 0.3
+      }
+    ],
+    "puddle_mutations": [],
+    "mission_mutation": {
+      "keep_original": true
+    }
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_061__claude-sonnet-4-5.json",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_061__claude-sonnet-4-5.json",
+  "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+}

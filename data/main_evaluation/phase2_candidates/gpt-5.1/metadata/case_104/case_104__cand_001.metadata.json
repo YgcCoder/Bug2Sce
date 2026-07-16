@@ -1,0 +1,93 @@
+{
+  "case_id": "case_104",
+  "model_name": "gpt-5.1",
+  "candidate_index": 1,
+  "candidate_spec": {
+    "candidate_id": "cand_001",
+    "high_level_variant": "Ego stuck near spawn at an intersection with active traffic light cycling; dataset labels red_light but runtime oracle may only show goal-related failure while ego hardly moves.",
+    "mutation_intent": "Preserve the low-motion, near-spawn behavior with available route and traffic-light information, mirroring the mismatch where the dataset labels a red-light violation but runtime logs do not confirm any red event. Traffic lights should still cycle through multiple states while ego remains effectively stationary with near-zero vehicle_cmd targets.",
+    "expected_oracle": "red_light",
+    "modifications": {
+      "weather_delta": {
+        "rain": 0,
+        "fog": -10,
+        "wetness": 0,
+        "puddle": 0
+      },
+      "actor_mutations": [],
+      "puddle_mutations": [
+        {
+          "puddle_index": 0,
+          "location_offset": {
+            "x": 1.5,
+            "y": -2.0
+          },
+          "level_delta": 0.05,
+          "size_scale": 1.0
+        }
+      ],
+      "mission_mutation": {
+        "keep_original": true,
+        "spawn_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "destination_offset": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Ensure the ego spawn is close to an intersection that has at least one controlled traffic light visible on /carla/traffic_lights.",
+      "Configure the routing so that final_waypoints are generated from spawn toward a lane that passes a signalized intersection, even if ego will not reach it.",
+      "Verify that traffic light messages for at least one relevant light show multiple state transitions (e.g., green, yellow, red) during the scenario time window."
+    ],
+    "post_execution_validation_rules": [
+      "Check that Dataset or external label for this run records a red_light violation or red_light group, even if runtime oracle (error.json) logs no explicit red event.",
+      "Confirm ego pose at end of run is within 3 meters of the start position (very small net displacement) based on odometry/current_pose.",
+      "Verify that vehicle_cmd target_speed and longitudinal controls remain near zero throughout (e.g., absolute target_speed < 0.5 m/s for at least 95% of the run).",
+      "Confirm that final_waypoints are available and non-blocked with relatively stable waypoint counts (variation less than 20%) during the critical time window.",
+      "Verify that /carla/traffic_lights topic shows at least two distinct states for the relevant intersection light during the scenario.",
+      "Check that error.json (or equivalent runtime oracle) does not report a dedicated red event despite the dataset red_light label."
+    ],
+    "uncertainty": [
+      "It is unknown whether the dataset’s red_light label is triggered by route-light relation, a heuristic timeout, or an unseen rule; this scenario assumes the label can occur even while the ego barely moves.",
+      "The exact distance at which the route-light relation is considered active is not specified; ego may remain too far from the intersection to clearly establish a stop-line crossing.",
+      "The relationship between near-zero vehicle_cmd and any controller or actuation limitation is not observable from the available summaries."
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": 0.0,
+      "fog": -10.0,
+      "wetness": 0.0,
+      "puddle": 0.0
+    },
+    "actor_mutations": [],
+    "puddle_mutations": [
+      {
+        "puddle_index": 0,
+        "location_offset": {
+          "x": 1.5,
+          "y": -2.0
+        },
+        "level_delta": 0.05,
+        "size_scale": 1.0
+      }
+    ],
+    "mission_mutation": {
+      "keep_original": true
+    }
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": [
+      "no actors in candidate scenario"
+    ]
+  },
+  "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_104__gpt-5.1.json",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_104__gpt-5.1.json",
+  "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+}

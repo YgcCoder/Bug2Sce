@@ -1,0 +1,56 @@
+{
+  "case_id": "case_002",
+  "model_name": "gemini-2.5-pro",
+  "candidate_index": 2,
+  "candidate_spec": {
+    "candidate_id": "cand_002",
+    "high_level_variant": "Increase weather severity to stress perception.",
+    "mutation_intent": "Test if degraded perception from worse weather exacerbates the planner's failure to associate the red light with its route.",
+    "expected_oracle": "red_light",
+    "modifications": {
+      "weather_delta": {
+        "rain": 15,
+        "fog": 20,
+        "wetness": 0,
+        "puddle": 0
+      },
+      "actor_mutations": [],
+      "puddle_mutations": [],
+      "mission_mutation": {
+        "keep_original": true
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Weather is more severe than seed.",
+      "Ego's route intersects a red light."
+    ],
+    "post_execution_validation_rules": [
+      "Ego vehicle crosses stop line on red."
+    ],
+    "uncertainty": [
+      "A different failure mode may emerge.",
+      "Control system issue remains a confounder."
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": 15.0,
+      "fog": 20,
+      "wetness": 0.0,
+      "puddle": 0.0
+    },
+    "actor_mutations": [],
+    "puddle_mutations": [],
+    "mission_mutation": {
+      "keep_original": true
+    }
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_002__gemini-2.5-pro.json",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_002__gemini-2.5-pro.json",
+  "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+}

@@ -1,0 +1,392 @@
+{
+  "case_id": "case_147",
+  "model_name": "claude-sonnet-4-5",
+  "workflow": "round3_feedback_guided_b2s",
+  "authoritative_target": "original_seed_and_original_phase1_root_cause",
+  "status": "completed",
+  "schema_valid": true,
+  "schema_errors": [],
+  "num_round1_feedback_records": 6,
+  "num_round2_feedback_records": 2,
+  "num_candidates_requested": 6,
+  "num_candidates_written": 6,
+  "num_pre_valid": 6,
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/round3_feedback/prompts/case_147.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/round3_feedback/api_outputs/case_147__claude-sonnet-4-5.json",
+  "prompt_estimated_tokens": 4381,
+  "usage": {
+    "prompt_tokens": 4905,
+    "completion_tokens": 2005,
+    "total_tokens": 6910
+  },
+  "candidate_records": [
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/round3_feedback/candidates/case_147__Round3_01.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/round3_feedback/metadata/case_147__Round3_01.metadata.json",
+      "pre_valid": true,
+      "pre_validation_errors": [],
+      "pre_validation_warnings": []
+    },
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/round3_feedback/candidates/case_147__Round3_02.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/round3_feedback/metadata/case_147__Round3_02.metadata.json",
+      "pre_valid": true,
+      "pre_validation_errors": [],
+      "pre_validation_warnings": []
+    },
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/round3_feedback/candidates/case_147__Round3_03.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/round3_feedback/metadata/case_147__Round3_03.metadata.json",
+      "pre_valid": true,
+      "pre_validation_errors": [],
+      "pre_validation_warnings": []
+    },
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/round3_feedback/candidates/case_147__Round3_04.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/round3_feedback/metadata/case_147__Round3_04.metadata.json",
+      "pre_valid": true,
+      "pre_validation_errors": [],
+      "pre_validation_warnings": []
+    },
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/round3_feedback/candidates/case_147__Round3_05.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/round3_feedback/metadata/case_147__Round3_05.metadata.json",
+      "pre_valid": true,
+      "pre_validation_errors": [],
+      "pre_validation_warnings": []
+    },
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/round3_feedback/candidates/case_147__Round3_06.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/round3_feedback/metadata/case_147__Round3_06.metadata.json",
+      "pre_valid": true,
+      "pre_validation_errors": [],
+      "pre_validation_warnings": []
+    }
+  ],
+  "raw_response": "```json\n{\n  \"case_id\": \"case_147\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Walker 0 positioned closer to ego spawn with slightly increased speed\",\n      \"mutation_intent\": \"Place walker near ego's initial position to create early interaction window while ego accelerates backward, preserving collision conditions\",\n      \"expected_oracle\": \"collision\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": -4.0, \"y\": -1.5}, \"speed_delta\": 0.3}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Walker 0 must spawn within 8m of ego spawn point\"],\n      \"post_execution_validation_rules\": [\"Collision oracle present, ego speed >3 m/s before impact, detected objects >0\"],\n      \"uncertainty\": [\"Whether early placement triggers collision before ego reaches critical speed\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Walker 0 moved perpendicular to ego path with reduced speed\",\n      \"mutation_intent\": \"Create crossing trajectory that intersects ego's backward route at mid-journey point, maintaining object presence during critical window\",\n      \"expected_oracle\": \"collision\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": -2.5, \"y\": 1.8}, \"speed_delta\": -0.8}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Walker 0 trajectory must cross ego planned route\"],\n      \"post_execution_validation_rules\": [\"Collision oracle, predicted objects >10, ego velocity >3 m/s pre-collision\"],\n      \"uncertainty\": [\"Timing of crossing may result in near-miss instead of collision\"]\n    },\n    {\n      \"candidate_id\": \"cand_003\",\n      \"high_level_variant\": \"Both walkers shifted toward ego route with walker 1 speed increased\",\n      \"mutation_intent\": \"Increase object density near ego path by positioning both actors closer, preserving multi-object detection pattern from original\",\n      \"expected_oracle\": \"collision\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": -1.8, \"y\": -1.2}, \"speed_delta\": 0.0},\n          {\"actor_index\": 1, \"position_offset\": {\"x\": 2.5, \"y\": -1.0}, \"speed_delta\": 0.6}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Both walkers within 6m lateral distance of ego route\"],\n      \"post_execution_validation_rules\": [\"Collision oracle, detected objects >=2, waypoints available and unblocked\"],\n      \"uncertainty\": [\"Which walker becomes collision actor may differ from original\"]\n    },\n    {\n      \"candidate_id\": \"cand_004\",\n      \"high_level_variant\": \"Walker 0 at original position with light rain and increased wetness\",\n      \"mutation_intent\": \"Add minimal environmental stress to test if slight perception degradation preserves collision with nearly original actor placement\",\n      \"expected_oracle\": \"collision\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 8, \"fog\": 0, \"wetness\": 12, \"puddle\": 5},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": -0.3, \"y\": -0.2}, \"speed_delta\": 0.1}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Weather parameters within conservative bounds\"],\n      \"post_execution_validation_rules\": [\"Collision oracle, vehicle_cmd all-zero pattern, vehicle_status shows actuation\"],\n      \"uncertainty\": [\"Whether minimal weather change affects collision timing or avoidance\"]\n    },\n    {\n      \"candidate_id\": \"cand_005\",\n      \"high_level_variant\": \"Walker 0 positioned between spawn and destination with speed increase\",\n      \"mutation_intent\": \"Place walker at midpoint of ego trajectory to ensure interaction during sustained backward motion phase\",\n      \"expected_oracle\": \"collision\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": -7.0, \"y\": -2.0}, \"speed_delta\": 0.5}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Walker 0 positioned along ego route midpoint within 8m offset\"],\n      \"post_execution_validation_rules\": [\"Collision oracle, ego speed >3 m/s, predicted objects >10\"],\n      \"uncertainty\": [\"Exact collision location may shift along route\"]\n    },\n    {\n      \"candidate_id\": \"cand_006\",\n      \"high_level_variant\": \"Walker 0 slight offset with walker 1 removed via zero speed\",\n      \"mutation_intent\": \"Simplify scenario to single dynamic actor near collision point, isolating interaction while preserving detection pattern\",\n      \"expected_oracle\": \"collision\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": -1.0, \"y\": -0.8}, \"speed_delta\": 0.2},\n          {\"actor_index\": 1, \"position_offset\": {\"x\": 0.0, \"y\": 0.0}, \"speed_delta\": -1.53}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Walker 1 effectively stationary, walker 0 remains mobile\"],\n      \"post_execution_validation_rules\": [\"Collision oracle, detected objects >=1, waypoints not blocked\"],\n      \"uncertainty\": [\"Whether single-actor scenario preserves multi-object prediction count pattern\"]\n    }\n  ]\n}\n```",
+  "parsed_response": {
+    "case_id": "case_147",
+    "candidate_specs": [
+      {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Walker 0 positioned closer to ego spawn with slightly increased speed",
+        "mutation_intent": "Place walker near ego's initial position to create early interaction window while ego accelerates backward, preserving collision conditions",
+        "expected_oracle": "collision",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": -4.0,
+                "y": -1.5
+              },
+              "speed_delta": 0.3
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Walker 0 must spawn within 8m of ego spawn point"
+        ],
+        "post_execution_validation_rules": [
+          "Collision oracle present, ego speed >3 m/s before impact, detected objects >0"
+        ],
+        "uncertainty": [
+          "Whether early placement triggers collision before ego reaches critical speed"
+        ]
+      },
+      {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Walker 0 moved perpendicular to ego path with reduced speed",
+        "mutation_intent": "Create crossing trajectory that intersects ego's backward route at mid-journey point, maintaining object presence during critical window",
+        "expected_oracle": "collision",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": -2.5,
+                "y": 1.8
+              },
+              "speed_delta": -0.8
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Walker 0 trajectory must cross ego planned route"
+        ],
+        "post_execution_validation_rules": [
+          "Collision oracle, predicted objects >10, ego velocity >3 m/s pre-collision"
+        ],
+        "uncertainty": [
+          "Timing of crossing may result in near-miss instead of collision"
+        ]
+      },
+      {
+        "candidate_id": "cand_003",
+        "high_level_variant": "Both walkers shifted toward ego route with walker 1 speed increased",
+        "mutation_intent": "Increase object density near ego path by positioning both actors closer, preserving multi-object detection pattern from original",
+        "expected_oracle": "collision",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": -1.8,
+                "y": -1.2
+              },
+              "speed_delta": 0.0
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": 2.5,
+                "y": -1.0
+              },
+              "speed_delta": 0.6
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Both walkers within 6m lateral distance of ego route"
+        ],
+        "post_execution_validation_rules": [
+          "Collision oracle, detected objects >=2, waypoints available and unblocked"
+        ],
+        "uncertainty": [
+          "Which walker becomes collision actor may differ from original"
+        ]
+      },
+      {
+        "candidate_id": "cand_004",
+        "high_level_variant": "Walker 0 at original position with light rain and increased wetness",
+        "mutation_intent": "Add minimal environmental stress to test if slight perception degradation preserves collision with nearly original actor placement",
+        "expected_oracle": "collision",
+        "modifications": {
+          "weather_delta": {
+            "rain": 8,
+            "fog": 0,
+            "wetness": 12,
+            "puddle": 5
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": -0.3,
+                "y": -0.2
+              },
+              "speed_delta": 0.1
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Weather parameters within conservative bounds"
+        ],
+        "post_execution_validation_rules": [
+          "Collision oracle, vehicle_cmd all-zero pattern, vehicle_status shows actuation"
+        ],
+        "uncertainty": [
+          "Whether minimal weather change affects collision timing or avoidance"
+        ]
+      },
+      {
+        "candidate_id": "cand_005",
+        "high_level_variant": "Walker 0 positioned between spawn and destination with speed increase",
+        "mutation_intent": "Place walker at midpoint of ego trajectory to ensure interaction during sustained backward motion phase",
+        "expected_oracle": "collision",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": -7.0,
+                "y": -2.0
+              },
+              "speed_delta": 0.5
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Walker 0 positioned along ego route midpoint within 8m offset"
+        ],
+        "post_execution_validation_rules": [
+          "Collision oracle, ego speed >3 m/s, predicted objects >10"
+        ],
+        "uncertainty": [
+          "Exact collision location may shift along route"
+        ]
+      },
+      {
+        "candidate_id": "cand_006",
+        "high_level_variant": "Walker 0 slight offset with walker 1 removed via zero speed",
+        "mutation_intent": "Simplify scenario to single dynamic actor near collision point, isolating interaction while preserving detection pattern",
+        "expected_oracle": "collision",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": -1.0,
+                "y": -0.8
+              },
+              "speed_delta": 0.2
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "speed_delta": -1.53
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Walker 1 effectively stationary, walker 0 remains mobile"
+        ],
+        "post_execution_validation_rules": [
+          "Collision oracle, detected objects >=1, waypoints not blocked"
+        ],
+        "uncertainty": [
+          "Whether single-actor scenario preserves multi-object prediction count pattern"
+        ]
+      }
+    ]
+  },
+  "error_message": "",
+  "timestamp": "<REDACTED_TIMESTAMP>",
+  "raw_api_payload": {
+    "id": "<REDACTED_RESPONSE_ID>",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "```json\n{\n  \"case_id\": \"case_147\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Walker 0 positioned closer to ego spawn with slightly increased speed\",\n      \"mutation_intent\": \"Place walker near ego's initial position to create early interaction window while ego accelerates backward, preserving collision conditions\",\n      \"expected_oracle\": \"collision\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": -4.0, \"y\": -1.5}, \"speed_delta\": 0.3}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Walker 0 must spawn within 8m of ego spawn point\"],\n      \"post_execution_validation_rules\": [\"Collision oracle present, ego speed >3 m/s before impact, detected objects >0\"],\n      \"uncertainty\": [\"Whether early placement triggers collision before ego reaches critical speed\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Walker 0 moved perpendicular to ego path with reduced speed\",\n      \"mutation_intent\": \"Create crossing trajectory that intersects ego's backward route at mid-journey point, maintaining object presence during critical window\",\n      \"expected_oracle\": \"collision\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": -2.5, \"y\": 1.8}, \"speed_delta\": -0.8}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Walker 0 trajectory must cross ego planned route\"],\n      \"post_execution_validation_rules\": [\"Collision oracle, predicted objects >10, ego velocity >3 m/s pre-collision\"],\n      \"uncertainty\": [\"Timing of crossing may result in near-miss instead of collision\"]\n    },\n    {\n      \"candidate_id\": \"cand_003\",\n      \"high_level_variant\": \"Both walkers shifted toward ego route with walker 1 speed increased\",\n      \"mutation_intent\": \"Increase object density near ego path by positioning both actors closer, preserving multi-object detection pattern from original\",\n      \"expected_oracle\": \"collision\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": -1.8, \"y\": -1.2}, \"speed_delta\": 0.0},\n          {\"actor_index\": 1, \"position_offset\": {\"x\": 2.5, \"y\": -1.0}, \"speed_delta\": 0.6}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Both walkers within 6m lateral distance of ego route\"],\n      \"post_execution_validation_rules\": [\"Collision oracle, detected objects >=2, waypoints available and unblocked\"],\n      \"uncertainty\": [\"Which walker becomes collision actor may differ from original\"]\n    },\n    {\n      \"candidate_id\": \"cand_004\",\n      \"high_level_variant\": \"Walker 0 at original position with light rain and increased wetness\",\n      \"mutation_intent\": \"Add minimal environmental stress to test if slight perception degradation preserves collision with nearly original actor placement\",\n      \"expected_oracle\": \"collision\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 8, \"fog\": 0, \"wetness\": 12, \"puddle\": 5},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": -0.3, \"y\": -0.2}, \"speed_delta\": 0.1}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Weather parameters within conservative bounds\"],\n      \"post_execution_validation_rules\": [\"Collision oracle, vehicle_cmd all-zero pattern, vehicle_status shows actuation\"],\n      \"uncertainty\": [\"Whether minimal weather change affects collision timing or avoidance\"]\n    },\n    {\n      \"candidate_id\": \"cand_005\",\n      \"high_level_variant\": \"Walker 0 positioned between spawn and destination with speed increase\",\n      \"mutation_intent\": \"Place walker at midpoint of ego trajectory to ensure interaction during sustained backward motion phase\",\n      \"expected_oracle\": \"collision\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": -7.0, \"y\": -2.0}, \"speed_delta\": 0.5}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Walker 0 positioned along ego route midpoint within 8m offset\"],\n      \"post_execution_validation_rules\": [\"Collision oracle, ego speed >3 m/s, predicted objects >10\"],\n      \"uncertainty\": [\"Exact collision location may shift along route\"]\n    },\n    {\n      \"candidate_id\": \"cand_006\",\n      \"high_level_variant\": \"Walker 0 slight offset with walker 1 removed via zero speed\",\n      \"mutation_intent\": \"Simplify scenario to single dynamic actor near collision point, isolating interaction while preserving detection pattern\",\n      \"expected_oracle\": \"collision\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": -1.0, \"y\": -0.8}, \"speed_delta\": 0.2},\n          {\"actor_index\": 1, \"position_offset\": {\"x\": 0.0, \"y\": 0.0}, \"speed_delta\": -1.53}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Walker 1 effectively stationary, walker 0 remains mobile\"],\n      \"post_execution_validation_rules\": [\"Collision oracle, detected objects >=1, waypoints not blocked\"],\n      \"uncertainty\": [\"Whether single-actor scenario preserves multi-object prediction count pattern\"]\n    }\n  ]\n}\n```",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "claude-sonnet-4-5",
+    "object": "chat.completion",
+    "service_tier": null,
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 2005,
+      "prompt_tokens": 4905,
+      "total_tokens": 6910,
+      "completion_tokens_details": null,
+      "prompt_tokens_details": null
+    }
+  },
+  "elapsed_sec": 34.828
+}

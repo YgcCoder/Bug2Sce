@@ -1,0 +1,147 @@
+{
+  "case_id": "case_094",
+  "model_name": "ark-deepseek-r1-250528",
+  "candidate_index": 2,
+  "candidate_spec": {
+    "candidate_id": "cand_002",
+    "high_level_variant": "Slightly shift ego's spawn and destination, move the second walking actor toward ego's route, add mild fog to introduce low perception uncertainty while maintaining core structure",
+    "mutation_intent": "Retains all original root-cause pattern constraints: all-zero pre-collision vehicle commands, non-zero ego throttle/velocity, no blocked waypoints, two actors and two puddles, preserves the confirmed collision outcome",
+    "expected_oracle": "collision",
+    "modifications": {
+      "weather_delta": {
+        "rain": 0,
+        "fog": 6,
+        "wetness": 4,
+        "puddle": 2
+      },
+      "actor_mutations": [
+        {
+          "actor_index": 0,
+          "position_offset": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "speed_delta": 0.0
+        },
+        {
+          "actor_index": 1,
+          "position_offset": {
+            "x": 1.2,
+            "y": -2.5
+          },
+          "speed_delta": -0.5
+        }
+      ],
+      "puddle_mutations": [
+        {
+          "puddle_index": 0,
+          "location_offset": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "level_delta": 0.0,
+          "size_scale": 1.0
+        },
+        {
+          "puddle_index": 1,
+          "location_offset": {
+            "x": -0.8,
+            "y": 1.2
+          },
+          "level_delta": -0.05,
+          "size_scale": 0.95
+        }
+      ],
+      "mission_mutation": {
+        "keep_original": false,
+        "spawn_offset": {
+          "x": 1.5,
+          "y": -1.0
+        },
+        "destination_offset": {
+          "x": -1.0,
+          "y": 0.8
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Confirm all vehicle control commands remain zero in the pre-collision window",
+      "Verify non-zero ego throttle and positive velocity are preserved pre-collision",
+      "Check that no blocked waypoints are detected in planning output",
+      "Ensure two actors and two puddles are correctly spawned"
+    ],
+    "post_execution_validation_rules": [
+      "Validate that collision occurs as the core confirmed failure symptom",
+      "Check that the vehicle_cmd/ego status mismatch is maintained"
+    ],
+    "uncertainty": [
+      "Original conflicting stuck and lane invasion label uncertainty is preserved",
+      "Module-level root cause attribution remains uncertain per original evidence",
+      "Perception failure presence remains unconfirmed as in the original case"
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": 0.0,
+      "fog": 6.0,
+      "wetness": 4.0,
+      "puddle": 2.0
+    },
+    "actor_mutations": [
+      {
+        "actor_index": 0,
+        "position_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "speed_delta": 0.0
+      },
+      {
+        "actor_index": 1,
+        "position_offset": {
+          "x": 1.2,
+          "y": -2.5
+        },
+        "speed_delta": -0.5
+      }
+    ],
+    "puddle_mutations": [
+      {
+        "puddle_index": 0,
+        "location_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "level_delta": 0.0,
+        "size_scale": 1.0
+      },
+      {
+        "puddle_index": 1,
+        "location_offset": {
+          "x": -0.8,
+          "y": 1.2
+        },
+        "level_delta": -0.05,
+        "size_scale": 0.95
+      }
+    ],
+    "mission_mutation": {
+      "spawn_offset": {
+        "x": 1.5,
+        "y": -1.0
+      },
+      "destination_offset": {
+        "x": -1.0,
+        "y": 0.8
+      }
+    }
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_094__ark-deepseek-r1-250528.json",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_094__ark-deepseek-r1-250528.json",
+  "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+}

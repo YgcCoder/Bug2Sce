@@ -1,0 +1,225 @@
+{
+  "case_id": "case_001",
+  "model_name": "ark-deepseek-r1-250528",
+  "workflow": "pure_llm_phase2_baseline",
+  "status": "completed",
+  "schema_valid": true,
+  "schema_errors": [],
+  "num_candidates_requested": 1,
+  "num_candidates_written": 1,
+  "num_pre_valid": 1,
+  "candidate_records": [
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/pure_llm_phase2_candidates/ark-deepseek-r1-250528/json/case_001/case_001__model_ark-deepseek-r1-250528__cand_001.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/pure_llm_phase2_candidates/ark-deepseek-r1-250528/metadata/case_001/case_001__model_ark-deepseek-r1-250528__cand_001.metadata.json",
+      "case_id": "case_001",
+      "model_name": "ark-deepseek-r1-250528",
+      "candidate_index": 1,
+      "candidate_spec": {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Shift vehicle closer to ego's planned path",
+        "mutation_intent": "Increase collision risk by adjusting vehicle position and speed",
+        "expected_oracle": "collision",
+        "modifications": {
+          "weather_delta": {
+            "rain": 5,
+            "fog": 0,
+            "wetness": 5,
+            "puddle": 2
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": -2.5,
+                "y": 1.2
+              },
+              "speed_delta": 1.5
+            }
+          ],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": 0.05,
+              "size_scale": 1.0
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "All actors stay within map bounds"
+        ],
+        "post_execution_validation_rules": [
+          "Check collision between ego and actor"
+        ],
+        "uncertainty": [
+          "Exact collision timing is not confirmed"
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 5.0,
+          "fog": 0.0,
+          "wetness": 5.0,
+          "puddle": 2.0
+        },
+        "actor_mutations": [
+          {
+            "actor_index": 0,
+            "position_offset": {
+              "x": -2.5,
+              "y": 1.2
+            },
+            "speed_delta": 1.5
+          }
+        ],
+        "puddle_mutations": [
+          {
+            "puddle_index": 0,
+            "location_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "level_delta": 0.05,
+            "size_scale": 1.0
+          }
+        ],
+        "mission_mutation": {
+          "keep_original": true
+        },
+        "safety_repairs": []
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": []
+      }
+    }
+  ],
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/pure_llm_phase2_api_prompts/case_001__ark-deepseek-r1-250528.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/pure_llm_phase2_api_outputs/case_001__ark-deepseek-r1-250528.json",
+  "prompt_estimated_tokens": 783,
+  "usage": {
+    "prompt_tokens": 1161,
+    "completion_tokens": 1184,
+    "total_tokens": 2345
+  },
+  "raw_response": "{\n  \"case_id\": \"case_001\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Shift vehicle closer to ego's planned path\",\n      \"mutation_intent\": \"Increase collision risk by adjusting vehicle position and speed\",\n      \"expected_oracle\": \"collision\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 5, \"fog\": 0, \"wetness\": 5, \"puddle\": 2},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": -2.5, \"y\": 1.2}, \"speed_delta\": 1.5}\n        ],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": 0.05, \"size_scale\": 1.0}\n        ],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"All actors stay within map bounds\"],\n      \"post_execution_validation_rules\": [\"Check collision between ego and actor\"],\n      \"uncertainty\": [\"Exact collision timing is not confirmed\"]\n    }\n  ]\n}",
+  "parsed_response": {
+    "case_id": "case_001",
+    "candidate_specs": [
+      {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Shift vehicle closer to ego's planned path",
+        "mutation_intent": "Increase collision risk by adjusting vehicle position and speed",
+        "expected_oracle": "collision",
+        "modifications": {
+          "weather_delta": {
+            "rain": 5,
+            "fog": 0,
+            "wetness": 5,
+            "puddle": 2
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": -2.5,
+                "y": 1.2
+              },
+              "speed_delta": 1.5
+            }
+          ],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": 0.05,
+              "size_scale": 1.0
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "All actors stay within map bounds"
+        ],
+        "post_execution_validation_rules": [
+          "Check collision between ego and actor"
+        ],
+        "uncertainty": [
+          "Exact collision timing is not confirmed"
+        ]
+      }
+    ]
+  },
+  "raw_api_payload": {
+    "id": "021783586838771883864491a6b5ce3e32f094db66727434d19ef",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "{\n  \"case_id\": \"case_001\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Shift vehicle closer to ego's planned path\",\n      \"mutation_intent\": \"Increase collision risk by adjusting vehicle position and speed\",\n      \"expected_oracle\": \"collision\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 5, \"fog\": 0, \"wetness\": 5, \"puddle\": 2},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": -2.5, \"y\": 1.2}, \"speed_delta\": 1.5}\n        ],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": 0.05, \"size_scale\": 1.0}\n        ],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"All actors stay within map bounds\"],\n      \"post_execution_validation_rules\": [\"Check collision between ego and actor\"],\n      \"uncertainty\": [\"Exact collision timing is not confirmed\"]\n    }\n  ]\n}",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null,
+          "reasoning_content": "\nGot it, let's build this step by step. First, case_id is case_001 right? Then candidate_specs has one item, cand_001.\n\nHigh level variant: Let's see, original fault is collision, so \"Move oncoming vehicle closer to ego path\" wait, count words. Let's make it \"Move foreground vehicle closer to ego route\" that's short enough. Wait no, under 20 words, that's fine.\n\nMutation intent: \"Induce collision by adjusting leading vehicle position and speed\" yeah, that's under 30 words.\n\nExpected oracle is collision, right, because fault label says collision is 1.\n\nNow modifications: weather delta. Let's see original rain is 5, let's maybe add a little? Wait or let's keep most but adjust actor. Wait actor 0: position offset. Let's do x -2.0, y 1.0, speed delta +1.5, that's within limits. Wait speed delta 1.5 is between -3 and 3, good. Position offsets are within -8 8, good.\n\nWeather delta: let's do rain +5, that's within -20 20, fog 0, wetness +5, puddle +0? Wait wait original rain is 5, adding 5 is 10, delta is 5 which is okay. Let's do weather_delta {\"rain\": 5, \"fog\": 0, \"wetness\": 5, \"puddle\": 2} that's all within limits.\n\nPuddle mutations: puddle index 0, location offset x 0, y 0, level delta 0.05, size scale 1.0, that's okay. Wait level delta 0.05 is within -0.2 0.2, size 1.0 is okay.\n\nMission mutation: keep_original true, offsets all 0, that's fine.\n\nPre execution validation rules: \"Actor within valid map bounds\" that's under 18 words. Good.\n\nPost execution validation rules: \"Check for collision with actor\" that's good, under 18 words.\n\nUncertainty: \"Exact impact timing unknown\" that's under 18 words.\n\nWait let's check all rules. Let's put it all together correctly. Let's make sure no trailing commas, valid JSON.\n\nWait let's write it properly:\n\nCase_id is case_001. Candidate_specs array has one object. Candidate_id cand_001. High_level_variant: \"Shift vehicle position closer to ego's planned path\" that's 8 words, good. Mutation_intent: \"Create higher collision risk by adjusting vehicle position and speed\" that's 11 words, under 30. Expected_oracle is collision.\n\nModifications: weather_delta: let's see, original is rain 5, let's do rain 5, fog 0, wetness 5, puddle 2, all deltas within 20, yes. Actor_mutations: actor index 0, position x: -2.5, y: 1.2, both within [-8,8], speed delta 1.5, which is within [-3,3], perfect. Puddle_mutations: index 0, x 0, y 0, level delta 0.05, size scale 1.0, that's good. Mission mutation: keep_original true, all offsets 0.\n\nPre_execution_validation_rules: [\"All actors within map boundaries\"], that's good. Post: [\"Verify collision between ego and target actor\"], that's good. Uncertainty: [\"Exact collision timing not confirmed\"], that's good.\n\nWait let's check all requirements: yes, one candidate, all offsets within limits, no extra stuff, valid JSON. Let's put it all together now."
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "doubao-seed-2-0-lite-260215",
+    "object": "chat.completion",
+    "service_tier": "default",
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 1184,
+      "prompt_tokens": 1161,
+      "total_tokens": 2345,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 832,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": null,
+        "cached_tokens": 0
+      }
+    }
+  },
+  "error_message": "",
+  "elapsed_sec": 29.86,
+  "timestamp": "<REDACTED_TIMESTAMP>"
+}

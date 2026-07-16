@@ -1,0 +1,102 @@
+{
+  "case_id": "case_029",
+  "model_name": "ark-deepseek-r1-250528",
+  "candidate_index": 1,
+  "candidate_spec": {
+    "candidate_id": "cand_001",
+    "high_level_variant": "Slight offset of the first crossing walker toward ego's planned travel lane with a small speed increase",
+    "mutation_intent": "Preserves all Phase 1 root-cause constraints: keeps original mission spawn/destination, retains 2 actors, keeps enabled rain, preserves the confirmed red light event, maintains the conflicting lane invasion label between dataset and error.json by moving the walker closer to ego's path without forcing a definite lane crossing outcome, retains original uncertainty about root cause",
+    "expected_oracle": "compound",
+    "modifications": {
+      "weather_delta": {
+        "rain": 0,
+        "fog": 0,
+        "wetness": 3,
+        "puddle": 0
+      },
+      "actor_mutations": [
+        {
+          "actor_index": 0,
+          "position_offset": {
+            "x": 1.2,
+            "y": -0.8
+          },
+          "speed_delta": 0.5
+        },
+        {
+          "actor_index": 1,
+          "position_offset": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "speed_delta": 0.0
+        }
+      ],
+      "puddle_mutations": [],
+      "mission_mutation": {
+        "keep_original": true,
+        "spawn_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "destination_offset": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Verify 2 actors are spawned correctly",
+      "Verify red light is active when ego approaches the intersection",
+      "Verify rain remains enabled per constraint"
+    ],
+    "post_execution_validation_rules": [
+      "Confirm red light violation matches original error.json recording",
+      "Check for lane boundary crossing to resolve original label conflict",
+      "Validate vehicle cmd vs velocity pattern to retain actuation uncertainty"
+    ],
+    "uncertainty": [
+      "Preserves original conflict between dataset and error.json on lane invasion label",
+      "Root cause attribution to specific Autoware module remains unconfirmed",
+      "Actuation behavior uncertainty is retained per original findings"
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": 0.0,
+      "fog": 0.0,
+      "wetness": 3.0,
+      "puddle": 0.0
+    },
+    "actor_mutations": [
+      {
+        "actor_index": 0,
+        "position_offset": {
+          "x": 1.2,
+          "y": -0.8
+        },
+        "speed_delta": 0.5
+      },
+      {
+        "actor_index": 1,
+        "position_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "speed_delta": 0.0
+      }
+    ],
+    "puddle_mutations": [],
+    "mission_mutation": {
+      "keep_original": true
+    }
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_029__ark-deepseek-r1-250528.json",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_029__ark-deepseek-r1-250528.json",
+  "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+}

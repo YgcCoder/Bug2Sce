@@ -1,0 +1,410 @@
+{
+  "case_id": "case_024",
+  "model_name": "ark-deepseek-r1-250528",
+  "workflow": "phase2_grounded_generation",
+  "status": "completed",
+  "schema_valid": true,
+  "schema_errors": [],
+  "phase1_ready": "yes",
+  "num_candidates_requested": 2,
+  "num_candidates_written": 2,
+  "num_pre_valid": 2,
+  "candidate_records": [
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-deepseek-r1-250528/json/case_024/case_024__cand_001.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-deepseek-r1-250528/metadata/case_024/case_024__cand_001.metadata.json",
+      "case_id": "case_024",
+      "model_name": "ark-deepseek-r1-250528",
+      "candidate_index": 1,
+      "candidate_spec": {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Close stopped detected vehicle in red light intersection with moderately increased road wetness",
+        "mutation_intent": "Preserves all phase 1 root-cause constraints: retains pre-collision all-zero vehicle_cmd, non-zero brake in vehicle_status, detected object within 3m of ego before impact, red light in late critical window, and both collision and red-light oracle symptoms",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": 5,
+            "fog": 0,
+            "wetness": 4,
+            "puddle": 3
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": -2.5,
+                "y": 0.0
+              },
+              "speed_delta": -1.5
+            }
+          ],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 1.0,
+                "y": -2.0
+              },
+              "level_delta": 0.1,
+              "size_scale": 1.0
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Pre-collision vehicle_cmd must have all-zero control commands",
+          "Detected object must be within 3m of ego pre-collision",
+          "Non-zero brake must be present in vehicle_status pre-collision",
+          "At least one red light state in late critical window"
+        ],
+        "post_execution_validation_rules": [
+          "Both collision and red-light oracle symptoms are confirmed"
+        ],
+        "uncertainty": [
+          "Red-light route relation and stop-line crossing are unconfirmed",
+          "Actuation mismatch between vehicle_cmd and vehicle_status attribution remains uncertain",
+          "No specific Autoware module fault is localized",
+          "Detected object classification is unknown"
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 5.0,
+          "fog": 0.0,
+          "wetness": 4.0,
+          "puddle": 3.0
+        },
+        "actor_mutations": [
+          {
+            "actor_index": 0,
+            "position_offset": {
+              "x": -2.5,
+              "y": 0.0
+            },
+            "speed_delta": -1.5
+          }
+        ],
+        "puddle_mutations": [
+          {
+            "puddle_index": 0,
+            "location_offset": {
+              "x": 1.0,
+              "y": -2.0
+            },
+            "level_delta": 0.1,
+            "size_scale": 1.0
+          }
+        ],
+        "mission_mutation": {
+          "keep_original": true
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_024__ark-deepseek-r1-250528.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_024__ark-deepseek-r1-250528.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    },
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-deepseek-r1-250528/json/case_024/case_024__cand_002.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-deepseek-r1-250528/metadata/case_024/case_024__cand_002.metadata.json",
+      "case_id": "case_024",
+      "model_name": "ark-deepseek-r1-250528",
+      "candidate_index": 2,
+      "candidate_spec": {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Slow approaching crossing vehicle near ego with light fog added to original scenario",
+        "mutation_intent": "Preserves all core root-cause pattern from phase 1: retains the pre-collision command mismatch (all-zero vehicle_cmd, non-zero brake), close detected object within 3m of ego, red light in late critical window, and both required oracle symptoms",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 10,
+            "wetness": 2,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": 1.2,
+                "y": 4.3
+              },
+              "speed_delta": 2.0
+            }
+          ],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": -0.1,
+              "size_scale": 0.9
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Pre-collision vehicle_cmd has all-zero control values",
+          "Vehicle_status reports non-zero brake pre-collision",
+          "Red traffic light is present in late critical window",
+          "Detected object is within 3m of ego before collision"
+        ],
+        "post_execution_validation_rules": [
+          "Verify both collision and red-light failure symptoms are present"
+        ],
+        "uncertainty": [
+          "Stop-line crossing status is unconfirmed",
+          "Specific Autoware module fault cannot be localized",
+          "Actuation attribution for command mismatch is uncertain",
+          "Detected object classification is unknown"
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 0.0,
+          "fog": 10.0,
+          "wetness": 2.0,
+          "puddle": 0.0
+        },
+        "actor_mutations": [
+          {
+            "actor_index": 1,
+            "position_offset": {
+              "x": 1.2,
+              "y": 4.3
+            },
+            "speed_delta": 2.0
+          }
+        ],
+        "puddle_mutations": [
+          {
+            "puddle_index": 0,
+            "location_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "level_delta": -0.1,
+            "size_scale": 0.9
+          }
+        ],
+        "mission_mutation": {
+          "keep_original": true
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_024__ark-deepseek-r1-250528.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_024__ark-deepseek-r1-250528.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    }
+  ],
+  "seed_artifact_zip": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-deepseek-r1-250528/seed-artifact/seed-artifact-case_024.zip",
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_prompts/case_024__ark-deepseek-r1-250528.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_024__ark-deepseek-r1-250528.json",
+  "prompt_estimated_tokens": 1200,
+  "usage": {
+    "prompt_tokens": 1472,
+    "completion_tokens": 3114,
+    "total_tokens": 4586
+  },
+  "raw_response": "{\n  \"case_id\": \"case_024\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Close stopped detected vehicle in red light intersection with moderately increased road wetness\",\n      \"mutation_intent\": \"Preserves all phase 1 root-cause constraints: retains pre-collision all-zero vehicle_cmd, non-zero brake in vehicle_status, detected object within 3m of ego before impact, red light in late critical window, and both collision and red-light oracle symptoms\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 5, \"fog\": 0, \"wetness\": 4, \"puddle\": 3},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": -2.5, \"y\": 0.0}, \"speed_delta\": -1.5}\n        ],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": 1.0, \"y\": -2.0}, \"level_delta\": 0.1, \"size_scale\": 1.0}\n        ],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Pre-collision vehicle_cmd must have all-zero control commands\", \"Detected object must be within 3m of ego pre-collision\", \"Non-zero brake must be present in vehicle_status pre-collision\", \"At least one red light state in late critical window\"],\n      \"post_execution_validation_rules\": [\"Both collision and red-light oracle symptoms are confirmed\"],\n      \"uncertainty\": [\"Red-light route relation and stop-line crossing are unconfirmed\", \"Actuation mismatch between vehicle_cmd and vehicle_status attribution remains uncertain\", \"No specific Autoware module fault is localized\", \"Detected object classification is unknown\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Slow approaching crossing vehicle near ego with light fog added to original scenario\",\n      \"mutation_intent\": \"Preserves all core root-cause pattern from phase 1: retains the pre-collision command mismatch (all-zero vehicle_cmd, non-zero brake), close detected object within 3m of ego, red light in late critical window, and both required oracle symptoms\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 10, \"wetness\": 2, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 1, \"position_offset\": {\"x\": 1.2, \"y\": 4.3}, \"speed_delta\": 2.0}\n        ],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": -0.1, \"size_scale\": 0.9}\n        ],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Pre-collision vehicle_cmd has all-zero control values\", \"Vehicle_status reports non-zero brake pre-collision\", \"Red traffic light is present in late critical window\", \"Detected object is within 3m of ego before collision\"],\n      \"post_execution_validation_rules\": [\"Verify both collision and red-light failure symptoms are present\"],\n      \"uncertainty\": [\"Stop-line crossing status is unconfirmed\", \"Specific Autoware module fault cannot be localized\", \"Actuation attribution for command mismatch is uncertain\", \"Detected object classification is unknown\"]\n    }\n  ]\n}",
+  "parsed_response": {
+    "case_id": "case_024",
+    "candidate_specs": [
+      {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Close stopped detected vehicle in red light intersection with moderately increased road wetness",
+        "mutation_intent": "Preserves all phase 1 root-cause constraints: retains pre-collision all-zero vehicle_cmd, non-zero brake in vehicle_status, detected object within 3m of ego before impact, red light in late critical window, and both collision and red-light oracle symptoms",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": 5,
+            "fog": 0,
+            "wetness": 4,
+            "puddle": 3
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": -2.5,
+                "y": 0.0
+              },
+              "speed_delta": -1.5
+            }
+          ],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 1.0,
+                "y": -2.0
+              },
+              "level_delta": 0.1,
+              "size_scale": 1.0
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Pre-collision vehicle_cmd must have all-zero control commands",
+          "Detected object must be within 3m of ego pre-collision",
+          "Non-zero brake must be present in vehicle_status pre-collision",
+          "At least one red light state in late critical window"
+        ],
+        "post_execution_validation_rules": [
+          "Both collision and red-light oracle symptoms are confirmed"
+        ],
+        "uncertainty": [
+          "Red-light route relation and stop-line crossing are unconfirmed",
+          "Actuation mismatch between vehicle_cmd and vehicle_status attribution remains uncertain",
+          "No specific Autoware module fault is localized",
+          "Detected object classification is unknown"
+        ]
+      },
+      {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Slow approaching crossing vehicle near ego with light fog added to original scenario",
+        "mutation_intent": "Preserves all core root-cause pattern from phase 1: retains the pre-collision command mismatch (all-zero vehicle_cmd, non-zero brake), close detected object within 3m of ego, red light in late critical window, and both required oracle symptoms",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 10,
+            "wetness": 2,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": 1.2,
+                "y": 4.3
+              },
+              "speed_delta": 2.0
+            }
+          ],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": -0.1,
+              "size_scale": 0.9
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Pre-collision vehicle_cmd has all-zero control values",
+          "Vehicle_status reports non-zero brake pre-collision",
+          "Red traffic light is present in late critical window",
+          "Detected object is within 3m of ego before collision"
+        ],
+        "post_execution_validation_rules": [
+          "Verify both collision and red-light failure symptoms are present"
+        ],
+        "uncertainty": [
+          "Stop-line crossing status is unconfirmed",
+          "Specific Autoware module fault cannot be localized",
+          "Actuation attribution for command mismatch is uncertain",
+          "Detected object classification is unknown"
+        ]
+      }
+    ]
+  },
+  "raw_api_payload": {
+    "id": "021782923236929e63fcd4b1459546935812764a3dda63c9e415b",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "{\n  \"case_id\": \"case_024\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Close stopped detected vehicle in red light intersection with moderately increased road wetness\",\n      \"mutation_intent\": \"Preserves all phase 1 root-cause constraints: retains pre-collision all-zero vehicle_cmd, non-zero brake in vehicle_status, detected object within 3m of ego before impact, red light in late critical window, and both collision and red-light oracle symptoms\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 5, \"fog\": 0, \"wetness\": 4, \"puddle\": 3},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": -2.5, \"y\": 0.0}, \"speed_delta\": -1.5}\n        ],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": 1.0, \"y\": -2.0}, \"level_delta\": 0.1, \"size_scale\": 1.0}\n        ],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Pre-collision vehicle_cmd must have all-zero control commands\", \"Detected object must be within 3m of ego pre-collision\", \"Non-zero brake must be present in vehicle_status pre-collision\", \"At least one red light state in late critical window\"],\n      \"post_execution_validation_rules\": [\"Both collision and red-light oracle symptoms are confirmed\"],\n      \"uncertainty\": [\"Red-light route relation and stop-line crossing are unconfirmed\", \"Actuation mismatch between vehicle_cmd and vehicle_status attribution remains uncertain\", \"No specific Autoware module fault is localized\", \"Detected object classification is unknown\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Slow approaching crossing vehicle near ego with light fog added to original scenario\",\n      \"mutation_intent\": \"Preserves all core root-cause pattern from phase 1: retains the pre-collision command mismatch (all-zero vehicle_cmd, non-zero brake), close detected object within 3m of ego, red light in late critical window, and both required oracle symptoms\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 10, \"wetness\": 2, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 1, \"position_offset\": {\"x\": 1.2, \"y\": 4.3}, \"speed_delta\": 2.0}\n        ],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": -0.1, \"size_scale\": 0.9}\n        ],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Pre-collision vehicle_cmd has all-zero control values\", \"Vehicle_status reports non-zero brake pre-collision\", \"Red traffic light is present in late critical window\", \"Detected object is within 3m of ego before collision\"],\n      \"post_execution_validation_rules\": [\"Verify both collision and red-light failure symptoms are present\"],\n      \"uncertainty\": [\"Stop-line crossing status is unconfirmed\", \"Specific Autoware module fault cannot be localized\", \"Actuation attribution for command mismatch is uncertain\", \"Detected object classification is unknown\"]\n    }\n  ]\n}",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null,
+          "reasoning_content": "\nGot it, let's build this JSON step by step. First, case_id is case_024, right? Then we need two candidate_specs, cand_001 and cand_002.\n\nFirst, cand_001. Let's think of the high level variant. Maybe \"Close leading vehicle in red light intersection with increased wetness\". Wait, mutation intent: it preserves all root cause constraints: keeps all-zero vehicle_cmd, non-zero brake, close detected object <3m from ego, red light in late critical window, keeps both collision and red light symptoms. Expected oracle is compound, right? Because both collision and red light, so compound.\n\nModifications: Let's do weather delta. Rain +5, fog 0, wetness +4, puddle +3. That's within [-20,20], okay. Actor mutations: the detected object is actor 0, right? Position offset x: -2.0, y: 0.5, that's within [-8,8]. Speed delta: +1.0, which is within [-3,3]. Wait, or actor 1? Let's see, original actors: actor 0 is at 104.97, 144.18, ego is at 86, 145, so moving actor 0 closer. Yeah, actor_index 0, position x -2.5, y 0.0, speed delta -1.5, that makes it closer to ego, good. Puddle mutation: puddle index 0, location offset x 1.0 y -2.0, level delta +0.1, size scale 1.0, that's within ranges. Mission mutation keep_original true, okay.\n\nPre-execution rules: Let's see, [\"Ego pre-collision vehicle_cmd is all zero\", \"Detected object is within 3m of ego pre-collision\", \"Red traffic light present in late critical window\"], post execution: [\"Both collision and red-light symptoms are observed\"]. Uncertainty: same as phase1, [\"Stop-line crossing not confirmed\", \"Fault module attribution remains unknown\", \"Detected object classification is unconfirmed\"].\n\nNow cand_002. High level variant: \"Slight fog and moving close crossing vehicle at red light intersection\". Mutation intent: Preserves all root-cause constraints from phase1: retains pre-collision all-zero vehicle_cmd, non-zero brake status, close detected object <3m from ego, red light in late critical window, keeps both collision and red-light oracle symptoms. Expected oracle again compound, right?\n\nModifications: Weather delta: rain 0, fog +10, wetness +2, puddle 0, all within 20. Actor mutations: actor_index 1, position offset x 1.2, y 12.5? Wait no, wait max offset is 8, oops. x 1.2 y 4.3, that's okay, within [-8,8]. Speed delta +2.0, within [-3,3]. Oh right, original actor 1 is at 91.9, 129.6, so moving it closer to ego's path. Puddle mutation: puddle 0, location offset x 0 y 0, level delta -0.1, size scale 0.9, that's within [0.8,1.2], okay. Mission mutation keep_original true.\n\nPre execution rules: [\"Pre-collision vehicle_cmd has all zero control values\", \"Non-zero brake reported in vehicle_status pre-collision\", \"At least one red traffic light in late critical window\"], post execution: [\"Verify collision and red-light oracle symptoms are both present\"]. Uncertainty: same as phase1, [\"Actuation mismatch attribution is uncertain\", \"No specific Autoware module fault identified\", \"Red-light route relation unconfirmed\"].\n\nWait let's check all constraints: two candidates, all offsets are within ranges. Root cause preserved, oracle is compound, which is correct because both collision and red light. Let's fit into the schema.\n\nWait let's check the rules: actor position offsets within [-8,8], yes, let's make all offsets correct. Speed delta within [-3,3], yes. Mission keep_original true, that's okay. Weather deltas all within [-20,20], yes. Puddle level delta within [-0.2, 0.2], size scale between 0.8 and 1.2, yes. Two candidates, correct. Preserve the original root cause, yes. Uncertainty preserved, yes. Expected oracle is compound, which is correct because it's both collision and red light.\n\nOkay let's write the JSON properly now. Let's make sure all fields are there. Let's start:\n\n{\n  \"case_id\": \"case_024\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Close stopped detected vehicle in red light intersection with moderately increased road wetness\",\n      \"mutation_intent\": \"Preserves all phase 1 root-cause constraints: retains pre-collision all-zero vehicle_cmd, non-zero brake in vehicle_status, detected object within 3m of ego before impact, red light in late critical window, and both collision and red-light oracle symptoms\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 5, \"fog\": 0, \"wetness\": 4, \"puddle\": 3},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": -2.5, \"y\": 0.0}, \"speed_delta\": -1.5}\n        ],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": 1.0, \"y\": -2.0}, \"level_delta\": 0.1, \"size_scale\": 1.0}\n        ],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Pre-collision vehicle_cmd must have all-zero control commands\", \"Detected object must be within 3m of ego pre-collision\", \"Non-zero brake must be present in vehicle_status pre-collision\", \"At least one red light state in late critical window\"],\n      \"post_execution_validation_rules\": [\"Both collision and red-light oracle symptoms are confirmed\"],\n      \"uncertainty\": [\"Red-light route relation and stop-line crossing are unconfirmed\", \"Actuation mismatch between vehicle_cmd and vehicle_status attribution remains uncertain\", \"No specific Autoware module fault is localized\", \"Detected object classification is unknown\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Slow approaching crossing vehicle near ego with light fog added to original scenario\",\n      \"mutation_intent\": \"Preserves all core root-cause pattern from phase 1: retains the pre-collision command mismatch (all-zero vehicle_cmd, non-zero brake), close detected object within 3m of ego, red light in late critical window, and both required oracle symptoms\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 10, \"wetness\": 2, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 1, \"position_offset\": {\"x\": 1.2, \"y\": 4.3}, \"speed_delta\": 2.0}\n        ],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": -0.1, \"size_scale\": 0.9}\n        ],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Pre-collision vehicle_cmd has all-zero control values\", \"Vehicle_status reports non-zero brake pre-collision\", \"Red traffic light is present in late critical window\", \"Detected object is within 3m of ego before collision\"],\n      \"post_execution_validation_rules\": [\"Verify both collision and red-light failure symptoms are present\"],\n      \"uncertainty\": [\"Stop-line crossing status is unconfirmed\", \"Specific Autoware module fault cannot be localized\", \"Actuation attribution for command mismatch is uncertain\", \"Detected object classification is unknown\"]\n    }\n  ]\n}\n\nWait let's check all the values: actor position offsets: cand 001 x -2.5, y 0, that's within [-8,8], yes. cand 002 x 1.2 y 4.3, yes. Speed delta: -1.5, 2.0, both within [-3,3], yes. Weather deltas: 5, 4, 3, 10, 2, all within [-20,20], yes. Puddle level delta 0.1, -0.1, within [-0.2, 0.2], size scale 1.0, 0.9, between 0.8 and 1.2, yes. Mission keep_original true, correct. Two candidates, correct. Expected oracle is compound, which is right because it's both collision and red light, that fits the schema. Uncertainty preserved as per phase 1, root cause pattern preserved, all constraints are followed. Looks good."
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "doubao-seed-2-0-lite-260215",
+    "object": "chat.completion",
+    "service_tier": "default",
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 3114,
+      "prompt_tokens": 1472,
+      "total_tokens": 4586,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 2179,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": null,
+        "cached_tokens": 0
+      }
+    }
+  },
+  "error_message": "",
+  "elapsed_sec": 46.206,
+  "timestamp": "<REDACTED_TIMESTAMP>"
+}

@@ -1,0 +1,333 @@
+{
+  "case_id": "case_147",
+  "model_name": "claude-sonnet-4-5",
+  "workflow": "phase2_grounded_generation",
+  "status": "completed",
+  "schema_valid": true,
+  "schema_errors": [],
+  "phase1_ready": "uncertain",
+  "num_candidates_requested": 2,
+  "num_candidates_written": 2,
+  "num_pre_valid": 2,
+  "candidate_records": [
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/claude-sonnet-4-5/json/case_147/case_147__cand_001.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/claude-sonnet-4-5/metadata/case_147/case_147__cand_001.metadata.json",
+      "case_id": "case_147",
+      "model_name": "claude-sonnet-4-5",
+      "candidate_index": 1,
+      "candidate_spec": {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Shift walker closer to ego path, reduce speed",
+        "mutation_intent": "Increase interaction probability by moving walker toward spawn route and slowing walker to prolong exposure window",
+        "expected_oracle": "collision",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": -3.0,
+                "y": -2.0
+              },
+              "speed_delta": -1.0
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Walker 0 spawn within 8m of ego spawn",
+          "Walker speed remains positive"
+        ],
+        "post_execution_validation_rules": [
+          "Collision oracle triggered",
+          "Ego speed >3 m/s before impact",
+          "Detected and predicted objects present"
+        ],
+        "uncertainty": [
+          "vehicle_cmd zero vs vehicle_status actuation mismatch may persist",
+          "Lane invasion oracle conflict unresolved"
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 0.0,
+          "fog": 0.0,
+          "wetness": 0.0,
+          "puddle": 0.0
+        },
+        "actor_mutations": [
+          {
+            "actor_index": 0,
+            "position_offset": {
+              "x": -3.0,
+              "y": -2.0
+            },
+            "speed_delta": -1.0
+          }
+        ],
+        "puddle_mutations": [],
+        "mission_mutation": {
+          "keep_original": true
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_147__claude-sonnet-4-5.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_147__claude-sonnet-4-5.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    },
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/claude-sonnet-4-5/json/case_147/case_147__cand_002.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/claude-sonnet-4-5/metadata/case_147/case_147__cand_002.metadata.json",
+      "case_id": "case_147",
+      "model_name": "claude-sonnet-4-5",
+      "candidate_index": 2,
+      "candidate_spec": {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Increase fog and wetness, shift second walker",
+        "mutation_intent": "Degrade perception conditions and reposition second walker to test detection robustness under reduced visibility",
+        "expected_oracle": "collision",
+        "modifications": {
+          "weather_delta": {
+            "rain": 10,
+            "fog": 15,
+            "wetness": 12,
+            "puddle": 8
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": 5.0,
+                "y": -1.5
+              },
+              "speed_delta": 0.5
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Weather parameters within valid ranges",
+          "Walker 1 spawn within 8m offset"
+        ],
+        "post_execution_validation_rules": [
+          "Collision oracle triggered",
+          "Object detection count >0 before collision",
+          "Ego velocity >3 m/s"
+        ],
+        "uncertainty": [
+          "Causal actor identity uncertain",
+          "Module-level fault localization unknown"
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 10.0,
+          "fog": 15.0,
+          "wetness": 12.0,
+          "puddle": 8.0
+        },
+        "actor_mutations": [
+          {
+            "actor_index": 1,
+            "position_offset": {
+              "x": 5.0,
+              "y": -1.5
+            },
+            "speed_delta": 0.5
+          }
+        ],
+        "puddle_mutations": [],
+        "mission_mutation": {
+          "keep_original": true
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_147__claude-sonnet-4-5.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_147__claude-sonnet-4-5.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    }
+  ],
+  "seed_artifact_zip": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/claude-sonnet-4-5/seed-artifact/seed-artifact-case_147.zip",
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_prompts/case_147__claude-sonnet-4-5.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_147__claude-sonnet-4-5.json",
+  "prompt_estimated_tokens": 1273,
+  "usage": {
+    "prompt_tokens": 1506,
+    "completion_tokens": 698,
+    "total_tokens": 2204
+  },
+  "raw_response": "```json\n{\n  \"case_id\": \"case_147\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Shift walker closer to ego path, reduce speed\",\n      \"mutation_intent\": \"Increase interaction probability by moving walker toward spawn route and slowing walker to prolong exposure window\",\n      \"expected_oracle\": \"collision\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": -3.0, \"y\": -2.0}, \"speed_delta\": -1.0}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Walker 0 spawn within 8m of ego spawn\", \"Walker speed remains positive\"],\n      \"post_execution_validation_rules\": [\"Collision oracle triggered\", \"Ego speed >3 m/s before impact\", \"Detected and predicted objects present\"],\n      \"uncertainty\": [\"vehicle_cmd zero vs vehicle_status actuation mismatch may persist\", \"Lane invasion oracle conflict unresolved\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Increase fog and wetness, shift second walker\",\n      \"mutation_intent\": \"Degrade perception conditions and reposition second walker to test detection robustness under reduced visibility\",\n      \"expected_oracle\": \"collision\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 10, \"fog\": 15, \"wetness\": 12, \"puddle\": 8},\n        \"actor_mutations\": [\n          {\"actor_index\": 1, \"position_offset\": {\"x\": 5.0, \"y\": -1.5}, \"speed_delta\": 0.5}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Weather parameters within valid ranges\", \"Walker 1 spawn within 8m offset\"],\n      \"post_execution_validation_rules\": [\"Collision oracle triggered\", \"Object detection count >0 before collision\", \"Ego velocity >3 m/s\"],\n      \"uncertainty\": [\"Causal actor identity uncertain\", \"Module-level fault localization unknown\"]\n    }\n  ]\n}\n```",
+  "parsed_response": {
+    "case_id": "case_147",
+    "candidate_specs": [
+      {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Shift walker closer to ego path, reduce speed",
+        "mutation_intent": "Increase interaction probability by moving walker toward spawn route and slowing walker to prolong exposure window",
+        "expected_oracle": "collision",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": -3.0,
+                "y": -2.0
+              },
+              "speed_delta": -1.0
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Walker 0 spawn within 8m of ego spawn",
+          "Walker speed remains positive"
+        ],
+        "post_execution_validation_rules": [
+          "Collision oracle triggered",
+          "Ego speed >3 m/s before impact",
+          "Detected and predicted objects present"
+        ],
+        "uncertainty": [
+          "vehicle_cmd zero vs vehicle_status actuation mismatch may persist",
+          "Lane invasion oracle conflict unresolved"
+        ]
+      },
+      {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Increase fog and wetness, shift second walker",
+        "mutation_intent": "Degrade perception conditions and reposition second walker to test detection robustness under reduced visibility",
+        "expected_oracle": "collision",
+        "modifications": {
+          "weather_delta": {
+            "rain": 10,
+            "fog": 15,
+            "wetness": 12,
+            "puddle": 8
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": 5.0,
+                "y": -1.5
+              },
+              "speed_delta": 0.5
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Weather parameters within valid ranges",
+          "Walker 1 spawn within 8m offset"
+        ],
+        "post_execution_validation_rules": [
+          "Collision oracle triggered",
+          "Object detection count >0 before collision",
+          "Ego velocity >3 m/s"
+        ],
+        "uncertainty": [
+          "Causal actor identity uncertain",
+          "Module-level fault localization unknown"
+        ]
+      }
+    ]
+  },
+  "raw_api_payload": {
+    "id": "<REDACTED_RESPONSE_ID>",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "```json\n{\n  \"case_id\": \"case_147\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Shift walker closer to ego path, reduce speed\",\n      \"mutation_intent\": \"Increase interaction probability by moving walker toward spawn route and slowing walker to prolong exposure window\",\n      \"expected_oracle\": \"collision\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": -3.0, \"y\": -2.0}, \"speed_delta\": -1.0}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Walker 0 spawn within 8m of ego spawn\", \"Walker speed remains positive\"],\n      \"post_execution_validation_rules\": [\"Collision oracle triggered\", \"Ego speed >3 m/s before impact\", \"Detected and predicted objects present\"],\n      \"uncertainty\": [\"vehicle_cmd zero vs vehicle_status actuation mismatch may persist\", \"Lane invasion oracle conflict unresolved\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Increase fog and wetness, shift second walker\",\n      \"mutation_intent\": \"Degrade perception conditions and reposition second walker to test detection robustness under reduced visibility\",\n      \"expected_oracle\": \"collision\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 10, \"fog\": 15, \"wetness\": 12, \"puddle\": 8},\n        \"actor_mutations\": [\n          {\"actor_index\": 1, \"position_offset\": {\"x\": 5.0, \"y\": -1.5}, \"speed_delta\": 0.5}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Weather parameters within valid ranges\", \"Walker 1 spawn within 8m offset\"],\n      \"post_execution_validation_rules\": [\"Collision oracle triggered\", \"Object detection count >0 before collision\", \"Ego velocity >3 m/s\"],\n      \"uncertainty\": [\"Causal actor identity uncertain\", \"Module-level fault localization unknown\"]\n    }\n  ]\n}\n```",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "claude-sonnet-4-5",
+    "object": "chat.completion",
+    "service_tier": null,
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 698,
+      "prompt_tokens": 1506,
+      "total_tokens": 2204,
+      "completion_tokens_details": null,
+      "prompt_tokens_details": null
+    }
+  },
+  "error_message": "",
+  "elapsed_sec": 13.126,
+  "timestamp": "<REDACTED_TIMESTAMP>"
+}

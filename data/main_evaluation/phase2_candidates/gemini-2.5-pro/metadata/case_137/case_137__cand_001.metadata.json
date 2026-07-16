@@ -1,0 +1,54 @@
+{
+  "case_id": "case_137",
+  "model_name": "gemini-2.5-pro",
+  "candidate_index": 1,
+  "candidate_spec": {
+    "candidate_id": "cand_001",
+    "high_level_variant": "Increase rain and fog to stress perception's ability to detect the red light.",
+    "mutation_intent": "Test if the red light violation is exacerbated by adverse weather, which would suggest a perception-related root cause.",
+    "expected_oracle": "red_light",
+    "modifications": {
+      "weather_delta": {
+        "rain": 20,
+        "fog": 20,
+        "wetness": 20,
+        "puddle": 0
+      },
+      "actor_mutations": [],
+      "puddle_mutations": [],
+      "mission_mutation": {
+        "keep_original": true
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Ego vehicle path must lead to a red light."
+    ],
+    "post_execution_validation_rules": [
+      "Ego must cross the stop line during a red light."
+    ],
+    "uncertainty": [
+      "Failure may depend on perception model sensitivity to weather."
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": 20,
+      "fog": 20,
+      "wetness": 20,
+      "puddle": 0.0
+    },
+    "actor_mutations": [],
+    "puddle_mutations": [],
+    "mission_mutation": {
+      "keep_original": true
+    }
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_137__gemini-2.5-pro.json",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_137__gemini-2.5-pro.json",
+  "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+}

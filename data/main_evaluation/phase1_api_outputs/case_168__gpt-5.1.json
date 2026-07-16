@@ -1,0 +1,144 @@
+{
+  "case_id": "case_168",
+  "workflow": "phase1_causal_explanation",
+  "model_name": "gpt-5.1",
+  "model_id": "gpt-5.1",
+  "status": "completed",
+  "dry_run": false,
+  "schema_valid": true,
+  "schema_errors": [],
+  "quality_flags": [],
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_prompts/case_168__gpt-5.1.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_168__gpt-5.1.json",
+  "prompt_estimated_tokens": 3388,
+  "usage": {
+    "prompt_tokens": 3667,
+    "completion_tokens": 1369,
+    "total_tokens": 5036
+  },
+  "estimated_cost_usd": null,
+  "raw_response": "{\n  \"case_id\": \"case_168\",\n  \"fault_layer\": \"unknown\",\n  \"fault_component\": \"unknown\",\n  \"causal_explanation\": \"The oracle reports a red-light violation without lane invasion, while the dataset labels indicate both lane invasion and red-light violation. During the critical window, the ego vehicle is moving at nonzero speed with nonzero steering reported in vehicle_status, even though all vehicle_cmd fields remain zero. Traffic light messages show multiple signals, including red states, but the summaries do not establish which light, if any, governs the ego route or whether a stop line was crossed. A collision is recorded by the oracle near the end of the run despite the error.json crash flag being false. Because the route–light relation, lane-boundary interaction, and control pipeline behavior are not directly evidenced, the mechanism leading to the red-light violation and collision is uncertain.\",\n  \"root_cause_pattern\": \"Conservative preservation pattern: an ego vehicle in Town01 approaches an intersection environment with active traffic lights and puddles present, receives traffic-light state information and nonempty final_waypoints, but later exhibits an oracle red-light violation (and a collision symptom) under zero-valued vehicle_cmd outputs and nonzero ego motion, with unclear route–light relation and lane-boundary behavior.\",\n  \"preservation_constraints\": [\n    \"The generated case should preserve an oracle-detected red-light violation as the primary symptom.\",\n    \"Traffic light topic data must be available with multiple lights and at least one red state before the violation.\",\n    \"Final_waypoints must remain available and populated (nonzero waypoint counts) through the critical window.\",\n    \"vehicle_cmd messages should remain effectively zeroed while vehicle_status shows the ego moving with nonzero speed near the violation window.\",\n    \"The scenario should occur on the Town01 map with a similar mission type and no additional dynamic actors.\"\n  ],\n  \"modifiable_factors\": [\n    \"weather\",\n    \"puddles\",\n    \"mission\",\n    \"ego_start_pose\",\n    \"goal_position\",\n    \"ego_speed_profile\",\n    \"traffic_light_timing\"\n  ],\n  \"non_modifiable_conditions\": [\n    \"same oracle red-light violation symptom must be preserved\",\n    \"traffic_lights topic must exist and report at least one red state prior to the violation\",\n    \"final_waypoints must be continuously available with nonzero waypoint counts before the violation\",\n    \"vehicle_cmd must remain zero or near-zero while vehicle_status indicates nonzero ego velocity in the critical window\",\n    \"scenario must run on Town01 with no additional non-ego actors spawned\"\n  ],\n  \"uncertainty\": [\n    \"Dataset.xlsx reports lane_invasion=1 while error.json reports lane_invasion=false, so lane invasion is not confirmed.\",\n    \"The oracle marks a red-light violation, but route–light relation and stop-line crossing are explicitly unknown in the summaries.\",\n    \"Collision messages exist with a significant impulse range, but error_json crash=false, so the collision severity or oracle criteria are unclear.\",\n    \"The cause of the mismatch between zero vehicle_cmd commands and nonzero vehicle_status motion cannot be localized to actuation, planning, or simulator based on the available summaries.\",\n    \"Lane-boundary interactions and exact ego position relative to stop lines are not provided.\"\n  ],\n  \"evidence_support\": [\n    {\n      \"evidence_id\": \"fault_label\",\n      \"claim\": \"Dataset labels the case as lane_invasion=1 and red_light=1 with group L+R.\"\n    },\n    {\n      \"evidence_id\": \"oracle_consistency\",\n      \"claim\": \"Error.json group is R only with lane_invasion=false and red=true, indicating a label conflict and need for manual review.\"\n    },\n    {\n      \"evidence_id\": \"critical_window_summary.red_light_window\",\n      \"claim\": \"Oracle reports a red-light violation, traffic_lights topic exists with 36 signals and states including red (state 2), but route–light relation and stop-line crossing are unknown.\"\n    },\n    {\n      \"evidence_id\": \"critical_window_summary.collision_window\",\n      \"claim\": \"Collision topic exists with ego speed around 3–5.6 m/s before collision, nonzero steering and throttle in vehicle_status, but all vehicle_cmd fields remain zero; collision_window reports error_json_crash=false despite collision messages.\"\n    },\n    {\n      \"evidence_id\": \"trace_summary_compact.planning.final_waypoints\",\n      \"claim\": \"final_waypoints exist from early to late in the run with consistent waypoint_count=101, indicating continuous availability of planned waypoints.\"\n    },\n    {\n      \"evidence_id\": \"trace_summary_compact.oracle.traffic_lights\",\n      \"claim\": \"Traffic light samples span a wide time range with a constant count of 36 lights and state_sample including 0, 1, and 2, confirming the presence of various light states in the environment.\"\n    },\n    {\n      \"evidence_id\": \"scenario_config\",\n      \"claim\": \"The scenario runs on Town01 with a defined start and goal mission, zero additional actors, and nontrivial weather and puddle settings.\"\n    },\n    {\n      \"evidence_id\": \"trace_summary_compact.actuation\",\n      \"claim\": \"vehicle_cmd ranges are all zero across sampled rows, while vehicle_status shows a nonzero velocity range up to about 8.78 m/s and nonzero steering, confirming the command–status mismatch.\"\n    }\n  ],\n  \"confidence\": \"low\",\n  \"ready_for_phase2_generation\": \"uncertain\",\n  \"notes_for_validator\": [\n    \"Verify after execution that the oracle flags a red-light violation; do not require lane invasion as a success criterion because of dataset–error_json conflict.\",\n    \"Check that traffic_lights data include at least one red light active before the violation, but do not assume any particular light governs the ego without explicit route–light evidence.\",\n    \"Confirm that final_waypoints remain available and nonempty during the critical window leading to the violation.\",\n    \"Confirm that vehicle_cmd remains effectively zero while vehicle_status indicates the ego is moving at nonzero speed around the violation window; this pattern is part of the root-cause preservation, not definitive evidence of an actuation bug.\",\n    \"Do not require a confirmed collision or lane-boundary crossing for same-root-cause matching; use the red-light violation plus the command–status mismatch and traffic-light presence as primary matching conditions.\",\n    \"If future logs provide precise route–light association or stop-line crossing information, they may refine module attribution; until then, keep fault_layer as unknown.\"\n  ]\n}",
+  "parsed_response": {
+    "case_id": "case_168",
+    "fault_layer": "unknown",
+    "fault_component": "unknown",
+    "causal_explanation": "The oracle reports a red-light violation without lane invasion, while the dataset labels indicate both lane invasion and red-light violation. During the critical window, the ego vehicle is moving at nonzero speed with nonzero steering reported in vehicle_status, even though all vehicle_cmd fields remain zero. Traffic light messages show multiple signals, including red states, but the summaries do not establish which light, if any, governs the ego route or whether a stop line was crossed. A collision is recorded by the oracle near the end of the run despite the error.json crash flag being false. Because the route–light relation, lane-boundary interaction, and control pipeline behavior are not directly evidenced, the mechanism leading to the red-light violation and collision is uncertain.",
+    "root_cause_pattern": "Conservative preservation pattern: an ego vehicle in Town01 approaches an intersection environment with active traffic lights and puddles present, receives traffic-light state information and nonempty final_waypoints, but later exhibits an oracle red-light violation (and a collision symptom) under zero-valued vehicle_cmd outputs and nonzero ego motion, with unclear route–light relation and lane-boundary behavior.",
+    "preservation_constraints": [
+      "The generated case should preserve an oracle-detected red-light violation as the primary symptom.",
+      "Traffic light topic data must be available with multiple lights and at least one red state before the violation.",
+      "Final_waypoints must remain available and populated (nonzero waypoint counts) through the critical window.",
+      "vehicle_cmd messages should remain effectively zeroed while vehicle_status shows the ego moving with nonzero speed near the violation window.",
+      "The scenario should occur on the Town01 map with a similar mission type and no additional dynamic actors."
+    ],
+    "modifiable_factors": [
+      "weather",
+      "puddles",
+      "mission",
+      "ego_start_pose",
+      "goal_position",
+      "ego_speed_profile",
+      "traffic_light_timing"
+    ],
+    "non_modifiable_conditions": [
+      "same oracle red-light violation symptom must be preserved",
+      "traffic_lights topic must exist and report at least one red state prior to the violation",
+      "final_waypoints must be continuously available with nonzero waypoint counts before the violation",
+      "vehicle_cmd must remain zero or near-zero while vehicle_status indicates nonzero ego velocity in the critical window",
+      "scenario must run on Town01 with no additional non-ego actors spawned"
+    ],
+    "uncertainty": [
+      "Dataset.xlsx reports lane_invasion=1 while error.json reports lane_invasion=false, so lane invasion is not confirmed.",
+      "The oracle marks a red-light violation, but route–light relation and stop-line crossing are explicitly unknown in the summaries.",
+      "Collision messages exist with a significant impulse range, but error_json crash=false, so the collision severity or oracle criteria are unclear.",
+      "The cause of the mismatch between zero vehicle_cmd commands and nonzero vehicle_status motion cannot be localized to actuation, planning, or simulator based on the available summaries.",
+      "Lane-boundary interactions and exact ego position relative to stop lines are not provided."
+    ],
+    "evidence_support": [
+      {
+        "evidence_id": "fault_label",
+        "claim": "Dataset labels the case as lane_invasion=1 and red_light=1 with group L+R."
+      },
+      {
+        "evidence_id": "oracle_consistency",
+        "claim": "Error.json group is R only with lane_invasion=false and red=true, indicating a label conflict and need for manual review."
+      },
+      {
+        "evidence_id": "critical_window_summary.red_light_window",
+        "claim": "Oracle reports a red-light violation, traffic_lights topic exists with 36 signals and states including red (state 2), but route–light relation and stop-line crossing are unknown."
+      },
+      {
+        "evidence_id": "critical_window_summary.collision_window",
+        "claim": "Collision topic exists with ego speed around 3–5.6 m/s before collision, nonzero steering and throttle in vehicle_status, but all vehicle_cmd fields remain zero; collision_window reports error_json_crash=false despite collision messages."
+      },
+      {
+        "evidence_id": "trace_summary_compact.planning.final_waypoints",
+        "claim": "final_waypoints exist from early to late in the run with consistent waypoint_count=101, indicating continuous availability of planned waypoints."
+      },
+      {
+        "evidence_id": "trace_summary_compact.oracle.traffic_lights",
+        "claim": "Traffic light samples span a wide time range with a constant count of 36 lights and state_sample including 0, 1, and 2, confirming the presence of various light states in the environment."
+      },
+      {
+        "evidence_id": "scenario_config",
+        "claim": "The scenario runs on Town01 with a defined start and goal mission, zero additional actors, and nontrivial weather and puddle settings."
+      },
+      {
+        "evidence_id": "trace_summary_compact.actuation",
+        "claim": "vehicle_cmd ranges are all zero across sampled rows, while vehicle_status shows a nonzero velocity range up to about 8.78 m/s and nonzero steering, confirming the command–status mismatch."
+      }
+    ],
+    "confidence": "low",
+    "ready_for_phase2_generation": "uncertain",
+    "notes_for_validator": [
+      "Verify after execution that the oracle flags a red-light violation; do not require lane invasion as a success criterion because of dataset–error_json conflict.",
+      "Check that traffic_lights data include at least one red light active before the violation, but do not assume any particular light governs the ego without explicit route–light evidence.",
+      "Confirm that final_waypoints remain available and nonempty during the critical window leading to the violation.",
+      "Confirm that vehicle_cmd remains effectively zero while vehicle_status indicates the ego is moving at nonzero speed around the violation window; this pattern is part of the root-cause preservation, not definitive evidence of an actuation bug.",
+      "Do not require a confirmed collision or lane-boundary crossing for same-root-cause matching; use the red-light violation plus the command–status mismatch and traffic-light presence as primary matching conditions.",
+      "If future logs provide precise route–light association or stop-line crossing information, they may refine module attribution; until then, keep fault_layer as unknown."
+    ]
+  },
+  "raw_api_payload": {
+    "id": "<REDACTED_RESPONSE_ID>",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "{\n  \"case_id\": \"case_168\",\n  \"fault_layer\": \"unknown\",\n  \"fault_component\": \"unknown\",\n  \"causal_explanation\": \"The oracle reports a red-light violation without lane invasion, while the dataset labels indicate both lane invasion and red-light violation. During the critical window, the ego vehicle is moving at nonzero speed with nonzero steering reported in vehicle_status, even though all vehicle_cmd fields remain zero. Traffic light messages show multiple signals, including red states, but the summaries do not establish which light, if any, governs the ego route or whether a stop line was crossed. A collision is recorded by the oracle near the end of the run despite the error.json crash flag being false. Because the route–light relation, lane-boundary interaction, and control pipeline behavior are not directly evidenced, the mechanism leading to the red-light violation and collision is uncertain.\",\n  \"root_cause_pattern\": \"Conservative preservation pattern: an ego vehicle in Town01 approaches an intersection environment with active traffic lights and puddles present, receives traffic-light state information and nonempty final_waypoints, but later exhibits an oracle red-light violation (and a collision symptom) under zero-valued vehicle_cmd outputs and nonzero ego motion, with unclear route–light relation and lane-boundary behavior.\",\n  \"preservation_constraints\": [\n    \"The generated case should preserve an oracle-detected red-light violation as the primary symptom.\",\n    \"Traffic light topic data must be available with multiple lights and at least one red state before the violation.\",\n    \"Final_waypoints must remain available and populated (nonzero waypoint counts) through the critical window.\",\n    \"vehicle_cmd messages should remain effectively zeroed while vehicle_status shows the ego moving with nonzero speed near the violation window.\",\n    \"The scenario should occur on the Town01 map with a similar mission type and no additional dynamic actors.\"\n  ],\n  \"modifiable_factors\": [\n    \"weather\",\n    \"puddles\",\n    \"mission\",\n    \"ego_start_pose\",\n    \"goal_position\",\n    \"ego_speed_profile\",\n    \"traffic_light_timing\"\n  ],\n  \"non_modifiable_conditions\": [\n    \"same oracle red-light violation symptom must be preserved\",\n    \"traffic_lights topic must exist and report at least one red state prior to the violation\",\n    \"final_waypoints must be continuously available with nonzero waypoint counts before the violation\",\n    \"vehicle_cmd must remain zero or near-zero while vehicle_status indicates nonzero ego velocity in the critical window\",\n    \"scenario must run on Town01 with no additional non-ego actors spawned\"\n  ],\n  \"uncertainty\": [\n    \"Dataset.xlsx reports lane_invasion=1 while error.json reports lane_invasion=false, so lane invasion is not confirmed.\",\n    \"The oracle marks a red-light violation, but route–light relation and stop-line crossing are explicitly unknown in the summaries.\",\n    \"Collision messages exist with a significant impulse range, but error_json crash=false, so the collision severity or oracle criteria are unclear.\",\n    \"The cause of the mismatch between zero vehicle_cmd commands and nonzero vehicle_status motion cannot be localized to actuation, planning, or simulator based on the available summaries.\",\n    \"Lane-boundary interactions and exact ego position relative to stop lines are not provided.\"\n  ],\n  \"evidence_support\": [\n    {\n      \"evidence_id\": \"fault_label\",\n      \"claim\": \"Dataset labels the case as lane_invasion=1 and red_light=1 with group L+R.\"\n    },\n    {\n      \"evidence_id\": \"oracle_consistency\",\n      \"claim\": \"Error.json group is R only with lane_invasion=false and red=true, indicating a label conflict and need for manual review.\"\n    },\n    {\n      \"evidence_id\": \"critical_window_summary.red_light_window\",\n      \"claim\": \"Oracle reports a red-light violation, traffic_lights topic exists with 36 signals and states including red (state 2), but route–light relation and stop-line crossing are unknown.\"\n    },\n    {\n      \"evidence_id\": \"critical_window_summary.collision_window\",\n      \"claim\": \"Collision topic exists with ego speed around 3–5.6 m/s before collision, nonzero steering and throttle in vehicle_status, but all vehicle_cmd fields remain zero; collision_window reports error_json_crash=false despite collision messages.\"\n    },\n    {\n      \"evidence_id\": \"trace_summary_compact.planning.final_waypoints\",\n      \"claim\": \"final_waypoints exist from early to late in the run with consistent waypoint_count=101, indicating continuous availability of planned waypoints.\"\n    },\n    {\n      \"evidence_id\": \"trace_summary_compact.oracle.traffic_lights\",\n      \"claim\": \"Traffic light samples span a wide time range with a constant count of 36 lights and state_sample including 0, 1, and 2, confirming the presence of various light states in the environment.\"\n    },\n    {\n      \"evidence_id\": \"scenario_config\",\n      \"claim\": \"The scenario runs on Town01 with a defined start and goal mission, zero additional actors, and nontrivial weather and puddle settings.\"\n    },\n    {\n      \"evidence_id\": \"trace_summary_compact.actuation\",\n      \"claim\": \"vehicle_cmd ranges are all zero across sampled rows, while vehicle_status shows a nonzero velocity range up to about 8.78 m/s and nonzero steering, confirming the command–status mismatch.\"\n    }\n  ],\n  \"confidence\": \"low\",\n  \"ready_for_phase2_generation\": \"uncertain\",\n  \"notes_for_validator\": [\n    \"Verify after execution that the oracle flags a red-light violation; do not require lane invasion as a success criterion because of dataset–error_json conflict.\",\n    \"Check that traffic_lights data include at least one red light active before the violation, but do not assume any particular light governs the ego without explicit route–light evidence.\",\n    \"Confirm that final_waypoints remain available and nonempty during the critical window leading to the violation.\",\n    \"Confirm that vehicle_cmd remains effectively zero while vehicle_status indicates the ego is moving at nonzero speed around the violation window; this pattern is part of the root-cause preservation, not definitive evidence of an actuation bug.\",\n    \"Do not require a confirmed collision or lane-boundary crossing for same-root-cause matching; use the red-light violation plus the command–status mismatch and traffic-light presence as primary matching conditions.\",\n    \"If future logs provide precise route–light association or stop-line crossing information, they may refine module attribution; until then, keep fault_layer as unknown.\"\n  ]\n}",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": [],
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "gpt-5.1-2025-11-13",
+    "object": "chat.completion",
+    "service_tier": "default",
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 1369,
+      "prompt_tokens": 3667,
+      "total_tokens": 5036,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": 0,
+        "audio_tokens": 0,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 0
+      }
+    }
+  },
+  "error_message": "",
+  "timestamp": "<REDACTED_TIMESTAMP>",
+  "elapsed_sec": 20.83
+}

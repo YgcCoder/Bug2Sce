@@ -1,0 +1,142 @@
+{
+  "case_id": "case_151",
+  "workflow": "phase1_causal_explanation",
+  "model_name": "gpt-5.1",
+  "model_id": "gpt-5.1",
+  "status": "completed",
+  "dry_run": false,
+  "schema_valid": true,
+  "schema_errors": [],
+  "quality_flags": [],
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_prompts/case_151__gpt-5.1.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_151__gpt-5.1.json",
+  "prompt_estimated_tokens": 2818,
+  "usage": {
+    "prompt_tokens": 2997,
+    "completion_tokens": 1294,
+    "total_tokens": 4291
+  },
+  "estimated_cost_usd": null,
+  "raw_response": "{\n  \"case_id\": \"case_151\",\n  \"fault_layer\": \"unknown\",\n  \"fault_component\": \"unknown\",\n  \"causal_explanation\": \"The oracle error_json reports no stuck or lane-invasion event and instead flags a goal-related deviation, while the dataset labels this case as both stuck and lane-invasion. Within the critical window the ego continues to move some distance with low but nonzero average velocity and has consistently available final waypoints and perception/prediction objects. Vehicle_cmd remains zero throughout the log, yet control-related fields in the stuck_window summary indicate nonzero throttle and brake activity, and higher ego velocity than the trace_summary vehicle_status range suggests, creating a mismatch between summarized control/velocity statistics. Because of these inconsistencies, the true symptom (stuck vs simple goal failure vs lane invasion) and the responsible Autoware layer cannot be reliably inferred from the available evidence.\",\n  \"root_cause_pattern\": \"Conservative preservation pattern: an oracle goal-deviation case with low-speed ego motion and active perception and planning signals, where dataset labels claim stuck and lane-invasion but error_json does not, leaving the underlying module-level fault and even the primary symptom uncertain.\",\n  \"preservation_constraints\": [\n    \"The generated case should reproduce an oracle outcome indicating failure to reach the intended goal or a significant goal deviation, without confirmed collision or red-light violation in error_json.\",\n    \"Perception and prediction object topics should remain active with at least one detected object during the critical window.\",\n    \"Planning final_waypoints should remain available and nonempty throughout the critical window.\",\n    \"The ego vehicle should exhibit low but nonzero movement over an extended interval before termination, rather than a clear immediate halt or high-speed behavior.\",\n    \"Dataset-style labels or higher-level annotations should allow for possible stuck and/or lane-invasion tagging even if the runtime oracle does not confirm these events.\"\n  ],\n  \"modifiable_factors\": [\n    \"actor_position\",\n    \"number_of_actors\",\n    \"weather\",\n    \"puddles\",\n    \"mission\",\n    \"traffic_light_timing\",\n    \"initial_ego_speed\"\n  ],\n  \"non_modifiable_conditions\": [\n    \"Same map Town01 must be used.\",\n    \"The oracle error_json should not report collision, stuck, lane_invasion, red_light, or speeding as the primary failure cause, but should indicate a goal-related issue.\",\n    \"Perception, prediction, and planning (final_waypoints) topics must be present during the critical window.\",\n    \"The ego must cover a nonzero distance with generally low speeds before failure.\"\n  ],\n  \"uncertainty\": [\n    \"Dataset.xlsx labels indicate stuck and lane_invasion, but error_json reports neither; the primary symptom is ambiguous.\",\n    \"Vehicle_cmd remains zero while the stuck_window summary indicates nonzero throttle, brake, and ego velocity, conflicting with the trace_summary vehicle_status ranges.\",\n    \"No direct evidence localizes the issue to sensing, perception, planning, actuation, simulator, or map.\",\n    \"Lane invasion is not confirmed by any dedicated oracle event or explicit lane-boundary evidence.\",\n    \"The exact controller behavior and its relationship to vehicle motion cannot be reliably inferred from the conflicting control summaries.\"\n  ],\n  \"evidence_support\": [\n    {\n      \"evidence_id\": \"fault_label\",\n      \"claim\": \"Dataset marks this case as both stuck and lane_invasion (group S+L).\"\n    },\n    {\n      \"evidence_id\": \"oracle_consistency\",\n      \"claim\": \"Error_json group is none, with crash=false, stuck=false, lane_invasion=false, red=false, and other='goal', indicating a goal-related issue instead of stuck or lane invasion.\"\n    },\n    {\n      \"evidence_id\": \"critical_window_summary.stuck_window\",\n      \"claim\": \"In the last 60 seconds, ego_movement_distance is 56.113 with nonzero mean and last velocity, while final_waypoints are present with a constant count of 101.\"\n    },\n    {\n      \"evidence_id\": \"critical_window_summary.stuck_window.vehicle_cmd_stats\",\n      \"claim\": \"accel_cmd, brake_cmd, and steer_cmd are all zero throughout the last 60 seconds.\"\n    },\n    {\n      \"evidence_id\": \"critical_window_summary.stuck_window.vehicle_status_control_stats\",\n      \"claim\": \"Within the stuck_window summary, throttle and brake statistics are nonzero, suggesting some control activity and motion inconsistent with a perfectly stuck vehicle.\"\n    },\n    {\n      \"evidence_id\": \"trace_summary_compact.perception\",\n      \"claim\": \"Detection and prediction objects exist from about 13.88s to 174.68s, with 1–2 detection objects and up to 12 prediction objects, indicating ongoing perception and prediction activity.\"\n    },\n    {\n      \"evidence_id\": \"trace_summary_compact.planning.final_waypoints\",\n      \"claim\": \"final_waypoints exist from about 18.08s to 174.68s, always with 101 waypoints and no blocked or null rows, indicating stable planning output presence.\"\n    },\n    {\n      \"evidence_id\": \"trace_summary_compact.oracle.error_json_events\",\n      \"claim\": \"The oracle summaries confirm no crash, no stuck, no lane_invasion, and an 'other' goal error value of about 58.4.\"\n    }\n  ],\n  \"confidence\": \"low\",\n  \"ready_for_phase2_generation\": \"uncertain\",\n  \"notes_for_validator\": [\n    \"Before declaring same-root-cause, verify post-execution that error_json reports a goal-related failure without collision, stuck, lane_invasion, red_light, or speeding.\",\n    \"Check that perception and prediction objects, as well as final_waypoints, remain available and populated in the critical window.\",\n    \"Confirm that the ego exhibits low but nonzero movement over an extended duration rather than being strictly stationary or clearly high-speed.\",\n    \"Do not assume lane invasion unless a dedicated oracle lane_invasion event or explicit lane-boundary evidence appears in the generated run.\",\n    \"Module-level attribution (e.g., to planning or control) must not be inferred solely from topic existence or zero vehicle_cmd; additional internal evidence would be required.\"\n  ]\n}",
+  "parsed_response": {
+    "case_id": "case_151",
+    "fault_layer": "unknown",
+    "fault_component": "unknown",
+    "causal_explanation": "The oracle error_json reports no stuck or lane-invasion event and instead flags a goal-related deviation, while the dataset labels this case as both stuck and lane-invasion. Within the critical window the ego continues to move some distance with low but nonzero average velocity and has consistently available final waypoints and perception/prediction objects. Vehicle_cmd remains zero throughout the log, yet control-related fields in the stuck_window summary indicate nonzero throttle and brake activity, and higher ego velocity than the trace_summary vehicle_status range suggests, creating a mismatch between summarized control/velocity statistics. Because of these inconsistencies, the true symptom (stuck vs simple goal failure vs lane invasion) and the responsible Autoware layer cannot be reliably inferred from the available evidence.",
+    "root_cause_pattern": "Conservative preservation pattern: an oracle goal-deviation case with low-speed ego motion and active perception and planning signals, where dataset labels claim stuck and lane-invasion but error_json does not, leaving the underlying module-level fault and even the primary symptom uncertain.",
+    "preservation_constraints": [
+      "The generated case should reproduce an oracle outcome indicating failure to reach the intended goal or a significant goal deviation, without confirmed collision or red-light violation in error_json.",
+      "Perception and prediction object topics should remain active with at least one detected object during the critical window.",
+      "Planning final_waypoints should remain available and nonempty throughout the critical window.",
+      "The ego vehicle should exhibit low but nonzero movement over an extended interval before termination, rather than a clear immediate halt or high-speed behavior.",
+      "Dataset-style labels or higher-level annotations should allow for possible stuck and/or lane-invasion tagging even if the runtime oracle does not confirm these events."
+    ],
+    "modifiable_factors": [
+      "actor_position",
+      "number_of_actors",
+      "weather",
+      "puddles",
+      "mission",
+      "traffic_light_timing",
+      "initial_ego_speed"
+    ],
+    "non_modifiable_conditions": [
+      "Same map Town01 must be used.",
+      "The oracle error_json should not report collision, stuck, lane_invasion, red_light, or speeding as the primary failure cause, but should indicate a goal-related issue.",
+      "Perception, prediction, and planning (final_waypoints) topics must be present during the critical window.",
+      "The ego must cover a nonzero distance with generally low speeds before failure."
+    ],
+    "uncertainty": [
+      "Dataset.xlsx labels indicate stuck and lane_invasion, but error_json reports neither; the primary symptom is ambiguous.",
+      "Vehicle_cmd remains zero while the stuck_window summary indicates nonzero throttle, brake, and ego velocity, conflicting with the trace_summary vehicle_status ranges.",
+      "No direct evidence localizes the issue to sensing, perception, planning, actuation, simulator, or map.",
+      "Lane invasion is not confirmed by any dedicated oracle event or explicit lane-boundary evidence.",
+      "The exact controller behavior and its relationship to vehicle motion cannot be reliably inferred from the conflicting control summaries."
+    ],
+    "evidence_support": [
+      {
+        "evidence_id": "fault_label",
+        "claim": "Dataset marks this case as both stuck and lane_invasion (group S+L)."
+      },
+      {
+        "evidence_id": "oracle_consistency",
+        "claim": "Error_json group is none, with crash=false, stuck=false, lane_invasion=false, red=false, and other='goal', indicating a goal-related issue instead of stuck or lane invasion."
+      },
+      {
+        "evidence_id": "critical_window_summary.stuck_window",
+        "claim": "In the last 60 seconds, ego_movement_distance is 56.113 with nonzero mean and last velocity, while final_waypoints are present with a constant count of 101."
+      },
+      {
+        "evidence_id": "critical_window_summary.stuck_window.vehicle_cmd_stats",
+        "claim": "accel_cmd, brake_cmd, and steer_cmd are all zero throughout the last 60 seconds."
+      },
+      {
+        "evidence_id": "critical_window_summary.stuck_window.vehicle_status_control_stats",
+        "claim": "Within the stuck_window summary, throttle and brake statistics are nonzero, suggesting some control activity and motion inconsistent with a perfectly stuck vehicle."
+      },
+      {
+        "evidence_id": "trace_summary_compact.perception",
+        "claim": "Detection and prediction objects exist from about 13.88s to 174.68s, with 1–2 detection objects and up to 12 prediction objects, indicating ongoing perception and prediction activity."
+      },
+      {
+        "evidence_id": "trace_summary_compact.planning.final_waypoints",
+        "claim": "final_waypoints exist from about 18.08s to 174.68s, always with 101 waypoints and no blocked or null rows, indicating stable planning output presence."
+      },
+      {
+        "evidence_id": "trace_summary_compact.oracle.error_json_events",
+        "claim": "The oracle summaries confirm no crash, no stuck, no lane_invasion, and an 'other' goal error value of about 58.4."
+      }
+    ],
+    "confidence": "low",
+    "ready_for_phase2_generation": "uncertain",
+    "notes_for_validator": [
+      "Before declaring same-root-cause, verify post-execution that error_json reports a goal-related failure without collision, stuck, lane_invasion, red_light, or speeding.",
+      "Check that perception and prediction objects, as well as final_waypoints, remain available and populated in the critical window.",
+      "Confirm that the ego exhibits low but nonzero movement over an extended duration rather than being strictly stationary or clearly high-speed.",
+      "Do not assume lane invasion unless a dedicated oracle lane_invasion event or explicit lane-boundary evidence appears in the generated run.",
+      "Module-level attribution (e.g., to planning or control) must not be inferred solely from topic existence or zero vehicle_cmd; additional internal evidence would be required."
+    ]
+  },
+  "raw_api_payload": {
+    "id": "<REDACTED_RESPONSE_ID>",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "{\n  \"case_id\": \"case_151\",\n  \"fault_layer\": \"unknown\",\n  \"fault_component\": \"unknown\",\n  \"causal_explanation\": \"The oracle error_json reports no stuck or lane-invasion event and instead flags a goal-related deviation, while the dataset labels this case as both stuck and lane-invasion. Within the critical window the ego continues to move some distance with low but nonzero average velocity and has consistently available final waypoints and perception/prediction objects. Vehicle_cmd remains zero throughout the log, yet control-related fields in the stuck_window summary indicate nonzero throttle and brake activity, and higher ego velocity than the trace_summary vehicle_status range suggests, creating a mismatch between summarized control/velocity statistics. Because of these inconsistencies, the true symptom (stuck vs simple goal failure vs lane invasion) and the responsible Autoware layer cannot be reliably inferred from the available evidence.\",\n  \"root_cause_pattern\": \"Conservative preservation pattern: an oracle goal-deviation case with low-speed ego motion and active perception and planning signals, where dataset labels claim stuck and lane-invasion but error_json does not, leaving the underlying module-level fault and even the primary symptom uncertain.\",\n  \"preservation_constraints\": [\n    \"The generated case should reproduce an oracle outcome indicating failure to reach the intended goal or a significant goal deviation, without confirmed collision or red-light violation in error_json.\",\n    \"Perception and prediction object topics should remain active with at least one detected object during the critical window.\",\n    \"Planning final_waypoints should remain available and nonempty throughout the critical window.\",\n    \"The ego vehicle should exhibit low but nonzero movement over an extended interval before termination, rather than a clear immediate halt or high-speed behavior.\",\n    \"Dataset-style labels or higher-level annotations should allow for possible stuck and/or lane-invasion tagging even if the runtime oracle does not confirm these events.\"\n  ],\n  \"modifiable_factors\": [\n    \"actor_position\",\n    \"number_of_actors\",\n    \"weather\",\n    \"puddles\",\n    \"mission\",\n    \"traffic_light_timing\",\n    \"initial_ego_speed\"\n  ],\n  \"non_modifiable_conditions\": [\n    \"Same map Town01 must be used.\",\n    \"The oracle error_json should not report collision, stuck, lane_invasion, red_light, or speeding as the primary failure cause, but should indicate a goal-related issue.\",\n    \"Perception, prediction, and planning (final_waypoints) topics must be present during the critical window.\",\n    \"The ego must cover a nonzero distance with generally low speeds before failure.\"\n  ],\n  \"uncertainty\": [\n    \"Dataset.xlsx labels indicate stuck and lane_invasion, but error_json reports neither; the primary symptom is ambiguous.\",\n    \"Vehicle_cmd remains zero while the stuck_window summary indicates nonzero throttle, brake, and ego velocity, conflicting with the trace_summary vehicle_status ranges.\",\n    \"No direct evidence localizes the issue to sensing, perception, planning, actuation, simulator, or map.\",\n    \"Lane invasion is not confirmed by any dedicated oracle event or explicit lane-boundary evidence.\",\n    \"The exact controller behavior and its relationship to vehicle motion cannot be reliably inferred from the conflicting control summaries.\"\n  ],\n  \"evidence_support\": [\n    {\n      \"evidence_id\": \"fault_label\",\n      \"claim\": \"Dataset marks this case as both stuck and lane_invasion (group S+L).\"\n    },\n    {\n      \"evidence_id\": \"oracle_consistency\",\n      \"claim\": \"Error_json group is none, with crash=false, stuck=false, lane_invasion=false, red=false, and other='goal', indicating a goal-related issue instead of stuck or lane invasion.\"\n    },\n    {\n      \"evidence_id\": \"critical_window_summary.stuck_window\",\n      \"claim\": \"In the last 60 seconds, ego_movement_distance is 56.113 with nonzero mean and last velocity, while final_waypoints are present with a constant count of 101.\"\n    },\n    {\n      \"evidence_id\": \"critical_window_summary.stuck_window.vehicle_cmd_stats\",\n      \"claim\": \"accel_cmd, brake_cmd, and steer_cmd are all zero throughout the last 60 seconds.\"\n    },\n    {\n      \"evidence_id\": \"critical_window_summary.stuck_window.vehicle_status_control_stats\",\n      \"claim\": \"Within the stuck_window summary, throttle and brake statistics are nonzero, suggesting some control activity and motion inconsistent with a perfectly stuck vehicle.\"\n    },\n    {\n      \"evidence_id\": \"trace_summary_compact.perception\",\n      \"claim\": \"Detection and prediction objects exist from about 13.88s to 174.68s, with 1–2 detection objects and up to 12 prediction objects, indicating ongoing perception and prediction activity.\"\n    },\n    {\n      \"evidence_id\": \"trace_summary_compact.planning.final_waypoints\",\n      \"claim\": \"final_waypoints exist from about 18.08s to 174.68s, always with 101 waypoints and no blocked or null rows, indicating stable planning output presence.\"\n    },\n    {\n      \"evidence_id\": \"trace_summary_compact.oracle.error_json_events\",\n      \"claim\": \"The oracle summaries confirm no crash, no stuck, no lane_invasion, and an 'other' goal error value of about 58.4.\"\n    }\n  ],\n  \"confidence\": \"low\",\n  \"ready_for_phase2_generation\": \"uncertain\",\n  \"notes_for_validator\": [\n    \"Before declaring same-root-cause, verify post-execution that error_json reports a goal-related failure without collision, stuck, lane_invasion, red_light, or speeding.\",\n    \"Check that perception and prediction objects, as well as final_waypoints, remain available and populated in the critical window.\",\n    \"Confirm that the ego exhibits low but nonzero movement over an extended duration rather than being strictly stationary or clearly high-speed.\",\n    \"Do not assume lane invasion unless a dedicated oracle lane_invasion event or explicit lane-boundary evidence appears in the generated run.\",\n    \"Module-level attribution (e.g., to planning or control) must not be inferred solely from topic existence or zero vehicle_cmd; additional internal evidence would be required.\"\n  ]\n}",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": [],
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "gpt-5.1-2025-11-13",
+    "object": "chat.completion",
+    "service_tier": "default",
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 1294,
+      "prompt_tokens": 2997,
+      "total_tokens": 4291,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": 0,
+        "audio_tokens": 0,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 0
+      }
+    }
+  },
+  "error_message": "",
+  "timestamp": "<REDACTED_TIMESTAMP>",
+  "elapsed_sec": 18.729
+}

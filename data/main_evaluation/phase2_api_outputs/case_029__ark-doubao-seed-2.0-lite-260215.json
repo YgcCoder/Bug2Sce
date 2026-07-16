@@ -1,0 +1,394 @@
+{
+  "case_id": "case_029",
+  "model_name": "ark-doubao-seed-2.0-lite-260215",
+  "workflow": "phase2_grounded_generation",
+  "status": "completed",
+  "schema_valid": true,
+  "schema_errors": [],
+  "phase1_ready": "uncertain",
+  "num_candidates_requested": 2,
+  "num_candidates_written": 2,
+  "num_pre_valid": 2,
+  "candidate_records": [
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-doubao-seed-2.0-lite-260215/json/case_029/case_029__cand_001.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-doubao-seed-2.0-lite-260215/metadata/case_029/case_029__cand_001.metadata.json",
+      "case_id": "case_029",
+      "model_name": "ark-doubao-seed-2.0-lite-260215",
+      "candidate_index": 1,
+      "candidate_spec": {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Slightly offset positions and adjust speeds of both pedestrian actors within allowed bounds, preserve original Town01 mission and all core scenario attributes",
+        "mutation_intent": "Preserves all phase 1 constraints: conflicting label status between dataset and error.json, traffic light state data availability, original mission start/goal, 2 actors, retains the uncertain root cause pattern unchanged",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 1.2,
+                "y": 0.8
+              },
+              "speed_delta": 0.3
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": -0.9,
+                "y": 1.1
+              },
+              "speed_delta": -0.2
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Confirm 2 actors are spawned correctly in Town01 map",
+          "Verify traffic light state data is available in the critical event window",
+          "Check original mission spawn and destination are unchanged"
+        ],
+        "post_execution_validation_rules": [
+          "Check for both red light violation and lane invasion events to capture actual failure mode",
+          "Compare observed events to both dataset and error.json labels to document the actual label conflict outcome"
+        ],
+        "uncertainty": [
+          "Lane invasion event remains unconfirmed by error.json",
+          "No specific Autoware module can be attributed as root cause",
+          "Conflicting label status between dataset and error.json is preserved"
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 0.0,
+          "fog": 0.0,
+          "wetness": 0.0,
+          "puddle": 0.0
+        },
+        "actor_mutations": [
+          {
+            "actor_index": 0,
+            "position_offset": {
+              "x": 1.2,
+              "y": 0.8
+            },
+            "speed_delta": 0.3
+          },
+          {
+            "actor_index": 1,
+            "position_offset": {
+              "x": -0.9,
+              "y": 1.1
+            },
+            "speed_delta": -0.2
+          }
+        ],
+        "puddle_mutations": [],
+        "mission_mutation": {
+          "keep_original": true
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_029__ark-doubao-seed-2.0-lite-260215.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_029__ark-doubao-seed-2.0-lite-260215.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    },
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-doubao-seed-2.0-lite-260215/json/case_029/case_029__cand_002.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-doubao-seed-2.0-lite-260215/metadata/case_029/case_029__cand_002.metadata.json",
+      "case_id": "case_029",
+      "model_name": "ark-doubao-seed-2.0-lite-260215",
+      "candidate_index": 2,
+      "candidate_spec": {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Conservatively adjust weather parameters and slightly modify pedestrian actor positions/speeds, preserve original Town01 mission and actor count",
+        "mutation_intent": "Preserves all phase 1 preservation constraints, tests the conflicting label scenario under slightly different weather conditions while keeping the original root cause pattern intact",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": 5,
+            "fog": 0,
+            "wetness": 5,
+            "puddle": 3
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 0.0,
+                "y": -1.5
+              },
+              "speed_delta": -0.4
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": 1.8,
+                "y": -0.9
+              },
+              "speed_delta": 0.4
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Confirm all weather deltas are within conservative allowed bounds",
+          "Verify 2 actors are spawned and original mission spawn/destination are unchanged",
+          "Check traffic light state data is available in the critical window"
+        ],
+        "post_execution_validation_rules": [
+          "Record all observed failure events including both red light violation and lane invasion if they occur",
+          "Resolve label conflict by comparing observed outcome to both original dataset and error.json labels"
+        ],
+        "uncertainty": [
+          "Route-light relation and stop-line crossing for red light violation remain unconfirmed",
+          "Lane invasion event is not confirmed by original error.json",
+          "No specific module root cause is identified, uncertainty is preserved"
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 5.0,
+          "fog": 0.0,
+          "wetness": 5.0,
+          "puddle": 3.0
+        },
+        "actor_mutations": [
+          {
+            "actor_index": 0,
+            "position_offset": {
+              "x": 0.0,
+              "y": -1.5
+            },
+            "speed_delta": -0.4
+          },
+          {
+            "actor_index": 1,
+            "position_offset": {
+              "x": 1.8,
+              "y": -0.9
+            },
+            "speed_delta": 0.4
+          }
+        ],
+        "puddle_mutations": [],
+        "mission_mutation": {
+          "keep_original": true
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_029__ark-doubao-seed-2.0-lite-260215.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_029__ark-doubao-seed-2.0-lite-260215.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    }
+  ],
+  "seed_artifact_zip": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-doubao-seed-2.0-lite-260215/seed-artifact/seed-artifact-case_029.zip",
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_prompts/case_029__ark-doubao-seed-2.0-lite-260215.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_029__ark-doubao-seed-2.0-lite-260215.json",
+  "prompt_estimated_tokens": 1065,
+  "usage": {
+    "prompt_tokens": 1380,
+    "completion_tokens": 2497,
+    "total_tokens": 3877
+  },
+  "raw_response": "{\n  \"case_id\": \"case_029\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Slightly offset positions and adjust speeds of both pedestrian actors within allowed bounds, preserve original Town01 mission and all core scenario attributes\",\n      \"mutation_intent\": \"Preserves all phase 1 constraints: conflicting label status between dataset and error.json, traffic light state data availability, original mission start/goal, 2 actors, retains the uncertain root cause pattern unchanged\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 1.2, \"y\": 0.8}, \"speed_delta\": 0.3},\n          {\"actor_index\": 1, \"position_offset\": {\"x\": -0.9, \"y\": 1.1}, \"speed_delta\": -0.2}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\n        \"Confirm 2 actors are spawned correctly in Town01 map\",\n        \"Verify traffic light state data is available in the critical event window\",\n        \"Check original mission spawn and destination are unchanged\"\n      ],\n      \"post_execution_validation_rules\": [\n        \"Check for both red light violation and lane invasion events to capture actual failure mode\",\n        \"Compare observed events to both dataset and error.json labels to document the actual label conflict outcome\"\n      ],\n      \"uncertainty\": [\n        \"Lane invasion event remains unconfirmed by error.json\",\n        \"No specific Autoware module can be attributed as root cause\",\n        \"Conflicting label status between dataset and error.json is preserved\"\n      ]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Conservatively adjust weather parameters and slightly modify pedestrian actor positions/speeds, preserve original Town01 mission and actor count\",\n      \"mutation_intent\": \"Preserves all phase 1 preservation constraints, tests the conflicting label scenario under slightly different weather conditions while keeping the original root cause pattern intact\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 5, \"fog\": 0, \"wetness\": 5, \"puddle\": 3},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 0.0, \"y\": -1.5}, \"speed_delta\": -0.4},\n          {\"actor_index\": 1, \"position_offset\": {\"x\": 1.8, \"y\": -0.9}, \"speed_delta\": 0.4}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\n        \"Confirm all weather deltas are within conservative allowed bounds\",\n        \"Verify 2 actors are spawned and original mission spawn/destination are unchanged\",\n        \"Check traffic light state data is available in the critical window\"\n      ],\n      \"post_execution_validation_rules\": [\n        \"Record all observed failure events including both red light violation and lane invasion if they occur\",\n        \"Resolve label conflict by comparing observed outcome to both original dataset and error.json labels\"\n      ],\n      \"uncertainty\": [\n        \"Route-light relation and stop-line crossing for red light violation remain unconfirmed\",\n        \"Lane invasion event is not confirmed by original error.json\",\n        \"No specific module root cause is identified, uncertainty is preserved\"\n      ]\n    }\n  ]\n}",
+  "parsed_response": {
+    "case_id": "case_029",
+    "candidate_specs": [
+      {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Slightly offset positions and adjust speeds of both pedestrian actors within allowed bounds, preserve original Town01 mission and all core scenario attributes",
+        "mutation_intent": "Preserves all phase 1 constraints: conflicting label status between dataset and error.json, traffic light state data availability, original mission start/goal, 2 actors, retains the uncertain root cause pattern unchanged",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 1.2,
+                "y": 0.8
+              },
+              "speed_delta": 0.3
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": -0.9,
+                "y": 1.1
+              },
+              "speed_delta": -0.2
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Confirm 2 actors are spawned correctly in Town01 map",
+          "Verify traffic light state data is available in the critical event window",
+          "Check original mission spawn and destination are unchanged"
+        ],
+        "post_execution_validation_rules": [
+          "Check for both red light violation and lane invasion events to capture actual failure mode",
+          "Compare observed events to both dataset and error.json labels to document the actual label conflict outcome"
+        ],
+        "uncertainty": [
+          "Lane invasion event remains unconfirmed by error.json",
+          "No specific Autoware module can be attributed as root cause",
+          "Conflicting label status between dataset and error.json is preserved"
+        ]
+      },
+      {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Conservatively adjust weather parameters and slightly modify pedestrian actor positions/speeds, preserve original Town01 mission and actor count",
+        "mutation_intent": "Preserves all phase 1 preservation constraints, tests the conflicting label scenario under slightly different weather conditions while keeping the original root cause pattern intact",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": 5,
+            "fog": 0,
+            "wetness": 5,
+            "puddle": 3
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 0.0,
+                "y": -1.5
+              },
+              "speed_delta": -0.4
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": 1.8,
+                "y": -0.9
+              },
+              "speed_delta": 0.4
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Confirm all weather deltas are within conservative allowed bounds",
+          "Verify 2 actors are spawned and original mission spawn/destination are unchanged",
+          "Check traffic light state data is available in the critical window"
+        ],
+        "post_execution_validation_rules": [
+          "Record all observed failure events including both red light violation and lane invasion if they occur",
+          "Resolve label conflict by comparing observed outcome to both original dataset and error.json labels"
+        ],
+        "uncertainty": [
+          "Route-light relation and stop-line crossing for red light violation remain unconfirmed",
+          "Lane invasion event is not confirmed by original error.json",
+          "No specific module root cause is identified, uncertainty is preserved"
+        ]
+      }
+    ]
+  },
+  "raw_api_payload": {
+    "id": "0217829220062851497eb88b7a4c518b8c375b799d349596f67ea",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "{\n  \"case_id\": \"case_029\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Slightly offset positions and adjust speeds of both pedestrian actors within allowed bounds, preserve original Town01 mission and all core scenario attributes\",\n      \"mutation_intent\": \"Preserves all phase 1 constraints: conflicting label status between dataset and error.json, traffic light state data availability, original mission start/goal, 2 actors, retains the uncertain root cause pattern unchanged\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 1.2, \"y\": 0.8}, \"speed_delta\": 0.3},\n          {\"actor_index\": 1, \"position_offset\": {\"x\": -0.9, \"y\": 1.1}, \"speed_delta\": -0.2}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\n        \"Confirm 2 actors are spawned correctly in Town01 map\",\n        \"Verify traffic light state data is available in the critical event window\",\n        \"Check original mission spawn and destination are unchanged\"\n      ],\n      \"post_execution_validation_rules\": [\n        \"Check for both red light violation and lane invasion events to capture actual failure mode\",\n        \"Compare observed events to both dataset and error.json labels to document the actual label conflict outcome\"\n      ],\n      \"uncertainty\": [\n        \"Lane invasion event remains unconfirmed by error.json\",\n        \"No specific Autoware module can be attributed as root cause\",\n        \"Conflicting label status between dataset and error.json is preserved\"\n      ]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Conservatively adjust weather parameters and slightly modify pedestrian actor positions/speeds, preserve original Town01 mission and actor count\",\n      \"mutation_intent\": \"Preserves all phase 1 preservation constraints, tests the conflicting label scenario under slightly different weather conditions while keeping the original root cause pattern intact\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 5, \"fog\": 0, \"wetness\": 5, \"puddle\": 3},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 0.0, \"y\": -1.5}, \"speed_delta\": -0.4},\n          {\"actor_index\": 1, \"position_offset\": {\"x\": 1.8, \"y\": -0.9}, \"speed_delta\": 0.4}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\n        \"Confirm all weather deltas are within conservative allowed bounds\",\n        \"Verify 2 actors are spawned and original mission spawn/destination are unchanged\",\n        \"Check traffic light state data is available in the critical window\"\n      ],\n      \"post_execution_validation_rules\": [\n        \"Record all observed failure events including both red light violation and lane invasion if they occur\",\n        \"Resolve label conflict by comparing observed outcome to both original dataset and error.json labels\"\n      ],\n      \"uncertainty\": [\n        \"Route-light relation and stop-line crossing for red light violation remain unconfirmed\",\n        \"Lane invasion event is not confirmed by original error.json\",\n        \"No specific module root cause is identified, uncertainty is preserved\"\n      ]\n    }\n  ]\n}",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null,
+          "reasoning_content": "\nOkay, let's generate this JSON correctly. First, the case_id is case_029, right? We need two candidate_specs. Let's start with the first one, cand_001.\n\nFirst, high_level_variant for cand 001: Slightly offset both pedestrian actors forward along their path, keep original mission and map, preserve conflicting labels. Mutation intent: Adjusts actor positions within allowed bounds to test if the conflicting label scenario still reproduces, preserves all required constraints from phase 1, keeps 2 actors, original mission, Town01, traffic light data availability. Expected oracle should be compound, right? Because it's both possible lane invasion and red light, conflicting.\n\nThen modifications: weather delta all 0, right? Because we don't change weather here. Actor mutations: index 0, x offset let's say 1.2, y 0.8, speed delta +0.3. That's within bounds. Index 1, x -0.9, y 1.1, speed delta -0.2. Puddles are empty so puddle mutations is empty array. Mission mutation keep_original is true, right? Because the constraint says preserve original start and goal.\n\nPre execution rules: [\"Check 2 actors are spawned correctly in Town01\", \"Check traffic light state is available in critical window\", \"Confirm mission start and destination match original\"] Post execution: [\"Check for both red light violation and lane invasion events to capture actual failure mode\", \"Resolve label conflict by comparing observed events to both dataset and error.json labels\"] Uncertainty: [\"Unconfirmed lane invasion event status\", \"Uncertain root cause module\", \"Conflicting labels between dataset and error.json remains\"].\n\nThen the second candidate, cand_002. High level variant: Slightly increase rain and wetness to test scenario robustness, keep original mission and actor count, adjust actor speed slightly within bounds. Mutation intent: Preserves all phase 1 constraints (conflicting labels, traffic light data, original mission, 2 actors), adds conservative weather change to test if failure pattern persists, keeps root cause pattern intact. Expected oracle is still compound, same as before.\n\nModifications: weather delta: rain +5, wetness +5, fog 0, puddle +3, that's within [-20,20], right. Actor mutations: index 0, position offset x 0, y -1.5, speed delta -0.4. Index 1, position offset x 2.1, y -0.7, speed delta +0.5. All offsets are within [-8,8], speed delta within [-3,3], good. Puddle mutations empty, because original has no puddles. Mission keep_original true.\n\nPre execution rules: [\"Confirm weather parameters are within conservative bounds\", \"Verify 2 actors are spawned, original mission start/goal unchanged\", \"Check traffic light state data available in critical window\"] Post execution: [\"Record both red light violation and lane invasion events if observed\", \"Compare outcome to both original dataset and error.json labels to resolve conflict\"] Uncertainty: [\"Lane invasion event remains unconfirmed by error.json\", \"No specific module root cause identified\", \"Conflicting label status preserved as per phase 1\"].\n\nWait let's check all rules: exactly two candidates, all offsets within limits, preserve all constraints. Let's fit it into the schema correctly. Let's make sure all fields are there. Let's check the root cause: phase 1 says conflicting labels, 2 actors, Town01, original mission. So both candidates keep mission keep_original true, which matches the preservation constraint that says preserve original mission start and goal. Correct. Two actors, yes, both mutate the two actors, that's correct. Expected oracle: compound because it can be both red light and lane invasion, that's right. Uncertainty is preserved as per phase 1, right.\n\nWait let's write it properly now, make sure JSON is valid. Let's check:\n\ncase_id is case_029, candidate_specs array of two objects. First candidate_id cand_001, high_level_variant: \"Slightly offset positions and adjust speeds of both pedestrian actors within allowed bounds, preserve original Town01 mission and all original scenario attributes\". Mutation_intent: \"Preserves all phase 1 constraints: conflicting label status between dataset and error.json, traffic light state data availability, original mission start/goal, 2 actors, retains the uncertain root cause pattern\". Expected_oracle: \"compound\". Then modifications: weather_delta all 0, because first candidate doesn't change weather. Actor_mutations: two entries, index 0 and 1, positions within 8, speed delta within 3. Puddle_mutations is empty array because original seed has no puddles. Mission_mutation keep_original true, all offsets 0. Pre_execution_validation_rules: [\"Confirm 2 actors are spawned correctly in Town01 map\", \"Verify traffic light state data is available in the critical event window\", \"Check original mission spawn and destination are unchanged\"]. Post_execution_validation_rules: [\"Check for both red light violation and lane invasion events to capture actual failure mode\", \"Compare observed events to both dataset and error.json labels to document the actual label conflict outcome\"]. Uncertainty: [\"Lane invasion event remains unconfirmed by error.json\", \"No specific Autoware module can be attributed as root cause\", \"Conflicting label status between dataset and error.json is preserved per requirements\"].\n\nThen second candidate cand_002: high_level_variant: \"Conservatively adjust weather parameters and slightly modify pedestrian actor positions/speeds, preserve original Town01 mission and actor count\". Mutation_intent: \"Preserves all phase 1 preservation constraints, tests the conflicting label scenario under slightly different weather conditions while keeping the original root cause pattern intact\". Expected_oracle: \"compound\". Modifications: weather_delta: rain 5, fog 0, wetness 5, puddle 3, all within [-20,20], correct. Actor_mutations: index 0: x 0.0, y -1.5, speed_delta -0.4, that's good. index 1: x 1.8, y -0.9, speed_delta +0.4, all within bounds. Puddle_mutations empty. Mission keep_original true. Pre_execution_validation_rules: [\"Confirm all weather deltas are within conservative allowed bounds\", \"Verify 2 actors are spawned and original mission spawn/destination are unchanged\", \"Check traffic light state data is available in the critical window\"]. Post_execution_validation_rules: [\"Record all observed failure events including both red light violation and lane invasion if they occur\", \"Resolve label conflict by comparing observed outcome to both original dataset and error.json labels\"]. Uncertainty: [\"Route-light relation and stop-line crossing for red light violation remain unconfirmed\", \"Lane invasion event is not confirmed by original error.json\", \"No specific module root cause is identified, uncertainty is preserved\"].\n\nWait that's all correct. Let's make sure JSON is valid, no trailing commas, all fields are there. Let's put it all together now."
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "doubao-seed-2-0-lite-260215",
+    "object": "chat.completion",
+    "service_tier": "default",
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 2497,
+      "prompt_tokens": 1380,
+      "total_tokens": 3877,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 1524,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": null,
+        "cached_tokens": 0
+      }
+    }
+  },
+  "error_message": "",
+  "elapsed_sec": 40.877,
+  "timestamp": "<REDACTED_TIMESTAMP>"
+}

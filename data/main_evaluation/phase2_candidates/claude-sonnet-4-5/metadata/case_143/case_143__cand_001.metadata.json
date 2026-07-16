@@ -1,0 +1,66 @@
+{
+  "case_id": "case_143",
+  "model_name": "claude-sonnet-4-5",
+  "candidate_index": 1,
+  "candidate_spec": {
+    "candidate_id": "cand_001",
+    "high_level_variant": "Increase rain and wetness to stress red-light detection",
+    "mutation_intent": "Amplify weather conditions to test if red-light violation persists under degraded visibility and wet road",
+    "expected_oracle": "red_light",
+    "modifications": {
+      "weather_delta": {
+        "rain": 15,
+        "fog": 10,
+        "wetness": 15,
+        "puddle": 10
+      },
+      "actor_mutations": [],
+      "puddle_mutations": [],
+      "mission_mutation": {
+        "keep_original": true,
+        "spawn_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "destination_offset": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Traffic lights present on route",
+      "Spawn and destination unchanged"
+    ],
+    "post_execution_validation_rules": [
+      "Red-light violation detected",
+      "Vehicle_cmd zero while vehicle_status shows movement"
+    ],
+    "uncertainty": [
+      "Lane_invasion conflict between dataset and error.json unresolved"
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": 15.0,
+      "fog": 10.0,
+      "wetness": 15.0,
+      "puddle": 10.0
+    },
+    "actor_mutations": [],
+    "puddle_mutations": [],
+    "mission_mutation": {
+      "keep_original": true
+    }
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": [
+      "no actors in candidate scenario"
+    ]
+  },
+  "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_143__claude-sonnet-4-5.json",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_143__claude-sonnet-4-5.json",
+  "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+}

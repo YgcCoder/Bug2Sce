@@ -1,0 +1,143 @@
+{
+  "case_id": "case_094",
+  "round": 5,
+  "model_name": "claude-sonnet-4-5",
+  "candidate_index": 4,
+  "candidate_spec": {
+    "candidate_id": "cand_004",
+    "high_level_variant": "Walker 0 at x+3.3, y+2.1 with speed+0.45, walker 1 at x-1.0, y+0.8",
+    "mutation_intent": "Position walker 0 near round 1 cand_001 success zone and adjust walker 1 laterally to maintain two-actor scenario without speed change",
+    "expected_oracle": "collision",
+    "modifications": {
+      "weather_delta": {
+        "rain": 0,
+        "fog": 0,
+        "wetness": 0,
+        "puddle": 0
+      },
+      "actor_mutations": [
+        {
+          "actor_index": 0,
+          "position_offset": {
+            "x": 3.3,
+            "y": 2.1
+          },
+          "speed_delta": 0.45
+        },
+        {
+          "actor_index": 1,
+          "position_offset": {
+            "x": -1.0,
+            "y": 0.8
+          },
+          "speed_delta": 0.0
+        }
+      ],
+      "puddle_mutations": [
+        {
+          "puddle_index": 0,
+          "location_offset": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "level_delta": 0.0,
+          "size_scale": 1.0
+        },
+        {
+          "puddle_index": 1,
+          "location_offset": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "level_delta": 0.0,
+          "size_scale": 1.0
+        }
+      ],
+      "mission_mutation": {
+        "keep_original": true,
+        "spawn_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "destination_offset": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Walker 0 closer to ego path",
+      "Walker 1 repositioned laterally without speed change"
+    ],
+    "post_execution_validation_rules": [
+      "Collision oracle must occur",
+      "Ego moving at moderate speed",
+      "Both actors detected"
+    ],
+    "uncertainty": [
+      "Walker 1 lateral shift may not influence walker 0 collision outcome"
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": 0.0,
+      "fog": 0.0,
+      "wetness": 0.0,
+      "puddle": 0.0
+    },
+    "actor_mutations": [
+      {
+        "actor_index": 0,
+        "position_offset": {
+          "x": 3.3,
+          "y": 2.1
+        },
+        "speed_delta": 0.45
+      },
+      {
+        "actor_index": 1,
+        "position_offset": {
+          "x": -1.0,
+          "y": 0.8
+        },
+        "speed_delta": 0.0
+      }
+    ],
+    "puddle_mutations": [
+      {
+        "puddle_index": 0,
+        "location_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "level_delta": 0.0,
+        "size_scale": 1.0
+      },
+      {
+        "puddle_index": 1,
+        "location_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "level_delta": 0.0,
+        "size_scale": 1.0
+      }
+    ],
+    "mission_mutation": {
+      "keep_original": true
+    },
+    "safety_repairs": []
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "authoritative_original_phase1_output": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_094__claude-sonnet-4-5.json",
+  "round1_feedback_count": 6,
+  "round2_feedback_count": 2,
+  "round3_feedback_count": 6,
+  "round4_feedback_count": 6,
+  "feedback_memory_policy": "all_same_seed_outcomes_retained",
+  "round5_api_output": "<WORKSPACE_ROOT>/processed/experiments/round5_feedback/api_outputs/case_094__claude-sonnet-4-5.json"
+}

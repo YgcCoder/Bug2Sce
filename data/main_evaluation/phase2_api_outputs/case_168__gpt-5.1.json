@@ -1,0 +1,451 @@
+{
+  "case_id": "case_168",
+  "model_name": "gpt-5.1",
+  "workflow": "phase2_grounded_generation",
+  "status": "completed",
+  "schema_valid": true,
+  "schema_errors": [],
+  "phase1_ready": "uncertain",
+  "num_candidates_requested": 2,
+  "num_candidates_written": 2,
+  "num_pre_valid": 2,
+  "candidate_records": [
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/gpt-5.1/json/case_168/case_168__cand_001.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/gpt-5.1/metadata/case_168/case_168__cand_001.metadata.json",
+      "case_id": "case_168",
+      "model_name": "gpt-5.1",
+      "candidate_index": 1,
+      "candidate_spec": {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Same Town01 route with slightly shifted spawn and moderate wet conditions; ego traverses an intersection with active red traffic lights and large puddles while vehicle_cmd remains zero despite ego motion, leading to an oracle red-light violation (collision remains incidental/uncertain).",
+        "mutation_intent": "Preserve the original command–status mismatch and red-light violation pattern under similar mission and environment, while slightly perturbing mission start and puddle configuration to test robustness without changing the core unknown root cause.",
+        "expected_oracle": "red_light",
+        "modifications": {
+          "weather_delta": {
+            "rain": 5,
+            "fog": -5,
+            "wetness": 10,
+            "puddle": 5
+          },
+          "actor_mutations": [],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": -2.0,
+                "y": 1.5
+              },
+              "level_delta": 0.05,
+              "size_scale": 1.1
+            },
+            {
+              "puddle_index": 1,
+              "location_offset": {
+                "x": 1.0,
+                "y": -2.0
+              },
+              "level_delta": -0.05,
+              "size_scale": 0.9
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": false,
+            "spawn_offset": {
+              "x": 3.0,
+              "y": -2.5
+            },
+            "destination_offset": {
+              "x": -4.0,
+              "y": 1.5
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Ensure mission map remains Town01.",
+          "Verify no additional dynamic actors are present beyond the ego vehicle.",
+          "Confirm traffic light network is active along the ego route with multiple signals visible in traffic_lights topics.",
+          "Check that at least one traffic light reports a red state before the anticipated intersection interaction.",
+          "Validate that final_waypoints are nonempty and consistently published from early in the route through the expected violation window."
+        ],
+        "post_execution_validation_rules": [
+          "Confirm oracle flags a red-light violation for the ego; do not require lane invasion or collision for success.",
+          "Verify traffic_lights data include at least one red state in the time window immediately preceding the oracle red-light violation event.",
+          "Check that final_waypoints remain available and nonempty during the critical window leading up to the red-light violation.",
+          "Confirm that vehicle_cmd outputs remain effectively zero (throttle, brake, steer ≈ 0) while vehicle_status reports nonzero ego speed near and at the time of the oracle red-light violation.",
+          "Verify no additional dynamic actors influenced the ego at the time of violation (to match the no-extra-actors constraint).",
+          "If collision messages occur, record their presence and impulse but do not treat collision as required for matching this root-cause pattern."
+        ],
+        "uncertainty": [
+          "Route–light association and whether the governing light’s stop line is actually crossed remain unknown and must not be assumed from traffic_lights alone.",
+          "Lane invasion is not required because dataset.xlsx and error.json conflict on lane_invasion status.",
+          "Any observed collision may be low severity or simulator-side and should not be assumed as core to the root cause.",
+          "The origin of the command–status mismatch (planning, control, simulator, or logging) cannot be inferred from this scenario alone."
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 5.0,
+          "fog": -5.0,
+          "wetness": 10.0,
+          "puddle": 5.0
+        },
+        "actor_mutations": [],
+        "puddle_mutations": [
+          {
+            "puddle_index": 0,
+            "location_offset": {
+              "x": -2.0,
+              "y": 1.5
+            },
+            "level_delta": 0.05,
+            "size_scale": 1.1
+          },
+          {
+            "puddle_index": 1,
+            "location_offset": {
+              "x": 1.0,
+              "y": -2.0
+            },
+            "level_delta": -0.05,
+            "size_scale": 0.9
+          }
+        ],
+        "mission_mutation": {
+          "spawn_offset": {
+            "x": 3.0,
+            "y": -2.5
+          },
+          "destination_offset": {
+            "x": -4.0,
+            "y": 1.5
+          }
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": [
+          "no actors in candidate scenario"
+        ]
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_168__gpt-5.1.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_168__gpt-5.1.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    },
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/gpt-5.1/json/case_168/case_168__cand_002.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/gpt-5.1/metadata/case_168/case_168__cand_002.metadata.json",
+      "case_id": "case_168",
+      "model_name": "gpt-5.1",
+      "candidate_index": 2,
+      "candidate_spec": {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Town01 mission with same general start–end corridor but slightly different spawn and destination, drier but still wet conditions, and minimally adjusted puddles; ego approaches an intersection governed by multiple lights including red states, with zero vehicle_cmd yet nonzero ego motion, again triggering a red-light oracle event while collision remains optional.",
+        "mutation_intent": "Probe whether the red-light violation with zero commands and nonzero motion persists under slightly reduced rain/puddle intensity and a modestly altered route geometry, while keeping traffic-light complexity and unknown route–light relation intact.",
+        "expected_oracle": "red_light",
+        "modifications": {
+          "weather_delta": {
+            "rain": -10,
+            "fog": 0,
+            "wetness": -5,
+            "puddle": -10
+          },
+          "actor_mutations": [],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 1.5,
+                "y": -1.0
+              },
+              "level_delta": -0.1,
+              "size_scale": 0.95
+            },
+            {
+              "puddle_index": 1,
+              "location_offset": {
+                "x": -1.5,
+                "y": 2.0
+              },
+              "level_delta": 0.1,
+              "size_scale": 1.05
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": false,
+            "spawn_offset": {
+              "x": -4.0,
+              "y": 1.0
+            },
+            "destination_offset": {
+              "x": 2.5,
+              "y": -3.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Ensure the scenario runs on Town01 with only the ego as a dynamic actor.",
+          "Verify that traffic_lights topics are active and include multiple distinct signals along the ego path.",
+          "Confirm at least one traffic light reports a red phase during the time interval when the ego approaches an intersection.",
+          "Check that final_waypoints remain nonempty (waypoint count > 0) from mid-route through the anticipated intersection region.",
+          "Ensure weather, wetness, and puddle settings remain within moderate bounds so visibility and physics are plausible but not extreme."
+        ],
+        "post_execution_validation_rules": [
+          "Verify the oracle reports a red-light violation; do not enforce lane_invasion=1 as a requirement.",
+          "Confirm that traffic_lights logs show at least one active red state shortly before or during the time the oracle flags the violation.",
+          "Check that final_waypoints are still being published and nonempty in the frames just before the violation timestamp.",
+          "Confirm vehicle_cmd remains effectively zero (no significant steering, throttle, or brake command) while vehicle_status shows nonzero ego speed during the violation window.",
+          "Record any collision messages and their impulses but treat collision as optional, not mandatory, for matching this case.",
+          "Do not attempt to infer which specific light governs the ego or whether a stop line is physically crossed unless future logs explicitly provide that association."
+        ],
+        "uncertainty": [
+          "Whether the ego truly crosses a governing red light’s stop line is not guaranteed by traffic_lights data and remains uncertain.",
+          "Lane invasion behavior may or may not occur; validation must not rely on it because of prior label conflicts.",
+          "The severity and relevance of any collisions to the underlying bug are uncertain given prior crash=false flags.",
+          "Without internal module traces, it will remain unclear whether the zero-command/nonzero-motion pattern reflects planning, control, simulator, or logging anomalies."
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": -10.0,
+          "fog": 0.0,
+          "wetness": -5.0,
+          "puddle": -10.0
+        },
+        "actor_mutations": [],
+        "puddle_mutations": [
+          {
+            "puddle_index": 0,
+            "location_offset": {
+              "x": 1.5,
+              "y": -1.0
+            },
+            "level_delta": -0.1,
+            "size_scale": 0.95
+          },
+          {
+            "puddle_index": 1,
+            "location_offset": {
+              "x": -1.5,
+              "y": 2.0
+            },
+            "level_delta": 0.1,
+            "size_scale": 1.05
+          }
+        ],
+        "mission_mutation": {
+          "spawn_offset": {
+            "x": -4.0,
+            "y": 1.0
+          },
+          "destination_offset": {
+            "x": 2.5,
+            "y": -3.0
+          }
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": [
+          "no actors in candidate scenario"
+        ]
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_168__gpt-5.1.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_168__gpt-5.1.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    }
+  ],
+  "seed_artifact_zip": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/gpt-5.1/seed-artifact/seed-artifact-case_168.zip",
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_prompts/case_168__gpt-5.1.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_168__gpt-5.1.json",
+  "prompt_estimated_tokens": 1619,
+  "usage": {
+    "prompt_tokens": 1533,
+    "completion_tokens": 1588,
+    "total_tokens": 3121
+  },
+  "raw_response": "{\n  \"case_id\": \"case_168\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Same Town01 route with slightly shifted spawn and moderate wet conditions; ego traverses an intersection with active red traffic lights and large puddles while vehicle_cmd remains zero despite ego motion, leading to an oracle red-light violation (collision remains incidental/uncertain).\",\n      \"mutation_intent\": \"Preserve the original command–status mismatch and red-light violation pattern under similar mission and environment, while slightly perturbing mission start and puddle configuration to test robustness without changing the core unknown root cause.\",\n      \"expected_oracle\": \"red_light\",\n      \"modifications\": {\n        \"weather_delta\": {\n          \"rain\": 5,\n          \"fog\": -5,\n          \"wetness\": 10,\n          \"puddle\": 5\n        },\n        \"actor_mutations\": [],\n        \"puddle_mutations\": [\n          {\n            \"puddle_index\": 0,\n            \"location_offset\": {\n              \"x\": -2.0,\n              \"y\": 1.5\n            },\n            \"level_delta\": 0.05,\n            \"size_scale\": 1.1\n          },\n          {\n            \"puddle_index\": 1,\n            \"location_offset\": {\n              \"x\": 1.0,\n              \"y\": -2.0\n            },\n            \"level_delta\": -0.05,\n            \"size_scale\": 0.9\n          }\n        ],\n        \"mission_mutation\": {\n          \"keep_original\": false,\n          \"spawn_offset\": {\n            \"x\": 3.0,\n            \"y\": -2.5\n          },\n          \"destination_offset\": {\n            \"x\": -4.0,\n            \"y\": 1.5\n          }\n        }\n      },\n      \"pre_execution_validation_rules\": [\n        \"Ensure mission map remains Town01.\",\n        \"Verify no additional dynamic actors are present beyond the ego vehicle.\",\n        \"Confirm traffic light network is active along the ego route with multiple signals visible in traffic_lights topics.\",\n        \"Check that at least one traffic light reports a red state before the anticipated intersection interaction.\",\n        \"Validate that final_waypoints are nonempty and consistently published from early in the route through the expected violation window.\"\n      ],\n      \"post_execution_validation_rules\": [\n        \"Confirm oracle flags a red-light violation for the ego; do not require lane invasion or collision for success.\",\n        \"Verify traffic_lights data include at least one red state in the time window immediately preceding the oracle red-light violation event.\",\n        \"Check that final_waypoints remain available and nonempty during the critical window leading up to the red-light violation.\",\n        \"Confirm that vehicle_cmd outputs remain effectively zero (throttle, brake, steer ≈ 0) while vehicle_status reports nonzero ego speed near and at the time of the oracle red-light violation.\",\n        \"Verify no additional dynamic actors influenced the ego at the time of violation (to match the no-extra-actors constraint).\",\n        \"If collision messages occur, record their presence and impulse but do not treat collision as required for matching this root-cause pattern.\"\n      ],\n      \"uncertainty\": [\n        \"Route–light association and whether the governing light’s stop line is actually crossed remain unknown and must not be assumed from traffic_lights alone.\",\n        \"Lane invasion is not required because dataset.xlsx and error.json conflict on lane_invasion status.\",\n        \"Any observed collision may be low severity or simulator-side and should not be assumed as core to the root cause.\",\n        \"The origin of the command–status mismatch (planning, control, simulator, or logging) cannot be inferred from this scenario alone.\"\n      ]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Town01 mission with same general start–end corridor but slightly different spawn and destination, drier but still wet conditions, and minimally adjusted puddles; ego approaches an intersection governed by multiple lights including red states, with zero vehicle_cmd yet nonzero ego motion, again triggering a red-light oracle event while collision remains optional.\",\n      \"mutation_intent\": \"Probe whether the red-light violation with zero commands and nonzero motion persists under slightly reduced rain/puddle intensity and a modestly altered route geometry, while keeping traffic-light complexity and unknown route–light relation intact.\",\n      \"expected_oracle\": \"red_light\",\n      \"modifications\": {\n        \"weather_delta\": {\n          \"rain\": -10,\n          \"fog\": 0,\n          \"wetness\": -5,\n          \"puddle\": -10\n        },\n        \"actor_mutations\": [],\n        \"puddle_mutations\": [\n          {\n            \"puddle_index\": 0,\n            \"location_offset\": {\n              \"x\": 1.5,\n              \"y\": -1.0\n            },\n            \"level_delta\": -0.1,\n            \"size_scale\": 0.95\n          },\n          {\n            \"puddle_index\": 1,\n            \"location_offset\": {\n              \"x\": -1.5,\n              \"y\": 2.0\n            },\n            \"level_delta\": 0.1,\n            \"size_scale\": 1.05\n          }\n        ],\n        \"mission_mutation\": {\n          \"keep_original\": false,\n          \"spawn_offset\": {\n            \"x\": -4.0,\n            \"y\": 1.0\n          },\n          \"destination_offset\": {\n            \"x\": 2.5,\n            \"y\": -3.0\n          }\n        }\n      },\n      \"pre_execution_validation_rules\": [\n        \"Ensure the scenario runs on Town01 with only the ego as a dynamic actor.\",\n        \"Verify that traffic_lights topics are active and include multiple distinct signals along the ego path.\",\n        \"Confirm at least one traffic light reports a red phase during the time interval when the ego approaches an intersection.\",\n        \"Check that final_waypoints remain nonempty (waypoint count > 0) from mid-route through the anticipated intersection region.\",\n        \"Ensure weather, wetness, and puddle settings remain within moderate bounds so visibility and physics are plausible but not extreme.\"\n      ],\n      \"post_execution_validation_rules\": [\n        \"Verify the oracle reports a red-light violation; do not enforce lane_invasion=1 as a requirement.\",\n        \"Confirm that traffic_lights logs show at least one active red state shortly before or during the time the oracle flags the violation.\",\n        \"Check that final_waypoints are still being published and nonempty in the frames just before the violation timestamp.\",\n        \"Confirm vehicle_cmd remains effectively zero (no significant steering, throttle, or brake command) while vehicle_status shows nonzero ego speed during the violation window.\",\n        \"Record any collision messages and their impulses but treat collision as optional, not mandatory, for matching this case.\",\n        \"Do not attempt to infer which specific light governs the ego or whether a stop line is physically crossed unless future logs explicitly provide that association.\"\n      ],\n      \"uncertainty\": [\n        \"Whether the ego truly crosses a governing red light’s stop line is not guaranteed by traffic_lights data and remains uncertain.\",\n        \"Lane invasion behavior may or may not occur; validation must not rely on it because of prior label conflicts.\",\n        \"The severity and relevance of any collisions to the underlying bug are uncertain given prior crash=false flags.\",\n        \"Without internal module traces, it will remain unclear whether the zero-command/nonzero-motion pattern reflects planning, control, simulator, or logging anomalies.\"\n      ]\n    }\n  ]\n}",
+  "parsed_response": {
+    "case_id": "case_168",
+    "candidate_specs": [
+      {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Same Town01 route with slightly shifted spawn and moderate wet conditions; ego traverses an intersection with active red traffic lights and large puddles while vehicle_cmd remains zero despite ego motion, leading to an oracle red-light violation (collision remains incidental/uncertain).",
+        "mutation_intent": "Preserve the original command–status mismatch and red-light violation pattern under similar mission and environment, while slightly perturbing mission start and puddle configuration to test robustness without changing the core unknown root cause.",
+        "expected_oracle": "red_light",
+        "modifications": {
+          "weather_delta": {
+            "rain": 5,
+            "fog": -5,
+            "wetness": 10,
+            "puddle": 5
+          },
+          "actor_mutations": [],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": -2.0,
+                "y": 1.5
+              },
+              "level_delta": 0.05,
+              "size_scale": 1.1
+            },
+            {
+              "puddle_index": 1,
+              "location_offset": {
+                "x": 1.0,
+                "y": -2.0
+              },
+              "level_delta": -0.05,
+              "size_scale": 0.9
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": false,
+            "spawn_offset": {
+              "x": 3.0,
+              "y": -2.5
+            },
+            "destination_offset": {
+              "x": -4.0,
+              "y": 1.5
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Ensure mission map remains Town01.",
+          "Verify no additional dynamic actors are present beyond the ego vehicle.",
+          "Confirm traffic light network is active along the ego route with multiple signals visible in traffic_lights topics.",
+          "Check that at least one traffic light reports a red state before the anticipated intersection interaction.",
+          "Validate that final_waypoints are nonempty and consistently published from early in the route through the expected violation window."
+        ],
+        "post_execution_validation_rules": [
+          "Confirm oracle flags a red-light violation for the ego; do not require lane invasion or collision for success.",
+          "Verify traffic_lights data include at least one red state in the time window immediately preceding the oracle red-light violation event.",
+          "Check that final_waypoints remain available and nonempty during the critical window leading up to the red-light violation.",
+          "Confirm that vehicle_cmd outputs remain effectively zero (throttle, brake, steer ≈ 0) while vehicle_status reports nonzero ego speed near and at the time of the oracle red-light violation.",
+          "Verify no additional dynamic actors influenced the ego at the time of violation (to match the no-extra-actors constraint).",
+          "If collision messages occur, record their presence and impulse but do not treat collision as required for matching this root-cause pattern."
+        ],
+        "uncertainty": [
+          "Route–light association and whether the governing light’s stop line is actually crossed remain unknown and must not be assumed from traffic_lights alone.",
+          "Lane invasion is not required because dataset.xlsx and error.json conflict on lane_invasion status.",
+          "Any observed collision may be low severity or simulator-side and should not be assumed as core to the root cause.",
+          "The origin of the command–status mismatch (planning, control, simulator, or logging) cannot be inferred from this scenario alone."
+        ]
+      },
+      {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Town01 mission with same general start–end corridor but slightly different spawn and destination, drier but still wet conditions, and minimally adjusted puddles; ego approaches an intersection governed by multiple lights including red states, with zero vehicle_cmd yet nonzero ego motion, again triggering a red-light oracle event while collision remains optional.",
+        "mutation_intent": "Probe whether the red-light violation with zero commands and nonzero motion persists under slightly reduced rain/puddle intensity and a modestly altered route geometry, while keeping traffic-light complexity and unknown route–light relation intact.",
+        "expected_oracle": "red_light",
+        "modifications": {
+          "weather_delta": {
+            "rain": -10,
+            "fog": 0,
+            "wetness": -5,
+            "puddle": -10
+          },
+          "actor_mutations": [],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 1.5,
+                "y": -1.0
+              },
+              "level_delta": -0.1,
+              "size_scale": 0.95
+            },
+            {
+              "puddle_index": 1,
+              "location_offset": {
+                "x": -1.5,
+                "y": 2.0
+              },
+              "level_delta": 0.1,
+              "size_scale": 1.05
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": false,
+            "spawn_offset": {
+              "x": -4.0,
+              "y": 1.0
+            },
+            "destination_offset": {
+              "x": 2.5,
+              "y": -3.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Ensure the scenario runs on Town01 with only the ego as a dynamic actor.",
+          "Verify that traffic_lights topics are active and include multiple distinct signals along the ego path.",
+          "Confirm at least one traffic light reports a red phase during the time interval when the ego approaches an intersection.",
+          "Check that final_waypoints remain nonempty (waypoint count > 0) from mid-route through the anticipated intersection region.",
+          "Ensure weather, wetness, and puddle settings remain within moderate bounds so visibility and physics are plausible but not extreme."
+        ],
+        "post_execution_validation_rules": [
+          "Verify the oracle reports a red-light violation; do not enforce lane_invasion=1 as a requirement.",
+          "Confirm that traffic_lights logs show at least one active red state shortly before or during the time the oracle flags the violation.",
+          "Check that final_waypoints are still being published and nonempty in the frames just before the violation timestamp.",
+          "Confirm vehicle_cmd remains effectively zero (no significant steering, throttle, or brake command) while vehicle_status shows nonzero ego speed during the violation window.",
+          "Record any collision messages and their impulses but treat collision as optional, not mandatory, for matching this case.",
+          "Do not attempt to infer which specific light governs the ego or whether a stop line is physically crossed unless future logs explicitly provide that association."
+        ],
+        "uncertainty": [
+          "Whether the ego truly crosses a governing red light’s stop line is not guaranteed by traffic_lights data and remains uncertain.",
+          "Lane invasion behavior may or may not occur; validation must not rely on it because of prior label conflicts.",
+          "The severity and relevance of any collisions to the underlying bug are uncertain given prior crash=false flags.",
+          "Without internal module traces, it will remain unclear whether the zero-command/nonzero-motion pattern reflects planning, control, simulator, or logging anomalies."
+        ]
+      }
+    ]
+  },
+  "raw_api_payload": {
+    "id": "<REDACTED_RESPONSE_ID>",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "{\n  \"case_id\": \"case_168\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Same Town01 route with slightly shifted spawn and moderate wet conditions; ego traverses an intersection with active red traffic lights and large puddles while vehicle_cmd remains zero despite ego motion, leading to an oracle red-light violation (collision remains incidental/uncertain).\",\n      \"mutation_intent\": \"Preserve the original command–status mismatch and red-light violation pattern under similar mission and environment, while slightly perturbing mission start and puddle configuration to test robustness without changing the core unknown root cause.\",\n      \"expected_oracle\": \"red_light\",\n      \"modifications\": {\n        \"weather_delta\": {\n          \"rain\": 5,\n          \"fog\": -5,\n          \"wetness\": 10,\n          \"puddle\": 5\n        },\n        \"actor_mutations\": [],\n        \"puddle_mutations\": [\n          {\n            \"puddle_index\": 0,\n            \"location_offset\": {\n              \"x\": -2.0,\n              \"y\": 1.5\n            },\n            \"level_delta\": 0.05,\n            \"size_scale\": 1.1\n          },\n          {\n            \"puddle_index\": 1,\n            \"location_offset\": {\n              \"x\": 1.0,\n              \"y\": -2.0\n            },\n            \"level_delta\": -0.05,\n            \"size_scale\": 0.9\n          }\n        ],\n        \"mission_mutation\": {\n          \"keep_original\": false,\n          \"spawn_offset\": {\n            \"x\": 3.0,\n            \"y\": -2.5\n          },\n          \"destination_offset\": {\n            \"x\": -4.0,\n            \"y\": 1.5\n          }\n        }\n      },\n      \"pre_execution_validation_rules\": [\n        \"Ensure mission map remains Town01.\",\n        \"Verify no additional dynamic actors are present beyond the ego vehicle.\",\n        \"Confirm traffic light network is active along the ego route with multiple signals visible in traffic_lights topics.\",\n        \"Check that at least one traffic light reports a red state before the anticipated intersection interaction.\",\n        \"Validate that final_waypoints are nonempty and consistently published from early in the route through the expected violation window.\"\n      ],\n      \"post_execution_validation_rules\": [\n        \"Confirm oracle flags a red-light violation for the ego; do not require lane invasion or collision for success.\",\n        \"Verify traffic_lights data include at least one red state in the time window immediately preceding the oracle red-light violation event.\",\n        \"Check that final_waypoints remain available and nonempty during the critical window leading up to the red-light violation.\",\n        \"Confirm that vehicle_cmd outputs remain effectively zero (throttle, brake, steer ≈ 0) while vehicle_status reports nonzero ego speed near and at the time of the oracle red-light violation.\",\n        \"Verify no additional dynamic actors influenced the ego at the time of violation (to match the no-extra-actors constraint).\",\n        \"If collision messages occur, record their presence and impulse but do not treat collision as required for matching this root-cause pattern.\"\n      ],\n      \"uncertainty\": [\n        \"Route–light association and whether the governing light’s stop line is actually crossed remain unknown and must not be assumed from traffic_lights alone.\",\n        \"Lane invasion is not required because dataset.xlsx and error.json conflict on lane_invasion status.\",\n        \"Any observed collision may be low severity or simulator-side and should not be assumed as core to the root cause.\",\n        \"The origin of the command–status mismatch (planning, control, simulator, or logging) cannot be inferred from this scenario alone.\"\n      ]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Town01 mission with same general start–end corridor but slightly different spawn and destination, drier but still wet conditions, and minimally adjusted puddles; ego approaches an intersection governed by multiple lights including red states, with zero vehicle_cmd yet nonzero ego motion, again triggering a red-light oracle event while collision remains optional.\",\n      \"mutation_intent\": \"Probe whether the red-light violation with zero commands and nonzero motion persists under slightly reduced rain/puddle intensity and a modestly altered route geometry, while keeping traffic-light complexity and unknown route–light relation intact.\",\n      \"expected_oracle\": \"red_light\",\n      \"modifications\": {\n        \"weather_delta\": {\n          \"rain\": -10,\n          \"fog\": 0,\n          \"wetness\": -5,\n          \"puddle\": -10\n        },\n        \"actor_mutations\": [],\n        \"puddle_mutations\": [\n          {\n            \"puddle_index\": 0,\n            \"location_offset\": {\n              \"x\": 1.5,\n              \"y\": -1.0\n            },\n            \"level_delta\": -0.1,\n            \"size_scale\": 0.95\n          },\n          {\n            \"puddle_index\": 1,\n            \"location_offset\": {\n              \"x\": -1.5,\n              \"y\": 2.0\n            },\n            \"level_delta\": 0.1,\n            \"size_scale\": 1.05\n          }\n        ],\n        \"mission_mutation\": {\n          \"keep_original\": false,\n          \"spawn_offset\": {\n            \"x\": -4.0,\n            \"y\": 1.0\n          },\n          \"destination_offset\": {\n            \"x\": 2.5,\n            \"y\": -3.0\n          }\n        }\n      },\n      \"pre_execution_validation_rules\": [\n        \"Ensure the scenario runs on Town01 with only the ego as a dynamic actor.\",\n        \"Verify that traffic_lights topics are active and include multiple distinct signals along the ego path.\",\n        \"Confirm at least one traffic light reports a red phase during the time interval when the ego approaches an intersection.\",\n        \"Check that final_waypoints remain nonempty (waypoint count > 0) from mid-route through the anticipated intersection region.\",\n        \"Ensure weather, wetness, and puddle settings remain within moderate bounds so visibility and physics are plausible but not extreme.\"\n      ],\n      \"post_execution_validation_rules\": [\n        \"Verify the oracle reports a red-light violation; do not enforce lane_invasion=1 as a requirement.\",\n        \"Confirm that traffic_lights logs show at least one active red state shortly before or during the time the oracle flags the violation.\",\n        \"Check that final_waypoints are still being published and nonempty in the frames just before the violation timestamp.\",\n        \"Confirm vehicle_cmd remains effectively zero (no significant steering, throttle, or brake command) while vehicle_status shows nonzero ego speed during the violation window.\",\n        \"Record any collision messages and their impulses but treat collision as optional, not mandatory, for matching this case.\",\n        \"Do not attempt to infer which specific light governs the ego or whether a stop line is physically crossed unless future logs explicitly provide that association.\"\n      ],\n      \"uncertainty\": [\n        \"Whether the ego truly crosses a governing red light’s stop line is not guaranteed by traffic_lights data and remains uncertain.\",\n        \"Lane invasion behavior may or may not occur; validation must not rely on it because of prior label conflicts.\",\n        \"The severity and relevance of any collisions to the underlying bug are uncertain given prior crash=false flags.\",\n        \"Without internal module traces, it will remain unclear whether the zero-command/nonzero-motion pattern reflects planning, control, simulator, or logging anomalies.\"\n      ]\n    }\n  ]\n}",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": [],
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "gpt-5.1-2025-11-13",
+    "object": "chat.completion",
+    "service_tier": "default",
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 1588,
+      "prompt_tokens": 1533,
+      "total_tokens": 3121,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": 0,
+        "audio_tokens": 0,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 0
+      }
+    }
+  },
+  "error_message": "",
+  "elapsed_sec": 28.347,
+  "timestamp": "<REDACTED_TIMESTAMP>"
+}

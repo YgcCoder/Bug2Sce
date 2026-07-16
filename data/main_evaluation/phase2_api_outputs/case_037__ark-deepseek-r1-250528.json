@@ -1,0 +1,390 @@
+{
+  "case_id": "case_037",
+  "model_name": "ark-deepseek-r1-250528",
+  "workflow": "phase2_grounded_generation",
+  "status": "completed",
+  "schema_valid": true,
+  "schema_errors": [],
+  "phase1_ready": "yes",
+  "num_candidates_requested": 2,
+  "num_candidates_written": 2,
+  "num_pre_valid": 2,
+  "candidate_records": [
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-deepseek-r1-250528/json/case_037/case_037__cand_001.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-deepseek-r1-250528/metadata/case_037/case_037__cand_001.metadata.json",
+      "case_id": "case_037",
+      "model_name": "ark-deepseek-r1-250528",
+      "candidate_index": 1,
+      "candidate_spec": {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Slightly shift the lead vehicle toward ego's planned path, keep all original weather and mission parameters",
+        "mutation_intent": "Preserves all root cause requirements: retains original Town01 map, mission start/goal positions, heavy rain high wetness weather, 2 actors, all-zero vehicle_cmd output, and conflicting label status between dataset and error.json; small position shift increases collision likelihood to match the dataset's collision label while retaining original uncertainty",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 1.2,
+                "y": -0.8
+              },
+              "speed_delta": 0.5
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": 0.0,
+                "y": 1.0
+              },
+              "speed_delta": 0.0
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Confirm all-zero vehicle actuation commands are configured",
+          "Confirm weather matches original heavy rain and high wetness conditions",
+          "Confirm exactly 2 actors are spawned as required"
+        ],
+        "post_execution_validation_rules": [
+          "Verify the mismatch between all-zero vehicle_cmd and moving ego vehicle status is reproduced",
+          "Check which failure types actually occur to retain the original conflicting label status"
+        ],
+        "uncertainty": [
+          "Collision and lane invasion status remain conflicting between original sources, preserved in this variant",
+          "Red light event details (stop-line crossing) are still unconfirmed as per original evidence"
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 0.0,
+          "fog": 0.0,
+          "wetness": 0.0,
+          "puddle": 0.0
+        },
+        "actor_mutations": [
+          {
+            "actor_index": 0,
+            "position_offset": {
+              "x": 1.2,
+              "y": -0.8
+            },
+            "speed_delta": 0.5
+          },
+          {
+            "actor_index": 1,
+            "position_offset": {
+              "x": 0.0,
+              "y": 1.0
+            },
+            "speed_delta": 0.0
+          }
+        ],
+        "puddle_mutations": [],
+        "mission_mutation": {
+          "keep_original": true
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_037__ark-deepseek-r1-250528.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_037__ark-deepseek-r1-250528.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    },
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-deepseek-r1-250528/json/case_037/case_037__cand_002.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-deepseek-r1-250528/metadata/case_037/case_037__cand_002.metadata.json",
+      "case_id": "case_037",
+      "model_name": "ark-deepseek-r1-250528",
+      "candidate_index": 2,
+      "candidate_spec": {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Shift the pedestrian actor toward ego's path, reduce lead vehicle speed slightly, keep all original core parameters",
+        "mutation_intent": "Preserves all root cause pattern and constraints: retains original map, mission positions, weather, 2 actors, all-zero vehicle_cmd, and conflicting label status; this variant tests for pedestrian collision to align with the dataset's collision label while keeping original uncertainty",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "speed_delta": -0.8
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": -2.1,
+                "y": 0.3
+              },
+              "speed_delta": 0.2
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Confirm all-zero vehicle actuation commands are configured correctly",
+          "Confirm weather matches original heavy rain high wetness conditions",
+          "Confirm 2 actors are spawned at modified positions"
+        ],
+        "post_execution_validation_rules": [
+          "Validate that the mismatch between all-zero commands and moving ego status is reproduced",
+          "Check for occurrence of each failure type to preserve original conflicting label status"
+        ],
+        "uncertainty": [
+          "No module-level failure can be confirmed directly per original evidence, retained here",
+          "Red light event details are unconfirmed, matching original uncertainty"
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 0.0,
+          "fog": 0.0,
+          "wetness": 0.0,
+          "puddle": 0.0
+        },
+        "actor_mutations": [
+          {
+            "actor_index": 0,
+            "position_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "speed_delta": -0.8
+          },
+          {
+            "actor_index": 1,
+            "position_offset": {
+              "x": -2.1,
+              "y": 0.3
+            },
+            "speed_delta": 0.2
+          }
+        ],
+        "puddle_mutations": [],
+        "mission_mutation": {
+          "keep_original": true
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_037__ark-deepseek-r1-250528.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_037__ark-deepseek-r1-250528.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    }
+  ],
+  "seed_artifact_zip": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-deepseek-r1-250528/seed-artifact/seed-artifact-case_037.zip",
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_prompts/case_037__ark-deepseek-r1-250528.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_037__ark-deepseek-r1-250528.json",
+  "prompt_estimated_tokens": 1153,
+  "usage": {
+    "prompt_tokens": 1432,
+    "completion_tokens": 2907,
+    "total_tokens": 4339
+  },
+  "raw_response": "{\n  \"case_id\": \"case_037\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Slightly shift the lead vehicle toward ego's planned path, keep all original weather and mission parameters\",\n      \"mutation_intent\": \"Preserves all root cause requirements: retains original Town01 map, mission start/goal positions, heavy rain high wetness weather, 2 actors, all-zero vehicle_cmd output, and conflicting label status between dataset and error.json; small position shift increases collision likelihood to match the dataset's collision label while retaining original uncertainty\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 1.2, \"y\": -0.8}, \"speed_delta\": 0.5},\n          {\"actor_index\": 1, \"position_offset\": {\"x\": 0.0, \"y\": 1.0}, \"speed_delta\": 0.0}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Confirm all-zero vehicle actuation commands are configured\", \"Confirm weather matches original heavy rain and high wetness conditions\", \"Confirm exactly 2 actors are spawned as required\"],\n      \"post_execution_validation_rules\": [\"Verify the mismatch between all-zero vehicle_cmd and moving ego vehicle status is reproduced\", \"Check which failure types actually occur to retain the original conflicting label status\"],\n      \"uncertainty\": [\"Collision and lane invasion status remain conflicting between original sources, preserved in this variant\", \"Red light event details (stop-line crossing) are still unconfirmed as per original evidence\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Shift the pedestrian actor toward ego's path, reduce lead vehicle speed slightly, keep all original core parameters\",\n      \"mutation_intent\": \"Preserves all root cause pattern and constraints: retains original map, mission positions, weather, 2 actors, all-zero vehicle_cmd, and conflicting label status; this variant tests for pedestrian collision to align with the dataset's collision label while keeping original uncertainty\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 0.0, \"y\": 0.0}, \"speed_delta\": -0.8},\n          {\"actor_index\": 1, \"position_offset\": {\"x\": -2.1, \"y\": 0.3}, \"speed_delta\": 0.2}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Confirm all-zero vehicle actuation commands are configured correctly\", \"Confirm weather matches original heavy rain high wetness conditions\", \"Confirm 2 actors are spawned at modified positions\"],\n      \"post_execution_validation_rules\": [\"Validate that the mismatch between all-zero commands and moving ego status is reproduced\", \"Check for occurrence of each failure type to preserve original conflicting label status\"],\n      \"uncertainty\": [\"No module-level failure can be confirmed directly per original evidence, retained here\", \"Red light event details are unconfirmed, matching original uncertainty\"]\n    }\n  ]\n}",
+  "parsed_response": {
+    "case_id": "case_037",
+    "candidate_specs": [
+      {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Slightly shift the lead vehicle toward ego's planned path, keep all original weather and mission parameters",
+        "mutation_intent": "Preserves all root cause requirements: retains original Town01 map, mission start/goal positions, heavy rain high wetness weather, 2 actors, all-zero vehicle_cmd output, and conflicting label status between dataset and error.json; small position shift increases collision likelihood to match the dataset's collision label while retaining original uncertainty",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 1.2,
+                "y": -0.8
+              },
+              "speed_delta": 0.5
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": 0.0,
+                "y": 1.0
+              },
+              "speed_delta": 0.0
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Confirm all-zero vehicle actuation commands are configured",
+          "Confirm weather matches original heavy rain and high wetness conditions",
+          "Confirm exactly 2 actors are spawned as required"
+        ],
+        "post_execution_validation_rules": [
+          "Verify the mismatch between all-zero vehicle_cmd and moving ego vehicle status is reproduced",
+          "Check which failure types actually occur to retain the original conflicting label status"
+        ],
+        "uncertainty": [
+          "Collision and lane invasion status remain conflicting between original sources, preserved in this variant",
+          "Red light event details (stop-line crossing) are still unconfirmed as per original evidence"
+        ]
+      },
+      {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Shift the pedestrian actor toward ego's path, reduce lead vehicle speed slightly, keep all original core parameters",
+        "mutation_intent": "Preserves all root cause pattern and constraints: retains original map, mission positions, weather, 2 actors, all-zero vehicle_cmd, and conflicting label status; this variant tests for pedestrian collision to align with the dataset's collision label while keeping original uncertainty",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "speed_delta": -0.8
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": -2.1,
+                "y": 0.3
+              },
+              "speed_delta": 0.2
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Confirm all-zero vehicle actuation commands are configured correctly",
+          "Confirm weather matches original heavy rain high wetness conditions",
+          "Confirm 2 actors are spawned at modified positions"
+        ],
+        "post_execution_validation_rules": [
+          "Validate that the mismatch between all-zero commands and moving ego status is reproduced",
+          "Check for occurrence of each failure type to preserve original conflicting label status"
+        ],
+        "uncertainty": [
+          "No module-level failure can be confirmed directly per original evidence, retained here",
+          "Red light event details are unconfirmed, matching original uncertainty"
+        ]
+      }
+    ]
+  },
+  "raw_api_payload": {
+    "id": "0217829233761642866bb6cb6b56020dddc7afb20a43995c47d44",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "{\n  \"case_id\": \"case_037\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Slightly shift the lead vehicle toward ego's planned path, keep all original weather and mission parameters\",\n      \"mutation_intent\": \"Preserves all root cause requirements: retains original Town01 map, mission start/goal positions, heavy rain high wetness weather, 2 actors, all-zero vehicle_cmd output, and conflicting label status between dataset and error.json; small position shift increases collision likelihood to match the dataset's collision label while retaining original uncertainty\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 1.2, \"y\": -0.8}, \"speed_delta\": 0.5},\n          {\"actor_index\": 1, \"position_offset\": {\"x\": 0.0, \"y\": 1.0}, \"speed_delta\": 0.0}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Confirm all-zero vehicle actuation commands are configured\", \"Confirm weather matches original heavy rain and high wetness conditions\", \"Confirm exactly 2 actors are spawned as required\"],\n      \"post_execution_validation_rules\": [\"Verify the mismatch between all-zero vehicle_cmd and moving ego vehicle status is reproduced\", \"Check which failure types actually occur to retain the original conflicting label status\"],\n      \"uncertainty\": [\"Collision and lane invasion status remain conflicting between original sources, preserved in this variant\", \"Red light event details (stop-line crossing) are still unconfirmed as per original evidence\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Shift the pedestrian actor toward ego's path, reduce lead vehicle speed slightly, keep all original core parameters\",\n      \"mutation_intent\": \"Preserves all root cause pattern and constraints: retains original map, mission positions, weather, 2 actors, all-zero vehicle_cmd, and conflicting label status; this variant tests for pedestrian collision to align with the dataset's collision label while keeping original uncertainty\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 0.0, \"y\": 0.0}, \"speed_delta\": -0.8},\n          {\"actor_index\": 1, \"position_offset\": {\"x\": -2.1, \"y\": 0.3}, \"speed_delta\": 0.2}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Confirm all-zero vehicle actuation commands are configured correctly\", \"Confirm weather matches original heavy rain high wetness conditions\", \"Confirm 2 actors are spawned at modified positions\"],\n      \"post_execution_validation_rules\": [\"Validate that the mismatch between all-zero commands and moving ego status is reproduced\", \"Check for occurrence of each failure type to preserve original conflicting label status\"],\n      \"uncertainty\": [\"No module-level failure can be confirmed directly per original evidence, retained here\", \"Red light event details are unconfirmed, matching original uncertainty\"]\n    }\n  ]\n}",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null,
+          "reasoning_content": "\nGot it, let's build this JSON step by step. First, the case_id is case_037 right? Then we need exactly 2 candidate_specs. Let's start with cand_001 first.\n\nFirst, high_level_variant for cand_001: Let's see, original has two actors, we shift the vehicle actor a bit towards the ego's path, keep everything else same. Wait, mutation_intent should preserve the root cause pattern, right? The root cause is all-zero cmd but ego moving, conflicting labels, heavy rain. So for cand_001: high_level_variant could be \"Shift lead vehicle slightly closer to ego's planned path, keep all original weather and mission parameters\". Mutation_intent: \"Preserves all root cause requirements: keeps original map, mission positions, heavy rain high wetness, 2 actors, all-zero vehicle_cmd, conflicting label status; small position shift increases chance of collision to match dataset label while retaining uncertainty\". Expected oracle is compound, right? Because original has conflicting labels of collision, lane invasion, red light. Yeah, that makes sense.\n\nThen modifications for cand_001: weather delta, original says preserve heavy rain high wetness, so all deltas 0. Actor mutations: actor 0 (the vehicle) position offset, let's do x 1.2, y -0.8, that's within [-8,8]. Speed delta: +0.5, within [-3,3]. Actor 1, do we change? Wait, maybe just actor 0, or actor 1 a little? Wait no, let's do actor 0: {\"actor_index\": 0, \"position_offset\": {\"x\": 1.2, \"y\": -0.8}, \"speed_delta\": 0.5}, then actor 1: {\"actor_index\": 1, \"position_offset\": {\"x\": 0.0, \"y\": 1.0}, \"speed_delta\": 0.0} that's fine. Puddle mutations: original has no puddles, so empty array? Wait original seed scenario has puddles empty, so yeah. Mission mutation: keep_original true, because preservation constraint says preserve original mission start/goal. So {\"keep_original\": true, ... offsets 0}. Pre execution rules: [\"Confirm all-zero vehicle_cmd output is configured\", \"Confirm weather matches original heavy rain high wetness\", \"Confirm 2 actors are present\"]. Post execution: [\"Check for mismatch between all-zero commands and moving ego status\", \"Verify which failure types occur to retain conflicting label status\"]. Uncertainty: same as original, like [\"Collision occurrence is unconfirmed, matches original conflicting label status\", \"Red light event details remain unconfirmed per original evidence\"].\n\nNow cand_002, second candidate. Let's think, different variant. What's another mutation? Shift the walker actor, slightly lower vehicle speed to see if that changes, keep everything else. Wait high_level_variant: \"Shift pedestrian actor across ego's path, reduce lead vehicle speed slightly, keep all other original parameters\". Mutation_intent: \"Preserves all root cause pattern requirements: retains original map, mission positions, weather conditions, 2 actors, all-zero vehicle_cmd, conflicting label status; this variant tests for collision with pedestrian to align with dataset's collision label while retaining original uncertainty\". Expected oracle still compound, right? Because conflicting labels.\n\nModifications for cand_002: weather delta still all 0, since we need to preserve original weather. Actor mutations: actor 0 (vehicle) position offset x 0, y 0, speed delta -0.8 (within [-3,3], that's okay). Actor 1 (walker) position offset x -2.1, y 0.3, that's within range, speed delta +0.2, that's fine. Puddle mutations still empty, original has none. Mission mutation keep_original true. Pre execution rules same as before but adjusted: [\"Confirm all-zero vehicle_cmd output is configured\", \"Confirm weather matches original heavy rain high wetness\", \"Confirm 2 actors are spawned at modified positions\"]. Post execution: [\"Validate mismatch between all-zero actuation commands and non-zero ego movement\", \"Check which failure modes occur to confirm conflicting label status is preserved\"]. Uncertainty: [\"Red light stop-line crossing remains unconfirmed per original evidence\", \"Lane invasion status is conflicting between original sources, retained in this variant\"].\n\nWait let's check all rules: actor position offsets are within [-8,8], yes. Speed delta within [-3,3], yes. Mission keep_original true, which fits the preservation constraint. Weather deltas all 0, which is within [-20,20], correct. Puddles are empty so no issues. Exactly two candidates, that's right. Preserves the root cause, doesn't change the oracle, expected oracle is compound because original has multiple conflicting labels. Let's check the schema, make sure all fields are there.\n\nWait let's structure it properly. Let's make sure case_id is case_037. Then candidate_specs array has two objects. Let's check the preservation constraints: all are followed: preserve Town01, preserve mission start/goal (keep_original true), preserve heavy rain high wetness (weather delta 0), preserve 2 actors, preserve all-zero cmd, preserve conflicting labels. Yep. Uncertainty is preserved as per original.\n\nWait let's write it out properly, make sure JSON is valid. Let's check:\n\nWait for puddle_mutations, original seed has puddles empty, so we can have empty array in both candidates, that's okay. Let's see:\n\nFirst candidate cand_001:\nhigh_level_variant: \"Slightly shift the lead vehicle toward ego's planned path, keep all original weather and mission parameters\"\nmutation_intent: \"Preserves all root cause requirements: retains original Town01 map, mission start/goal positions, heavy rain high wetness weather, 2 actors, all-zero vehicle_cmd output, and conflicting label status between dataset and error.json; small position shift increases collision likelihood to match the dataset's collision label while retaining original uncertainty\"\nexpected_oracle: \"compound\"\nThen modifications: weather_delta all 0, actor_mutations for 0 and 1, let's do:\n\"actor_mutations\": [\n  {\"actor_index\": 0, \"position_offset\": {\"x\": 1.2, \"y\": -0.8}, \"speed_delta\": 0.5},\n  {\"actor_index\": 1, \"position_offset\": {\"x\": 0.0, \"y\": 1.0}, \"speed_delta\": 0.0}\n]\npuddle_mutations is [] because original has no puddles. Mission mutation: \"keep_original\": true, offsets all 0.\npre_execution_validation_rules: [\"Confirm all-zero vehicle actuation commands are configured\", \"Confirm weather matches original heavy rain and high wetness conditions\", \"Confirm exactly 2 actors are spawned as required\"]\npost_execution_validation_rules: [\"Verify the mismatch between all-zero vehicle_cmd and moving ego vehicle status is reproduced\", \"Check which failure types actually occur to retain the original conflicting label status\"]\nuncertainty: [\"Collision and lane invasion status remain conflicting between original sources, preserved in this variant\", \"Red light event details (stop-line crossing) are still unconfirmed as per original evidence\"]\n\nThen cand_002:\ncandidate_id: cand_002\nhigh_level_variant: \"Shift the pedestrian actor toward ego's path, reduce lead vehicle speed slightly, keep all original core parameters\"\nmutation_intent: \"Preserves all root cause pattern and constraints: retains original map, mission positions, weather, 2 actors, all-zero vehicle_cmd, and conflicting label status; this variant tests for pedestrian collision to align with the dataset's collision label while keeping original uncertainty\"\nexpected_oracle: \"compound\"\nmodifications:\nweather_delta: all 0 same as before.\nactor_mutations: [\n{\"actor_index\": 0, \"position_offset\": {\"x\": 0.0, \"y\": 0.0}, \"speed_delta\": -0.8},\n{\"actor_index\": 1, \"position_offset\": {\"x\": -2.1, \"y\": 0.3}, \"speed_delta\": 0.2}\n]\npuddle_mutations: []\nmission_mutation: {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\npre_execution_validation_rules: [\"Confirm all-zero vehicle actuation commands are configured correctly\", \"Confirm weather matches original heavy rain high wetness conditions\", \"Confirm 2 actors are spawned at modified positions\"]\npost_execution_validation_rules: [\"Validate that the mismatch between all-zero commands and moving ego status is reproduced\", \"Check for occurrence of each failure type to preserve original conflicting label status\"]\nuncertainty: [\"No module-level failure can be confirmed directly per original evidence, retained here\", \"Red light event details are unconfirmed, matching original uncertainty\"]\n\nWait that all checks out. All offsets are within limits. Two candidates, correct schema. Let's put it all together as valid JSON."
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "doubao-seed-2-0-lite-260215",
+    "object": "chat.completion",
+    "service_tier": "default",
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 2907,
+      "prompt_tokens": 1432,
+      "total_tokens": 4339,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 1988,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": null,
+        "cached_tokens": 0
+      }
+    }
+  },
+  "error_message": "",
+  "elapsed_sec": 46.27,
+  "timestamp": "<REDACTED_TIMESTAMP>"
+}

@@ -1,0 +1,129 @@
+{
+  "case_id": "case_024",
+  "model_name": "gpt-5.1",
+  "candidate_index": 1,
+  "candidate_spec": {
+    "candidate_id": "cand_001",
+    "high_level_variant": "Ego meets cross-traffic vehicle slightly closer at intersection, wet road similar.",
+    "mutation_intent": "Tighten interaction with nearby vehicle while keeping motion, signals, and red-light violation behavior.",
+    "expected_oracle": "compound",
+    "modifications": {
+      "weather_delta": {
+        "rain": 4,
+        "fog": 0,
+        "wetness": 5,
+        "puddle": 0
+      },
+      "actor_mutations": [
+        {
+          "actor_index": 0,
+          "position_offset": {
+            "x": -3.0,
+            "y": 1.5
+          },
+          "speed_delta": 1.0
+        },
+        {
+          "actor_index": 1,
+          "position_offset": {
+            "x": 2.0,
+            "y": 0.0
+          },
+          "speed_delta": 0.5
+        }
+      ],
+      "puddle_mutations": [
+        {
+          "puddle_index": 0,
+          "location_offset": {
+            "x": 1.5,
+            "y": 2.0
+          },
+          "level_delta": 0.05,
+          "size_scale": 1.05
+        }
+      ],
+      "mission_mutation": {
+        "keep_original": false,
+        "spawn_offset": {
+          "x": -3.0,
+          "y": 0.0
+        },
+        "destination_offset": {
+          "x": 2.0,
+          "y": 0.0
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Ensure at least one non-ego vehicle remains within close range near junction.",
+      "Check final waypoints list is nonempty and unblocked until near end.",
+      "Verify traffic_lights topic and state changes are present before failure."
+    ],
+    "post_execution_validation_rules": [
+      "Confirm oracle reports both collision and red_light in this run.",
+      "Check ego speed is nonzero within last seconds before collision time.",
+      "Ensure detected and predicted objects exist just before collision."
+    ],
+    "uncertainty": [
+      "Exact collision geometry between ego and cross-traffic vehicle may differ.",
+      "Stop-line crossing timing relative to light phase remains unclear.",
+      "Route-light association may stay ambiguous despite signal presence."
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": 4.0,
+      "fog": 0.0,
+      "wetness": 5.0,
+      "puddle": 0.0
+    },
+    "actor_mutations": [
+      {
+        "actor_index": 0,
+        "position_offset": {
+          "x": -3.0,
+          "y": 1.5
+        },
+        "speed_delta": 1.0
+      },
+      {
+        "actor_index": 1,
+        "position_offset": {
+          "x": 2.0,
+          "y": 0.0
+        },
+        "speed_delta": 0.5
+      }
+    ],
+    "puddle_mutations": [
+      {
+        "puddle_index": 0,
+        "location_offset": {
+          "x": 1.5,
+          "y": 2.0
+        },
+        "level_delta": 0.05,
+        "size_scale": 1.05
+      }
+    ],
+    "mission_mutation": {
+      "spawn_offset": {
+        "x": -3.0,
+        "y": 0.0
+      },
+      "destination_offset": {
+        "x": 2.0,
+        "y": 0.0
+      }
+    }
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_024__gpt-5.1.json",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_024__gpt-5.1.json",
+  "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+}

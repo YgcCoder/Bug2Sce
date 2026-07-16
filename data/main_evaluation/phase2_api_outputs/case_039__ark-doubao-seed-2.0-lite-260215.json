@@ -1,0 +1,517 @@
+{
+  "case_id": "case_039",
+  "model_name": "ark-doubao-seed-2.0-lite-260215",
+  "workflow": "phase2_grounded_generation",
+  "status": "completed",
+  "schema_valid": true,
+  "schema_errors": [],
+  "phase1_ready": "uncertain",
+  "num_candidates_requested": 2,
+  "num_candidates_written": 2,
+  "num_pre_valid": 2,
+  "candidate_records": [
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-doubao-seed-2.0-lite-260215/json/case_039/case_039__cand_001.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-doubao-seed-2.0-lite-260215/metadata/case_039/case_039__cand_001.metadata.json",
+      "case_id": "case_039",
+      "model_name": "ark-doubao-seed-2.0-lite-260215",
+      "candidate_index": 1,
+      "candidate_spec": {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Slight positional offset of the static actor while keeping all core scenario properties unchanged",
+        "mutation_intent": "Preserves all Phase 1 root cause constraints: maintains all-zero actuation commands, non-zero ego movement, conflicting failure labels between dataset and error.json, 1 actor, 3 puddles on Town01, and available final waypoints",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 2,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 1.2,
+                "y": -0.8
+              },
+              "speed_delta": 0.0
+            }
+          ],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 0.5,
+                "y": 0.3
+              },
+              "level_delta": 0.1,
+              "size_scale": 1.0
+            },
+            {
+              "puddle_index": 1,
+              "location_offset": {
+                "x": -0.2,
+                "y": 0.4
+              },
+              "level_delta": -0.05,
+              "size_scale": 1.0
+            },
+            {
+              "puddle_index": 2,
+              "location_offset": {
+                "x": 0.1,
+                "y": -0.2
+              },
+              "level_delta": 0.08,
+              "size_scale": 1.0
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Verify all accel/brake/steer commands are zero in the critical window",
+          "Confirm 1 actor and 3 puddles are placed correctly on Town01",
+          "Check conflicting failure annotations between dataset and error.json are preserved"
+        ],
+        "post_execution_validation_rules": [
+          "Validate mismatch between zero actuation commands and non-zero ego movement exists",
+          "Confirm final waypoints remain available throughout the critical window"
+        ],
+        "uncertainty": [
+          "No confirmed module-level cause for the actuation-movement mismatch",
+          "Conflicting failure labels between dataset and error.json remain unresolved"
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 0.0,
+          "fog": 0.0,
+          "wetness": 2.0,
+          "puddle": 0.0
+        },
+        "actor_mutations": [
+          {
+            "actor_index": 0,
+            "position_offset": {
+              "x": 1.2,
+              "y": -0.8
+            },
+            "speed_delta": 0.0
+          }
+        ],
+        "puddle_mutations": [
+          {
+            "puddle_index": 0,
+            "location_offset": {
+              "x": 0.5,
+              "y": 0.3
+            },
+            "level_delta": 0.1,
+            "size_scale": 1.0
+          },
+          {
+            "puddle_index": 1,
+            "location_offset": {
+              "x": -0.2,
+              "y": 0.4
+            },
+            "level_delta": -0.05,
+            "size_scale": 1.0
+          },
+          {
+            "puddle_index": 2,
+            "location_offset": {
+              "x": 0.1,
+              "y": -0.2
+            },
+            "level_delta": 0.08,
+            "size_scale": 1.0
+          }
+        ],
+        "mission_mutation": {
+          "keep_original": true
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_039__ark-doubao-seed-2.0-lite-260215.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_039__ark-doubao-seed-2.0-lite-260215.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    },
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-doubao-seed-2.0-lite-260215/json/case_039/case_039__cand_002.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-doubao-seed-2.0-lite-260215/metadata/case_039/case_039__cand_002.metadata.json",
+      "case_id": "case_039",
+      "model_name": "ark-doubao-seed-2.0-lite-260215",
+      "candidate_index": 2,
+      "candidate_spec": {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Slight increase in road wetness and small ego mission spawn/destination offset, minor actor speed adjustment",
+        "mutation_intent": "Preserves all core root cause pattern requirements while testing the scenario under marginally different road conditions, maintains all conflicting annotations and actuation-movement mismatch",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": 2,
+            "fog": 0,
+            "wetness": 3,
+            "puddle": 1
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 0.0,
+                "y": 2.1
+              },
+              "speed_delta": 0.5
+            }
+          ],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": -0.3,
+                "y": 0.2
+              },
+              "level_delta": 0.05,
+              "size_scale": 1.05
+            },
+            {
+              "puddle_index": 1,
+              "location_offset": {
+                "x": 0.4,
+                "y": -0.1
+              },
+              "level_delta": -0.1,
+              "size_scale": 0.95
+            },
+            {
+              "puddle_index": 2,
+              "location_offset": {
+                "x": 0.2,
+                "y": 0.3
+              },
+              "level_delta": 0.02,
+              "size_scale": 1.0
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": false,
+            "spawn_offset": {
+              "x": 0.5,
+              "y": -0.3
+            },
+            "destination_offset": {
+              "x": 0.8,
+              "y": 0.2
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Confirm all actuation commands are zero during the critical window",
+          "Check that ego mission waypoints remain consistently available",
+          "Verify 1 actor and 3 puddles are present as required"
+        ],
+        "post_execution_validation_rules": [
+          "Check non-zero ego velocity and movement is present despite zero actuation",
+          "Confirm conflicting failure annotation state is preserved"
+        ],
+        "uncertainty": [
+          "No proven module-level cause for the mismatch between zero commands and non-zero movement",
+          "No direct evidence of lane crossing to confirm lane invasion label, conflict with error.json detection remains"
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 2.0,
+          "fog": 0.0,
+          "wetness": 3.0,
+          "puddle": 1.0
+        },
+        "actor_mutations": [
+          {
+            "actor_index": 0,
+            "position_offset": {
+              "x": 0.0,
+              "y": 2.1
+            },
+            "speed_delta": 0.5
+          }
+        ],
+        "puddle_mutations": [
+          {
+            "puddle_index": 0,
+            "location_offset": {
+              "x": -0.3,
+              "y": 0.2
+            },
+            "level_delta": 0.05,
+            "size_scale": 1.05
+          },
+          {
+            "puddle_index": 1,
+            "location_offset": {
+              "x": 0.4,
+              "y": -0.1
+            },
+            "level_delta": -0.1,
+            "size_scale": 0.95
+          },
+          {
+            "puddle_index": 2,
+            "location_offset": {
+              "x": 0.2,
+              "y": 0.3
+            },
+            "level_delta": 0.02,
+            "size_scale": 1.0
+          }
+        ],
+        "mission_mutation": {
+          "spawn_offset": {
+            "x": 0.5,
+            "y": -0.3
+          },
+          "destination_offset": {
+            "x": 0.8,
+            "y": 0.2
+          }
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_039__ark-doubao-seed-2.0-lite-260215.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_039__ark-doubao-seed-2.0-lite-260215.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    }
+  ],
+  "seed_artifact_zip": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-doubao-seed-2.0-lite-260215/seed-artifact/seed-artifact-case_039.zip",
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_prompts/case_039__ark-doubao-seed-2.0-lite-260215.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_039__ark-doubao-seed-2.0-lite-260215.json",
+  "prompt_estimated_tokens": 1163,
+  "usage": {
+    "prompt_tokens": 1530,
+    "completion_tokens": 2430,
+    "total_tokens": 3960
+  },
+  "raw_response": "{\n  \"case_id\": \"case_039\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Slight positional offset of the static actor while keeping all core scenario properties unchanged\",\n      \"mutation_intent\": \"Preserves all Phase 1 root cause constraints: maintains all-zero actuation commands, non-zero ego movement, conflicting failure labels between dataset and error.json, 1 actor, 3 puddles on Town01, and available final waypoints\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 2, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 1.2, \"y\": -0.8}, \"speed_delta\": 0.0}\n        ],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": 0.5, \"y\": 0.3}, \"level_delta\": 0.1, \"size_scale\": 1.0},\n          {\"puddle_index\": 1, \"location_offset\": {\"x\": -0.2, \"y\": 0.4}, \"level_delta\": -0.05, \"size_scale\": 1.0},\n          {\"puddle_index\": 2, \"location_offset\": {\"x\": 0.1, \"y\": -0.2}, \"level_delta\": 0.08, \"size_scale\": 1.0}\n        ],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Verify all accel/brake/steer commands are zero in the critical window\", \"Confirm 1 actor and 3 puddles are placed correctly on Town01\", \"Check conflicting failure annotations between dataset and error.json are preserved\"],\n      \"post_execution_validation_rules\": [\"Validate mismatch between zero actuation commands and non-zero ego movement exists\", \"Confirm final waypoints remain available throughout the critical window\"],\n      \"uncertainty\": [\"No confirmed module-level cause for the actuation-movement mismatch\", \"Conflicting failure labels between dataset and error.json remain unresolved\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Slight increase in road wetness and small ego mission spawn/destination offset, minor actor speed adjustment\",\n      \"mutation_intent\": \"Preserves all core root cause pattern requirements while testing the scenario under marginally different road conditions, maintains all conflicting annotations and actuation-movement mismatch\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 2, \"fog\": 0, \"wetness\": 3, \"puddle\": 1},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 0.0, \"y\": 2.1}, \"speed_delta\": 0.5}\n        ],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": -0.3, \"y\": 0.2}, \"level_delta\": 0.05, \"size_scale\": 1.05},\n          {\"puddle_index\": 1, \"location_offset\": {\"x\": 0.4, \"y\": -0.1}, \"level_delta\": -0.1, \"size_scale\": 0.95},\n          {\"puddle_index\": 2, \"location_offset\": {\"x\": 0.2, \"y\": 0.3}, \"level_delta\": 0.02, \"size_scale\": 1.0}\n        ],\n        \"mission_mutation\": {\"keep_original\": false, \"spawn_offset\": {\"x\": 0.5, \"y\": -0.3}, \"destination_offset\": {\"x\": 0.8, \"y\": 0.2}}\n      },\n      \"pre_execution_validation_rules\": [\"Confirm all actuation commands are zero during the critical window\", \"Check that ego mission waypoints remain consistently available\", \"Verify 1 actor and 3 puddles are present as required\"],\n      \"post_execution_validation_rules\": [\"Check non-zero ego velocity and movement is present despite zero actuation\", \"Confirm conflicting failure annotation state is preserved\"],\n      \"uncertainty\": [\"No proven module-level cause for the mismatch between zero commands and non-zero movement\", \"No direct evidence of lane crossing to confirm lane invasion label, conflict with error.json detection remains\"]\n    }\n  ]\n}",
+  "parsed_response": {
+    "case_id": "case_039",
+    "candidate_specs": [
+      {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Slight positional offset of the static actor while keeping all core scenario properties unchanged",
+        "mutation_intent": "Preserves all Phase 1 root cause constraints: maintains all-zero actuation commands, non-zero ego movement, conflicting failure labels between dataset and error.json, 1 actor, 3 puddles on Town01, and available final waypoints",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 2,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 1.2,
+                "y": -0.8
+              },
+              "speed_delta": 0.0
+            }
+          ],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 0.5,
+                "y": 0.3
+              },
+              "level_delta": 0.1,
+              "size_scale": 1.0
+            },
+            {
+              "puddle_index": 1,
+              "location_offset": {
+                "x": -0.2,
+                "y": 0.4
+              },
+              "level_delta": -0.05,
+              "size_scale": 1.0
+            },
+            {
+              "puddle_index": 2,
+              "location_offset": {
+                "x": 0.1,
+                "y": -0.2
+              },
+              "level_delta": 0.08,
+              "size_scale": 1.0
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Verify all accel/brake/steer commands are zero in the critical window",
+          "Confirm 1 actor and 3 puddles are placed correctly on Town01",
+          "Check conflicting failure annotations between dataset and error.json are preserved"
+        ],
+        "post_execution_validation_rules": [
+          "Validate mismatch between zero actuation commands and non-zero ego movement exists",
+          "Confirm final waypoints remain available throughout the critical window"
+        ],
+        "uncertainty": [
+          "No confirmed module-level cause for the actuation-movement mismatch",
+          "Conflicting failure labels between dataset and error.json remain unresolved"
+        ]
+      },
+      {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Slight increase in road wetness and small ego mission spawn/destination offset, minor actor speed adjustment",
+        "mutation_intent": "Preserves all core root cause pattern requirements while testing the scenario under marginally different road conditions, maintains all conflicting annotations and actuation-movement mismatch",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": 2,
+            "fog": 0,
+            "wetness": 3,
+            "puddle": 1
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 0.0,
+                "y": 2.1
+              },
+              "speed_delta": 0.5
+            }
+          ],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": -0.3,
+                "y": 0.2
+              },
+              "level_delta": 0.05,
+              "size_scale": 1.05
+            },
+            {
+              "puddle_index": 1,
+              "location_offset": {
+                "x": 0.4,
+                "y": -0.1
+              },
+              "level_delta": -0.1,
+              "size_scale": 0.95
+            },
+            {
+              "puddle_index": 2,
+              "location_offset": {
+                "x": 0.2,
+                "y": 0.3
+              },
+              "level_delta": 0.02,
+              "size_scale": 1.0
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": false,
+            "spawn_offset": {
+              "x": 0.5,
+              "y": -0.3
+            },
+            "destination_offset": {
+              "x": 0.8,
+              "y": 0.2
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Confirm all actuation commands are zero during the critical window",
+          "Check that ego mission waypoints remain consistently available",
+          "Verify 1 actor and 3 puddles are present as required"
+        ],
+        "post_execution_validation_rules": [
+          "Check non-zero ego velocity and movement is present despite zero actuation",
+          "Confirm conflicting failure annotation state is preserved"
+        ],
+        "uncertainty": [
+          "No proven module-level cause for the mismatch between zero commands and non-zero movement",
+          "No direct evidence of lane crossing to confirm lane invasion label, conflict with error.json detection remains"
+        ]
+      }
+    ]
+  },
+  "raw_api_payload": {
+    "id": "021782922101131d43c98a3a6422f05688e398a72cec5f46dd7ee",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "{\n  \"case_id\": \"case_039\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Slight positional offset of the static actor while keeping all core scenario properties unchanged\",\n      \"mutation_intent\": \"Preserves all Phase 1 root cause constraints: maintains all-zero actuation commands, non-zero ego movement, conflicting failure labels between dataset and error.json, 1 actor, 3 puddles on Town01, and available final waypoints\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 2, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 1.2, \"y\": -0.8}, \"speed_delta\": 0.0}\n        ],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": 0.5, \"y\": 0.3}, \"level_delta\": 0.1, \"size_scale\": 1.0},\n          {\"puddle_index\": 1, \"location_offset\": {\"x\": -0.2, \"y\": 0.4}, \"level_delta\": -0.05, \"size_scale\": 1.0},\n          {\"puddle_index\": 2, \"location_offset\": {\"x\": 0.1, \"y\": -0.2}, \"level_delta\": 0.08, \"size_scale\": 1.0}\n        ],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Verify all accel/brake/steer commands are zero in the critical window\", \"Confirm 1 actor and 3 puddles are placed correctly on Town01\", \"Check conflicting failure annotations between dataset and error.json are preserved\"],\n      \"post_execution_validation_rules\": [\"Validate mismatch between zero actuation commands and non-zero ego movement exists\", \"Confirm final waypoints remain available throughout the critical window\"],\n      \"uncertainty\": [\"No confirmed module-level cause for the actuation-movement mismatch\", \"Conflicting failure labels between dataset and error.json remain unresolved\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Slight increase in road wetness and small ego mission spawn/destination offset, minor actor speed adjustment\",\n      \"mutation_intent\": \"Preserves all core root cause pattern requirements while testing the scenario under marginally different road conditions, maintains all conflicting annotations and actuation-movement mismatch\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 2, \"fog\": 0, \"wetness\": 3, \"puddle\": 1},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 0.0, \"y\": 2.1}, \"speed_delta\": 0.5}\n        ],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": -0.3, \"y\": 0.2}, \"level_delta\": 0.05, \"size_scale\": 1.05},\n          {\"puddle_index\": 1, \"location_offset\": {\"x\": 0.4, \"y\": -0.1}, \"level_delta\": -0.1, \"size_scale\": 0.95},\n          {\"puddle_index\": 2, \"location_offset\": {\"x\": 0.2, \"y\": 0.3}, \"level_delta\": 0.02, \"size_scale\": 1.0}\n        ],\n        \"mission_mutation\": {\"keep_original\": false, \"spawn_offset\": {\"x\": 0.5, \"y\": -0.3}, \"destination_offset\": {\"x\": 0.8, \"y\": 0.2}}\n      },\n      \"pre_execution_validation_rules\": [\"Confirm all actuation commands are zero during the critical window\", \"Check that ego mission waypoints remain consistently available\", \"Verify 1 actor and 3 puddles are present as required\"],\n      \"post_execution_validation_rules\": [\"Check non-zero ego velocity and movement is present despite zero actuation\", \"Confirm conflicting failure annotation state is preserved\"],\n      \"uncertainty\": [\"No proven module-level cause for the mismatch between zero commands and non-zero movement\", \"No direct evidence of lane crossing to confirm lane invasion label, conflict with error.json detection remains\"]\n    }\n  ]\n}",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null,
+          "reasoning_content": "\nGot it, let's build this JSON step by step. First, the case_id is case_039 right? Then we need exactly 2 candidate_specs, cand_001 and cand_002.\n\nFirst candidate: cand_001. High level variant: Slight offset of the other actor position to test the label conflict condition while keeping core mismatch. Mutation intent: Preserves all core root cause properties: zero actuation commands, non-zero ego movement, conflicting labels, same number of actors and puddles, map unchanged. Expected oracle: compound, because original has stuck and lane invasion conflicting, so compound.\n\nModifications: Let's do weather delta, all within range. Let's say rain 0, fog 0, wetness +2, puddle 0, that's within 20. Actor mutation: actor 0, position offset x 1.2, y -0.8, speed delta 0.0, that's within [-8,8] and [-3,3]. Puddle mutations: all 3 puddles? Wait, original has 3. Let's do each, offset small, level delta within 0.2, size scale 1.0. Like puddle 0: x 0.5, y 0.3, level delta 0.1, size 1.0. Puddle 1: x -0.2, y 0.4, level delta -0.05, size 1.0. Puddle 2: x 0.1, y -0.2, level delta 0.08, size 1.0. Mission mutation: keep_original true, offsets 0.\n\nPre-execution rules: [\"Verify all vehicle_cmd commands are zero in critical window\", \"Confirm ego has non-zero velocity during critical window\", \"Check conflicting labels between dataset annotation and error detection are preserved\"]. Post execution: [\"Validate mismatch between zero actuation and non-zero movement is present\", \"Check for label conflict consistency\"]. Uncertainty: [\"Unconfirmed module-level cause of actuation-velocity mismatch\", \"Conflicting failure labels remain unresolved\"].\n\nNow candidate 002: cand_002. High level variant: Slight increase in road wetness and small shift of ego mission spawn to test core pattern under marginally different conditions. Mutation intent: Preserves all required root cause constraints: zero actuation commands, non-zero ego movement, 1 actor, 3 puddles on Town01, conflicting labels between dataset and error.json. Expected oracle: compound, same as before.\n\nModifications: weather delta: rain +2, fog 0, wetness +3, puddle +1, all within [-20,20]. Actor mutation: actor 0, position offset x 0, y 2.1, speed delta 0.5, that's within ranges. Puddle mutations: all 3, let's do puddle 0: location offset x -0.3, y 0.2, level delta 0.05, size scale 1.05. Puddle 1: x 0.4, y -0.1, level delta -0.1, size scale 0.95. Puddle 2: x 0.2, y 0.3, level delta 0.02, size scale 1.0. Mission mutation: keep_original false? Wait no, spawn offset x 0.5, y -0.3, destination offset x 0.8, y 0.2, that's within [-5,5]. So keep_original false? Wait no, keep_original is true if we don't change, but if we have small offsets, keep_original is false? Wait the schema says keep_original=true or offsets. So mission mutation here: \"keep_original\": false, \"spawn_offset\": {\"x\": 0.5, \"y\": -0.3}, \"destination_offset\": {\"x\": 0.8, \"y\": 0.2}, that's within 5, good.\n\nPre-execution rules for cand 002: [\"Confirm all actuation commands are zero in critical window\", \"Ensure 1 actor and 3 puddles are present on Town01 map\", \"Verify conflicting failure annotations are preserved\"]. Post execution: [\"Check that non-zero ego velocity is present despite zero actuation\", \"Confirm final waypoints remain available throughout critical window\"]. Uncertainty: [\"No confirmed root cause module for the actuation-movement mismatch\", \"Conflicting lane invasion and stuck labels between dataset and error.json remain unresolved\"].\n\nWait let's check all rules: exactly 2 candidates, all offsets within ranges, speed delta within [-3,3], weather deltas within [-20,20], puddle level delta within [-0.2, 0.2], size scale between 0.8 and 1.2, preserve root cause, preserve uncertainty, expected oracle is compound which is correct because original has two labels conflicting. Let's structure this correctly into JSON.\n\nWait let's check the input: phase1 has conflicting labels, stuck and lane invasion, so expected oracle is compound, that's right. Let's make sure all fields are there. Let's write it out properly.\n\nWait case_id is case_039, right. Yes. Then candidate_specs array has two elements. Let's make sure all the modifications are correct. Let's check actor position offsets: for cand 001, x 1.2, y -0.8, that's well within [-8,8]. Speed delta 0, which is within [-3,3]. For cand 002, speed delta 0.5, which is good. Mission offsets are within 5, yes. Weather deltas all within 20, yes. Puddle level deltas all within 0.2, size scale between 0.8 and 1.2, yes. Uncertainty is preserved as per phase1, which is uncertainty-heavy, so we kept uncertainty in each candidate.\n\nOkay, let's put it all together now, make sure it's valid JSON, no extra stuff."
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "doubao-seed-2-0-lite-260215",
+    "object": "chat.completion",
+    "service_tier": "default",
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 2430,
+      "prompt_tokens": 1530,
+      "total_tokens": 3960,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 1323,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": null,
+        "cached_tokens": 0
+      }
+    }
+  },
+  "error_message": "",
+  "elapsed_sec": 47.375,
+  "timestamp": "<REDACTED_TIMESTAMP>"
+}

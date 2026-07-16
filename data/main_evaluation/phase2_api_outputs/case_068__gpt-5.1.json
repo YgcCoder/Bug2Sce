@@ -1,0 +1,375 @@
+{
+  "case_id": "case_068",
+  "model_name": "gpt-5.1",
+  "workflow": "phase2_grounded_generation",
+  "status": "completed",
+  "schema_valid": true,
+  "schema_errors": [],
+  "phase1_ready": "yes",
+  "num_candidates_requested": 2,
+  "num_candidates_written": 2,
+  "num_pre_valid": 2,
+  "candidate_records": [
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/gpt-5.1/json/case_068/case_068__cand_001.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/gpt-5.1/metadata/case_068/case_068__cand_001.metadata.json",
+      "case_id": "case_068",
+      "model_name": "gpt-5.1",
+      "candidate_index": 1,
+      "candidate_spec": {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Ego starts slightly offset near the same straight road segment with one nearby parked vehicle; low-motion crawl near an ambiguous signalized area where traffic light states are present but route–light linkage remains unresolved.",
+        "mutation_intent": "Keep the ego near the original start but introduce a modest lateral/longitudinal offset so the route still approaches a signalized region without clearly binding the ego lane to a specific light or stop line. Maintain low ego motion so any red-light oracle trigger cannot be trivially attributed to a clear high-speed run-through. Preserve traffic light activity while avoiding strong geometric evidence tying ego to a particular stop line.",
+        "expected_oracle": "red_light",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 2.0,
+                "y": -3.0
+              },
+              "speed_delta": 0.0
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": false,
+            "spawn_offset": {
+              "x": -3.0,
+              "y": 4.0
+            },
+            "destination_offset": {
+              "x": 2.0,
+              "y": -1.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Ensure at least one active traffic signalized intersection exists along plausible ego paths within 80 m of the mutated spawn-to-destination line.",
+          "Verify that the ego’s planned route does not have an explicitly annotated controlling traffic light or linked stop line in the configuration metadata.",
+          "Constrain ego initial speed and planned cruise speed such that typical displacement over the scenario horizon remains modest (e.g., < 40 m) unless forced by the stack.",
+          "Confirm that the nearby parked vehicle (actor_index 0) remains non-blocking for basic route generation but close enough to be visible in perception."
+        ],
+        "post_execution_validation_rules": [
+          "Check that the oracle or evaluator reports a red-light violation at least once during the run.",
+          "Verify that a traffic_lights-like topic is present and publishes multiple signals and state changes during the time window around the oracle-reported violation.",
+          "Confirm that analysis results keep route_light_relation_confirmed == unknown and stop_line_crossing_confirmed == unknown (no explicit evidence tying ego lane to a particular light or stop line).",
+          "Ensure ego displacement over the full run remains limited or modest, consistent with low-speed or low-motion behavior, and that there is no clear high-speed crossing of a known intersection stop line.",
+          "If logs show an unambiguous mapping from the ego lane to a specific red light with a clearly crossed stop line at nontrivial speed, then reject this as not matching the intended root-cause pattern."
+        ],
+        "uncertainty": [
+          "Exact oracle definition and timing of the red-light violation remain unknown and must be inferred from evaluator logs.",
+          "The actual physical relationship between ego pose and nearby traffic lights may still be ambiguous depending on map specifics.",
+          "Controller-level actuation versus reported vehicle_status may again be difficult to interpret if low-speed creeping or simulation artifacts occur."
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 0.0,
+          "fog": 0.0,
+          "wetness": 0.0,
+          "puddle": 0.0
+        },
+        "actor_mutations": [
+          {
+            "actor_index": 0,
+            "position_offset": {
+              "x": 2.0,
+              "y": -3.0
+            },
+            "speed_delta": 0.0
+          }
+        ],
+        "puddle_mutations": [],
+        "mission_mutation": {
+          "spawn_offset": {
+            "x": -3.0,
+            "y": 4.0
+          },
+          "destination_offset": {
+            "x": 2.0,
+            "y": -1.0
+          }
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_068__gpt-5.1.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_068__gpt-5.1.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    },
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/gpt-5.1/json/case_068/case_068__cand_002.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/gpt-5.1/metadata/case_068/case_068__cand_002.metadata.json",
+      "case_id": "case_068",
+      "model_name": "gpt-5.1",
+      "candidate_index": 2,
+      "candidate_spec": {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Ego spawns slightly shifted along the original route toward a junction where multiple lights are visible but the ego mostly idles or creeps; red-light violation is expected to be triggered in a configuration where the evaluation logic considers ego within a red-controlled zone despite no confirmed stop-line crossing.",
+        "mutation_intent": "Move the ego spawn a bit further along and sideways so that multiple traffic signals may fall within sensor range, increasing the chance that the oracle flags a red violation based on proximity or zone-based rules, while still avoiding clear lane-to-signal and stop-line associations. Maintain nearly stationary behavior to preserve the ambiguous attribution.",
+        "expected_oracle": "red_light",
+        "modifications": {
+          "weather_delta": {
+            "rain": 5,
+            "fog": 5,
+            "wetness": 5,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": -4.0,
+                "y": 2.0
+              },
+              "speed_delta": 0.0
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": false,
+            "spawn_offset": {
+              "x": 4.0,
+              "y": -2.0
+            },
+            "destination_offset": {
+              "x": -3.0,
+              "y": 3.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Place the mutated spawn sufficiently close to a signalized junction so that multiple traffic lights can be detected by perception or at least published on the traffic_lights-like topic.",
+          "Ensure planning does not generate a long through-intersection maneuver; route should favor short movement or even idling near or within the intersection area.",
+          "Confirm that there is no explicit configuration mapping between ego lane and a single controlling traffic light in route metadata.",
+          "Verify that the parked vehicle (actor_index 0) remains visible but does not force a lane change that would clarify the lane-to-signal relationship."
+        ],
+        "post_execution_validation_rules": [
+          "Verify the oracle or evaluator flags a red-light violation with at least one event in the logs.",
+          "Check that traffic_lights-like messages contain multiple active signals and state transitions during the period around the reported violation.",
+          "Confirm that post-run analysis cannot definitively mark route_light_relation_confirmed or stop_line_crossing_confirmed as true; they should remain unknown or unresolved.",
+          "Ensure ego speed profile indicates idling or low-speed creeping, with no clear, deliberate traversal of a known intersection at speed under red.",
+          "Reject this candidate as same-root-cause if downstream analysis clearly binds the ego to a specific red light and stop line at the time of violation, thereby turning it into a standard, well-attributed red-light run-through."
+        ],
+        "uncertainty": [
+          "The zone or proximity-based conditions under which the oracle flags a red-light violation may depend on unobserved evaluator internals.",
+          "Map geometry and signal placement may still inadvertently create a clear lane-to-signal mapping despite conservative spawn/destination offsets.",
+          "Low-speed ego motion can again blur the distinction between true stop-line crossing and mere presence near the intersection in the evaluation logic."
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 5.0,
+          "fog": 5.0,
+          "wetness": 5.0,
+          "puddle": 0.0
+        },
+        "actor_mutations": [
+          {
+            "actor_index": 0,
+            "position_offset": {
+              "x": -4.0,
+              "y": 2.0
+            },
+            "speed_delta": 0.0
+          }
+        ],
+        "puddle_mutations": [],
+        "mission_mutation": {
+          "spawn_offset": {
+            "x": 4.0,
+            "y": -2.0
+          },
+          "destination_offset": {
+            "x": -3.0,
+            "y": 3.0
+          }
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_068__gpt-5.1.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_068__gpt-5.1.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    }
+  ],
+  "seed_artifact_zip": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/gpt-5.1/seed-artifact/seed-artifact-case_068.zip",
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_prompts/case_068__gpt-5.1.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_068__gpt-5.1.json",
+  "prompt_estimated_tokens": 1494,
+  "usage": {
+    "prompt_tokens": 1396,
+    "completion_tokens": 1476,
+    "total_tokens": 2872
+  },
+  "raw_response": "{\n  \"case_id\": \"case_068\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Ego starts slightly offset near the same straight road segment with one nearby parked vehicle; low-motion crawl near an ambiguous signalized area where traffic light states are present but route–light linkage remains unresolved.\",\n      \"mutation_intent\": \"Keep the ego near the original start but introduce a modest lateral/longitudinal offset so the route still approaches a signalized region without clearly binding the ego lane to a specific light or stop line. Maintain low ego motion so any red-light oracle trigger cannot be trivially attributed to a clear high-speed run-through. Preserve traffic light activity while avoiding strong geometric evidence tying ego to a particular stop line.\",\n      \"expected_oracle\": \"red_light\",\n      \"modifications\": {\n        \"weather_delta\": {\n          \"rain\": 0,\n          \"fog\": 0,\n          \"wetness\": 0,\n          \"puddle\": 0\n        },\n        \"actor_mutations\": [\n          {\n            \"actor_index\": 0,\n            \"position_offset\": {\n              \"x\": 2.0,\n              \"y\": -3.0\n            },\n            \"speed_delta\": 0.0\n          }\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\n          \"keep_original\": false,\n          \"spawn_offset\": {\n            \"x\": -3.0,\n            \"y\": 4.0\n          },\n          \"destination_offset\": {\n            \"x\": 2.0,\n            \"y\": -1.0\n          }\n        }\n      },\n      \"pre_execution_validation_rules\": [\n        \"Ensure at least one active traffic signalized intersection exists along plausible ego paths within 80 m of the mutated spawn-to-destination line.\",\n        \"Verify that the ego’s planned route does not have an explicitly annotated controlling traffic light or linked stop line in the configuration metadata.\",\n        \"Constrain ego initial speed and planned cruise speed such that typical displacement over the scenario horizon remains modest (e.g., < 40 m) unless forced by the stack.\",\n        \"Confirm that the nearby parked vehicle (actor_index 0) remains non-blocking for basic route generation but close enough to be visible in perception.\"\n      ],\n      \"post_execution_validation_rules\": [\n        \"Check that the oracle or evaluator reports a red-light violation at least once during the run.\",\n        \"Verify that a traffic_lights-like topic is present and publishes multiple signals and state changes during the time window around the oracle-reported violation.\",\n        \"Confirm that analysis results keep route_light_relation_confirmed == unknown and stop_line_crossing_confirmed == unknown (no explicit evidence tying ego lane to a particular light or stop line).\",\n        \"Ensure ego displacement over the full run remains limited or modest, consistent with low-speed or low-motion behavior, and that there is no clear high-speed crossing of a known intersection stop line.\",\n        \"If logs show an unambiguous mapping from the ego lane to a specific red light with a clearly crossed stop line at nontrivial speed, then reject this as not matching the intended root-cause pattern.\"\n      ],\n      \"uncertainty\": [\n        \"Exact oracle definition and timing of the red-light violation remain unknown and must be inferred from evaluator logs.\",\n        \"The actual physical relationship between ego pose and nearby traffic lights may still be ambiguous depending on map specifics.\",\n        \"Controller-level actuation versus reported vehicle_status may again be difficult to interpret if low-speed creeping or simulation artifacts occur.\"\n      ]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Ego spawns slightly shifted along the original route toward a junction where multiple lights are visible but the ego mostly idles or creeps; red-light violation is expected to be triggered in a configuration where the evaluation logic considers ego within a red-controlled zone despite no confirmed stop-line crossing.\",\n      \"mutation_intent\": \"Move the ego spawn a bit further along and sideways so that multiple traffic signals may fall within sensor range, increasing the chance that the oracle flags a red violation based on proximity or zone-based rules, while still avoiding clear lane-to-signal and stop-line associations. Maintain nearly stationary behavior to preserve the ambiguous attribution.\",\n      \"expected_oracle\": \"red_light\",\n      \"modifications\": {\n        \"weather_delta\": {\n          \"rain\": 5,\n          \"fog\": 5,\n          \"wetness\": 5,\n          \"puddle\": 0\n        },\n        \"actor_mutations\": [\n          {\n            \"actor_index\": 0,\n            \"position_offset\": {\n              \"x\": -4.0,\n              \"y\": 2.0\n            },\n            \"speed_delta\": 0.0\n          }\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\n          \"keep_original\": false,\n          \"spawn_offset\": {\n            \"x\": 4.0,\n            \"y\": -2.0\n          },\n          \"destination_offset\": {\n            \"x\": -3.0,\n            \"y\": 3.0\n          }\n        }\n      },\n      \"pre_execution_validation_rules\": [\n        \"Place the mutated spawn sufficiently close to a signalized junction so that multiple traffic lights can be detected by perception or at least published on the traffic_lights-like topic.\",\n        \"Ensure planning does not generate a long through-intersection maneuver; route should favor short movement or even idling near or within the intersection area.\",\n        \"Confirm that there is no explicit configuration mapping between ego lane and a single controlling traffic light in route metadata.\",\n        \"Verify that the parked vehicle (actor_index 0) remains visible but does not force a lane change that would clarify the lane-to-signal relationship.\"\n      ],\n      \"post_execution_validation_rules\": [\n        \"Verify the oracle or evaluator flags a red-light violation with at least one event in the logs.\",\n        \"Check that traffic_lights-like messages contain multiple active signals and state transitions during the period around the reported violation.\",\n        \"Confirm that post-run analysis cannot definitively mark route_light_relation_confirmed or stop_line_crossing_confirmed as true; they should remain unknown or unresolved.\",\n        \"Ensure ego speed profile indicates idling or low-speed creeping, with no clear, deliberate traversal of a known intersection at speed under red.\",\n        \"Reject this candidate as same-root-cause if downstream analysis clearly binds the ego to a specific red light and stop line at the time of violation, thereby turning it into a standard, well-attributed red-light run-through.\"\n      ],\n      \"uncertainty\": [\n        \"The zone or proximity-based conditions under which the oracle flags a red-light violation may depend on unobserved evaluator internals.\",\n        \"Map geometry and signal placement may still inadvertently create a clear lane-to-signal mapping despite conservative spawn/destination offsets.\",\n        \"Low-speed ego motion can again blur the distinction between true stop-line crossing and mere presence near the intersection in the evaluation logic.\"\n      ]\n    }\n  ]\n}",
+  "parsed_response": {
+    "case_id": "case_068",
+    "candidate_specs": [
+      {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Ego starts slightly offset near the same straight road segment with one nearby parked vehicle; low-motion crawl near an ambiguous signalized area where traffic light states are present but route–light linkage remains unresolved.",
+        "mutation_intent": "Keep the ego near the original start but introduce a modest lateral/longitudinal offset so the route still approaches a signalized region without clearly binding the ego lane to a specific light or stop line. Maintain low ego motion so any red-light oracle trigger cannot be trivially attributed to a clear high-speed run-through. Preserve traffic light activity while avoiding strong geometric evidence tying ego to a particular stop line.",
+        "expected_oracle": "red_light",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 2.0,
+                "y": -3.0
+              },
+              "speed_delta": 0.0
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": false,
+            "spawn_offset": {
+              "x": -3.0,
+              "y": 4.0
+            },
+            "destination_offset": {
+              "x": 2.0,
+              "y": -1.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Ensure at least one active traffic signalized intersection exists along plausible ego paths within 80 m of the mutated spawn-to-destination line.",
+          "Verify that the ego’s planned route does not have an explicitly annotated controlling traffic light or linked stop line in the configuration metadata.",
+          "Constrain ego initial speed and planned cruise speed such that typical displacement over the scenario horizon remains modest (e.g., < 40 m) unless forced by the stack.",
+          "Confirm that the nearby parked vehicle (actor_index 0) remains non-blocking for basic route generation but close enough to be visible in perception."
+        ],
+        "post_execution_validation_rules": [
+          "Check that the oracle or evaluator reports a red-light violation at least once during the run.",
+          "Verify that a traffic_lights-like topic is present and publishes multiple signals and state changes during the time window around the oracle-reported violation.",
+          "Confirm that analysis results keep route_light_relation_confirmed == unknown and stop_line_crossing_confirmed == unknown (no explicit evidence tying ego lane to a particular light or stop line).",
+          "Ensure ego displacement over the full run remains limited or modest, consistent with low-speed or low-motion behavior, and that there is no clear high-speed crossing of a known intersection stop line.",
+          "If logs show an unambiguous mapping from the ego lane to a specific red light with a clearly crossed stop line at nontrivial speed, then reject this as not matching the intended root-cause pattern."
+        ],
+        "uncertainty": [
+          "Exact oracle definition and timing of the red-light violation remain unknown and must be inferred from evaluator logs.",
+          "The actual physical relationship between ego pose and nearby traffic lights may still be ambiguous depending on map specifics.",
+          "Controller-level actuation versus reported vehicle_status may again be difficult to interpret if low-speed creeping or simulation artifacts occur."
+        ]
+      },
+      {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Ego spawns slightly shifted along the original route toward a junction where multiple lights are visible but the ego mostly idles or creeps; red-light violation is expected to be triggered in a configuration where the evaluation logic considers ego within a red-controlled zone despite no confirmed stop-line crossing.",
+        "mutation_intent": "Move the ego spawn a bit further along and sideways so that multiple traffic signals may fall within sensor range, increasing the chance that the oracle flags a red violation based on proximity or zone-based rules, while still avoiding clear lane-to-signal and stop-line associations. Maintain nearly stationary behavior to preserve the ambiguous attribution.",
+        "expected_oracle": "red_light",
+        "modifications": {
+          "weather_delta": {
+            "rain": 5,
+            "fog": 5,
+            "wetness": 5,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": -4.0,
+                "y": 2.0
+              },
+              "speed_delta": 0.0
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": false,
+            "spawn_offset": {
+              "x": 4.0,
+              "y": -2.0
+            },
+            "destination_offset": {
+              "x": -3.0,
+              "y": 3.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Place the mutated spawn sufficiently close to a signalized junction so that multiple traffic lights can be detected by perception or at least published on the traffic_lights-like topic.",
+          "Ensure planning does not generate a long through-intersection maneuver; route should favor short movement or even idling near or within the intersection area.",
+          "Confirm that there is no explicit configuration mapping between ego lane and a single controlling traffic light in route metadata.",
+          "Verify that the parked vehicle (actor_index 0) remains visible but does not force a lane change that would clarify the lane-to-signal relationship."
+        ],
+        "post_execution_validation_rules": [
+          "Verify the oracle or evaluator flags a red-light violation with at least one event in the logs.",
+          "Check that traffic_lights-like messages contain multiple active signals and state transitions during the period around the reported violation.",
+          "Confirm that post-run analysis cannot definitively mark route_light_relation_confirmed or stop_line_crossing_confirmed as true; they should remain unknown or unresolved.",
+          "Ensure ego speed profile indicates idling or low-speed creeping, with no clear, deliberate traversal of a known intersection at speed under red.",
+          "Reject this candidate as same-root-cause if downstream analysis clearly binds the ego to a specific red light and stop line at the time of violation, thereby turning it into a standard, well-attributed red-light run-through."
+        ],
+        "uncertainty": [
+          "The zone or proximity-based conditions under which the oracle flags a red-light violation may depend on unobserved evaluator internals.",
+          "Map geometry and signal placement may still inadvertently create a clear lane-to-signal mapping despite conservative spawn/destination offsets.",
+          "Low-speed ego motion can again blur the distinction between true stop-line crossing and mere presence near the intersection in the evaluation logic."
+        ]
+      }
+    ]
+  },
+  "raw_api_payload": {
+    "id": "<REDACTED_RESPONSE_ID>",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "{\n  \"case_id\": \"case_068\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Ego starts slightly offset near the same straight road segment with one nearby parked vehicle; low-motion crawl near an ambiguous signalized area where traffic light states are present but route–light linkage remains unresolved.\",\n      \"mutation_intent\": \"Keep the ego near the original start but introduce a modest lateral/longitudinal offset so the route still approaches a signalized region without clearly binding the ego lane to a specific light or stop line. Maintain low ego motion so any red-light oracle trigger cannot be trivially attributed to a clear high-speed run-through. Preserve traffic light activity while avoiding strong geometric evidence tying ego to a particular stop line.\",\n      \"expected_oracle\": \"red_light\",\n      \"modifications\": {\n        \"weather_delta\": {\n          \"rain\": 0,\n          \"fog\": 0,\n          \"wetness\": 0,\n          \"puddle\": 0\n        },\n        \"actor_mutations\": [\n          {\n            \"actor_index\": 0,\n            \"position_offset\": {\n              \"x\": 2.0,\n              \"y\": -3.0\n            },\n            \"speed_delta\": 0.0\n          }\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\n          \"keep_original\": false,\n          \"spawn_offset\": {\n            \"x\": -3.0,\n            \"y\": 4.0\n          },\n          \"destination_offset\": {\n            \"x\": 2.0,\n            \"y\": -1.0\n          }\n        }\n      },\n      \"pre_execution_validation_rules\": [\n        \"Ensure at least one active traffic signalized intersection exists along plausible ego paths within 80 m of the mutated spawn-to-destination line.\",\n        \"Verify that the ego’s planned route does not have an explicitly annotated controlling traffic light or linked stop line in the configuration metadata.\",\n        \"Constrain ego initial speed and planned cruise speed such that typical displacement over the scenario horizon remains modest (e.g., < 40 m) unless forced by the stack.\",\n        \"Confirm that the nearby parked vehicle (actor_index 0) remains non-blocking for basic route generation but close enough to be visible in perception.\"\n      ],\n      \"post_execution_validation_rules\": [\n        \"Check that the oracle or evaluator reports a red-light violation at least once during the run.\",\n        \"Verify that a traffic_lights-like topic is present and publishes multiple signals and state changes during the time window around the oracle-reported violation.\",\n        \"Confirm that analysis results keep route_light_relation_confirmed == unknown and stop_line_crossing_confirmed == unknown (no explicit evidence tying ego lane to a particular light or stop line).\",\n        \"Ensure ego displacement over the full run remains limited or modest, consistent with low-speed or low-motion behavior, and that there is no clear high-speed crossing of a known intersection stop line.\",\n        \"If logs show an unambiguous mapping from the ego lane to a specific red light with a clearly crossed stop line at nontrivial speed, then reject this as not matching the intended root-cause pattern.\"\n      ],\n      \"uncertainty\": [\n        \"Exact oracle definition and timing of the red-light violation remain unknown and must be inferred from evaluator logs.\",\n        \"The actual physical relationship between ego pose and nearby traffic lights may still be ambiguous depending on map specifics.\",\n        \"Controller-level actuation versus reported vehicle_status may again be difficult to interpret if low-speed creeping or simulation artifacts occur.\"\n      ]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Ego spawns slightly shifted along the original route toward a junction where multiple lights are visible but the ego mostly idles or creeps; red-light violation is expected to be triggered in a configuration where the evaluation logic considers ego within a red-controlled zone despite no confirmed stop-line crossing.\",\n      \"mutation_intent\": \"Move the ego spawn a bit further along and sideways so that multiple traffic signals may fall within sensor range, increasing the chance that the oracle flags a red violation based on proximity or zone-based rules, while still avoiding clear lane-to-signal and stop-line associations. Maintain nearly stationary behavior to preserve the ambiguous attribution.\",\n      \"expected_oracle\": \"red_light\",\n      \"modifications\": {\n        \"weather_delta\": {\n          \"rain\": 5,\n          \"fog\": 5,\n          \"wetness\": 5,\n          \"puddle\": 0\n        },\n        \"actor_mutations\": [\n          {\n            \"actor_index\": 0,\n            \"position_offset\": {\n              \"x\": -4.0,\n              \"y\": 2.0\n            },\n            \"speed_delta\": 0.0\n          }\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\n          \"keep_original\": false,\n          \"spawn_offset\": {\n            \"x\": 4.0,\n            \"y\": -2.0\n          },\n          \"destination_offset\": {\n            \"x\": -3.0,\n            \"y\": 3.0\n          }\n        }\n      },\n      \"pre_execution_validation_rules\": [\n        \"Place the mutated spawn sufficiently close to a signalized junction so that multiple traffic lights can be detected by perception or at least published on the traffic_lights-like topic.\",\n        \"Ensure planning does not generate a long through-intersection maneuver; route should favor short movement or even idling near or within the intersection area.\",\n        \"Confirm that there is no explicit configuration mapping between ego lane and a single controlling traffic light in route metadata.\",\n        \"Verify that the parked vehicle (actor_index 0) remains visible but does not force a lane change that would clarify the lane-to-signal relationship.\"\n      ],\n      \"post_execution_validation_rules\": [\n        \"Verify the oracle or evaluator flags a red-light violation with at least one event in the logs.\",\n        \"Check that traffic_lights-like messages contain multiple active signals and state transitions during the period around the reported violation.\",\n        \"Confirm that post-run analysis cannot definitively mark route_light_relation_confirmed or stop_line_crossing_confirmed as true; they should remain unknown or unresolved.\",\n        \"Ensure ego speed profile indicates idling or low-speed creeping, with no clear, deliberate traversal of a known intersection at speed under red.\",\n        \"Reject this candidate as same-root-cause if downstream analysis clearly binds the ego to a specific red light and stop line at the time of violation, thereby turning it into a standard, well-attributed red-light run-through.\"\n      ],\n      \"uncertainty\": [\n        \"The zone or proximity-based conditions under which the oracle flags a red-light violation may depend on unobserved evaluator internals.\",\n        \"Map geometry and signal placement may still inadvertently create a clear lane-to-signal mapping despite conservative spawn/destination offsets.\",\n        \"Low-speed ego motion can again blur the distinction between true stop-line crossing and mere presence near the intersection in the evaluation logic.\"\n      ]\n    }\n  ]\n}",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": [],
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "gpt-5.1-2025-11-13",
+    "object": "chat.completion",
+    "service_tier": "default",
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 1476,
+      "prompt_tokens": 1396,
+      "total_tokens": 2872,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": 0,
+        "audio_tokens": 0,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 0
+      }
+    }
+  },
+  "error_message": "",
+  "elapsed_sec": 26.038,
+  "timestamp": "<REDACTED_TIMESTAMP>"
+}

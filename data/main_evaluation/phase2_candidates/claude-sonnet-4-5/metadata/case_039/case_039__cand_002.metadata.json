@@ -1,0 +1,113 @@
+{
+  "case_id": "case_039",
+  "model_name": "claude-sonnet-4-5",
+  "candidate_index": 2,
+  "candidate_spec": {
+    "candidate_id": "cand_002",
+    "high_level_variant": "Increase fog and shift spawn slightly forward toward destination",
+    "mutation_intent": "Test if reduced goal distance and increased fog preserve low-speed movement with vehicle_cmd=0 pattern",
+    "expected_oracle": "unknown",
+    "modifications": {
+      "weather_delta": {
+        "rain": 0,
+        "fog": 15,
+        "wetness": 0,
+        "puddle": 0
+      },
+      "actor_mutations": [
+        {
+          "actor_index": 0,
+          "position_offset": {
+            "x": 0.0,
+            "y": 1.5
+          },
+          "speed_delta": 0.0
+        }
+      ],
+      "puddle_mutations": [
+        {
+          "puddle_index": 0,
+          "location_offset": {
+            "x": 2.0,
+            "y": 1.0
+          },
+          "level_delta": 0.05,
+          "size_scale": 1.0
+        }
+      ],
+      "mission_mutation": {
+        "keep_original": false,
+        "spawn_offset": {
+          "x": 3.0,
+          "y": 0.0
+        },
+        "destination_offset": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Spawn offset keeps ego on valid road",
+      "Fog level within simulator limits",
+      "Actor remains immobile"
+    ],
+    "post_execution_validation_rules": [
+      "Verify vehicle_cmd zero with vehicle_status non-zero",
+      "Check sustained low velocity under 1.5 m/s",
+      "Validate oracle consistency between dataset and error.json"
+    ],
+    "uncertainty": [
+      "Fog may not trigger same controller issue",
+      "Spawn offset may change planner behavior unpredictably",
+      "Root cause module unknown; mutation may not preserve fault"
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": 0.0,
+      "fog": 15.0,
+      "wetness": 0.0,
+      "puddle": 0.0
+    },
+    "actor_mutations": [
+      {
+        "actor_index": 0,
+        "position_offset": {
+          "x": 0.0,
+          "y": 1.5
+        },
+        "speed_delta": 0.0
+      }
+    ],
+    "puddle_mutations": [
+      {
+        "puddle_index": 0,
+        "location_offset": {
+          "x": 2.0,
+          "y": 1.0
+        },
+        "level_delta": 0.05,
+        "size_scale": 1.0
+      }
+    ],
+    "mission_mutation": {
+      "spawn_offset": {
+        "x": 3.0,
+        "y": 0.0
+      },
+      "destination_offset": {
+        "x": 0.0,
+        "y": 0.0
+      }
+    }
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_039__claude-sonnet-4-5.json",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_039__claude-sonnet-4-5.json",
+  "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+}

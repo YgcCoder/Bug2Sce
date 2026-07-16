@@ -1,0 +1,151 @@
+{
+  "case_id": "case_151",
+  "model_name": "gpt-5.1",
+  "candidate_index": 2,
+  "candidate_spec": {
+    "candidate_id": "cand_002",
+    "high_level_variant": "Ego starts slightly offset in lane and approaches a damp, puddled section near a slow walker on the roadside, progresses very slowly without stopping completely, and times out with a goal deviation while oracle does not flag stuck or lane_invasion despite possible minor lane offset.",
+    "mutation_intent": "Bias the ego spawn and environment so that planning keeps issuing waypoints around wet patches and a nearby walker, leading to cautious low-speed motion and failure to finish the route in time. This sustains active perception/planning and low-speed movement while preserving uncertainty about stuck and lane invasion, matching the label-oracle mismatch pattern.",
+    "expected_oracle": "unknown",
+    "modifications": {
+      "weather_delta": {
+        "rain": 10,
+        "fog": 5,
+        "wetness": 12,
+        "puddle": 5
+      },
+      "actor_mutations": [
+        {
+          "actor_index": 0,
+          "position_offset": {
+            "x": -4.0,
+            "y": 3.5
+          },
+          "speed_delta": -2.0
+        },
+        {
+          "actor_index": 1,
+          "position_offset": {
+            "x": 1.5,
+            "y": -3.0
+          },
+          "speed_delta": -0.3
+        }
+      ],
+      "puddle_mutations": [
+        {
+          "puddle_index": 0,
+          "location_offset": {
+            "x": -2.0,
+            "y": 1.0
+          },
+          "level_delta": 0.05,
+          "size_scale": 1.1
+        },
+        {
+          "puddle_index": 1,
+          "location_offset": {
+            "x": 2.5,
+            "y": -1.5
+          },
+          "level_delta": 0.0,
+          "size_scale": 1.0
+        }
+      ],
+      "mission_mutation": {
+        "keep_original": false,
+        "spawn_offset": {
+          "x": 2.0,
+          "y": -2.5
+        },
+        "destination_offset": {
+          "x": -4.5,
+          "y": 2.0
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Ensure the new ego spawn offset places the vehicle near, but not overlapping with, the first puddle and still within a valid lane.",
+      "Verify that the walker remains on or near a sidewalk/roadside such that it is detectable but not immediately blocking the lane.",
+      "Confirm that the reduced speed for the lead vehicle still allows it to remain ahead of ego for a significant duration, promoting cautious, low-speed following behavior.",
+      "Check that increased rain and wetness values stay within simulator stability limits and do not cause extreme visibility loss that would contradict the active perception constraint."
+    ],
+    "post_execution_validation_rules": [
+      "Verify that error_json again reports a goal-related failure without collision, stuck, lane_invasion, red_light, or speeding events.",
+      "Confirm that at least one perceived object (vehicle or walker) is continuously present in perception/prediction topics throughout the critical window.",
+      "Confirm that final_waypoints remain continuously available and nonempty until scenario termination.",
+      "Analyze ego trajectory to ensure predominantly low-speed motion with no long-duration complete standstill and without prolonged high-speed sections.",
+      "Check whether higher-level annotations or dataset outputs classify the run as stuck or lane_invasion, documenting any discrepancy between these labels and error_json.",
+      "Ensure that, even if ego crosses lane markings due to puddle avoidance or offset spawn, no explicit lane_invasion oracle event is produced; otherwise, the run does not match this pattern."
+    ],
+    "uncertainty": [
+      "Whether the ego will exhibit minor lane departures around puddles without triggering a formal lane_invasion event is inherently uncertain.",
+      "The degree to which damp-road behavior slows the ego enough to cause a goal-deviation timeout is uncertain and must be observed empirically.",
+      "Internal control command patterns may differ from the seed case; their relationship to observed ego motion remains unresolved and is not enforced."
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": 10.0,
+      "fog": 5.0,
+      "wetness": 12.0,
+      "puddle": 5.0
+    },
+    "actor_mutations": [
+      {
+        "actor_index": 0,
+        "position_offset": {
+          "x": -4.0,
+          "y": 3.5
+        },
+        "speed_delta": -2.0
+      },
+      {
+        "actor_index": 1,
+        "position_offset": {
+          "x": 1.5,
+          "y": -3.0
+        },
+        "speed_delta": -0.3
+      }
+    ],
+    "puddle_mutations": [
+      {
+        "puddle_index": 0,
+        "location_offset": {
+          "x": -2.0,
+          "y": 1.0
+        },
+        "level_delta": 0.05,
+        "size_scale": 1.1
+      },
+      {
+        "puddle_index": 1,
+        "location_offset": {
+          "x": 2.5,
+          "y": -1.5
+        },
+        "level_delta": 0.0,
+        "size_scale": 1.0
+      }
+    ],
+    "mission_mutation": {
+      "spawn_offset": {
+        "x": 2.0,
+        "y": -2.5
+      },
+      "destination_offset": {
+        "x": -4.5,
+        "y": 2.0
+      }
+    }
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_151__gpt-5.1.json",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_151__gpt-5.1.json",
+  "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+}

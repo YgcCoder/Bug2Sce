@@ -1,0 +1,303 @@
+{
+  "case_id": "case_143",
+  "model_name": "ark-doubao-seed-2.0-lite-260215",
+  "workflow": "phase2_grounded_generation",
+  "status": "completed",
+  "schema_valid": true,
+  "schema_errors": [],
+  "phase1_ready": "uncertain",
+  "num_candidates_requested": 2,
+  "num_candidates_written": 2,
+  "num_pre_valid": 2,
+  "candidate_records": [
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-doubao-seed-2.0-lite-260215/json/case_143/case_143__cand_001.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-doubao-seed-2.0-lite-260215/metadata/case_143/case_143__cand_001.metadata.json",
+      "case_id": "case_143",
+      "model_name": "ark-doubao-seed-2.0-lite-260215",
+      "candidate_index": 1,
+      "candidate_spec": {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Minor conservative adjustment to weather, preserve original ego spawn, destination, and zero actors/puddles",
+        "mutation_intent": "Preserves all phase 1 root cause constraints: confirmed red-light encounter, zero dynamic actors and puddles, original Town01 mission, conflicting lane invasion labels between dataset and error.json, does not alter the root cause pattern of unknown module attribution",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": 5,
+            "fog": -5,
+            "wetness": 3,
+            "puddle": 0
+          },
+          "actor_mutations": [],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "confirm no dynamic actors added to scenario",
+          "confirm no puddle regions added to scenario",
+          "verify the intersection traffic light is red when ego approaches"
+        ],
+        "post_execution_validation_rules": [
+          "check stop-line crossing to confirm red-light violation",
+          "check lane boundary crossing to confirm lane invasion status",
+          "validate mismatch between all-zero vehicle_cmd and non-zero velocity in vehicle_status"
+        ],
+        "uncertainty": [
+          "conflicting lane invasion label between dataset and error.json remains unresolved",
+          "failure attribution to a specific module remains unknown"
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 5.0,
+          "fog": -5.0,
+          "wetness": 3.0,
+          "puddle": 0.0
+        },
+        "actor_mutations": [],
+        "puddle_mutations": [],
+        "mission_mutation": {
+          "keep_original": true
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": [
+          "no actors in candidate scenario"
+        ]
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_143__ark-doubao-seed-2.0-lite-260215.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_143__ark-doubao-seed-2.0-lite-260215.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    },
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-doubao-seed-2.0-lite-260215/json/case_143/case_143__cand_002.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-doubao-seed-2.0-lite-260215/metadata/case_143/case_143__cand_002.metadata.json",
+      "case_id": "case_143",
+      "model_name": "ark-doubao-seed-2.0-lite-260215",
+      "candidate_index": 2,
+      "candidate_spec": {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Slight offset to ego spawn position, minor weather adjustment, preserve original destination and zero actors/puddles",
+        "mutation_intent": "Small spawn offset within allowed bounds keeps the original red traffic light encounter, maintains all phase 1 preservation constraints including zero actors/puddles, conflicting labels, and same Town01 mission, root cause pattern remains unchanged",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": -4,
+            "fog": 6,
+            "wetness": -2,
+            "puddle": 0
+          },
+          "actor_mutations": [],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": false,
+            "spawn_offset": {
+              "x": 2.1,
+              "y": -1.3
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "confirm spawn offset is within allowed maximum bounds",
+          "confirm no dynamic actors or puddles are present in the scenario",
+          "verify the intersection traffic light is red when ego arrives"
+        ],
+        "post_execution_validation_rules": [
+          "record stop-line crossing status to confirm red-light violation",
+          "record lane boundary crossing status to resolve the lane invasion label conflict",
+          "check for the reported controller command-velocity mismatch"
+        ],
+        "uncertainty": [
+          "failure layer and module attribution remains unconfirmed by available evidence",
+          "lane boundary crossing status is unconfirmed, label conflict is preserved as required"
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": -4.0,
+          "fog": 6.0,
+          "wetness": -2.0,
+          "puddle": 0.0
+        },
+        "actor_mutations": [],
+        "puddle_mutations": [],
+        "mission_mutation": {
+          "spawn_offset": {
+            "x": 2.1,
+            "y": -1.3
+          },
+          "destination_offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": [
+          "no actors in candidate scenario"
+        ]
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_143__ark-doubao-seed-2.0-lite-260215.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_143__ark-doubao-seed-2.0-lite-260215.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    }
+  ],
+  "seed_artifact_zip": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-doubao-seed-2.0-lite-260215/seed-artifact/seed-artifact-case_143.zip",
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_prompts/case_143__ark-doubao-seed-2.0-lite-260215.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_143__ark-doubao-seed-2.0-lite-260215.json",
+  "prompt_estimated_tokens": 1131,
+  "usage": {
+    "prompt_tokens": 1295,
+    "completion_tokens": 2914,
+    "total_tokens": 4209
+  },
+  "raw_response": "{\n  \"case_id\": \"case_143\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Minor conservative adjustment to weather, preserve original ego spawn, destination, and zero actors/puddles\",\n      \"mutation_intent\": \"Preserves all phase 1 root cause constraints: confirmed red-light encounter, zero dynamic actors and puddles, original Town01 mission, conflicting lane invasion labels between dataset and error.json, does not alter the root cause pattern of unknown module attribution\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 5, \"fog\": -5, \"wetness\": 3, \"puddle\": 0},\n        \"actor_mutations\": [],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"confirm no dynamic actors added to scenario\", \"confirm no puddle regions added to scenario\", \"verify the intersection traffic light is red when ego approaches\"],\n      \"post_execution_validation_rules\": [\"check stop-line crossing to confirm red-light violation\", \"check lane boundary crossing to confirm lane invasion status\", \"validate mismatch between all-zero vehicle_cmd and non-zero velocity in vehicle_status\"],\n      \"uncertainty\": [\"conflicting lane invasion label between dataset and error.json remains unresolved\", \"failure attribution to a specific module remains unknown\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Slight offset to ego spawn position, minor weather adjustment, preserve original destination and zero actors/puddles\",\n      \"mutation_intent\": \"Small spawn offset within allowed bounds keeps the original red traffic light encounter, maintains all phase 1 preservation constraints including zero actors/puddles, conflicting labels, and same Town01 mission, root cause pattern remains unchanged\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": -4, \"fog\": 6, \"wetness\": -2, \"puddle\": 0},\n        \"actor_mutations\": [],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": false, \"spawn_offset\": {\"x\": 2.1, \"y\": -1.3}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"confirm spawn offset is within allowed maximum bounds\", \"confirm no dynamic actors or puddles are present in the scenario\", \"verify the intersection traffic light is red when ego arrives\"],\n      \"post_execution_validation_rules\": [\"record stop-line crossing status to confirm red-light violation\", \"record lane boundary crossing status to resolve the lane invasion label conflict\", \"check for the reported controller command-velocity mismatch\"],\n      \"uncertainty\": [\"failure layer and module attribution remains unconfirmed by available evidence\", \"lane boundary crossing status is unconfirmed, label conflict is preserved as required\"]\n    }\n  ]\n}",
+  "parsed_response": {
+    "case_id": "case_143",
+    "candidate_specs": [
+      {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Minor conservative adjustment to weather, preserve original ego spawn, destination, and zero actors/puddles",
+        "mutation_intent": "Preserves all phase 1 root cause constraints: confirmed red-light encounter, zero dynamic actors and puddles, original Town01 mission, conflicting lane invasion labels between dataset and error.json, does not alter the root cause pattern of unknown module attribution",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": 5,
+            "fog": -5,
+            "wetness": 3,
+            "puddle": 0
+          },
+          "actor_mutations": [],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "confirm no dynamic actors added to scenario",
+          "confirm no puddle regions added to scenario",
+          "verify the intersection traffic light is red when ego approaches"
+        ],
+        "post_execution_validation_rules": [
+          "check stop-line crossing to confirm red-light violation",
+          "check lane boundary crossing to confirm lane invasion status",
+          "validate mismatch between all-zero vehicle_cmd and non-zero velocity in vehicle_status"
+        ],
+        "uncertainty": [
+          "conflicting lane invasion label between dataset and error.json remains unresolved",
+          "failure attribution to a specific module remains unknown"
+        ]
+      },
+      {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Slight offset to ego spawn position, minor weather adjustment, preserve original destination and zero actors/puddles",
+        "mutation_intent": "Small spawn offset within allowed bounds keeps the original red traffic light encounter, maintains all phase 1 preservation constraints including zero actors/puddles, conflicting labels, and same Town01 mission, root cause pattern remains unchanged",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": -4,
+            "fog": 6,
+            "wetness": -2,
+            "puddle": 0
+          },
+          "actor_mutations": [],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": false,
+            "spawn_offset": {
+              "x": 2.1,
+              "y": -1.3
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "confirm spawn offset is within allowed maximum bounds",
+          "confirm no dynamic actors or puddles are present in the scenario",
+          "verify the intersection traffic light is red when ego arrives"
+        ],
+        "post_execution_validation_rules": [
+          "record stop-line crossing status to confirm red-light violation",
+          "record lane boundary crossing status to resolve the lane invasion label conflict",
+          "check for the reported controller command-velocity mismatch"
+        ],
+        "uncertainty": [
+          "failure layer and module attribution remains unconfirmed by available evidence",
+          "lane boundary crossing status is unconfirmed, label conflict is preserved as required"
+        ]
+      }
+    ]
+  },
+  "raw_api_payload": {
+    "id": "02178292271363677b7e892e9721221f8ca1a94f85371e5c14293",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "{\n  \"case_id\": \"case_143\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Minor conservative adjustment to weather, preserve original ego spawn, destination, and zero actors/puddles\",\n      \"mutation_intent\": \"Preserves all phase 1 root cause constraints: confirmed red-light encounter, zero dynamic actors and puddles, original Town01 mission, conflicting lane invasion labels between dataset and error.json, does not alter the root cause pattern of unknown module attribution\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 5, \"fog\": -5, \"wetness\": 3, \"puddle\": 0},\n        \"actor_mutations\": [],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"confirm no dynamic actors added to scenario\", \"confirm no puddle regions added to scenario\", \"verify the intersection traffic light is red when ego approaches\"],\n      \"post_execution_validation_rules\": [\"check stop-line crossing to confirm red-light violation\", \"check lane boundary crossing to confirm lane invasion status\", \"validate mismatch between all-zero vehicle_cmd and non-zero velocity in vehicle_status\"],\n      \"uncertainty\": [\"conflicting lane invasion label between dataset and error.json remains unresolved\", \"failure attribution to a specific module remains unknown\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Slight offset to ego spawn position, minor weather adjustment, preserve original destination and zero actors/puddles\",\n      \"mutation_intent\": \"Small spawn offset within allowed bounds keeps the original red traffic light encounter, maintains all phase 1 preservation constraints including zero actors/puddles, conflicting labels, and same Town01 mission, root cause pattern remains unchanged\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": -4, \"fog\": 6, \"wetness\": -2, \"puddle\": 0},\n        \"actor_mutations\": [],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": false, \"spawn_offset\": {\"x\": 2.1, \"y\": -1.3}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"confirm spawn offset is within allowed maximum bounds\", \"confirm no dynamic actors or puddles are present in the scenario\", \"verify the intersection traffic light is red when ego arrives\"],\n      \"post_execution_validation_rules\": [\"record stop-line crossing status to confirm red-light violation\", \"record lane boundary crossing status to resolve the lane invasion label conflict\", \"check for the reported controller command-velocity mismatch\"],\n      \"uncertainty\": [\"failure layer and module attribution remains unconfirmed by available evidence\", \"lane boundary crossing status is unconfirmed, label conflict is preserved as required\"]\n    }\n  ]\n}",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null,
+          "reasoning_content": "\nGot it, let's build this JSON step by step. First, the case_id is case_143, right? We need two candidate specs.\n\nFirst, let's remember the constraints: zero actors, zero puddles, preserve mission start and goal, keep red light, conflicting labels. Let's do first candidate cand_001.\n\nHigh level variant for first one: Slightly adjust ego spawn position within allowed offset, keep all other original parameters, maintain red light at intersection. Mutation intent: Minor offset to spawn position doesn't change the root cause of conflicting labels, preserves all constraints: zero actors, zero puddles, Town01 mission, red light encounter, conflicting labels. Expected oracle is compound, right? Because dataset has both red light and lane invasion, so compound? Wait wait, the original has conflicting, error.json says red light, dataset has both. Oh, expected oracle: compound, because it preserves both labels. Wait let's check: the root cause says conflicting between red and lane, so expected oracle compound.\n\nModifications: weather delta, let's do minor changes, all within [-20,20]. Let's say rain +5, fog -3, wetness +4, puddle 0? Wait no, there are no puddles, so puddle delta 0. Actor mutations: actors are empty, so wait the original actors are empty, so actor_mutations is empty array. Puddle mutations also empty array, since original has no puddles. Mission mutation: keep_original? No, wait first candidate: slightly adjust spawn, keep destination same. Wait offsets within [-5,5], so x offset 1.2, y -0.8, destination keep 0,0. Wait or wait, first candidate can be minor weather adjustment, mission keep original? Let's structure first candidate:\n\ncand_001:\nhigh_level_variant: \"Minor weather adjustment, preserve original ego mission spawn and destination, no actors/puddles\"\nmutation_intent: \"Preserves all root cause constraints: red light encounter, zero dynamic actors/puddles, Town01 route, conflicting lane invasion/red-light labels between dataset and error.json, doesn't introduce new changes that alter root cause\"\nexpected_oracle: \"compound\" (because we preserve the conflicting labels, both are present per dataset, confirmed red per error, so compound)\nmodifications: weather_delta: let's do rain: +5, fog: -5, wetness: +3, puddle: 0. That's all within 20. Actor_mutations is empty array, puddle_mutations empty. mission_mutation: keep_original: true, offsets all 0.\npre_execution_validation_rules: [\"check that no dynamic actors are added\", \"check that no puddle regions are added\", \"confirm traffic light at intersection is red when ego arrives\"]\npost_execution_validation_rules: [\"check stop-line crossing status for red-light violation confirmation\", \"check lane boundary crossing status for lane invasion confirmation\", \"validate controller command-velocity mismatch as noted in phase 1\"]\nuncertainty: [\"conflicting lane invasion label remains unresolved per phase 1 evidence\", \"failure module attribution remains unknown\"]\n\nThen second candidate cand_002. Let's do a minor spawn offset, that's allowed, within [-5,5]. Let's see:\n\nhigh_level_variant: \"Slightly offset ego spawn position, minor adjustment to weather, keep original destination, no actors/puddles\"\nmutation_intent: \"Small spawn offset within allowed bounds preserves the original encounter with red traffic light, maintains all constraints: zero actors/puddles, conflicting labels between dataset and error.json, same Town01 mission, root cause pattern unchanged\"\nexpected_oracle: \"compound\" same as before, right?\nmodifications: weather_delta: rain: -4, fog: +6, wetness: -2, puddle: 0. All within 20. Actor_mutations: empty, since no actors. Puddle_mutations empty. Mission_mutation: keep_original: false, spawn_offset x: 2.1, y: -1.3, destination_offset x: 0, y: 0. That's within [-5,5], good.\npre_execution_validation_rules: [\"check that spawn offset is within allowed bounds\", \"confirm no dynamic actors or puddles are present in scenario\", \"verify traffic light is red at ego's approach to intersection\"]\npost_execution_validation_rules: [\"record stop-line crossing status to confirm red-light violation\", \"record lane boundary crossing status to resolve lane invasion label conflict\", \"check for mismatch between vehicle_cmd and vehicle_status velocity\"]\nuncertainty: [\"failure layer attribution remains unknown per phase 1 evidence\", \"lane invasion status is unconfirmed, label conflict preserved\"]\n\nWait let's check all rules: exactly two candidates, all offsets are within allowed ranges. Actor position offsets, no actors so that's fine. Speed delta, no actors so nothing. Weather deltas all within [-20,20], yes. Mission spawn offset 2.1 and -1.3, that's within [-5,5], yes. Puddle stuff, no puddles so mutations are empty. Preserve all constraints from phase 1: zero actors, zero puddles, preserve red light, preserve conflicting labels, preserve mission on Town01. Correct. Expected oracle is compound, which is right because it has both labels as per original conflict. Uncertainty is preserved as per phase 1.\n\nWait let's put it all together correctly in the JSON schema. Let's check the schema: top level has case_id, candidate_specs array of two. Each candidate has all the fields. Let's make sure no typos. Let's write it:\n\nWait case_id is case_143, right, from input. Yes. Let's check:\n\nTop level:\n{\n  \"case_id\": \"case_143\",\n  \"candidate_specs\": [\n    first candidate cand_001, then cand_002\n  ]\n}\n\nFirst candidate:\n{\n  \"candidate_id\": \"cand_001\",\n  \"high_level_variant\": \"Minor conservative adjustment to weather, preserve original ego spawn, destination, and zero actors/puddles\",\n  \"mutation_intent\": \"Preserves all phase 1 root cause constraints: confirmed red-light encounter, zero dynamic actors and puddles, original Town01 mission, conflicting lane invasion labels between dataset and error.json, does not alter the root cause pattern of unknown module attribution\",\n  \"expected_oracle\": \"compound\",\n  \"modifications\": {\n    \"weather_delta\": {\"rain\": 5, \"fog\": -5, \"wetness\": 3, \"puddle\": 0},\n    \"actor_mutations\": [],\n    \"puddle_mutations\": [],\n    \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n  },\n  \"pre_execution_validation_rules\": [\"confirm no dynamic actors added to scenario\", \"confirm no puddle regions added to scenario\", \"verify the intersection traffic light is red when ego approaches\"],\n  \"post_execution_validation_rules\": [\"check stop-line crossing to confirm red-light violation\", \"check lane boundary crossing to confirm lane invasion status\", \"validate mismatch between all-zero vehicle_cmd and non-zero velocity in vehicle_status\"],\n  \"uncertainty\": [\"conflicting lane invasion label between dataset and error.json remains unresolved\", \"failure attribution to a specific module remains unknown\"]\n}\n\nSecond candidate:\n{\n  \"candidate_id\": \"cand_002\",\n  \"high_level_variant\": \"Slight offset to ego spawn position, minor weather adjustment, preserve original destination and zero actors/puddles\",\n  \"mutation_intent\": \"Small spawn offset within allowed bounds keeps the original red traffic light encounter, maintains all phase 1 preservation constraints including zero actors/puddles, conflicting labels, and same Town01 mission, root cause pattern remains unchanged\",\n  \"expected_oracle\": \"compound\",\n  \"modifications\": {\n    \"weather_delta\": {\"rain\": -4, \"fog\": 6, \"wetness\": -2, \"puddle\": 0},\n    \"actor_mutations\": [],\n    \"puddle_mutations\": [],\n    \"mission_mutation\": {\"keep_original\": false, \"spawn_offset\": {\"x\": 2.1, \"y\": -1.3}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n  },\n  \"pre_execution_validation_rules\": [\"confirm spawn offset is within allowed maximum bounds\", \"confirm no dynamic actors or puddles are present in the scenario\", \"verify the intersection traffic light is red when ego arrives\"],\n  \"post_execution_validation_rules\": [\"record stop-line crossing status to confirm red-light violation\", \"record lane boundary crossing status to resolve the lane invasion label conflict\", \"check for the reported controller command-velocity mismatch\"],\n  \"uncertainty\": [\"failure layer and module attribution remains unconfirmed by available evidence\", \"lane boundary crossing status is unconfirmed, label conflict is preserved as required\"]\n}\n\nWait that all checks out. Let's check all constraints: actor offsets, no actors so that's fine. All deltas are within allowed ranges: weather deltas are all between -20 and 20, yes. Spawn offset is 2.1 and -1.3, within [-5,5], yes. No puddles, so no puddle mutations, correct. Preserves zero actors, zero puddles, as per phase 1 constraints. Preserves conflicting labels, preserves red light, preserves mission on Town01. Exactly two candidates, as required. Expected oracle is compound, which is correct because it's both red light and lane invasion (conflicting, so compound). Uncertainty is preserved, as per phase 1 being uncertainty-heavy. All rules followed. Now output it as a single JSON object, no markdown fences."
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "doubao-seed-2-0-lite-260215",
+    "object": "chat.completion",
+    "service_tier": "default",
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 2914,
+      "prompt_tokens": 1295,
+      "total_tokens": 4209,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 2179,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": null,
+        "cached_tokens": 0
+      }
+    }
+  },
+  "error_message": "",
+  "elapsed_sec": 47.94,
+  "timestamp": "<REDACTED_TIMESTAMP>"
+}

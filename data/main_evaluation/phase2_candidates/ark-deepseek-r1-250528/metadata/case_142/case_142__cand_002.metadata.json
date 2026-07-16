@@ -1,0 +1,180 @@
+{
+  "case_id": "case_142",
+  "model_name": "ark-deepseek-r1-250528",
+  "candidate_index": 2,
+  "candidate_spec": {
+    "candidate_id": "cand_002",
+    "high_level_variant": "Slight shift of ego mission spawn, minor adjustment to the nearest puddle and cross-traffic actor speed",
+    "mutation_intent": "Maintains all Phase 1 root cause requirements: original fog level, 3 actors, 3 puddles, the vehicle_cmd/vehicle status mismatch, and confirmed collision + red-light violation symptoms",
+    "expected_oracle": "compound",
+    "modifications": {
+      "weather_delta": {
+        "rain": 0,
+        "fog": 0,
+        "wetness": 0,
+        "puddle": 0
+      },
+      "actor_mutations": [
+        {
+          "actor_index": 0,
+          "position_offset": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "speed_delta": 0.0
+        },
+        {
+          "actor_index": 1,
+          "position_offset": {
+            "x": -0.5,
+            "y": 0.5
+          },
+          "speed_delta": -0.6
+        },
+        {
+          "actor_index": 2,
+          "position_offset": {
+            "x": 0.3,
+            "y": -0.2
+          },
+          "speed_delta": 0.0
+        }
+      ],
+      "puddle_mutations": [
+        {
+          "puddle_index": 0,
+          "location_offset": {
+            "x": 0.2,
+            "y": -0.1
+          },
+          "level_delta": 0.05,
+          "size_scale": 1.05
+        },
+        {
+          "puddle_index": 1,
+          "location_offset": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "level_delta": 0.0,
+          "size_scale": 1.0
+        },
+        {
+          "puddle_index": 2,
+          "location_offset": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "level_delta": 0.0,
+          "size_scale": 1.0
+        }
+      ],
+      "mission_mutation": {
+        "keep_original": false,
+        "spawn_offset": {
+          "x": 0.8,
+          "y": -0.5
+        },
+        "destination_offset": {
+          "x": 1.0,
+          "y": 0.3
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Check fog level remains 92",
+      "Confirm 3 actors and 3 puddles are correctly placed",
+      "Verify pre-collision vehicle_cmd/throttle mismatch is preserved"
+    ],
+    "post_execution_validation_rules": [
+      "Validate collision and red-light violation are observed",
+      "Maintain original lane invasion label conflict status"
+    ],
+    "uncertainty": [
+      "lane invasion label conflict remains unresolved",
+      "stop-line crossing for red-light violation is not confirmed by evidence",
+      "module-level failure attribution is unconfirmed"
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": 0.0,
+      "fog": 0.0,
+      "wetness": 0.0,
+      "puddle": 0.0
+    },
+    "actor_mutations": [
+      {
+        "actor_index": 0,
+        "position_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "speed_delta": 0.0
+      },
+      {
+        "actor_index": 1,
+        "position_offset": {
+          "x": -0.5,
+          "y": 0.5
+        },
+        "speed_delta": -0.6
+      },
+      {
+        "actor_index": 2,
+        "position_offset": {
+          "x": 0.3,
+          "y": -0.2
+        },
+        "speed_delta": 0.0
+      }
+    ],
+    "puddle_mutations": [
+      {
+        "puddle_index": 0,
+        "location_offset": {
+          "x": 0.2,
+          "y": -0.1
+        },
+        "level_delta": 0.05,
+        "size_scale": 1.05
+      },
+      {
+        "puddle_index": 1,
+        "location_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "level_delta": 0.0,
+        "size_scale": 1.0
+      },
+      {
+        "puddle_index": 2,
+        "location_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "level_delta": 0.0,
+        "size_scale": 1.0
+      }
+    ],
+    "mission_mutation": {
+      "spawn_offset": {
+        "x": 0.8,
+        "y": -0.5
+      },
+      "destination_offset": {
+        "x": 1.0,
+        "y": 0.3
+      }
+    }
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_142__ark-deepseek-r1-250528.json",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_142__ark-deepseek-r1-250528.json",
+  "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+}

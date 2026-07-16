@@ -1,0 +1,84 @@
+{
+  "case_id": "case_068",
+  "model_name": "ark-doubao-seed-2.0-lite-260215",
+  "candidate_index": 2,
+  "candidate_spec": {
+    "candidate_id": "cand_002",
+    "high_level_variant": "Other actor shifted slightly toward ego's intersection approach path, minor speed increase for the other actor, original weather kept unchanged",
+    "mutation_intent": "Preserves all phase 1 constraints: 1 actor, Town01 map, original general mission, maintains expected red light violation labeling, introduces minor conservative variation while keeping the unknown root-cause pattern intact",
+    "expected_oracle": "red_light",
+    "modifications": {
+      "weather_delta": {
+        "rain": 0,
+        "fog": 0,
+        "wetness": 0,
+        "puddle": 0
+      },
+      "actor_mutations": [
+        {
+          "actor_index": 0,
+          "position_offset": {
+            "x": 1.2,
+            "y": -0.8
+          },
+          "speed_delta": 0.7
+        }
+      ],
+      "puddle_mutations": [],
+      "mission_mutation": {
+        "keep_original": true,
+        "spawn_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "destination_offset": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "confirm other actor is near the intersection of ego's route",
+      "confirm red light is active during ego approach"
+    ],
+    "post_execution_validation_rules": [
+      "validate ego stop-line crossing status",
+      "check association between ego route and active red light"
+    ],
+    "uncertainty": [
+      "module-level failure mechanism remains unconfirmed",
+      "original actuation inconsistency uncertainty is preserved",
+      "stop-line crossing status is unconfirmed pre-execution"
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": 0.0,
+      "fog": 0.0,
+      "wetness": 0.0,
+      "puddle": 0.0
+    },
+    "actor_mutations": [
+      {
+        "actor_index": 0,
+        "position_offset": {
+          "x": 1.2,
+          "y": -0.8
+        },
+        "speed_delta": 0.7
+      }
+    ],
+    "puddle_mutations": [],
+    "mission_mutation": {
+      "keep_original": true
+    }
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_068__ark-doubao-seed-2.0-lite-260215.json",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_068__ark-doubao-seed-2.0-lite-260215.json",
+  "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+}

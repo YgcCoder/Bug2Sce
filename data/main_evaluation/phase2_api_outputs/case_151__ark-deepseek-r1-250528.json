@@ -1,0 +1,404 @@
+{
+  "case_id": "case_151",
+  "model_name": "ark-deepseek-r1-250528",
+  "workflow": "phase2_grounded_generation",
+  "status": "completed",
+  "schema_valid": true,
+  "schema_errors": [],
+  "phase1_ready": "uncertain",
+  "num_candidates_requested": 2,
+  "num_candidates_written": 2,
+  "num_pre_valid": 2,
+  "candidate_records": [
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-deepseek-r1-250528/json/case_151/case_151__cand_001.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-deepseek-r1-250528/metadata/case_151/case_151__cand_001.metadata.json",
+      "case_id": "case_151",
+      "model_name": "ark-deepseek-r1-250528",
+      "candidate_index": 1,
+      "candidate_spec": {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Slightly shift the leading NPC vehicle position and increase rain/wetness near ego's path while retaining all core critical window conditions",
+        "mutation_intent": "Preserves all Phase 1 preservation constraints: conflicting symptom labels between dataset and error.json, continuously available final waypoints, all-zero control commands, and zero ego velocity during the critical window",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": 5,
+            "fog": 0,
+            "wetness": 5,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 1.2,
+                "y": -0.8
+              },
+              "speed_delta": -0.5
+            }
+          ],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 0.5,
+                "y": -0.3
+              },
+              "level_delta": 0.1,
+              "size_scale": 1.0
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Verify all-zero accel/brake/steer commands are configured for the critical window",
+          "Confirm final waypoints remain continuously available"
+        ],
+        "post_execution_validation_rules": [
+          "Check for conflicting failure labels between dataset annotation and error.json oracle",
+          "Verify ego velocity is zero throughout the critical window"
+        ],
+        "uncertainty": [
+          "Conflicting symptom labels between dataset and error.json preserved",
+          "No specific module root cause can be confirmed in this variant",
+          "Lane invasion evidence remains unconfirmed"
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 5.0,
+          "fog": 0.0,
+          "wetness": 5.0,
+          "puddle": 0.0
+        },
+        "actor_mutations": [
+          {
+            "actor_index": 0,
+            "position_offset": {
+              "x": 1.2,
+              "y": -0.8
+            },
+            "speed_delta": -0.5
+          }
+        ],
+        "puddle_mutations": [
+          {
+            "puddle_index": 0,
+            "location_offset": {
+              "x": 0.5,
+              "y": -0.3
+            },
+            "level_delta": 0.1,
+            "size_scale": 1.0
+          }
+        ],
+        "mission_mutation": {
+          "keep_original": true
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_151__ark-deepseek-r1-250528.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_151__ark-deepseek-r1-250528.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    },
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-deepseek-r1-250528/json/case_151/case_151__cand_002.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-deepseek-r1-250528/metadata/case_151/case_151__cand_002.metadata.json",
+      "case_id": "case_151",
+      "model_name": "ark-deepseek-r1-250528",
+      "candidate_index": 2,
+      "candidate_spec": {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Slightly shift the pedestrian actor position and adjust the level of the puddle near ego spawn to test environmental variation of the core pattern",
+        "mutation_intent": "Retains all required Phase 1 root cause properties: conflicting labels, available waypoints, zero control commands, and zero ego velocity, while introducing a conservative environmental change",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": -3,
+            "fog": 4,
+            "wetness": -2,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": -1.5,
+                "y": 0.9
+              },
+              "speed_delta": 0.2
+            }
+          ],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": -0.2,
+                "y": 0.4
+              },
+              "level_delta": 0.15,
+              "size_scale": 1.05
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Confirm all control commands are set to zero during the critical window",
+          "Ensure final waypoints do not drop out during the critical window"
+        ],
+        "post_execution_validation_rules": [
+          "Resolve label conflict between dataset and error.json per Phase 1 requirements",
+          "Check for explicit lane crossing evidence to confirm lane invasion symptom",
+          "Validate zero ego velocity during the critical window"
+        ],
+        "uncertainty": [
+          "Root cause module localization remains uncertain as in original input",
+          "Conflicting symptom labels are preserved per original pattern",
+          "No lane boundary crossing evidence is pre-confirmed in this variant"
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": -3.0,
+          "fog": 4.0,
+          "wetness": -2.0,
+          "puddle": 0.0
+        },
+        "actor_mutations": [
+          {
+            "actor_index": 1,
+            "position_offset": {
+              "x": -1.5,
+              "y": 0.9
+            },
+            "speed_delta": 0.2
+          }
+        ],
+        "puddle_mutations": [
+          {
+            "puddle_index": 0,
+            "location_offset": {
+              "x": -0.2,
+              "y": 0.4
+            },
+            "level_delta": 0.15,
+            "size_scale": 1.05
+          }
+        ],
+        "mission_mutation": {
+          "keep_original": true
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_151__ark-deepseek-r1-250528.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_151__ark-deepseek-r1-250528.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    }
+  ],
+  "seed_artifact_zip": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-deepseek-r1-250528/seed-artifact/seed-artifact-case_151.zip",
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_prompts/case_151__ark-deepseek-r1-250528.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_151__ark-deepseek-r1-250528.json",
+  "prompt_estimated_tokens": 1155,
+  "usage": {
+    "prompt_tokens": 1502,
+    "completion_tokens": 1871,
+    "total_tokens": 3373
+  },
+  "raw_response": "{\n  \"case_id\": \"case_151\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Slightly shift the leading NPC vehicle position and increase rain/wetness near ego's path while retaining all core critical window conditions\",\n      \"mutation_intent\": \"Preserves all Phase 1 preservation constraints: conflicting symptom labels between dataset and error.json, continuously available final waypoints, all-zero control commands, and zero ego velocity during the critical window\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 5, \"fog\": 0, \"wetness\": 5, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 1.2, \"y\": -0.8}, \"speed_delta\": -0.5}\n        ],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": 0.5, \"y\": -0.3}, \"level_delta\": 0.1, \"size_scale\": 1.0}\n        ],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Verify all-zero accel/brake/steer commands are configured for the critical window\", \"Confirm final waypoints remain continuously available\"],\n      \"post_execution_validation_rules\": [\"Check for conflicting failure labels between dataset annotation and error.json oracle\", \"Verify ego velocity is zero throughout the critical window\"],\n      \"uncertainty\": [\"Conflicting symptom labels between dataset and error.json preserved\", \"No specific module root cause can be confirmed in this variant\", \"Lane invasion evidence remains unconfirmed\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Slightly shift the pedestrian actor position and adjust the level of the puddle near ego spawn to test environmental variation of the core pattern\",\n      \"mutation_intent\": \"Retains all required Phase 1 root cause properties: conflicting labels, available waypoints, zero control commands, and zero ego velocity, while introducing a conservative environmental change\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": -3, \"fog\": 4, \"wetness\": -2, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 1, \"position_offset\": {\"x\": -1.5, \"y\": 0.9}, \"speed_delta\": 0.2}\n        ],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": -0.2, \"y\": 0.4}, \"level_delta\": 0.15, \"size_scale\": 1.05}\n        ],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Confirm all control commands are set to zero during the critical window\", \"Ensure final waypoints do not drop out during the critical window\"],\n      \"post_execution_validation_rules\": [\"Resolve label conflict between dataset and error.json per Phase 1 requirements\", \"Check for explicit lane crossing evidence to confirm lane invasion symptom\", \"Validate zero ego velocity during the critical window\"],\n      \"uncertainty\": [\"Root cause module localization remains uncertain as in original input\", \"Conflicting symptom labels are preserved per original pattern\", \"No lane boundary crossing evidence is pre-confirmed in this variant\"]\n    }\n  ]\n}",
+  "parsed_response": {
+    "case_id": "case_151",
+    "candidate_specs": [
+      {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Slightly shift the leading NPC vehicle position and increase rain/wetness near ego's path while retaining all core critical window conditions",
+        "mutation_intent": "Preserves all Phase 1 preservation constraints: conflicting symptom labels between dataset and error.json, continuously available final waypoints, all-zero control commands, and zero ego velocity during the critical window",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": 5,
+            "fog": 0,
+            "wetness": 5,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 1.2,
+                "y": -0.8
+              },
+              "speed_delta": -0.5
+            }
+          ],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 0.5,
+                "y": -0.3
+              },
+              "level_delta": 0.1,
+              "size_scale": 1.0
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Verify all-zero accel/brake/steer commands are configured for the critical window",
+          "Confirm final waypoints remain continuously available"
+        ],
+        "post_execution_validation_rules": [
+          "Check for conflicting failure labels between dataset annotation and error.json oracle",
+          "Verify ego velocity is zero throughout the critical window"
+        ],
+        "uncertainty": [
+          "Conflicting symptom labels between dataset and error.json preserved",
+          "No specific module root cause can be confirmed in this variant",
+          "Lane invasion evidence remains unconfirmed"
+        ]
+      },
+      {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Slightly shift the pedestrian actor position and adjust the level of the puddle near ego spawn to test environmental variation of the core pattern",
+        "mutation_intent": "Retains all required Phase 1 root cause properties: conflicting labels, available waypoints, zero control commands, and zero ego velocity, while introducing a conservative environmental change",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": -3,
+            "fog": 4,
+            "wetness": -2,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": -1.5,
+                "y": 0.9
+              },
+              "speed_delta": 0.2
+            }
+          ],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": -0.2,
+                "y": 0.4
+              },
+              "level_delta": 0.15,
+              "size_scale": 1.05
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Confirm all control commands are set to zero during the critical window",
+          "Ensure final waypoints do not drop out during the critical window"
+        ],
+        "post_execution_validation_rules": [
+          "Resolve label conflict between dataset and error.json per Phase 1 requirements",
+          "Check for explicit lane crossing evidence to confirm lane invasion symptom",
+          "Validate zero ego velocity during the critical window"
+        ],
+        "uncertainty": [
+          "Root cause module localization remains uncertain as in original input",
+          "Conflicting symptom labels are preserved per original pattern",
+          "No lane boundary crossing evidence is pre-confirmed in this variant"
+        ]
+      }
+    ]
+  },
+  "raw_api_payload": {
+    "id": "0217829241999145c847dce3dfef19d8a8a6e4aeb40e68baf4669",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "{\n  \"case_id\": \"case_151\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Slightly shift the leading NPC vehicle position and increase rain/wetness near ego's path while retaining all core critical window conditions\",\n      \"mutation_intent\": \"Preserves all Phase 1 preservation constraints: conflicting symptom labels between dataset and error.json, continuously available final waypoints, all-zero control commands, and zero ego velocity during the critical window\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 5, \"fog\": 0, \"wetness\": 5, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 1.2, \"y\": -0.8}, \"speed_delta\": -0.5}\n        ],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": 0.5, \"y\": -0.3}, \"level_delta\": 0.1, \"size_scale\": 1.0}\n        ],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Verify all-zero accel/brake/steer commands are configured for the critical window\", \"Confirm final waypoints remain continuously available\"],\n      \"post_execution_validation_rules\": [\"Check for conflicting failure labels between dataset annotation and error.json oracle\", \"Verify ego velocity is zero throughout the critical window\"],\n      \"uncertainty\": [\"Conflicting symptom labels between dataset and error.json preserved\", \"No specific module root cause can be confirmed in this variant\", \"Lane invasion evidence remains unconfirmed\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Slightly shift the pedestrian actor position and adjust the level of the puddle near ego spawn to test environmental variation of the core pattern\",\n      \"mutation_intent\": \"Retains all required Phase 1 root cause properties: conflicting labels, available waypoints, zero control commands, and zero ego velocity, while introducing a conservative environmental change\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": -3, \"fog\": 4, \"wetness\": -2, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 1, \"position_offset\": {\"x\": -1.5, \"y\": 0.9}, \"speed_delta\": 0.2}\n        ],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": -0.2, \"y\": 0.4}, \"level_delta\": 0.15, \"size_scale\": 1.05}\n        ],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Confirm all control commands are set to zero during the critical window\", \"Ensure final waypoints do not drop out during the critical window\"],\n      \"post_execution_validation_rules\": [\"Resolve label conflict between dataset and error.json per Phase 1 requirements\", \"Check for explicit lane crossing evidence to confirm lane invasion symptom\", \"Validate zero ego velocity during the critical window\"],\n      \"uncertainty\": [\"Root cause module localization remains uncertain as in original input\", \"Conflicting symptom labels are preserved per original pattern\", \"No lane boundary crossing evidence is pre-confirmed in this variant\"]\n    }\n  ]\n}",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null,
+          "reasoning_content": "\nGot it, let's build this step by step. First, case_id is case_151 right? Then we need exactly 2 candidate_specs. Let's start with cand_001 first.\n\nFirst, high_level_variant for cand 001: Slightly shift the leading NPC vehicle position and adjust rain/wetness a bit to test the zero control symptom. Wait, let's follow the constraints. Mutation intent: Preserves all Phase 1 root cause constraints, keeps conflicting labels, available waypoints, zero control and zero velocity. Expected oracle: compound? Wait original has labels stuck and lane invasion, conflict, so expected_oracle is compound? Wait no, let's check: original says dataset labels stuck and lane invasion, error.json detects neither, so expected_oracle... Wait the rule says don't invent new labels, preserve intended. Let's see, the expected oracle: compound because it has both reported stuck and lane invasion labels. Wait let's do modifications. Weather delta: let's do rain +5, wetness +5, fog 0, puddle 0, that's within [-20,20] right, yes. Actor mutations: actor 0 (the vehicle) position offset x 1.2, y -0.8, that's within [-8,8], speed delta -0.5, which is within [-3,3], perfect. Puddle mutations: puddle 0, location offset x 0.5, y -0.3, level delta 0.1, size scale 1.0, that's within the limits. Mission mutation keep_original true. Pre execution rules: [\"Verify all-zero control commands are set during critical window\", \"Confirm final waypoints remain continuously available\"], post execution: [\"Check for conflicting failure labels between dataset annotation and oracle output\", \"Verify ego velocity remains zero during critical window\"], uncertainty: [\"Conflicting symptom labels between dataset and error.json preserved\", \"Root cause module localization still uncertain\"].\n\nNow cand_002. Let's think of another variant. High_level_variant: Shift the pedestrian position and slightly increase puddle level near ego spawn to maintain the original symptom pattern. Mutation intent: Preserves all Phase 1 preservation constraints, keeps conflicting labels, available waypoints, zero control commands and zero ego velocity while testing a small environmental variation. Expected oracle is still compound, right? Because same labels. Wait or can it be compound, yes. Modifications: weather delta: rain -3, fog +4, wetness -2, puddle 0, all within range. Actor mutations: actor 1 (the walker) position offset x -1.5, y 0.9, speed delta +0.2, that's good. Puddle mutations: puddle index 0, location offset x -0.2, y 0.4, level delta 0.15, size scale 1.05, that's within the allowed delta (0.15 <0.2, 1.05 between 0.8 and 1.2, perfect). Mission mutation keep_original true. Pre execution rules: [\"Confirm critical window has all-zero accel/brake/steer commands\", \"Ensure final waypoints are continuously available during critical window\"], post execution: [\"Validate that conflicting symptom labels are preserved between annotation and oracle\", \"Check that ego velocity is zero during the critical window\"], uncertainty: [\"No module-level root cause localization can be confirmed in this variant\", \"Lane invasion symptom evidence remains unconfirmed per original uncertainty\"].\n\nWait let's check all rules: exactly 2 candidates, all offsets within limits, root cause preserved, all constraints from phase1 are followed. Let's structure the JSON correctly. Let's make sure case_id is case_151. Let's write it out properly.\n\nWait let's check the schema again. Yes, the top level is case_id, candidate_specs array of 2. Let's fill each field correctly. Let me make sure all numbers are within the required ranges: position offsets are all way less than 8, speed delta within -3 to 3, weather deltas within -20 to 20, puddle level delta within -0.2 to 0.2, size between 0.8 and 1.2. All good. Uncertainty preserved as per phase1 being uncertainty-heavy, so we kept uncertainty in each candidate. Root cause pattern is preserved, all preservation constraints are followed. Expected oracle: compound because original has both stuck and lane invasion reported, that's correct. Let's put it all together now."
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "doubao-seed-2-0-lite-260215",
+    "object": "chat.completion",
+    "service_tier": "default",
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 1871,
+      "prompt_tokens": 1502,
+      "total_tokens": 3373,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 967,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": null,
+        "cached_tokens": 0
+      }
+    }
+  },
+  "error_message": "",
+  "elapsed_sec": 26.955,
+  "timestamp": "<REDACTED_TIMESTAMP>"
+}

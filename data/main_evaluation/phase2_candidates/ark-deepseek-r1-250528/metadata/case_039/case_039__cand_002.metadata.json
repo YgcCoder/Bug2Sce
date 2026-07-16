@@ -1,0 +1,146 @@
+{
+  "case_id": "case_039",
+  "model_name": "ark-deepseek-r1-250528",
+  "candidate_index": 2,
+  "candidate_spec": {
+    "candidate_id": "cand_002",
+    "high_level_variant": "Minor offset of ego spawn and destination, slight increase in rain, adjust puddle levels conservatively",
+    "mutation_intent": "Preserves all root-cause requirements while testing slightly different environment conditions, keeps the control-movement mismatch, conflicting labels, required count of actors and puddles, all mutations stay within allowed bounds.",
+    "expected_oracle": "compound",
+    "modifications": {
+      "weather_delta": {
+        "rain": 3,
+        "fog": 0,
+        "wetness": 3,
+        "puddle": 0
+      },
+      "actor_mutations": [
+        {
+          "actor_index": 0,
+          "position_offset": {
+            "x": -0.5,
+            "y": 1.0
+          },
+          "speed_delta": 0.0
+        }
+      ],
+      "puddle_mutations": [
+        {
+          "puddle_index": 0,
+          "location_offset": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "level_delta": 0.04,
+          "size_scale": 1.05
+        },
+        {
+          "puddle_index": 1,
+          "location_offset": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "level_delta": -0.03,
+          "size_scale": 0.95
+        },
+        {
+          "puddle_index": 2,
+          "location_offset": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "level_delta": 0.02,
+          "size_scale": 1.0
+        }
+      ],
+      "mission_mutation": {
+        "keep_original": false,
+        "spawn_offset": {
+          "x": 1.0,
+          "y": -0.5
+        },
+        "destination_offset": {
+          "x": -0.8,
+          "y": 1.2
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Check that the mismatch between zero vehicle_cmd and non-zero ego movement is configured for the critical window",
+      "Confirm 1 actor and 3 puddles are present per preservation constraints"
+    ],
+    "post_execution_validation_rules": [
+      "Reproduce the conflicting label condition between dataset annotation and error detection output",
+      "Validate that final waypoints remain available through the critical window"
+    ],
+    "uncertainty": [
+      "No direct evidence confirms a specific module fault",
+      "Failure labels from original dataset remain unconfirmed by error detection"
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": 3.0,
+      "fog": 0.0,
+      "wetness": 3.0,
+      "puddle": 0.0
+    },
+    "actor_mutations": [
+      {
+        "actor_index": 0,
+        "position_offset": {
+          "x": -0.5,
+          "y": 1.0
+        },
+        "speed_delta": 0.0
+      }
+    ],
+    "puddle_mutations": [
+      {
+        "puddle_index": 0,
+        "location_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "level_delta": 0.04,
+        "size_scale": 1.05
+      },
+      {
+        "puddle_index": 1,
+        "location_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "level_delta": -0.03,
+        "size_scale": 0.95
+      },
+      {
+        "puddle_index": 2,
+        "location_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "level_delta": 0.02,
+        "size_scale": 1.0
+      }
+    ],
+    "mission_mutation": {
+      "spawn_offset": {
+        "x": 1.0,
+        "y": -0.5
+      },
+      "destination_offset": {
+        "x": -0.8,
+        "y": 1.2
+      }
+    }
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_039__ark-deepseek-r1-250528.json",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_039__ark-deepseek-r1-250528.json",
+  "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+}

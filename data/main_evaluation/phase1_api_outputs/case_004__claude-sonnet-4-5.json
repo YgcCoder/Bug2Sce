@@ -1,0 +1,121 @@
+{
+  "case_id": "case_004",
+  "workflow": "phase1_causal_explanation",
+  "model_name": "claude-sonnet-4-5",
+  "model_id": "claude-sonnet-4-5",
+  "status": "completed",
+  "dry_run": false,
+  "schema_valid": true,
+  "schema_errors": [],
+  "quality_flags": [],
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_prompts/case_004__claude-sonnet-4-5.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_004__claude-sonnet-4-5.json",
+  "prompt_estimated_tokens": 2728,
+  "usage": {
+    "prompt_tokens": 3272,
+    "completion_tokens": 1003,
+    "total_tokens": 4275
+  },
+  "estimated_cost_usd": null,
+  "raw_response": "```json\n{\n  \"case_id\": \"case_004\",\n  \"fault_layer\": \"unknown\",\n  \"fault_component\": \"unknown\",\n  \"causal_explanation\": \"The oracle shows a red-light violation (error.json) but the dataset also labels lane_invasion=1, creating a conflict (dataset=L+R, error.json=R). Critical-window evidence confirms traffic light states exist and final waypoints are available, but route-light relation and stop-line crossing are not confirmed. Vehicle_cmd shows all-zero commands while vehicle_status shows minimal movement (velocity max 0.038 m/s, throttle max 0.49). The evidence does not directly prove which module failed to prevent the red-light violation or whether a lane invasion actually occurred.\",\n  \"root_cause_pattern\": \"Conservative preservation pattern: ego approaches a traffic light with available final waypoints and traffic light state data, but exhibits minimal movement with zero vehicle commands, leading to a red-light violation (error.json) while dataset also flags lane invasion (unconfirmed).\",\n  \"preservation_constraints\": [\n    \"The generated candidate should preserve a red-light violation oracle event.\",\n    \"Traffic light state data and final waypoints should be available in the critical window.\",\n    \"Ego should exhibit minimal or near-zero movement in the final window.\",\n    \"Post-execution validation should check for red-light violation, traffic light state availability, and ego velocity profile.\"\n  ],\n  \"modifiable_factors\": [\n    \"actor_position\",\n    \"weather\",\n    \"puddles\",\n    \"mission\"\n  ],\n  \"non_modifiable_conditions\": [\n    \"Red-light violation oracle event\",\n    \"Traffic light state data available\",\n    \"Final waypoints available\",\n    \"Minimal ego movement in critical window\"\n  ],\n  \"uncertainty\": [\n    \"Dataset labels lane_invasion=1 but error.json does not confirm it; oracle_consistency=dataset_only with conflict.\",\n    \"Route-light relation and stop-line crossing are not confirmed by evidence.\",\n    \"Vehicle_cmd is all zero but vehicle_status shows non-zero throttle and minimal velocity; controller behavior is uncertain.\",\n    \"The evidence does not directly localize the failure to perception, planning, or actuation.\",\n    \"No actors are configured in the scenario, yet perception reports detected objects; origin and relevance are unclear.\"\n  ],\n  \"evidence_support\": [\n    {\n      \"evidence_id\": \"oracle_consistency\",\n      \"claim\": \"Dataset and error.json disagree on lane_invasion; dataset=L+R, error.json=R.\"\n    },\n    {\n      \"evidence_id\": \"red_light_window\",\n      \"claim\": \"Red-light violation confirmed in error.json; traffic light states available but route-light relation and stop-line crossing not confirmed.\"\n    },\n    {\n      \"evidence_id\": \"vehicle_cmd\",\n      \"claim\": \"All vehicle commands (steer, accel, brake, target_speed) are zero throughout the sampled window.\"\n    },\n    {\n      \"evidence_id\": \"vehicle_status\",\n      \"claim\": \"Ego velocity max 0.038 m/s, throttle max 0.49, indicating minimal movement despite zero commands.\"\n    },\n    {\n      \"evidence_id\": \"final_waypoints\",\n      \"claim\": \"Final waypoints available with 101 waypoints per message, no blocked flags.\"\n    },\n    {\n      \"evidence_id\": \"traffic_lights_topic\",\n      \"claim\": \"Traffic light states sampled with 36 lights, states 0, 1, 2 observed.\"\n    }\n  ],\n  \"confidence\": \"low\",\n  \"ready_for_phase2_generation\": \"uncertain\",\n  \"notes_for_validator\": [\n    \"Manual review is required to resolve the dataset vs. error.json conflict before treating this as a confirmed red-light or lane-invasion case.\",\n    \"Do not count a generated case as same-root-cause unless post-execution confirms red-light violation and minimal ego movement.\",\n    \"Check whether the zero vehicle_cmd with non-zero throttle/velocity indicates a simulator artifact or actuation fault.\",\n    \"Verify traffic light state relevance to the ego route and stop-line crossing in post-execution validation.\"\n  ]\n}\n```",
+  "parsed_response": {
+    "case_id": "case_004",
+    "fault_layer": "unknown",
+    "fault_component": "unknown",
+    "causal_explanation": "The oracle shows a red-light violation (error.json) but the dataset also labels lane_invasion=1, creating a conflict (dataset=L+R, error.json=R). Critical-window evidence confirms traffic light states exist and final waypoints are available, but route-light relation and stop-line crossing are not confirmed. Vehicle_cmd shows all-zero commands while vehicle_status shows minimal movement (velocity max 0.038 m/s, throttle max 0.49). The evidence does not directly prove which module failed to prevent the red-light violation or whether a lane invasion actually occurred.",
+    "root_cause_pattern": "Conservative preservation pattern: ego approaches a traffic light with available final waypoints and traffic light state data, but exhibits minimal movement with zero vehicle commands, leading to a red-light violation (error.json) while dataset also flags lane invasion (unconfirmed).",
+    "preservation_constraints": [
+      "The generated candidate should preserve a red-light violation oracle event.",
+      "Traffic light state data and final waypoints should be available in the critical window.",
+      "Ego should exhibit minimal or near-zero movement in the final window.",
+      "Post-execution validation should check for red-light violation, traffic light state availability, and ego velocity profile."
+    ],
+    "modifiable_factors": [
+      "actor_position",
+      "weather",
+      "puddles",
+      "mission"
+    ],
+    "non_modifiable_conditions": [
+      "Red-light violation oracle event",
+      "Traffic light state data available",
+      "Final waypoints available",
+      "Minimal ego movement in critical window"
+    ],
+    "uncertainty": [
+      "Dataset labels lane_invasion=1 but error.json does not confirm it; oracle_consistency=dataset_only with conflict.",
+      "Route-light relation and stop-line crossing are not confirmed by evidence.",
+      "Vehicle_cmd is all zero but vehicle_status shows non-zero throttle and minimal velocity; controller behavior is uncertain.",
+      "The evidence does not directly localize the failure to perception, planning, or actuation.",
+      "No actors are configured in the scenario, yet perception reports detected objects; origin and relevance are unclear."
+    ],
+    "evidence_support": [
+      {
+        "evidence_id": "oracle_consistency",
+        "claim": "Dataset and error.json disagree on lane_invasion; dataset=L+R, error.json=R."
+      },
+      {
+        "evidence_id": "red_light_window",
+        "claim": "Red-light violation confirmed in error.json; traffic light states available but route-light relation and stop-line crossing not confirmed."
+      },
+      {
+        "evidence_id": "vehicle_cmd",
+        "claim": "All vehicle commands (steer, accel, brake, target_speed) are zero throughout the sampled window."
+      },
+      {
+        "evidence_id": "vehicle_status",
+        "claim": "Ego velocity max 0.038 m/s, throttle max 0.49, indicating minimal movement despite zero commands."
+      },
+      {
+        "evidence_id": "final_waypoints",
+        "claim": "Final waypoints available with 101 waypoints per message, no blocked flags."
+      },
+      {
+        "evidence_id": "traffic_lights_topic",
+        "claim": "Traffic light states sampled with 36 lights, states 0, 1, 2 observed."
+      }
+    ],
+    "confidence": "low",
+    "ready_for_phase2_generation": "uncertain",
+    "notes_for_validator": [
+      "Manual review is required to resolve the dataset vs. error.json conflict before treating this as a confirmed red-light or lane-invasion case.",
+      "Do not count a generated case as same-root-cause unless post-execution confirms red-light violation and minimal ego movement.",
+      "Check whether the zero vehicle_cmd with non-zero throttle/velocity indicates a simulator artifact or actuation fault.",
+      "Verify traffic light state relevance to the ego route and stop-line crossing in post-execution validation."
+    ]
+  },
+  "raw_api_payload": {
+    "id": "<REDACTED_RESPONSE_ID>",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "```json\n{\n  \"case_id\": \"case_004\",\n  \"fault_layer\": \"unknown\",\n  \"fault_component\": \"unknown\",\n  \"causal_explanation\": \"The oracle shows a red-light violation (error.json) but the dataset also labels lane_invasion=1, creating a conflict (dataset=L+R, error.json=R). Critical-window evidence confirms traffic light states exist and final waypoints are available, but route-light relation and stop-line crossing are not confirmed. Vehicle_cmd shows all-zero commands while vehicle_status shows minimal movement (velocity max 0.038 m/s, throttle max 0.49). The evidence does not directly prove which module failed to prevent the red-light violation or whether a lane invasion actually occurred.\",\n  \"root_cause_pattern\": \"Conservative preservation pattern: ego approaches a traffic light with available final waypoints and traffic light state data, but exhibits minimal movement with zero vehicle commands, leading to a red-light violation (error.json) while dataset also flags lane invasion (unconfirmed).\",\n  \"preservation_constraints\": [\n    \"The generated candidate should preserve a red-light violation oracle event.\",\n    \"Traffic light state data and final waypoints should be available in the critical window.\",\n    \"Ego should exhibit minimal or near-zero movement in the final window.\",\n    \"Post-execution validation should check for red-light violation, traffic light state availability, and ego velocity profile.\"\n  ],\n  \"modifiable_factors\": [\n    \"actor_position\",\n    \"weather\",\n    \"puddles\",\n    \"mission\"\n  ],\n  \"non_modifiable_conditions\": [\n    \"Red-light violation oracle event\",\n    \"Traffic light state data available\",\n    \"Final waypoints available\",\n    \"Minimal ego movement in critical window\"\n  ],\n  \"uncertainty\": [\n    \"Dataset labels lane_invasion=1 but error.json does not confirm it; oracle_consistency=dataset_only with conflict.\",\n    \"Route-light relation and stop-line crossing are not confirmed by evidence.\",\n    \"Vehicle_cmd is all zero but vehicle_status shows non-zero throttle and minimal velocity; controller behavior is uncertain.\",\n    \"The evidence does not directly localize the failure to perception, planning, or actuation.\",\n    \"No actors are configured in the scenario, yet perception reports detected objects; origin and relevance are unclear.\"\n  ],\n  \"evidence_support\": [\n    {\n      \"evidence_id\": \"oracle_consistency\",\n      \"claim\": \"Dataset and error.json disagree on lane_invasion; dataset=L+R, error.json=R.\"\n    },\n    {\n      \"evidence_id\": \"red_light_window\",\n      \"claim\": \"Red-light violation confirmed in error.json; traffic light states available but route-light relation and stop-line crossing not confirmed.\"\n    },\n    {\n      \"evidence_id\": \"vehicle_cmd\",\n      \"claim\": \"All vehicle commands (steer, accel, brake, target_speed) are zero throughout the sampled window.\"\n    },\n    {\n      \"evidence_id\": \"vehicle_status\",\n      \"claim\": \"Ego velocity max 0.038 m/s, throttle max 0.49, indicating minimal movement despite zero commands.\"\n    },\n    {\n      \"evidence_id\": \"final_waypoints\",\n      \"claim\": \"Final waypoints available with 101 waypoints per message, no blocked flags.\"\n    },\n    {\n      \"evidence_id\": \"traffic_lights_topic\",\n      \"claim\": \"Traffic light states sampled with 36 lights, states 0, 1, 2 observed.\"\n    }\n  ],\n  \"confidence\": \"low\",\n  \"ready_for_phase2_generation\": \"uncertain\",\n  \"notes_for_validator\": [\n    \"Manual review is required to resolve the dataset vs. error.json conflict before treating this as a confirmed red-light or lane-invasion case.\",\n    \"Do not count a generated case as same-root-cause unless post-execution confirms red-light violation and minimal ego movement.\",\n    \"Check whether the zero vehicle_cmd with non-zero throttle/velocity indicates a simulator artifact or actuation fault.\",\n    \"Verify traffic light state relevance to the ego route and stop-line crossing in post-execution validation.\"\n  ]\n}\n```",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "claude-sonnet-4-5",
+    "object": "chat.completion",
+    "service_tier": null,
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 1003,
+      "prompt_tokens": 3272,
+      "total_tokens": 4275,
+      "completion_tokens_details": null,
+      "prompt_tokens_details": null
+    }
+  },
+  "error_message": "",
+  "timestamp": "<REDACTED_TIMESTAMP>",
+  "elapsed_sec": 19.03
+}

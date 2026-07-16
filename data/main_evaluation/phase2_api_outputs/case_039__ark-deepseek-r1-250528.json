@@ -1,0 +1,513 @@
+{
+  "case_id": "case_039",
+  "model_name": "ark-deepseek-r1-250528",
+  "workflow": "phase2_grounded_generation",
+  "status": "completed",
+  "schema_valid": true,
+  "schema_errors": [],
+  "phase1_ready": "yes",
+  "num_candidates_requested": 2,
+  "num_candidates_written": 2,
+  "num_pre_valid": 2,
+  "candidate_records": [
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-deepseek-r1-250528/json/case_039/case_039__cand_001.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-deepseek-r1-250528/metadata/case_039/case_039__cand_001.metadata.json",
+      "case_id": "case_039",
+      "model_name": "ark-deepseek-r1-250528",
+      "candidate_index": 1,
+      "candidate_spec": {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Slightly shift the immobile actor position, adjust road wetness within conservative bounds, preserve all core scenario conditions",
+        "mutation_intent": "Preserves all root-cause constraints: mismatch between all-zero vehicle_cmd and non-zero ego movement, conflicting failure labels, presence of final waypoints, 1 actor and 3 puddles. All mutations are within allowed ranges and do not introduce new root causes.",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 5,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 1.2,
+                "y": -0.8
+              },
+              "speed_delta": 0.0
+            }
+          ],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": 0.0,
+              "size_scale": 1.0
+            },
+            {
+              "puddle_index": 1,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": 0.0,
+              "size_scale": 1.0
+            },
+            {
+              "puddle_index": 2,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": 0.0,
+              "size_scale": 1.0
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Preserve 1 actor and 3 puddle regions on map",
+          "Final waypoints must remain available throughout the critical window"
+        ],
+        "post_execution_validation_rules": [
+          "Verify mismatch between all-zero vehicle_cmd and non-zero ego velocity",
+          "Confirm conflicting failure labels between dataset annotation and error.json detection"
+        ],
+        "uncertainty": [
+          "Dataset labels of stuck and lane invasion are not confirmed by error.json",
+          "No specific Autoware module fault can be confirmed from available evidence"
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 0.0,
+          "fog": 0.0,
+          "wetness": 5.0,
+          "puddle": 0.0
+        },
+        "actor_mutations": [
+          {
+            "actor_index": 0,
+            "position_offset": {
+              "x": 1.2,
+              "y": -0.8
+            },
+            "speed_delta": 0.0
+          }
+        ],
+        "puddle_mutations": [
+          {
+            "puddle_index": 0,
+            "location_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "level_delta": 0.0,
+            "size_scale": 1.0
+          },
+          {
+            "puddle_index": 1,
+            "location_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "level_delta": 0.0,
+            "size_scale": 1.0
+          },
+          {
+            "puddle_index": 2,
+            "location_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "level_delta": 0.0,
+            "size_scale": 1.0
+          }
+        ],
+        "mission_mutation": {
+          "keep_original": true
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_039__ark-deepseek-r1-250528.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_039__ark-deepseek-r1-250528.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    },
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-deepseek-r1-250528/json/case_039/case_039__cand_002.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-deepseek-r1-250528/metadata/case_039/case_039__cand_002.metadata.json",
+      "case_id": "case_039",
+      "model_name": "ark-deepseek-r1-250528",
+      "candidate_index": 2,
+      "candidate_spec": {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Minor offset of ego spawn and destination, slight increase in rain, adjust puddle levels conservatively",
+        "mutation_intent": "Preserves all root-cause requirements while testing slightly different environment conditions, keeps the control-movement mismatch, conflicting labels, required count of actors and puddles, all mutations stay within allowed bounds.",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": 3,
+            "fog": 0,
+            "wetness": 3,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": -0.5,
+                "y": 1.0
+              },
+              "speed_delta": 0.0
+            }
+          ],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": 0.04,
+              "size_scale": 1.05
+            },
+            {
+              "puddle_index": 1,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": -0.03,
+              "size_scale": 0.95
+            },
+            {
+              "puddle_index": 2,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": 0.02,
+              "size_scale": 1.0
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": false,
+            "spawn_offset": {
+              "x": 1.0,
+              "y": -0.5
+            },
+            "destination_offset": {
+              "x": -0.8,
+              "y": 1.2
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Check that the mismatch between zero vehicle_cmd and non-zero ego movement is configured for the critical window",
+          "Confirm 1 actor and 3 puddles are present per preservation constraints"
+        ],
+        "post_execution_validation_rules": [
+          "Reproduce the conflicting label condition between dataset annotation and error detection output",
+          "Validate that final waypoints remain available through the critical window"
+        ],
+        "uncertainty": [
+          "No direct evidence confirms a specific module fault",
+          "Failure labels from original dataset remain unconfirmed by error detection"
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 3.0,
+          "fog": 0.0,
+          "wetness": 3.0,
+          "puddle": 0.0
+        },
+        "actor_mutations": [
+          {
+            "actor_index": 0,
+            "position_offset": {
+              "x": -0.5,
+              "y": 1.0
+            },
+            "speed_delta": 0.0
+          }
+        ],
+        "puddle_mutations": [
+          {
+            "puddle_index": 0,
+            "location_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "level_delta": 0.04,
+            "size_scale": 1.05
+          },
+          {
+            "puddle_index": 1,
+            "location_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "level_delta": -0.03,
+            "size_scale": 0.95
+          },
+          {
+            "puddle_index": 2,
+            "location_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "level_delta": 0.02,
+            "size_scale": 1.0
+          }
+        ],
+        "mission_mutation": {
+          "spawn_offset": {
+            "x": 1.0,
+            "y": -0.5
+          },
+          "destination_offset": {
+            "x": -0.8,
+            "y": 1.2
+          }
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_039__ark-deepseek-r1-250528.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_039__ark-deepseek-r1-250528.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    }
+  ],
+  "seed_artifact_zip": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-deepseek-r1-250528/seed-artifact/seed-artifact-case_039.zip",
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_prompts/case_039__ark-deepseek-r1-250528.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_039__ark-deepseek-r1-250528.json",
+  "prompt_estimated_tokens": 1163,
+  "usage": {
+    "prompt_tokens": 1522,
+    "completion_tokens": 2848,
+    "total_tokens": 4370
+  },
+  "raw_response": "{\n  \"case_id\": \"case_039\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Slightly shift the immobile actor position, adjust road wetness within conservative bounds, preserve all core scenario conditions\",\n      \"mutation_intent\": \"Preserves all root-cause constraints: mismatch between all-zero vehicle_cmd and non-zero ego movement, conflicting failure labels, presence of final waypoints, 1 actor and 3 puddles. All mutations are within allowed ranges and do not introduce new root causes.\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 5, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 1.2, \"y\": -0.8}, \"speed_delta\": 0.0}\n        ],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": 0.0, \"size_scale\": 1.0},\n          {\"puddle_index\": 1, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": 0.0, \"size_scale\": 1.0},\n          {\"puddle_index\": 2, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": 0.0, \"size_scale\": 1.0}\n        ],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Preserve 1 actor and 3 puddle regions on map\", \"Final waypoints must remain available throughout the critical window\"],\n      \"post_execution_validation_rules\": [\"Verify mismatch between all-zero vehicle_cmd and non-zero ego velocity\", \"Confirm conflicting failure labels between dataset annotation and error.json detection\"],\n      \"uncertainty\": [\"Dataset labels of stuck and lane invasion are not confirmed by error.json\", \"No specific Autoware module fault can be confirmed from available evidence\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Minor offset of ego spawn and destination, slight increase in rain, adjust puddle levels conservatively\",\n      \"mutation_intent\": \"Preserves all root-cause requirements while testing slightly different environment conditions, keeps the control-movement mismatch, conflicting labels, required count of actors and puddles, all mutations stay within allowed bounds.\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 3, \"fog\": 0, \"wetness\": 3, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": -0.5, \"y\": 1.0}, \"speed_delta\": 0.0}\n        ],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": 0.04, \"size_scale\": 1.05},\n          {\"puddle_index\": 1, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": -0.03, \"size_scale\": 0.95},\n          {\"puddle_index\": 2, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": 0.02, \"size_scale\": 1.0}\n        ],\n        \"mission_mutation\": {\"keep_original\": false, \"spawn_offset\": {\"x\": 1.0, \"y\": -0.5}, \"destination_offset\": {\"x\": -0.8, \"y\": 1.2}}\n      },\n      \"pre_execution_validation_rules\": [\"Check that the mismatch between zero vehicle_cmd and non-zero ego movement is configured for the critical window\", \"Confirm 1 actor and 3 puddles are present per preservation constraints\"],\n      \"post_execution_validation_rules\": [\"Reproduce the conflicting label condition between dataset annotation and error detection output\", \"Validate that final waypoints remain available through the critical window\"],\n      \"uncertainty\": [\"No direct evidence confirms a specific module fault\", \"Failure labels from original dataset remain unconfirmed by error detection\"]\n    }\n  ]\n}",
+  "parsed_response": {
+    "case_id": "case_039",
+    "candidate_specs": [
+      {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Slightly shift the immobile actor position, adjust road wetness within conservative bounds, preserve all core scenario conditions",
+        "mutation_intent": "Preserves all root-cause constraints: mismatch between all-zero vehicle_cmd and non-zero ego movement, conflicting failure labels, presence of final waypoints, 1 actor and 3 puddles. All mutations are within allowed ranges and do not introduce new root causes.",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 5,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 1.2,
+                "y": -0.8
+              },
+              "speed_delta": 0.0
+            }
+          ],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": 0.0,
+              "size_scale": 1.0
+            },
+            {
+              "puddle_index": 1,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": 0.0,
+              "size_scale": 1.0
+            },
+            {
+              "puddle_index": 2,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": 0.0,
+              "size_scale": 1.0
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Preserve 1 actor and 3 puddle regions on map",
+          "Final waypoints must remain available throughout the critical window"
+        ],
+        "post_execution_validation_rules": [
+          "Verify mismatch between all-zero vehicle_cmd and non-zero ego velocity",
+          "Confirm conflicting failure labels between dataset annotation and error.json detection"
+        ],
+        "uncertainty": [
+          "Dataset labels of stuck and lane invasion are not confirmed by error.json",
+          "No specific Autoware module fault can be confirmed from available evidence"
+        ]
+      },
+      {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Minor offset of ego spawn and destination, slight increase in rain, adjust puddle levels conservatively",
+        "mutation_intent": "Preserves all root-cause requirements while testing slightly different environment conditions, keeps the control-movement mismatch, conflicting labels, required count of actors and puddles, all mutations stay within allowed bounds.",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": 3,
+            "fog": 0,
+            "wetness": 3,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": -0.5,
+                "y": 1.0
+              },
+              "speed_delta": 0.0
+            }
+          ],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": 0.04,
+              "size_scale": 1.05
+            },
+            {
+              "puddle_index": 1,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": -0.03,
+              "size_scale": 0.95
+            },
+            {
+              "puddle_index": 2,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": 0.02,
+              "size_scale": 1.0
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": false,
+            "spawn_offset": {
+              "x": 1.0,
+              "y": -0.5
+            },
+            "destination_offset": {
+              "x": -0.8,
+              "y": 1.2
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Check that the mismatch between zero vehicle_cmd and non-zero ego movement is configured for the critical window",
+          "Confirm 1 actor and 3 puddles are present per preservation constraints"
+        ],
+        "post_execution_validation_rules": [
+          "Reproduce the conflicting label condition between dataset annotation and error detection output",
+          "Validate that final waypoints remain available through the critical window"
+        ],
+        "uncertainty": [
+          "No direct evidence confirms a specific module fault",
+          "Failure labels from original dataset remain unconfirmed by error detection"
+        ]
+      }
+    ]
+  },
+  "raw_api_payload": {
+    "id": "0217829234214033b2b0407ffd677ecb32e5e07988358b9768a1e",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "{\n  \"case_id\": \"case_039\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Slightly shift the immobile actor position, adjust road wetness within conservative bounds, preserve all core scenario conditions\",\n      \"mutation_intent\": \"Preserves all root-cause constraints: mismatch between all-zero vehicle_cmd and non-zero ego movement, conflicting failure labels, presence of final waypoints, 1 actor and 3 puddles. All mutations are within allowed ranges and do not introduce new root causes.\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 5, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 1.2, \"y\": -0.8}, \"speed_delta\": 0.0}\n        ],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": 0.0, \"size_scale\": 1.0},\n          {\"puddle_index\": 1, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": 0.0, \"size_scale\": 1.0},\n          {\"puddle_index\": 2, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": 0.0, \"size_scale\": 1.0}\n        ],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Preserve 1 actor and 3 puddle regions on map\", \"Final waypoints must remain available throughout the critical window\"],\n      \"post_execution_validation_rules\": [\"Verify mismatch between all-zero vehicle_cmd and non-zero ego velocity\", \"Confirm conflicting failure labels between dataset annotation and error.json detection\"],\n      \"uncertainty\": [\"Dataset labels of stuck and lane invasion are not confirmed by error.json\", \"No specific Autoware module fault can be confirmed from available evidence\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Minor offset of ego spawn and destination, slight increase in rain, adjust puddle levels conservatively\",\n      \"mutation_intent\": \"Preserves all root-cause requirements while testing slightly different environment conditions, keeps the control-movement mismatch, conflicting labels, required count of actors and puddles, all mutations stay within allowed bounds.\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 3, \"fog\": 0, \"wetness\": 3, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": -0.5, \"y\": 1.0}, \"speed_delta\": 0.0}\n        ],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": 0.04, \"size_scale\": 1.05},\n          {\"puddle_index\": 1, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": -0.03, \"size_scale\": 0.95},\n          {\"puddle_index\": 2, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": 0.02, \"size_scale\": 1.0}\n        ],\n        \"mission_mutation\": {\"keep_original\": false, \"spawn_offset\": {\"x\": 1.0, \"y\": -0.5}, \"destination_offset\": {\"x\": -0.8, \"y\": 1.2}}\n      },\n      \"pre_execution_validation_rules\": [\"Check that the mismatch between zero vehicle_cmd and non-zero ego movement is configured for the critical window\", \"Confirm 1 actor and 3 puddles are present per preservation constraints\"],\n      \"post_execution_validation_rules\": [\"Reproduce the conflicting label condition between dataset annotation and error detection output\", \"Validate that final waypoints remain available through the critical window\"],\n      \"uncertainty\": [\"No direct evidence confirms a specific module fault\", \"Failure labels from original dataset remain unconfirmed by error detection\"]\n    }\n  ]\n}",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null,
+          "reasoning_content": "\nGot it, let's build this JSON step by step. First, case_id is case_039, right? We need two candidate_specs, cand_001 and cand_002.\n\nFirst candidate 001. High level variant: Slightly shift the immobile actor position and adjust wetness to preserve the control mismatch scenario. Mutation intent: Shifts actor within allowed range, keeps all root cause constraints: zero cmd vs non-zero movement, conflicting labels, waypoints present, 1 actor 3 puddles. Expected oracle is compound, right? Because original labels are stuck and lane invasion, so compound. Let's do modifications: weather delta: rain 0, fog 0, wetness +5, puddle 0. Wait, that's within [-20,20], okay. Actor mutations: actor 0, position offset x 1.2, y -0.8, speed delta 0. Because original is immobile 0 speed, so delta 0 is fine, within [-3,3] and positions within [-8,8], yes. Puddle mutations: each puddle? Wait, original has 3, let's do each, keep level delta small, size scale 1.0. Like puddle 0: x 0, y 0, level delta 0, size 1. Puddle 1 same, puddle 2 same. Mission mutation keep_original true. Pre execution rules: [\"Check that 1 actor and 3 puddles are preserved\", \"Check that final waypoints remain present throughout critical window\"], post execution: [\"Check that vehicle_cmd is all zero while ego has non-zero velocity\", \"Confirm conflicting labels between dataset annotation and error detection\"], uncertainty same as phase1: [\"Dataset labels are unconfirmed by error.json\", \"No specific module fault can be confirmed\"].\n\nNow candidate 002. High level variant: Minor shift of ego spawn and destination, slightly increase rain to test wet road condition while preserving root cause. Mutation intent: Adjusts mission spawn/destination within allowed bounds, keeps all root cause constraints: control command-movement mismatch, conflicting labels, required number of actors and puddles, waypoints present. Expected oracle still compound, right? Because original is stuck and lane invasion. Modifications: weather delta: rain +3, fog 0, wetness +3, puddle 0, all within range. Actor mutations: actor 0, position offset x -0.5, y 1.0, speed delta 0, that's okay. Puddle mutations: puddle 0: level delta +0.05, size scale 1.05, position offset 0,0; puddle1: level delta -0.03, size scale 0.95, 0,0; puddle2: level delta +0.02, size scale 1.0, 0,0. All level delta within [-0.2, 0.2], size within [0.8,1.2], good. Mission mutation: keep_original false, spawn offset x 1.0, y -0.5, destination offset x -0.8, y 1.2, all within [-5,5], okay. Pre execution rules: [\"Verify that 1 actor and 3 puddle regions are present as required\", \"Ensure final waypoints are available throughout the entire critical window\"], post execution: [\"Validate mismatch between all-zero vehicle control commands and non-zero ego movement\", \"Check for conflicting failure labels between dataset-style annotation and error.json detection\"], uncertainty: [\"Failure labels remain unconfirmed per available evidence\", \"No module-level fault can be localized from available evidence\"].\n\nWait, let's check all rules: exactly two candidates, all offsets are within limits. Root cause preserved, right? Let's make sure expected oracle is compound, because original has stuck and lane invasion, that's compound. Let's structure it correctly. Let's put it all together in the required JSON schema. Let's check everything:\n\ncase_id is case_039, correct. candidate_specs has two entries. Let's check each part:\n\nFirst cand_001:\nhigh_level_variant: \"Slightly shift the immobile actor position, adjust road wetness within conservative bounds, preserve all core scenario conditions\"\nmutation_intent: \"Preserves all root-cause constraints: mismatch between all-zero vehicle_cmd and non-zero ego movement, conflicting failure labels, presence of final waypoints, 1 actor and 3 puddles. Actor shift is within allowed range, does not introduce new root causes.\"\nexpected_oracle: \"compound\"\nmodifications: weather_delta is {\"rain\":0, \"fog\":0, \"wetness\":5, \"puddle\":0} that's okay, 5 is within [-20,20]. actor_mutations: [{\"actor_index\":0, \"position_offset\":{\"x\":1.2, \"y\":-0.8}, \"speed_delta\":0.0}] x and y are within [-8,8], speed delta 0 within [-3,3]. puddle_mutations: three entries, each index 0,1,2, all location offset 0, level delta 0, size scale 1.0, that's fine. mission_mutation: {\"keep_original\":true, ...} correct. pre_execution_validation_rules: [\"Preserve 1 actor and 3 puddle regions on map\", \"Final waypoints must remain available throughout the critical window\"], post_execution: [\"Verify mismatch between all-zero vehicle_cmd and non-zero ego velocity\", \"Confirm conflicting failure labels between dataset annotation and error.json detection\"], uncertainty: [\"Dataset labels of stuck and lane invasion are not confirmed by error.json\", \"No specific Autoware module fault can be confirmed from available evidence\"]\n\nThen cand_002:\ncandidate_id: cand_002\nhigh_level_variant: \"Minor offset of ego spawn and destination, slight increase in rain and wetness, adjust puddle levels conservatively\"\nmutation_intent: \"Preserves all root-cause requirements while testing slightly different environment conditions, keeps the control-movement mismatch, conflicting labels, required count of actors and puddles, all mutations within allowed bounds.\"\nexpected_oracle: \"compound\"\nmodifications: weather_delta: {\"rain\":3, \"fog\":0, \"wetness\":3, \"puddle\":0} all within range. actor_mutations: [{\"actor_index\":0, \"position_offset\":{\"x\":-0.5, \"y\":1.0}, \"speed_delta\":0.0}] okay. puddle_mutations: [{\"puddle_index\":0, \"location_offset\":{\"x\":0.0, \"y\":0.0}, \"level_delta\":0.04, \"size_scale\":1.05}, {\"puddle_index\":1, \"location_offset\":{\"x\":0.0, \"y\":0.0}, \"level_delta\":-0.03, \"size_scale\":0.95}, {\"puddle_index\":2, \"location_offset\":{\"x\":0.0, \"y\":0.0}, \"level_delta\":0.02, \"size_scale\":1.0}] all level delta within [-0.2, 0.2], size between 0.8 and 1.2, perfect. mission_mutation: {\"keep_original\":false, \"spawn_offset\":{\"x\":1.0, \"y\":-0.5}, \"destination_offset\":{\"x\":-0.8, \"y\":1.2}} all offsets within [-5,5], correct. pre_execution_validation_rules: [\"Check that the mismatch between zero vehicle_cmd and non-zero ego movement is configured for the critical window\", \"Confirm 1 actor and 3 puddles are present per preservation constraints\"], post_execution_validation_rules: [\"Reproduce the conflicting label condition between dataset annotation and error detection output\", \"Validate that final waypoints remain available through the critical window\"], uncertainty: [\"No direct evidence confirms a specific module fault\", \"Failure labels from original dataset remain unconfirmed by error detection\"]\n\nWait that all checks out. Let's put it into valid JSON now, no extra stuff, exactly as per schema."
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "doubao-seed-2-0-lite-260215",
+    "object": "chat.completion",
+    "service_tier": "default",
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 2848,
+      "prompt_tokens": 1522,
+      "total_tokens": 4370,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 1754,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": null,
+        "cached_tokens": 0
+      }
+    }
+  },
+  "error_message": "",
+  "elapsed_sec": 38.866,
+  "timestamp": "<REDACTED_TIMESTAMP>"
+}

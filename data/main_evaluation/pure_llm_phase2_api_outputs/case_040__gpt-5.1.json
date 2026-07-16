@@ -1,0 +1,251 @@
+{
+  "case_id": "case_040",
+  "model_name": "gpt-5.1",
+  "workflow": "pure_llm_phase2_baseline",
+  "status": "completed",
+  "schema_valid": true,
+  "schema_errors": [],
+  "num_candidates_requested": 1,
+  "num_candidates_written": 1,
+  "num_pre_valid": 1,
+  "candidate_records": [
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/pure_llm_phase2_candidates/gpt-5.1/json/case_040/case_040__model_gpt-5.1__cand_001.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/pure_llm_phase2_candidates/gpt-5.1/metadata/case_040/case_040__model_gpt-5.1__cand_001.metadata.json",
+      "case_id": "case_040",
+      "model_name": "gpt-5.1",
+      "candidate_index": 1,
+      "candidate_spec": {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Lead vehicle closer to intersection, heavy rain night stop scenario",
+        "mutation_intent": "Bring front car nearer so ego reaches signal area sooner, stressing red light handling",
+        "expected_oracle": "red_light",
+        "modifications": {
+          "weather_delta": {
+            "rain": 5,
+            "fog": 5,
+            "wetness": 5,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 1.0,
+                "y": -2.0
+              },
+              "speed_delta": 0.0
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": 0.0,
+                "y": -6.0
+              },
+              "speed_delta": -2.0
+            }
+          ],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": 0.0,
+              "size_scale": 1.0
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": false,
+            "spawn_offset": {
+              "x": -2.0,
+              "y": -3.0
+            },
+            "destination_offset": {
+              "x": 1.0,
+              "y": 2.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Ensure front vehicle remains ahead in same lane",
+          "Ego spawn stays on drivable lane segment"
+        ],
+        "post_execution_validation_rules": [
+          "Check ego fully stops before red line",
+          "Verify no crossing of stop line on red"
+        ],
+        "uncertainty": [
+          "Signal timing with closer lead car",
+          "Effect of heavier rain on stopping distance"
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 5.0,
+          "fog": 5.0,
+          "wetness": 5.0,
+          "puddle": 0.0
+        },
+        "actor_mutations": [
+          {
+            "actor_index": 0,
+            "position_offset": {
+              "x": 1.0,
+              "y": -2.0
+            },
+            "speed_delta": 0.0
+          },
+          {
+            "actor_index": 1,
+            "position_offset": {
+              "x": 0.0,
+              "y": -6.0
+            },
+            "speed_delta": -2.0
+          }
+        ],
+        "puddle_mutations": [],
+        "mission_mutation": {
+          "spawn_offset": {
+            "x": -2.0,
+            "y": -3.0
+          },
+          "destination_offset": {
+            "x": 1.0,
+            "y": 2.0
+          }
+        },
+        "safety_repairs": []
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": []
+      }
+    }
+  ],
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/pure_llm_phase2_api_prompts/case_040__gpt-5.1.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/pure_llm_phase2_api_outputs/case_040__gpt-5.1.json",
+  "prompt_estimated_tokens": 768,
+  "usage": {
+    "prompt_tokens": 930,
+    "completion_tokens": 424,
+    "total_tokens": 1354
+  },
+  "raw_response": "{\n  \"case_id\": \"case_040\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Lead vehicle closer to intersection, heavy rain night stop scenario\",\n      \"mutation_intent\": \"Bring front car nearer so ego reaches signal area sooner, stressing red light handling\",\n      \"expected_oracle\": \"red_light\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 5, \"fog\": 5, \"wetness\": 5, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 1.0, \"y\": -2.0}, \"speed_delta\": 0.0},\n          {\"actor_index\": 1, \"position_offset\": {\"x\": 0.0, \"y\": -6.0}, \"speed_delta\": -2.0}\n        ],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": 0.0, \"size_scale\": 1.0}\n        ],\n        \"mission_mutation\": {\n          \"keep_original\": false,\n          \"spawn_offset\": {\"x\": -2.0, \"y\": -3.0},\n          \"destination_offset\": {\"x\": 1.0, \"y\": 2.0}\n        }\n      },\n      \"pre_execution_validation_rules\": [\n        \"Ensure front vehicle remains ahead in same lane\",\n        \"Ego spawn stays on drivable lane segment\"\n      ],\n      \"post_execution_validation_rules\": [\n        \"Check ego fully stops before red line\",\n        \"Verify no crossing of stop line on red\"\n      ],\n      \"uncertainty\": [\n        \"Signal timing with closer lead car\",\n        \"Effect of heavier rain on stopping distance\"\n      ]\n    }\n  ]\n}",
+  "parsed_response": {
+    "case_id": "case_040",
+    "candidate_specs": [
+      {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Lead vehicle closer to intersection, heavy rain night stop scenario",
+        "mutation_intent": "Bring front car nearer so ego reaches signal area sooner, stressing red light handling",
+        "expected_oracle": "red_light",
+        "modifications": {
+          "weather_delta": {
+            "rain": 5,
+            "fog": 5,
+            "wetness": 5,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 1.0,
+                "y": -2.0
+              },
+              "speed_delta": 0.0
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": 0.0,
+                "y": -6.0
+              },
+              "speed_delta": -2.0
+            }
+          ],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": 0.0,
+              "size_scale": 1.0
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": false,
+            "spawn_offset": {
+              "x": -2.0,
+              "y": -3.0
+            },
+            "destination_offset": {
+              "x": 1.0,
+              "y": 2.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Ensure front vehicle remains ahead in same lane",
+          "Ego spawn stays on drivable lane segment"
+        ],
+        "post_execution_validation_rules": [
+          "Check ego fully stops before red line",
+          "Verify no crossing of stop line on red"
+        ],
+        "uncertainty": [
+          "Signal timing with closer lead car",
+          "Effect of heavier rain on stopping distance"
+        ]
+      }
+    ]
+  },
+  "raw_api_payload": {
+    "id": "<REDACTED_RESPONSE_ID>",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "{\n  \"case_id\": \"case_040\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Lead vehicle closer to intersection, heavy rain night stop scenario\",\n      \"mutation_intent\": \"Bring front car nearer so ego reaches signal area sooner, stressing red light handling\",\n      \"expected_oracle\": \"red_light\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 5, \"fog\": 5, \"wetness\": 5, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 1.0, \"y\": -2.0}, \"speed_delta\": 0.0},\n          {\"actor_index\": 1, \"position_offset\": {\"x\": 0.0, \"y\": -6.0}, \"speed_delta\": -2.0}\n        ],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": 0.0, \"size_scale\": 1.0}\n        ],\n        \"mission_mutation\": {\n          \"keep_original\": false,\n          \"spawn_offset\": {\"x\": -2.0, \"y\": -3.0},\n          \"destination_offset\": {\"x\": 1.0, \"y\": 2.0}\n        }\n      },\n      \"pre_execution_validation_rules\": [\n        \"Ensure front vehicle remains ahead in same lane\",\n        \"Ego spawn stays on drivable lane segment\"\n      ],\n      \"post_execution_validation_rules\": [\n        \"Check ego fully stops before red line\",\n        \"Verify no crossing of stop line on red\"\n      ],\n      \"uncertainty\": [\n        \"Signal timing with closer lead car\",\n        \"Effect of heavier rain on stopping distance\"\n      ]\n    }\n  ]\n}",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": [],
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "gpt-5.1-2025-11-13",
+    "object": "chat.completion",
+    "service_tier": "default",
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 424,
+      "prompt_tokens": 930,
+      "total_tokens": 1354,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": 0,
+        "audio_tokens": 0,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 0
+      }
+    }
+  },
+  "error_message": "",
+  "elapsed_sec": 7.449,
+  "timestamp": "<REDACTED_TIMESTAMP>"
+}

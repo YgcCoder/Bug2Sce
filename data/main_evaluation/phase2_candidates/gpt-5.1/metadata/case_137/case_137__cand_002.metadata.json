@@ -1,0 +1,112 @@
+{
+  "case_id": "case_137",
+  "model_name": "gpt-5.1",
+  "candidate_index": 2,
+  "candidate_spec": {
+    "candidate_id": "cand_002",
+    "high_level_variant": "Slightly altered destination and wetter critical region",
+    "mutation_intent": "Probe robustness of red-light handling with minor path and puddle tweaks",
+    "expected_oracle": "red_light",
+    "modifications": {
+      "weather_delta": {
+        "rain": 5,
+        "fog": 5,
+        "wetness": 10,
+        "puddle": 5
+      },
+      "actor_mutations": [
+        {
+          "actor_index": 2,
+          "position_offset": {
+            "x": -3.0,
+            "y": 2.5
+          },
+          "speed_delta": 0.0
+        }
+      ],
+      "puddle_mutations": [
+        {
+          "puddle_index": 0,
+          "location_offset": {
+            "x": -2.0,
+            "y": 1.0
+          },
+          "level_delta": 0.08,
+          "size_scale": 1.1
+        }
+      ],
+      "mission_mutation": {
+        "keep_original": false,
+        "spawn_offset": {
+          "x": -1.5,
+          "y": 1.0
+        },
+        "destination_offset": {
+          "x": 4.0,
+          "y": -3.0
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Ensure traffic_lights and final_waypoints topics remain available",
+      "Verify ego odometry shows capability to move",
+      "Confirm red state present near probable conflict time"
+    ],
+    "post_execution_validation_rules": [
+      "Oracle must report red-light violation as primary failure",
+      "Ego must be moving before violation event",
+      "Do not validate any concrete stop-line crossing"
+    ],
+    "uncertainty": [
+      "Retain unknown route-signal geometry",
+      "Controller versus simulator responsibility stays unresolved"
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": 5.0,
+      "fog": 5.0,
+      "wetness": 10.0,
+      "puddle": 5.0
+    },
+    "actor_mutations": [
+      {
+        "actor_index": 2,
+        "position_offset": {
+          "x": -3.0,
+          "y": 2.5
+        },
+        "speed_delta": 0.0
+      }
+    ],
+    "puddle_mutations": [
+      {
+        "puddle_index": 0,
+        "location_offset": {
+          "x": -2.0,
+          "y": 1.0
+        },
+        "level_delta": 0.08,
+        "size_scale": 1.1
+      }
+    ],
+    "mission_mutation": {
+      "spawn_offset": {
+        "x": -1.5,
+        "y": 1.0
+      },
+      "destination_offset": {
+        "x": 4.0,
+        "y": -3.0
+      }
+    }
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_137__gpt-5.1.json",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_137__gpt-5.1.json",
+  "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+}

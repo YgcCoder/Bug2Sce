@@ -1,0 +1,106 @@
+{
+  "case_id": "case_024",
+  "model_name": "ark-deepseek-r1-250528",
+  "candidate_index": 2,
+  "candidate_spec": {
+    "candidate_id": "cand_002",
+    "high_level_variant": "Slow approaching crossing vehicle near ego with light fog added to original scenario",
+    "mutation_intent": "Preserves all core root-cause pattern from phase 1: retains the pre-collision command mismatch (all-zero vehicle_cmd, non-zero brake), close detected object within 3m of ego, red light in late critical window, and both required oracle symptoms",
+    "expected_oracle": "compound",
+    "modifications": {
+      "weather_delta": {
+        "rain": 0,
+        "fog": 10,
+        "wetness": 2,
+        "puddle": 0
+      },
+      "actor_mutations": [
+        {
+          "actor_index": 1,
+          "position_offset": {
+            "x": 1.2,
+            "y": 4.3
+          },
+          "speed_delta": 2.0
+        }
+      ],
+      "puddle_mutations": [
+        {
+          "puddle_index": 0,
+          "location_offset": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "level_delta": -0.1,
+          "size_scale": 0.9
+        }
+      ],
+      "mission_mutation": {
+        "keep_original": true,
+        "spawn_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "destination_offset": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Pre-collision vehicle_cmd has all-zero control values",
+      "Vehicle_status reports non-zero brake pre-collision",
+      "Red traffic light is present in late critical window",
+      "Detected object is within 3m of ego before collision"
+    ],
+    "post_execution_validation_rules": [
+      "Verify both collision and red-light failure symptoms are present"
+    ],
+    "uncertainty": [
+      "Stop-line crossing status is unconfirmed",
+      "Specific Autoware module fault cannot be localized",
+      "Actuation attribution for command mismatch is uncertain",
+      "Detected object classification is unknown"
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": 0.0,
+      "fog": 10.0,
+      "wetness": 2.0,
+      "puddle": 0.0
+    },
+    "actor_mutations": [
+      {
+        "actor_index": 1,
+        "position_offset": {
+          "x": 1.2,
+          "y": 4.3
+        },
+        "speed_delta": 2.0
+      }
+    ],
+    "puddle_mutations": [
+      {
+        "puddle_index": 0,
+        "location_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "level_delta": -0.1,
+        "size_scale": 0.9
+      }
+    ],
+    "mission_mutation": {
+      "keep_original": true
+    }
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_024__ark-deepseek-r1-250528.json",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_024__ark-deepseek-r1-250528.json",
+  "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+}

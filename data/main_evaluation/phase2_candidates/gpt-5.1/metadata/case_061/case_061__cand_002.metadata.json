@@ -1,0 +1,112 @@
+{
+  "case_id": "case_061",
+  "model_name": "gpt-5.1",
+  "candidate_index": 2,
+  "candidate_spec": {
+    "candidate_id": "cand_002",
+    "high_level_variant": "Slightly shift the ego’s start and destination along the same corridor and reposition the lead walker more directly ahead in the ego’s likely travel lane, increasing chances of a forward collision during a red light while preserving the zero-command-under-motion pattern.",
+    "mutation_intent": "Introduce a conservative mission offset and place a single pedestrian more squarely on the ego’s expected path so that the system should need to slow or stop; if vehicle_cmd remains zero while the ego continues at roughly constant speed, a collision and red-light violation can still occur with active perception/prediction/planning.",
+    "expected_oracle": "compound",
+    "modifications": {
+      "weather_delta": {
+        "rain": 3,
+        "fog": 2,
+        "wetness": 5,
+        "puddle": 5
+      },
+      "actor_mutations": [
+        {
+          "actor_index": 0,
+          "position_offset": {
+            "x": -1.0,
+            "y": 0.5
+          },
+          "speed_delta": 0.8
+        },
+        {
+          "actor_index": 1,
+          "position_offset": {
+            "x": -3.0,
+            "y": 1.0
+          },
+          "speed_delta": -0.5
+        }
+      ],
+      "puddle_mutations": [],
+      "mission_mutation": {
+        "keep_original": false,
+        "spawn_offset": {
+          "x": 3.0,
+          "y": -2.0
+        },
+        "destination_offset": {
+          "x": -4.0,
+          "y": 1.5
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Verify that the mission spawn and destination remain on the same general Town01 roadway segment as the seed, preserving a similar approach to at least one signalized intersection.",
+      "Ensure that the shifted spawn still results in the ego reaching a traffic light within the scenario time budget.",
+      "Confirm the lead walker (actor_index 0) is positioned so that its path intersects or closely parallels the ego’s lane ahead of the ego, not starting behind or completely off the route.",
+      "Verify that perception, prediction, and planning modules are fully active and publishing their standard topics before the ego reaches the intersection region."
+    ],
+    "post_execution_validation_rules": [
+      "Confirm that a collision involving the ego occurs before the scenario ends and that a red-light violation or equivalent traffic-signal error is reported in the oracle/error logs.",
+      "Check that ego vehicle_status indicates nonzero speed in the last seconds before collision without clear evidence of strong braking (no large drop in speed or high brake status).",
+      "Verify that vehicle_cmd accel, brake, steer, and target speed remain zero or effectively null over the critical pre-collision window while the ego is in motion.",
+      "Ensure that at least one object (ideally the adjusted lead walker) appears in perception and prediction outputs prior to collision.",
+      "Confirm that planning final_waypoints remain populated, non-null, and not flagged as blocked for the last plan prior to impact.",
+      "Treat any recorded lane_invasion as incidental; do not require lane_invasion to validate that this scenario matches the root-cause pattern."
+    ],
+    "uncertainty": [
+      "The precise timing between ego arrival at the intersection, signal phase, and pedestrian crossing remains uncertain and may affect whether the oracle flags a red-light violation.",
+      "It is not guaranteed that the adjusted pedestrian becomes the actual collision partner; another actor or object could be involved depending on low-level execution details."
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": 3.0,
+      "fog": 2.0,
+      "wetness": 5.0,
+      "puddle": 5.0
+    },
+    "actor_mutations": [
+      {
+        "actor_index": 0,
+        "position_offset": {
+          "x": -1.0,
+          "y": 0.5
+        },
+        "speed_delta": 0.8
+      },
+      {
+        "actor_index": 1,
+        "position_offset": {
+          "x": -3.0,
+          "y": 1.0
+        },
+        "speed_delta": -0.5
+      }
+    ],
+    "puddle_mutations": [],
+    "mission_mutation": {
+      "spawn_offset": {
+        "x": 3.0,
+        "y": -2.0
+      },
+      "destination_offset": {
+        "x": -4.0,
+        "y": 1.5
+      }
+    }
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_061__gpt-5.1.json",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_061__gpt-5.1.json",
+  "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+}

@@ -1,0 +1,143 @@
+{
+  "case_id": "case_098",
+  "model_name": "gpt-5.1",
+  "candidate_index": 1,
+  "candidate_spec": {
+    "candidate_id": "cand_001",
+    "high_level_variant": "Maintain same map and mission but bring the slower linear actor closer into the ego’s lane at low relative speed to ensure a short-distance interaction and likely contact while planning still produces non-blocked final waypoints.",
+    "mutation_intent": "Tighten proximity between ego and a single slow-moving actor directly ahead/alongside, increasing the chance of contact while preserving the pattern: another actor within a few meters, active perception/prediction, available non-blocked final waypoints, and ambiguous ego actuation versus motion history.",
+    "expected_oracle": "collision",
+    "modifications": {
+      "weather_delta": {
+        "rain": 0,
+        "fog": 0,
+        "wetness": 0,
+        "puddle": 0
+      },
+      "actor_mutations": [
+        {
+          "actor_index": 0,
+          "position_offset": {
+            "x": 0.5,
+            "y": 1.0
+          },
+          "speed_delta": -1.0
+        },
+        {
+          "actor_index": 1,
+          "position_offset": {
+            "x": -0.5,
+            "y": 2.0
+          },
+          "speed_delta": 0.5
+        }
+      ],
+      "puddle_mutations": [
+        {
+          "puddle_index": 0,
+          "location_offset": {
+            "x": 1.0,
+            "y": -1.0
+          },
+          "level_delta": 0.0,
+          "size_scale": 1.0
+        },
+        {
+          "puddle_index": 1,
+          "location_offset": {
+            "x": -1.0,
+            "y": 1.0
+          },
+          "level_delta": 0.0,
+          "size_scale": 1.0
+        }
+      ],
+      "mission_mutation": {
+        "keep_original": true,
+        "spawn_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "destination_offset": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Ensure at least one non-ego actor (e.g., index 0 or 1) is spawned within 5 m Euclidean distance of the ego trajectory within the last 5 s before the planned end of the run.",
+      "Verify that perception detection topics (e.g., /detection/objects) contain at least one object in the 5 s window preceding any potential collision time.",
+      "Verify that prediction topics (e.g., /prediction/objects) are published and contain at least one predicted object in the same window.",
+      "Confirm that planning final waypoints are non-empty and structurally valid (e.g., ~O(100) points) throughout the scenario with no global failure before the anticipated collision window."
+    ],
+    "post_execution_validation_rules": [
+      "Check the oracle or simulator logs for a collision event involving the ego and a non-ego actor (index 0 or 1), not just a near-miss.",
+      "Compute the minimum distance between ego and each non-ego actor in the 5 s window before collision; require at least one to be within 3 m shortly before impact.",
+      "Confirm that final waypoints remain available and non-null (similar count as earlier in the run) up to within 1 s of the collision time, with no global ‘blocked’ or emergency-stop flags dominating the final rows.",
+      "Verify that perception and prediction topics contain at least one object in the 3 s before collision; do not require that the specific colliding actor be conclusively matched.",
+      "Inspect vehicle command and vehicle status traces: allow inconsistency (e.g., zero throttle commands while ego speed is nonzero) and do not reject the case solely for such discrepancies, to preserve attribution uncertainty."
+    ],
+    "uncertainty": [
+      "The exact mechanism of contact (which actor moves into whom, and whether the ego is nominally stopped) is left unconstrained to maintain ambiguity.",
+      "No explicit guarantee is imposed that the colliding actor is the same as any perceived object, only that at least one object exists in detection/prediction streams.",
+      "Actuation and vehicle-status consistency is intentionally not enforced, so root-cause localization can remain uncertain between planning, control, and simulation artifacts."
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": 0.0,
+      "fog": 0.0,
+      "wetness": 0.0,
+      "puddle": 0.0
+    },
+    "actor_mutations": [
+      {
+        "actor_index": 0,
+        "position_offset": {
+          "x": 0.5,
+          "y": 1.0
+        },
+        "speed_delta": -1.0
+      },
+      {
+        "actor_index": 1,
+        "position_offset": {
+          "x": -0.5,
+          "y": 2.0
+        },
+        "speed_delta": 0.5
+      }
+    ],
+    "puddle_mutations": [
+      {
+        "puddle_index": 0,
+        "location_offset": {
+          "x": 1.0,
+          "y": -1.0
+        },
+        "level_delta": 0.0,
+        "size_scale": 1.0
+      },
+      {
+        "puddle_index": 1,
+        "location_offset": {
+          "x": -1.0,
+          "y": 1.0
+        },
+        "level_delta": 0.0,
+        "size_scale": 1.0
+      }
+    ],
+    "mission_mutation": {
+      "keep_original": true
+    }
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_098__gpt-5.1.json",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_098__gpt-5.1.json",
+  "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+}

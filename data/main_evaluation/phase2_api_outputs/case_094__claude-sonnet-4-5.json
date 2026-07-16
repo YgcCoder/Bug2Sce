@@ -1,0 +1,367 @@
+{
+  "case_id": "case_094",
+  "model_name": "claude-sonnet-4-5",
+  "workflow": "phase2_grounded_generation",
+  "status": "completed",
+  "schema_valid": true,
+  "schema_errors": [],
+  "phase1_ready": "uncertain",
+  "num_candidates_requested": 2,
+  "num_candidates_written": 2,
+  "num_pre_valid": 2,
+  "candidate_records": [
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/claude-sonnet-4-5/json/case_094/case_094__cand_001.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/claude-sonnet-4-5/metadata/case_094/case_094__cand_001.metadata.json",
+      "case_id": "case_094",
+      "model_name": "claude-sonnet-4-5",
+      "candidate_index": 1,
+      "candidate_spec": {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Increase walker proximity and ego approach speed",
+        "mutation_intent": "Move walker closer to spawn and increase speed to stress collision avoidance with moderate ego velocity",
+        "expected_oracle": "collision",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 3.0,
+                "y": 2.0
+              },
+              "speed_delta": 0.5
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Walker 0 positioned within 15m of ego spawn",
+          "Ego spawn and destination unchanged"
+        ],
+        "post_execution_validation_rules": [
+          "Collision occurred",
+          "Ego speed 3-6 m/s before collision",
+          "Actor within 50m at collision time"
+        ],
+        "uncertainty": [
+          "Unclear if collision due to perception miss or planning failure",
+          "vehicle_cmd zero despite active vehicle_status",
+          "stuck and lane_invasion labels unconfirmed"
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 0.0,
+          "fog": 0.0,
+          "wetness": 0.0,
+          "puddle": 0.0
+        },
+        "actor_mutations": [
+          {
+            "actor_index": 0,
+            "position_offset": {
+              "x": 3.0,
+              "y": 2.0
+            },
+            "speed_delta": 0.5
+          }
+        ],
+        "puddle_mutations": [],
+        "mission_mutation": {
+          "keep_original": true
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_094__claude-sonnet-4-5.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_094__claude-sonnet-4-5.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    },
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/claude-sonnet-4-5/json/case_094/case_094__cand_002.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/claude-sonnet-4-5/metadata/case_094/case_094__cand_002.metadata.json",
+      "case_id": "case_094",
+      "model_name": "claude-sonnet-4-5",
+      "candidate_index": 2,
+      "candidate_spec": {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Add fog and wetness to reduce visibility",
+        "mutation_intent": "Degrade perception conditions while preserving actor layout to test detection robustness before collision",
+        "expected_oracle": "collision",
+        "modifications": {
+          "weather_delta": {
+            "rain": 10,
+            "fog": 15,
+            "wetness": 10,
+            "puddle": 5
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "speed_delta": 0.0
+            }
+          ],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": 0.1,
+              "size_scale": 1.0
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Weather fog and wetness increased",
+          "Actor positions unchanged from seed"
+        ],
+        "post_execution_validation_rules": [
+          "Collision occurred",
+          "Ego moving at moderate speed before collision",
+          "Detection outputs present in critical window"
+        ],
+        "uncertainty": [
+          "Root cause layer unknown",
+          "vehicle_cmd actuation mismatch unexplained",
+          "Closest object distance may not reflect colliding actor"
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 10.0,
+          "fog": 15.0,
+          "wetness": 10.0,
+          "puddle": 5.0
+        },
+        "actor_mutations": [
+          {
+            "actor_index": 0,
+            "position_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "speed_delta": 0.0
+          }
+        ],
+        "puddle_mutations": [
+          {
+            "puddle_index": 0,
+            "location_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "level_delta": 0.1,
+            "size_scale": 1.0
+          }
+        ],
+        "mission_mutation": {
+          "keep_original": true
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_094__claude-sonnet-4-5.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_094__claude-sonnet-4-5.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    }
+  ],
+  "seed_artifact_zip": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/claude-sonnet-4-5/seed-artifact/seed-artifact-case_094.zip",
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_prompts/case_094__claude-sonnet-4-5.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_094__claude-sonnet-4-5.json",
+  "prompt_estimated_tokens": 1384,
+  "usage": {
+    "prompt_tokens": 1660,
+    "completion_tokens": 768,
+    "total_tokens": 2428
+  },
+  "raw_response": "```json\n{\n  \"case_id\": \"case_094\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Increase walker proximity and ego approach speed\",\n      \"mutation_intent\": \"Move walker closer to spawn and increase speed to stress collision avoidance with moderate ego velocity\",\n      \"expected_oracle\": \"collision\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 3.0, \"y\": 2.0}, \"speed_delta\": 0.5}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Walker 0 positioned within 15m of ego spawn\", \"Ego spawn and destination unchanged\"],\n      \"post_execution_validation_rules\": [\"Collision occurred\", \"Ego speed 3-6 m/s before collision\", \"Actor within 50m at collision time\"],\n      \"uncertainty\": [\"Unclear if collision due to perception miss or planning failure\", \"vehicle_cmd zero despite active vehicle_status\", \"stuck and lane_invasion labels unconfirmed\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Add fog and wetness to reduce visibility\",\n      \"mutation_intent\": \"Degrade perception conditions while preserving actor layout to test detection robustness before collision\",\n      \"expected_oracle\": \"collision\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 10, \"fog\": 15, \"wetness\": 10, \"puddle\": 5},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 0.0, \"y\": 0.0}, \"speed_delta\": 0.0}\n        ],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": 0.1, \"size_scale\": 1.0}\n        ],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Weather fog and wetness increased\", \"Actor positions unchanged from seed\"],\n      \"post_execution_validation_rules\": [\"Collision occurred\", \"Ego moving at moderate speed before collision\", \"Detection outputs present in critical window\"],\n      \"uncertainty\": [\"Root cause layer unknown\", \"vehicle_cmd actuation mismatch unexplained\", \"Closest object distance may not reflect colliding actor\"]\n    }\n  ]\n}\n```",
+  "parsed_response": {
+    "case_id": "case_094",
+    "candidate_specs": [
+      {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Increase walker proximity and ego approach speed",
+        "mutation_intent": "Move walker closer to spawn and increase speed to stress collision avoidance with moderate ego velocity",
+        "expected_oracle": "collision",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 3.0,
+                "y": 2.0
+              },
+              "speed_delta": 0.5
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Walker 0 positioned within 15m of ego spawn",
+          "Ego spawn and destination unchanged"
+        ],
+        "post_execution_validation_rules": [
+          "Collision occurred",
+          "Ego speed 3-6 m/s before collision",
+          "Actor within 50m at collision time"
+        ],
+        "uncertainty": [
+          "Unclear if collision due to perception miss or planning failure",
+          "vehicle_cmd zero despite active vehicle_status",
+          "stuck and lane_invasion labels unconfirmed"
+        ]
+      },
+      {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Add fog and wetness to reduce visibility",
+        "mutation_intent": "Degrade perception conditions while preserving actor layout to test detection robustness before collision",
+        "expected_oracle": "collision",
+        "modifications": {
+          "weather_delta": {
+            "rain": 10,
+            "fog": 15,
+            "wetness": 10,
+            "puddle": 5
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "speed_delta": 0.0
+            }
+          ],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": 0.1,
+              "size_scale": 1.0
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Weather fog and wetness increased",
+          "Actor positions unchanged from seed"
+        ],
+        "post_execution_validation_rules": [
+          "Collision occurred",
+          "Ego moving at moderate speed before collision",
+          "Detection outputs present in critical window"
+        ],
+        "uncertainty": [
+          "Root cause layer unknown",
+          "vehicle_cmd actuation mismatch unexplained",
+          "Closest object distance may not reflect colliding actor"
+        ]
+      }
+    ]
+  },
+  "raw_api_payload": {
+    "id": "<REDACTED_RESPONSE_ID>",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "```json\n{\n  \"case_id\": \"case_094\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Increase walker proximity and ego approach speed\",\n      \"mutation_intent\": \"Move walker closer to spawn and increase speed to stress collision avoidance with moderate ego velocity\",\n      \"expected_oracle\": \"collision\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 3.0, \"y\": 2.0}, \"speed_delta\": 0.5}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Walker 0 positioned within 15m of ego spawn\", \"Ego spawn and destination unchanged\"],\n      \"post_execution_validation_rules\": [\"Collision occurred\", \"Ego speed 3-6 m/s before collision\", \"Actor within 50m at collision time\"],\n      \"uncertainty\": [\"Unclear if collision due to perception miss or planning failure\", \"vehicle_cmd zero despite active vehicle_status\", \"stuck and lane_invasion labels unconfirmed\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Add fog and wetness to reduce visibility\",\n      \"mutation_intent\": \"Degrade perception conditions while preserving actor layout to test detection robustness before collision\",\n      \"expected_oracle\": \"collision\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 10, \"fog\": 15, \"wetness\": 10, \"puddle\": 5},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 0.0, \"y\": 0.0}, \"speed_delta\": 0.0}\n        ],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": 0.1, \"size_scale\": 1.0}\n        ],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Weather fog and wetness increased\", \"Actor positions unchanged from seed\"],\n      \"post_execution_validation_rules\": [\"Collision occurred\", \"Ego moving at moderate speed before collision\", \"Detection outputs present in critical window\"],\n      \"uncertainty\": [\"Root cause layer unknown\", \"vehicle_cmd actuation mismatch unexplained\", \"Closest object distance may not reflect colliding actor\"]\n    }\n  ]\n}\n```",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "claude-sonnet-4-5",
+    "object": "chat.completion",
+    "service_tier": null,
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 768,
+      "prompt_tokens": 1660,
+      "total_tokens": 2428,
+      "completion_tokens_details": null,
+      "prompt_tokens_details": null
+    }
+  },
+  "error_message": "",
+  "elapsed_sec": 13.379,
+  "timestamp": "<REDACTED_TIMESTAMP>"
+}

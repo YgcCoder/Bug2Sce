@@ -1,0 +1,365 @@
+{
+  "case_id": "case_061",
+  "model_name": "claude-sonnet-4-5",
+  "workflow": "phase2_grounded_generation",
+  "status": "completed",
+  "schema_valid": true,
+  "schema_errors": [],
+  "phase1_ready": "uncertain",
+  "num_candidates_requested": 2,
+  "num_candidates_written": 2,
+  "num_pre_valid": 2,
+  "candidate_records": [
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/claude-sonnet-4-5/json/case_061/case_061__cand_001.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/claude-sonnet-4-5/metadata/case_061/case_061__cand_001.metadata.json",
+      "case_id": "case_061",
+      "model_name": "claude-sonnet-4-5",
+      "candidate_index": 1,
+      "candidate_spec": {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Increase rain and wetness to amplify intersection collision scenario",
+        "mutation_intent": "Preserve collision with traffic light and actor presence, test under degraded visibility and traction conditions",
+        "expected_oracle": "collision",
+        "modifications": {
+          "weather_delta": {
+            "rain": 15,
+            "fog": 5,
+            "wetness": 10,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 1.5,
+                "y": -1.0
+              },
+              "speed_delta": 0.3
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Traffic light infrastructure present near ego route",
+          "Actor within 60m of ego spawn",
+          "Intersection geometry preserved"
+        ],
+        "post_execution_validation_rules": [
+          "Collision oracle triggered",
+          "Ego speed 3-6 m/s in critical window",
+          "Vehicle_cmd vs vehicle_status consistency checked"
+        ],
+        "uncertainty": [
+          "Red-light violation route-light relation unconfirmed",
+          "vehicle_cmd/vehicle_status mismatch may persist",
+          "Actor collision timing not detailed"
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 15.0,
+          "fog": 5.0,
+          "wetness": 10.0,
+          "puddle": 0.0
+        },
+        "actor_mutations": [
+          {
+            "actor_index": 0,
+            "position_offset": {
+              "x": 1.5,
+              "y": -1.0
+            },
+            "speed_delta": 0.3
+          }
+        ],
+        "puddle_mutations": [],
+        "mission_mutation": {
+          "keep_original": true
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_061__claude-sonnet-4-5.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_061__claude-sonnet-4-5.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    },
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/claude-sonnet-4-5/json/case_061/case_061__cand_002.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/claude-sonnet-4-5/metadata/case_061/case_061__cand_002.metadata.json",
+      "case_id": "case_061",
+      "model_name": "claude-sonnet-4-5",
+      "candidate_index": 2,
+      "candidate_spec": {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Shift actor closer to ego path with reduced speed",
+        "mutation_intent": "Preserve collision and traffic light presence, increase actor-route interaction likelihood by proximity adjustment",
+        "expected_oracle": "collision",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 3.0,
+                "y": 2.5
+              },
+              "speed_delta": -0.5
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": -2.0,
+                "y": 1.5
+              },
+              "speed_delta": 0.0
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Traffic light near ego route",
+          "Both actors within 60m of ego spawn",
+          "Intersection preserved"
+        ],
+        "post_execution_validation_rules": [
+          "Collision oracle triggered",
+          "Ego speed 3-6 m/s before collision",
+          "Actor proximity under 20m in critical window"
+        ],
+        "uncertainty": [
+          "Lane invasion label inconsistency unresolved",
+          "Module-level fault attribution unknown",
+          "Stop-line crossing not confirmed"
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 0.0,
+          "fog": 0.0,
+          "wetness": 0.0,
+          "puddle": 0.0
+        },
+        "actor_mutations": [
+          {
+            "actor_index": 0,
+            "position_offset": {
+              "x": 3.0,
+              "y": 2.5
+            },
+            "speed_delta": -0.5
+          },
+          {
+            "actor_index": 1,
+            "position_offset": {
+              "x": -2.0,
+              "y": 1.5
+            },
+            "speed_delta": 0.0
+          }
+        ],
+        "puddle_mutations": [],
+        "mission_mutation": {
+          "keep_original": true
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_061__claude-sonnet-4-5.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_061__claude-sonnet-4-5.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    }
+  ],
+  "seed_artifact_zip": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/claude-sonnet-4-5/seed-artifact/seed-artifact-case_061.zip",
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_prompts/case_061__claude-sonnet-4-5.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_061__claude-sonnet-4-5.json",
+  "prompt_estimated_tokens": 1392,
+  "usage": {
+    "prompt_tokens": 1611,
+    "completion_tokens": 778,
+    "total_tokens": 2389
+  },
+  "raw_response": "```json\n{\n  \"case_id\": \"case_061\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Increase rain and wetness to amplify intersection collision scenario\",\n      \"mutation_intent\": \"Preserve collision with traffic light and actor presence, test under degraded visibility and traction conditions\",\n      \"expected_oracle\": \"collision\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 15, \"fog\": 5, \"wetness\": 10, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 1.5, \"y\": -1.0}, \"speed_delta\": 0.3}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Traffic light infrastructure present near ego route\", \"Actor within 60m of ego spawn\", \"Intersection geometry preserved\"],\n      \"post_execution_validation_rules\": [\"Collision oracle triggered\", \"Ego speed 3-6 m/s in critical window\", \"Vehicle_cmd vs vehicle_status consistency checked\"],\n      \"uncertainty\": [\"Red-light violation route-light relation unconfirmed\", \"vehicle_cmd/vehicle_status mismatch may persist\", \"Actor collision timing not detailed\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Shift actor closer to ego path with reduced speed\",\n      \"mutation_intent\": \"Preserve collision and traffic light presence, increase actor-route interaction likelihood by proximity adjustment\",\n      \"expected_oracle\": \"collision\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 3.0, \"y\": 2.5}, \"speed_delta\": -0.5},\n          {\"actor_index\": 1, \"position_offset\": {\"x\": -2.0, \"y\": 1.5}, \"speed_delta\": 0.0}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Traffic light near ego route\", \"Both actors within 60m of ego spawn\", \"Intersection preserved\"],\n      \"post_execution_validation_rules\": [\"Collision oracle triggered\", \"Ego speed 3-6 m/s before collision\", \"Actor proximity under 20m in critical window\"],\n      \"uncertainty\": [\"Lane invasion label inconsistency unresolved\", \"Module-level fault attribution unknown\", \"Stop-line crossing not confirmed\"]\n    }\n  ]\n}\n```",
+  "parsed_response": {
+    "case_id": "case_061",
+    "candidate_specs": [
+      {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Increase rain and wetness to amplify intersection collision scenario",
+        "mutation_intent": "Preserve collision with traffic light and actor presence, test under degraded visibility and traction conditions",
+        "expected_oracle": "collision",
+        "modifications": {
+          "weather_delta": {
+            "rain": 15,
+            "fog": 5,
+            "wetness": 10,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 1.5,
+                "y": -1.0
+              },
+              "speed_delta": 0.3
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Traffic light infrastructure present near ego route",
+          "Actor within 60m of ego spawn",
+          "Intersection geometry preserved"
+        ],
+        "post_execution_validation_rules": [
+          "Collision oracle triggered",
+          "Ego speed 3-6 m/s in critical window",
+          "Vehicle_cmd vs vehicle_status consistency checked"
+        ],
+        "uncertainty": [
+          "Red-light violation route-light relation unconfirmed",
+          "vehicle_cmd/vehicle_status mismatch may persist",
+          "Actor collision timing not detailed"
+        ]
+      },
+      {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Shift actor closer to ego path with reduced speed",
+        "mutation_intent": "Preserve collision and traffic light presence, increase actor-route interaction likelihood by proximity adjustment",
+        "expected_oracle": "collision",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 3.0,
+                "y": 2.5
+              },
+              "speed_delta": -0.5
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": -2.0,
+                "y": 1.5
+              },
+              "speed_delta": 0.0
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Traffic light near ego route",
+          "Both actors within 60m of ego spawn",
+          "Intersection preserved"
+        ],
+        "post_execution_validation_rules": [
+          "Collision oracle triggered",
+          "Ego speed 3-6 m/s before collision",
+          "Actor proximity under 20m in critical window"
+        ],
+        "uncertainty": [
+          "Lane invasion label inconsistency unresolved",
+          "Module-level fault attribution unknown",
+          "Stop-line crossing not confirmed"
+        ]
+      }
+    ]
+  },
+  "raw_api_payload": {
+    "id": "<REDACTED_RESPONSE_ID>",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "```json\n{\n  \"case_id\": \"case_061\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Increase rain and wetness to amplify intersection collision scenario\",\n      \"mutation_intent\": \"Preserve collision with traffic light and actor presence, test under degraded visibility and traction conditions\",\n      \"expected_oracle\": \"collision\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 15, \"fog\": 5, \"wetness\": 10, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 1.5, \"y\": -1.0}, \"speed_delta\": 0.3}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Traffic light infrastructure present near ego route\", \"Actor within 60m of ego spawn\", \"Intersection geometry preserved\"],\n      \"post_execution_validation_rules\": [\"Collision oracle triggered\", \"Ego speed 3-6 m/s in critical window\", \"Vehicle_cmd vs vehicle_status consistency checked\"],\n      \"uncertainty\": [\"Red-light violation route-light relation unconfirmed\", \"vehicle_cmd/vehicle_status mismatch may persist\", \"Actor collision timing not detailed\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Shift actor closer to ego path with reduced speed\",\n      \"mutation_intent\": \"Preserve collision and traffic light presence, increase actor-route interaction likelihood by proximity adjustment\",\n      \"expected_oracle\": \"collision\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 3.0, \"y\": 2.5}, \"speed_delta\": -0.5},\n          {\"actor_index\": 1, \"position_offset\": {\"x\": -2.0, \"y\": 1.5}, \"speed_delta\": 0.0}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Traffic light near ego route\", \"Both actors within 60m of ego spawn\", \"Intersection preserved\"],\n      \"post_execution_validation_rules\": [\"Collision oracle triggered\", \"Ego speed 3-6 m/s before collision\", \"Actor proximity under 20m in critical window\"],\n      \"uncertainty\": [\"Lane invasion label inconsistency unresolved\", \"Module-level fault attribution unknown\", \"Stop-line crossing not confirmed\"]\n    }\n  ]\n}\n```",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "claude-sonnet-4-5",
+    "object": "chat.completion",
+    "service_tier": null,
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 778,
+      "prompt_tokens": 1611,
+      "total_tokens": 2389,
+      "completion_tokens_details": null,
+      "prompt_tokens_details": null
+    }
+  },
+  "error_message": "",
+  "elapsed_sec": 13.442,
+  "timestamp": "<REDACTED_TIMESTAMP>"
+}

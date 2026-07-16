@@ -1,0 +1,86 @@
+{
+  "case_id": "case_168",
+  "model_name": "claude-sonnet-4-5",
+  "workflow": "pure_llm_phase2_baseline",
+  "candidate_index": 1,
+  "candidate_spec": {
+    "candidate_id": "cand_001",
+    "high_level_variant": "Increase rain and fog near spawn with larger puddle",
+    "mutation_intent": "Worsen visibility and road wetness to stress lane-keeping and traffic-light detection near mission start",
+    "expected_oracle": "compound",
+    "modifications": {
+      "weather_delta": {
+        "rain": 15,
+        "fog": 12,
+        "wetness": 10,
+        "puddle": 8
+      },
+      "actor_mutations": [],
+      "puddle_mutations": [
+        {
+          "puddle_index": 0,
+          "location_offset": {
+            "x": 2.0,
+            "y": 3.0
+          },
+          "level_delta": 0.15,
+          "size_scale": 1.15
+        }
+      ],
+      "mission_mutation": {
+        "keep_original": true,
+        "spawn_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "destination_offset": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Puddle level must not exceed 2.0 after delta applied"
+    ],
+    "post_execution_validation_rules": [
+      "Check both lane invasion and red light violation occurred"
+    ],
+    "uncertainty": [
+      "Unclear if weather alone triggers both faults or if route timing matters"
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": 15.0,
+      "fog": 12.0,
+      "wetness": 10.0,
+      "puddle": 8.0
+    },
+    "actor_mutations": [],
+    "puddle_mutations": [
+      {
+        "puddle_index": 0,
+        "location_offset": {
+          "x": 2.0,
+          "y": 3.0
+        },
+        "level_delta": 0.15,
+        "size_scale": 1.15
+      }
+    ],
+    "mission_mutation": {
+      "keep_original": true
+    },
+    "safety_repairs": []
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": [
+      "no actors in candidate scenario"
+    ]
+  },
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/pure_llm_phase2_api_prompts/case_168__claude-sonnet-4-5.md",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/pure_llm_phase2_api_outputs/case_168__claude-sonnet-4-5.json",
+  "baseline_note": "Pure-LLM baseline: prompt used no root-cause pattern or critical-window evidence."
+}

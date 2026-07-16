@@ -1,0 +1,111 @@
+{
+  "case_id": "case_168",
+  "model_name": "gpt-5.1",
+  "workflow": "pure_llm_phase2_baseline",
+  "candidate_index": 1,
+  "candidate_spec": {
+    "candidate_id": "cand_001",
+    "high_level_variant": "Rainier, foggier approach to intersection near large puddles",
+    "mutation_intent": "Increase rain and fog, slightly shift mission to stress lane keeping and signals",
+    "expected_oracle": "compound",
+    "modifications": {
+      "weather_delta": {
+        "rain": 10,
+        "fog": 15,
+        "wetness": 10,
+        "puddle": 5
+      },
+      "actor_mutations": [],
+      "puddle_mutations": [
+        {
+          "puddle_index": 0,
+          "location_offset": {
+            "x": 2.0,
+            "y": -3.0
+          },
+          "level_delta": 0.1,
+          "size_scale": 1.1
+        },
+        {
+          "puddle_index": 1,
+          "location_offset": {
+            "x": -2.5,
+            "y": 2.5
+          },
+          "level_delta": 0.05,
+          "size_scale": 1.05
+        }
+      ],
+      "mission_mutation": {
+        "keep_original": false,
+        "spawn_offset": {
+          "x": 3.0,
+          "y": -2.0
+        },
+        "destination_offset": {
+          "x": -4.0,
+          "y": 1.5
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Ensure puddles remain on-road and mission stays drivable"
+    ],
+    "post_execution_validation_rules": [
+      "Check for lane invasion or red light breach anywhere"
+    ],
+    "uncertainty": [
+      "Signal timing and lane markings visibility under heavier rain and fog"
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": 10.0,
+      "fog": 15.0,
+      "wetness": 10.0,
+      "puddle": 5.0
+    },
+    "actor_mutations": [],
+    "puddle_mutations": [
+      {
+        "puddle_index": 0,
+        "location_offset": {
+          "x": 2.0,
+          "y": -3.0
+        },
+        "level_delta": 0.1,
+        "size_scale": 1.1
+      },
+      {
+        "puddle_index": 1,
+        "location_offset": {
+          "x": -2.5,
+          "y": 2.5
+        },
+        "level_delta": 0.05,
+        "size_scale": 1.05
+      }
+    ],
+    "mission_mutation": {
+      "spawn_offset": {
+        "x": 3.0,
+        "y": -2.0
+      },
+      "destination_offset": {
+        "x": -4.0,
+        "y": 1.5
+      }
+    },
+    "safety_repairs": []
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": [
+      "no actors in candidate scenario"
+    ]
+  },
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/pure_llm_phase2_api_prompts/case_168__gpt-5.1.md",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/pure_llm_phase2_api_outputs/case_168__gpt-5.1.json",
+  "baseline_note": "Pure-LLM baseline: prompt used no root-cause pattern or critical-window evidence."
+}

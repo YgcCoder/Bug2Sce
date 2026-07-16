@@ -1,0 +1,152 @@
+{
+  "case_id": "case_039",
+  "model_name": "gpt-5.1",
+  "candidate_index": 2,
+  "candidate_spec": {
+    "candidate_id": "cand_002",
+    "high_level_variant": "Ego follows nearly original route with reduced puddling near goal and slightly repositioned static vehicle, emphasizing continuous motion past the nominal destination while commands stay zero and oracle still flags only a goal failure",
+    "mutation_intent": "Bias the scenario toward the ego overshooting or drifting past the nominal destination while still under stable planning with perception active and zero vehicle_cmd, reinforcing the pattern where the oracle only reports a goal-related failure. Reducing a near-goal puddle and shifting the parked car slightly away from the goal area keeps the path visually simpler while still providing objects for perception/prediction, helping isolate the goal-miss plus motion-without-command pattern.",
+    "expected_oracle": "unknown",
+    "modifications": {
+      "weather_delta": {
+        "rain": -2,
+        "fog": 0,
+        "wetness": -5,
+        "puddle": -5
+      },
+      "actor_mutations": [
+        {
+          "actor_index": 0,
+          "position_offset": {
+            "x": 2.0,
+            "y": -1.0
+          },
+          "speed_delta": 0.0
+        }
+      ],
+      "puddle_mutations": [
+        {
+          "puddle_index": 0,
+          "location_offset": {
+            "x": 0.5,
+            "y": -0.5
+          },
+          "level_delta": -0.1,
+          "size_scale": 0.9
+        },
+        {
+          "puddle_index": 1,
+          "location_offset": {
+            "x": 0.0,
+            "y": -1.0
+          },
+          "level_delta": -0.1,
+          "size_scale": 0.9
+        },
+        {
+          "puddle_index": 2,
+          "location_offset": {
+            "x": -1.0,
+            "y": 0.0
+          },
+          "level_delta": -0.05,
+          "size_scale": 0.9
+        }
+      ],
+      "mission_mutation": {
+        "keep_original": false,
+        "spawn_offset": {
+          "x": -1.5,
+          "y": 1.0
+        },
+        "destination_offset": {
+          "x": -3.0,
+          "y": 2.0
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Verify that the mutated spawn and destination still lie on or very close to valid drivable lanes in Town01 such that a reasonable planner can generate a lane_waypoints_array-style route.",
+      "Ensure that the static vehicle (actor_index 0) remains within sensor range (e.g., <80 m) of the ego for a substantial portion of the run so that perception and prediction outputs include at least one object.",
+      "Check that the reduced puddle levels do not disable the puddle entities altogether; puddles should still be present in the environment.",
+      "Confirm that, under nominal control, the ego’s route would pass near the destination but is not trivially blocked or forced off-road by map geometry or the repositioned actor."
+    ],
+    "post_execution_validation_rules": [
+      "Verify that the oracle/error_json still indicates a non-success goal-related outcome and does not log collision, stuck, lane-invasion, red-light, or speeding events.",
+      "Confirm that vehicle_cmd remains effectively zero for acceleration, braking, steering, and target speed throughout the critical window while vehicle_status indicates continuous nonzero speed and a net displacement of at least tens of meters.",
+      "Ensure that final_waypoints and route/lane_waypoints_array remain consistently populated and do not show large gaps or complete dropouts before the goal failure is recorded.",
+      "Check that the ego does not actually collide with the static vehicle or leave the drivable lane area in a way that should have triggered a collision or lane-invasion oracle event.",
+      "Confirm that perception and prediction objects (including the static vehicle) are regularly published across the critical window without extended outages."
+    ],
+    "uncertainty": [
+      "Shifting the mission end point could change when or whether a goal-miss condition is triggered, so reproducing the exact goal-failure semantics is uncertain.",
+      "Reducing puddle intensity may slightly alter vehicle dynamics or sensor noise, and it is unknown whether this affects the observed motion-without-command mismatch.",
+      "The exact tolerance of the oracle for goal proximity and timing is not specified, so the ego might be judged successful or might trigger a different non-goal oracle if internal thresholds differ from the seed case."
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": -2.0,
+      "fog": 0.0,
+      "wetness": -5.0,
+      "puddle": -5.0
+    },
+    "actor_mutations": [
+      {
+        "actor_index": 0,
+        "position_offset": {
+          "x": 2.0,
+          "y": -1.0
+        },
+        "speed_delta": 0.0
+      }
+    ],
+    "puddle_mutations": [
+      {
+        "puddle_index": 0,
+        "location_offset": {
+          "x": 0.5,
+          "y": -0.5
+        },
+        "level_delta": -0.1,
+        "size_scale": 0.9
+      },
+      {
+        "puddle_index": 1,
+        "location_offset": {
+          "x": 0.0,
+          "y": -1.0
+        },
+        "level_delta": -0.1,
+        "size_scale": 0.9
+      },
+      {
+        "puddle_index": 2,
+        "location_offset": {
+          "x": -1.0,
+          "y": 0.0
+        },
+        "level_delta": -0.05,
+        "size_scale": 0.9
+      }
+    ],
+    "mission_mutation": {
+      "spawn_offset": {
+        "x": -1.5,
+        "y": 1.0
+      },
+      "destination_offset": {
+        "x": -3.0,
+        "y": 2.0
+      }
+    }
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_039__gpt-5.1.json",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_039__gpt-5.1.json",
+  "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+}

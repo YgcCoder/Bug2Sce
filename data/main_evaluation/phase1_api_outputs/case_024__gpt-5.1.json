@@ -1,0 +1,137 @@
+{
+  "case_id": "case_024",
+  "workflow": "phase1_causal_explanation",
+  "model_name": "gpt-5.1",
+  "model_id": "gpt-5.1",
+  "status": "completed",
+  "dry_run": false,
+  "schema_valid": true,
+  "schema_errors": [],
+  "quality_flags": [],
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_prompts/case_024__gpt-5.1.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_024__gpt-5.1.json",
+  "prompt_estimated_tokens": 3223,
+  "usage": {
+    "prompt_tokens": 3447,
+    "completion_tokens": 1219,
+    "total_tokens": 4666
+  },
+  "estimated_cost_usd": null,
+  "raw_response": "{\n  \"case_id\": \"case_024\",\n  \"fault_layer\": \"unknown\",\n  \"fault_component\": \"unknown\",\n  \"causal_explanation\": \"A collision occurs while the ego is still moving at low speed near another object, with both detected and predicted objects present and final waypoints available. The oracle also flags a red-light violation, and traffic light states are observed, but the relation between the ego route and the lights and any stop-line crossing are not confirmed. Throughout the drive, vehicle_cmd remains zero while vehicle_status shows nonzero speed and some braking, so the internal control behavior and its contribution to the collision and red-light violation remain uncertain.\",\n  \"root_cause_pattern\": \"Conservative preservation pattern: ego vehicle is in motion with nearby objects and valid final waypoints when a collision and a red-light violation are reported, under conditions where traffic light states are available but the route-light relation and stop-line crossing are unknown and controller commands appear decoupled from reported vehicle motion.\",\n  \"preservation_constraints\": [\n    \"The generated case should reproduce a collision symptom while the ego still has nonzero speed in the last part of the collision window.\",\n    \"Detected and predicted objects should be present in the critical window before the collision, indicating at least one nearby actor.\",\n    \"Final waypoints should remain continuously available up to the collision, with a nonempty waypoint list and no persistent blocked flag.\",\n    \"Traffic lights and their state history should be available before failure, with the oracle reporting a red-light violation but without confirmed route-light relation or stop-line crossing.\",\n    \"vehicle_cmd messages should remain effectively zeroed over the run while vehicle_status or odometry indicate ego motion in the critical window.\"\n  ],\n  \"modifiable_factors\": [\n    \"actor_position\",\n    \"actor_motion\",\n    \"weather\",\n    \"puddles\",\n    \"ego_start_pose\",\n    \"goal_pose\",\n    \"traffic_light_timing\"\n  ],\n  \"non_modifiable_conditions\": [\n    \"Oracle must report both a collision and a red-light violation in the run.\",\n    \"Ego must be moving (nonzero velocity) shortly before the collision timestamp.\",\n    \"Perception-level object topics (detection and prediction) must report at least one object in the critical window before collision.\",\n    \"Planning final_waypoints must be present and populated throughout the critical window before collision.\",\n    \"Traffic light topic must be present with varying signal states prior to the reported violation, while route-light relation and stop-line crossing remain unconfirmed.\",\n    \"vehicle_cmd must remain at or near zero for acceleration, braking, steering, and target speed despite ego motion.\"\n  ],\n  \"uncertainty\": [\n    \"The specific interaction geometry between ego and the colliding actor is not provided; only distance to the closest object is summarized.\",\n    \"The exact timing and mechanism of the red-light violation are unknown, including whether a stop line was crossed on red.\",\n    \"The mapping between traffic light IDs, their states, and the ego route is not established.\",\n    \"Zeroed vehicle_cmd alongside ego motion and braking in vehicle_status could indicate logging artifacts, external control, or an internal controller issue; attribution to actuation or planning is therefore uncertain.\",\n    \"No direct evidence links perception errors (e.g., missed objects or lights) or planning decisions to the collision and red-light violation.\"\n  ],\n  \"evidence_support\": [\n    {\n      \"evidence_id\": \"critical_window_summary.collision_window\",\n      \"claim\": \"Collision occurs at 32.6104 s with ego moving at a few m/s beforehand; detected and predicted objects and final waypoints are available in the critical window.\"\n    },\n    {\n      \"evidence_id\": \"critical_window_summary.collision_window.evidence_of_braking_or_stopping\",\n      \"claim\": \"Vehicle_status shows nonzero brake and decreasing speed, while vehicle_cmd brake_cmd remains zero, indicating a mismatch between commanded and reported actuation.\"\n    },\n    {\n      \"evidence_id\": \"critical_window_summary.closest_available_object_info\",\n      \"claim\": \"A closest object is reported within a few meters of the ego around the collision window, supporting the presence of a nearby actor during the event.\"\n    },\n    {\n      \"evidence_id\": \"critical_window_summary.red_light_window\",\n      \"claim\": \"Error_json flags a red-light violation and traffic light states are available, but route-light relation and stop-line crossing are marked unknown.\"\n    },\n    {\n      \"evidence_id\": \"trace_summary_compact.planning.final_waypoints\",\n      \"claim\": \"Final_waypoints exist continuously up to the end of the run with substantial waypoint counts and no sampled blocked rows.\"\n    },\n    {\n      \"evidence_id\": \"trace_summary_compact.actuation\",\n      \"claim\": \"vehicle_cmd exists with all-zero accel, brake, steer, and target speed ranges while vehicle_status reports nonzero velocity during the run.\"\n    }\n  ],\n  \"confidence\": \"medium\",\n  \"ready_for_phase2_generation\": \"yes\",\n  \"notes_for_validator\": [\n    \"Verify after execution that the oracle again reports both collision and red-light violation for a candidate to be considered same-root-cause.\",\n    \"Check that ego velocity is nonzero shortly before collision and that a nearby object is present in perception topics in the critical window.\",\n    \"Confirm that final_waypoints remain available and populated up to the collision time without a persistent blocked flag.\",\n    \"Ensure that traffic_lights topic is present with changing states, while post-hoc analysis still cannot definitively link a particular signal to the ego route or confirm stop-line crossing.\",\n    \"Confirm that vehicle_cmd remains effectively zero throughout the run while vehicle_status or odometry show ego motion, preserving the controller-command mismatch pattern.\",\n    \"Do not attribute the reproduced failure to a specific Autoware module unless additional execution evidence clearly localizes the fault beyond the patterns described here.\"\n  ]\n}",
+  "parsed_response": {
+    "case_id": "case_024",
+    "fault_layer": "unknown",
+    "fault_component": "unknown",
+    "causal_explanation": "A collision occurs while the ego is still moving at low speed near another object, with both detected and predicted objects present and final waypoints available. The oracle also flags a red-light violation, and traffic light states are observed, but the relation between the ego route and the lights and any stop-line crossing are not confirmed. Throughout the drive, vehicle_cmd remains zero while vehicle_status shows nonzero speed and some braking, so the internal control behavior and its contribution to the collision and red-light violation remain uncertain.",
+    "root_cause_pattern": "Conservative preservation pattern: ego vehicle is in motion with nearby objects and valid final waypoints when a collision and a red-light violation are reported, under conditions where traffic light states are available but the route-light relation and stop-line crossing are unknown and controller commands appear decoupled from reported vehicle motion.",
+    "preservation_constraints": [
+      "The generated case should reproduce a collision symptom while the ego still has nonzero speed in the last part of the collision window.",
+      "Detected and predicted objects should be present in the critical window before the collision, indicating at least one nearby actor.",
+      "Final waypoints should remain continuously available up to the collision, with a nonempty waypoint list and no persistent blocked flag.",
+      "Traffic lights and their state history should be available before failure, with the oracle reporting a red-light violation but without confirmed route-light relation or stop-line crossing.",
+      "vehicle_cmd messages should remain effectively zeroed over the run while vehicle_status or odometry indicate ego motion in the critical window."
+    ],
+    "modifiable_factors": [
+      "actor_position",
+      "actor_motion",
+      "weather",
+      "puddles",
+      "ego_start_pose",
+      "goal_pose",
+      "traffic_light_timing"
+    ],
+    "non_modifiable_conditions": [
+      "Oracle must report both a collision and a red-light violation in the run.",
+      "Ego must be moving (nonzero velocity) shortly before the collision timestamp.",
+      "Perception-level object topics (detection and prediction) must report at least one object in the critical window before collision.",
+      "Planning final_waypoints must be present and populated throughout the critical window before collision.",
+      "Traffic light topic must be present with varying signal states prior to the reported violation, while route-light relation and stop-line crossing remain unconfirmed.",
+      "vehicle_cmd must remain at or near zero for acceleration, braking, steering, and target speed despite ego motion."
+    ],
+    "uncertainty": [
+      "The specific interaction geometry between ego and the colliding actor is not provided; only distance to the closest object is summarized.",
+      "The exact timing and mechanism of the red-light violation are unknown, including whether a stop line was crossed on red.",
+      "The mapping between traffic light IDs, their states, and the ego route is not established.",
+      "Zeroed vehicle_cmd alongside ego motion and braking in vehicle_status could indicate logging artifacts, external control, or an internal controller issue; attribution to actuation or planning is therefore uncertain.",
+      "No direct evidence links perception errors (e.g., missed objects or lights) or planning decisions to the collision and red-light violation."
+    ],
+    "evidence_support": [
+      {
+        "evidence_id": "critical_window_summary.collision_window",
+        "claim": "Collision occurs at 32.6104 s with ego moving at a few m/s beforehand; detected and predicted objects and final waypoints are available in the critical window."
+      },
+      {
+        "evidence_id": "critical_window_summary.collision_window.evidence_of_braking_or_stopping",
+        "claim": "Vehicle_status shows nonzero brake and decreasing speed, while vehicle_cmd brake_cmd remains zero, indicating a mismatch between commanded and reported actuation."
+      },
+      {
+        "evidence_id": "critical_window_summary.closest_available_object_info",
+        "claim": "A closest object is reported within a few meters of the ego around the collision window, supporting the presence of a nearby actor during the event."
+      },
+      {
+        "evidence_id": "critical_window_summary.red_light_window",
+        "claim": "Error_json flags a red-light violation and traffic light states are available, but route-light relation and stop-line crossing are marked unknown."
+      },
+      {
+        "evidence_id": "trace_summary_compact.planning.final_waypoints",
+        "claim": "Final_waypoints exist continuously up to the end of the run with substantial waypoint counts and no sampled blocked rows."
+      },
+      {
+        "evidence_id": "trace_summary_compact.actuation",
+        "claim": "vehicle_cmd exists with all-zero accel, brake, steer, and target speed ranges while vehicle_status reports nonzero velocity during the run."
+      }
+    ],
+    "confidence": "medium",
+    "ready_for_phase2_generation": "yes",
+    "notes_for_validator": [
+      "Verify after execution that the oracle again reports both collision and red-light violation for a candidate to be considered same-root-cause.",
+      "Check that ego velocity is nonzero shortly before collision and that a nearby object is present in perception topics in the critical window.",
+      "Confirm that final_waypoints remain available and populated up to the collision time without a persistent blocked flag.",
+      "Ensure that traffic_lights topic is present with changing states, while post-hoc analysis still cannot definitively link a particular signal to the ego route or confirm stop-line crossing.",
+      "Confirm that vehicle_cmd remains effectively zero throughout the run while vehicle_status or odometry show ego motion, preserving the controller-command mismatch pattern.",
+      "Do not attribute the reproduced failure to a specific Autoware module unless additional execution evidence clearly localizes the fault beyond the patterns described here."
+    ]
+  },
+  "raw_api_payload": {
+    "id": "<REDACTED_RESPONSE_ID>",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "{\n  \"case_id\": \"case_024\",\n  \"fault_layer\": \"unknown\",\n  \"fault_component\": \"unknown\",\n  \"causal_explanation\": \"A collision occurs while the ego is still moving at low speed near another object, with both detected and predicted objects present and final waypoints available. The oracle also flags a red-light violation, and traffic light states are observed, but the relation between the ego route and the lights and any stop-line crossing are not confirmed. Throughout the drive, vehicle_cmd remains zero while vehicle_status shows nonzero speed and some braking, so the internal control behavior and its contribution to the collision and red-light violation remain uncertain.\",\n  \"root_cause_pattern\": \"Conservative preservation pattern: ego vehicle is in motion with nearby objects and valid final waypoints when a collision and a red-light violation are reported, under conditions where traffic light states are available but the route-light relation and stop-line crossing are unknown and controller commands appear decoupled from reported vehicle motion.\",\n  \"preservation_constraints\": [\n    \"The generated case should reproduce a collision symptom while the ego still has nonzero speed in the last part of the collision window.\",\n    \"Detected and predicted objects should be present in the critical window before the collision, indicating at least one nearby actor.\",\n    \"Final waypoints should remain continuously available up to the collision, with a nonempty waypoint list and no persistent blocked flag.\",\n    \"Traffic lights and their state history should be available before failure, with the oracle reporting a red-light violation but without confirmed route-light relation or stop-line crossing.\",\n    \"vehicle_cmd messages should remain effectively zeroed over the run while vehicle_status or odometry indicate ego motion in the critical window.\"\n  ],\n  \"modifiable_factors\": [\n    \"actor_position\",\n    \"actor_motion\",\n    \"weather\",\n    \"puddles\",\n    \"ego_start_pose\",\n    \"goal_pose\",\n    \"traffic_light_timing\"\n  ],\n  \"non_modifiable_conditions\": [\n    \"Oracle must report both a collision and a red-light violation in the run.\",\n    \"Ego must be moving (nonzero velocity) shortly before the collision timestamp.\",\n    \"Perception-level object topics (detection and prediction) must report at least one object in the critical window before collision.\",\n    \"Planning final_waypoints must be present and populated throughout the critical window before collision.\",\n    \"Traffic light topic must be present with varying signal states prior to the reported violation, while route-light relation and stop-line crossing remain unconfirmed.\",\n    \"vehicle_cmd must remain at or near zero for acceleration, braking, steering, and target speed despite ego motion.\"\n  ],\n  \"uncertainty\": [\n    \"The specific interaction geometry between ego and the colliding actor is not provided; only distance to the closest object is summarized.\",\n    \"The exact timing and mechanism of the red-light violation are unknown, including whether a stop line was crossed on red.\",\n    \"The mapping between traffic light IDs, their states, and the ego route is not established.\",\n    \"Zeroed vehicle_cmd alongside ego motion and braking in vehicle_status could indicate logging artifacts, external control, or an internal controller issue; attribution to actuation or planning is therefore uncertain.\",\n    \"No direct evidence links perception errors (e.g., missed objects or lights) or planning decisions to the collision and red-light violation.\"\n  ],\n  \"evidence_support\": [\n    {\n      \"evidence_id\": \"critical_window_summary.collision_window\",\n      \"claim\": \"Collision occurs at 32.6104 s with ego moving at a few m/s beforehand; detected and predicted objects and final waypoints are available in the critical window.\"\n    },\n    {\n      \"evidence_id\": \"critical_window_summary.collision_window.evidence_of_braking_or_stopping\",\n      \"claim\": \"Vehicle_status shows nonzero brake and decreasing speed, while vehicle_cmd brake_cmd remains zero, indicating a mismatch between commanded and reported actuation.\"\n    },\n    {\n      \"evidence_id\": \"critical_window_summary.closest_available_object_info\",\n      \"claim\": \"A closest object is reported within a few meters of the ego around the collision window, supporting the presence of a nearby actor during the event.\"\n    },\n    {\n      \"evidence_id\": \"critical_window_summary.red_light_window\",\n      \"claim\": \"Error_json flags a red-light violation and traffic light states are available, but route-light relation and stop-line crossing are marked unknown.\"\n    },\n    {\n      \"evidence_id\": \"trace_summary_compact.planning.final_waypoints\",\n      \"claim\": \"Final_waypoints exist continuously up to the end of the run with substantial waypoint counts and no sampled blocked rows.\"\n    },\n    {\n      \"evidence_id\": \"trace_summary_compact.actuation\",\n      \"claim\": \"vehicle_cmd exists with all-zero accel, brake, steer, and target speed ranges while vehicle_status reports nonzero velocity during the run.\"\n    }\n  ],\n  \"confidence\": \"medium\",\n  \"ready_for_phase2_generation\": \"yes\",\n  \"notes_for_validator\": [\n    \"Verify after execution that the oracle again reports both collision and red-light violation for a candidate to be considered same-root-cause.\",\n    \"Check that ego velocity is nonzero shortly before collision and that a nearby object is present in perception topics in the critical window.\",\n    \"Confirm that final_waypoints remain available and populated up to the collision time without a persistent blocked flag.\",\n    \"Ensure that traffic_lights topic is present with changing states, while post-hoc analysis still cannot definitively link a particular signal to the ego route or confirm stop-line crossing.\",\n    \"Confirm that vehicle_cmd remains effectively zero throughout the run while vehicle_status or odometry show ego motion, preserving the controller-command mismatch pattern.\",\n    \"Do not attribute the reproduced failure to a specific Autoware module unless additional execution evidence clearly localizes the fault beyond the patterns described here.\"\n  ]\n}",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": [],
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "gpt-5.1-2025-11-13",
+    "object": "chat.completion",
+    "service_tier": "default",
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 1219,
+      "prompt_tokens": 3447,
+      "total_tokens": 4666,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": 0,
+        "audio_tokens": 0,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 0
+      }
+    }
+  },
+  "error_message": "",
+  "timestamp": "<REDACTED_TIMESTAMP>",
+  "elapsed_sec": 20.957
+}

@@ -1,0 +1,112 @@
+{
+  "case_id": "case_079",
+  "model_name": "gpt-5.1",
+  "candidate_index": 2,
+  "candidate_spec": {
+    "candidate_id": "cand_002",
+    "high_level_variant": "Small mission start/destination shift with slightly reduced rain and a modest speed change for the walking actor, keeping the same signalized corridor and active Autoware modules while probing the persistence of the red-light violation under altered ego timing.",
+    "mutation_intent": "Adjust ego timing relative to traffic-light phases by slightly moving the mission endpoints and modifying the pedestrian speed, while preserving the presence of red traffic-light states and full Autoware stack activity so that any red-light oracle event remains attributable to the same high-level mechanism, despite uncertainty about exact stop-line crossing.",
+    "expected_oracle": "red_light",
+    "modifications": {
+      "weather_delta": {
+        "rain": -10,
+        "fog": -5,
+        "wetness": -8,
+        "puddle": 0
+      },
+      "actor_mutations": [
+        {
+          "actor_index": 0,
+          "position_offset": {
+            "x": -2.0,
+            "y": 1.0
+          },
+          "speed_delta": 0.0
+        },
+        {
+          "actor_index": 1,
+          "position_offset": {
+            "x": 0.5,
+            "y": -1.0
+          },
+          "speed_delta": 0.3
+        }
+      ],
+      "puddle_mutations": [],
+      "mission_mutation": {
+        "keep_original": false,
+        "spawn_offset": {
+          "x": 3.0,
+          "y": -2.5
+        },
+        "destination_offset": {
+          "x": -4.0,
+          "y": 1.5
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Verify that the modified mission still routes the ego through the same general signalized corridor used in the seed scenario (same intersection region and traffic lights).",
+      "Check that traffic-light state messages exist and include at least one red state while the ego is moving near the intersection.",
+      "Confirm that Autoware perception objects, prediction objects, and planning/final_waypoints are all publishing during the approach to the traffic lights.",
+      "Ensure vehicle_status shows that the ego accelerates from rest or low speed to nonzero speed at some time before reaching the traffic-light-controlled area."
+    ],
+    "post_execution_validation_rules": [
+      "Confirm that the oracle again reports a red_light violation during the run.",
+      "Do not require any lane_invasion flag to be present; if lane_invasion is reported, record it but do not treat it as necessary to the scenario.",
+      "At the violation time, verify that a relevant traffic-light is in red (or has just transitioned to red) and is geometrically consistent with influencing the ego route, even if the exact stop-line crossing remains ambiguous.",
+      "Confirm that perception and planning topics remain active (no prolonged topic dropouts) up to and during the violation event.",
+      "Record vehicle_cmd and vehicle_status, but do not infer responsibility from any mismatch; only check that the ego was in motion near the time of the red-light violation."
+    ],
+    "uncertainty": [
+      "The exact stop-line crossing on red is not enforced due to limited evidence; only the oracle's red_light flag and presence of a red signal are required.",
+      "Potential confounding factors such as changed ego arrival time versus light phase are allowed; the underlying software failure mode remains unspecified.",
+      "Controller-layer behavior (e.g., zero or low vehicle_cmd) is monitored but not causally interpreted without additional diagnostics."
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": -10.0,
+      "fog": -5.0,
+      "wetness": -8.0,
+      "puddle": 0.0
+    },
+    "actor_mutations": [
+      {
+        "actor_index": 0,
+        "position_offset": {
+          "x": -2.0,
+          "y": 1.0
+        },
+        "speed_delta": 0.0
+      },
+      {
+        "actor_index": 1,
+        "position_offset": {
+          "x": 0.5,
+          "y": -1.0
+        },
+        "speed_delta": 0.3
+      }
+    ],
+    "puddle_mutations": [],
+    "mission_mutation": {
+      "spawn_offset": {
+        "x": 3.0,
+        "y": -2.5
+      },
+      "destination_offset": {
+        "x": -4.0,
+        "y": 1.5
+      }
+    }
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_079__gpt-5.1.json",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_079__gpt-5.1.json",
+  "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+}

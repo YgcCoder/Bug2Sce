@@ -1,0 +1,456 @@
+{
+  "case_id": "case_103",
+  "model_name": "ark-deepseek-r1-250528",
+  "workflow": "phase2_grounded_generation",
+  "status": "completed",
+  "schema_valid": true,
+  "schema_errors": [],
+  "phase1_ready": "uncertain",
+  "num_candidates_requested": 2,
+  "num_candidates_written": 2,
+  "num_pre_valid": 2,
+  "candidate_records": [
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-deepseek-r1-250528/json/case_103/case_103__cand_001.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-deepseek-r1-250528/metadata/case_103/case_103__cand_001.metadata.json",
+      "case_id": "case_103",
+      "model_name": "ark-deepseek-r1-250528",
+      "candidate_index": 1,
+      "candidate_spec": {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Slightly increase rain intensity and shift the non-ego actor closer to ego's planned path while retaining all core scenario elements",
+        "mutation_intent": "Preserves all Phase 1 root cause pattern requirements: retains Town01 map, original mission start/goal, heavy rain, high wetness, multiple puddles, one non-ego actor, red light in the critical window, and the original conflicting lane invasion label status. Only minor adjustments to non-core parameters to generate a valid variant",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": 5,
+            "fog": 0,
+            "wetness": 3,
+            "puddle": 4
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 1.2,
+                "y": -2.1
+              },
+              "speed_delta": 0.8
+            }
+          ],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": 0.1,
+              "size_scale": 1.05
+            },
+            {
+              "puddle_index": 1,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": 0.08,
+              "size_scale": 1.02
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Confirm red light is active in ego's critical approach window",
+          "Confirm map remains Town01",
+          "Confirm weather stays in the high rain/wetness range"
+        ],
+        "post_execution_validation_rules": [
+          "Preserve original conflicting lane invasion/red-light label status",
+          "Confirm non-ego actor does not fully block ego's path"
+        ],
+        "uncertainty": [
+          "Unconfirmed stop-line crossing for red-light violation retained",
+          "Specific module-level root cause still unconfirmed per original evidence"
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 5.0,
+          "fog": 0.0,
+          "wetness": 3.0,
+          "puddle": 4.0
+        },
+        "actor_mutations": [
+          {
+            "actor_index": 0,
+            "position_offset": {
+              "x": 1.2,
+              "y": -2.1
+            },
+            "speed_delta": 0.8
+          }
+        ],
+        "puddle_mutations": [
+          {
+            "puddle_index": 0,
+            "location_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "level_delta": 0.1,
+            "size_scale": 1.05
+          },
+          {
+            "puddle_index": 1,
+            "location_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "level_delta": 0.08,
+            "size_scale": 1.02
+          }
+        ],
+        "mission_mutation": {
+          "keep_original": true
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_103__ark-deepseek-r1-250528.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_103__ark-deepseek-r1-250528.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    },
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-deepseek-r1-250528/json/case_103/case_103__cand_002.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-deepseek-r1-250528/metadata/case_103/case_103__cand_002.metadata.json",
+      "case_id": "case_103",
+      "model_name": "ark-deepseek-r1-250528",
+      "candidate_index": 2,
+      "candidate_spec": {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Slightly reduce fog density, lower non-ego actor speed, and shift puddle locations marginally closer to ego's approach path to the intersection",
+        "mutation_intent": "Retains all core root cause pattern elements from Phase 1: original mission region, Town01 map, high rain intensity, high wetness, multiple puddles, one non-ego actor, red light in the critical window, and conflicting lane invasion label status. Minor conservative changes to explore scenario variants without altering root cause",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": -10,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": -1.5,
+                "y": 1.8
+              },
+              "speed_delta": -0.7
+            }
+          ],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 2.0,
+                "y": 1.2
+              },
+              "level_delta": -0.05,
+              "size_scale": 0.95
+            },
+            {
+              "puddle_index": 1,
+              "location_offset": {
+                "x": -1.0,
+                "y": 0.8
+              },
+              "level_delta": -0.03,
+              "size_scale": 0.98
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Confirm all original puddle regions are retained",
+          "Confirm red light is active when ego enters the intersection critical window",
+          "Confirm mission spawn and destination match original region"
+        ],
+        "post_execution_validation_rules": [
+          "Validate original actuation uncertainty is preserved in logs",
+          "Confirm the conflicting lane invasion/red-light label status is retained"
+        ],
+        "uncertainty": [
+          "Actuation behavior mismatch uncertainty from original data preserved",
+          "No specific module root cause is assigned per original evidence"
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 0.0,
+          "fog": -10.0,
+          "wetness": 0.0,
+          "puddle": 0.0
+        },
+        "actor_mutations": [
+          {
+            "actor_index": 0,
+            "position_offset": {
+              "x": -1.5,
+              "y": 1.8
+            },
+            "speed_delta": -0.7
+          }
+        ],
+        "puddle_mutations": [
+          {
+            "puddle_index": 0,
+            "location_offset": {
+              "x": 2.0,
+              "y": 1.2
+            },
+            "level_delta": -0.05,
+            "size_scale": 0.95
+          },
+          {
+            "puddle_index": 1,
+            "location_offset": {
+              "x": -1.0,
+              "y": 0.8
+            },
+            "level_delta": -0.03,
+            "size_scale": 0.98
+          }
+        ],
+        "mission_mutation": {
+          "keep_original": true
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_103__ark-deepseek-r1-250528.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_103__ark-deepseek-r1-250528.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    }
+  ],
+  "seed_artifact_zip": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-deepseek-r1-250528/seed-artifact/seed-artifact-case_103.zip",
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_prompts/case_103__ark-deepseek-r1-250528.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_103__ark-deepseek-r1-250528.json",
+  "prompt_estimated_tokens": 1149,
+  "usage": {
+    "prompt_tokens": 1459,
+    "completion_tokens": 2002,
+    "total_tokens": 3461
+  },
+  "raw_response": "{\n  \"case_id\": \"case_103\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Slightly increase rain intensity and shift the non-ego actor closer to ego's planned path while retaining all core scenario elements\",\n      \"mutation_intent\": \"Preserves all Phase 1 root cause pattern requirements: retains Town01 map, original mission start/goal, heavy rain, high wetness, multiple puddles, one non-ego actor, red light in the critical window, and the original conflicting lane invasion label status. Only minor adjustments to non-core parameters to generate a valid variant\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 5, \"fog\": 0, \"wetness\": 3, \"puddle\": 4},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 1.2, \"y\": -2.1}, \"speed_delta\": 0.8}\n        ],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": 0.1, \"size_scale\": 1.05},\n          {\"puddle_index\": 1, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": 0.08, \"size_scale\": 1.02}\n        ],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Confirm red light is active in ego's critical approach window\", \"Confirm map remains Town01\", \"Confirm weather stays in the high rain/wetness range\"],\n      \"post_execution_validation_rules\": [\"Preserve original conflicting lane invasion/red-light label status\", \"Confirm non-ego actor does not fully block ego's path\"],\n      \"uncertainty\": [\"Unconfirmed stop-line crossing for red-light violation retained\", \"Specific module-level root cause still unconfirmed per original evidence\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Slightly reduce fog density, lower non-ego actor speed, and shift puddle locations marginally closer to ego's approach path to the intersection\",\n      \"mutation_intent\": \"Retains all core root cause pattern elements from Phase 1: original mission region, Town01 map, high rain intensity, high wetness, multiple puddles, one non-ego actor, red light in the critical window, and conflicting lane invasion label status. Minor conservative changes to explore scenario variants without altering root cause\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": -10, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": -1.5, \"y\": 1.8}, \"speed_delta\": -0.7}\n        ],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": 2.0, \"y\": 1.2}, \"level_delta\": -0.05, \"size_scale\": 0.95},\n          {\"puddle_index\": 1, \"location_offset\": {\"x\": -1.0, \"y\": 0.8}, \"level_delta\": -0.03, \"size_scale\": 0.98}\n        ],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Confirm all original puddle regions are retained\", \"Confirm red light is active when ego enters the intersection critical window\", \"Confirm mission spawn and destination match original region\"],\n      \"post_execution_validation_rules\": [\"Validate original actuation uncertainty is preserved in logs\", \"Confirm the conflicting lane invasion/red-light label status is retained\"],\n      \"uncertainty\": [\"Actuation behavior mismatch uncertainty from original data preserved\", \"No specific module root cause is assigned per original evidence\"]\n    }\n  ]\n}",
+  "parsed_response": {
+    "case_id": "case_103",
+    "candidate_specs": [
+      {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Slightly increase rain intensity and shift the non-ego actor closer to ego's planned path while retaining all core scenario elements",
+        "mutation_intent": "Preserves all Phase 1 root cause pattern requirements: retains Town01 map, original mission start/goal, heavy rain, high wetness, multiple puddles, one non-ego actor, red light in the critical window, and the original conflicting lane invasion label status. Only minor adjustments to non-core parameters to generate a valid variant",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": 5,
+            "fog": 0,
+            "wetness": 3,
+            "puddle": 4
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 1.2,
+                "y": -2.1
+              },
+              "speed_delta": 0.8
+            }
+          ],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": 0.1,
+              "size_scale": 1.05
+            },
+            {
+              "puddle_index": 1,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": 0.08,
+              "size_scale": 1.02
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Confirm red light is active in ego's critical approach window",
+          "Confirm map remains Town01",
+          "Confirm weather stays in the high rain/wetness range"
+        ],
+        "post_execution_validation_rules": [
+          "Preserve original conflicting lane invasion/red-light label status",
+          "Confirm non-ego actor does not fully block ego's path"
+        ],
+        "uncertainty": [
+          "Unconfirmed stop-line crossing for red-light violation retained",
+          "Specific module-level root cause still unconfirmed per original evidence"
+        ]
+      },
+      {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Slightly reduce fog density, lower non-ego actor speed, and shift puddle locations marginally closer to ego's approach path to the intersection",
+        "mutation_intent": "Retains all core root cause pattern elements from Phase 1: original mission region, Town01 map, high rain intensity, high wetness, multiple puddles, one non-ego actor, red light in the critical window, and conflicting lane invasion label status. Minor conservative changes to explore scenario variants without altering root cause",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": -10,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": -1.5,
+                "y": 1.8
+              },
+              "speed_delta": -0.7
+            }
+          ],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 2.0,
+                "y": 1.2
+              },
+              "level_delta": -0.05,
+              "size_scale": 0.95
+            },
+            {
+              "puddle_index": 1,
+              "location_offset": {
+                "x": -1.0,
+                "y": 0.8
+              },
+              "level_delta": -0.03,
+              "size_scale": 0.98
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Confirm all original puddle regions are retained",
+          "Confirm red light is active when ego enters the intersection critical window",
+          "Confirm mission spawn and destination match original region"
+        ],
+        "post_execution_validation_rules": [
+          "Validate original actuation uncertainty is preserved in logs",
+          "Confirm the conflicting lane invasion/red-light label status is retained"
+        ],
+        "uncertainty": [
+          "Actuation behavior mismatch uncertainty from original data preserved",
+          "No specific module root cause is assigned per original evidence"
+        ]
+      }
+    ]
+  },
+  "raw_api_payload": {
+    "id": "021782923800092d43c98a3a6422f05688e398a72cec5f4ef9e9e",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "{\n  \"case_id\": \"case_103\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Slightly increase rain intensity and shift the non-ego actor closer to ego's planned path while retaining all core scenario elements\",\n      \"mutation_intent\": \"Preserves all Phase 1 root cause pattern requirements: retains Town01 map, original mission start/goal, heavy rain, high wetness, multiple puddles, one non-ego actor, red light in the critical window, and the original conflicting lane invasion label status. Only minor adjustments to non-core parameters to generate a valid variant\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 5, \"fog\": 0, \"wetness\": 3, \"puddle\": 4},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 1.2, \"y\": -2.1}, \"speed_delta\": 0.8}\n        ],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": 0.1, \"size_scale\": 1.05},\n          {\"puddle_index\": 1, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": 0.08, \"size_scale\": 1.02}\n        ],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Confirm red light is active in ego's critical approach window\", \"Confirm map remains Town01\", \"Confirm weather stays in the high rain/wetness range\"],\n      \"post_execution_validation_rules\": [\"Preserve original conflicting lane invasion/red-light label status\", \"Confirm non-ego actor does not fully block ego's path\"],\n      \"uncertainty\": [\"Unconfirmed stop-line crossing for red-light violation retained\", \"Specific module-level root cause still unconfirmed per original evidence\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Slightly reduce fog density, lower non-ego actor speed, and shift puddle locations marginally closer to ego's approach path to the intersection\",\n      \"mutation_intent\": \"Retains all core root cause pattern elements from Phase 1: original mission region, Town01 map, high rain intensity, high wetness, multiple puddles, one non-ego actor, red light in the critical window, and conflicting lane invasion label status. Minor conservative changes to explore scenario variants without altering root cause\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": -10, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": -1.5, \"y\": 1.8}, \"speed_delta\": -0.7}\n        ],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": 2.0, \"y\": 1.2}, \"level_delta\": -0.05, \"size_scale\": 0.95},\n          {\"puddle_index\": 1, \"location_offset\": {\"x\": -1.0, \"y\": 0.8}, \"level_delta\": -0.03, \"size_scale\": 0.98}\n        ],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Confirm all original puddle regions are retained\", \"Confirm red light is active when ego enters the intersection critical window\", \"Confirm mission spawn and destination match original region\"],\n      \"post_execution_validation_rules\": [\"Validate original actuation uncertainty is preserved in logs\", \"Confirm the conflicting lane invasion/red-light label status is retained\"],\n      \"uncertainty\": [\"Actuation behavior mismatch uncertainty from original data preserved\", \"No specific module root cause is assigned per original evidence\"]\n    }\n  ]\n}",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null,
+          "reasoning_content": "\nGot it, let's build this JSON step by step. First, case_id is case_103, right? Need two candidate_specs.\n\nFirst candidate, cand_001. Let's think of a variant. High level variant could be \"Slightly increase rain intensity and adjust non-ego actor position closer to ego's path while keeping all original constraints\". Mutation intent: Preserves all root cause pattern elements: Town01 map, original mission, heavy rain/puddles, red light in critical window, conflicting lane invasion labels, just minor weather and actor adjustment to test if the conflict holds. Expected oracle is compound, because it's both lane and red labeled conflicting. Wait, original has conflicting labels of lane invasion and red light, so expected_oracle is compound, right?\n\nThen modifications: weather delta. Let's do rain +5, wetness +3, puddle +4, fog 0. That's within 20, good. Actor mutations: actor 0, position offset x 1.2, y -2.1, speed delta +0.8, that's within 8 and 3, good. Puddle mutations: puddle 0, level delta +0.1, size scale 1.05, location offset x 0, y 0. Puddle 1, level delta +0.08, size scale 1.02, location 0,0. That's within delta 0.2, size 0.8-1.2, good. Mission mutation keep_original true, right, per constraints preserve original start/goal.\n\nPre execution rules: [\"Confirm red light is present in ego's critical path\", \"Confirm map remains Town01\", \"Confirm weather stays in high rain/wetness range\"], post execution: [\"Check for both red-light violation and potential lane invasion signal to preserve original label conflict\", \"Confirm non-ego actor did not block ego path entirely\"], uncertainty: [\"Original conflicting lane invasion label status preserved, unconfirmed stop-line crossing remains\"].\n\nNow second candidate, cand_002. High level variant: \"Slightly decrease fog density and shift non-ego actor speed down, adjust puddle location marginally closer to ego's stop line\". Mutation intent: \"Preserves all core root cause elements: original mission, Town01 map, heavy rain, multiple puddles, red light in critical window, conflicting lane invasion labels, only minor adjustments to non-core parameters to explore variants while retaining uncertainty\". Expected oracle is still compound, right, because we preserve the conflicting labels.\n\nModifications: weather delta: fog -10, rain 0, wetness 0, puddle 0. That's within -20, good. Actor mutations: actor 0, position offset x -1.5, y 1.8, speed delta -0.7, that's within ranges. Puddle mutations: puddle 0, location offset x 2.0, y 1.2, level delta -0.05, size scale 0.95. Puddle 1, location offset x -1.0, y 0.8, level delta -0.03, size scale 0.98. All within ranges. Mission mutation keep_original true, per constraints.\n\nPre execution rules: [\"Confirm all puddle regions are preserved in the scenario\", \"Confirm red light is active during ego's approach to intersection\", \"Confirm mission start and destination match original region\"], post execution: [\"Validate that original actuation uncertainty is preserved in output logs\", \"Confirm label conflict between lane invasion and red-light violation is retained in scenario output\"], uncertainty: [\"Actuation behavior remains uncertain as per original evidence\", \"Specific module root cause still unconfirmed, conflicting labels preserved\"].\n\nWait let's check all rules: exactly two candidates, all offsets within range, preserve all constraints from phase 1. Let's check the schema, make sure all fields are there. Let's put it all together correctly.\n\nWait expected oracle: original has both labels, so compound, that's correct. Let's check the constraints: preserve Town01, original mission, so keep_original is true for both, correct. Preserve high rain, one non-ego, red light, conflicting labels: all that is preserved. Uncertainty is preserved as per phase 1 being uncertainty-heavy, so we kept that.\n\nLet me write the JSON properly now, no mistakes. Let's make sure all numbers are correct, all fields match the schema."
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "doubao-seed-2-0-lite-260215",
+    "object": "chat.completion",
+    "service_tier": "default",
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 2002,
+      "prompt_tokens": 1459,
+      "total_tokens": 3461,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 952,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": null,
+        "cached_tokens": 0
+      }
+    }
+  },
+  "error_message": "",
+  "elapsed_sec": 31.522,
+  "timestamp": "<REDACTED_TIMESTAMP>"
+}

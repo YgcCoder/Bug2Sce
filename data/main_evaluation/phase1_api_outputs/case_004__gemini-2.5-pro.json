@@ -1,0 +1,123 @@
+{
+  "case_id": "case_004",
+  "workflow": "phase1_causal_explanation",
+  "model_name": "gemini-2.5-pro",
+  "model_id": "gemini-2.5-pro",
+  "status": "completed",
+  "dry_run": false,
+  "schema_valid": true,
+  "schema_errors": [],
+  "quality_flags": [],
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_prompts/case_004__gemini-2.5-pro.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_004__gemini-2.5-pro.json",
+  "prompt_estimated_tokens": 2643,
+  "usage": {
+    "prompt_tokens": 3551,
+    "completion_tokens": 3564,
+    "total_tokens": 7115
+  },
+  "estimated_cost_usd": null,
+  "raw_response": "```json\n{\n  \"case_id\": \"case_004\",\n  \"fault_layer\": \"planning\",\n  \"fault_component\": \"Path or motion planner\",\n  \"causal_explanation\": \"The planner issued no motion commands, causing a stuck state, while the oracle reported a red light violation for the planned route.\",\n  \"root_cause_pattern\": \"Planner generates zero-velocity commands when a red light is active on the planned route.\",\n  \"preservation_constraints\": [\n    \"Preserve the red light violation oracle event.\",\n    \"Planner does not associate route with a stop line.\",\n    \"Planner outputs zero-velocity commands.\"\n  ],\n  \"modifiable_factors\": [\n    \"weather\",\n    \"puddles\",\n    \"map_location\",\n    \"initial_pose\"\n  ],\n  \"non_modifiable_conditions\": [\n    \"Red light violation oracle event occurs.\",\n    \"Ego vehicle is stuck (near-zero velocity).\",\n    \"Route passes through a signalized intersection.\"\n  ],\n  \"uncertainty\": [\n    \"Dataset label (Lane Invasion + Red Light) conflicts with oracle (Red Light only).\",\n    \"Stop-line crossing for red light violation is not confirmed.\",\n    \"The root cause of the planner's zero-command output is unknown.\"\n  ],\n  \"evidence_support\": [\n    {\n      \"evidence_id\": \"oracle_consistency\",\n      \"claim\": \"Dataset and error.json labels conflict.\"\n    },\n    {\n      \"evidence_id\": \"red_light_window\",\n      \"claim\": \"Red light violation confirmed by error.json.\"\n    },\n    {\n      \"evidence_id\": \"trace_summary_compact.actuation\",\n      \"claim\": \"Vehicle commands and vehicle velocity are zero.\"\n    },\n    {\n      \"evidence_id\": \"red_light_window\",\n      \"claim\": \"Planner did not associate route with a stop line.\"\n    }\n  ],\n  \"confidence\": \"medium\",\n  \"ready_for_phase2_generation\": \"uncertain\",\n  \"notes_for_validator\": [\n    \"Label conflict: Dataset says L+R, oracle says R.\",\n    \"Manual review needed to confirm or reject the lane invasion claim.\"\n  ]\n}\n```",
+  "parsed_response": {
+    "case_id": "case_004",
+    "fault_layer": "planning",
+    "fault_component": "Path or motion planner",
+    "causal_explanation": "The planner issued no motion commands, causing a stuck state, while the oracle reported a red light violation for the planned route.",
+    "root_cause_pattern": "Planner generates zero-velocity commands when a red light is active on the planned route.",
+    "preservation_constraints": [
+      "Preserve the red light violation oracle event.",
+      "Planner does not associate route with a stop line.",
+      "Planner outputs zero-velocity commands."
+    ],
+    "modifiable_factors": [
+      "weather",
+      "puddles",
+      "map_location",
+      "initial_pose"
+    ],
+    "non_modifiable_conditions": [
+      "Red light violation oracle event occurs.",
+      "Ego vehicle is stuck (near-zero velocity).",
+      "Route passes through a signalized intersection."
+    ],
+    "uncertainty": [
+      "Dataset label (Lane Invasion + Red Light) conflicts with oracle (Red Light only).",
+      "Stop-line crossing for red light violation is not confirmed.",
+      "The root cause of the planner's zero-command output is unknown."
+    ],
+    "evidence_support": [
+      {
+        "evidence_id": "oracle_consistency",
+        "claim": "Dataset and error.json labels conflict."
+      },
+      {
+        "evidence_id": "red_light_window",
+        "claim": "Red light violation confirmed by error.json."
+      },
+      {
+        "evidence_id": "trace_summary_compact.actuation",
+        "claim": "Vehicle commands and vehicle velocity are zero."
+      },
+      {
+        "evidence_id": "red_light_window",
+        "claim": "Planner did not associate route with a stop line."
+      }
+    ],
+    "confidence": "medium",
+    "ready_for_phase2_generation": "uncertain",
+    "notes_for_validator": [
+      "Label conflict: Dataset says L+R, oracle says R.",
+      "Manual review needed to confirm or reject the lane invasion claim."
+    ]
+  },
+  "raw_api_payload": {
+    "id": "<REDACTED_RESPONSE_ID>",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "```json\n{\n  \"case_id\": \"case_004\",\n  \"fault_layer\": \"planning\",\n  \"fault_component\": \"Path or motion planner\",\n  \"causal_explanation\": \"The planner issued no motion commands, causing a stuck state, while the oracle reported a red light violation for the planned route.\",\n  \"root_cause_pattern\": \"Planner generates zero-velocity commands when a red light is active on the planned route.\",\n  \"preservation_constraints\": [\n    \"Preserve the red light violation oracle event.\",\n    \"Planner does not associate route with a stop line.\",\n    \"Planner outputs zero-velocity commands.\"\n  ],\n  \"modifiable_factors\": [\n    \"weather\",\n    \"puddles\",\n    \"map_location\",\n    \"initial_pose\"\n  ],\n  \"non_modifiable_conditions\": [\n    \"Red light violation oracle event occurs.\",\n    \"Ego vehicle is stuck (near-zero velocity).\",\n    \"Route passes through a signalized intersection.\"\n  ],\n  \"uncertainty\": [\n    \"Dataset label (Lane Invasion + Red Light) conflicts with oracle (Red Light only).\",\n    \"Stop-line crossing for red light violation is not confirmed.\",\n    \"The root cause of the planner's zero-command output is unknown.\"\n  ],\n  \"evidence_support\": [\n    {\n      \"evidence_id\": \"oracle_consistency\",\n      \"claim\": \"Dataset and error.json labels conflict.\"\n    },\n    {\n      \"evidence_id\": \"red_light_window\",\n      \"claim\": \"Red light violation confirmed by error.json.\"\n    },\n    {\n      \"evidence_id\": \"trace_summary_compact.actuation\",\n      \"claim\": \"Vehicle commands and vehicle velocity are zero.\"\n    },\n    {\n      \"evidence_id\": \"red_light_window\",\n      \"claim\": \"Planner did not associate route with a stop line.\"\n    }\n  ],\n  \"confidence\": \"medium\",\n  \"ready_for_phase2_generation\": \"uncertain\",\n  \"notes_for_validator\": [\n    \"Label conflict: Dataset says L+R, oracle says R.\",\n    \"Manual review needed to confirm or reject the lane invasion claim.\"\n  ]\n}\n```",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "gemini-2.5-pro",
+    "object": "chat.completion",
+    "service_tier": null,
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 3564,
+      "prompt_tokens": 3551,
+      "total_tokens": 7115,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": 0,
+        "reasoning_tokens": 3043,
+        "rejected_prediction_tokens": null,
+        "text_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 0,
+        "text_tokens": 3551,
+        "image_tokens": 0
+      },
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "input_tokens_details": null,
+      "claude_cache_creation_5_m_tokens": 0,
+      "claude_cache_creation_1_h_tokens": 0
+    }
+  },
+  "error_message": "",
+  "timestamp": "<REDACTED_TIMESTAMP>",
+  "elapsed_sec": 39.008
+}

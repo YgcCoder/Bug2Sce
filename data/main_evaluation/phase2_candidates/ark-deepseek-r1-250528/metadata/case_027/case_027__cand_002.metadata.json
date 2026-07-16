@@ -1,0 +1,112 @@
+{
+  "case_id": "case_027",
+  "model_name": "ark-deepseek-r1-250528",
+  "candidate_index": 2,
+  "candidate_spec": {
+    "candidate_id": "cand_002",
+    "high_level_variant": "Minor offset to ego spawn and destination, shifted immobile NPC position, slightly reduced puddle level",
+    "mutation_intent": "Maintains all original root-cause pattern constraints, preserves the stuck failure symptom and all required symptom conditions while varying scenario geometry slightly to test consistency",
+    "expected_oracle": "stuck",
+    "modifications": {
+      "weather_delta": {
+        "rain": -2,
+        "fog": 0,
+        "wetness": -2,
+        "puddle": -1
+      },
+      "actor_mutations": [
+        {
+          "actor_index": 0,
+          "position_offset": {
+            "x": -1.5,
+            "y": 2.0
+          },
+          "speed_delta": 0.0
+        }
+      ],
+      "puddle_mutations": [
+        {
+          "puddle_index": 0,
+          "location_offset": {
+            "x": -1.0,
+            "y": -0.5
+          },
+          "level_delta": -0.1,
+          "size_scale": 0.9
+        }
+      ],
+      "mission_mutation": {
+        "keep_original": false,
+        "spawn_offset": {
+          "x": 1.2,
+          "y": -0.8
+        },
+        "destination_offset": {
+          "x": 0.9,
+          "y": 0.5
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Confirm exactly one actor is present in the scenario",
+      "Verify final waypoints are available prior to execution",
+      "Check that all root-cause symptom conditions are allowed by the generated setup"
+    ],
+    "post_execution_validation_rules": [
+      "Verify ego has zero velocity and near-zero displacement in 60-second critical window",
+      "Confirm all-zero control commands in vehicle_cmd during the critical window",
+      "Check that final waypoints remain available throughout the stuck window"
+    ],
+    "uncertainty": [
+      "Root cause module-level attribution is not confirmed by available evidence",
+      "The mismatch between zero brake command and non-zero reported brake remains unexplained"
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": -2.0,
+      "fog": 0.0,
+      "wetness": -2.0,
+      "puddle": -1.0
+    },
+    "actor_mutations": [
+      {
+        "actor_index": 0,
+        "position_offset": {
+          "x": -1.5,
+          "y": 2.0
+        },
+        "speed_delta": 0.0
+      }
+    ],
+    "puddle_mutations": [
+      {
+        "puddle_index": 0,
+        "location_offset": {
+          "x": -1.0,
+          "y": -0.5
+        },
+        "level_delta": -0.1,
+        "size_scale": 0.9
+      }
+    ],
+    "mission_mutation": {
+      "spawn_offset": {
+        "x": 1.2,
+        "y": -0.8
+      },
+      "destination_offset": {
+        "x": 0.9,
+        "y": 0.5
+      }
+    }
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_027__ark-deepseek-r1-250528.json",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_027__ark-deepseek-r1-250528.json",
+  "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+}

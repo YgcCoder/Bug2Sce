@@ -1,0 +1,73 @@
+{
+  "case_id": "case_069",
+  "model_name": "gemini-2.5-pro",
+  "candidate_index": 2,
+  "candidate_spec": {
+    "candidate_id": "cand_002",
+    "high_level_variant": "Test if the control mismatch bug occurs with a slightly different mission start and destination.",
+    "mutation_intent": "Change the ego's route to see if the bug is tied to a specific location or if it's a general system failure.",
+    "expected_oracle": "collision",
+    "modifications": {
+      "weather_delta": {
+        "rain": 0,
+        "fog": 0,
+        "wetness": 0,
+        "puddle": 0
+      },
+      "actor_mutations": [],
+      "puddle_mutations": [],
+      "mission_mutation": {
+        "keep_original": false,
+        "spawn_offset": {
+          "x": -2.0,
+          "y": 2.0
+        },
+        "destination_offset": {
+          "x": 2.0,
+          "y": -2.0
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Verify new mission is valid.",
+      "Verify ego spawns on road."
+    ],
+    "post_execution_validation_rules": [
+      "Verify vehicle_cmd is zero before crash.",
+      "Verify vehicle moves before crash.",
+      "Verify collision occurs."
+    ],
+    "uncertainty": [
+      "Root cause of control mismatch is unknown.",
+      "Uncertain if bug is location-specific."
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": 0.0,
+      "fog": 0.0,
+      "wetness": 0.0,
+      "puddle": 0.0
+    },
+    "actor_mutations": [],
+    "puddle_mutations": [],
+    "mission_mutation": {
+      "spawn_offset": {
+        "x": -2.0,
+        "y": 2.0
+      },
+      "destination_offset": {
+        "x": 2.0,
+        "y": -2.0
+      }
+    }
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_069__gemini-2.5-pro.json",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_069__gemini-2.5-pro.json",
+  "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+}

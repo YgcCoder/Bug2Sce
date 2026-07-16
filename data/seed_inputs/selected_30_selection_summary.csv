@@ -1,0 +1,20 @@
+Item,Value,Notes,,Group,Pool Count,Selected Count,Reason
+Total DriveFuzz executions,1000,,,R,84,6,dominant group; evenly sampled across the pool
+Raw failure-triggering cases,169,DriveFuzz-only baseline failure pool,,L+R,52,6,dominant mixed group; evenly sampled across the pool
+Selected curated seed cases,30,Stratified subset for root-cause pattern and generation experiments,,C+L+R,10,4,collision-related multi-oracle group; oversampled for root-cause diversity
+Excluded known ambiguous pilot cases from first seed subset,"case_003, case_007, case_013",Can be used later for error analysis after manual correction,,C+L,6,3,collision + lane-invasion group; oversampled for collision coverage
+Selection rule,oversample rare C/S/mixed groups; sample R and L+R across the pool,,,C,4,3,collision-only group; include clean/pilot and spread samples
+Recommended generation scale,30 seeds × 5 LLMs × 2 candidates = 300 candidates,,,S+L,4,2,stuck-related mixed group; included for rare stuck coverage
+,,,,S,3,2,stuck-only group; included for rare stuck coverage
+,,,,C+R,2,1,rare collision + red-light group; include one representative
+,,,,S+L+R,2,1,rare stuck + lane + red-light group; include one representative
+,,,,L,1,1,only lane-only case; must include
+,,,,C+S+L,1,1,only collision + stuck + lane case; must include
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,

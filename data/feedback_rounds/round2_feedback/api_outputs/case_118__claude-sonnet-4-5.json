@@ -1,0 +1,169 @@
+{
+  "case_id": "case_118",
+  "model_name": "claude-sonnet-4-5",
+  "workflow": "round2_feedback_guided_b2s",
+  "experimental_difference": "six_models_round1_feedback_added_to_original_b2s_input",
+  "status": "completed",
+  "schema_valid": true,
+  "schema_errors": [],
+  "num_round1_feedback_records": 6,
+  "num_candidates_requested": 2,
+  "num_candidates_written": 2,
+  "num_pre_valid": 2,
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/round2_feedback/prompts/case_118.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/round2_feedback/api_outputs/case_118__claude-sonnet-4-5.json",
+  "prompt_estimated_tokens": 4618,
+  "usage": {
+    "prompt_tokens": 5228,
+    "completion_tokens": 897,
+    "total_tokens": 6125
+  },
+  "candidate_records": [
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/round2_feedback/candidates/case_118__Round2_01.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/round2_feedback/metadata/case_118__Round2_01.metadata.json",
+      "pre_valid": true,
+      "pre_validation_errors": [],
+      "pre_validation_warnings": [
+        "no actors in candidate scenario"
+      ]
+    },
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/round2_feedback/candidates/case_118__Round2_02.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/round2_feedback/metadata/case_118__Round2_02.metadata.json",
+      "pre_valid": true,
+      "pre_validation_errors": [],
+      "pre_validation_warnings": [
+        "no actors in candidate scenario"
+      ]
+    }
+  ],
+  "raw_response": "```json\n{\n  \"case_id\": \"case_118\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Introduce slow-moving pedestrian near intersection to test collision detection under original weather conditions\",\n      \"mutation_intent\": \"Add dynamic actor to verify if collision symptom persists with detected objects present, preserving red-light violation and vehicle_cmd mismatch pattern\",\n      \"expected_oracle\": \"collision\",\n      \"modifications\": {\n        \"weather_delta\": {\n          \"rain\": 0,\n          \"fog\": 0,\n          \"wetness\": 0,\n          \"puddle\": 0\n        },\n        \"actor_mutations\": [\n          {\n            \"actor_index\": 0,\n            \"position_offset\": {\n              \"x\": 3.0,\n              \"y\": -2.0\n            },\n            \"speed_delta\": 0.0\n          }\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\n          \"keep_original\": true,\n          \"spawn_offset\": {\n            \"x\": 0.0,\n            \"y\": 0.0\n          },\n          \"destination_offset\": {\n            \"x\": 0.0,\n            \"y\": 0.0\n          }\n        }\n      },\n      \"pre_execution_validation_rules\": [\n        \"Verify actor spawns successfully near ego route before collision point\"\n      ],\n      \"post_execution_validation_rules\": [\n        \"Check collision oracle triggers with detected objects present in critical window\",\n        \"Verify vehicle_cmd remains zero while vehicle_status shows active throttle\",\n        \"Confirm red-light violation persists alongside collision symptom\"\n      ],\n      \"uncertainty\": [\n        \"Round 1 showed only red-light violations without collision; actor presence may restore collision oracle\",\n        \"Unclear if detected objects in original trace were static or dynamic entities\"\n      ]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Shift spawn position forward to alter intersection approach timing while preserving route geometry\",\n      \"mutation_intent\": \"Test if collision and red-light violation persist when ego starts closer to intersection, maintaining all environmental factors and zero-actor configuration\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\n          \"rain\": 0,\n          \"fog\": 0,\n          \"wetness\": 0,\n          \"puddle\": 0\n        },\n        \"actor_mutations\": [],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\n          \"keep_original\": false,\n          \"spawn_offset\": {\n            \"x\": 4.0,\n            \"y\": 0.0\n          },\n          \"destination_offset\": {\n            \"x\": 0.0,\n            \"y\": 0.0\n          }\n        }\n      },\n      \"pre_execution_validation_rules\": [\n        \"Confirm spawn offset places ego on valid road segment toward intersection\"\n      ],\n      \"post_execution_validation_rules\": [\n        \"Verify collision oracle triggers with non-zero ego velocity before impact\",\n        \"Check final waypoints remain available and not blocked in critical window\",\n        \"Confirm vehicle_cmd zero mismatch with active vehicle_status control persists\",\n        \"Validate both collision and red-light violation labels match original compound pattern\"\n      ],\n      \"uncertainty\": [\n        \"All Round 1 candidates triggered only red-light without collision; spawn timing change may restore collision\",\n        \"Original trace showed detected objects but Round 1 zero-actor variants lost collision symptom\"\n      ]\n    }\n  ]\n}\n```",
+  "parsed_response": {
+    "case_id": "case_118",
+    "candidate_specs": [
+      {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Introduce slow-moving pedestrian near intersection to test collision detection under original weather conditions",
+        "mutation_intent": "Add dynamic actor to verify if collision symptom persists with detected objects present, preserving red-light violation and vehicle_cmd mismatch pattern",
+        "expected_oracle": "collision",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 3.0,
+                "y": -2.0
+              },
+              "speed_delta": 0.0
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Verify actor spawns successfully near ego route before collision point"
+        ],
+        "post_execution_validation_rules": [
+          "Check collision oracle triggers with detected objects present in critical window",
+          "Verify vehicle_cmd remains zero while vehicle_status shows active throttle",
+          "Confirm red-light violation persists alongside collision symptom"
+        ],
+        "uncertainty": [
+          "Round 1 showed only red-light violations without collision; actor presence may restore collision oracle",
+          "Unclear if detected objects in original trace were static or dynamic entities"
+        ]
+      },
+      {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Shift spawn position forward to alter intersection approach timing while preserving route geometry",
+        "mutation_intent": "Test if collision and red-light violation persist when ego starts closer to intersection, maintaining all environmental factors and zero-actor configuration",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": false,
+            "spawn_offset": {
+              "x": 4.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Confirm spawn offset places ego on valid road segment toward intersection"
+        ],
+        "post_execution_validation_rules": [
+          "Verify collision oracle triggers with non-zero ego velocity before impact",
+          "Check final waypoints remain available and not blocked in critical window",
+          "Confirm vehicle_cmd zero mismatch with active vehicle_status control persists",
+          "Validate both collision and red-light violation labels match original compound pattern"
+        ],
+        "uncertainty": [
+          "All Round 1 candidates triggered only red-light without collision; spawn timing change may restore collision",
+          "Original trace showed detected objects but Round 1 zero-actor variants lost collision symptom"
+        ]
+      }
+    ]
+  },
+  "error_message": "",
+  "timestamp": "<REDACTED_TIMESTAMP>",
+  "raw_api_payload": {
+    "id": "<REDACTED_RESPONSE_ID>",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "```json\n{\n  \"case_id\": \"case_118\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Introduce slow-moving pedestrian near intersection to test collision detection under original weather conditions\",\n      \"mutation_intent\": \"Add dynamic actor to verify if collision symptom persists with detected objects present, preserving red-light violation and vehicle_cmd mismatch pattern\",\n      \"expected_oracle\": \"collision\",\n      \"modifications\": {\n        \"weather_delta\": {\n          \"rain\": 0,\n          \"fog\": 0,\n          \"wetness\": 0,\n          \"puddle\": 0\n        },\n        \"actor_mutations\": [\n          {\n            \"actor_index\": 0,\n            \"position_offset\": {\n              \"x\": 3.0,\n              \"y\": -2.0\n            },\n            \"speed_delta\": 0.0\n          }\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\n          \"keep_original\": true,\n          \"spawn_offset\": {\n            \"x\": 0.0,\n            \"y\": 0.0\n          },\n          \"destination_offset\": {\n            \"x\": 0.0,\n            \"y\": 0.0\n          }\n        }\n      },\n      \"pre_execution_validation_rules\": [\n        \"Verify actor spawns successfully near ego route before collision point\"\n      ],\n      \"post_execution_validation_rules\": [\n        \"Check collision oracle triggers with detected objects present in critical window\",\n        \"Verify vehicle_cmd remains zero while vehicle_status shows active throttle\",\n        \"Confirm red-light violation persists alongside collision symptom\"\n      ],\n      \"uncertainty\": [\n        \"Round 1 showed only red-light violations without collision; actor presence may restore collision oracle\",\n        \"Unclear if detected objects in original trace were static or dynamic entities\"\n      ]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Shift spawn position forward to alter intersection approach timing while preserving route geometry\",\n      \"mutation_intent\": \"Test if collision and red-light violation persist when ego starts closer to intersection, maintaining all environmental factors and zero-actor configuration\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\n          \"rain\": 0,\n          \"fog\": 0,\n          \"wetness\": 0,\n          \"puddle\": 0\n        },\n        \"actor_mutations\": [],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\n          \"keep_original\": false,\n          \"spawn_offset\": {\n            \"x\": 4.0,\n            \"y\": 0.0\n          },\n          \"destination_offset\": {\n            \"x\": 0.0,\n            \"y\": 0.0\n          }\n        }\n      },\n      \"pre_execution_validation_rules\": [\n        \"Confirm spawn offset places ego on valid road segment toward intersection\"\n      ],\n      \"post_execution_validation_rules\": [\n        \"Verify collision oracle triggers with non-zero ego velocity before impact\",\n        \"Check final waypoints remain available and not blocked in critical window\",\n        \"Confirm vehicle_cmd zero mismatch with active vehicle_status control persists\",\n        \"Validate both collision and red-light violation labels match original compound pattern\"\n      ],\n      \"uncertainty\": [\n        \"All Round 1 candidates triggered only red-light without collision; spawn timing change may restore collision\",\n        \"Original trace showed detected objects but Round 1 zero-actor variants lost collision symptom\"\n      ]\n    }\n  ]\n}\n```",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "claude-sonnet-4-5",
+    "object": "chat.completion",
+    "service_tier": null,
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 897,
+      "prompt_tokens": 5228,
+      "total_tokens": 6125,
+      "completion_tokens_details": null,
+      "prompt_tokens_details": null
+    }
+  },
+  "elapsed_sec": 17.858
+}

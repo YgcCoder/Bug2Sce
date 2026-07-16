@@ -1,0 +1,495 @@
+{
+  "case_id": "case_151",
+  "model_name": "gpt-4o-2024-11-20",
+  "workflow": "phase2_grounded_generation",
+  "status": "completed",
+  "schema_valid": true,
+  "schema_errors": [],
+  "phase1_ready": "uncertain",
+  "num_candidates_requested": 2,
+  "num_candidates_written": 2,
+  "num_pre_valid": 2,
+  "candidate_records": [
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/gpt-4o-2024-11-20/json/case_151/case_151__cand_001.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/gpt-4o-2024-11-20/metadata/case_151/case_151__cand_001.metadata.json",
+      "case_id": "case_151",
+      "model_name": "gpt-4o-2024-11-20",
+      "candidate_index": 1,
+      "candidate_spec": {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Ego vehicle exhibits minimal movement with slight weather adjustments to test stuck behavior.",
+        "mutation_intent": "This variant preserves the Phase 1 pattern by maintaining minimal ego movement and low velocity while introducing slight weather changes to explore their impact on stuck symptoms.",
+        "expected_oracle": "stuck",
+        "modifications": {
+          "weather_delta": {
+            "rain": 5,
+            "fog": -10,
+            "wetness": 10,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 0.5,
+                "y": -0.5
+              },
+              "speed_delta": -0.5
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": -1.0,
+                "y": 1.0
+              },
+              "speed_delta": 0.2
+            }
+          ],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": 0.1,
+              "size_scale": 1.0
+            },
+            {
+              "puddle_index": 1,
+              "location_offset": {
+                "x": 0.5,
+                "y": -0.5
+              },
+              "level_delta": -0.1,
+              "size_scale": 0.9
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Ensure ego vehicle maintains minimal movement and low velocity.",
+          "Verify weather changes do not introduce unintended oracle events."
+        ],
+        "post_execution_validation_rules": [
+          "Check vehicle_cmd, vehicle_status, and ego displacement consistency.",
+          "Validate stuck symptoms align with dataset indications."
+        ],
+        "uncertainty": [
+          "Controller behavior under modified weather conditions."
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 5.0,
+          "fog": -10.0,
+          "wetness": 10.0,
+          "puddle": 0.0
+        },
+        "actor_mutations": [
+          {
+            "actor_index": 0,
+            "position_offset": {
+              "x": 0.5,
+              "y": -0.5
+            },
+            "speed_delta": -0.5
+          },
+          {
+            "actor_index": 1,
+            "position_offset": {
+              "x": -1.0,
+              "y": 1.0
+            },
+            "speed_delta": 0.2
+          }
+        ],
+        "puddle_mutations": [
+          {
+            "puddle_index": 0,
+            "location_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "level_delta": 0.1,
+            "size_scale": 1.0
+          },
+          {
+            "puddle_index": 1,
+            "location_offset": {
+              "x": 0.5,
+              "y": -0.5
+            },
+            "level_delta": -0.1,
+            "size_scale": 0.9
+          }
+        ],
+        "mission_mutation": {
+          "keep_original": true
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_151__gpt-4o-2024-11-20.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_151__gpt-4o-2024-11-20.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    },
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/gpt-4o-2024-11-20/json/case_151/case_151__cand_002.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/gpt-4o-2024-11-20/metadata/case_151/case_151__cand_002.metadata.json",
+      "case_id": "case_151",
+      "model_name": "gpt-4o-2024-11-20",
+      "candidate_index": 2,
+      "candidate_spec": {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Ego vehicle exhibits minimal movement with actor repositioning to test lane invasion symptoms.",
+        "mutation_intent": "This variant preserves the Phase 1 pattern by maintaining minimal ego movement and low velocity while introducing actor position changes to test lane invasion symptoms.",
+        "expected_oracle": "lane_invasion",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": -1.0,
+                "y": 1.0
+              },
+              "speed_delta": 0.0
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": 2.0,
+                "y": -2.0
+              },
+              "speed_delta": -0.3
+            }
+          ],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": -0.5,
+                "y": 0.5
+              },
+              "level_delta": 0.0,
+              "size_scale": 1.0
+            },
+            {
+              "puddle_index": 1,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": 0.0,
+              "size_scale": 1.0
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Ensure ego vehicle maintains minimal movement and low velocity.",
+          "Verify actor position changes do not disrupt oracle consistency."
+        ],
+        "post_execution_validation_rules": [
+          "Check vehicle_cmd, vehicle_status, and ego displacement consistency.",
+          "Validate lane invasion symptoms align with dataset indications."
+        ],
+        "uncertainty": [
+          "Actor position changes may introduce unintended interactions."
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 0.0,
+          "fog": 0.0,
+          "wetness": 0.0,
+          "puddle": 0.0
+        },
+        "actor_mutations": [
+          {
+            "actor_index": 0,
+            "position_offset": {
+              "x": -1.0,
+              "y": 1.0
+            },
+            "speed_delta": 0.0
+          },
+          {
+            "actor_index": 1,
+            "position_offset": {
+              "x": 2.0,
+              "y": -2.0
+            },
+            "speed_delta": -0.3
+          }
+        ],
+        "puddle_mutations": [
+          {
+            "puddle_index": 0,
+            "location_offset": {
+              "x": -0.5,
+              "y": 0.5
+            },
+            "level_delta": 0.0,
+            "size_scale": 1.0
+          },
+          {
+            "puddle_index": 1,
+            "location_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "level_delta": 0.0,
+            "size_scale": 1.0
+          }
+        ],
+        "mission_mutation": {
+          "keep_original": true
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_151__gpt-4o-2024-11-20.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_151__gpt-4o-2024-11-20.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    }
+  ],
+  "seed_artifact_zip": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/gpt-4o-2024-11-20/seed-artifact/seed-artifact-case_151.zip",
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_prompts/case_151__gpt-4o-2024-11-20.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_151__gpt-4o-2024-11-20.json",
+  "prompt_estimated_tokens": 1106,
+  "usage": {
+    "prompt_tokens": 1229,
+    "completion_tokens": 890,
+    "total_tokens": 2119
+  },
+  "raw_response": "{\n  \"case_id\": \"case_151\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Ego vehicle exhibits minimal movement with slight weather adjustments to test stuck behavior.\",\n      \"mutation_intent\": \"This variant preserves the Phase 1 pattern by maintaining minimal ego movement and low velocity while introducing slight weather changes to explore their impact on stuck symptoms.\",\n      \"expected_oracle\": \"stuck\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 5, \"fog\": -10, \"wetness\": 10, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 0.5, \"y\": -0.5}, \"speed_delta\": -0.5},\n          {\"actor_index\": 1, \"position_offset\": {\"x\": -1.0, \"y\": 1.0}, \"speed_delta\": 0.2}\n        ],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": 0.1, \"size_scale\": 1.0},\n          {\"puddle_index\": 1, \"location_offset\": {\"x\": 0.5, \"y\": -0.5}, \"level_delta\": -0.1, \"size_scale\": 0.9}\n        ],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Ensure ego vehicle maintains minimal movement and low velocity.\", \"Verify weather changes do not introduce unintended oracle events.\"],\n      \"post_execution_validation_rules\": [\"Check vehicle_cmd, vehicle_status, and ego displacement consistency.\", \"Validate stuck symptoms align with dataset indications.\"],\n      \"uncertainty\": [\"Controller behavior under modified weather conditions.\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Ego vehicle exhibits minimal movement with actor repositioning to test lane invasion symptoms.\",\n      \"mutation_intent\": \"This variant preserves the Phase 1 pattern by maintaining minimal ego movement and low velocity while introducing actor position changes to test lane invasion symptoms.\",\n      \"expected_oracle\": \"lane_invasion\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": -1.0, \"y\": 1.0}, \"speed_delta\": 0.0},\n          {\"actor_index\": 1, \"position_offset\": {\"x\": 2.0, \"y\": -2.0}, \"speed_delta\": -0.3}\n        ],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": -0.5, \"y\": 0.5}, \"level_delta\": 0.0, \"size_scale\": 1.0},\n          {\"puddle_index\": 1, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": 0.0, \"size_scale\": 1.0}\n        ],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Ensure ego vehicle maintains minimal movement and low velocity.\", \"Verify actor position changes do not disrupt oracle consistency.\"],\n      \"post_execution_validation_rules\": [\"Check vehicle_cmd, vehicle_status, and ego displacement consistency.\", \"Validate lane invasion symptoms align with dataset indications.\"],\n      \"uncertainty\": [\"Actor position changes may introduce unintended interactions.\"]\n    }\n  ]\n}",
+  "parsed_response": {
+    "case_id": "case_151",
+    "candidate_specs": [
+      {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Ego vehicle exhibits minimal movement with slight weather adjustments to test stuck behavior.",
+        "mutation_intent": "This variant preserves the Phase 1 pattern by maintaining minimal ego movement and low velocity while introducing slight weather changes to explore their impact on stuck symptoms.",
+        "expected_oracle": "stuck",
+        "modifications": {
+          "weather_delta": {
+            "rain": 5,
+            "fog": -10,
+            "wetness": 10,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 0.5,
+                "y": -0.5
+              },
+              "speed_delta": -0.5
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": -1.0,
+                "y": 1.0
+              },
+              "speed_delta": 0.2
+            }
+          ],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": 0.1,
+              "size_scale": 1.0
+            },
+            {
+              "puddle_index": 1,
+              "location_offset": {
+                "x": 0.5,
+                "y": -0.5
+              },
+              "level_delta": -0.1,
+              "size_scale": 0.9
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Ensure ego vehicle maintains minimal movement and low velocity.",
+          "Verify weather changes do not introduce unintended oracle events."
+        ],
+        "post_execution_validation_rules": [
+          "Check vehicle_cmd, vehicle_status, and ego displacement consistency.",
+          "Validate stuck symptoms align with dataset indications."
+        ],
+        "uncertainty": [
+          "Controller behavior under modified weather conditions."
+        ]
+      },
+      {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Ego vehicle exhibits minimal movement with actor repositioning to test lane invasion symptoms.",
+        "mutation_intent": "This variant preserves the Phase 1 pattern by maintaining minimal ego movement and low velocity while introducing actor position changes to test lane invasion symptoms.",
+        "expected_oracle": "lane_invasion",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": -1.0,
+                "y": 1.0
+              },
+              "speed_delta": 0.0
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": 2.0,
+                "y": -2.0
+              },
+              "speed_delta": -0.3
+            }
+          ],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": -0.5,
+                "y": 0.5
+              },
+              "level_delta": 0.0,
+              "size_scale": 1.0
+            },
+            {
+              "puddle_index": 1,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": 0.0,
+              "size_scale": 1.0
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Ensure ego vehicle maintains minimal movement and low velocity.",
+          "Verify actor position changes do not disrupt oracle consistency."
+        ],
+        "post_execution_validation_rules": [
+          "Check vehicle_cmd, vehicle_status, and ego displacement consistency.",
+          "Validate lane invasion symptoms align with dataset indications."
+        ],
+        "uncertainty": [
+          "Actor position changes may introduce unintended interactions."
+        ]
+      }
+    ]
+  },
+  "raw_api_payload": {
+    "id": "<REDACTED_RESPONSE_ID>",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "{\n  \"case_id\": \"case_151\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Ego vehicle exhibits minimal movement with slight weather adjustments to test stuck behavior.\",\n      \"mutation_intent\": \"This variant preserves the Phase 1 pattern by maintaining minimal ego movement and low velocity while introducing slight weather changes to explore their impact on stuck symptoms.\",\n      \"expected_oracle\": \"stuck\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 5, \"fog\": -10, \"wetness\": 10, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 0.5, \"y\": -0.5}, \"speed_delta\": -0.5},\n          {\"actor_index\": 1, \"position_offset\": {\"x\": -1.0, \"y\": 1.0}, \"speed_delta\": 0.2}\n        ],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": 0.1, \"size_scale\": 1.0},\n          {\"puddle_index\": 1, \"location_offset\": {\"x\": 0.5, \"y\": -0.5}, \"level_delta\": -0.1, \"size_scale\": 0.9}\n        ],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Ensure ego vehicle maintains minimal movement and low velocity.\", \"Verify weather changes do not introduce unintended oracle events.\"],\n      \"post_execution_validation_rules\": [\"Check vehicle_cmd, vehicle_status, and ego displacement consistency.\", \"Validate stuck symptoms align with dataset indications.\"],\n      \"uncertainty\": [\"Controller behavior under modified weather conditions.\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Ego vehicle exhibits minimal movement with actor repositioning to test lane invasion symptoms.\",\n      \"mutation_intent\": \"This variant preserves the Phase 1 pattern by maintaining minimal ego movement and low velocity while introducing actor position changes to test lane invasion symptoms.\",\n      \"expected_oracle\": \"lane_invasion\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": -1.0, \"y\": 1.0}, \"speed_delta\": 0.0},\n          {\"actor_index\": 1, \"position_offset\": {\"x\": 2.0, \"y\": -2.0}, \"speed_delta\": -0.3}\n        ],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": -0.5, \"y\": 0.5}, \"level_delta\": 0.0, \"size_scale\": 1.0},\n          {\"puddle_index\": 1, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": 0.0, \"size_scale\": 1.0}\n        ],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Ensure ego vehicle maintains minimal movement and low velocity.\", \"Verify actor position changes do not disrupt oracle consistency.\"],\n      \"post_execution_validation_rules\": [\"Check vehicle_cmd, vehicle_status, and ego displacement consistency.\", \"Validate lane invasion symptoms align with dataset indications.\"],\n      \"uncertainty\": [\"Actor position changes may introduce unintended interactions.\"]\n    }\n  ]\n}",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": [],
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "gpt-4o-2024-11-20",
+    "object": "chat.completion",
+    "service_tier": "default",
+    "system_fingerprint": "<REDACTED_SYSTEM_FINGERPRINT>",
+    "usage": {
+      "completion_tokens": 890,
+      "prompt_tokens": 1229,
+      "total_tokens": 2119,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": 0,
+        "audio_tokens": 0,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 0
+      }
+    }
+  },
+  "error_message": "",
+  "elapsed_sec": 6.12,
+  "timestamp": "<REDACTED_TIMESTAMP>"
+}

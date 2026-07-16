@@ -1,0 +1,270 @@
+{
+  "case_id": "case_156",
+  "model_name": "claude-sonnet-4-5",
+  "workflow": "pure_llm_phase2_baseline",
+  "status": "completed",
+  "schema_valid": true,
+  "schema_errors": [],
+  "num_candidates_requested": 1,
+  "num_candidates_written": 1,
+  "num_pre_valid": 1,
+  "candidate_records": [
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/pure_llm_phase2_candidates/claude-sonnet-4-5/json/case_156/case_156__model_claude-sonnet-4-5__cand_001.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/pure_llm_phase2_candidates/claude-sonnet-4-5/metadata/case_156/case_156__model_claude-sonnet-4-5__cand_001.metadata.json",
+      "case_id": "case_156",
+      "model_name": "claude-sonnet-4-5",
+      "candidate_index": 1,
+      "candidate_spec": {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Move immobile vehicle closer to spawn and reduce puddle depth",
+        "mutation_intent": "Test if stuck occurs when obstacle proximity increases and puddle effects decrease",
+        "expected_oracle": "stuck",
+        "modifications": {
+          "weather_delta": {
+            "rain": -5,
+            "fog": 0,
+            "wetness": -3,
+            "puddle": -8
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": -4.0,
+                "y": 0.0
+              },
+              "speed_delta": 0.0
+            }
+          ],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": -0.15,
+              "size_scale": 0.9
+            },
+            {
+              "puddle_index": 1,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": -0.1,
+              "size_scale": 0.95
+            },
+            {
+              "puddle_index": 2,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": -0.05,
+              "size_scale": 1.0
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Verify immobile vehicle is on route path between spawn and destination"
+        ],
+        "post_execution_validation_rules": [
+          "Check if ego vehicle stops or fails to progress past obstacle"
+        ],
+        "uncertainty": [
+          "Unclear if stuck is due to obstacle avoidance failure or puddle interaction"
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": -5.0,
+          "fog": 0.0,
+          "wetness": -3.0,
+          "puddle": -8.0
+        },
+        "actor_mutations": [
+          {
+            "actor_index": 0,
+            "position_offset": {
+              "x": -4.0,
+              "y": 0.0
+            },
+            "speed_delta": 0.0
+          }
+        ],
+        "puddle_mutations": [
+          {
+            "puddle_index": 0,
+            "location_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "level_delta": -0.15,
+            "size_scale": 0.9
+          },
+          {
+            "puddle_index": 1,
+            "location_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "level_delta": -0.1,
+            "size_scale": 0.95
+          },
+          {
+            "puddle_index": 2,
+            "location_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "level_delta": -0.05,
+            "size_scale": 1.0
+          }
+        ],
+        "mission_mutation": {
+          "keep_original": true
+        },
+        "safety_repairs": []
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": []
+      }
+    }
+  ],
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/pure_llm_phase2_api_prompts/case_156__claude-sonnet-4-5.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/pure_llm_phase2_api_outputs/case_156__claude-sonnet-4-5.json",
+  "prompt_estimated_tokens": 842,
+  "usage": {
+    "prompt_tokens": 1196,
+    "completion_tokens": 499,
+    "total_tokens": 1695
+  },
+  "raw_response": "```json\n{\n  \"case_id\": \"case_156\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Move immobile vehicle closer to spawn and reduce puddle depth\",\n      \"mutation_intent\": \"Test if stuck occurs when obstacle proximity increases and puddle effects decrease\",\n      \"expected_oracle\": \"stuck\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": -5, \"fog\": 0, \"wetness\": -3, \"puddle\": -8},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": -4.0, \"y\": 0.0}, \"speed_delta\": 0.0}\n        ],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": -0.15, \"size_scale\": 0.9},\n          {\"puddle_index\": 1, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": -0.1, \"size_scale\": 0.95},\n          {\"puddle_index\": 2, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": -0.05, \"size_scale\": 1.0}\n        ],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Verify immobile vehicle is on route path between spawn and destination\"],\n      \"post_execution_validation_rules\": [\"Check if ego vehicle stops or fails to progress past obstacle\"],\n      \"uncertainty\": [\"Unclear if stuck is due to obstacle avoidance failure or puddle interaction\"]\n    }\n  ]\n}\n```",
+  "parsed_response": {
+    "case_id": "case_156",
+    "candidate_specs": [
+      {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Move immobile vehicle closer to spawn and reduce puddle depth",
+        "mutation_intent": "Test if stuck occurs when obstacle proximity increases and puddle effects decrease",
+        "expected_oracle": "stuck",
+        "modifications": {
+          "weather_delta": {
+            "rain": -5,
+            "fog": 0,
+            "wetness": -3,
+            "puddle": -8
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": -4.0,
+                "y": 0.0
+              },
+              "speed_delta": 0.0
+            }
+          ],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": -0.15,
+              "size_scale": 0.9
+            },
+            {
+              "puddle_index": 1,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": -0.1,
+              "size_scale": 0.95
+            },
+            {
+              "puddle_index": 2,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": -0.05,
+              "size_scale": 1.0
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Verify immobile vehicle is on route path between spawn and destination"
+        ],
+        "post_execution_validation_rules": [
+          "Check if ego vehicle stops or fails to progress past obstacle"
+        ],
+        "uncertainty": [
+          "Unclear if stuck is due to obstacle avoidance failure or puddle interaction"
+        ]
+      }
+    ]
+  },
+  "raw_api_payload": {
+    "id": "<REDACTED_RESPONSE_ID>",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "```json\n{\n  \"case_id\": \"case_156\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Move immobile vehicle closer to spawn and reduce puddle depth\",\n      \"mutation_intent\": \"Test if stuck occurs when obstacle proximity increases and puddle effects decrease\",\n      \"expected_oracle\": \"stuck\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": -5, \"fog\": 0, \"wetness\": -3, \"puddle\": -8},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": -4.0, \"y\": 0.0}, \"speed_delta\": 0.0}\n        ],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": -0.15, \"size_scale\": 0.9},\n          {\"puddle_index\": 1, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": -0.1, \"size_scale\": 0.95},\n          {\"puddle_index\": 2, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": -0.05, \"size_scale\": 1.0}\n        ],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Verify immobile vehicle is on route path between spawn and destination\"],\n      \"post_execution_validation_rules\": [\"Check if ego vehicle stops or fails to progress past obstacle\"],\n      \"uncertainty\": [\"Unclear if stuck is due to obstacle avoidance failure or puddle interaction\"]\n    }\n  ]\n}\n```",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "claude-sonnet-4-5",
+    "object": "chat.completion",
+    "service_tier": null,
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 499,
+      "prompt_tokens": 1196,
+      "total_tokens": 1695,
+      "completion_tokens_details": null,
+      "prompt_tokens_details": null
+    }
+  },
+  "error_message": "",
+  "elapsed_sec": 10.079,
+  "timestamp": "<REDACTED_TIMESTAMP>"
+}

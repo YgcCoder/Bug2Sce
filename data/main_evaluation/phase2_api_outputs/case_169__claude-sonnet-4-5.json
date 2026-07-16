@@ -1,0 +1,291 @@
+{
+  "case_id": "case_169",
+  "model_name": "claude-sonnet-4-5",
+  "workflow": "phase2_grounded_generation",
+  "status": "completed",
+  "schema_valid": true,
+  "schema_errors": [],
+  "phase1_ready": "yes",
+  "num_candidates_requested": 2,
+  "num_candidates_written": 2,
+  "num_pre_valid": 2,
+  "candidate_records": [
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/claude-sonnet-4-5/json/case_169/case_169__cand_001.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/claude-sonnet-4-5/metadata/case_169/case_169__cand_001.metadata.json",
+      "case_id": "case_169",
+      "model_name": "claude-sonnet-4-5",
+      "candidate_index": 1,
+      "candidate_spec": {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Baseline red-light scenario with original weather and mission",
+        "mutation_intent": "Preserve original conditions to reproduce red-light violation with available traffic light states",
+        "expected_oracle": "red_light",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Traffic light states available",
+          "Final waypoints present",
+          "Route passes intersection with lights"
+        ],
+        "post_execution_validation_rules": [
+          "Red-light violation reproduced",
+          "Ego velocity non-zero near red light",
+          "Traffic light states logged"
+        ],
+        "uncertainty": [
+          "Stop-line crossing not confirmed",
+          "Route-light association unclear",
+          "Controller behavior uncertain"
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 0.0,
+          "fog": 0.0,
+          "wetness": 0.0,
+          "puddle": 0.0
+        },
+        "actor_mutations": [],
+        "puddle_mutations": [],
+        "mission_mutation": {
+          "keep_original": true
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": [
+          "no actors in candidate scenario"
+        ]
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_169__claude-sonnet-4-5.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_169__claude-sonnet-4-5.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    },
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/claude-sonnet-4-5/json/case_169/case_169__cand_002.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/claude-sonnet-4-5/metadata/case_169/case_169__cand_002.metadata.json",
+      "case_id": "case_169",
+      "model_name": "claude-sonnet-4-5",
+      "candidate_index": 2,
+      "candidate_spec": {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Reduced fog and rain to improve visibility",
+        "mutation_intent": "Test if reduced fog and rain affect red-light detection while preserving violation pattern",
+        "expected_oracle": "red_light",
+        "modifications": {
+          "weather_delta": {
+            "rain": -10,
+            "fog": -20,
+            "wetness": -5,
+            "puddle": -5
+          },
+          "actor_mutations": [],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Traffic light states available",
+          "Final waypoints present",
+          "Weather delta applied correctly"
+        ],
+        "post_execution_validation_rules": [
+          "Red-light violation reproduced",
+          "Ego velocity non-zero near red light",
+          "Improved visibility conditions"
+        ],
+        "uncertainty": [
+          "Visibility impact on violation unclear",
+          "Stop-line crossing not confirmed",
+          "Module-level attribution uncertain"
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": -10.0,
+          "fog": -20,
+          "wetness": -5.0,
+          "puddle": -5.0
+        },
+        "actor_mutations": [],
+        "puddle_mutations": [],
+        "mission_mutation": {
+          "keep_original": true
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": [
+          "no actors in candidate scenario"
+        ]
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_169__claude-sonnet-4-5.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_169__claude-sonnet-4-5.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    }
+  ],
+  "seed_artifact_zip": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/claude-sonnet-4-5/seed-artifact/seed-artifact-case_169.zip",
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_prompts/case_169__claude-sonnet-4-5.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_169__claude-sonnet-4-5.json",
+  "prompt_estimated_tokens": 1136,
+  "usage": {
+    "prompt_tokens": 1317,
+    "completion_tokens": 600,
+    "total_tokens": 1917
+  },
+  "raw_response": "```json\n{\n  \"case_id\": \"case_169\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Baseline red-light scenario with original weather and mission\",\n      \"mutation_intent\": \"Preserve original conditions to reproduce red-light violation with available traffic light states\",\n      \"expected_oracle\": \"red_light\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Traffic light states available\", \"Final waypoints present\", \"Route passes intersection with lights\"],\n      \"post_execution_validation_rules\": [\"Red-light violation reproduced\", \"Ego velocity non-zero near red light\", \"Traffic light states logged\"],\n      \"uncertainty\": [\"Stop-line crossing not confirmed\", \"Route-light association unclear\", \"Controller behavior uncertain\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Reduced fog and rain to improve visibility\",\n      \"mutation_intent\": \"Test if reduced fog and rain affect red-light detection while preserving violation pattern\",\n      \"expected_oracle\": \"red_light\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": -10, \"fog\": -20, \"wetness\": -5, \"puddle\": -5},\n        \"actor_mutations\": [],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Traffic light states available\", \"Final waypoints present\", \"Weather delta applied correctly\"],\n      \"post_execution_validation_rules\": [\"Red-light violation reproduced\", \"Ego velocity non-zero near red light\", \"Improved visibility conditions\"],\n      \"uncertainty\": [\"Visibility impact on violation unclear\", \"Stop-line crossing not confirmed\", \"Module-level attribution uncertain\"]\n    }\n  ]\n}\n```",
+  "parsed_response": {
+    "case_id": "case_169",
+    "candidate_specs": [
+      {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Baseline red-light scenario with original weather and mission",
+        "mutation_intent": "Preserve original conditions to reproduce red-light violation with available traffic light states",
+        "expected_oracle": "red_light",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Traffic light states available",
+          "Final waypoints present",
+          "Route passes intersection with lights"
+        ],
+        "post_execution_validation_rules": [
+          "Red-light violation reproduced",
+          "Ego velocity non-zero near red light",
+          "Traffic light states logged"
+        ],
+        "uncertainty": [
+          "Stop-line crossing not confirmed",
+          "Route-light association unclear",
+          "Controller behavior uncertain"
+        ]
+      },
+      {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Reduced fog and rain to improve visibility",
+        "mutation_intent": "Test if reduced fog and rain affect red-light detection while preserving violation pattern",
+        "expected_oracle": "red_light",
+        "modifications": {
+          "weather_delta": {
+            "rain": -10,
+            "fog": -20,
+            "wetness": -5,
+            "puddle": -5
+          },
+          "actor_mutations": [],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Traffic light states available",
+          "Final waypoints present",
+          "Weather delta applied correctly"
+        ],
+        "post_execution_validation_rules": [
+          "Red-light violation reproduced",
+          "Ego velocity non-zero near red light",
+          "Improved visibility conditions"
+        ],
+        "uncertainty": [
+          "Visibility impact on violation unclear",
+          "Stop-line crossing not confirmed",
+          "Module-level attribution uncertain"
+        ]
+      }
+    ]
+  },
+  "raw_api_payload": {
+    "id": "<REDACTED_RESPONSE_ID>",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "```json\n{\n  \"case_id\": \"case_169\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Baseline red-light scenario with original weather and mission\",\n      \"mutation_intent\": \"Preserve original conditions to reproduce red-light violation with available traffic light states\",\n      \"expected_oracle\": \"red_light\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Traffic light states available\", \"Final waypoints present\", \"Route passes intersection with lights\"],\n      \"post_execution_validation_rules\": [\"Red-light violation reproduced\", \"Ego velocity non-zero near red light\", \"Traffic light states logged\"],\n      \"uncertainty\": [\"Stop-line crossing not confirmed\", \"Route-light association unclear\", \"Controller behavior uncertain\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Reduced fog and rain to improve visibility\",\n      \"mutation_intent\": \"Test if reduced fog and rain affect red-light detection while preserving violation pattern\",\n      \"expected_oracle\": \"red_light\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": -10, \"fog\": -20, \"wetness\": -5, \"puddle\": -5},\n        \"actor_mutations\": [],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Traffic light states available\", \"Final waypoints present\", \"Weather delta applied correctly\"],\n      \"post_execution_validation_rules\": [\"Red-light violation reproduced\", \"Ego velocity non-zero near red light\", \"Improved visibility conditions\"],\n      \"uncertainty\": [\"Visibility impact on violation unclear\", \"Stop-line crossing not confirmed\", \"Module-level attribution uncertain\"]\n    }\n  ]\n}\n```",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "claude-sonnet-4-5",
+    "object": "chat.completion",
+    "service_tier": null,
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 600,
+      "prompt_tokens": 1317,
+      "total_tokens": 1917,
+      "completion_tokens_details": null,
+      "prompt_tokens_details": null
+    }
+  },
+  "error_message": "",
+  "elapsed_sec": 10.41,
+  "timestamp": "<REDACTED_TIMESTAMP>"
+}

@@ -1,0 +1,104 @@
+{
+  "case_id": "case_104",
+  "workflow": "phase1_causal_explanation",
+  "model_name": "gpt-4o-2024-11-20",
+  "model_id": "gpt-4o-2024-11-20",
+  "status": "completed",
+  "dry_run": false,
+  "schema_valid": true,
+  "schema_errors": [],
+  "quality_flags": [],
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_prompts/case_104__gpt-4o-2024-11-20.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_104__gpt-4o-2024-11-20.json",
+  "prompt_estimated_tokens": 2869,
+  "usage": {
+    "prompt_tokens": 3010,
+    "completion_tokens": 378,
+    "total_tokens": 3388
+  },
+  "estimated_cost_usd": null,
+  "raw_response": "{\n  \"case_id\": \"case_104\",\n  \"fault_layer\": \"unknown\",\n  \"fault_component\": \"unknown\",\n  \"causal_explanation\": \"The dataset indicates a red-light violation, but error.json does not confirm this. Route-light relation and stop-line crossing are unconfirmed, and critical-window evidence does not directly attribute the failure to any module.\",\n  \"root_cause_pattern\": \"Conservative preservation pattern: a red-light violation is suggested by the dataset, but conflicting evidence and lack of route-light relation confirmation prevent module-level attribution.\",\n  \"preservation_constraints\": [\n    \"The generated candidate should preserve the dataset's red-light symptom.\",\n    \"Traffic light states should remain available in the critical window.\",\n    \"Post-execution validation should check for route-light relation and stop-line crossing evidence.\"\n  ],\n  \"modifiable_factors\": [\"weather\", \"puddles\", \"mission\"],\n  \"non_modifiable_conditions\": [\"same dataset red-light symptom\", \"traffic light state availability\"],\n  \"uncertainty\": [\n    \"Dataset and error.json conflict on red-light violation.\",\n    \"Route-light relation and stop-line crossing are unconfirmed.\"\n  ],\n  \"evidence_support\": [\n    {\"evidence_id\": \"fault_label\", \"claim\": \"Dataset indicates a red-light violation, but error.json does not confirm it.\"},\n    {\"evidence_id\": \"critical_window_summary\", \"claim\": \"Traffic light states are available, but route-light relation and stop-line crossing are unconfirmed.\"}\n  ],\n  \"confidence\": \"low\",\n  \"ready_for_phase2_generation\": \"uncertain\",\n  \"notes_for_validator\": [\n    \"Ensure generated cases preserve the dataset's red-light symptom.\",\n    \"Do not confirm same-root-cause unless route-light relation or stop-line crossing evidence is validated post-execution.\"\n  ]\n}",
+  "parsed_response": {
+    "case_id": "case_104",
+    "fault_layer": "unknown",
+    "fault_component": "unknown",
+    "causal_explanation": "The dataset indicates a red-light violation, but error.json does not confirm this. Route-light relation and stop-line crossing are unconfirmed, and critical-window evidence does not directly attribute the failure to any module.",
+    "root_cause_pattern": "Conservative preservation pattern: a red-light violation is suggested by the dataset, but conflicting evidence and lack of route-light relation confirmation prevent module-level attribution.",
+    "preservation_constraints": [
+      "The generated candidate should preserve the dataset's red-light symptom.",
+      "Traffic light states should remain available in the critical window.",
+      "Post-execution validation should check for route-light relation and stop-line crossing evidence."
+    ],
+    "modifiable_factors": [
+      "weather",
+      "puddles",
+      "mission"
+    ],
+    "non_modifiable_conditions": [
+      "same dataset red-light symptom",
+      "traffic light state availability"
+    ],
+    "uncertainty": [
+      "Dataset and error.json conflict on red-light violation.",
+      "Route-light relation and stop-line crossing are unconfirmed."
+    ],
+    "evidence_support": [
+      {
+        "evidence_id": "fault_label",
+        "claim": "Dataset indicates a red-light violation, but error.json does not confirm it."
+      },
+      {
+        "evidence_id": "critical_window_summary",
+        "claim": "Traffic light states are available, but route-light relation and stop-line crossing are unconfirmed."
+      }
+    ],
+    "confidence": "low",
+    "ready_for_phase2_generation": "uncertain",
+    "notes_for_validator": [
+      "Ensure generated cases preserve the dataset's red-light symptom.",
+      "Do not confirm same-root-cause unless route-light relation or stop-line crossing evidence is validated post-execution."
+    ]
+  },
+  "raw_api_payload": {
+    "id": "<REDACTED_RESPONSE_ID>",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "{\n  \"case_id\": \"case_104\",\n  \"fault_layer\": \"unknown\",\n  \"fault_component\": \"unknown\",\n  \"causal_explanation\": \"The dataset indicates a red-light violation, but error.json does not confirm this. Route-light relation and stop-line crossing are unconfirmed, and critical-window evidence does not directly attribute the failure to any module.\",\n  \"root_cause_pattern\": \"Conservative preservation pattern: a red-light violation is suggested by the dataset, but conflicting evidence and lack of route-light relation confirmation prevent module-level attribution.\",\n  \"preservation_constraints\": [\n    \"The generated candidate should preserve the dataset's red-light symptom.\",\n    \"Traffic light states should remain available in the critical window.\",\n    \"Post-execution validation should check for route-light relation and stop-line crossing evidence.\"\n  ],\n  \"modifiable_factors\": [\"weather\", \"puddles\", \"mission\"],\n  \"non_modifiable_conditions\": [\"same dataset red-light symptom\", \"traffic light state availability\"],\n  \"uncertainty\": [\n    \"Dataset and error.json conflict on red-light violation.\",\n    \"Route-light relation and stop-line crossing are unconfirmed.\"\n  ],\n  \"evidence_support\": [\n    {\"evidence_id\": \"fault_label\", \"claim\": \"Dataset indicates a red-light violation, but error.json does not confirm it.\"},\n    {\"evidence_id\": \"critical_window_summary\", \"claim\": \"Traffic light states are available, but route-light relation and stop-line crossing are unconfirmed.\"}\n  ],\n  \"confidence\": \"low\",\n  \"ready_for_phase2_generation\": \"uncertain\",\n  \"notes_for_validator\": [\n    \"Ensure generated cases preserve the dataset's red-light symptom.\",\n    \"Do not confirm same-root-cause unless route-light relation or stop-line crossing evidence is validated post-execution.\"\n  ]\n}",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": [],
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "gpt-4o-2024-11-20",
+    "object": "chat.completion",
+    "service_tier": "default",
+    "system_fingerprint": "<REDACTED_SYSTEM_FINGERPRINT>",
+    "usage": {
+      "completion_tokens": 378,
+      "prompt_tokens": 3010,
+      "total_tokens": 3388,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": 0,
+        "audio_tokens": 0,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 0
+      }
+    }
+  },
+  "error_message": "",
+  "timestamp": "<REDACTED_TIMESTAMP>",
+  "elapsed_sec": 3.679
+}

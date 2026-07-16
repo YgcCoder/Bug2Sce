@@ -1,0 +1,118 @@
+{
+  "case_id": "case_079",
+  "model_name": "gpt-5.1",
+  "workflow": "pure_llm_phase2_baseline",
+  "candidate_index": 1,
+  "candidate_spec": {
+    "candidate_id": "cand_001",
+    "high_level_variant": "Walker starts closer to ego near intersection",
+    "mutation_intent": "Increase chance of ego facing walker while approaching signalized area",
+    "expected_oracle": "compound",
+    "modifications": {
+      "weather_delta": {
+        "rain": -10,
+        "fog": 5,
+        "wetness": -5,
+        "puddle": 0
+      },
+      "actor_mutations": [
+        {
+          "actor_index": 0,
+          "position_offset": {
+            "x": 1.5,
+            "y": 2.0
+          },
+          "speed_delta": 0.0
+        },
+        {
+          "actor_index": 1,
+          "position_offset": {
+            "x": 4.0,
+            "y": -3.0
+          },
+          "speed_delta": 0.8
+        }
+      ],
+      "puddle_mutations": [
+        {
+          "puddle_index": 0,
+          "location_offset": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "level_delta": 0.0,
+          "size_scale": 1.0
+        }
+      ],
+      "mission_mutation": {
+        "keep_original": false,
+        "spawn_offset": {
+          "x": -3.0,
+          "y": 1.5
+        },
+        "destination_offset": {
+          "x": 2.0,
+          "y": -1.0
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Ensure walker remains on walkable area",
+      "Keep ego route on valid drivable lanes"
+    ],
+    "post_execution_validation_rules": [
+      "Check for any lane invasion",
+      "Check for any red light violation"
+    ],
+    "uncertainty": [
+      "Exact traffic light timing not controlled",
+      "Pedestrian crossing intent may vary"
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": -10.0,
+      "fog": 5.0,
+      "wetness": -5.0,
+      "puddle": 0.0
+    },
+    "actor_mutations": [
+      {
+        "actor_index": 0,
+        "position_offset": {
+          "x": 1.5,
+          "y": 2.0
+        },
+        "speed_delta": 0.0
+      },
+      {
+        "actor_index": 1,
+        "position_offset": {
+          "x": 4.0,
+          "y": -3.0
+        },
+        "speed_delta": 0.8
+      }
+    ],
+    "puddle_mutations": [],
+    "mission_mutation": {
+      "spawn_offset": {
+        "x": -3.0,
+        "y": 1.5
+      },
+      "destination_offset": {
+        "x": 2.0,
+        "y": -1.0
+      }
+    },
+    "safety_repairs": []
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/pure_llm_phase2_api_prompts/case_079__gpt-5.1.md",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/pure_llm_phase2_api_outputs/case_079__gpt-5.1.json",
+  "baseline_note": "Pure-LLM baseline: prompt used no root-cause pattern or critical-window evidence."
+}

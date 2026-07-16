@@ -1,0 +1,314 @@
+{
+  "case_id": "case_143",
+  "model_name": "ark-deepseek-r1-250528",
+  "workflow": "phase2_grounded_generation",
+  "status": "completed",
+  "schema_valid": true,
+  "schema_errors": [],
+  "phase1_ready": "uncertain",
+  "num_candidates_requested": 2,
+  "num_candidates_written": 2,
+  "num_pre_valid": 2,
+  "candidate_records": [
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-deepseek-r1-250528/json/case_143/case_143__cand_001.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-deepseek-r1-250528/metadata/case_143/case_143__cand_001.metadata.json",
+      "case_id": "case_143",
+      "model_name": "ark-deepseek-r1-250528",
+      "candidate_index": 1,
+      "candidate_spec": {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Slightly increased rain, fog and road wetness, small shift of ego spawn towards the intersection, no dynamic actors added",
+        "mutation_intent": "Preserves all original root cause pattern requirements: keeps zero dynamic actors, Town01 map, conflicting lane invasion labels, reported red-light violation, and does not require confirmed stop-line or lane boundary crossing, only tests a conservative weather variation",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": 5,
+            "fog": 5,
+            "wetness": 5,
+            "puddle": 5
+          },
+          "actor_mutations": [],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": false,
+            "spawn_offset": {
+              "x": -1.5,
+              "y": 0.5
+            },
+            "destination_offset": {
+              "x": 1.0,
+              "y": -0.5
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Red traffic light is positioned in ego's critical path",
+          "No dynamic actors are present in the scenario",
+          "Scenario is generated on Town01 map"
+        ],
+        "post_execution_validation_rules": [
+          "Original conflicting label status for lane invasion is preserved",
+          "Red-light event is present in the critical window as reported in original error.json"
+        ],
+        "uncertainty": [
+          "Lane invasion label conflict between dataset and error.json remains unresolved",
+          "Stop-line crossing for red-light violation is not confirmed",
+          "Lane boundary crossing for lane invasion is not confirmed",
+          "Actuation behavior attribution remains uncertain"
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 5.0,
+          "fog": 5.0,
+          "wetness": 5.0,
+          "puddle": 5.0
+        },
+        "actor_mutations": [],
+        "puddle_mutations": [],
+        "mission_mutation": {
+          "spawn_offset": {
+            "x": -1.5,
+            "y": 0.5
+          },
+          "destination_offset": {
+            "x": 1.0,
+            "y": -0.5
+          }
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": [
+          "no actors in candidate scenario"
+        ]
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_143__ark-deepseek-r1-250528.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_143__ark-deepseek-r1-250528.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    },
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-deepseek-r1-250528/json/case_143/case_143__cand_002.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-deepseek-r1-250528/metadata/case_143/case_143__cand_002.metadata.json",
+      "case_id": "case_143",
+      "model_name": "ark-deepseek-r1-250528",
+      "candidate_index": 2,
+      "candidate_spec": {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Slightly decreased rain, fog and road wetness, small shift of ego spawn away from the intersection, no dynamic actors added",
+        "mutation_intent": "Creates a conservative opposite weather variant that preserves all original root cause constraints: maintains zero dynamic actors, Town01 map, conflicting lane invasion labels, reported red-light violation, and does not add confirmed evidence for stop-line or lane boundary crossing",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": -5,
+            "fog": -5,
+            "wetness": -5,
+            "puddle": -5
+          },
+          "actor_mutations": [],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": false,
+            "spawn_offset": {
+              "x": 1.5,
+              "y": -0.5
+            },
+            "destination_offset": {
+              "x": -1.0,
+              "y": 0.5
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Red traffic light is present in ego's critical intersection",
+          "No dynamic actors are added to the scenario",
+          "Scenario runs on Town01 map"
+        ],
+        "post_execution_validation_rules": [
+          "No new evidence is added that resolves original label conflict for lane invasion",
+          "Red-light violation is present in the critical window matching original error.json report"
+        ],
+        "uncertainty": [
+          "Original uncertainty around actuation behavior and module failure localization is preserved",
+          "No confirmation of stop-line crossing for the reported red-light violation",
+          "No confirmation of lane boundary crossing for the reported lane invasion",
+          "Lane invasion label conflict between dataset and error.json remains unchanged"
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": -5.0,
+          "fog": -5.0,
+          "wetness": -5.0,
+          "puddle": -5.0
+        },
+        "actor_mutations": [],
+        "puddle_mutations": [],
+        "mission_mutation": {
+          "spawn_offset": {
+            "x": 1.5,
+            "y": -0.5
+          },
+          "destination_offset": {
+            "x": -1.0,
+            "y": 0.5
+          }
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": [
+          "no actors in candidate scenario"
+        ]
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_143__ark-deepseek-r1-250528.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_143__ark-deepseek-r1-250528.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    }
+  ],
+  "seed_artifact_zip": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-deepseek-r1-250528/seed-artifact/seed-artifact-case_143.zip",
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_prompts/case_143__ark-deepseek-r1-250528.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_143__ark-deepseek-r1-250528.json",
+  "prompt_estimated_tokens": 1084,
+  "usage": {
+    "prompt_tokens": 1258,
+    "completion_tokens": 2465,
+    "total_tokens": 3723
+  },
+  "raw_response": "{\n  \"case_id\": \"case_143\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Slightly increased rain, fog and road wetness, small shift of ego spawn towards the intersection, no dynamic actors added\",\n      \"mutation_intent\": \"Preserves all original root cause pattern requirements: keeps zero dynamic actors, Town01 map, conflicting lane invasion labels, reported red-light violation, and does not require confirmed stop-line or lane boundary crossing, only tests a conservative weather variation\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 5, \"fog\": 5, \"wetness\": 5, \"puddle\": 5},\n        \"actor_mutations\": [],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": false, \"spawn_offset\": {\"x\": -1.5, \"y\": 0.5}, \"destination_offset\": {\"x\": 1.0, \"y\": -0.5}}\n      },\n      \"pre_execution_validation_rules\": [\"Red traffic light is positioned in ego's critical path\", \"No dynamic actors are present in the scenario\", \"Scenario is generated on Town01 map\"],\n      \"post_execution_validation_rules\": [\"Original conflicting label status for lane invasion is preserved\", \"Red-light event is present in the critical window as reported in original error.json\"],\n      \"uncertainty\": [\"Lane invasion label conflict between dataset and error.json remains unresolved\", \"Stop-line crossing for red-light violation is not confirmed\", \"Lane boundary crossing for lane invasion is not confirmed\", \"Actuation behavior attribution remains uncertain\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Slightly decreased rain, fog and road wetness, small shift of ego spawn away from the intersection, no dynamic actors added\",\n      \"mutation_intent\": \"Creates a conservative opposite weather variant that preserves all original root cause constraints: maintains zero dynamic actors, Town01 map, conflicting lane invasion labels, reported red-light violation, and does not add confirmed evidence for stop-line or lane boundary crossing\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": -5, \"fog\": -5, \"wetness\": -5, \"puddle\": -5},\n        \"actor_mutations\": [],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": false, \"spawn_offset\": {\"x\": 1.5, \"y\": -0.5}, \"destination_offset\": {\"x\": -1.0, \"y\": 0.5}}\n      },\n      \"pre_execution_validation_rules\": [\"Red traffic light is present in ego's critical intersection\", \"No dynamic actors are added to the scenario\", \"Scenario runs on Town01 map\"],\n      \"post_execution_validation_rules\": [\"No new evidence is added that resolves original label conflict for lane invasion\", \"Red-light violation is present in the critical window matching original error.json report\"],\n      \"uncertainty\": [\"Original uncertainty around actuation behavior and module failure localization is preserved\", \"No confirmation of stop-line crossing for the reported red-light violation\", \"No confirmation of lane boundary crossing for the reported lane invasion\", \"Lane invasion label conflict between dataset and error.json remains unchanged\"]\n    }\n  ]\n}",
+  "parsed_response": {
+    "case_id": "case_143",
+    "candidate_specs": [
+      {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Slightly increased rain, fog and road wetness, small shift of ego spawn towards the intersection, no dynamic actors added",
+        "mutation_intent": "Preserves all original root cause pattern requirements: keeps zero dynamic actors, Town01 map, conflicting lane invasion labels, reported red-light violation, and does not require confirmed stop-line or lane boundary crossing, only tests a conservative weather variation",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": 5,
+            "fog": 5,
+            "wetness": 5,
+            "puddle": 5
+          },
+          "actor_mutations": [],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": false,
+            "spawn_offset": {
+              "x": -1.5,
+              "y": 0.5
+            },
+            "destination_offset": {
+              "x": 1.0,
+              "y": -0.5
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Red traffic light is positioned in ego's critical path",
+          "No dynamic actors are present in the scenario",
+          "Scenario is generated on Town01 map"
+        ],
+        "post_execution_validation_rules": [
+          "Original conflicting label status for lane invasion is preserved",
+          "Red-light event is present in the critical window as reported in original error.json"
+        ],
+        "uncertainty": [
+          "Lane invasion label conflict between dataset and error.json remains unresolved",
+          "Stop-line crossing for red-light violation is not confirmed",
+          "Lane boundary crossing for lane invasion is not confirmed",
+          "Actuation behavior attribution remains uncertain"
+        ]
+      },
+      {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Slightly decreased rain, fog and road wetness, small shift of ego spawn away from the intersection, no dynamic actors added",
+        "mutation_intent": "Creates a conservative opposite weather variant that preserves all original root cause constraints: maintains zero dynamic actors, Town01 map, conflicting lane invasion labels, reported red-light violation, and does not add confirmed evidence for stop-line or lane boundary crossing",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": -5,
+            "fog": -5,
+            "wetness": -5,
+            "puddle": -5
+          },
+          "actor_mutations": [],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": false,
+            "spawn_offset": {
+              "x": 1.5,
+              "y": -0.5
+            },
+            "destination_offset": {
+              "x": -1.0,
+              "y": 0.5
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Red traffic light is present in ego's critical intersection",
+          "No dynamic actors are added to the scenario",
+          "Scenario runs on Town01 map"
+        ],
+        "post_execution_validation_rules": [
+          "No new evidence is added that resolves original label conflict for lane invasion",
+          "Red-light violation is present in the critical window matching original error.json report"
+        ],
+        "uncertainty": [
+          "Original uncertainty around actuation behavior and module failure localization is preserved",
+          "No confirmation of stop-line crossing for the reported red-light violation",
+          "No confirmation of lane boundary crossing for the reported lane invasion",
+          "Lane invasion label conflict between dataset and error.json remains unchanged"
+        ]
+      }
+    ]
+  },
+  "raw_api_payload": {
+    "id": "021782924133637ad6686bf264e1cfa8d614a02b293f5e0414bc8",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "{\n  \"case_id\": \"case_143\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Slightly increased rain, fog and road wetness, small shift of ego spawn towards the intersection, no dynamic actors added\",\n      \"mutation_intent\": \"Preserves all original root cause pattern requirements: keeps zero dynamic actors, Town01 map, conflicting lane invasion labels, reported red-light violation, and does not require confirmed stop-line or lane boundary crossing, only tests a conservative weather variation\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 5, \"fog\": 5, \"wetness\": 5, \"puddle\": 5},\n        \"actor_mutations\": [],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": false, \"spawn_offset\": {\"x\": -1.5, \"y\": 0.5}, \"destination_offset\": {\"x\": 1.0, \"y\": -0.5}}\n      },\n      \"pre_execution_validation_rules\": [\"Red traffic light is positioned in ego's critical path\", \"No dynamic actors are present in the scenario\", \"Scenario is generated on Town01 map\"],\n      \"post_execution_validation_rules\": [\"Original conflicting label status for lane invasion is preserved\", \"Red-light event is present in the critical window as reported in original error.json\"],\n      \"uncertainty\": [\"Lane invasion label conflict between dataset and error.json remains unresolved\", \"Stop-line crossing for red-light violation is not confirmed\", \"Lane boundary crossing for lane invasion is not confirmed\", \"Actuation behavior attribution remains uncertain\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Slightly decreased rain, fog and road wetness, small shift of ego spawn away from the intersection, no dynamic actors added\",\n      \"mutation_intent\": \"Creates a conservative opposite weather variant that preserves all original root cause constraints: maintains zero dynamic actors, Town01 map, conflicting lane invasion labels, reported red-light violation, and does not add confirmed evidence for stop-line or lane boundary crossing\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": -5, \"fog\": -5, \"wetness\": -5, \"puddle\": -5},\n        \"actor_mutations\": [],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": false, \"spawn_offset\": {\"x\": 1.5, \"y\": -0.5}, \"destination_offset\": {\"x\": -1.0, \"y\": 0.5}}\n      },\n      \"pre_execution_validation_rules\": [\"Red traffic light is present in ego's critical intersection\", \"No dynamic actors are added to the scenario\", \"Scenario runs on Town01 map\"],\n      \"post_execution_validation_rules\": [\"No new evidence is added that resolves original label conflict for lane invasion\", \"Red-light violation is present in the critical window matching original error.json report\"],\n      \"uncertainty\": [\"Original uncertainty around actuation behavior and module failure localization is preserved\", \"No confirmation of stop-line crossing for the reported red-light violation\", \"No confirmation of lane boundary crossing for the reported lane invasion\", \"Lane invasion label conflict between dataset and error.json remains unchanged\"]\n    }\n  ]\n}",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null,
+          "reasoning_content": "\nGot it, let's build this step by step. First, the case_id is case_143, right? We need two candidate specs. Let's start with the first one, cand_001.\n\nFirst, high_level_variant: Slightly wetter road with small fog increase, ego spawn shifted slightly towards intersection, keep no dynamic actors. Wait, preserve the constraints: zero dynamic actors, Town01, conflicting labels, red light. Mutation intent: Preserves all original root cause pattern constraints, only adjusts weather slightly to test if red-light violation still occurs while keeping label conflict and no dynamic actors. Expected oracle: compound? Wait, original has conflicting labels of red light and lane invasion, so compound. Wait, let's check. The original error.json says red light, dataset has both, so expected oracle is compound. Wait, or let's see the rules say don't invent new labels, preserve intended. Yeah, conflicting so compound.\n\nThen modifications: weather delta. Let's do rain +5, fog +5, wetness +5, puddle +5. That's within [-20,20], good. Actor mutations: original actors are empty, so... wait original actors is empty, so actor_mutations is empty? Wait no, wait seed has actors empty, so yes. Puddles also empty, so puddle_mutations empty. Mission mutation: keep_original? Wait no, first candidate can shift spawn a little. Let's do spawn offset x -1, y 0, destination offset x 1, y 0, keep_original false? Wait offsets are within [-5,5], that's fine. Or wait, first candidate: let's make it weather adjustment, small spawn shift.\n\nThen pre execution rules: [\"Red traffic light is present in ego's critical intersection\", \"No dynamic actors added to scenario\", \"Scenario runs on Town01 map\"], post execution: [\"Check for conflicting lane invasion label status as original\", \"Verify red-light event is present in critical window\"], uncertainty: same as original, keep the uncertainty. [\"Labels for lane invasion remain conflicting per original pattern\", \"Stop-line crossing status remains unconfirmed\", \"Lane boundary crossing status remains unconfirmed\"].\n\nNow second candidate, cand_002. High level variant: Slightly drier road, reduced fog, ego spawn shifted slightly away from intersection, keep no dynamic actors. Mutation intent: Preserves all original root cause pattern constraints, creates an opposite weather variant to test consistency of the reported red-light violation while maintaining the conflicting label status and zero dynamic actors. Expected oracle: compound again, same as original.\n\nModifications: weather delta: rain -5, fog -5, wetness -5, puddle -5, all within range. Actor mutations: still empty, no actors, per constraint zero dynamic. Puddle mutations empty. Mission mutation: spawn offset x +1, y 0, destination offset x -1, y 0, keep_original false, offsets within [-5,5] good.\n\nPre execution rules same? Wait, [\"Red traffic light is present in ego's critical path\", \"No dynamic actors are present in the scenario\", \"Scenario is generated on Town01 map\"], post execution: [\"Confirm no new lane invasion or red-light evidence is added that resolves original conflict\", \"Check that red-light violation is still reported as in original error.json\"], uncertainty: same as original, [\"Original label conflict between dataset and error.json is preserved\", \"No confirmation of stop-line crossing for red-light violation\", \"No confirmation of lane boundary crossing for lane invasion\", \"Actuation behavior attribution remains uncertain\"].\n\nWait let's check all constraints: two candidates, offsets are within limits, speed delta for actors (none here, so empty list is okay), weather deltas are all within [-20,20], yes. Preserve all preservation constraints: zero dynamic actors, Town01, conflicting labels, red-light reported, no required stop line or lane crossing, yes.\n\nWait let's structure it correctly. Let's make the JSON proper. Let's see:\n\ncase_id is case_143, correct. candidate_specs array of two.\n\nFirst candidate:\ncandidate_id: cand_001\nhigh_level_variant: \"Slightly increased rain, fog and road wetness, small shift of ego spawn towards the intersection, no dynamic actors added\"\nmutation_intent: \"Preserves all original root cause pattern requirements: keeps zero dynamic actors, Town01 map, conflicting lane invasion labels, reported red-light violation, and does not require confirmed stop-line or lane boundary crossing, only tests a conservative weather variation\"\nexpected_oracle: \"compound\"\nmodifications:\nweather_delta: {\"rain\": 5, \"fog\": 5, \"wetness\": 5, \"puddle\": 5} that's all within 20, good.\nactor_mutations: [] because original actors are empty, right? Yes, seed has actors empty, and constraint says preserve zero dynamic actors, so no actors, so empty array.\npuddle_mutations: [] original has no puddles, so empty.\nmission_mutation: {\"keep_original\": false, \"spawn_offset\": {\"x\": -1.5, \"y\": 0.5}, \"destination_offset\": {\"x\": 1.0, \"y\": -0.5}} all offsets within [-5,5], good.\n\npre_execution_validation_rules: [\"Red traffic light is positioned in ego's critical path\", \"No dynamic actors are present in the scenario\", \"Scenario is generated on Town01 map\"]\npost_execution_validation_rules: [\"Original conflicting label status for lane invasion is preserved\", \"Red-light event is present in the critical window as reported in original error.json\"]\nuncertainty: [\"Lane invasion label conflict between dataset and error.json remains unresolved\", \"Stop-line crossing for red-light violation is not confirmed\", \"Lane boundary crossing for lane invasion is not confirmed\", \"Actuation behavior attribution remains uncertain\"]\n\nThat's first. Second candidate:\n\ncandidate_id: cand_002\nhigh_level_variant: \"Slightly decreased rain, fog and road wetness, small shift of ego spawn away from the intersection, no dynamic actors added\"\nmutation_intent: \"Creates a conservative opposite weather variant that preserves all original root cause constraints: maintains zero dynamic actors, Town01 map, conflicting lane invasion labels, reported red-light violation, and does not add confirmed evidence for stop-line or lane boundary crossing\"\nexpected_oracle: \"compound\"\nmodifications:\nweather_delta: {\"rain\": -5, \"fog\": -5, \"wetness\": -5, \"puddle\": -5} all within [-20,20], good.\nactor_mutations: []\npuddle_mutations: []\nmission_mutation: {\"keep_original\": false, \"spawn_offset\": {\"x\": 1.5, \"y\": -0.5}, \"destination_offset\": {\"x\": -1.0, \"y\": 0.5}} all within [-5,5], good.\n\npre_execution_validation_rules: [\"Red traffic light is present in ego's critical intersection\", \"No dynamic actors are added to the scenario\", \"Scenario runs on Town01 map\"]\npost_execution_validation_rules: [\"No new evidence is added that resolves original label conflict for lane invasion\", \"Red-light violation is present in the critical window matching original error.json report\"]\nuncertainty: [\"Original uncertainty around actuation behavior and module failure localization is preserved\", \"No confirmation of stop-line crossing for the reported red-light violation\", \"No confirmation of lane boundary crossing for the reported lane invasion\", \"Lane invasion label conflict between dataset and error.json remains unchanged\"]\n\nWait that's perfect. Let's check all rules: exactly two candidates, all offsets within limits, weather deltas within, preserves root cause, no new labels, preserves uncertainty, correct schema. Let's put it all together as valid JSON."
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "doubao-seed-2-0-lite-260215",
+    "object": "chat.completion",
+    "service_tier": "default",
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 2465,
+      "prompt_tokens": 1258,
+      "total_tokens": 3723,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 1689,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": null,
+        "cached_tokens": 0
+      }
+    }
+  },
+  "error_message": "",
+  "elapsed_sec": 36.4,
+  "timestamp": "<REDACTED_TIMESTAMP>"
+}

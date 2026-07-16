@@ -1,0 +1,397 @@
+{
+  "case_id": "case_002",
+  "model_name": "ark-doubao-seed-2.0-lite-260215",
+  "workflow": "phase2_grounded_generation",
+  "status": "completed",
+  "schema_valid": true,
+  "schema_errors": [],
+  "phase1_ready": "yes",
+  "num_candidates_requested": 2,
+  "num_candidates_written": 2,
+  "num_pre_valid": 2,
+  "candidate_records": [
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-doubao-seed-2.0-lite-260215/json/case_002/case_002__cand_001.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-doubao-seed-2.0-lite-260215/metadata/case_002/case_002__cand_001.metadata.json",
+      "case_id": "case_002",
+      "model_name": "ark-doubao-seed-2.0-lite-260215",
+      "candidate_index": 1,
+      "candidate_spec": {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Adjust the approaching dynamic actor's position closer to the intersection and slightly increase rain/wetness to maintain high wetness condition",
+        "mutation_intent": "Preserves the original root cause pattern: red light violation in high-wetness rainy Town01 scenario with 2 actors, retains all original uncertainty around actuation and route-light association",
+        "expected_oracle": "red_light",
+        "modifications": {
+          "weather_delta": {
+            "rain": 5,
+            "fog": 0,
+            "wetness": 3,
+            "puddle": 2
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "speed_delta": 0.0
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": 2.0,
+                "y": -1.5
+              },
+              "speed_delta": 1.0
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "confirm scenario runs on Town01 map",
+          "confirm exactly 2 actors are spawned",
+          "confirm final wetness is above 90"
+        ],
+        "post_execution_validation_rules": [
+          "validate stop-line crossing to confirm red light violation is not a false positive",
+          "verify high wetness rainy weather conditions are preserved"
+        ],
+        "uncertainty": [
+          "route-light association and stop-line crossing remain unconfirmed per original evidence",
+          "actuation behavior inconsistency remains uncertain"
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 5.0,
+          "fog": 0.0,
+          "wetness": 3.0,
+          "puddle": 2.0
+        },
+        "actor_mutations": [
+          {
+            "actor_index": 0,
+            "position_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "speed_delta": 0.0
+          },
+          {
+            "actor_index": 1,
+            "position_offset": {
+              "x": 2.0,
+              "y": -1.5
+            },
+            "speed_delta": 1.0
+          }
+        ],
+        "puddle_mutations": [],
+        "mission_mutation": {
+          "keep_original": true
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_002__ark-doubao-seed-2.0-lite-260215.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_002__ark-doubao-seed-2.0-lite-260215.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    },
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-doubao-seed-2.0-lite-260215/json/case_002/case_002__cand_002.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-doubao-seed-2.0-lite-260215/metadata/case_002/case_002__cand_002.metadata.json",
+      "case_id": "case_002",
+      "model_name": "ark-doubao-seed-2.0-lite-260215",
+      "candidate_index": 2,
+      "candidate_spec": {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Slightly shift ego spawn position closer to the intersection, adjust weather within high wetness range, keep 2 actors",
+        "mutation_intent": "Creates a conservative variant matching original uncertainty, preserves all required constraints: red light oracle, high wetness rainy, 2 actors, Town01 map, retains original root cause uncertainty",
+        "expected_oracle": "red_light",
+        "modifications": {
+          "weather_delta": {
+            "rain": -3,
+            "fog": 0,
+            "wetness": -4,
+            "puddle": -2
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": -1.2,
+                "y": 0.8
+              },
+              "speed_delta": 0.0
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "speed_delta": -0.5
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": false,
+            "spawn_offset": {
+              "x": 1.5,
+              "y": -1.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "confirm scenario uses Town01 map",
+          "confirm exactly 2 actors are present",
+          "confirm final wetness is above 90"
+        ],
+        "post_execution_validation_rules": [
+          "check for stop-line crossing on red to rule out false positive label",
+          "verify all non-modified original constraints are preserved"
+        ],
+        "uncertainty": [
+          "failure cannot be localized to any specific module per original evidence",
+          "actuation behavior inconsistency remains unaddressed"
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": -3.0,
+          "fog": 0.0,
+          "wetness": -4.0,
+          "puddle": -2.0
+        },
+        "actor_mutations": [
+          {
+            "actor_index": 0,
+            "position_offset": {
+              "x": -1.2,
+              "y": 0.8
+            },
+            "speed_delta": 0.0
+          },
+          {
+            "actor_index": 1,
+            "position_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "speed_delta": -0.5
+          }
+        ],
+        "puddle_mutations": [],
+        "mission_mutation": {
+          "spawn_offset": {
+            "x": 1.5,
+            "y": -1.0
+          },
+          "destination_offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_002__ark-doubao-seed-2.0-lite-260215.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_002__ark-doubao-seed-2.0-lite-260215.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    }
+  ],
+  "seed_artifact_zip": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-doubao-seed-2.0-lite-260215/seed-artifact/seed-artifact-case_002.zip",
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_prompts/case_002__ark-doubao-seed-2.0-lite-260215.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_002__ark-doubao-seed-2.0-lite-260215.json",
+  "prompt_estimated_tokens": 1050,
+  "usage": {
+    "prompt_tokens": 1363,
+    "completion_tokens": 2461,
+    "total_tokens": 3824
+  },
+  "raw_response": "{\n  \"case_id\": \"case_002\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Adjust the approaching dynamic actor's position closer to the intersection and slightly increase rain/wetness to maintain high wetness condition\",\n      \"mutation_intent\": \"Preserves the original root cause pattern: red light violation in high-wetness rainy Town01 scenario with 2 actors, retains all original uncertainty around actuation and route-light association\",\n      \"expected_oracle\": \"red_light\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 5, \"fog\": 0, \"wetness\": 3, \"puddle\": 2},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 0.0, \"y\": 0.0}, \"speed_delta\": 0.0},\n          {\"actor_index\": 1, \"position_offset\": {\"x\": 2.0, \"y\": -1.5}, \"speed_delta\": 1.0}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"confirm scenario runs on Town01 map\", \"confirm exactly 2 actors are spawned\", \"confirm final wetness is above 90\"],\n      \"post_execution_validation_rules\": [\"validate stop-line crossing to confirm red light violation is not a false positive\", \"verify high wetness rainy weather conditions are preserved\"],\n      \"uncertainty\": [\"route-light association and stop-line crossing remain unconfirmed per original evidence\", \"actuation behavior inconsistency remains uncertain\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Slightly shift ego spawn position closer to the intersection, adjust weather within high wetness range, keep 2 actors\",\n      \"mutation_intent\": \"Creates a conservative variant matching original uncertainty, preserves all required constraints: red light oracle, high wetness rainy, 2 actors, Town01 map, retains original root cause uncertainty\",\n      \"expected_oracle\": \"red_light\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": -3, \"fog\": 0, \"wetness\": -4, \"puddle\": -2},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": -1.2, \"y\": 0.8}, \"speed_delta\": 0.0},\n          {\"actor_index\": 1, \"position_offset\": {\"x\": 0.0, \"y\": 0.0}, \"speed_delta\": -0.5}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": false, \"spawn_offset\": {\"x\": 1.5, \"y\": -1.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"confirm scenario uses Town01 map\", \"confirm exactly 2 actors are present\", \"confirm final wetness is above 90\"],\n      \"post_execution_validation_rules\": [\"check for stop-line crossing on red to rule out false positive label\", \"verify all non-modified original constraints are preserved\"],\n      \"uncertainty\": [\"failure cannot be localized to any specific module per original evidence\", \"actuation behavior inconsistency remains unaddressed\"]\n    }\n  ]\n}",
+  "parsed_response": {
+    "case_id": "case_002",
+    "candidate_specs": [
+      {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Adjust the approaching dynamic actor's position closer to the intersection and slightly increase rain/wetness to maintain high wetness condition",
+        "mutation_intent": "Preserves the original root cause pattern: red light violation in high-wetness rainy Town01 scenario with 2 actors, retains all original uncertainty around actuation and route-light association",
+        "expected_oracle": "red_light",
+        "modifications": {
+          "weather_delta": {
+            "rain": 5,
+            "fog": 0,
+            "wetness": 3,
+            "puddle": 2
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "speed_delta": 0.0
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": 2.0,
+                "y": -1.5
+              },
+              "speed_delta": 1.0
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "confirm scenario runs on Town01 map",
+          "confirm exactly 2 actors are spawned",
+          "confirm final wetness is above 90"
+        ],
+        "post_execution_validation_rules": [
+          "validate stop-line crossing to confirm red light violation is not a false positive",
+          "verify high wetness rainy weather conditions are preserved"
+        ],
+        "uncertainty": [
+          "route-light association and stop-line crossing remain unconfirmed per original evidence",
+          "actuation behavior inconsistency remains uncertain"
+        ]
+      },
+      {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Slightly shift ego spawn position closer to the intersection, adjust weather within high wetness range, keep 2 actors",
+        "mutation_intent": "Creates a conservative variant matching original uncertainty, preserves all required constraints: red light oracle, high wetness rainy, 2 actors, Town01 map, retains original root cause uncertainty",
+        "expected_oracle": "red_light",
+        "modifications": {
+          "weather_delta": {
+            "rain": -3,
+            "fog": 0,
+            "wetness": -4,
+            "puddle": -2
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": -1.2,
+                "y": 0.8
+              },
+              "speed_delta": 0.0
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "speed_delta": -0.5
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": false,
+            "spawn_offset": {
+              "x": 1.5,
+              "y": -1.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "confirm scenario uses Town01 map",
+          "confirm exactly 2 actors are present",
+          "confirm final wetness is above 90"
+        ],
+        "post_execution_validation_rules": [
+          "check for stop-line crossing on red to rule out false positive label",
+          "verify all non-modified original constraints are preserved"
+        ],
+        "uncertainty": [
+          "failure cannot be localized to any specific module per original evidence",
+          "actuation behavior inconsistency remains unaddressed"
+        ]
+      }
+    ]
+  },
+  "raw_api_payload": {
+    "id": "02178292185845395d8a1116d5da876fc2f0d05f01fe0be7802c7",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "{\n  \"case_id\": \"case_002\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Adjust the approaching dynamic actor's position closer to the intersection and slightly increase rain/wetness to maintain high wetness condition\",\n      \"mutation_intent\": \"Preserves the original root cause pattern: red light violation in high-wetness rainy Town01 scenario with 2 actors, retains all original uncertainty around actuation and route-light association\",\n      \"expected_oracle\": \"red_light\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 5, \"fog\": 0, \"wetness\": 3, \"puddle\": 2},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 0.0, \"y\": 0.0}, \"speed_delta\": 0.0},\n          {\"actor_index\": 1, \"position_offset\": {\"x\": 2.0, \"y\": -1.5}, \"speed_delta\": 1.0}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"confirm scenario runs on Town01 map\", \"confirm exactly 2 actors are spawned\", \"confirm final wetness is above 90\"],\n      \"post_execution_validation_rules\": [\"validate stop-line crossing to confirm red light violation is not a false positive\", \"verify high wetness rainy weather conditions are preserved\"],\n      \"uncertainty\": [\"route-light association and stop-line crossing remain unconfirmed per original evidence\", \"actuation behavior inconsistency remains uncertain\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Slightly shift ego spawn position closer to the intersection, adjust weather within high wetness range, keep 2 actors\",\n      \"mutation_intent\": \"Creates a conservative variant matching original uncertainty, preserves all required constraints: red light oracle, high wetness rainy, 2 actors, Town01 map, retains original root cause uncertainty\",\n      \"expected_oracle\": \"red_light\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": -3, \"fog\": 0, \"wetness\": -4, \"puddle\": -2},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": -1.2, \"y\": 0.8}, \"speed_delta\": 0.0},\n          {\"actor_index\": 1, \"position_offset\": {\"x\": 0.0, \"y\": 0.0}, \"speed_delta\": -0.5}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": false, \"spawn_offset\": {\"x\": 1.5, \"y\": -1.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"confirm scenario uses Town01 map\", \"confirm exactly 2 actors are present\", \"confirm final wetness is above 90\"],\n      \"post_execution_validation_rules\": [\"check for stop-line crossing on red to rule out false positive label\", \"verify all non-modified original constraints are preserved\"],\n      \"uncertainty\": [\"failure cannot be localized to any specific module per original evidence\", \"actuation behavior inconsistency remains unaddressed\"]\n    }\n  ]\n}",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null,
+          "reasoning_content": "\nOkay, I need to generate the correct JSON according to the requirements. Let's start. The case id is case_002. We need two candidate specs.\n\nFirst, let's recall the constraints: preserve red light oracle, high wetness rainy, 2 actors, Town01. Root cause is uncertain actuation, red light violation.\n\nFirst candidate: cand_001. High level variant: slightly move the second approaching actor closer to the intersection, increase rain a bit to keep high wetness. Mutation intent: preserves original red light violation scenario, keeps high wetness rainy conditions and 2 actors, only adjusts actor position slightly to maintain root cause uncertainty pattern. Expected oracle is red_light.\n\nModifications: weather delta: rain +5, fog 0, wetness +3, puddle +2. Wait, keep within -20 to 20, that's okay. Actor mutations: actor index 1, position offset x: 2.0, y: -1.5, speed delta +1.0. That's within [-8,8] x/y, speed delta [-3,3], good. Actor 0: offset 0, 0, speed delta 0. Puddles are empty so puddle mutations is empty. Mission mutation: keep_original true. Pre execution rules: [\"confirm map is Town01, confirm 2 actors present, confirm wetness >90\"], post execution: [\"validate stop-line crossing to confirm red light violation\", \"check weather conditions match high wetness rainy requirement\"], uncertainty: [\"actuation behavior remains unconfirmed as in original case\", \"route-light association not confirmed per original evidence\"].\n\nSecond candidate: cand_002. High level variant: slightly shift ego mission spawn position closer to the intersection, adjust wetness slightly down but still high, keep 2 actors. Mutation intent: preserves original root cause pattern of unconfirmed red light violation in high wetness rainy scenario, keeps all required constraints, creates a conservative variant given original uncertainty. Expected oracle: red_light.\n\nModifications: weather delta: rain -3, fog 0, wetness -4, puddle -2, still within delta range, keeps high wetness. Actor mutations: actor 0 (the immobile one) position offset x: -1.2, y: 0.8, speed delta 0. Actor 1: position offset 0, 0, speed delta -0.5, that's okay. Puddle mutations empty. Mission mutation: keep_original false, spawn offset x: 1.5, y: -1.0, destination offset 0, 0, within [-5,5] right. Pre execution rules: [\"confirm map is Town01, confirm 2 actors are spawned correctly\", \"confirm wetness remains above 90\"], post execution: [\"check if ego crossed stop line on red to rule out false positive\", \"verify original weather constraints are satisfied\"], uncertainty: [\"failure module localization remains uncertain as per original case\", \"actuation behavior inconsistency remains unaddressed per original evidence\"].\n\nWait let me check all rules: 2 candidates, all offsets are within ranges. Preserve oracle red light, preserve high wetness, 2 actors, Town01. Uncertainty preserved. Let's structure it correctly according to the schema.\n\nWait the seed has no puddles, so puddle_mutations is empty array, right. Let me make sure all fields are there. Let's write it out properly.\n\nWait case_id is case_002, correct. candidate_specs has two entries. Let's check each field:\n\nFirst candidate:\ncandidate_id: cand_001\nhigh_level_variant: \"Adjust the approaching dynamic actor's position closer to the intersection and slightly increase rain/wetness to maintain high wetness condition\"\nmutation_intent: \"Preserves the original root cause pattern: confirmed red light violation oracle in high-wetness rainy Town01 scenario with 2 actors, retains all original uncertainty around actuation and route-light association\"\nexpected_oracle: \"red_light\"\nmodifications:\nweather_delta: {\"rain\": 5, \"fog\": 0, \"wetness\": 3, \"puddle\": 2} that's within -20 20, yes.\nactor_mutations: first actor 0: {\"actor_index\": 0, \"position_offset\": {\"x\": 0.0, \"y\": 0.0}, \"speed_delta\": 0.0}, then actor 1: {\"actor_index\": 1, \"position_offset\": {\"x\": 2.0, \"y\": -1.5}, \"speed_delta\": 1.0} that's within 8/-8, speed delta 1 within -3/3. Correct.\npuddle_mutations: [] because original has no puddles.\nmission_mutation: {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\npre_execution_validation_rules: [\"confirm scenario runs on Town01 map\", \"confirm exactly 2 actors are spawned\", \"confirm final wetness is above 90 to preserve original condition\"]\npost_execution_validation_rules: [\"validate stop-line crossing to confirm red light violation is not a false positive\", \"verify weather conditions match high wetness rainy requirement\"]\nuncertainty: [\"route-light association and stop-line crossing remain unconfirmed as in original evidence\", \"actuation behavior inconsistency between vehicle_cmd and velocity remains uncertain\"]\n\nSecond candidate cand_002:\nhigh_level_variant: \"Slightly shift ego spawn position closer to the intersection and adjust weather within high wetness range, keep 2 actors unchanged\"\nmutation_intent: \"Creates a conservative variant per original uncertainty, preserves all required constraints: red light oracle, high wetness rainy, 2 actors, Town01 map, retains original root cause uncertainty\"\nexpected_oracle: \"red_light\"\nmodifications:\nweather_delta: {\"rain\": -3, \"fog\": 0, \"wetness\": -4, \"puddle\": -2} still high wetness, delta within range.\nactor_mutations: [{\"actor_index\": 0, \"position_offset\": {\"x\": -1.2, \"y\": 0.8}, \"speed_delta\": 0.0}, {\"actor_index\": 1, \"position_offset\": {\"x\": 0.0, \"y\": 0.0}, \"speed_delta\": -0.5}] all offsets within range.\npuddle_mutations: []\nmission_mutation: {\"keep_original\": false, \"spawn_offset\": {\"x\": 1.5, \"y\": -1.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}} offsets within [-5,5], correct.\npre_execution_validation_rules: [\"confirm scenario uses Town01 map\", \"confirm exactly 2 actors are present\", \"confirm final wetness is above 90 to maintain original condition\"]\npost_execution_validation_rules: [\"check for stop-line crossing on red to rule out false positive red light violation label\", \"verify non-modified scenario constraints are preserved\"]\nuncertainty: [\"failure cannot be localized to any specific module per original evidence\", \"actuation behavior inconsistency remains uncertain as in original case\"]\n\nThat all checks out. Now put it into valid JSON, no markdown, exactly one object. Let's write it properly."
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "doubao-seed-2-0-lite-260215",
+    "object": "chat.completion",
+    "service_tier": "default",
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 2461,
+      "prompt_tokens": 1363,
+      "total_tokens": 3824,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 1615,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": null,
+        "cached_tokens": 0
+      }
+    }
+  },
+  "error_message": "",
+  "elapsed_sec": 60.487,
+  "timestamp": "<REDACTED_TIMESTAMP>"
+}

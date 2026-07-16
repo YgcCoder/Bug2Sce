@@ -1,0 +1,106 @@
+{
+  "case_id": "case_112",
+  "model_name": "gpt-5.1",
+  "candidate_index": 1,
+  "candidate_spec": {
+    "candidate_id": "cand_001",
+    "high_level_variant": "Ego follows a similar route in Town01 with a crossing walker slightly closer to ego’s lane near the collision point, maintaining moderate speed and no braking despite valid waypoints and perceived objects.",
+    "mutation_intent": "Keep the original interaction type (ego vs. crossing walker) but move the walker slightly toward the lane and slightly adjust its speed so that a collision remains likely while preserving the Phase 1 pattern: ego in motion, perception/prediction objects present, unblocked final waypoints, and no braking before impact under an ambiguous actuation-command situation.",
+    "expected_oracle": "collision",
+    "modifications": {
+      "weather_delta": {
+        "rain": 0,
+        "fog": 0,
+        "wetness": 0,
+        "puddle": 0
+      },
+      "actor_mutations": [
+        {
+          "actor_index": 0,
+          "position_offset": {
+            "x": -1.5,
+            "y": 1.0
+          },
+          "speed_delta": 0.8
+        },
+        {
+          "actor_index": 1,
+          "position_offset": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "speed_delta": 0.0
+        }
+      ],
+      "puddle_mutations": [],
+      "mission_mutation": {
+        "keep_original": true,
+        "spawn_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "destination_offset": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Ensure actor_index 0 remains a walker with autopilot navigation crossing or entering ego’s path within the final few seconds before the expected collision time.",
+      "Verify that ego’s planned route (mission) remains approximately aligned with the original (Town01, same road segment) so that the walker is in ego’s forward path.",
+      "Confirm that no aggressive braking or forced emergency-stop behaviors are injected by other scenario logic before the anticipated collision window.",
+      "Check that perception and prediction configurations are enabled so at least one object (the walker) is expected to appear in those topics near the crossing."
+    ],
+    "post_execution_validation_rules": [
+      "Confirm that at least one collision involving ego is reported, occurring while ego speed is nonzero and does not significantly decrease in the 2–3 seconds prior to impact.",
+      "Verify that brake-related signals (vehicle_status and vehicle_cmd) remain near zero or show no significant braking in the critical window before collision.",
+      "Check that final_waypoints are present and unblocked (full waypoint count comparable to baseline) throughout the seconds before collision.",
+      "Confirm that perception and prediction topics contain at least one object close in time to the collision, consistent with the walker or other nearby agents.",
+      "Inspect vehicle_cmd vs vehicle_status for an ambiguous actuation pattern similar to the original (e.g., zeroed commands with nonzero speed/throttle, or otherwise inconsistent with the observed motion).",
+      "Treat any lane_invasion flags as optional and not required for considering the run consistent with the original root-cause pattern."
+    ],
+    "uncertainty": [
+      "Exact internal controller behavior leading to zero braking cannot be enforced at scenario level; post-execution logs must be checked to see if the ambiguous vehicle_cmd vs vehicle_status mismatch is preserved.",
+      "The precise point of impact and which body part of the walker is hit are not controlled here and may vary, as long as a collision with ego occurs under motion and no braking.",
+      "Lane invasion status may differ from the original due to minor geometric shifts; this is acceptable and not required for root-cause preservation."
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": 0.0,
+      "fog": 0.0,
+      "wetness": 0.0,
+      "puddle": 0.0
+    },
+    "actor_mutations": [
+      {
+        "actor_index": 0,
+        "position_offset": {
+          "x": -1.5,
+          "y": 1.0
+        },
+        "speed_delta": 0.8
+      },
+      {
+        "actor_index": 1,
+        "position_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "speed_delta": 0.0
+      }
+    ],
+    "puddle_mutations": [],
+    "mission_mutation": {
+      "keep_original": true
+    }
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_112__gpt-5.1.json",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_112__gpt-5.1.json",
+  "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+}

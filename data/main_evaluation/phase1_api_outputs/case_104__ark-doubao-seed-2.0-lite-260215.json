@@ -1,0 +1,120 @@
+{
+  "case_id": "case_104",
+  "workflow": "phase1_causal_explanation",
+  "model_name": "ark-doubao-seed-2.0-lite-260215",
+  "model_id": "ark-doubao-seed-2.0-lite-260215",
+  "status": "completed",
+  "dry_run": false,
+  "schema_valid": true,
+  "schema_errors": [],
+  "quality_flags": [],
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_prompts/case_104__ark-doubao-seed-2.0-lite-260215.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_104__ark-doubao-seed-2.0-lite-260215.json",
+  "prompt_estimated_tokens": 2869,
+  "usage": {
+    "prompt_tokens": 3770,
+    "completion_tokens": 2324,
+    "total_tokens": 6094
+  },
+  "estimated_cost_usd": null,
+  "raw_response": "{\n  \"case_id\": \"case_104\",\n  \"fault_layer\": \"unknown\",\n  \"fault_component\": \"unknown\",\n  \"causal_explanation\": \"Dataset labels this as a red light violation, but error.json reports no red violation event. Route-light relation and stop-line crossing are unconfirmed, there are no dynamic actors, all ego actuation commands are zero with near-zero final velocity, and label conflict prevents confirmed failure attribution.\",\n  \"root_cause_pattern\": \"Conservative preservation pattern: Conflicting red light violation labels between dataset and error.json for an ego near a traffic light on Town01 with zero dynamic actors, rainy foggy weather, and all-zero actuation commands.\",\n  \"preservation_constraints\": [\n    \"Preserve conflicting red light violation label status between dataset and error.json\",\n    \"Preserve zero dynamic actors in the scenario\",\n    \"Preserve high fog and rainy base weather conditions\",\n    \"Preserve one puddle region on the Town01 map\",\n    \"Preserve ego starting position near a traffic light intersection\"\n  ],\n  \"modifiable_factors\": [\"puddle_position\", \"weather_intensity\", \"traffic light timing\", \"mission start/goal offset\"],\n  \"non_modifiable_conditions\": [\"Town01 map\", \"zero dynamic actors present\", \"traffic light topic available\", \"conflicting label status between dataset and error.json\"],\n  \"uncertainty\": [\n    \"Dataset and error.json disagree on red light violation status\",\n    \"Route-light relation and stop-line crossing are not confirmed by available evidence\",\n    \"No module-level failure can be confirmed from available critical-window evidence\",\n    \"Manual review is required to resolve the label conflict\"\n  ],\n  \"evidence_support\": [\n    {\"evidence_id\": \"oracle_consistency\", \"claim\": \"Dataset labels red light violation as true, error.json labels it as false, creating a conflict\"},\n    {\"evidence_id\": \"critical_window_summary\", \"claim\": \"Route-light relation and stop-line crossing are not confirmed by current summaries\"},\n    {\"evidence_id\": \"trace_summary_compact.actuation\", \"claim\": \"All vehicle steer, acceleration, brake, and target speed commands are zero in the critical window, ego velocity is near zero\"},\n    {\"evidence_id\": \"scenario_config\", \"claim\": \"Zero dynamic actors are present, one puddle exists, weather has 10 rain and 82 fog\"}\n  ],\n  \"confidence\": \"low\",\n  \"ready_for_phase2_generation\": \"uncertain\",\n  \"notes_for_validator\": [\n    \"Resolve the label conflict between dataset and error.json via manual review before confirming root cause\",\n    \"Validate whether stop-line crossing and a red light state for the ego's route occurred to confirm a violation\"\n  ]\n}",
+  "parsed_response": {
+    "case_id": "case_104",
+    "fault_layer": "unknown",
+    "fault_component": "unknown",
+    "causal_explanation": "Dataset labels this as a red light violation, but error.json reports no red violation event. Route-light relation and stop-line crossing are unconfirmed, there are no dynamic actors, all ego actuation commands are zero with near-zero final velocity, and label conflict prevents confirmed failure attribution.",
+    "root_cause_pattern": "Conservative preservation pattern: Conflicting red light violation labels between dataset and error.json for an ego near a traffic light on Town01 with zero dynamic actors, rainy foggy weather, and all-zero actuation commands.",
+    "preservation_constraints": [
+      "Preserve conflicting red light violation label status between dataset and error.json",
+      "Preserve zero dynamic actors in the scenario",
+      "Preserve high fog and rainy base weather conditions",
+      "Preserve one puddle region on the Town01 map",
+      "Preserve ego starting position near a traffic light intersection"
+    ],
+    "modifiable_factors": [
+      "puddle_position",
+      "weather_intensity",
+      "traffic light timing",
+      "mission start/goal offset"
+    ],
+    "non_modifiable_conditions": [
+      "Town01 map",
+      "zero dynamic actors present",
+      "traffic light topic available",
+      "conflicting label status between dataset and error.json"
+    ],
+    "uncertainty": [
+      "Dataset and error.json disagree on red light violation status",
+      "Route-light relation and stop-line crossing are not confirmed by available evidence",
+      "No module-level failure can be confirmed from available critical-window evidence",
+      "Manual review is required to resolve the label conflict"
+    ],
+    "evidence_support": [
+      {
+        "evidence_id": "oracle_consistency",
+        "claim": "Dataset labels red light violation as true, error.json labels it as false, creating a conflict"
+      },
+      {
+        "evidence_id": "critical_window_summary",
+        "claim": "Route-light relation and stop-line crossing are not confirmed by current summaries"
+      },
+      {
+        "evidence_id": "trace_summary_compact.actuation",
+        "claim": "All vehicle steer, acceleration, brake, and target speed commands are zero in the critical window, ego velocity is near zero"
+      },
+      {
+        "evidence_id": "scenario_config",
+        "claim": "Zero dynamic actors are present, one puddle exists, weather has 10 rain and 82 fog"
+      }
+    ],
+    "confidence": "low",
+    "ready_for_phase2_generation": "uncertain",
+    "notes_for_validator": [
+      "Resolve the label conflict between dataset and error.json via manual review before confirming root cause",
+      "Validate whether stop-line crossing and a red light state for the ego's route occurred to confirm a violation"
+    ]
+  },
+  "raw_api_payload": {
+    "id": "0217829195933811ff0a97b687c5fa8cd89ea5bb2fbb8cbe920fc",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "{\n  \"case_id\": \"case_104\",\n  \"fault_layer\": \"unknown\",\n  \"fault_component\": \"unknown\",\n  \"causal_explanation\": \"Dataset labels this as a red light violation, but error.json reports no red violation event. Route-light relation and stop-line crossing are unconfirmed, there are no dynamic actors, all ego actuation commands are zero with near-zero final velocity, and label conflict prevents confirmed failure attribution.\",\n  \"root_cause_pattern\": \"Conservative preservation pattern: Conflicting red light violation labels between dataset and error.json for an ego near a traffic light on Town01 with zero dynamic actors, rainy foggy weather, and all-zero actuation commands.\",\n  \"preservation_constraints\": [\n    \"Preserve conflicting red light violation label status between dataset and error.json\",\n    \"Preserve zero dynamic actors in the scenario\",\n    \"Preserve high fog and rainy base weather conditions\",\n    \"Preserve one puddle region on the Town01 map\",\n    \"Preserve ego starting position near a traffic light intersection\"\n  ],\n  \"modifiable_factors\": [\"puddle_position\", \"weather_intensity\", \"traffic light timing\", \"mission start/goal offset\"],\n  \"non_modifiable_conditions\": [\"Town01 map\", \"zero dynamic actors present\", \"traffic light topic available\", \"conflicting label status between dataset and error.json\"],\n  \"uncertainty\": [\n    \"Dataset and error.json disagree on red light violation status\",\n    \"Route-light relation and stop-line crossing are not confirmed by available evidence\",\n    \"No module-level failure can be confirmed from available critical-window evidence\",\n    \"Manual review is required to resolve the label conflict\"\n  ],\n  \"evidence_support\": [\n    {\"evidence_id\": \"oracle_consistency\", \"claim\": \"Dataset labels red light violation as true, error.json labels it as false, creating a conflict\"},\n    {\"evidence_id\": \"critical_window_summary\", \"claim\": \"Route-light relation and stop-line crossing are not confirmed by current summaries\"},\n    {\"evidence_id\": \"trace_summary_compact.actuation\", \"claim\": \"All vehicle steer, acceleration, brake, and target speed commands are zero in the critical window, ego velocity is near zero\"},\n    {\"evidence_id\": \"scenario_config\", \"claim\": \"Zero dynamic actors are present, one puddle exists, weather has 10 rain and 82 fog\"}\n  ],\n  \"confidence\": \"low\",\n  \"ready_for_phase2_generation\": \"uncertain\",\n  \"notes_for_validator\": [\n    \"Resolve the label conflict between dataset and error.json via manual review before confirming root cause\",\n    \"Validate whether stop-line crossing and a red light state for the ego's route occurred to confirm a violation\"\n  ]\n}",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null,
+          "reasoning_content": "\nGot it, let's work through this step by step. First, case_id is case_104, right? Let's start with that.\n\nNext, fault_layer: there's a conflict between dataset and error_json. The dataset says red_light=1, error_json says red is false. Also, no confirmed stop line crossing or route light relation. So fault_layer should be unknown, right? Because we don't have confirmed failure, label conflict.\n\nFault component: unknown, obviously.\n\nCausal explanation: Let's see. Dataset labels this a red light violation, but error.json has no red violation event. Route-light relation and stop-line crossing are not confirmed, all vehicle commands are zero, ego velocity is near zero at the end, no other actors. There's a label conflict between dataset and error.json, so no confirmed module failure.\n\nRoot cause pattern: Conservative pattern, label conflict between dataset and oracle error.json for red light violation, no confirmed stop-line crossing or module-level failure. Wait, let's phrase that right: Conservative preservation pattern: Ego vehicle has all zero actuation commands near a traffic light intersection with foggy, rainy weather, with conflicting red light violation labels between dataset and error.json, no confirmed stop-line crossing.\n\nPreservation constraints: Let's list them. 1. Preserve conflicting red light violation labels between dataset and error.json. 2. Preserve ego position near a traffic light intersection on Town01 map. 3. Preserve weather conditions with high fog and rain. 4. Preserve 0 other dynamic actors and presence of 1 puddle region. Wait, that makes sense. Let's make them concise.\n\nModifiable factors: What can we change? actor_position (but there are none, so puddle position, weather intensity, mission start/goal offset, right? Let's see: [\"puddle_position\", \"weather_intensity\", \"mission start offset\", \"traffic light timing\"] That works.\n\nNon-modifiable conditions: [\"Town01 map\", \"0 dynamic actors present\", \"conflicting red light violation labels between dataset and error.json\", \"traffic lights topic available\"] Yeah.\n\nUncertainty: Let's list what's uncertain. 1. Conflict between dataset label (red light violation = 1) and error.json (red light violation = 0). 2. Route-light relation and stop-line crossing are not confirmed. 3. No confirmed module-level failure localization. 4. Needs manual review to resolve label conflict. That's right.\n\nEvidence support: Let's map each evidence. First, evidence_id \"oracle_consistency\", claim \"Dataset and error.json have conflicting labels for red light violation\". Then, \"critical_window_summary\", claim \"Route-light relation and stop-line crossing are not confirmed\". Then, \"trace_summary_compact.actuation\", claim \"All vehicle_cmd values are zero in the critical window, ego velocity is near zero\". Then, \"scenario_config\", claim \"No dynamic actors are present, one puddle region exists, high fog and rain weather\". That's good.\n\nConfidence: Low, right? Because of label conflict, no confirmed failure. So confidence is low.\n\nReady_for_phase2_generation: Wait, rules say use uncertain when labels conflict? Wait let's check the rule: \"use yes when there is a checkable conservative preservation pattern; use uncertain when labels conflict or a key condition is missing.\" Oh right, labels conflict here, so ready_for_phase2_generation is uncertain? Wait no, let's check again: the rule says \"If Dataset.xlsx and error.json disagree, mark uncertainty and do not treat the dataset label as confirmed ground truth.\" And ready_for_phase2_generation: \"use uncertain when labels conflict or a key condition is missing.\" Yeah, so that's uncertain? Wait wait, let me recheck: \"Do not set ready_for_phase2_generation=no solely because fault_layer is unknown. Use yes when there is a checkable conservative preservation pattern; use uncertain when labels conflict or a key condition is missing.\" Oh right, labels conflict here, so it's uncertain.\n\nNotes_for_validator: [\"Manual review is required to resolve the label conflict between dataset and error.json before confirming root cause.\", \"Check for stop-line crossing and route-light relation to confirm if a red light violation actually occurred.\"] That's good.\n\nWait let's put all this together properly, make sure it follows all rules. Let's check each field:\n\ncase_id: \"case_104\" correct.\n\nfault_layer: \"unknown\" correct, because no confirmed failure, can't attribute to any layer.\n\nfault_component: \"unknown\" correct.\n\ncausal_explanation: \"Dataset labels this case as a red light violation, but error.json reports no red violation event. Route-light relation and stop-line crossing are unconfirmed, there are no dynamic actors, and all ego actuation commands are zero with near-zero final velocity. Label conflict prevents confirmed attribution of failure to any Autoware module.\" That's concise, evidence-based.\n\nroot_cause_pattern: \"Conservative preservation pattern: Conflicting red light violation labels between dataset and error.json for an ego vehicle near a traffic light on Town01 with zero dynamic actors, rainy and foggy weather, and all-zero actuation commands.\" That's good.\n\npreservation_constraints: Let's make 3-6, as per rule. Let's do:\n[\n\"Preserve the conflicting red light violation label status between dataset and error.json\",\n\"Preserve zero dynamic actors in the scenario\",\n\"Preserve high fog and rainy weather conditions matching the original case\",\n\"Preserve one puddle region on the map\",\n\"Preserve ego starting position near a traffic light intersection on Town01\"\n] That's 5, perfect.\n\nmodifiable_factors: [\"puddle_position\", \"weather_intensity\", \"traffic light timing\", \"mission start/goal offset\"] Correct.\n\nnon_modifiable_conditions: [\"Town01 map\", \"zero dynamic actors present\", \"traffic light topic is available\", \"conflicting label status between dataset and error.json\"] Correct.\n\nuncertainty: [\n\"Dataset and error.json disagree on red light violation status\",\n\"Route-light relation and stop-line crossing are not confirmed by available evidence\",\n\"No module-level failure can be confirmed from available critical-window evidence\",\n\"Manual review is required to resolve the label conflict\"\n] Correct.\n\nevidence_support: Let's do each:\n[\n{\"evidence_id\": \"oracle_consistency\", \"claim\": \"Dataset labels red light violation as true, error.json labels it as false, creating a conflict\"},\n{\"evidence_id\": \"critical_window_summary\", \"claim\": \"Route-light relation and stop-line crossing are not confirmed\"},\n{\"evidence_id\": \"trace_summary_compact.actuation\", \"claim\": \"All vehicle steer, accel, brake, and target speed commands are zero in the critical window, ego velocity ranges from 0 to ~0.23 m/s\"},\n{\"evidence_id\": \"scenario_config\", \"claim\": \"Zero dynamic actors are present, one puddle exists, weather has 10 rain, 82 fog\"}\n] That's correct.\n\nconfidence: \"low\" Correct, because of all the uncertainty.\n\nready_for_phase2_generation: \"uncertain\" Because labels conflict, per rule.\n\nnotes_for_validator: [\n\"Resolve the label conflict between dataset and error.json via manual review before confirming the root cause\",\n\"Validate whether stop-line crossing and a red light state for the ego's route occurred to confirm a violation\"\n] That's good.\n\nWait let's check all rules: Did we invent anything? No, all from evidence. We marked the conflict, didn't infer stop line crossing, right. We followed the rule that if they disagree, mark uncertainty. Fault layer is unknown because no attribution possible. Preservation constraints are semantic, no timestamps or raw IDs. Root cause is a conservative pattern, which is allowed. Ready for phase 2 is uncertain because of conflict, that's per rule.\n\nOkay, that's all. Now put it into valid JSON."
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "doubao-seed-2-0-lite-260215",
+    "object": "chat.completion",
+    "service_tier": "default",
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 2324,
+      "prompt_tokens": 3770,
+      "total_tokens": 6094,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 1712,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": null,
+        "cached_tokens": 0
+      }
+    }
+  },
+  "error_message": "",
+  "timestamp": "<REDACTED_TIMESTAMP>",
+  "elapsed_sec": 46.246
+}

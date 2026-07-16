@@ -1,0 +1,346 @@
+{
+  "case_id": "case_069",
+  "model_name": "ark-doubao-seed-2.0-lite-260215",
+  "workflow": "phase2_grounded_generation",
+  "status": "completed",
+  "schema_valid": true,
+  "schema_errors": [],
+  "phase1_ready": "uncertain",
+  "num_candidates_requested": 2,
+  "num_candidates_written": 2,
+  "num_pre_valid": 2,
+  "candidate_records": [
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-doubao-seed-2.0-lite-260215/json/case_069/case_069__cand_001.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-doubao-seed-2.0-lite-260215/metadata/case_069/case_069__cand_001.metadata.json",
+      "case_id": "case_069",
+      "model_name": "ark-doubao-seed-2.0-lite-260215",
+      "candidate_index": 1,
+      "candidate_spec": {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Slight positional adjustment of both existing actors with minor conservative weather increase, original mission kept unchanged",
+        "mutation_intent": "Preserves all Phase 1 root cause constraints: maintains two actors, no blocked waypoints, base map Town01, retains the required mismatch between zero commanded actuation and non-zero observed ego velocity, and keeps the original label conflict between dataset and error.json unresolved",
+        "expected_oracle": "unknown",
+        "modifications": {
+          "weather_delta": {
+            "rain": 3,
+            "fog": 2,
+            "wetness": 4,
+            "puddle": 2
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 1.2,
+                "y": -0.8
+              },
+              "speed_delta": 0.5
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": -0.9,
+                "y": 1.1
+              },
+              "speed_delta": -0.3
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Verify mismatch between zero actuation commands and non-zero ego velocity is configured for the critical window",
+          "Confirm exactly two actors are spawned in the scenario",
+          "Ensure base map is Town01 with no blocked waypoints in the critical pre-event window"
+        ],
+        "post_execution_validation_rules": [
+          "Check for actual collision and lane invasion events to resolve the original label conflict",
+          "Verify that the actuation command-vehicle state mismatch is reproduced during execution"
+        ],
+        "uncertainty": [
+          "Original label conflict between dataset (collision/lane invasion present) and error.json (no events) remains unresolved",
+          "No specific Autoware module failure can be confirmed from available evidence"
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 3.0,
+          "fog": 2.0,
+          "wetness": 4.0,
+          "puddle": 2.0
+        },
+        "actor_mutations": [
+          {
+            "actor_index": 0,
+            "position_offset": {
+              "x": 1.2,
+              "y": -0.8
+            },
+            "speed_delta": 0.5
+          },
+          {
+            "actor_index": 1,
+            "position_offset": {
+              "x": -0.9,
+              "y": 1.1
+            },
+            "speed_delta": -0.3
+          }
+        ],
+        "puddle_mutations": [],
+        "mission_mutation": {
+          "keep_original": true
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_069__ark-doubao-seed-2.0-lite-260215.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_069__ark-doubao-seed-2.0-lite-260215.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    },
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-doubao-seed-2.0-lite-260215/json/case_069/case_069__cand_002.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-doubao-seed-2.0-lite-260215/metadata/case_069/case_069__cand_002.metadata.json",
+      "case_id": "case_069",
+      "model_name": "ark-doubao-seed-2.0-lite-260215",
+      "candidate_index": 2,
+      "candidate_spec": {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Slight offset of ego mission spawn and destination, keep original actor positions with minor conservative weather decrease",
+        "mutation_intent": "Preserves all core Phase 1 root cause properties: retains two actors, no blocked waypoints, Town01 base map, the required actuation-state mismatch, and the unresolved label conflict between dataset and error.json, only adjusts mission within allowed offset bounds",
+        "expected_oracle": "unknown",
+        "modifications": {
+          "weather_delta": {
+            "rain": -2,
+            "fog": -3,
+            "wetness": -2,
+            "puddle": -1
+          },
+          "actor_mutations": [],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": false,
+            "spawn_offset": {
+              "x": 1.5,
+              "y": -2.0
+            },
+            "destination_offset": {
+              "x": 2.0,
+              "y": 1.5
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Confirm mission spawn and destination offsets are within allowed bounds",
+          "Verify the actuation command-vehicle state mismatch is configured for the critical window",
+          "Check that exactly two actors are present with no blocked waypoints"
+        ],
+        "post_execution_validation_rules": [
+          "Validate that the mismatch between zero commanded actuation and moving ego is reproduced",
+          "Record any collision or lane invasion events to resolve the original label ambiguity"
+        ],
+        "uncertainty": [
+          "Collision and lane invasion symptoms are not confirmed by original error.json",
+          "The actuation mismatch cannot be definitively attributed to a specific module failure"
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": -2.0,
+          "fog": -3.0,
+          "wetness": -2.0,
+          "puddle": -1.0
+        },
+        "actor_mutations": [],
+        "puddle_mutations": [],
+        "mission_mutation": {
+          "spawn_offset": {
+            "x": 1.5,
+            "y": -2.0
+          },
+          "destination_offset": {
+            "x": 2.0,
+            "y": 1.5
+          }
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_069__ark-doubao-seed-2.0-lite-260215.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_069__ark-doubao-seed-2.0-lite-260215.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    }
+  ],
+  "seed_artifact_zip": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-doubao-seed-2.0-lite-260215/seed-artifact/seed-artifact-case_069.zip",
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_prompts/case_069__ark-doubao-seed-2.0-lite-260215.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_069__ark-doubao-seed-2.0-lite-260215.json",
+  "prompt_estimated_tokens": 1171,
+  "usage": {
+    "prompt_tokens": 1399,
+    "completion_tokens": 2810,
+    "total_tokens": 4209
+  },
+  "raw_response": "{\n  \"case_id\": \"case_069\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Slight positional adjustment of both existing actors with minor conservative weather increase, original mission kept unchanged\",\n      \"mutation_intent\": \"Preserves all Phase 1 root cause constraints: maintains two actors, no blocked waypoints, base map Town01, retains the required mismatch between zero commanded actuation and non-zero observed ego velocity, and keeps the original label conflict between dataset and error.json unresolved\",\n      \"expected_oracle\": \"unknown\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 3, \"fog\": 2, \"wetness\": 4, \"puddle\": 2},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 1.2, \"y\": -0.8}, \"speed_delta\": 0.5},\n          {\"actor_index\": 1, \"position_offset\": {\"x\": -0.9, \"y\": 1.1}, \"speed_delta\": -0.3}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\n        \"Verify mismatch between zero actuation commands and non-zero ego velocity is configured for the critical window\",\n        \"Confirm exactly two actors are spawned in the scenario\",\n        \"Ensure base map is Town01 with no blocked waypoints in the critical pre-event window\"\n      ],\n      \"post_execution_validation_rules\": [\n        \"Check for actual collision and lane invasion events to resolve the original label conflict\",\n        \"Verify that the actuation command-vehicle state mismatch is reproduced during execution\"\n      ],\n      \"uncertainty\": [\n        \"Original label conflict between dataset (collision/lane invasion present) and error.json (no events) remains unresolved\",\n        \"No specific Autoware module failure can be confirmed from available evidence\"\n      ]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Slight offset of ego mission spawn and destination, keep original actor positions with minor conservative weather decrease\",\n      \"mutation_intent\": \"Preserves all core Phase 1 root cause properties: retains two actors, no blocked waypoints, Town01 base map, the required actuation-state mismatch, and the unresolved label conflict between dataset and error.json, only adjusts mission within allowed offset bounds\",\n      \"expected_oracle\": \"unknown\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": -2, \"fog\": -3, \"wetness\": -2, \"puddle\": -1},\n        \"actor_mutations\": [],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": false, \"spawn_offset\": {\"x\": 1.5, \"y\": -2.0}, \"destination_offset\": {\"x\": 2.0, \"y\": 1.5}}\n      },\n      \"pre_execution_validation_rules\": [\n        \"Confirm mission spawn and destination offsets are within allowed bounds\",\n        \"Verify the actuation command-vehicle state mismatch is configured for the critical window\",\n        \"Check that exactly two actors are present with no blocked waypoints\"\n      ],\n      \"post_execution_validation_rules\": [\n        \"Validate that the mismatch between zero commanded actuation and moving ego is reproduced\",\n        \"Record any collision or lane invasion events to resolve the original label ambiguity\"\n      ],\n      \"uncertainty\": [\n        \"Collision and lane invasion symptoms are not confirmed by original error.json\",\n        \"The actuation mismatch cannot be definitively attributed to a specific module failure\"\n      ]\n    }\n  ]\n}",
+  "parsed_response": {
+    "case_id": "case_069",
+    "candidate_specs": [
+      {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Slight positional adjustment of both existing actors with minor conservative weather increase, original mission kept unchanged",
+        "mutation_intent": "Preserves all Phase 1 root cause constraints: maintains two actors, no blocked waypoints, base map Town01, retains the required mismatch between zero commanded actuation and non-zero observed ego velocity, and keeps the original label conflict between dataset and error.json unresolved",
+        "expected_oracle": "unknown",
+        "modifications": {
+          "weather_delta": {
+            "rain": 3,
+            "fog": 2,
+            "wetness": 4,
+            "puddle": 2
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 1.2,
+                "y": -0.8
+              },
+              "speed_delta": 0.5
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": -0.9,
+                "y": 1.1
+              },
+              "speed_delta": -0.3
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Verify mismatch between zero actuation commands and non-zero ego velocity is configured for the critical window",
+          "Confirm exactly two actors are spawned in the scenario",
+          "Ensure base map is Town01 with no blocked waypoints in the critical pre-event window"
+        ],
+        "post_execution_validation_rules": [
+          "Check for actual collision and lane invasion events to resolve the original label conflict",
+          "Verify that the actuation command-vehicle state mismatch is reproduced during execution"
+        ],
+        "uncertainty": [
+          "Original label conflict between dataset (collision/lane invasion present) and error.json (no events) remains unresolved",
+          "No specific Autoware module failure can be confirmed from available evidence"
+        ]
+      },
+      {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Slight offset of ego mission spawn and destination, keep original actor positions with minor conservative weather decrease",
+        "mutation_intent": "Preserves all core Phase 1 root cause properties: retains two actors, no blocked waypoints, Town01 base map, the required actuation-state mismatch, and the unresolved label conflict between dataset and error.json, only adjusts mission within allowed offset bounds",
+        "expected_oracle": "unknown",
+        "modifications": {
+          "weather_delta": {
+            "rain": -2,
+            "fog": -3,
+            "wetness": -2,
+            "puddle": -1
+          },
+          "actor_mutations": [],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": false,
+            "spawn_offset": {
+              "x": 1.5,
+              "y": -2.0
+            },
+            "destination_offset": {
+              "x": 2.0,
+              "y": 1.5
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Confirm mission spawn and destination offsets are within allowed bounds",
+          "Verify the actuation command-vehicle state mismatch is configured for the critical window",
+          "Check that exactly two actors are present with no blocked waypoints"
+        ],
+        "post_execution_validation_rules": [
+          "Validate that the mismatch between zero commanded actuation and moving ego is reproduced",
+          "Record any collision or lane invasion events to resolve the original label ambiguity"
+        ],
+        "uncertainty": [
+          "Collision and lane invasion symptoms are not confirmed by original error.json",
+          "The actuation mismatch cannot be definitively attributed to a specific module failure"
+        ]
+      }
+    ]
+  },
+  "raw_api_payload": {
+    "id": "0217829223109050d00bd2433ad042948032361e92cd5ce953239",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "{\n  \"case_id\": \"case_069\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Slight positional adjustment of both existing actors with minor conservative weather increase, original mission kept unchanged\",\n      \"mutation_intent\": \"Preserves all Phase 1 root cause constraints: maintains two actors, no blocked waypoints, base map Town01, retains the required mismatch between zero commanded actuation and non-zero observed ego velocity, and keeps the original label conflict between dataset and error.json unresolved\",\n      \"expected_oracle\": \"unknown\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 3, \"fog\": 2, \"wetness\": 4, \"puddle\": 2},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 1.2, \"y\": -0.8}, \"speed_delta\": 0.5},\n          {\"actor_index\": 1, \"position_offset\": {\"x\": -0.9, \"y\": 1.1}, \"speed_delta\": -0.3}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\n        \"Verify mismatch between zero actuation commands and non-zero ego velocity is configured for the critical window\",\n        \"Confirm exactly two actors are spawned in the scenario\",\n        \"Ensure base map is Town01 with no blocked waypoints in the critical pre-event window\"\n      ],\n      \"post_execution_validation_rules\": [\n        \"Check for actual collision and lane invasion events to resolve the original label conflict\",\n        \"Verify that the actuation command-vehicle state mismatch is reproduced during execution\"\n      ],\n      \"uncertainty\": [\n        \"Original label conflict between dataset (collision/lane invasion present) and error.json (no events) remains unresolved\",\n        \"No specific Autoware module failure can be confirmed from available evidence\"\n      ]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Slight offset of ego mission spawn and destination, keep original actor positions with minor conservative weather decrease\",\n      \"mutation_intent\": \"Preserves all core Phase 1 root cause properties: retains two actors, no blocked waypoints, Town01 base map, the required actuation-state mismatch, and the unresolved label conflict between dataset and error.json, only adjusts mission within allowed offset bounds\",\n      \"expected_oracle\": \"unknown\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": -2, \"fog\": -3, \"wetness\": -2, \"puddle\": -1},\n        \"actor_mutations\": [],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": false, \"spawn_offset\": {\"x\": 1.5, \"y\": -2.0}, \"destination_offset\": {\"x\": 2.0, \"y\": 1.5}}\n      },\n      \"pre_execution_validation_rules\": [\n        \"Confirm mission spawn and destination offsets are within allowed bounds\",\n        \"Verify the actuation command-vehicle state mismatch is configured for the critical window\",\n        \"Check that exactly two actors are present with no blocked waypoints\"\n      ],\n      \"post_execution_validation_rules\": [\n        \"Validate that the mismatch between zero commanded actuation and moving ego is reproduced\",\n        \"Record any collision or lane invasion events to resolve the original label ambiguity\"\n      ],\n      \"uncertainty\": [\n        \"Collision and lane invasion symptoms are not confirmed by original error.json\",\n        \"The actuation mismatch cannot be definitively attributed to a specific module failure\"\n      ]\n    }\n  ]\n}",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null,
+          "reasoning_content": "\nGot it, let's build this JSON step by step. First, the case_id is case_069 right? Then we need exactly 2 candidate_specs. Let's start with the first one, cand_001.\n\nHigh level variant: Let's see, what's a good variant? Oh, shift the two actors slightly, keep everything else same, adjust weather a little. Wait, root cause is the label conflict and actuation mismatch. Mutation intent should say it preserves all the constraints: keeps two actors, the actuation mismatch condition, label conflict, no blocked waypoints, same map. Expected oracle is compound? Wait no, wait the original has dataset labels collision and lane invasion but error has none, so wait expected oracle is unknown? Wait no, wait the original says unresolved, so let's check: the uncertainty is there. Wait first candidate: high_level_variant could be \"Slight position shift of both foreground actors with small weather adjustment, keeping original mission\". Mutation intent: \"Preserves all core constraints: two actors, no blocked waypoints, base map Town01, retains the requirement for zero commanded actuation vs moving ego mismatch, keeps label conflict unresolved as in Phase 1\". Expected oracle: compound? Wait no, original says it's unconfirmed, so maybe unknown? Wait no, let's see: the original labels have collision and lane invasion but error doesn't, so expected_oracle is unknown? Wait no, let's check the schema options: collision | red_light | lane_invasion | stuck | compound | unknown. Yeah, because it's unresolved, so unknown? Wait or compound? Wait let's think: first candidate, let's do modifications. Actor mutations: actor 0, position offset x 1.2, y -0.8, speed delta 0.5. Actor 1, position offset x -0.9, y 1.1, speed delta -0.3. That's within the limits, right? x and y are within [-8,8], speed delta within [-3,3], yes. Weather delta: rain +3, fog +2, wetness +4, puddle +2, all within [-20,20], good. Puddles are empty in seed, so puddle_mutations is empty. Mission mutation keep_original true. Pre execution rules: [\"Verify actuation command mismatch condition is configured in critical window\", \"Confirm exactly two actors are spawned\", \"Confirm map is Town01, no blocked waypoints\"]. Post execution: [\"Check for collision/lane invasion events to resolve original label conflict\", \"Verify mismatch between zero actuation and non-zero ego velocity is reproduced\"]. Uncertainty: [\"Original label conflict between dataset and error.json remains unresolved\", \"No specific module failure is confirmed\"].\n\nThen second candidate, cand_002. High level variant: \"Slight shift of ego mission spawn and destination, keep actors original positions, small weather reduction\". Mutation intent: \"Preserves all core Phase 1 constraints: two actors, no blocked waypoints, base map, required actuation-state mismatch, unresolved label conflict, only adjusts mission position within allowed offset bounds\". Expected oracle: unknown again? Wait or same? Let's do expected_oracle unknown because it's unresolved. Modifications: weather delta: rain -2, fog -3, wetness -2, puddle -1, all within range. Actor mutations: no changes? Wait or keep them original, so actor_mutations can be empty? Or if we do, wait no, we can have actor_mutations as empty if we don't change them. Mission mutation: keep_original false, spawn offset x 1.5, y -2.0, destination offset x 2.0, y 1.5, all within [-5,5], that's good. Puddle_mutations is empty because original has no puddles. Pre execution rules: [\"Confirm mission offset is within allowed bounds\", \"Verify actuation mismatch condition is set for critical window\", \"Check that exactly two actors are present, no blocked waypoints\"]. Post execution: [\"Validate actuation command-vehicle state mismatch is present\", \"Record any collision/lane invasion events to resolve original label ambiguity\"]. Uncertainty: [\"Symptoms of collision/lane invasion remain unconfirmed per original error.json\", \"No specific root cause module is confirmed from available evidence\"].\n\nWait let's check all rules: exactly 2 candidates, all offsets are within limits: actor positions are 1.2, -0.8 etc, well within [-8,8], speed deltas 0.5, -0.3, within [-3,3]. Mission offsets are 1.5, 2 etc, within [-5,5]. Weather deltas are all within [-20,20]. No puddles so no puddle mutations, that's fine. Preserves root cause: yes, both candidates preserve all the preservation constraints: two actors, mismatch, label conflict, no blocked waypoints, Town01 map. Expected oracle: since it's unresolved, it's unknown, that's correct. Let's put it all together now.\n\nWait let's structure it properly. Let's check the schema:\n\ncase_id is \"case_069\", then candidate_specs array with two objects. First candidate_id \"cand_001\", high_level_variant: \"Slight positional adjustment of both existing actors with minor conservative weather parameter increase, original mission kept unchanged\". Mutation_intent: \"Preserves all Phase 1 root cause constraints: maintains two actors, no blocked waypoints, base map Town01, retains the required mismatch between zero commanded actuation and non-zero observed ego velocity, and keeps the original label conflict between dataset and error.json unresolved\". Expected_oracle: \"unknown\". Then modifications: weather_delta: {\"rain\": 3, \"fog\": 2, \"wetness\": 4, \"puddle\": 2}, that's okay. Actor_mutations: [{\"actor_index\": 0, \"position_offset\": {\"x\": 1.2, \"y\": -0.8}, \"speed_delta\": 0.5}, {\"actor_index\": 1, \"position_offset\": {\"x\": -0.9, \"y\": 1.1}, \"speed_delta\": -0.3}]. Puddle_mutations is empty array, because seed has no puddles. Mission_mutation: {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}. Pre_execution_validation_rules: [\"Verify mismatch between zero actuation commands and non-zero ego velocity is configured for the critical window\", \"Confirm exactly two actors are spawned in the scenario\", \"Ensure base map is Town01 with no blocked waypoints in the critical pre-event window\"]. Post_execution_validation_rules: [\"Check for actual collision and lane invasion events to resolve the original label conflict\", \"Verify that the actuation command-vehicle state mismatch is reproduced during execution\"]. Uncertainty: [\"Original label conflict between dataset (collision/lane invasion present) and error.json (no events) remains unresolved\", \"No specific Autoware module failure can be confirmed from available evidence\"].\n\nThen second candidate, cand_002: high_level_variant: \"Slight offset of ego mission spawn and destination, keep original actor positions with minor conservative weather parameter decrease\". Mutation_intent: \"Preserves all core Phase 1 root cause properties: retains two actors, no blocked waypoints, Town01 base map, the required actuation-state mismatch, and the unresolved label conflict between dataset and error.json, only adjusts mission within allowed offset bounds\". Expected_oracle: \"unknown\". Modifications: weather_delta: {\"rain\": -2, \"fog\": -3, \"wetness\": -2, \"puddle\": -1}, all good. Actor_mutations is empty array, right? Because we are not changing actors. Puddle_mutations empty. Mission_mutation: {\"keep_original\": false, \"spawn_offset\": {\"x\": 1.5, \"y\": -2.0}, \"destination_offset\": {\"x\": 2.0, \"y\": 1.5}}, that's all within [-5,5], correct. Pre_execution_validation_rules: [\"Confirm mission spawn and destination offsets are within allowed bounds\", \"Verify the actuation command-vehicle state mismatch is configured for the critical window\", \"Check that exactly two actors are present with no blocked waypoints\"]. Post_execution_validation_rules: [\"Validate that the mismatch between zero commanded actuation and moving ego is reproduced\", \"Record any collision or lane invasion events to resolve the original label ambiguity\"]. Uncertainty: [\"Collision and lane invasion symptoms are not confirmed by original error.json\", \"The actuation mismatch cannot be definitively attributed to a specific module failure\"].\n\nWait that all checks out. Let's make sure it's valid JSON, no trailing commas. Let's write it properly now."
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "doubao-seed-2-0-lite-260215",
+    "object": "chat.completion",
+    "service_tier": "default",
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 2810,
+      "prompt_tokens": 1399,
+      "total_tokens": 4209,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 1905,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": null,
+        "cached_tokens": 0
+      }
+    }
+  },
+  "error_message": "",
+  "elapsed_sec": 46.588,
+  "timestamp": "<REDACTED_TIMESTAMP>"
+}

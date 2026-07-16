@@ -1,0 +1,389 @@
+{
+  "case_id": "case_112",
+  "model_name": "gpt-4o-2024-11-20",
+  "workflow": "phase2_grounded_generation",
+  "status": "completed",
+  "schema_valid": true,
+  "schema_errors": [],
+  "phase1_ready": "uncertain",
+  "num_candidates_requested": 2,
+  "num_candidates_written": 2,
+  "num_pre_valid": 2,
+  "candidate_records": [
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/gpt-4o-2024-11-20/json/case_112/case_112__cand_001.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/gpt-4o-2024-11-20/metadata/case_112/case_112__cand_001.metadata.json",
+      "case_id": "case_112",
+      "model_name": "gpt-4o-2024-11-20",
+      "candidate_index": 1,
+      "candidate_spec": {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Ego collides with a vehicle in slightly reduced visibility conditions.",
+        "mutation_intent": "This variant preserves the Phase 1 root-cause pattern by maintaining the collision symptom, ego's non-zero throttle, no braking, and vehicle_cmd all zero, while slightly reducing visibility to test robustness under marginally degraded conditions.",
+        "expected_oracle": "collision",
+        "modifications": {
+          "weather_delta": {
+            "rain": 5,
+            "fog": 10,
+            "wetness": 5,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 1.0,
+                "y": -2.0
+              },
+              "speed_delta": 0.5
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": -1.5,
+                "y": 2.0
+              },
+              "speed_delta": -0.5
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Ensure ego maintains non-zero throttle and no braking before collision.",
+          "Validate vehicle_cmd remains all zero in the critical window.",
+          "Check that the closest object is within 10.166m before collision."
+        ],
+        "post_execution_validation_rules": [
+          "Verify collision occurs under modified weather conditions.",
+          "Confirm ego's behavior aligns with Phase 1 root-cause pattern."
+        ],
+        "uncertainty": [
+          "Dataset.xlsx and error.json conflict on lane invasion.",
+          "No direct evidence links the collision to a specific module failure."
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 5.0,
+          "fog": 10.0,
+          "wetness": 5.0,
+          "puddle": 0.0
+        },
+        "actor_mutations": [
+          {
+            "actor_index": 0,
+            "position_offset": {
+              "x": 1.0,
+              "y": -2.0
+            },
+            "speed_delta": 0.5
+          },
+          {
+            "actor_index": 1,
+            "position_offset": {
+              "x": -1.5,
+              "y": 2.0
+            },
+            "speed_delta": -0.5
+          }
+        ],
+        "puddle_mutations": [],
+        "mission_mutation": {
+          "keep_original": true
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_112__gpt-4o-2024-11-20.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_112__gpt-4o-2024-11-20.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    },
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/gpt-4o-2024-11-20/json/case_112/case_112__cand_002.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/gpt-4o-2024-11-20/metadata/case_112/case_112__cand_002.metadata.json",
+      "case_id": "case_112",
+      "model_name": "gpt-4o-2024-11-20",
+      "candidate_index": 2,
+      "candidate_spec": {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Ego collides with a vehicle after minor positional adjustments to actors.",
+        "mutation_intent": "This variant preserves the Phase 1 root-cause pattern by maintaining the collision symptom, ego's non-zero throttle, no braking, and vehicle_cmd all zero, while slightly adjusting actor positions to explore spatial sensitivity.",
+        "expected_oracle": "collision",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": -2.0,
+                "y": 1.5
+              },
+              "speed_delta": 0.0
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": 2.0,
+                "y": -1.0
+              },
+              "speed_delta": 0.0
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Ensure ego maintains non-zero throttle and no braking before collision.",
+          "Validate vehicle_cmd remains all zero in the critical window.",
+          "Check that the closest object is within 10.166m before collision."
+        ],
+        "post_execution_validation_rules": [
+          "Verify collision occurs under modified actor positions.",
+          "Confirm ego's behavior aligns with Phase 1 root-cause pattern."
+        ],
+        "uncertainty": [
+          "Dataset.xlsx and error.json conflict on lane invasion.",
+          "No direct evidence links the collision to a specific module failure."
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 0.0,
+          "fog": 0.0,
+          "wetness": 0.0,
+          "puddle": 0.0
+        },
+        "actor_mutations": [
+          {
+            "actor_index": 0,
+            "position_offset": {
+              "x": -2.0,
+              "y": 1.5
+            },
+            "speed_delta": 0.0
+          },
+          {
+            "actor_index": 1,
+            "position_offset": {
+              "x": 2.0,
+              "y": -1.0
+            },
+            "speed_delta": 0.0
+          }
+        ],
+        "puddle_mutations": [],
+        "mission_mutation": {
+          "keep_original": true
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_112__gpt-4o-2024-11-20.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_112__gpt-4o-2024-11-20.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    }
+  ],
+  "seed_artifact_zip": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/gpt-4o-2024-11-20/seed-artifact/seed-artifact-case_112.zip",
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_prompts/case_112__gpt-4o-2024-11-20.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_112__gpt-4o-2024-11-20.json",
+  "prompt_estimated_tokens": 1035,
+  "usage": {
+    "prompt_tokens": 1122,
+    "completion_tokens": 794,
+    "total_tokens": 1916
+  },
+  "raw_response": "{\n  \"case_id\": \"case_112\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Ego collides with a vehicle in slightly reduced visibility conditions.\",\n      \"mutation_intent\": \"This variant preserves the Phase 1 root-cause pattern by maintaining the collision symptom, ego's non-zero throttle, no braking, and vehicle_cmd all zero, while slightly reducing visibility to test robustness under marginally degraded conditions.\",\n      \"expected_oracle\": \"collision\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 5, \"fog\": 10, \"wetness\": 5, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 1.0, \"y\": -2.0}, \"speed_delta\": 0.5},\n          {\"actor_index\": 1, \"position_offset\": {\"x\": -1.5, \"y\": 2.0}, \"speed_delta\": -0.5}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Ensure ego maintains non-zero throttle and no braking before collision.\", \"Validate vehicle_cmd remains all zero in the critical window.\", \"Check that the closest object is within 10.166m before collision.\"],\n      \"post_execution_validation_rules\": [\"Verify collision occurs under modified weather conditions.\", \"Confirm ego's behavior aligns with Phase 1 root-cause pattern.\"],\n      \"uncertainty\": [\"Dataset.xlsx and error.json conflict on lane invasion.\", \"No direct evidence links the collision to a specific module failure.\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Ego collides with a vehicle after minor positional adjustments to actors.\",\n      \"mutation_intent\": \"This variant preserves the Phase 1 root-cause pattern by maintaining the collision symptom, ego's non-zero throttle, no braking, and vehicle_cmd all zero, while slightly adjusting actor positions to explore spatial sensitivity.\",\n      \"expected_oracle\": \"collision\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": -2.0, \"y\": 1.5}, \"speed_delta\": 0.0},\n          {\"actor_index\": 1, \"position_offset\": {\"x\": 2.0, \"y\": -1.0}, \"speed_delta\": 0.0}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Ensure ego maintains non-zero throttle and no braking before collision.\", \"Validate vehicle_cmd remains all zero in the critical window.\", \"Check that the closest object is within 10.166m before collision.\"],\n      \"post_execution_validation_rules\": [\"Verify collision occurs under modified actor positions.\", \"Confirm ego's behavior aligns with Phase 1 root-cause pattern.\"],\n      \"uncertainty\": [\"Dataset.xlsx and error.json conflict on lane invasion.\", \"No direct evidence links the collision to a specific module failure.\"]\n    }\n  ]\n}",
+  "parsed_response": {
+    "case_id": "case_112",
+    "candidate_specs": [
+      {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Ego collides with a vehicle in slightly reduced visibility conditions.",
+        "mutation_intent": "This variant preserves the Phase 1 root-cause pattern by maintaining the collision symptom, ego's non-zero throttle, no braking, and vehicle_cmd all zero, while slightly reducing visibility to test robustness under marginally degraded conditions.",
+        "expected_oracle": "collision",
+        "modifications": {
+          "weather_delta": {
+            "rain": 5,
+            "fog": 10,
+            "wetness": 5,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 1.0,
+                "y": -2.0
+              },
+              "speed_delta": 0.5
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": -1.5,
+                "y": 2.0
+              },
+              "speed_delta": -0.5
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Ensure ego maintains non-zero throttle and no braking before collision.",
+          "Validate vehicle_cmd remains all zero in the critical window.",
+          "Check that the closest object is within 10.166m before collision."
+        ],
+        "post_execution_validation_rules": [
+          "Verify collision occurs under modified weather conditions.",
+          "Confirm ego's behavior aligns with Phase 1 root-cause pattern."
+        ],
+        "uncertainty": [
+          "Dataset.xlsx and error.json conflict on lane invasion.",
+          "No direct evidence links the collision to a specific module failure."
+        ]
+      },
+      {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Ego collides with a vehicle after minor positional adjustments to actors.",
+        "mutation_intent": "This variant preserves the Phase 1 root-cause pattern by maintaining the collision symptom, ego's non-zero throttle, no braking, and vehicle_cmd all zero, while slightly adjusting actor positions to explore spatial sensitivity.",
+        "expected_oracle": "collision",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": -2.0,
+                "y": 1.5
+              },
+              "speed_delta": 0.0
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": 2.0,
+                "y": -1.0
+              },
+              "speed_delta": 0.0
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Ensure ego maintains non-zero throttle and no braking before collision.",
+          "Validate vehicle_cmd remains all zero in the critical window.",
+          "Check that the closest object is within 10.166m before collision."
+        ],
+        "post_execution_validation_rules": [
+          "Verify collision occurs under modified actor positions.",
+          "Confirm ego's behavior aligns with Phase 1 root-cause pattern."
+        ],
+        "uncertainty": [
+          "Dataset.xlsx and error.json conflict on lane invasion.",
+          "No direct evidence links the collision to a specific module failure."
+        ]
+      }
+    ]
+  },
+  "raw_api_payload": {
+    "id": "<REDACTED_RESPONSE_ID>",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "{\n  \"case_id\": \"case_112\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Ego collides with a vehicle in slightly reduced visibility conditions.\",\n      \"mutation_intent\": \"This variant preserves the Phase 1 root-cause pattern by maintaining the collision symptom, ego's non-zero throttle, no braking, and vehicle_cmd all zero, while slightly reducing visibility to test robustness under marginally degraded conditions.\",\n      \"expected_oracle\": \"collision\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 5, \"fog\": 10, \"wetness\": 5, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 1.0, \"y\": -2.0}, \"speed_delta\": 0.5},\n          {\"actor_index\": 1, \"position_offset\": {\"x\": -1.5, \"y\": 2.0}, \"speed_delta\": -0.5}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Ensure ego maintains non-zero throttle and no braking before collision.\", \"Validate vehicle_cmd remains all zero in the critical window.\", \"Check that the closest object is within 10.166m before collision.\"],\n      \"post_execution_validation_rules\": [\"Verify collision occurs under modified weather conditions.\", \"Confirm ego's behavior aligns with Phase 1 root-cause pattern.\"],\n      \"uncertainty\": [\"Dataset.xlsx and error.json conflict on lane invasion.\", \"No direct evidence links the collision to a specific module failure.\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Ego collides with a vehicle after minor positional adjustments to actors.\",\n      \"mutation_intent\": \"This variant preserves the Phase 1 root-cause pattern by maintaining the collision symptom, ego's non-zero throttle, no braking, and vehicle_cmd all zero, while slightly adjusting actor positions to explore spatial sensitivity.\",\n      \"expected_oracle\": \"collision\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": -2.0, \"y\": 1.5}, \"speed_delta\": 0.0},\n          {\"actor_index\": 1, \"position_offset\": {\"x\": 2.0, \"y\": -1.0}, \"speed_delta\": 0.0}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Ensure ego maintains non-zero throttle and no braking before collision.\", \"Validate vehicle_cmd remains all zero in the critical window.\", \"Check that the closest object is within 10.166m before collision.\"],\n      \"post_execution_validation_rules\": [\"Verify collision occurs under modified actor positions.\", \"Confirm ego's behavior aligns with Phase 1 root-cause pattern.\"],\n      \"uncertainty\": [\"Dataset.xlsx and error.json conflict on lane invasion.\", \"No direct evidence links the collision to a specific module failure.\"]\n    }\n  ]\n}",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": [],
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "gpt-4o-2024-11-20",
+    "object": "chat.completion",
+    "service_tier": "priority",
+    "system_fingerprint": "<REDACTED_SYSTEM_FINGERPRINT>",
+    "usage": {
+      "completion_tokens": 794,
+      "prompt_tokens": 1122,
+      "total_tokens": 1916,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": 0,
+        "audio_tokens": 0,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 0
+      }
+    }
+  },
+  "error_message": "",
+  "elapsed_sec": 5.218,
+  "timestamp": "<REDACTED_TIMESTAMP>"
+}

@@ -1,0 +1,506 @@
+{
+  "case_id": "case_137",
+  "model_name": "ark-deepseek-r1-250528",
+  "workflow": "phase2_grounded_generation",
+  "status": "completed",
+  "schema_valid": true,
+  "schema_errors": [],
+  "phase1_ready": "yes",
+  "num_candidates_requested": 2,
+  "num_candidates_written": 2,
+  "num_pre_valid": 2,
+  "candidate_records": [
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-deepseek-r1-250528/json/case_137/case_137__cand_001.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-deepseek-r1-250528/metadata/case_137/case_137__cand_001.metadata.json",
+      "case_id": "case_137",
+      "model_name": "ark-deepseek-r1-250528",
+      "candidate_index": 1,
+      "candidate_spec": {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Slightly increased fog and wetness near the red light intersection, all actors, mission and puddle are kept identical to the original seed",
+        "mutation_intent": "Preserves all Phase 1 preservation constraints: maintains 3 actors, 1 puddle, original ego spawn/destination in Town01, preserves the original red light violation labeling, only adjusts ambient conditions within conservative ranges, retains all original root cause uncertainty",
+        "expected_oracle": "red_light",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 8,
+            "wetness": 10,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "speed_delta": 0.0
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "speed_delta": 0.0
+            },
+            {
+              "actor_index": 2,
+              "position_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "speed_delta": 0.0
+            }
+          ],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": 0.0,
+              "size_scale": 1.0
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Confirm 3 actors and 1 puddle region are present",
+          "Confirm traffic light topic data is available",
+          "Confirm ego mission spawn and destination match original"
+        ],
+        "post_execution_validation_rules": [
+          "Validate stop-line crossing and route-light relation to confirm genuine red light violation",
+          "Check that vehicle_cmd/vehicle_status mismatch is preserved in the critical window",
+          "Confirm red light violation labeling matches original dataset labeling"
+        ],
+        "uncertainty": [
+          "Route-light relation and stop-line crossing are not confirmed by original available evidence",
+          "No module-level root cause is proven by original evidence",
+          "Unresolved actuation behavior mismatch between zero vehicle_cmd and non-zero vehicle_status remains"
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 0.0,
+          "fog": 8.0,
+          "wetness": 10.0,
+          "puddle": 0.0
+        },
+        "actor_mutations": [
+          {
+            "actor_index": 0,
+            "position_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "speed_delta": 0.0
+          },
+          {
+            "actor_index": 1,
+            "position_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "speed_delta": 0.0
+          },
+          {
+            "actor_index": 2,
+            "position_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "speed_delta": 0.0
+          }
+        ],
+        "puddle_mutations": [
+          {
+            "puddle_index": 0,
+            "location_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "level_delta": 0.0,
+            "size_scale": 1.0
+          }
+        ],
+        "mission_mutation": {
+          "keep_original": true
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_137__ark-deepseek-r1-250528.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_137__ark-deepseek-r1-250528.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    },
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-deepseek-r1-250528/json/case_137/case_137__cand_002.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-deepseek-r1-250528/metadata/case_137/case_137__cand_002.metadata.json",
+      "case_id": "case_137",
+      "model_name": "ark-deepseek-r1-250528",
+      "candidate_index": 2,
+      "candidate_spec": {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Minor adjustment to the position and speed of the moving linear walker, all other elements (weather, mission, puddle, other actors) kept identical to original seed",
+        "mutation_intent": "Preserves all Phase 1 preservation constraints: maintains 3 actors count, 1 puddle, original ego mission in Town01, preserves red light violation labeling intent, uses minor actor offsets within allowed ranges, retains all original root cause uncertainty",
+        "expected_oracle": "red_light",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "speed_delta": 0.0
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": 1.5,
+                "y": -1.0
+              },
+              "speed_delta": 0.6
+            },
+            {
+              "actor_index": 2,
+              "position_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "speed_delta": 0.0
+            }
+          ],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": 0.0,
+              "size_scale": 1.0
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Confirm 3 actors and 1 puddle region are present in the scenario",
+          "Confirm traffic light topic data is available",
+          "Confirm ego mission matches original spawn and destination"
+        ],
+        "post_execution_validation_rules": [
+          "Validate that stop-line crossing on red light exists to confirm genuine violation",
+          "Check that vehicle_cmd/vehicle_status mismatch is preserved in the critical window",
+          "Confirm red light violation labeling aligns with original dataset labeling"
+        ],
+        "uncertainty": [
+          "Route-light relation and stop-line crossing were unconfirmed in original evidence",
+          "No specific module-level failure is confirmed by available evidence",
+          "Unresolved actuation behavior mismatch between vehicle_cmd and vehicle_status remains"
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 0.0,
+          "fog": 0.0,
+          "wetness": 0.0,
+          "puddle": 0.0
+        },
+        "actor_mutations": [
+          {
+            "actor_index": 0,
+            "position_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "speed_delta": 0.0
+          },
+          {
+            "actor_index": 1,
+            "position_offset": {
+              "x": 1.5,
+              "y": -1.0
+            },
+            "speed_delta": 0.6
+          },
+          {
+            "actor_index": 2,
+            "position_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "speed_delta": 0.0
+          }
+        ],
+        "puddle_mutations": [
+          {
+            "puddle_index": 0,
+            "location_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "level_delta": 0.0,
+            "size_scale": 1.0
+          }
+        ],
+        "mission_mutation": {
+          "keep_original": true
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_137__ark-deepseek-r1-250528.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_137__ark-deepseek-r1-250528.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    }
+  ],
+  "seed_artifact_zip": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-deepseek-r1-250528/seed-artifact/seed-artifact-case_137.zip",
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_prompts/case_137__ark-deepseek-r1-250528.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_137__ark-deepseek-r1-250528.json",
+  "prompt_estimated_tokens": 1114,
+  "usage": {
+    "prompt_tokens": 1412,
+    "completion_tokens": 3308,
+    "total_tokens": 4720
+  },
+  "raw_response": "{\n  \"case_id\": \"case_137\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Slightly increased fog and wetness near the red light intersection, all actors, mission and puddle are kept identical to the original seed\",\n      \"mutation_intent\": \"Preserves all Phase 1 preservation constraints: maintains 3 actors, 1 puddle, original ego spawn/destination in Town01, preserves the original red light violation labeling, only adjusts ambient conditions within conservative ranges, retains all original root cause uncertainty\",\n      \"expected_oracle\": \"red_light\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 8, \"wetness\": 10, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 0.0, \"y\": 0.0}, \"speed_delta\": 0.0},\n          {\"actor_index\": 1, \"position_offset\": {\"x\": 0.0, \"y\": 0.0}, \"speed_delta\": 0.0},\n          {\"actor_index\": 2, \"position_offset\": {\"x\": 0.0, \"y\": 0.0}, \"speed_delta\": 0.0}\n        ],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": 0.0, \"size_scale\": 1.0}\n        ],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\n        \"Confirm 3 actors and 1 puddle region are present\",\n        \"Confirm traffic light topic data is available\",\n        \"Confirm ego mission spawn and destination match original\"\n      ],\n      \"post_execution_validation_rules\": [\n        \"Validate stop-line crossing and route-light relation to confirm genuine red light violation\",\n        \"Check that vehicle_cmd/vehicle_status mismatch is preserved in the critical window\",\n        \"Confirm red light violation labeling matches original dataset labeling\"\n      ],\n      \"uncertainty\": [\n        \"Route-light relation and stop-line crossing are not confirmed by original available evidence\",\n        \"No module-level root cause is proven by original evidence\",\n        \"Unresolved actuation behavior mismatch between zero vehicle_cmd and non-zero vehicle_status remains\"\n      ]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Minor adjustment to the position and speed of the moving linear walker, all other elements (weather, mission, puddle, other actors) kept identical to original seed\",\n      \"mutation_intent\": \"Preserves all Phase 1 preservation constraints: maintains 3 actors count, 1 puddle, original ego mission in Town01, preserves red light violation labeling intent, uses minor actor offsets within allowed ranges, retains all original root cause uncertainty\",\n      \"expected_oracle\": \"red_light\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 0.0, \"y\": 0.0}, \"speed_delta\": 0.0},\n          {\"actor_index\": 1, \"position_offset\": {\"x\": 1.5, \"y\": -1.0}, \"speed_delta\": 0.6},\n          {\"actor_index\": 2, \"position_offset\": {\"x\": 0.0, \"y\": 0.0}, \"speed_delta\": 0.0}\n        ],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": 0.0, \"size_scale\": 1.0}\n        ],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\n        \"Confirm 3 actors and 1 puddle region are present in the scenario\",\n        \"Confirm traffic light topic data is available\",\n        \"Confirm ego mission matches original spawn and destination\"\n      ],\n      \"post_execution_validation_rules\": [\n        \"Validate that stop-line crossing on red light exists to confirm genuine violation\",\n        \"Check that vehicle_cmd/vehicle_status mismatch is preserved in the critical window\",\n        \"Confirm red light violation labeling aligns with original dataset labeling\"\n      ],\n      \"uncertainty\": [\n        \"Route-light relation and stop-line crossing were unconfirmed in original evidence\",\n        \"No specific module-level failure is confirmed by available evidence\",\n        \"Unresolved actuation behavior mismatch between vehicle_cmd and vehicle_status remains\"\n      ]\n    }\n  ]\n}",
+  "parsed_response": {
+    "case_id": "case_137",
+    "candidate_specs": [
+      {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Slightly increased fog and wetness near the red light intersection, all actors, mission and puddle are kept identical to the original seed",
+        "mutation_intent": "Preserves all Phase 1 preservation constraints: maintains 3 actors, 1 puddle, original ego spawn/destination in Town01, preserves the original red light violation labeling, only adjusts ambient conditions within conservative ranges, retains all original root cause uncertainty",
+        "expected_oracle": "red_light",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 8,
+            "wetness": 10,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "speed_delta": 0.0
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "speed_delta": 0.0
+            },
+            {
+              "actor_index": 2,
+              "position_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "speed_delta": 0.0
+            }
+          ],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": 0.0,
+              "size_scale": 1.0
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Confirm 3 actors and 1 puddle region are present",
+          "Confirm traffic light topic data is available",
+          "Confirm ego mission spawn and destination match original"
+        ],
+        "post_execution_validation_rules": [
+          "Validate stop-line crossing and route-light relation to confirm genuine red light violation",
+          "Check that vehicle_cmd/vehicle_status mismatch is preserved in the critical window",
+          "Confirm red light violation labeling matches original dataset labeling"
+        ],
+        "uncertainty": [
+          "Route-light relation and stop-line crossing are not confirmed by original available evidence",
+          "No module-level root cause is proven by original evidence",
+          "Unresolved actuation behavior mismatch between zero vehicle_cmd and non-zero vehicle_status remains"
+        ]
+      },
+      {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Minor adjustment to the position and speed of the moving linear walker, all other elements (weather, mission, puddle, other actors) kept identical to original seed",
+        "mutation_intent": "Preserves all Phase 1 preservation constraints: maintains 3 actors count, 1 puddle, original ego mission in Town01, preserves red light violation labeling intent, uses minor actor offsets within allowed ranges, retains all original root cause uncertainty",
+        "expected_oracle": "red_light",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "speed_delta": 0.0
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": 1.5,
+                "y": -1.0
+              },
+              "speed_delta": 0.6
+            },
+            {
+              "actor_index": 2,
+              "position_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "speed_delta": 0.0
+            }
+          ],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": 0.0,
+              "size_scale": 1.0
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Confirm 3 actors and 1 puddle region are present in the scenario",
+          "Confirm traffic light topic data is available",
+          "Confirm ego mission matches original spawn and destination"
+        ],
+        "post_execution_validation_rules": [
+          "Validate that stop-line crossing on red light exists to confirm genuine violation",
+          "Check that vehicle_cmd/vehicle_status mismatch is preserved in the critical window",
+          "Confirm red light violation labeling aligns with original dataset labeling"
+        ],
+        "uncertainty": [
+          "Route-light relation and stop-line crossing were unconfirmed in original evidence",
+          "No specific module-level failure is confirmed by available evidence",
+          "Unresolved actuation behavior mismatch between vehicle_cmd and vehicle_status remains"
+        ]
+      }
+    ]
+  },
+  "raw_api_payload": {
+    "id": "02178292396889127ce9617f6c3913264d7d32061afe934b9a1d8",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "{\n  \"case_id\": \"case_137\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Slightly increased fog and wetness near the red light intersection, all actors, mission and puddle are kept identical to the original seed\",\n      \"mutation_intent\": \"Preserves all Phase 1 preservation constraints: maintains 3 actors, 1 puddle, original ego spawn/destination in Town01, preserves the original red light violation labeling, only adjusts ambient conditions within conservative ranges, retains all original root cause uncertainty\",\n      \"expected_oracle\": \"red_light\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 8, \"wetness\": 10, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 0.0, \"y\": 0.0}, \"speed_delta\": 0.0},\n          {\"actor_index\": 1, \"position_offset\": {\"x\": 0.0, \"y\": 0.0}, \"speed_delta\": 0.0},\n          {\"actor_index\": 2, \"position_offset\": {\"x\": 0.0, \"y\": 0.0}, \"speed_delta\": 0.0}\n        ],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": 0.0, \"size_scale\": 1.0}\n        ],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\n        \"Confirm 3 actors and 1 puddle region are present\",\n        \"Confirm traffic light topic data is available\",\n        \"Confirm ego mission spawn and destination match original\"\n      ],\n      \"post_execution_validation_rules\": [\n        \"Validate stop-line crossing and route-light relation to confirm genuine red light violation\",\n        \"Check that vehicle_cmd/vehicle_status mismatch is preserved in the critical window\",\n        \"Confirm red light violation labeling matches original dataset labeling\"\n      ],\n      \"uncertainty\": [\n        \"Route-light relation and stop-line crossing are not confirmed by original available evidence\",\n        \"No module-level root cause is proven by original evidence\",\n        \"Unresolved actuation behavior mismatch between zero vehicle_cmd and non-zero vehicle_status remains\"\n      ]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Minor adjustment to the position and speed of the moving linear walker, all other elements (weather, mission, puddle, other actors) kept identical to original seed\",\n      \"mutation_intent\": \"Preserves all Phase 1 preservation constraints: maintains 3 actors count, 1 puddle, original ego mission in Town01, preserves red light violation labeling intent, uses minor actor offsets within allowed ranges, retains all original root cause uncertainty\",\n      \"expected_oracle\": \"red_light\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 0.0, \"y\": 0.0}, \"speed_delta\": 0.0},\n          {\"actor_index\": 1, \"position_offset\": {\"x\": 1.5, \"y\": -1.0}, \"speed_delta\": 0.6},\n          {\"actor_index\": 2, \"position_offset\": {\"x\": 0.0, \"y\": 0.0}, \"speed_delta\": 0.0}\n        ],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": 0.0, \"size_scale\": 1.0}\n        ],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\n        \"Confirm 3 actors and 1 puddle region are present in the scenario\",\n        \"Confirm traffic light topic data is available\",\n        \"Confirm ego mission matches original spawn and destination\"\n      ],\n      \"post_execution_validation_rules\": [\n        \"Validate that stop-line crossing on red light exists to confirm genuine violation\",\n        \"Check that vehicle_cmd/vehicle_status mismatch is preserved in the critical window\",\n        \"Confirm red light violation labeling aligns with original dataset labeling\"\n      ],\n      \"uncertainty\": [\n        \"Route-light relation and stop-line crossing were unconfirmed in original evidence\",\n        \"No specific module-level failure is confirmed by available evidence\",\n        \"Unresolved actuation behavior mismatch between vehicle_cmd and vehicle_status remains\"\n      ]\n    }\n  ]\n}",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null,
+          "reasoning_content": "\nGot it, let's build this step by step. First, case_id is case_137, right? We need two candidate_specs. Let's start with the first one, cand_001.\n\nFirst, high_level_variant: what's a good variant? Let's see, original has 3 actors, 1 puddle, red light. First variant could be slightly increase fog and wetness to make it harder but keep the original labeling, right? Wait, root cause is preserve the red light label, 3 actors, 1 puddle, original mission. Let's think, first candidate: high_level_variant could be \"Slightly increased fog and wetness near the intersection, keep all actors and mission the same\". Mutation_intent: \"Preserves all original constraints: 3 actors, 1 puddle, original ego mission in Town01, preserves the red light violation labeling intent, only adjusts ambient conditions within conservative ranges\". Expected oracle is red_light, right? Because original is labeled red light.\n\nThen modifications: weather_delta. Let's do rain 0, fog +8, wetness +10, puddle 0. That's within [-20, 20], good. Actor_mutations: all keep original? Wait, no, wait original has 3 actors. Let's just have position offsets 0, speed delta 0 for all? Wait, or maybe first candidate doesn't change actors, just weather. Wait, actor_mutations: for each actor? Wait, let's see, if we keep them same, position offset 0, speed delta 0. Wait, original 3 actors, indexes 0,1,2. Oh right. Then puddle_mutations: keep original, so index 0, offset 0, level delta 0, size scale 1.0. Mission mutation: keep_original true, right? Because preservation constraint says preserve ego start and goal. So mission_mutation is keep_original: true, offsets 0.\n\nPre execution validation rules: let's see, notes say validate stop-line crossing and route-light relation, check vehicle_cmd mismatch. So first pre rule: \"Confirm 3 actors and 1 puddle are present in the generated scenario\", second \"Confirm traffic light topic data is available\". Post execution: \"Confirm red light violation labeling is consistent with original dataset\", \"Check that vehicle_cmd/vehicle_status mismatch is present in critical window\". Uncertainty: keep the original uncertainty, right? Like [\"Route-light relation and stop-line crossing are not confirmed by original evidence\", \"Unresolved actuation behavior mismatch between vehicle_cmd and vehicle_status remains\"].\n\nNow second candidate, cand_002. What's another variant? Let's slightly adjust the moving walker's speed and position a little, within allowed ranges. Let's see: high_level_variant: \"Slightly adjust position and speed of the moving linear walker, keep weather and all other elements same as original\". Mutation_intent: \"Preserves all original constraints: 3 actors count, 1 puddle, original ego mission in Town01, red light violation labeling intent, minor variation to the non-ego actor to test the violation pattern under slightly different pedestrian placement\". Expected oracle is still red_light.\n\nModifications: weather delta all 0, right? Actor_mutations: index 0 (immobile walker): x 0, y 0, speed 0. Index 1 (the moving one): position offset x 1.2, y -0.8, speed delta +0.5. That's within [-8,8] for position, [-3,3] for speed delta, good. Index 2: 0 offset, 0 speed delta. Puddle mutations: keep original, so index 0, all 0, size 1.0. Mission mutation: keep_original true, right?\n\nPre execution validation rules: same as before plus? Wait no, let's do [\"Confirm 3 actors and 1 puddle are present in the generated scenario\", \"Confirm traffic light topic data is available\", \"Confirm actor position and speed offsets are within allowed ranges\"]. Post execution: [\"Validate that stop-line crossing on red light is present to confirm genuine violation\", \"Check that vehicle_cmd/vehicle_status mismatch is preserved in the critical window\", \"Confirm red light labeling matches original dataset\"]. Uncertainty: same as original, [\"Route-light relation and stop-line crossing were unconfirmed in original evidence\", \"No specific module failure is confirmed, uncertainty on actuation mismatch root cause remains\"].\n\nWait let's check all rules: exactly 2 candidates, all offsets within range: actor position 1.2, -0.8, that's fine. Speed delta +0.5, that's within [-3,3]. Weather deltas: 8, 10, that's within [-20,20]. Puddle: all level delta 0, size 1, that's within range. Mission keep original, that's fine. Expected oracle is red_light, which is what original is labeled, right? Original says consistently labeled red light, so we don't change that. Root cause preserved, yes.\n\nWait let's structure this properly into JSON. Let's make sure all fields are there. Let's check the schema: case_id is case_137, candidate_specs is array of two. Let's write each correctly.\n\nWait first candidate: candidate_id cand_001, high_level_variant: \"Slightly increased fog and wetness near the red light intersection, all actors, mission, and puddle are kept same as original seed\". Mutation_intent: \"Preserves all Phase 1 preservation constraints: keeps 3 actors, 1 puddle, original ego spawn and destination in Town01, preserves red light violation labeling, only adjusts ambient conditions within conservative ranges, maintains the original root cause uncertainty\". Expected_oracle: \"red_light\".\n\nModifications for cand_001: weather_delta: {\"rain\": 0, \"fog\": 8, \"wetness\": 10, \"puddle\": 0}, that's correct. Actor_mutations: three entries, index 0, 1, 2, all position offset x 0 y 0, speed delta 0. Right, because we don't change actors here. Puddle_mutations: one entry, index 0, location offset x 0 y 0, level delta 0, size scale 1.0. Mission_mutation: {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}. Correct.\n\nPre_execution_validation_rules: [\"Confirm 3 actors and 1 puddle region are present\", \"Confirm traffic light topic data is available\", \"Confirm ego mission spawn and destination match original\"]. Post_execution_validation_rules: [\"Validate stop-line crossing and route-light relation to confirm genuine red light violation\", \"Check that vehicle_cmd/vehicle_status mismatch is preserved in the critical window\", \"Confirm red light violation labeling matches original dataset labeling\"]. Uncertainty: [\"Route-light relation and stop-line crossing are not confirmed by original available evidence\", \"No module-level root cause is proven by original evidence\", \"Unresolved actuation behavior mismatch between zero vehicle_cmd and non-zero vehicle_status remains\"]. That's good.\n\nNow cand_002: candidate_id cand_002, high_level_variant: \"Minor adjustment to the position and speed of the moving linear walker, all other elements (weather, mission, puddle, other actors) kept same as original seed\". Mutation_intent: \"Preserves all Phase 1 preservation constraints: maintains 3 actors count, 1 puddle, original ego mission in Town01, preserves red light violation labeling intent, minor variation to non-ego actor while keeping all offsets within allowed ranges, preserves original uncertainty\". Expected_oracle: \"red_light\".\n\nModifications: weather_delta all zero: {\"rain\":0, \"fog\":0, \"wetness\":0, \"puddle\":0}. Actor_mutations: index 0: {\"actor_index\":0, \"position_offset\":{\"x\":0.0,\"y\":0.0}, \"speed_delta\":0.0}, index 1: {\"actor_index\":1, \"position_offset\":{\"x\":1.5, \"y\":-1.0}, \"speed_delta\":0.6}, that's well within ranges, right? 1.5 and -1 are within [-8,8], 0.6 within [-3,3]. Index 2: {\"actor_index\":2, \"position_offset\":{\"x\":0.0,\"y\":0.0}, \"speed_delta\":0.0}. Puddle_mutations: same as before, {\"puddle_index\":0, \"location_offset\":{\"x\":0.0,\"y\":0.0}, \"level_delta\":0.0, \"size_scale\":1.0}. Mission_mutation: keep_original true, offsets all zero. Correct.\n\nPre_execution_validation_rules: [\"Confirm 3 actors and 1 puddle region are present in the scenario\", \"Confirm traffic light topic data is available\", \"Confirm ego mission matches original spawn and destination\"]. Post_execution_validation_rules: [\"Validate that stop-line crossing on red light exists to confirm genuine violation\", \"Check that vehicle_cmd/vehicle_status mismatch is preserved in the critical window\", \"Confirm red light violation labeling aligns with original dataset labeling\"]. Uncertainty: [\"Route-light relation and stop-line crossing were unconfirmed in original evidence\", \"No specific module-level failure is confirmed by available evidence\", \"Unresolved actuation behavior mismatch between vehicle_cmd and vehicle_status remains\"].\n\nWait that all checks out. Let's put it all into valid JSON, no extra stuff, exactly what's needed. Let's make sure no typos, all commas are correct. Let's write it now."
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "doubao-seed-2-0-lite-260215",
+    "object": "chat.completion",
+    "service_tier": "default",
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 3308,
+      "prompt_tokens": 1412,
+      "total_tokens": 4720,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 2100,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": null,
+        "cached_tokens": 0
+      }
+    }
+  },
+  "error_message": "",
+  "elapsed_sec": 45.889,
+  "timestamp": "<REDACTED_TIMESTAMP>"
+}

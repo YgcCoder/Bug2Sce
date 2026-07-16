@@ -1,0 +1,146 @@
+{
+  "case_id": "case_151",
+  "model_name": "ark-doubao-seed-2.0-lite-260215",
+  "candidate_index": 2,
+  "candidate_spec": {
+    "candidate_id": "cand_002",
+    "high_level_variant": "Minor adjustment to ego mission spawn/destination and weather conditions",
+    "mutation_intent": "Only alters non-critical scenario parameters within allowed bounds, does not change the core root cause pattern of all-zero ego actuation with available waypoints and conflicting failure labels",
+    "expected_oracle": "compound",
+    "modifications": {
+      "weather_delta": {
+        "rain": -3,
+        "fog": 4,
+        "wetness": -5,
+        "puddle": -2
+      },
+      "actor_mutations": [
+        {
+          "actor_index": 0,
+          "position_offset": {
+            "x": -1.5,
+            "y": 0.7
+          },
+          "speed_delta": -0.3
+        },
+        {
+          "actor_index": 1,
+          "position_offset": {
+            "x": 0.8,
+            "y": -1.2
+          },
+          "speed_delta": 0.1
+        }
+      ],
+      "puddle_mutations": [
+        {
+          "puddle_index": 0,
+          "location_offset": {
+            "x": 0.0,
+            "y": 0.3
+          },
+          "level_delta": 0.0,
+          "size_scale": 1.0
+        },
+        {
+          "puddle_index": 1,
+          "location_offset": {
+            "x": 0.3,
+            "y": 0.0
+          },
+          "level_delta": 0.0,
+          "size_scale": 1.0
+        }
+      ],
+      "mission_mutation": {
+        "keep_original": false,
+        "spawn_offset": {
+          "x": 0.8,
+          "y": -0.5
+        },
+        "destination_offset": {
+          "x": 1.2,
+          "y": 0.3
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Confirm 101 final waypoints are available in critical window",
+      "Verify all-zero actuation commands for ego vehicle",
+      "Check that 2 actors and 2 puddles are preserved"
+    ],
+    "post_execution_validation_rules": [
+      "Validate low mean ego velocity in the final 60 seconds of the scenario",
+      "Confirm conflicting failure labels between dataset and error oracle are preserved"
+    ],
+    "uncertainty": [
+      "Unresolved label conflict between stuck and lane invasion remains",
+      "No confirmed lane boundary crossing to validate lane invasion label",
+      "No specific Autoware module failure is localized"
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": -3.0,
+      "fog": 4.0,
+      "wetness": -5.0,
+      "puddle": -2.0
+    },
+    "actor_mutations": [
+      {
+        "actor_index": 0,
+        "position_offset": {
+          "x": -1.5,
+          "y": 0.7
+        },
+        "speed_delta": -0.3
+      },
+      {
+        "actor_index": 1,
+        "position_offset": {
+          "x": 0.8,
+          "y": -1.2
+        },
+        "speed_delta": 0.1
+      }
+    ],
+    "puddle_mutations": [
+      {
+        "puddle_index": 0,
+        "location_offset": {
+          "x": 0.0,
+          "y": 0.3
+        },
+        "level_delta": 0.0,
+        "size_scale": 1.0
+      },
+      {
+        "puddle_index": 1,
+        "location_offset": {
+          "x": 0.3,
+          "y": 0.0
+        },
+        "level_delta": 0.0,
+        "size_scale": 1.0
+      }
+    ],
+    "mission_mutation": {
+      "spawn_offset": {
+        "x": 0.8,
+        "y": -0.5
+      },
+      "destination_offset": {
+        "x": 1.2,
+        "y": 0.3
+      }
+    }
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_151__ark-doubao-seed-2.0-lite-260215.json",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_151__ark-doubao-seed-2.0-lite-260215.json",
+  "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+}

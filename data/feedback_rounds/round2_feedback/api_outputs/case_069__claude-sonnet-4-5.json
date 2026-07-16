@@ -1,0 +1,190 @@
+{
+  "case_id": "case_069",
+  "model_name": "claude-sonnet-4-5",
+  "workflow": "round2_feedback_guided_b2s",
+  "experimental_difference": "six_models_round1_feedback_added_to_original_b2s_input",
+  "status": "completed",
+  "schema_valid": true,
+  "schema_errors": [],
+  "num_round1_feedback_records": 6,
+  "num_candidates_requested": 2,
+  "num_candidates_written": 2,
+  "num_pre_valid": 2,
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/round2_feedback/prompts/case_069.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/round2_feedback/api_outputs/case_069__claude-sonnet-4-5.json",
+  "prompt_estimated_tokens": 4039,
+  "usage": {
+    "prompt_tokens": 4593,
+    "completion_tokens": 821,
+    "total_tokens": 5414
+  },
+  "candidate_records": [
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/round2_feedback/candidates/case_069__Round2_01.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/round2_feedback/metadata/case_069__Round2_01.metadata.json",
+      "pre_valid": true,
+      "pre_validation_errors": [],
+      "pre_validation_warnings": []
+    },
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/round2_feedback/candidates/case_069__Round2_02.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/round2_feedback/metadata/case_069__Round2_02.metadata.json",
+      "pre_valid": true,
+      "pre_validation_errors": [],
+      "pre_validation_warnings": []
+    }
+  ],
+  "raw_response": "```json\n{\n  \"case_id\": \"case_069\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Bring actor 0 closer laterally to ego route, reduce speed moderately\",\n      \"mutation_intent\": \"Increase collision likelihood by tightening actor proximity to ego path while maintaining moderate ego speed and detected object presence\",\n      \"expected_oracle\": \"collision\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 2.5, \"y\": -3.0}, \"speed_delta\": -1.5},\n          {\"actor_index\": 1, \"position_offset\": {\"x\": 0.0, \"y\": 0.0}, \"speed_delta\": 0.0}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Actor 0 spawn position must remain valid on Town01 map\"],\n      \"post_execution_validation_rules\": [\"Verify collision topic impulse events present\", \"Confirm detected object count >= 1 before collision\", \"Check ego velocity 4-6 m/s pre-collision\"],\n      \"uncertainty\": [\"Oracle label conflict between dataset and error.json may persist\", \"Vehicle_cmd zero vs vehicle_status mismatch origin unclear\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Adjust both actors laterally toward ego corridor, add moderate rain and wetness\",\n      \"mutation_intent\": \"Test if weather degradation combined with tighter actor spacing preserves collision pattern with detected objects near ego\",\n      \"expected_oracle\": \"collision\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 12, \"fog\": 5, \"wetness\": 12, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 1.8, \"y\": -2.5}, \"speed_delta\": -1.0},\n          {\"actor_index\": 1, \"position_offset\": {\"x\": 1.5, \"y\": -2.0}, \"speed_delta\": -1.0}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Both actor spawn positions must remain valid on Town01\", \"Weather parameters within simulator bounds\"],\n      \"post_execution_validation_rules\": [\"Collision topic impulse must be present\", \"Detected object presence confirmed in critical window\", \"Ego speed profile 4-6 m/s maintained\"],\n      \"uncertainty\": [\"Command-status mismatch may not reproduce consistently\", \"Lane invasion label conflict unresolved in seed\"]\n    }\n  ]\n}\n```",
+  "parsed_response": {
+    "case_id": "case_069",
+    "candidate_specs": [
+      {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Bring actor 0 closer laterally to ego route, reduce speed moderately",
+        "mutation_intent": "Increase collision likelihood by tightening actor proximity to ego path while maintaining moderate ego speed and detected object presence",
+        "expected_oracle": "collision",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 2.5,
+                "y": -3.0
+              },
+              "speed_delta": -1.5
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "speed_delta": 0.0
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Actor 0 spawn position must remain valid on Town01 map"
+        ],
+        "post_execution_validation_rules": [
+          "Verify collision topic impulse events present",
+          "Confirm detected object count >= 1 before collision",
+          "Check ego velocity 4-6 m/s pre-collision"
+        ],
+        "uncertainty": [
+          "Oracle label conflict between dataset and error.json may persist",
+          "Vehicle_cmd zero vs vehicle_status mismatch origin unclear"
+        ]
+      },
+      {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Adjust both actors laterally toward ego corridor, add moderate rain and wetness",
+        "mutation_intent": "Test if weather degradation combined with tighter actor spacing preserves collision pattern with detected objects near ego",
+        "expected_oracle": "collision",
+        "modifications": {
+          "weather_delta": {
+            "rain": 12,
+            "fog": 5,
+            "wetness": 12,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 1.8,
+                "y": -2.5
+              },
+              "speed_delta": -1.0
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": 1.5,
+                "y": -2.0
+              },
+              "speed_delta": -1.0
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Both actor spawn positions must remain valid on Town01",
+          "Weather parameters within simulator bounds"
+        ],
+        "post_execution_validation_rules": [
+          "Collision topic impulse must be present",
+          "Detected object presence confirmed in critical window",
+          "Ego speed profile 4-6 m/s maintained"
+        ],
+        "uncertainty": [
+          "Command-status mismatch may not reproduce consistently",
+          "Lane invasion label conflict unresolved in seed"
+        ]
+      }
+    ]
+  },
+  "error_message": "",
+  "timestamp": "<REDACTED_TIMESTAMP>",
+  "raw_api_payload": {
+    "id": "<REDACTED_RESPONSE_ID>",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "```json\n{\n  \"case_id\": \"case_069\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Bring actor 0 closer laterally to ego route, reduce speed moderately\",\n      \"mutation_intent\": \"Increase collision likelihood by tightening actor proximity to ego path while maintaining moderate ego speed and detected object presence\",\n      \"expected_oracle\": \"collision\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 2.5, \"y\": -3.0}, \"speed_delta\": -1.5},\n          {\"actor_index\": 1, \"position_offset\": {\"x\": 0.0, \"y\": 0.0}, \"speed_delta\": 0.0}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Actor 0 spawn position must remain valid on Town01 map\"],\n      \"post_execution_validation_rules\": [\"Verify collision topic impulse events present\", \"Confirm detected object count >= 1 before collision\", \"Check ego velocity 4-6 m/s pre-collision\"],\n      \"uncertainty\": [\"Oracle label conflict between dataset and error.json may persist\", \"Vehicle_cmd zero vs vehicle_status mismatch origin unclear\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Adjust both actors laterally toward ego corridor, add moderate rain and wetness\",\n      \"mutation_intent\": \"Test if weather degradation combined with tighter actor spacing preserves collision pattern with detected objects near ego\",\n      \"expected_oracle\": \"collision\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 12, \"fog\": 5, \"wetness\": 12, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 1.8, \"y\": -2.5}, \"speed_delta\": -1.0},\n          {\"actor_index\": 1, \"position_offset\": {\"x\": 1.5, \"y\": -2.0}, \"speed_delta\": -1.0}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Both actor spawn positions must remain valid on Town01\", \"Weather parameters within simulator bounds\"],\n      \"post_execution_validation_rules\": [\"Collision topic impulse must be present\", \"Detected object presence confirmed in critical window\", \"Ego speed profile 4-6 m/s maintained\"],\n      \"uncertainty\": [\"Command-status mismatch may not reproduce consistently\", \"Lane invasion label conflict unresolved in seed\"]\n    }\n  ]\n}\n```",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "claude-sonnet-4-5",
+    "object": "chat.completion",
+    "service_tier": null,
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 821,
+      "prompt_tokens": 4593,
+      "total_tokens": 5414,
+      "completion_tokens_details": null,
+      "prompt_tokens_details": null
+    }
+  },
+  "elapsed_sec": 15.621
+}

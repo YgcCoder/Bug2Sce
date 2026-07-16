@@ -1,0 +1,136 @@
+{
+  "case_id": "case_151",
+  "model_name": "gpt-4o-2024-11-20",
+  "candidate_index": 1,
+  "candidate_spec": {
+    "candidate_id": "cand_001",
+    "high_level_variant": "Ego vehicle exhibits minimal movement with slight weather adjustments to test stuck behavior.",
+    "mutation_intent": "This variant preserves the Phase 1 pattern by maintaining minimal ego movement and low velocity while introducing slight weather changes to explore their impact on stuck symptoms.",
+    "expected_oracle": "stuck",
+    "modifications": {
+      "weather_delta": {
+        "rain": 5,
+        "fog": -10,
+        "wetness": 10,
+        "puddle": 0
+      },
+      "actor_mutations": [
+        {
+          "actor_index": 0,
+          "position_offset": {
+            "x": 0.5,
+            "y": -0.5
+          },
+          "speed_delta": -0.5
+        },
+        {
+          "actor_index": 1,
+          "position_offset": {
+            "x": -1.0,
+            "y": 1.0
+          },
+          "speed_delta": 0.2
+        }
+      ],
+      "puddle_mutations": [
+        {
+          "puddle_index": 0,
+          "location_offset": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "level_delta": 0.1,
+          "size_scale": 1.0
+        },
+        {
+          "puddle_index": 1,
+          "location_offset": {
+            "x": 0.5,
+            "y": -0.5
+          },
+          "level_delta": -0.1,
+          "size_scale": 0.9
+        }
+      ],
+      "mission_mutation": {
+        "keep_original": true,
+        "spawn_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "destination_offset": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Ensure ego vehicle maintains minimal movement and low velocity.",
+      "Verify weather changes do not introduce unintended oracle events."
+    ],
+    "post_execution_validation_rules": [
+      "Check vehicle_cmd, vehicle_status, and ego displacement consistency.",
+      "Validate stuck symptoms align with dataset indications."
+    ],
+    "uncertainty": [
+      "Controller behavior under modified weather conditions."
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": 5.0,
+      "fog": -10.0,
+      "wetness": 10.0,
+      "puddle": 0.0
+    },
+    "actor_mutations": [
+      {
+        "actor_index": 0,
+        "position_offset": {
+          "x": 0.5,
+          "y": -0.5
+        },
+        "speed_delta": -0.5
+      },
+      {
+        "actor_index": 1,
+        "position_offset": {
+          "x": -1.0,
+          "y": 1.0
+        },
+        "speed_delta": 0.2
+      }
+    ],
+    "puddle_mutations": [
+      {
+        "puddle_index": 0,
+        "location_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "level_delta": 0.1,
+        "size_scale": 1.0
+      },
+      {
+        "puddle_index": 1,
+        "location_offset": {
+          "x": 0.5,
+          "y": -0.5
+        },
+        "level_delta": -0.1,
+        "size_scale": 0.9
+      }
+    ],
+    "mission_mutation": {
+      "keep_original": true
+    }
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_151__gpt-4o-2024-11-20.json",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_151__gpt-4o-2024-11-20.json",
+  "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+}

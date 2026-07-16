@@ -1,0 +1,118 @@
+{
+  "case_id": "case_069",
+  "workflow": "phase1_causal_explanation",
+  "model_name": "ark-deepseek-r1-250528",
+  "model_id": "ark-deepseek-r1-250528",
+  "status": "completed",
+  "dry_run": false,
+  "schema_valid": true,
+  "schema_errors": [],
+  "quality_flags": [],
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_prompts/case_069__ark-deepseek-r1-250528.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_069__ark-deepseek-r1-250528.json",
+  "prompt_estimated_tokens": 3081,
+  "usage": {
+    "prompt_tokens": 4067,
+    "completion_tokens": 1843,
+    "total_tokens": 5910
+  },
+  "estimated_cost_usd": null,
+  "raw_response": "{\n  \"case_id\": \"case_069\",\n  \"fault_layer\": \"unknown\",\n  \"fault_component\": \"unknown\",\n  \"causal_explanation\": \"Dataset labels this case as collision + lane invasion, but error.json does not record either event, only noting speeding. All actuation commands in the vehicle_cmd topic are zero before the reported collision timestamp, but vehicle_status reports non-zero throttle and sustained positive ego speed. No module-level failure is directly confirmed due to label conflict and command-status mismatch.\",\n  \"root_cause_pattern\": \"Conservative pattern: Ego vehicle exhibits a mismatch between all-zero commanded actuation values in the vehicle_cmd topic and non-zero actual throttle/velocity reported in vehicle_status, with conflicting oracle labels for collision and lane invasion.\",\n  \"preservation_constraints\": [\n    \"Preserve the conflict between dataset labels and error.json events for collision and lane invasion\",\n    \"Preserve the mismatch between all-zero vehicle_cmd commands and non-zero reported ego velocity/throttle in the critical window\",\n    \"Preserve 2 actors in the scenario\",\n    \"Preserve the base map and mission route\"\n  ],\n  \"modifiable_factors\": [\"actor_position\", \"weather_parameters\", \"start_pose_offset\", \"actor_initial_speed\"],\n  \"non_modifiable_conditions\": [\n    \"conflicting oracle labels for collision and lane invasion\",\n    \"all-zero actuation commands in vehicle_cmd during the critical window\",\n    \"non-zero reported ego velocity in vehicle_status during the critical window\",\n    \"two actors present in the scenario\"\n  ],\n  \"uncertainty\": [\n    \"Conflict between dataset labels (collision=1, lane_invasion=1) and error.json (collision=0, lane_invasion=0)\",\n    \"Mismatch between all-zero vehicle_cmd commands and non-zero actual throttle/velocity means actuation fault cannot be confirmed\",\n    \"No direct evidence of internal module failure in sensing, perception, or planning\"\n  ],\n  \"evidence_support\": [\n    {\"evidence_id\": \"oracle_consistency\", \"claim\": \"Dataset labels conflict with error.json events for collision and lane invasion\"},\n    {\"evidence_id\": \"collision_window_vehicle_stats\", \"claim\": \"All vehicle_cmd commands are zero pre-collision, while vehicle_status reports non-zero throttle and positive velocity\"},\n    {\"evidence_id\": \"planning_final_waypoints\", \"claim\": \"No blocked waypoints were detected in the pre-collision critical window\"},\n    {\"evidence_id\": \"perception_detection_objects\", \"claim\": \"At least one object was detected in the pre-collision critical window\"}\n  ],\n  \"confidence\": \"low\",\n  \"ready_for_phase2_generation\": \"uncertain\",\n  \"notes_for_validator\": [\n    \"Manual review of raw oracle data is required to confirm the presence of collision and lane invasion\",\n    \"Check for the vehicle_cmd/vehicle_status mismatch in generated cases to confirm preservation of the observed behavior\"\n  ]\n}",
+  "parsed_response": {
+    "case_id": "case_069",
+    "fault_layer": "unknown",
+    "fault_component": "unknown",
+    "causal_explanation": "Dataset labels this case as collision + lane invasion, but error.json does not record either event, only noting speeding. All actuation commands in the vehicle_cmd topic are zero before the reported collision timestamp, but vehicle_status reports non-zero throttle and sustained positive ego speed. No module-level failure is directly confirmed due to label conflict and command-status mismatch.",
+    "root_cause_pattern": "Conservative pattern: Ego vehicle exhibits a mismatch between all-zero commanded actuation values in the vehicle_cmd topic and non-zero actual throttle/velocity reported in vehicle_status, with conflicting oracle labels for collision and lane invasion.",
+    "preservation_constraints": [
+      "Preserve the conflict between dataset labels and error.json events for collision and lane invasion",
+      "Preserve the mismatch between all-zero vehicle_cmd commands and non-zero reported ego velocity/throttle in the critical window",
+      "Preserve 2 actors in the scenario",
+      "Preserve the base map and mission route"
+    ],
+    "modifiable_factors": [
+      "actor_position",
+      "weather_parameters",
+      "start_pose_offset",
+      "actor_initial_speed"
+    ],
+    "non_modifiable_conditions": [
+      "conflicting oracle labels for collision and lane invasion",
+      "all-zero actuation commands in vehicle_cmd during the critical window",
+      "non-zero reported ego velocity in vehicle_status during the critical window",
+      "two actors present in the scenario"
+    ],
+    "uncertainty": [
+      "Conflict between dataset labels (collision=1, lane_invasion=1) and error.json (collision=0, lane_invasion=0)",
+      "Mismatch between all-zero vehicle_cmd commands and non-zero actual throttle/velocity means actuation fault cannot be confirmed",
+      "No direct evidence of internal module failure in sensing, perception, or planning"
+    ],
+    "evidence_support": [
+      {
+        "evidence_id": "oracle_consistency",
+        "claim": "Dataset labels conflict with error.json events for collision and lane invasion"
+      },
+      {
+        "evidence_id": "collision_window_vehicle_stats",
+        "claim": "All vehicle_cmd commands are zero pre-collision, while vehicle_status reports non-zero throttle and positive velocity"
+      },
+      {
+        "evidence_id": "planning_final_waypoints",
+        "claim": "No blocked waypoints were detected in the pre-collision critical window"
+      },
+      {
+        "evidence_id": "perception_detection_objects",
+        "claim": "At least one object was detected in the pre-collision critical window"
+      }
+    ],
+    "confidence": "low",
+    "ready_for_phase2_generation": "uncertain",
+    "notes_for_validator": [
+      "Manual review of raw oracle data is required to confirm the presence of collision and lane invasion",
+      "Check for the vehicle_cmd/vehicle_status mismatch in generated cases to confirm preservation of the observed behavior"
+    ]
+  },
+  "raw_api_payload": {
+    "id": "021782920852146f17176ac9df90535d88cbb24b1f2709b7c5f9c",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "{\n  \"case_id\": \"case_069\",\n  \"fault_layer\": \"unknown\",\n  \"fault_component\": \"unknown\",\n  \"causal_explanation\": \"Dataset labels this case as collision + lane invasion, but error.json does not record either event, only noting speeding. All actuation commands in the vehicle_cmd topic are zero before the reported collision timestamp, but vehicle_status reports non-zero throttle and sustained positive ego speed. No module-level failure is directly confirmed due to label conflict and command-status mismatch.\",\n  \"root_cause_pattern\": \"Conservative pattern: Ego vehicle exhibits a mismatch between all-zero commanded actuation values in the vehicle_cmd topic and non-zero actual throttle/velocity reported in vehicle_status, with conflicting oracle labels for collision and lane invasion.\",\n  \"preservation_constraints\": [\n    \"Preserve the conflict between dataset labels and error.json events for collision and lane invasion\",\n    \"Preserve the mismatch between all-zero vehicle_cmd commands and non-zero reported ego velocity/throttle in the critical window\",\n    \"Preserve 2 actors in the scenario\",\n    \"Preserve the base map and mission route\"\n  ],\n  \"modifiable_factors\": [\"actor_position\", \"weather_parameters\", \"start_pose_offset\", \"actor_initial_speed\"],\n  \"non_modifiable_conditions\": [\n    \"conflicting oracle labels for collision and lane invasion\",\n    \"all-zero actuation commands in vehicle_cmd during the critical window\",\n    \"non-zero reported ego velocity in vehicle_status during the critical window\",\n    \"two actors present in the scenario\"\n  ],\n  \"uncertainty\": [\n    \"Conflict between dataset labels (collision=1, lane_invasion=1) and error.json (collision=0, lane_invasion=0)\",\n    \"Mismatch between all-zero vehicle_cmd commands and non-zero actual throttle/velocity means actuation fault cannot be confirmed\",\n    \"No direct evidence of internal module failure in sensing, perception, or planning\"\n  ],\n  \"evidence_support\": [\n    {\"evidence_id\": \"oracle_consistency\", \"claim\": \"Dataset labels conflict with error.json events for collision and lane invasion\"},\n    {\"evidence_id\": \"collision_window_vehicle_stats\", \"claim\": \"All vehicle_cmd commands are zero pre-collision, while vehicle_status reports non-zero throttle and positive velocity\"},\n    {\"evidence_id\": \"planning_final_waypoints\", \"claim\": \"No blocked waypoints were detected in the pre-collision critical window\"},\n    {\"evidence_id\": \"perception_detection_objects\", \"claim\": \"At least one object was detected in the pre-collision critical window\"}\n  ],\n  \"confidence\": \"low\",\n  \"ready_for_phase2_generation\": \"uncertain\",\n  \"notes_for_validator\": [\n    \"Manual review of raw oracle data is required to confirm the presence of collision and lane invasion\",\n    \"Check for the vehicle_cmd/vehicle_status mismatch in generated cases to confirm preservation of the observed behavior\"\n  ]\n}",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null,
+          "reasoning_content": "\nGot it, let's work through this step by step. First, the case ID is case_069, right? Let's start with that.\n\nNext, fault layer. There's a conflict between dataset and error.json, right? Dataset says collision and lane invasion, error.json has neither, only speeding. Also, vehicle_cmd is all zero but vehicle_status has throttle non-zero, right? Wait, let's check: vehicle_cmd all commands are zero, but vehicle_status has throttle from 0.22 to 1.0, brake zero, speed non-zero. So attribution can't be done directly, so fault layer is unknown? Wait, let's confirm the rules: if conflict between dataset and error json, mark uncertainty, prefer unknown when attribution not supported. Yeah. Fault component is unknown too.\n\nCausal explanation: Let's see. Dataset labels this case as collision + lane invasion, but error.json does not record either event, only reports speeding. Vehicle_cmd has all zero acceleration, brake, and steer commands before the reported collision timestamp, but vehicle_status shows non-zero throttle and sustained positive ego speed. No module-level failure is directly confirmed by critical window evidence due to label conflict and command-status mismatch. That makes sense.\n\nRoot cause pattern: Conservative pattern: Ego vehicle has a mismatch between zero commanded actuation values in vehicle_cmd topic and non-zero actual throttle/velocity reported in vehicle_status, with conflicting oracle labels for collision and lane invasion. Wait, that's good, conservative.\n\nPreservation constraints: Let's list 3-6, right? 1. Preserve the conflict between dataset labels and error.json oracle events for collision and lane invasion. 2. Preserve the mismatch between all-zero vehicle_cmd commands and non-zero reported ego velocity/throttle in vehicle_status during the critical window. 3. Preserve the 2 actors present in the scenario. 4. Preserve the same map and mission route. That's four, good.\n\nModifiable factors: Let's see, what can we change? Actor positions, weather conditions, start yaw offset, cloud/fog density. Wait, the scenario has 2 actors, rain 5, etc. So modifiable factors: [\"actor_position\", \"weather_parameters\", \"start_pose_offset\", \"actor_speed\"] that works.\n\nNon-modifiable conditions: [\"conflicting oracle labels for collision and lane invasion\", \"all-zero actuation commands in vehicle_cmd during critical window\", \"non-zero reported ego velocity in vehicle_status during critical window\", \"two moving actors present in the scenario\"] yeah.\n\nUncertainty: Let's list what's uncertain. 1. Conflict between dataset labels (collision=1, lane_invasion=1) and error.json (collision=0, lane_invasion=0). 2. Mismatch between all-zero vehicle_cmd commands and non-zero actual throttle/velocity, so actuation fault can't be confirmed. 3. No direct evidence of module-level failure for sensing, perception, or planning. That's right.\n\nEvidence support: Let's map each evidence. First, {\"evidence_id\": \"oracle_consistency\", \"claim\": \"Dataset labels conflict with error.json events for collision and lane invasion\"}, then {\"evidence_id\": \"collision_window_vehicle_stats\", \"claim\": \"All vehicle_cmd commands are zero in the pre-collision critical window, while vehicle_status reports non-zero throttle and positive velocity\"}, {\"evidence_id\": \"planning_final_waypoints\", \"claim\": \"No blocked waypoints were detected in the pre-collision critical window\"}, {\"evidence_id\": \"perception_detection\", \"claim\": \"At least one object was detected in the pre-collision critical window\"}. That's good.\n\nConfidence: Low, right? Because of all the uncertainty and label conflict. So confidence is low.\n\nReady for phase 2 generation: Wait, the rule says use yes when there's a checkable conservative pattern, even if fault layer is unknown? Wait, but there's a label conflict. Wait let's check the rules: \"ready_for_phase2_generation=no solely because fault_layer is unknown. Use yes when there is a checkable conservative preservation pattern; use uncertain when labels conflict or a key condition is missing.\" Oh right! Labels conflict here, so it's uncertain? Wait let's check that rule again: \"use uncertain when labels conflict or a key condition is missing.\" Yes, that's exactly this case. So ready_for_phase2_generation is uncertain? Wait wait, let's re-read: \"Do not set ready_for_phase2_generation=no solely because fault_layer is unknown. Use yes when there is a checkable conservative preservation pattern; use uncertain when labels conflict or a key condition is missing.\" Oh right, labels conflict here, so it's uncertain.\n\nNotes for validator: [\"Manual review of raw oracle data is required to confirm the presence of collision and lane invasion before attributing root cause.\", \"Check for actuation command mismatch in generated cases to confirm preservation of the observed vehicle_cmd/vehicle_status inconsistency.\"] That's good.\n\nWait let's check all rules again. Let's make sure we didn't invent anything. All facts are from the input. Let's check: vehicle_cmd all zero, yes, input says vehicle_cmd_stats all min max mean last 0. Vehicle_status has throttle non-zero, yes, min 0.22..., max 1.0, last 0.44. Label conflict, yes, dataset says 1, error.json 0. Fault layer is unknown, correct, because we can't attribute. All rules followed.\n\nWait let's structure it properly into JSON, make sure it's valid. Let's put it all together now."
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "doubao-seed-2-0-lite-260215",
+    "object": "chat.completion",
+    "service_tier": "default",
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 1843,
+      "prompt_tokens": 4067,
+      "total_tokens": 5910,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 1189,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": null,
+        "cached_tokens": 0
+      }
+    }
+  },
+  "error_message": "",
+  "timestamp": "<REDACTED_TIMESTAMP>",
+  "elapsed_sec": 34.426
+}

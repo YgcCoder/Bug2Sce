@@ -1,0 +1,135 @@
+{
+  "case_id": "case_069",
+  "workflow": "phase1_causal_explanation",
+  "model_name": "claude-sonnet-4-5",
+  "model_id": "claude-sonnet-4-5",
+  "status": "completed",
+  "dry_run": false,
+  "schema_valid": true,
+  "schema_errors": [],
+  "quality_flags": [],
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_prompts/case_069__claude-sonnet-4-5.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_069__claude-sonnet-4-5.json",
+  "prompt_estimated_tokens": 3081,
+  "usage": {
+    "prompt_tokens": 3854,
+    "completion_tokens": 1312,
+    "total_tokens": 5166
+  },
+  "estimated_cost_usd": null,
+  "raw_response": "```json\n{\n  \"case_id\": \"case_069\",\n  \"fault_layer\": \"unknown\",\n  \"fault_component\": \"unknown\",\n  \"causal_explanation\": \"Dataset.xlsx labels collision=1 and lane_invasion=1, but error.json reports crash=false and lane_invasion=false. The collision topic shows impulse events starting at 28.455s with actor ID 0. Critical-window evidence shows ego moving at ~5.46 m/s before collision, with detected and predicted objects present (last count=1). However, vehicle_cmd is all zero throughout while vehicle_status shows throttle and steering activity, indicating a command-status mismatch. The evidence does not directly prove which Autoware module failed; the oracle conflict and command mismatch prevent confident fault localization.\",\n  \"root_cause_pattern\": \"Conservative preservation pattern: ego encounters a nearby detected object (last count=1, classification=6, distance=11.225m) while moving at moderate speed (~5.46 m/s) before a collision event (per collision topic), with oracle label conflict (dataset vs. error.json) and vehicle_cmd-status mismatch present.\",\n  \"preservation_constraints\": [\n    \"The generated candidate should preserve a collision event detectable via the collision topic.\",\n    \"At least one detected object should be present near the ego route in the critical window before the collision.\",\n    \"Ego velocity should be non-zero (moderate speed, ~4-6 m/s) in the pre-collision window.\",\n    \"Post-execution validation must check for collision topic events, detected object presence, and ego speed profile.\",\n    \"Oracle consistency between dataset labels and error.json should be verified post-execution.\"\n  ],\n  \"modifiable_factors\": [\n    \"actor_position\",\n    \"actor_type\",\n    \"weather\",\n    \"puddles\",\n    \"mission_start\"\n  ],\n  \"non_modifiable_conditions\": [\n    \"Collision event must occur (collision topic impulse > 0)\",\n    \"At least one detected object near ego before collision\",\n    \"Ego moving at moderate speed before collision\"\n  ],\n  \"uncertainty\": [\n    \"Dataset.xlsx reports collision=1 and lane_invasion=1, but error.json reports crash=false and lane_invasion=false; oracle conflict requires manual review.\",\n    \"vehicle_cmd is all zero while vehicle_status shows throttle and steering; command-status mismatch origin is unclear.\",\n    \"Evidence does not directly prove whether perception failed to track, planning failed to avoid, or actuation failed to execute commands.\",\n    \"Lane invasion label conflict is unresolved; no lane-boundary crossing evidence is provided.\",\n    \"Closest object classification=6 and actor_id=0 in collision topic; actor type and interaction geometry are not detailed.\"\n  ],\n  \"evidence_support\": [\n    {\n      \"evidence_id\": \"oracle_consistency\",\n      \"claim\": \"Dataset and error.json disagree on collision and lane_invasion; conflict marked for manual review.\"\n    },\n    {\n      \"evidence_id\": \"collision_window.collision_topic_exists\",\n      \"claim\": \"Collision topic exists with impulse events starting at 28.455s, actor_id=0.\"\n    },\n    {\n      \"evidence_id\": \"collision_window.ego_speed_before_collision\",\n      \"claim\": \"Ego velocity ~5.46 m/s before collision, indicating moderate speed.\"\n    },\n    {\n      \"evidence_id\": \"collision_window.detected_object_count_before_collision\",\n      \"claim\": \"86 rows of detected objects, last count=1, labels include car, person, unknown.\"\n    },\n    {\n      \"evidence_id\": \"collision_window.predicted_object_count_before_collision\",\n      \"claim\": \"86 rows of predicted objects, last count=1, indicating prediction pipeline was active.\"\n    },\n    {\n      \"evidence_id\": \"collision_window.final_waypoints_before_collision\",\n      \"claim\": \"41 rows of final_waypoints, last waypoint_count=101, is_blocked=false, indicating planning output was available.\"\n    },\n    {\n      \"evidence_id\": \"collision_window.ego_control_before_collision\",\n      \"claim\": \"vehicle_status shows throttle and steer activity; vehicle_cmd is all zero, indicating command-status mismatch.\"\n    },\n    {\n      \"evidence_id\": \"collision_window.closest_available_object_info\",\n      \"claim\": \"Closest object: id=2042, classification=6, distance=11.225m, position=(80.592, -181.285, 0.033).\"\n    },\n    {\n      \"evidence_id\": \"collision_window.evidence_of_braking_or_stopping\",\n      \"claim\": \"No braking or speed decrease detected in the critical window.\"\n    }\n  ],\n  \"confidence\": \"low\",\n  \"ready_for_phase2_generation\": \"uncertain\",\n  \"notes_for_validator\": [\n    \"Manual review is required to resolve the dataset vs. error.json oracle conflict before confident Phase 2 generation.\",\n    \"Post-execution validation must confirm collision topic impulse events, detected object presence, and ego speed profile.\",\n    \"Do not count a generated case as same-root-cause unless collision topic events and detected object proximity are preserved.\",\n    \"Investigate vehicle_cmd all-zero vs. vehicle_status activity mismatch in any reproduced scenario.\",\n    \"Lane invasion label conflict remains unresolved; validator should check lane-boundary crossing evidence if available.\"\n  ]\n}\n```",
+  "parsed_response": {
+    "case_id": "case_069",
+    "fault_layer": "unknown",
+    "fault_component": "unknown",
+    "causal_explanation": "Dataset.xlsx labels collision=1 and lane_invasion=1, but error.json reports crash=false and lane_invasion=false. The collision topic shows impulse events starting at 28.455s with actor ID 0. Critical-window evidence shows ego moving at ~5.46 m/s before collision, with detected and predicted objects present (last count=1). However, vehicle_cmd is all zero throughout while vehicle_status shows throttle and steering activity, indicating a command-status mismatch. The evidence does not directly prove which Autoware module failed; the oracle conflict and command mismatch prevent confident fault localization.",
+    "root_cause_pattern": "Conservative preservation pattern: ego encounters a nearby detected object (last count=1, classification=6, distance=11.225m) while moving at moderate speed (~5.46 m/s) before a collision event (per collision topic), with oracle label conflict (dataset vs. error.json) and vehicle_cmd-status mismatch present.",
+    "preservation_constraints": [
+      "The generated candidate should preserve a collision event detectable via the collision topic.",
+      "At least one detected object should be present near the ego route in the critical window before the collision.",
+      "Ego velocity should be non-zero (moderate speed, ~4-6 m/s) in the pre-collision window.",
+      "Post-execution validation must check for collision topic events, detected object presence, and ego speed profile.",
+      "Oracle consistency between dataset labels and error.json should be verified post-execution."
+    ],
+    "modifiable_factors": [
+      "actor_position",
+      "actor_type",
+      "weather",
+      "puddles",
+      "mission_start"
+    ],
+    "non_modifiable_conditions": [
+      "Collision event must occur (collision topic impulse > 0)",
+      "At least one detected object near ego before collision",
+      "Ego moving at moderate speed before collision"
+    ],
+    "uncertainty": [
+      "Dataset.xlsx reports collision=1 and lane_invasion=1, but error.json reports crash=false and lane_invasion=false; oracle conflict requires manual review.",
+      "vehicle_cmd is all zero while vehicle_status shows throttle and steering; command-status mismatch origin is unclear.",
+      "Evidence does not directly prove whether perception failed to track, planning failed to avoid, or actuation failed to execute commands.",
+      "Lane invasion label conflict is unresolved; no lane-boundary crossing evidence is provided.",
+      "Closest object classification=6 and actor_id=0 in collision topic; actor type and interaction geometry are not detailed."
+    ],
+    "evidence_support": [
+      {
+        "evidence_id": "oracle_consistency",
+        "claim": "Dataset and error.json disagree on collision and lane_invasion; conflict marked for manual review."
+      },
+      {
+        "evidence_id": "collision_window.collision_topic_exists",
+        "claim": "Collision topic exists with impulse events starting at 28.455s, actor_id=0."
+      },
+      {
+        "evidence_id": "collision_window.ego_speed_before_collision",
+        "claim": "Ego velocity ~5.46 m/s before collision, indicating moderate speed."
+      },
+      {
+        "evidence_id": "collision_window.detected_object_count_before_collision",
+        "claim": "86 rows of detected objects, last count=1, labels include car, person, unknown."
+      },
+      {
+        "evidence_id": "collision_window.predicted_object_count_before_collision",
+        "claim": "86 rows of predicted objects, last count=1, indicating prediction pipeline was active."
+      },
+      {
+        "evidence_id": "collision_window.final_waypoints_before_collision",
+        "claim": "41 rows of final_waypoints, last waypoint_count=101, is_blocked=false, indicating planning output was available."
+      },
+      {
+        "evidence_id": "collision_window.ego_control_before_collision",
+        "claim": "vehicle_status shows throttle and steer activity; vehicle_cmd is all zero, indicating command-status mismatch."
+      },
+      {
+        "evidence_id": "collision_window.closest_available_object_info",
+        "claim": "Closest object: id=2042, classification=6, distance=11.225m, position=(80.592, -181.285, 0.033)."
+      },
+      {
+        "evidence_id": "collision_window.evidence_of_braking_or_stopping",
+        "claim": "No braking or speed decrease detected in the critical window."
+      }
+    ],
+    "confidence": "low",
+    "ready_for_phase2_generation": "uncertain",
+    "notes_for_validator": [
+      "Manual review is required to resolve the dataset vs. error.json oracle conflict before confident Phase 2 generation.",
+      "Post-execution validation must confirm collision topic impulse events, detected object presence, and ego speed profile.",
+      "Do not count a generated case as same-root-cause unless collision topic events and detected object proximity are preserved.",
+      "Investigate vehicle_cmd all-zero vs. vehicle_status activity mismatch in any reproduced scenario.",
+      "Lane invasion label conflict remains unresolved; validator should check lane-boundary crossing evidence if available."
+    ]
+  },
+  "raw_api_payload": {
+    "id": "<REDACTED_RESPONSE_ID>",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "```json\n{\n  \"case_id\": \"case_069\",\n  \"fault_layer\": \"unknown\",\n  \"fault_component\": \"unknown\",\n  \"causal_explanation\": \"Dataset.xlsx labels collision=1 and lane_invasion=1, but error.json reports crash=false and lane_invasion=false. The collision topic shows impulse events starting at 28.455s with actor ID 0. Critical-window evidence shows ego moving at ~5.46 m/s before collision, with detected and predicted objects present (last count=1). However, vehicle_cmd is all zero throughout while vehicle_status shows throttle and steering activity, indicating a command-status mismatch. The evidence does not directly prove which Autoware module failed; the oracle conflict and command mismatch prevent confident fault localization.\",\n  \"root_cause_pattern\": \"Conservative preservation pattern: ego encounters a nearby detected object (last count=1, classification=6, distance=11.225m) while moving at moderate speed (~5.46 m/s) before a collision event (per collision topic), with oracle label conflict (dataset vs. error.json) and vehicle_cmd-status mismatch present.\",\n  \"preservation_constraints\": [\n    \"The generated candidate should preserve a collision event detectable via the collision topic.\",\n    \"At least one detected object should be present near the ego route in the critical window before the collision.\",\n    \"Ego velocity should be non-zero (moderate speed, ~4-6 m/s) in the pre-collision window.\",\n    \"Post-execution validation must check for collision topic events, detected object presence, and ego speed profile.\",\n    \"Oracle consistency between dataset labels and error.json should be verified post-execution.\"\n  ],\n  \"modifiable_factors\": [\n    \"actor_position\",\n    \"actor_type\",\n    \"weather\",\n    \"puddles\",\n    \"mission_start\"\n  ],\n  \"non_modifiable_conditions\": [\n    \"Collision event must occur (collision topic impulse > 0)\",\n    \"At least one detected object near ego before collision\",\n    \"Ego moving at moderate speed before collision\"\n  ],\n  \"uncertainty\": [\n    \"Dataset.xlsx reports collision=1 and lane_invasion=1, but error.json reports crash=false and lane_invasion=false; oracle conflict requires manual review.\",\n    \"vehicle_cmd is all zero while vehicle_status shows throttle and steering; command-status mismatch origin is unclear.\",\n    \"Evidence does not directly prove whether perception failed to track, planning failed to avoid, or actuation failed to execute commands.\",\n    \"Lane invasion label conflict is unresolved; no lane-boundary crossing evidence is provided.\",\n    \"Closest object classification=6 and actor_id=0 in collision topic; actor type and interaction geometry are not detailed.\"\n  ],\n  \"evidence_support\": [\n    {\n      \"evidence_id\": \"oracle_consistency\",\n      \"claim\": \"Dataset and error.json disagree on collision and lane_invasion; conflict marked for manual review.\"\n    },\n    {\n      \"evidence_id\": \"collision_window.collision_topic_exists\",\n      \"claim\": \"Collision topic exists with impulse events starting at 28.455s, actor_id=0.\"\n    },\n    {\n      \"evidence_id\": \"collision_window.ego_speed_before_collision\",\n      \"claim\": \"Ego velocity ~5.46 m/s before collision, indicating moderate speed.\"\n    },\n    {\n      \"evidence_id\": \"collision_window.detected_object_count_before_collision\",\n      \"claim\": \"86 rows of detected objects, last count=1, labels include car, person, unknown.\"\n    },\n    {\n      \"evidence_id\": \"collision_window.predicted_object_count_before_collision\",\n      \"claim\": \"86 rows of predicted objects, last count=1, indicating prediction pipeline was active.\"\n    },\n    {\n      \"evidence_id\": \"collision_window.final_waypoints_before_collision\",\n      \"claim\": \"41 rows of final_waypoints, last waypoint_count=101, is_blocked=false, indicating planning output was available.\"\n    },\n    {\n      \"evidence_id\": \"collision_window.ego_control_before_collision\",\n      \"claim\": \"vehicle_status shows throttle and steer activity; vehicle_cmd is all zero, indicating command-status mismatch.\"\n    },\n    {\n      \"evidence_id\": \"collision_window.closest_available_object_info\",\n      \"claim\": \"Closest object: id=2042, classification=6, distance=11.225m, position=(80.592, -181.285, 0.033).\"\n    },\n    {\n      \"evidence_id\": \"collision_window.evidence_of_braking_or_stopping\",\n      \"claim\": \"No braking or speed decrease detected in the critical window.\"\n    }\n  ],\n  \"confidence\": \"low\",\n  \"ready_for_phase2_generation\": \"uncertain\",\n  \"notes_for_validator\": [\n    \"Manual review is required to resolve the dataset vs. error.json oracle conflict before confident Phase 2 generation.\",\n    \"Post-execution validation must confirm collision topic impulse events, detected object presence, and ego speed profile.\",\n    \"Do not count a generated case as same-root-cause unless collision topic events and detected object proximity are preserved.\",\n    \"Investigate vehicle_cmd all-zero vs. vehicle_status activity mismatch in any reproduced scenario.\",\n    \"Lane invasion label conflict remains unresolved; validator should check lane-boundary crossing evidence if available.\"\n  ]\n}\n```",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "claude-sonnet-4-5",
+    "object": "chat.completion",
+    "service_tier": null,
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 1312,
+      "prompt_tokens": 3854,
+      "total_tokens": 5166,
+      "completion_tokens_details": null,
+      "prompt_tokens_details": null
+    }
+  },
+  "error_message": "",
+  "timestamp": "<REDACTED_TIMESTAMP>",
+  "elapsed_sec": 25.262
+}

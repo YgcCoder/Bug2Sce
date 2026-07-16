@@ -1,0 +1,70 @@
+{
+  "case_id": "case_067",
+  "model_name": "ark-deepseek-r1-250528",
+  "candidate_index": 1,
+  "candidate_spec": {
+    "candidate_id": "cand_001",
+    "high_level_variant": "Conservative weather variant with slightly increased wetness, retains original zero actors, zero puddles and original mission",
+    "mutation_intent": "Preserves all root-cause constraints: keeps label conflict between dataset and error.json, retains confirmed red light violation status, keeps zero dynamic actors and zero puddle regions, preserves original mission on Town01, only adjusts weather within allowed conservative bounds",
+    "expected_oracle": "compound",
+    "modifications": {
+      "weather_delta": {
+        "rain": 5,
+        "fog": -5,
+        "wetness": 5,
+        "puddle": 0
+      },
+      "actor_mutations": [],
+      "puddle_mutations": [],
+      "mission_mutation": {
+        "keep_original": true,
+        "spawn_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "destination_offset": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "No dynamic actors shall be added to the scenario",
+      "No new puddle regions shall be added",
+      "Original mission spawn and destination must be retained"
+    ],
+    "post_execution_validation_rules": [
+      "Confirm label conflict between dataset and error.json labeling is preserved",
+      "Verify stop-line crossing for red light violation to confirm error.json status",
+      "Check for presence of stuck behavior and lane boundary crossing to resolve original label conflict"
+    ],
+    "uncertainty": [
+      "Label conflict for stuck and lane invasion symptoms remains unresolved as in original phase 1",
+      "No module-level failure can be attributed from available evidence",
+      "Stop-line crossing for the reported red light violation is not confirmed prior to execution"
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": 5.0,
+      "fog": -5.0,
+      "wetness": 5.0,
+      "puddle": 0.0
+    },
+    "actor_mutations": [],
+    "puddle_mutations": [],
+    "mission_mutation": {
+      "keep_original": true
+    }
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": [
+      "no actors in candidate scenario"
+    ]
+  },
+  "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_067__ark-deepseek-r1-250528.json",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_067__ark-deepseek-r1-250528.json",
+  "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+}

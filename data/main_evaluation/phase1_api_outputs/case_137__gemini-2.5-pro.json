@@ -1,0 +1,119 @@
+{
+  "case_id": "case_137",
+  "workflow": "phase1_causal_explanation",
+  "model_name": "gemini-2.5-pro",
+  "model_id": "gemini-2.5-pro",
+  "status": "completed",
+  "dry_run": false,
+  "schema_valid": true,
+  "schema_errors": [],
+  "quality_flags": [
+    "possible_overattribution_to_module_failure"
+  ],
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_prompts/case_137__gemini-2.5-pro.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_137__gemini-2.5-pro.json",
+  "prompt_estimated_tokens": 2501,
+  "usage": {
+    "prompt_tokens": 3305,
+    "completion_tokens": 2434,
+    "total_tokens": 5739
+  },
+  "estimated_cost_usd": null,
+  "raw_response": "```json\n{\n  \"case_id\": \"case_137\",\n  \"fault_layer\": \"planning\",\n  \"fault_component\": \"Traffic light handling\",\n  \"causal_explanation\": \"The planning module did not generate blocked waypoints for a red light, causing the vehicle to proceed through the intersection without stopping.\",\n  \"root_cause_pattern\": \"Planner fails to generate a stop plan when a red light is active on the vehicle's route.\",\n  \"preservation_constraints\": [\n    \"Preserve the red light violation oracle symptom.\",\n    \"A red light is active on the ego's route.\",\n    \"Planner does not block waypoints for the light.\"\n  ],\n  \"modifiable_factors\": [\n    \"weather\",\n    \"puddles\",\n    \"actor_positions\"\n  ],\n  \"non_modifiable_conditions\": [\n    \"Red light violation occurs.\",\n    \"Ego approaches a controlled intersection.\"\n  ],\n  \"uncertainty\": [\n    \"Root cause could be perception failing to associate the light with the ego's lane.\",\n    \"Route-light relation is not explicitly confirmed in evidence.\"\n  ],\n  \"evidence_support\": [\n    {\n      \"evidence_id\": \"final_waypoints\",\n      \"claim\": \"Waypoints are never marked as blocked.\"\n    },\n    {\n      \"evidence_id\": \"critical_window_summary\",\n      \"claim\": \"No stop line IDs associated with waypoints.\"\n    },\n    {\n      \"evidence_id\": \"error.json\",\n      \"claim\": \"Confirms red light violation.\"\n    }\n  ],\n  \"confidence\": \"medium\",\n  \"ready_for_phase2_generation\": \"yes\",\n  \"notes_for_validator\": [\n    \"Planner output shows no stop command.\",\n    \"Perception may have failed to link light to route.\",\n    \"vehicle_cmd is all zeros but vehicle moves.\"\n  ]\n}\n```",
+  "parsed_response": {
+    "case_id": "case_137",
+    "fault_layer": "planning",
+    "fault_component": "Traffic light handling",
+    "causal_explanation": "The planning module did not generate blocked waypoints for a red light, causing the vehicle to proceed through the intersection without stopping.",
+    "root_cause_pattern": "Planner fails to generate a stop plan when a red light is active on the vehicle's route.",
+    "preservation_constraints": [
+      "Preserve the red light violation oracle symptom.",
+      "A red light is active on the ego's route.",
+      "Planner does not block waypoints for the light."
+    ],
+    "modifiable_factors": [
+      "weather",
+      "puddles",
+      "actor_positions"
+    ],
+    "non_modifiable_conditions": [
+      "Red light violation occurs.",
+      "Ego approaches a controlled intersection."
+    ],
+    "uncertainty": [
+      "Root cause could be perception failing to associate the light with the ego's lane.",
+      "Route-light relation is not explicitly confirmed in evidence."
+    ],
+    "evidence_support": [
+      {
+        "evidence_id": "final_waypoints",
+        "claim": "Waypoints are never marked as blocked."
+      },
+      {
+        "evidence_id": "critical_window_summary",
+        "claim": "No stop line IDs associated with waypoints."
+      },
+      {
+        "evidence_id": "error.json",
+        "claim": "Confirms red light violation."
+      }
+    ],
+    "confidence": "medium",
+    "ready_for_phase2_generation": "yes",
+    "notes_for_validator": [
+      "Planner output shows no stop command.",
+      "Perception may have failed to link light to route.",
+      "vehicle_cmd is all zeros but vehicle moves."
+    ]
+  },
+  "raw_api_payload": {
+    "id": "<REDACTED_RESPONSE_ID>",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "```json\n{\n  \"case_id\": \"case_137\",\n  \"fault_layer\": \"planning\",\n  \"fault_component\": \"Traffic light handling\",\n  \"causal_explanation\": \"The planning module did not generate blocked waypoints for a red light, causing the vehicle to proceed through the intersection without stopping.\",\n  \"root_cause_pattern\": \"Planner fails to generate a stop plan when a red light is active on the vehicle's route.\",\n  \"preservation_constraints\": [\n    \"Preserve the red light violation oracle symptom.\",\n    \"A red light is active on the ego's route.\",\n    \"Planner does not block waypoints for the light.\"\n  ],\n  \"modifiable_factors\": [\n    \"weather\",\n    \"puddles\",\n    \"actor_positions\"\n  ],\n  \"non_modifiable_conditions\": [\n    \"Red light violation occurs.\",\n    \"Ego approaches a controlled intersection.\"\n  ],\n  \"uncertainty\": [\n    \"Root cause could be perception failing to associate the light with the ego's lane.\",\n    \"Route-light relation is not explicitly confirmed in evidence.\"\n  ],\n  \"evidence_support\": [\n    {\n      \"evidence_id\": \"final_waypoints\",\n      \"claim\": \"Waypoints are never marked as blocked.\"\n    },\n    {\n      \"evidence_id\": \"critical_window_summary\",\n      \"claim\": \"No stop line IDs associated with waypoints.\"\n    },\n    {\n      \"evidence_id\": \"error.json\",\n      \"claim\": \"Confirms red light violation.\"\n    }\n  ],\n  \"confidence\": \"medium\",\n  \"ready_for_phase2_generation\": \"yes\",\n  \"notes_for_validator\": [\n    \"Planner output shows no stop command.\",\n    \"Perception may have failed to link light to route.\",\n    \"vehicle_cmd is all zeros but vehicle moves.\"\n  ]\n}\n```",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "gemini-2.5-pro",
+    "object": "chat.completion",
+    "service_tier": null,
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 2434,
+      "prompt_tokens": 3305,
+      "total_tokens": 5739,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": 0,
+        "reasoning_tokens": 1988,
+        "rejected_prediction_tokens": null,
+        "text_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 0,
+        "text_tokens": 3305,
+        "image_tokens": 0
+      },
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "input_tokens_details": null,
+      "claude_cache_creation_5_m_tokens": 0,
+      "claude_cache_creation_1_h_tokens": 0
+    }
+  },
+  "error_message": "",
+  "timestamp": "<REDACTED_TIMESTAMP>",
+  "elapsed_sec": 24.157
+}

@@ -1,0 +1,121 @@
+{
+  "case_id": "case_024",
+  "round": 3,
+  "model_name": "claude-sonnet-4-5",
+  "candidate_index": 2,
+  "candidate_spec": {
+    "candidate_id": "cand_002",
+    "high_level_variant": "Increased rain and wetness, actor 0 speed reduced, actor 1 position unchanged",
+    "mutation_intent": "Test if degraded road conditions amplify collision+red-light failure while keeping actor geometry similar to seed",
+    "expected_oracle": "compound",
+    "modifications": {
+      "weather_delta": {
+        "rain": 10,
+        "fog": 0,
+        "wetness": 8,
+        "puddle": 5
+      },
+      "actor_mutations": [
+        {
+          "actor_index": 0,
+          "position_offset": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "speed_delta": -1.5
+        },
+        {
+          "actor_index": 1,
+          "position_offset": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "speed_delta": 0.0
+        }
+      ],
+      "puddle_mutations": [
+        {
+          "puddle_index": 0,
+          "location_offset": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "level_delta": 0.15,
+          "size_scale": 1.1
+        }
+      ],
+      "mission_mutation": {
+        "keep_original": true,
+        "spawn_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "destination_offset": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Weather parameters within valid range",
+      "Actor positions unchanged from seed"
+    ],
+    "post_execution_validation_rules": [
+      "Collision and red-light violation both occur",
+      "Ego movement and braking observed before collision"
+    ],
+    "uncertainty": [
+      "Impact of increased wetness on planner or controller behavior"
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": 10.0,
+      "fog": 0.0,
+      "wetness": 8.0,
+      "puddle": 5.0
+    },
+    "actor_mutations": [
+      {
+        "actor_index": 0,
+        "position_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "speed_delta": -1.5
+      },
+      {
+        "actor_index": 1,
+        "position_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "speed_delta": 0.0
+      }
+    ],
+    "puddle_mutations": [
+      {
+        "puddle_index": 0,
+        "location_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "level_delta": 0.15,
+        "size_scale": 1.1
+      }
+    ],
+    "mission_mutation": {
+      "keep_original": true
+    },
+    "safety_repairs": []
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "authoritative_original_phase1_output": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_024__claude-sonnet-4-5.json",
+  "round1_feedback_count": 6,
+  "round2_feedback_count": 2,
+  "round3_api_output": "<WORKSPACE_ROOT>/processed/experiments/round3_feedback/api_outputs/case_024__claude-sonnet-4-5.json"
+}

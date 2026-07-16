@@ -1,0 +1,124 @@
+{
+  "case_id": "case_143",
+  "workflow": "phase1_causal_explanation",
+  "model_name": "gemini-2.5-pro",
+  "model_id": "gemini-2.5-pro",
+  "status": "completed",
+  "dry_run": false,
+  "schema_valid": true,
+  "schema_errors": [],
+  "quality_flags": [
+    "possible_overattribution_to_module_failure"
+  ],
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_prompts/case_143__gemini-2.5-pro.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_143__gemini-2.5-pro.json",
+  "prompt_estimated_tokens": 2690,
+  "usage": {
+    "prompt_tokens": 3627,
+    "completion_tokens": 2218,
+    "total_tokens": 5845
+  },
+  "estimated_cost_usd": null,
+  "raw_response": "```json\n{\n  \"case_id\": \"case_143\",\n  \"fault_layer\": \"planning\",\n  \"fault_component\": \"behavior planning/traffic light handling\",\n  \"causal_explanation\": \"The ego vehicle ran a red light because the planner did not associate its route with the traffic light's stop line, thus never commanding a stop.\",\n  \"root_cause_pattern\": \"Planner fails to stop for a red light when it does not associate the light with its current route.\",\n  \"preservation_constraints\": [\n    \"Ego route passes through a red-light-controlled intersection.\",\n    \"Planner does not associate a stop line with the route.\",\n    \"Oracle confirms a red light violation.\"\n  ],\n  \"modifiable_factors\": [\n    \"weather\",\n    \"map_location\",\n    \"initial_ego_position\"\n  ],\n  \"non_modifiable_conditions\": [\n    \"Route passes through a red-light intersection.\",\n    \"Planner fails to link route to stop line.\"\n  ],\n  \"uncertainty\": [\n    \"Dataset.xlsx reports lane invasion, but error.json does not.\",\n    \"Route-light relation is inferred, not explicitly confirmed.\",\n    \"vehicle_cmd is all zero while vehicle_status shows movement.\"\n  ],\n  \"evidence_support\": [\n    {\n      \"evidence_id\": \"red_light_window\",\n      \"claim\": \"error.json confirms red light violation.\"\n    },\n    {\n      \"evidence_id\": \"red_light_window\",\n      \"claim\": \"Planner waypoints have no associated stop line ID.\"\n    },\n    {\n      \"evidence_id\": \"final_waypoints\",\n      \"claim\": \"Planner waypoints are never marked as blocked.\"\n    },\n    {\n      \"evidence_id\": \"oracle_consistency\",\n      \"claim\": \"Dataset and error.json conflict on lane invasion.\"\n    }\n  ],\n  \"confidence\": \"medium\",\n  \"ready_for_phase2_generation\": \"uncertain\",\n  \"notes_for_validator\": [\n    \"Resolve conflict between dataset (L+R) and error.json (R).\",\n    \"The planner's failure to link the route to the light is key evidence.\",\n    \"The vehicle_cmd/vehicle_status mismatch is anomalous.\"\n  ]\n}\n```",
+  "parsed_response": {
+    "case_id": "case_143",
+    "fault_layer": "planning",
+    "fault_component": "behavior planning/traffic light handling",
+    "causal_explanation": "The ego vehicle ran a red light because the planner did not associate its route with the traffic light's stop line, thus never commanding a stop.",
+    "root_cause_pattern": "Planner fails to stop for a red light when it does not associate the light with its current route.",
+    "preservation_constraints": [
+      "Ego route passes through a red-light-controlled intersection.",
+      "Planner does not associate a stop line with the route.",
+      "Oracle confirms a red light violation."
+    ],
+    "modifiable_factors": [
+      "weather",
+      "map_location",
+      "initial_ego_position"
+    ],
+    "non_modifiable_conditions": [
+      "Route passes through a red-light intersection.",
+      "Planner fails to link route to stop line."
+    ],
+    "uncertainty": [
+      "Dataset.xlsx reports lane invasion, but error.json does not.",
+      "Route-light relation is inferred, not explicitly confirmed.",
+      "vehicle_cmd is all zero while vehicle_status shows movement."
+    ],
+    "evidence_support": [
+      {
+        "evidence_id": "red_light_window",
+        "claim": "error.json confirms red light violation."
+      },
+      {
+        "evidence_id": "red_light_window",
+        "claim": "Planner waypoints have no associated stop line ID."
+      },
+      {
+        "evidence_id": "final_waypoints",
+        "claim": "Planner waypoints are never marked as blocked."
+      },
+      {
+        "evidence_id": "oracle_consistency",
+        "claim": "Dataset and error.json conflict on lane invasion."
+      }
+    ],
+    "confidence": "medium",
+    "ready_for_phase2_generation": "uncertain",
+    "notes_for_validator": [
+      "Resolve conflict between dataset (L+R) and error.json (R).",
+      "The planner's failure to link the route to the light is key evidence.",
+      "The vehicle_cmd/vehicle_status mismatch is anomalous."
+    ]
+  },
+  "raw_api_payload": {
+    "id": "<REDACTED_RESPONSE_ID>",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "```json\n{\n  \"case_id\": \"case_143\",\n  \"fault_layer\": \"planning\",\n  \"fault_component\": \"behavior planning/traffic light handling\",\n  \"causal_explanation\": \"The ego vehicle ran a red light because the planner did not associate its route with the traffic light's stop line, thus never commanding a stop.\",\n  \"root_cause_pattern\": \"Planner fails to stop for a red light when it does not associate the light with its current route.\",\n  \"preservation_constraints\": [\n    \"Ego route passes through a red-light-controlled intersection.\",\n    \"Planner does not associate a stop line with the route.\",\n    \"Oracle confirms a red light violation.\"\n  ],\n  \"modifiable_factors\": [\n    \"weather\",\n    \"map_location\",\n    \"initial_ego_position\"\n  ],\n  \"non_modifiable_conditions\": [\n    \"Route passes through a red-light intersection.\",\n    \"Planner fails to link route to stop line.\"\n  ],\n  \"uncertainty\": [\n    \"Dataset.xlsx reports lane invasion, but error.json does not.\",\n    \"Route-light relation is inferred, not explicitly confirmed.\",\n    \"vehicle_cmd is all zero while vehicle_status shows movement.\"\n  ],\n  \"evidence_support\": [\n    {\n      \"evidence_id\": \"red_light_window\",\n      \"claim\": \"error.json confirms red light violation.\"\n    },\n    {\n      \"evidence_id\": \"red_light_window\",\n      \"claim\": \"Planner waypoints have no associated stop line ID.\"\n    },\n    {\n      \"evidence_id\": \"final_waypoints\",\n      \"claim\": \"Planner waypoints are never marked as blocked.\"\n    },\n    {\n      \"evidence_id\": \"oracle_consistency\",\n      \"claim\": \"Dataset and error.json conflict on lane invasion.\"\n    }\n  ],\n  \"confidence\": \"medium\",\n  \"ready_for_phase2_generation\": \"uncertain\",\n  \"notes_for_validator\": [\n    \"Resolve conflict between dataset (L+R) and error.json (R).\",\n    \"The planner's failure to link the route to the light is key evidence.\",\n    \"The vehicle_cmd/vehicle_status mismatch is anomalous.\"\n  ]\n}\n```",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "gemini-2.5-pro",
+    "object": "chat.completion",
+    "service_tier": null,
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 2218,
+      "prompt_tokens": 3627,
+      "total_tokens": 5845,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": 0,
+        "reasoning_tokens": 1686,
+        "rejected_prediction_tokens": null,
+        "text_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 0,
+        "text_tokens": 3627,
+        "image_tokens": 0
+      },
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "input_tokens_details": null,
+      "claude_cache_creation_5_m_tokens": 0,
+      "claude_cache_creation_1_h_tokens": 0
+    }
+  },
+  "error_message": "",
+  "timestamp": "<REDACTED_TIMESTAMP>",
+  "elapsed_sec": 22.756
+}

@@ -1,0 +1,389 @@
+{
+  "case_id": "case_157",
+  "model_name": "claude-sonnet-4-5",
+  "workflow": "phase2_grounded_generation",
+  "status": "completed",
+  "schema_valid": true,
+  "schema_errors": [],
+  "phase1_ready": "yes",
+  "num_candidates_requested": 2,
+  "num_candidates_written": 2,
+  "num_pre_valid": 2,
+  "candidate_records": [
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/claude-sonnet-4-5/json/case_157/case_157__cand_001.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/claude-sonnet-4-5/metadata/case_157/case_157__cand_001.metadata.json",
+      "case_id": "case_157",
+      "model_name": "claude-sonnet-4-5",
+      "candidate_index": 1,
+      "candidate_spec": {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Reduce rain and fog, shift walker closer to ego path",
+        "mutation_intent": "Test if collision persists with better visibility and actor positioned nearer to ego route",
+        "expected_oracle": "collision",
+        "modifications": {
+          "weather_delta": {
+            "rain": -15,
+            "fog": -15,
+            "wetness": -10,
+            "puddle": -10
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 0.0,
+                "y": 2.5
+              },
+              "speed_delta": 0.0
+            },
+            {
+              "actor_index": 2,
+              "position_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "speed_delta": -1.5
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Walker actor 0 spawns within 8m of ego",
+          "Vehicle actor 2 speed reduced by 1.5 m/s",
+          "Weather rain and fog reduced"
+        ],
+        "post_execution_validation_rules": [
+          "Collision oracle triggered",
+          "Ego speed 3-5 m/s before collision",
+          "At least one detected object in critical window"
+        ],
+        "uncertainty": [
+          "vehicle_cmd all-zero anomaly may not reproduce",
+          "Cannot confirm if perception or planning caused collision",
+          "Actor proximity effect on collision unknown"
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": -15.0,
+          "fog": -15.0,
+          "wetness": -10.0,
+          "puddle": -10.0
+        },
+        "actor_mutations": [
+          {
+            "actor_index": 0,
+            "position_offset": {
+              "x": 0.0,
+              "y": 2.5
+            },
+            "speed_delta": 0.0
+          },
+          {
+            "actor_index": 2,
+            "position_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "speed_delta": -1.5
+          }
+        ],
+        "puddle_mutations": [],
+        "mission_mutation": {
+          "keep_original": true
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_157__claude-sonnet-4-5.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_157__claude-sonnet-4-5.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    },
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/claude-sonnet-4-5/json/case_157/case_157__cand_002.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/claude-sonnet-4-5/metadata/case_157/case_157__cand_002.metadata.json",
+      "case_id": "case_157",
+      "model_name": "claude-sonnet-4-5",
+      "candidate_index": 2,
+      "candidate_spec": {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Increase rain and wetness, slow walker speed slightly",
+        "mutation_intent": "Test if degraded weather amplifies collision with slower actor movement",
+        "expected_oracle": "collision",
+        "modifications": {
+          "weather_delta": {
+            "rain": 15,
+            "fog": 10,
+            "wetness": 15,
+            "puddle": 10
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": -1.5,
+                "y": 1.0
+              },
+              "speed_delta": -0.5
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "speed_delta": 0.0
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Walker actor 0 speed reduced by 0.5 m/s",
+          "Weather rain and wetness increased",
+          "Actor 0 offset within bounds"
+        ],
+        "post_execution_validation_rules": [
+          "Collision oracle triggered",
+          "Ego speed moderate before collision",
+          "Detection reports objects in critical window"
+        ],
+        "uncertainty": [
+          "Unclear if weather affects perception or control",
+          "vehicle_cmd logging issue may persist",
+          "Root cause between planning and control unresolved"
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 15.0,
+          "fog": 10.0,
+          "wetness": 15.0,
+          "puddle": 10.0
+        },
+        "actor_mutations": [
+          {
+            "actor_index": 0,
+            "position_offset": {
+              "x": -1.5,
+              "y": 1.0
+            },
+            "speed_delta": -0.5
+          },
+          {
+            "actor_index": 1,
+            "position_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "speed_delta": 0.0
+          }
+        ],
+        "puddle_mutations": [],
+        "mission_mutation": {
+          "keep_original": true
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_157__claude-sonnet-4-5.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_157__claude-sonnet-4-5.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    }
+  ],
+  "seed_artifact_zip": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/claude-sonnet-4-5/seed-artifact/seed-artifact-case_157.zip",
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_prompts/case_157__claude-sonnet-4-5.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_157__claude-sonnet-4-5.json",
+  "prompt_estimated_tokens": 1371,
+  "usage": {
+    "prompt_tokens": 1649,
+    "completion_tokens": 826,
+    "total_tokens": 2475
+  },
+  "raw_response": "```json\n{\n  \"case_id\": \"case_157\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Reduce rain and fog, shift walker closer to ego path\",\n      \"mutation_intent\": \"Test if collision persists with better visibility and actor positioned nearer to ego route\",\n      \"expected_oracle\": \"collision\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": -15, \"fog\": -15, \"wetness\": -10, \"puddle\": -10},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 0.0, \"y\": 2.5}, \"speed_delta\": 0.0},\n          {\"actor_index\": 2, \"position_offset\": {\"x\": 0.0, \"y\": 0.0}, \"speed_delta\": -1.5}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Walker actor 0 spawns within 8m of ego\", \"Vehicle actor 2 speed reduced by 1.5 m/s\", \"Weather rain and fog reduced\"],\n      \"post_execution_validation_rules\": [\"Collision oracle triggered\", \"Ego speed 3-5 m/s before collision\", \"At least one detected object in critical window\"],\n      \"uncertainty\": [\"vehicle_cmd all-zero anomaly may not reproduce\", \"Cannot confirm if perception or planning caused collision\", \"Actor proximity effect on collision unknown\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Increase rain and wetness, slow walker speed slightly\",\n      \"mutation_intent\": \"Test if degraded weather amplifies collision with slower actor movement\",\n      \"expected_oracle\": \"collision\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 15, \"fog\": 10, \"wetness\": 15, \"puddle\": 10},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": -1.5, \"y\": 1.0}, \"speed_delta\": -0.5},\n          {\"actor_index\": 1, \"position_offset\": {\"x\": 0.0, \"y\": 0.0}, \"speed_delta\": 0.0}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Walker actor 0 speed reduced by 0.5 m/s\", \"Weather rain and wetness increased\", \"Actor 0 offset within bounds\"],\n      \"post_execution_validation_rules\": [\"Collision oracle triggered\", \"Ego speed moderate before collision\", \"Detection reports objects in critical window\"],\n      \"uncertainty\": [\"Unclear if weather affects perception or control\", \"vehicle_cmd logging issue may persist\", \"Root cause between planning and control unresolved\"]\n    }\n  ]\n}\n```",
+  "parsed_response": {
+    "case_id": "case_157",
+    "candidate_specs": [
+      {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Reduce rain and fog, shift walker closer to ego path",
+        "mutation_intent": "Test if collision persists with better visibility and actor positioned nearer to ego route",
+        "expected_oracle": "collision",
+        "modifications": {
+          "weather_delta": {
+            "rain": -15,
+            "fog": -15,
+            "wetness": -10,
+            "puddle": -10
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 0.0,
+                "y": 2.5
+              },
+              "speed_delta": 0.0
+            },
+            {
+              "actor_index": 2,
+              "position_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "speed_delta": -1.5
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Walker actor 0 spawns within 8m of ego",
+          "Vehicle actor 2 speed reduced by 1.5 m/s",
+          "Weather rain and fog reduced"
+        ],
+        "post_execution_validation_rules": [
+          "Collision oracle triggered",
+          "Ego speed 3-5 m/s before collision",
+          "At least one detected object in critical window"
+        ],
+        "uncertainty": [
+          "vehicle_cmd all-zero anomaly may not reproduce",
+          "Cannot confirm if perception or planning caused collision",
+          "Actor proximity effect on collision unknown"
+        ]
+      },
+      {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Increase rain and wetness, slow walker speed slightly",
+        "mutation_intent": "Test if degraded weather amplifies collision with slower actor movement",
+        "expected_oracle": "collision",
+        "modifications": {
+          "weather_delta": {
+            "rain": 15,
+            "fog": 10,
+            "wetness": 15,
+            "puddle": 10
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": -1.5,
+                "y": 1.0
+              },
+              "speed_delta": -0.5
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "speed_delta": 0.0
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Walker actor 0 speed reduced by 0.5 m/s",
+          "Weather rain and wetness increased",
+          "Actor 0 offset within bounds"
+        ],
+        "post_execution_validation_rules": [
+          "Collision oracle triggered",
+          "Ego speed moderate before collision",
+          "Detection reports objects in critical window"
+        ],
+        "uncertainty": [
+          "Unclear if weather affects perception or control",
+          "vehicle_cmd logging issue may persist",
+          "Root cause between planning and control unresolved"
+        ]
+      }
+    ]
+  },
+  "raw_api_payload": {
+    "id": "<REDACTED_RESPONSE_ID>",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "```json\n{\n  \"case_id\": \"case_157\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Reduce rain and fog, shift walker closer to ego path\",\n      \"mutation_intent\": \"Test if collision persists with better visibility and actor positioned nearer to ego route\",\n      \"expected_oracle\": \"collision\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": -15, \"fog\": -15, \"wetness\": -10, \"puddle\": -10},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 0.0, \"y\": 2.5}, \"speed_delta\": 0.0},\n          {\"actor_index\": 2, \"position_offset\": {\"x\": 0.0, \"y\": 0.0}, \"speed_delta\": -1.5}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Walker actor 0 spawns within 8m of ego\", \"Vehicle actor 2 speed reduced by 1.5 m/s\", \"Weather rain and fog reduced\"],\n      \"post_execution_validation_rules\": [\"Collision oracle triggered\", \"Ego speed 3-5 m/s before collision\", \"At least one detected object in critical window\"],\n      \"uncertainty\": [\"vehicle_cmd all-zero anomaly may not reproduce\", \"Cannot confirm if perception or planning caused collision\", \"Actor proximity effect on collision unknown\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Increase rain and wetness, slow walker speed slightly\",\n      \"mutation_intent\": \"Test if degraded weather amplifies collision with slower actor movement\",\n      \"expected_oracle\": \"collision\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 15, \"fog\": 10, \"wetness\": 15, \"puddle\": 10},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": -1.5, \"y\": 1.0}, \"speed_delta\": -0.5},\n          {\"actor_index\": 1, \"position_offset\": {\"x\": 0.0, \"y\": 0.0}, \"speed_delta\": 0.0}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Walker actor 0 speed reduced by 0.5 m/s\", \"Weather rain and wetness increased\", \"Actor 0 offset within bounds\"],\n      \"post_execution_validation_rules\": [\"Collision oracle triggered\", \"Ego speed moderate before collision\", \"Detection reports objects in critical window\"],\n      \"uncertainty\": [\"Unclear if weather affects perception or control\", \"vehicle_cmd logging issue may persist\", \"Root cause between planning and control unresolved\"]\n    }\n  ]\n}\n```",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "claude-sonnet-4-5",
+    "object": "chat.completion",
+    "service_tier": null,
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 826,
+      "prompt_tokens": 1649,
+      "total_tokens": 2475,
+      "completion_tokens_details": null,
+      "prompt_tokens_details": null
+    }
+  },
+  "error_message": "",
+  "elapsed_sec": 14.993,
+  "timestamp": "<REDACTED_TIMESTAMP>"
+}

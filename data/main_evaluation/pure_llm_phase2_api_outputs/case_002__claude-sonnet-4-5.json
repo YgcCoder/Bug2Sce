@@ -1,0 +1,201 @@
+{
+  "case_id": "case_002",
+  "model_name": "claude-sonnet-4-5",
+  "workflow": "pure_llm_phase2_baseline",
+  "status": "completed",
+  "schema_valid": true,
+  "schema_errors": [],
+  "num_candidates_requested": 1,
+  "num_candidates_written": 1,
+  "num_pre_valid": 1,
+  "candidate_records": [
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/pure_llm_phase2_candidates/claude-sonnet-4-5/json/case_002/case_002__model_claude-sonnet-4-5__cand_001.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/pure_llm_phase2_candidates/claude-sonnet-4-5/metadata/case_002/case_002__model_claude-sonnet-4-5__cand_001.metadata.json",
+      "case_id": "case_002",
+      "model_name": "claude-sonnet-4-5",
+      "candidate_index": 1,
+      "candidate_spec": {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Increase moving vehicle speed and reduce weather visibility",
+        "mutation_intent": "Stress red-light violation by making actor faster and reducing fog visibility for detection challenge",
+        "expected_oracle": "red_light",
+        "modifications": {
+          "weather_delta": {
+            "rain": 10,
+            "fog": 15,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": -3.0,
+                "y": 0.0
+              },
+              "speed_delta": 2.5
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Actor 1 speed must be positive and within safe bounds"
+        ],
+        "post_execution_validation_rules": [
+          "Check red light violation occurred at intersection"
+        ],
+        "uncertainty": [
+          "Faster actor may change trajectory timing at traffic light"
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 10.0,
+          "fog": 15.0,
+          "wetness": 0.0,
+          "puddle": 0.0
+        },
+        "actor_mutations": [
+          {
+            "actor_index": 1,
+            "position_offset": {
+              "x": -3.0,
+              "y": 0.0
+            },
+            "speed_delta": 2.5
+          }
+        ],
+        "puddle_mutations": [],
+        "mission_mutation": {
+          "keep_original": true
+        },
+        "safety_repairs": [
+          {
+            "type": "actor_min_distance",
+            "actor_index": 1,
+            "old_spawn": {
+              "x": 303.513,
+              "y": 331.0
+            },
+            "new_spawn": {
+              "x": 303.78576218719815,
+              "y": 331.0577425797504
+            },
+            "old_distance": 2.221,
+            "min_distance": 2.5
+          }
+        ]
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": []
+      }
+    }
+  ],
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/pure_llm_phase2_api_prompts/case_002__claude-sonnet-4-5.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/pure_llm_phase2_api_outputs/case_002__claude-sonnet-4-5.json",
+  "prompt_estimated_tokens": 797,
+  "usage": {
+    "prompt_tokens": 1091,
+    "completion_tokens": 332,
+    "total_tokens": 1423
+  },
+  "raw_response": "```json\n{\n  \"case_id\": \"case_002\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Increase moving vehicle speed and reduce weather visibility\",\n      \"mutation_intent\": \"Stress red-light violation by making actor faster and reducing fog visibility for detection challenge\",\n      \"expected_oracle\": \"red_light\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 10, \"fog\": 15, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 1, \"position_offset\": {\"x\": -3.0, \"y\": 0.0}, \"speed_delta\": 2.5}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Actor 1 speed must be positive and within safe bounds\"],\n      \"post_execution_validation_rules\": [\"Check red light violation occurred at intersection\"],\n      \"uncertainty\": [\"Faster actor may change trajectory timing at traffic light\"]\n    }\n  ]\n}\n```",
+  "parsed_response": {
+    "case_id": "case_002",
+    "candidate_specs": [
+      {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Increase moving vehicle speed and reduce weather visibility",
+        "mutation_intent": "Stress red-light violation by making actor faster and reducing fog visibility for detection challenge",
+        "expected_oracle": "red_light",
+        "modifications": {
+          "weather_delta": {
+            "rain": 10,
+            "fog": 15,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": -3.0,
+                "y": 0.0
+              },
+              "speed_delta": 2.5
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Actor 1 speed must be positive and within safe bounds"
+        ],
+        "post_execution_validation_rules": [
+          "Check red light violation occurred at intersection"
+        ],
+        "uncertainty": [
+          "Faster actor may change trajectory timing at traffic light"
+        ]
+      }
+    ]
+  },
+  "raw_api_payload": {
+    "id": "<REDACTED_RESPONSE_ID>",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "```json\n{\n  \"case_id\": \"case_002\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Increase moving vehicle speed and reduce weather visibility\",\n      \"mutation_intent\": \"Stress red-light violation by making actor faster and reducing fog visibility for detection challenge\",\n      \"expected_oracle\": \"red_light\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 10, \"fog\": 15, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 1, \"position_offset\": {\"x\": -3.0, \"y\": 0.0}, \"speed_delta\": 2.5}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Actor 1 speed must be positive and within safe bounds\"],\n      \"post_execution_validation_rules\": [\"Check red light violation occurred at intersection\"],\n      \"uncertainty\": [\"Faster actor may change trajectory timing at traffic light\"]\n    }\n  ]\n}\n```",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "claude-sonnet-4-5",
+    "object": "chat.completion",
+    "service_tier": null,
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 332,
+      "prompt_tokens": 1091,
+      "total_tokens": 1423,
+      "completion_tokens_details": null,
+      "prompt_tokens_details": null
+    }
+  },
+  "error_message": "",
+  "elapsed_sec": 8.571,
+  "timestamp": "<REDACTED_TIMESTAMP>"
+}

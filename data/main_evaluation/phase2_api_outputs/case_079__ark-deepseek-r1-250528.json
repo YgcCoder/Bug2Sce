@@ -1,0 +1,396 @@
+{
+  "case_id": "case_079",
+  "model_name": "ark-deepseek-r1-250528",
+  "workflow": "phase2_grounded_generation",
+  "status": "completed",
+  "schema_valid": true,
+  "schema_errors": [],
+  "phase1_ready": "uncertain",
+  "num_candidates_requested": 2,
+  "num_candidates_written": 2,
+  "num_pre_valid": 2,
+  "candidate_records": [
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-deepseek-r1-250528/json/case_079/case_079__cand_001.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-deepseek-r1-250528/metadata/case_079/case_079__cand_001.metadata.json",
+      "case_id": "case_079",
+      "model_name": "ark-deepseek-r1-250528",
+      "candidate_index": 1,
+      "candidate_spec": {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Minor positional shift of both existing actors, all other original scenario elements preserved",
+        "mutation_intent": "Preserves all Phase 1 preservation constraints, only introduces minor positional variation to test repeatability of the original conflicting symptom pattern, retains all core elements including red traffic light, 2 actors, original map, weather and mission",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 1.2,
+                "y": -0.8
+              },
+              "speed_delta": 0.0
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": -0.5,
+                "y": 1.1
+              },
+              "speed_delta": 0.2
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Map is Town01",
+          "2 actors are present",
+          "Original weather conditions are preserved",
+          "Mission spawn and destination are unchanged",
+          "At least one red-state traffic light is along ego route"
+        ],
+        "post_execution_validation_rules": [
+          "Check both red-light violation and lane invasion status to preserve original conflicting label pattern"
+        ],
+        "uncertainty": [
+          "Lane invasion event remains unconfirmed per original error.json",
+          "Module-level failure cause is still unlocalized",
+          "Controller behavior uncertainty is preserved"
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 0.0,
+          "fog": 0.0,
+          "wetness": 0.0,
+          "puddle": 0.0
+        },
+        "actor_mutations": [
+          {
+            "actor_index": 0,
+            "position_offset": {
+              "x": 1.2,
+              "y": -0.8
+            },
+            "speed_delta": 0.0
+          },
+          {
+            "actor_index": 1,
+            "position_offset": {
+              "x": -0.5,
+              "y": 1.1
+            },
+            "speed_delta": 0.2
+          }
+        ],
+        "puddle_mutations": [],
+        "mission_mutation": {
+          "keep_original": true
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_079__ark-deepseek-r1-250528.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_079__ark-deepseek-r1-250528.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    },
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-deepseek-r1-250528/json/case_079/case_079__cand_002.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-deepseek-r1-250528/metadata/case_079/case_079__cand_002.metadata.json",
+      "case_id": "case_079",
+      "model_name": "ark-deepseek-r1-250528",
+      "candidate_index": 2,
+      "candidate_spec": {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Minor speed adjustment for the walking actor and slight positional shift of the immobile vehicle, all core scenario elements unchanged",
+        "mutation_intent": "Maintains the original root cause pattern of conflicting labels and unconfirmed module failure, adheres to all preservation constraints, introduces small speed variation to test if the original symptom pattern persists without changing core setup",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": -0.9,
+                "y": 1.5
+              },
+              "speed_delta": 0.0
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": 0.7,
+                "y": -0.4
+              },
+              "speed_delta": 0.3
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Mission start and goal positions are unchanged",
+          "Original weather values are preserved",
+          "2 actors are present in the scenario",
+          "Red-state traffic light is present along ego's route"
+        ],
+        "post_execution_validation_rules": [
+          "Verify output label status matches original conflicting pattern between dataset and error.json"
+        ],
+        "uncertainty": [
+          "Vehicle controller behavior remains uncertain as original",
+          "Stop-line crossing for red-light violation is unconfirmed matching original uncertainty",
+          "Conflicting label status is preserved as unresolvable per original"
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 0.0,
+          "fog": 0.0,
+          "wetness": 0.0,
+          "puddle": 0.0
+        },
+        "actor_mutations": [
+          {
+            "actor_index": 0,
+            "position_offset": {
+              "x": -0.9,
+              "y": 1.5
+            },
+            "speed_delta": 0.0
+          },
+          {
+            "actor_index": 1,
+            "position_offset": {
+              "x": 0.7,
+              "y": -0.4
+            },
+            "speed_delta": 0.3
+          }
+        ],
+        "puddle_mutations": [],
+        "mission_mutation": {
+          "keep_original": true
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_079__ark-deepseek-r1-250528.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_079__ark-deepseek-r1-250528.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    }
+  ],
+  "seed_artifact_zip": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-deepseek-r1-250528/seed-artifact/seed-artifact-case_079.zip",
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_prompts/case_079__ark-deepseek-r1-250528.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_079__ark-deepseek-r1-250528.json",
+  "prompt_estimated_tokens": 1117,
+  "usage": {
+    "prompt_tokens": 1391,
+    "completion_tokens": 2223,
+    "total_tokens": 3614
+  },
+  "raw_response": "{\n  \"case_id\": \"case_079\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Minor positional shift of both existing actors, all other original scenario elements preserved\",\n      \"mutation_intent\": \"Preserves all Phase 1 preservation constraints, only introduces minor positional variation to test repeatability of the original conflicting symptom pattern, retains all core elements including red traffic light, 2 actors, original map, weather and mission\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 1.2, \"y\": -0.8}, \"speed_delta\": 0.0},\n          {\"actor_index\": 1, \"position_offset\": {\"x\": -0.5, \"y\": 1.1}, \"speed_delta\": 0.2}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Map is Town01\", \"2 actors are present\", \"Original weather conditions are preserved\", \"Mission spawn and destination are unchanged\", \"At least one red-state traffic light is along ego route\"],\n      \"post_execution_validation_rules\": [\"Check both red-light violation and lane invasion status to preserve original conflicting label pattern\"],\n      \"uncertainty\": [\"Lane invasion event remains unconfirmed per original error.json\", \"Module-level failure cause is still unlocalized\", \"Controller behavior uncertainty is preserved\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Minor speed adjustment for the walking actor and slight positional shift of the immobile vehicle, all core scenario elements unchanged\",\n      \"mutation_intent\": \"Maintains the original root cause pattern of conflicting labels and unconfirmed module failure, adheres to all preservation constraints, introduces small speed variation to test if the original symptom pattern persists without changing core setup\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": -0.9, \"y\": 1.5}, \"speed_delta\": 0.0},\n          {\"actor_index\": 1, \"position_offset\": {\"x\": 0.7, \"y\": -0.4}, \"speed_delta\": 0.3}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Mission start and goal positions are unchanged\", \"Original weather values are preserved\", \"2 actors are present in the scenario\", \"Red-state traffic light is present along ego's route\"],\n      \"post_execution_validation_rules\": [\"Verify output label status matches original conflicting pattern between dataset and error.json\"],\n      \"uncertainty\": [\"Vehicle controller behavior remains uncertain as original\", \"Stop-line crossing for red-light violation is unconfirmed matching original uncertainty\", \"Conflicting label status is preserved as unresolvable per original\"]\n    }\n  ]\n}",
+  "parsed_response": {
+    "case_id": "case_079",
+    "candidate_specs": [
+      {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Minor positional shift of both existing actors, all other original scenario elements preserved",
+        "mutation_intent": "Preserves all Phase 1 preservation constraints, only introduces minor positional variation to test repeatability of the original conflicting symptom pattern, retains all core elements including red traffic light, 2 actors, original map, weather and mission",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 1.2,
+                "y": -0.8
+              },
+              "speed_delta": 0.0
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": -0.5,
+                "y": 1.1
+              },
+              "speed_delta": 0.2
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Map is Town01",
+          "2 actors are present",
+          "Original weather conditions are preserved",
+          "Mission spawn and destination are unchanged",
+          "At least one red-state traffic light is along ego route"
+        ],
+        "post_execution_validation_rules": [
+          "Check both red-light violation and lane invasion status to preserve original conflicting label pattern"
+        ],
+        "uncertainty": [
+          "Lane invasion event remains unconfirmed per original error.json",
+          "Module-level failure cause is still unlocalized",
+          "Controller behavior uncertainty is preserved"
+        ]
+      },
+      {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Minor speed adjustment for the walking actor and slight positional shift of the immobile vehicle, all core scenario elements unchanged",
+        "mutation_intent": "Maintains the original root cause pattern of conflicting labels and unconfirmed module failure, adheres to all preservation constraints, introduces small speed variation to test if the original symptom pattern persists without changing core setup",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": -0.9,
+                "y": 1.5
+              },
+              "speed_delta": 0.0
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": 0.7,
+                "y": -0.4
+              },
+              "speed_delta": 0.3
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Mission start and goal positions are unchanged",
+          "Original weather values are preserved",
+          "2 actors are present in the scenario",
+          "Red-state traffic light is present along ego's route"
+        ],
+        "post_execution_validation_rules": [
+          "Verify output label status matches original conflicting pattern between dataset and error.json"
+        ],
+        "uncertainty": [
+          "Vehicle controller behavior remains uncertain as original",
+          "Stop-line crossing for red-light violation is unconfirmed matching original uncertainty",
+          "Conflicting label status is preserved as unresolvable per original"
+        ]
+      }
+    ]
+  },
+  "raw_api_payload": {
+    "id": "0217829236842151c17ef9c173e8babb4a0658490f0169e26f120",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "{\n  \"case_id\": \"case_079\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Minor positional shift of both existing actors, all other original scenario elements preserved\",\n      \"mutation_intent\": \"Preserves all Phase 1 preservation constraints, only introduces minor positional variation to test repeatability of the original conflicting symptom pattern, retains all core elements including red traffic light, 2 actors, original map, weather and mission\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 1.2, \"y\": -0.8}, \"speed_delta\": 0.0},\n          {\"actor_index\": 1, \"position_offset\": {\"x\": -0.5, \"y\": 1.1}, \"speed_delta\": 0.2}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Map is Town01\", \"2 actors are present\", \"Original weather conditions are preserved\", \"Mission spawn and destination are unchanged\", \"At least one red-state traffic light is along ego route\"],\n      \"post_execution_validation_rules\": [\"Check both red-light violation and lane invasion status to preserve original conflicting label pattern\"],\n      \"uncertainty\": [\"Lane invasion event remains unconfirmed per original error.json\", \"Module-level failure cause is still unlocalized\", \"Controller behavior uncertainty is preserved\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Minor speed adjustment for the walking actor and slight positional shift of the immobile vehicle, all core scenario elements unchanged\",\n      \"mutation_intent\": \"Maintains the original root cause pattern of conflicting labels and unconfirmed module failure, adheres to all preservation constraints, introduces small speed variation to test if the original symptom pattern persists without changing core setup\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": -0.9, \"y\": 1.5}, \"speed_delta\": 0.0},\n          {\"actor_index\": 1, \"position_offset\": {\"x\": 0.7, \"y\": -0.4}, \"speed_delta\": 0.3}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Mission start and goal positions are unchanged\", \"Original weather values are preserved\", \"2 actors are present in the scenario\", \"Red-state traffic light is present along ego's route\"],\n      \"post_execution_validation_rules\": [\"Verify output label status matches original conflicting pattern between dataset and error.json\"],\n      \"uncertainty\": [\"Vehicle controller behavior remains uncertain as original\", \"Stop-line crossing for red-light violation is unconfirmed matching original uncertainty\", \"Conflicting label status is preserved as unresolvable per original\"]\n    }\n  ]\n}",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null,
+          "reasoning_content": "\nGot it, let's build this JSON step by step. First, case_id is case_079 right? Then we need exactly two candidate_specs.\n\nFirst candidate: cand_001. Let's think of the high level variant. What's a good variant that preserves constraints? Oh, shift the two actors slightly, keep everything else same. Mutation intent: preserves all original constraints, only minor positional shift of existing actors to test if the conflicting behavior persists, keeps all original elements including red light, map, number of actors, weather. Expected oracle: compound, right? Because original has both labels so compound. Then modifications: weather delta all 0, because we need to preserve original weather. Actor mutations: actor 0 position offset x 1.2, y -0.8, speed delta 0. Actor 1 position offset x -0.5, y 1.1, speed delta 0.2, that's within the limits. Puddle mutations empty because original has no puddles. Mission mutation keep_original true. Pre execution rules: [\"check 2 actors present\", \"check red light at original intersection\", \"check original weather preserved\", \"check mission start/goal unchanged\"], post execution: [\"check output labels match original conflicting status for lane invasion and red light\"], uncertainty: [\"same as original: lane invasion unconfirmed, controller behavior uncertain\"].\n\nThen second candidate: cand_002. High level variant: minor speed adjustment to the moving walker actor, slight shift of the immobile vehicle closer to ego's route, preserves all constraints. Mutation intent: still keeps root cause pattern, maintains all preservation constraints, slightly alters actor positions/speeds within valid range to test repeatability of the original conflicting symptoms, doesn't change core scenario elements. Expected oracle: compound again, same as original. Modifications: weather delta all 0, right, preserve original weather. Actor mutations: actor 0 (vehicle) position x -0.9, y 1.5, speed delta 0. Actor 1 (walker) speed delta 0.3, which is within [-3,3], position offset x 0.7, y -0.4. Puddles empty, mission keep_original true. Pre execution rules: [\"check map is Town01\", \"check at least one red light encountered along route\", \"check 2 actors present\", \"check weather matches original\"], post execution: [\"check that both red light and lane invasion labels are checked as per original conflicting status\"], uncertainty: [\"module cause still unconfirmed\", \"lane invasion event remains unconfirmed by error.json matching original uncertainty\"].\n\nWait let's check all rules: actor offsets within [-8,8], yes, all are like 1, 0.5 etc. Speed delta within [-3,3], yes, max 0.3. Mission keep original true, that's fine. Weather delta all 0, which is within [-20,20], correct. No puddles so puddle mutations empty, that's okay. Exactly two candidates, right. Expected oracle is compound because original has both lane invasion and red light mentioned, conflicting labels, so compound. Let's make sure all preservation constraints are followed: preserve mission start/goal, we have keep_original true, so that's good. Preserve 2 actors, yes, we mutated both, still 2. Preserve original weather, weather delta all 0, correct. Preserve conflicting label status, yes, our pre and post rules check that. Preserve at least one red light, pre rules check that. Uncertainty is preserved as per original, right.\n\nLet me structure this properly into the JSON. Let's check the schema again. The top level is case_id, then candidate_specs array of two. Let's write it out correctly.\n\nWait, original seed has no puddles, so puddle_mutations is empty array, that's fine. Let's make sure the uncertainty for each candidate matches the original uncertainty. Let's put that right.\n\nFirst candidate:\ncandidate_id: cand_001\nhigh_level_variant: Minor positional shift of both existing actors, all other original scenario elements preserved.\nmutation_intent: Preserves all Phase 1 preservation constraints, only introduces minor positional variation to test repeatability of the original conflicting symptom pattern, retains all core elements (red traffic light, 2 actors, original map/weather/mission).\nexpected_oracle: compound\nmodifications: weather delta all 0, actor mutations two entries, one for index 0, one for 1, puddle mutations empty, mission keep_original true.\npre_execution_validation_rules: [\"Map is Town01\", \"2 actors are present\", \"Original weather conditions are preserved\", \"Mission spawn and destination are unchanged\", \"At least one red-state traffic light is present along ego route\"]\npost_execution_validation_rules: [\"Check both red-light violation and lane invasion status to preserve original conflicting label pattern\"]\nuncertainty: [\"Lane invasion event remains unconfirmed per original error.json\", \"Module-level failure cause is still unlocalized\", \"Controller behavior uncertainty is preserved\"]\n\nSecond candidate:\ncandidate_id: cand_002\nhigh_level_variant: Minor speed adjustment for the walking actor and slight positional shift of the immobile vehicle, all core elements unchanged.\nmutation_intent: Maintains the original root cause pattern of conflicting labels and unconfirmed module failure, adheres to all preservation constraints, introduces small speed variation to test if the original symptom pattern persists.\nexpected_oracle: compound\nmodifications: weather delta all 0, actor 0 position offset (-0.9, 1.5) speed 0, actor 1 position offset (0.7, -0.4) speed delta 0.3, puddle empty, mission keep original true.\npre_execution_validation_rules: [\"Mission start and goal positions are unchanged\", \"Original weather values are preserved\", \"2 actors are present in the scenario\", \"Red-state traffic light is present along ego's route\"]\npost_execution_validation_rules: [\"Verify output label status matches original conflicting pattern between dataset and error.json\"]\nuncertainty: [\"Vehicle controller behavior remains uncertain as original\", \"Route-light stop-line crossing is unconfirmed matching original uncertainty\", \"Conflicting label status is preserved as unresolvable per original\"]\n\nThat all checks out. Let's put this into valid JSON now, no extra stuff, exactly as required."
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "doubao-seed-2-0-lite-260215",
+    "object": "chat.completion",
+    "service_tier": "default",
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 2223,
+      "prompt_tokens": 1391,
+      "total_tokens": 3614,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 1358,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": null,
+        "cached_tokens": 0
+      }
+    }
+  },
+  "error_message": "",
+  "elapsed_sec": 32.782,
+  "timestamp": "<REDACTED_TIMESTAMP>"
+}

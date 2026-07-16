@@ -1,0 +1,280 @@
+{
+  "case_id": "case_001",
+  "model_name": "gemini-2.5-pro",
+  "workflow": "phase2_grounded_generation",
+  "status": "completed",
+  "schema_valid": true,
+  "schema_errors": [],
+  "phase1_ready": "yes",
+  "num_candidates_requested": 2,
+  "num_candidates_written": 2,
+  "num_pre_valid": 2,
+  "candidate_records": [
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/gemini-2.5-pro/json/case_001/case_001__cand_001.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/gemini-2.5-pro/metadata/case_001/case_001__cand_001.metadata.json",
+      "case_id": "case_001",
+      "model_name": "gemini-2.5-pro",
+      "candidate_index": 1,
+      "candidate_spec": {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Increase actor speed and move it closer to the ego's initial path.",
+        "mutation_intent": "Test if the planner freeze is sensitive to the actor's speed and proximity, potentially triggering the freeze earlier or more severely.",
+        "expected_oracle": "collision",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": -2.0,
+                "y": -1.5
+              },
+              "speed_delta": 2.0
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Actor is closer to the ego's initial path."
+        ],
+        "post_execution_validation_rules": [
+          "Planner sends zero commands before collision.",
+          "Collision with actor 0 occurs."
+        ],
+        "uncertainty": [
+          "Uncertain if faster actor changes planner freeze behavior."
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 0.0,
+          "fog": 0.0,
+          "wetness": 0.0,
+          "puddle": 0.0
+        },
+        "actor_mutations": [
+          {
+            "actor_index": 0,
+            "position_offset": {
+              "x": -2.0,
+              "y": -1.5
+            },
+            "speed_delta": 2.0
+          }
+        ],
+        "puddle_mutations": [],
+        "mission_mutation": {
+          "keep_original": true
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_001__gemini-2.5-pro.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_001__gemini-2.5-pro.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    },
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/gemini-2.5-pro/json/case_001/case_001__cand_002.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/gemini-2.5-pro/metadata/case_001/case_001__cand_002.metadata.json",
+      "case_id": "case_001",
+      "model_name": "gemini-2.5-pro",
+      "candidate_index": 2,
+      "candidate_spec": {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Increase rain and wetness to test environmental effects on the planner freeze.",
+        "mutation_intent": "Investigate if adverse weather is a factor in the planner's decision to send zero commands.",
+        "expected_oracle": "collision",
+        "modifications": {
+          "weather_delta": {
+            "rain": 20,
+            "fog": 0,
+            "wetness": 20,
+            "puddle": 0
+          },
+          "actor_mutations": [],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Weather is rainier and wetter than seed."
+        ],
+        "post_execution_validation_rules": [
+          "Planner sends zero commands before collision.",
+          "Perception still detects the actor."
+        ],
+        "uncertainty": [
+          "Uncertain if weather affects the planner freeze.",
+          "Uncertain if perception is the true root cause."
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 20,
+          "fog": 0.0,
+          "wetness": 20,
+          "puddle": 0.0
+        },
+        "actor_mutations": [],
+        "puddle_mutations": [],
+        "mission_mutation": {
+          "keep_original": true
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_001__gemini-2.5-pro.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_001__gemini-2.5-pro.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    }
+  ],
+  "seed_artifact_zip": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/gemini-2.5-pro/seed-artifact/seed-artifact-case_001.zip",
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_prompts/case_001__gemini-2.5-pro.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_001__gemini-2.5-pro.json",
+  "prompt_estimated_tokens": 964,
+  "usage": {
+    "prompt_tokens": 1280,
+    "completion_tokens": 2766,
+    "total_tokens": 4046
+  },
+  "raw_response": "```json\n{\n  \"case_id\": \"case_001\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Increase actor speed and move it closer to the ego's initial path.\",\n      \"mutation_intent\": \"Test if the planner freeze is sensitive to the actor's speed and proximity, potentially triggering the freeze earlier or more severely.\",\n      \"expected_oracle\": \"collision\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": -2.0, \"y\": -1.5}, \"speed_delta\": 2.0}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true}\n      },\n      \"pre_execution_validation_rules\": [\"Actor is closer to the ego's initial path.\"],\n      \"post_execution_validation_rules\": [\"Planner sends zero commands before collision.\", \"Collision with actor 0 occurs.\"],\n      \"uncertainty\": [\"Uncertain if faster actor changes planner freeze behavior.\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Increase rain and wetness to test environmental effects on the planner freeze.\",\n      \"mutation_intent\": \"Investigate if adverse weather is a factor in the planner's decision to send zero commands.\",\n      \"expected_oracle\": \"collision\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 20, \"fog\": 0, \"wetness\": 20, \"puddle\": 0},\n        \"actor_mutations\": [],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true}\n      },\n      \"pre_execution_validation_rules\": [\"Weather is rainier and wetter than seed.\"],\n      \"post_execution_validation_rules\": [\"Planner sends zero commands before collision.\", \"Perception still detects the actor.\"],\n      \"uncertainty\": [\"Uncertain if weather affects the planner freeze.\", \"Uncertain if perception is the true root cause.\"]\n    }\n  ]\n}\n```",
+  "parsed_response": {
+    "case_id": "case_001",
+    "candidate_specs": [
+      {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Increase actor speed and move it closer to the ego's initial path.",
+        "mutation_intent": "Test if the planner freeze is sensitive to the actor's speed and proximity, potentially triggering the freeze earlier or more severely.",
+        "expected_oracle": "collision",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": -2.0,
+                "y": -1.5
+              },
+              "speed_delta": 2.0
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Actor is closer to the ego's initial path."
+        ],
+        "post_execution_validation_rules": [
+          "Planner sends zero commands before collision.",
+          "Collision with actor 0 occurs."
+        ],
+        "uncertainty": [
+          "Uncertain if faster actor changes planner freeze behavior."
+        ]
+      },
+      {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Increase rain and wetness to test environmental effects on the planner freeze.",
+        "mutation_intent": "Investigate if adverse weather is a factor in the planner's decision to send zero commands.",
+        "expected_oracle": "collision",
+        "modifications": {
+          "weather_delta": {
+            "rain": 20,
+            "fog": 0,
+            "wetness": 20,
+            "puddle": 0
+          },
+          "actor_mutations": [],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Weather is rainier and wetter than seed."
+        ],
+        "post_execution_validation_rules": [
+          "Planner sends zero commands before collision.",
+          "Perception still detects the actor."
+        ],
+        "uncertainty": [
+          "Uncertain if weather affects the planner freeze.",
+          "Uncertain if perception is the true root cause."
+        ]
+      }
+    ]
+  },
+  "raw_api_payload": {
+    "id": "<REDACTED_RESPONSE_ID>",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "```json\n{\n  \"case_id\": \"case_001\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Increase actor speed and move it closer to the ego's initial path.\",\n      \"mutation_intent\": \"Test if the planner freeze is sensitive to the actor's speed and proximity, potentially triggering the freeze earlier or more severely.\",\n      \"expected_oracle\": \"collision\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": -2.0, \"y\": -1.5}, \"speed_delta\": 2.0}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true}\n      },\n      \"pre_execution_validation_rules\": [\"Actor is closer to the ego's initial path.\"],\n      \"post_execution_validation_rules\": [\"Planner sends zero commands before collision.\", \"Collision with actor 0 occurs.\"],\n      \"uncertainty\": [\"Uncertain if faster actor changes planner freeze behavior.\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Increase rain and wetness to test environmental effects on the planner freeze.\",\n      \"mutation_intent\": \"Investigate if adverse weather is a factor in the planner's decision to send zero commands.\",\n      \"expected_oracle\": \"collision\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 20, \"fog\": 0, \"wetness\": 20, \"puddle\": 0},\n        \"actor_mutations\": [],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true}\n      },\n      \"pre_execution_validation_rules\": [\"Weather is rainier and wetter than seed.\"],\n      \"post_execution_validation_rules\": [\"Planner sends zero commands before collision.\", \"Perception still detects the actor.\"],\n      \"uncertainty\": [\"Uncertain if weather affects the planner freeze.\", \"Uncertain if perception is the true root cause.\"]\n    }\n  ]\n}\n```",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "gemini-2.5-pro",
+    "object": "chat.completion",
+    "service_tier": null,
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 2766,
+      "prompt_tokens": 1280,
+      "total_tokens": 4046,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": 0,
+        "reasoning_tokens": 2224,
+        "rejected_prediction_tokens": null,
+        "text_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 0,
+        "text_tokens": 1280,
+        "image_tokens": 0
+      },
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "input_tokens_details": null,
+      "claude_cache_creation_5_m_tokens": 0,
+      "claude_cache_creation_1_h_tokens": 0
+    }
+  },
+  "error_message": "",
+  "elapsed_sec": 27.472,
+  "timestamp": "<REDACTED_TIMESTAMP>"
+}

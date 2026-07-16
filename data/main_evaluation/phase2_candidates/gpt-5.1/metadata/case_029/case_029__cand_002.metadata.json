@@ -1,0 +1,113 @@
+{
+  "case_id": "case_029",
+  "model_name": "gpt-5.1",
+  "candidate_index": 2,
+  "candidate_spec": {
+    "candidate_id": "cand_002",
+    "high_level_variant": "Closer intersection entry with shifted ego route and reduced pedestrian influence to focus on signal interaction while preserving ambiguous lane/stop-line relation.",
+    "mutation_intent": "Bias ego to approach the signalized intersection from a slightly different lateral and longitudinal placement to explore robustness of red-light violation triggering under similar light activity, while keeping lane invasion and stop-line crossing unconstrained and module-level responsibility unknown.",
+    "expected_oracle": "red_light",
+    "modifications": {
+      "weather_delta": {
+        "rain": -5,
+        "fog": -3,
+        "wetness": -8,
+        "puddle": -5
+      },
+      "actor_mutations": [
+        {
+          "actor_index": 0,
+          "position_offset": {
+            "x": -4.0,
+            "y": 2.5
+          },
+          "speed_delta": -0.8
+        },
+        {
+          "actor_index": 1,
+          "position_offset": {
+            "x": 4.0,
+            "y": -2.5
+          },
+          "speed_delta": 0.3
+        }
+      ],
+      "puddle_mutations": [],
+      "mission_mutation": {
+        "keep_original": false,
+        "spawn_offset": {
+          "x": -5.0,
+          "y": 1.0
+        },
+        "destination_offset": {
+          "x": 2.0,
+          "y": -3.5
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Confirm that the modified spawn and destination still require ego to traverse at least one active signalized intersection on Town01.",
+      "Verify that multiple traffic lights ahead of ego are active and publish state changes including red during the time ego approaches.",
+      "Ensure that pedestrian actors remain near the roadway but are not scripted to force an unavoidable collision with ego prior to any red-light event.",
+      "Check that overall weather remains similar to the seed case (no extreme changes that would invalidate comparison of behaviors)."
+    ],
+    "post_execution_validation_rules": [
+      "Confirm error_json indicates a red-light violation and does not indicate collision or stuck for the run.",
+      "Verify that traffic_lights messages around the time of violation include at least one light in red state, with ego in the vicinity of that intersection.",
+      "Ensure that final_waypoints and vehicle_status are available and non-zero leading up to the violation time.",
+      "Do not enforce any specific lane_invasion outcome; allow missing or contradictory lane invasion labeling as acceptable.",
+      "Keep the route–light geometric relationship and stop-line crossing status as nonrequirements; runs where these remain ambiguous are still valid."
+    ],
+    "uncertainty": [
+      "Whether ego crosses the physical stop-line before or during the red phase is intentionally not constrained and may be unobservable.",
+      "Lane boundary adherence at the time of the red-light violation may be unknown or inconsistently labeled and is not enforced.",
+      "The interplay between slightly altered pedestrian trajectories and ego decision-making remains uncertain and may vary across replays.",
+      "Potential internal causes of any red-light violation (e.g., misperceived signal state vs. planning decision vs. control execution) remain unidentified."
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": -5.0,
+      "fog": -3.0,
+      "wetness": -8.0,
+      "puddle": -5.0
+    },
+    "actor_mutations": [
+      {
+        "actor_index": 0,
+        "position_offset": {
+          "x": -4.0,
+          "y": 2.5
+        },
+        "speed_delta": -0.8
+      },
+      {
+        "actor_index": 1,
+        "position_offset": {
+          "x": 4.0,
+          "y": -2.5
+        },
+        "speed_delta": 0.3
+      }
+    ],
+    "puddle_mutations": [],
+    "mission_mutation": {
+      "spawn_offset": {
+        "x": -5,
+        "y": 1.0
+      },
+      "destination_offset": {
+        "x": 2.0,
+        "y": -3.5
+      }
+    }
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_029__gpt-5.1.json",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_029__gpt-5.1.json",
+  "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+}

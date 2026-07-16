@@ -1,0 +1,77 @@
+{
+  "case_id": "case_169",
+  "model_name": "ark-deepseek-r1-250528",
+  "candidate_index": 1,
+  "candidate_spec": {
+    "candidate_id": "cand_001",
+    "high_level_variant": "Shift ego spawn slightly along the original route toward the direction of travel to test if the red light lies on the planned route",
+    "mutation_intent": "Preserves all root cause pattern elements: zero dynamic actors, zero puddles, consistent red light violation labeling, all-zero critical window vehicle commands, and the original Town01 mission route. Only adjusts spawn position to test the unconfirmed route-light relation while keeping the core failure pattern intact",
+    "expected_oracle": "red_light",
+    "modifications": {
+      "weather_delta": {
+        "rain": 3,
+        "fog": -4,
+        "wetness": 3,
+        "puddle": 0
+      },
+      "actor_mutations": [],
+      "puddle_mutations": [],
+      "mission_mutation": {
+        "keep_original": false,
+        "spawn_offset": {
+          "x": 1.8,
+          "y": 0.0
+        },
+        "destination_offset": {
+          "x": 0.0,
+          "y": 1.2
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "No dynamic actors or puddles may be added",
+      "All-zero vehicle command values in the critical window must be preserved",
+      "Original Town01 route must be maintained"
+    ],
+    "post_execution_validation_rules": [
+      "Check that the red light violation label is consistent with original labeling",
+      "Record stop-line crossing status to verify the violation",
+      "Confirm mismatch between all-zero vehicle_cmd and non-zero ego velocity is preserved"
+    ],
+    "uncertainty": [
+      "Route-light relation is unconfirmed before execution",
+      "Stop-line crossing status is unconfirmed before execution",
+      "Command-velocity mismatch outcome is unconfirmed prior to execution"
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": 3.0,
+      "fog": -4.0,
+      "wetness": 3.0,
+      "puddle": 0.0
+    },
+    "actor_mutations": [],
+    "puddle_mutations": [],
+    "mission_mutation": {
+      "spawn_offset": {
+        "x": 1.8,
+        "y": 0.0
+      },
+      "destination_offset": {
+        "x": 0.0,
+        "y": 1.2
+      }
+    }
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": [
+      "no actors in candidate scenario"
+    ]
+  },
+  "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_169__ark-deepseek-r1-250528.json",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_169__ark-deepseek-r1-250528.json",
+  "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+}

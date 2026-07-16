@@ -1,0 +1,87 @@
+{
+  "case_id": "case_004",
+  "model_name": "ark-doubao-seed-2.0-lite-260215",
+  "candidate_index": 2,
+  "candidate_spec": {
+    "candidate_id": "cand_002",
+    "high_level_variant": "Shift puddle location to overlap more with ego's planned route while keeping original weather, mission, and 0 dynamic actors",
+    "mutation_intent": "Preserves all Phase 1 root cause pattern and constraints: retains 1 puddle, 0 dynamic actors, original mission, confirmed red-light event, and conflicting lane invasion label status. This variant tests if a route-aligned puddle triggers the unconfirmed lane invasion.",
+    "expected_oracle": "compound",
+    "modifications": {
+      "weather_delta": {
+        "rain": 0,
+        "fog": 0,
+        "wetness": 0,
+        "puddle": 0
+      },
+      "actor_mutations": [],
+      "puddle_mutations": [
+        {
+          "puddle_index": 0,
+          "location_offset": {
+            "x": 2.5,
+            "y": -1.8
+          },
+          "level_delta": 0.0,
+          "size_scale": 1.0
+        }
+      ],
+      "mission_mutation": {
+        "keep_original": true,
+        "spawn_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "destination_offset": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Confirm 0 dynamic actors are spawned, 1 puddle is shifted to overlap ego's route, original mission is preserved",
+      "Verify red-light event remains in the original position along the route"
+    ],
+    "post_execution_validation_rules": [
+      "Check for both red-light stop-line crossing and lane-boundary crossing to resolve original label conflict",
+      "Attempt to localize failure to a specific Autoware module from post-execution data"
+    ],
+    "uncertainty": [
+      "It is unconfirmed if the shifted puddle will cause lane invasion, so label conflict remains unresolved pre-execution",
+      "No module-level root cause can be confirmed prior to execution"
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": 0.0,
+      "fog": 0.0,
+      "wetness": 0.0,
+      "puddle": 0.0
+    },
+    "actor_mutations": [],
+    "puddle_mutations": [
+      {
+        "puddle_index": 0,
+        "location_offset": {
+          "x": 2.5,
+          "y": -1.8
+        },
+        "level_delta": 0.0,
+        "size_scale": 1.0
+      }
+    ],
+    "mission_mutation": {
+      "keep_original": true
+    }
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": [
+      "no actors in candidate scenario"
+    ]
+  },
+  "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_004__ark-doubao-seed-2.0-lite-260215.json",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_004__ark-doubao-seed-2.0-lite-260215.json",
+  "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+}

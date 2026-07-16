@@ -1,0 +1,208 @@
+{
+  "case_id": "case_024",
+  "model_name": "claude-sonnet-4-5",
+  "workflow": "round2_feedback_guided_b2s",
+  "experimental_difference": "six_models_round1_feedback_added_to_original_b2s_input",
+  "status": "completed",
+  "schema_valid": true,
+  "schema_errors": [],
+  "num_round1_feedback_records": 6,
+  "num_candidates_requested": 2,
+  "num_candidates_written": 2,
+  "num_pre_valid": 2,
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/round2_feedback/prompts/case_024.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/round2_feedback/api_outputs/case_024__claude-sonnet-4-5.json",
+  "prompt_estimated_tokens": 3831,
+  "usage": {
+    "prompt_tokens": 4414,
+    "completion_tokens": 890,
+    "total_tokens": 5304
+  },
+  "candidate_records": [
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/round2_feedback/candidates/case_024__Round2_01.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/round2_feedback/metadata/case_024__Round2_01.metadata.json",
+      "pre_valid": true,
+      "pre_validation_errors": [],
+      "pre_validation_warnings": []
+    },
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/round2_feedback/candidates/case_024__Round2_02.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/round2_feedback/metadata/case_024__Round2_02.metadata.json",
+      "pre_valid": true,
+      "pre_validation_errors": [],
+      "pre_validation_warnings": []
+    }
+  ],
+  "raw_response": "```json\n{\n  \"case_id\": \"case_024\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Actor positioned directly in ego intersection path, minimal weather change\",\n      \"mutation_intent\": \"Preserve collision+red-light by placing actor closer to ego route with reduced speed for unavoidable intersection conflict\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": -5.0, \"y\": 1.0}, \"speed_delta\": -2.0},\n          {\"actor_index\": 1, \"position_offset\": {\"x\": 0.0, \"y\": 0.0}, \"speed_delta\": 0.0}\n        ],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": 0.0, \"size_scale\": 1.0}\n        ],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Actor 0 must spawn within 15m of ego spawn point\"],\n      \"post_execution_validation_rules\": [\"Both collision and red-light oracle must trigger\", \"Ego must show movement before collision\"],\n      \"uncertainty\": [\"vehicle_cmd zero pattern may not reproduce\", \"red-light timing depends on simulator traffic light state\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Ego spawns closer to intersection, actor speed reduced for tighter timing\",\n      \"mutation_intent\": \"Advance ego spawn to reduce reaction time at red-light intersection while keeping actor nearby for collision\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 2, \"fog\": 0, \"wetness\": 1, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": -4.0, \"y\": 0.0}, \"speed_delta\": -1.0},\n          {\"actor_index\": 1, \"position_offset\": {\"x\": 1.0, \"y\": 0.5}, \"speed_delta\": -0.5}\n        ],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": 0.05, \"size_scale\": 1.0}\n        ],\n        \"mission_mutation\": {\"keep_original\": false, \"spawn_offset\": {\"x\": 3.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Ego spawn must remain on valid road segment\", \"Actor 0 within 20m of ego at start\"],\n      \"post_execution_validation_rules\": [\"Collision and red-light violation must both occur\", \"Actor proximity under 5m before collision\"],\n      \"uncertainty\": [\"Spawn offset may alter traffic light phase timing\", \"Reduced reaction window may change failure mode\"]\n    }\n  ]\n}\n```",
+  "parsed_response": {
+    "case_id": "case_024",
+    "candidate_specs": [
+      {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Actor positioned directly in ego intersection path, minimal weather change",
+        "mutation_intent": "Preserve collision+red-light by placing actor closer to ego route with reduced speed for unavoidable intersection conflict",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": -5.0,
+                "y": 1.0
+              },
+              "speed_delta": -2.0
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "speed_delta": 0.0
+            }
+          ],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": 0.0,
+              "size_scale": 1.0
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Actor 0 must spawn within 15m of ego spawn point"
+        ],
+        "post_execution_validation_rules": [
+          "Both collision and red-light oracle must trigger",
+          "Ego must show movement before collision"
+        ],
+        "uncertainty": [
+          "vehicle_cmd zero pattern may not reproduce",
+          "red-light timing depends on simulator traffic light state"
+        ]
+      },
+      {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Ego spawns closer to intersection, actor speed reduced for tighter timing",
+        "mutation_intent": "Advance ego spawn to reduce reaction time at red-light intersection while keeping actor nearby for collision",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": 2,
+            "fog": 0,
+            "wetness": 1,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": -4.0,
+                "y": 0.0
+              },
+              "speed_delta": -1.0
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": 1.0,
+                "y": 0.5
+              },
+              "speed_delta": -0.5
+            }
+          ],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": 0.05,
+              "size_scale": 1.0
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": false,
+            "spawn_offset": {
+              "x": 3.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Ego spawn must remain on valid road segment",
+          "Actor 0 within 20m of ego at start"
+        ],
+        "post_execution_validation_rules": [
+          "Collision and red-light violation must both occur",
+          "Actor proximity under 5m before collision"
+        ],
+        "uncertainty": [
+          "Spawn offset may alter traffic light phase timing",
+          "Reduced reaction window may change failure mode"
+        ]
+      }
+    ]
+  },
+  "error_message": "",
+  "timestamp": "<REDACTED_TIMESTAMP>",
+  "raw_api_payload": {
+    "id": "<REDACTED_RESPONSE_ID>",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "```json\n{\n  \"case_id\": \"case_024\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Actor positioned directly in ego intersection path, minimal weather change\",\n      \"mutation_intent\": \"Preserve collision+red-light by placing actor closer to ego route with reduced speed for unavoidable intersection conflict\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": -5.0, \"y\": 1.0}, \"speed_delta\": -2.0},\n          {\"actor_index\": 1, \"position_offset\": {\"x\": 0.0, \"y\": 0.0}, \"speed_delta\": 0.0}\n        ],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": 0.0, \"size_scale\": 1.0}\n        ],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Actor 0 must spawn within 15m of ego spawn point\"],\n      \"post_execution_validation_rules\": [\"Both collision and red-light oracle must trigger\", \"Ego must show movement before collision\"],\n      \"uncertainty\": [\"vehicle_cmd zero pattern may not reproduce\", \"red-light timing depends on simulator traffic light state\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Ego spawns closer to intersection, actor speed reduced for tighter timing\",\n      \"mutation_intent\": \"Advance ego spawn to reduce reaction time at red-light intersection while keeping actor nearby for collision\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 2, \"fog\": 0, \"wetness\": 1, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": -4.0, \"y\": 0.0}, \"speed_delta\": -1.0},\n          {\"actor_index\": 1, \"position_offset\": {\"x\": 1.0, \"y\": 0.5}, \"speed_delta\": -0.5}\n        ],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": 0.05, \"size_scale\": 1.0}\n        ],\n        \"mission_mutation\": {\"keep_original\": false, \"spawn_offset\": {\"x\": 3.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Ego spawn must remain on valid road segment\", \"Actor 0 within 20m of ego at start\"],\n      \"post_execution_validation_rules\": [\"Collision and red-light violation must both occur\", \"Actor proximity under 5m before collision\"],\n      \"uncertainty\": [\"Spawn offset may alter traffic light phase timing\", \"Reduced reaction window may change failure mode\"]\n    }\n  ]\n}\n```",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "claude-sonnet-4-5",
+    "object": "chat.completion",
+    "service_tier": null,
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 890,
+      "prompt_tokens": 4414,
+      "total_tokens": 5304,
+      "completion_tokens_details": null,
+      "prompt_tokens_details": null
+    }
+  },
+  "elapsed_sec": 16.607
+}

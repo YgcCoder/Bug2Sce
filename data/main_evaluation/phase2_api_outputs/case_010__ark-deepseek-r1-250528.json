@@ -1,0 +1,468 @@
+{
+  "case_id": "case_010",
+  "model_name": "ark-deepseek-r1-250528",
+  "workflow": "phase2_grounded_generation",
+  "status": "completed",
+  "schema_valid": true,
+  "schema_errors": [],
+  "phase1_ready": "uncertain",
+  "num_candidates_requested": 2,
+  "num_candidates_written": 2,
+  "num_pre_valid": 2,
+  "candidate_records": [
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-deepseek-r1-250528/json/case_010/case_010__cand_001.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-deepseek-r1-250528/metadata/case_010/case_010__cand_001.metadata.json",
+      "case_id": "case_010",
+      "model_name": "ark-deepseek-r1-250528",
+      "candidate_index": 1,
+      "candidate_spec": {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Adjust puddle positions to align closer to ego's planned route from spawn to destination, keep original weather and mission parameters",
+        "mutation_intent": "Preserves all Phase 1 root cause constraints: no additional dynamic actors, original start/goal on Town01, high rain/wetness with multiple puddles, and conflicting lane invasion label structure. Shifting puddles closer tests if traction variation triggers the observed vehicle_cmd/velocity mismatch",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 0.8,
+                "y": -2.5
+              },
+              "level_delta": 0.04,
+              "size_scale": 1.05
+            },
+            {
+              "puddle_index": 1,
+              "location_offset": {
+                "x": -1.2,
+                "y": -0.8
+              },
+              "level_delta": -0.03,
+              "size_scale": 0.95
+            },
+            {
+              "puddle_index": 2,
+              "location_offset": {
+                "x": 1.1,
+                "y": -3.2
+              },
+              "level_delta": 0.02,
+              "size_scale": 1.0
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "No dynamic actors added to the scenario",
+          "Map remains Town01, original spawn/destination preserved",
+          "Conflicting lane invasion label structure retained"
+        ],
+        "post_execution_validation_rules": [
+          "Verify if zero vehicle_cmd / non-zero velocity mismatch reproduces",
+          "Check for actual lane boundary crossing to resolve label conflict",
+          "Confirm multiple puddle regions are present"
+        ],
+        "uncertainty": [
+          "Original label conflict between dataset and error oracle preserved",
+          "No module-level failure attribution confirmed",
+          "Unresolved vehicle_cmd/velocity mismatch remains"
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 0.0,
+          "fog": 0.0,
+          "wetness": 0.0,
+          "puddle": 0.0
+        },
+        "actor_mutations": [],
+        "puddle_mutations": [
+          {
+            "puddle_index": 0,
+            "location_offset": {
+              "x": 0.8,
+              "y": -2.5
+            },
+            "level_delta": 0.04,
+            "size_scale": 1.05
+          },
+          {
+            "puddle_index": 1,
+            "location_offset": {
+              "x": -1.2,
+              "y": -0.8
+            },
+            "level_delta": -0.03,
+            "size_scale": 0.95
+          },
+          {
+            "puddle_index": 2,
+            "location_offset": {
+              "x": 1.1,
+              "y": -3.2
+            },
+            "level_delta": 0.02,
+            "size_scale": 1.0
+          }
+        ],
+        "mission_mutation": {
+          "keep_original": true
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": [
+          "no actors in candidate scenario"
+        ]
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_010__ark-deepseek-r1-250528.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_010__ark-deepseek-r1-250528.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    },
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-deepseek-r1-250528/json/case_010/case_010__cand_002.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-deepseek-r1-250528/metadata/case_010/case_010__cand_002.metadata.json",
+      "case_id": "case_010",
+      "model_name": "ark-deepseek-r1-250528",
+      "candidate_index": 2,
+      "candidate_spec": {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Slightly reduce rain, wetness and puddle intensity, keep all original puddle positions and mission unchanged",
+        "mutation_intent": "Preserves all core Phase 1 root cause constraints: no dynamic actors, original mission on Town01, multiple puddles, and conflicting label structure. Slight weather adjustment tests if the observed vehicle_cmd/velocity mismatch depends on the original exact high wetness level",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": -12,
+            "fog": 0,
+            "wetness": -10,
+            "puddle": -8
+          },
+          "actor_mutations": [],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": 0.0,
+              "size_scale": 1.0
+            },
+            {
+              "puddle_index": 1,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": 0.0,
+              "size_scale": 1.0
+            },
+            {
+              "puddle_index": 2,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": 0.0,
+              "size_scale": 1.0
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "No additional dynamic actors added",
+          "Original spawn/destination on Town01 preserved",
+          "Multiple puddles and conflicting label structure retained"
+        ],
+        "post_execution_validation_rules": [
+          "Check if vehicle_cmd/velocity mismatch reproduces at adjusted wetness",
+          "Check for actual lane crossing to resolve original label conflict",
+          "Confirm weather stays within adjusted delta range"
+        ],
+        "uncertainty": [
+          "Original label conflict between dataset and error oracle preserved",
+          "No confirmed module-level failure attribution as in Phase 1",
+          "Unresolved cause of vehicle_cmd/velocity mismatch remains"
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": -12.0,
+          "fog": 0.0,
+          "wetness": -10.0,
+          "puddle": -8.0
+        },
+        "actor_mutations": [],
+        "puddle_mutations": [
+          {
+            "puddle_index": 0,
+            "location_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "level_delta": 0.0,
+            "size_scale": 1.0
+          },
+          {
+            "puddle_index": 1,
+            "location_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "level_delta": 0.0,
+            "size_scale": 1.0
+          },
+          {
+            "puddle_index": 2,
+            "location_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "level_delta": 0.0,
+            "size_scale": 1.0
+          }
+        ],
+        "mission_mutation": {
+          "keep_original": true
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": [
+          "no actors in candidate scenario"
+        ]
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_010__ark-deepseek-r1-250528.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_010__ark-deepseek-r1-250528.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    }
+  ],
+  "seed_artifact_zip": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-deepseek-r1-250528/seed-artifact/seed-artifact-case_010.zip",
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_prompts/case_010__ark-deepseek-r1-250528.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_010__ark-deepseek-r1-250528.json",
+  "prompt_estimated_tokens": 1086,
+  "usage": {
+    "prompt_tokens": 1349,
+    "completion_tokens": 3717,
+    "total_tokens": 5066
+  },
+  "raw_response": "{\n  \"case_id\": \"case_010\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Adjust puddle positions to align closer to ego's planned route from spawn to destination, keep original weather and mission parameters\",\n      \"mutation_intent\": \"Preserves all Phase 1 root cause constraints: no additional dynamic actors, original start/goal on Town01, high rain/wetness with multiple puddles, and conflicting lane invasion label structure. Shifting puddles closer tests if traction variation triggers the observed vehicle_cmd/velocity mismatch\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": 0.8, \"y\": -2.5}, \"level_delta\": 0.04, \"size_scale\": 1.05},\n          {\"puddle_index\": 1, \"location_offset\": {\"x\": -1.2, \"y\": -0.8}, \"level_delta\": -0.03, \"size_scale\": 0.95},\n          {\"puddle_index\": 2, \"location_offset\": {\"x\": 1.1, \"y\": -3.2}, \"level_delta\": 0.02, \"size_scale\": 1.0}\n        ],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"No dynamic actors added to the scenario\", \"Map remains Town01, original spawn/destination preserved\", \"Conflicting lane invasion label structure retained\"],\n      \"post_execution_validation_rules\": [\"Verify if zero vehicle_cmd / non-zero velocity mismatch reproduces\", \"Check for actual lane boundary crossing to resolve label conflict\", \"Confirm multiple puddle regions are present\"],\n      \"uncertainty\": [\"Original label conflict between dataset and error oracle preserved\", \"No module-level failure attribution confirmed\", \"Unresolved vehicle_cmd/velocity mismatch remains\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Slightly reduce rain, wetness and puddle intensity, keep all original puddle positions and mission unchanged\",\n      \"mutation_intent\": \"Preserves all core Phase 1 root cause constraints: no dynamic actors, original mission on Town01, multiple puddles, and conflicting label structure. Slight weather adjustment tests if the observed vehicle_cmd/velocity mismatch depends on the original exact high wetness level\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": -12, \"fog\": 0, \"wetness\": -10, \"puddle\": -8},\n        \"actor_mutations\": [],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": 0.0, \"size_scale\": 1.0},\n          {\"puddle_index\": 1, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": 0.0, \"size_scale\": 1.0},\n          {\"puddle_index\": 2, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": 0.0, \"size_scale\": 1.0}\n        ],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"No additional dynamic actors added\", \"Original spawn/destination on Town01 preserved\", \"Multiple puddles and conflicting label structure retained\"],\n      \"post_execution_validation_rules\": [\"Check if vehicle_cmd/velocity mismatch reproduces at adjusted wetness\", \"Check for actual lane crossing to resolve original label conflict\", \"Confirm weather stays within adjusted delta range\"],\n      \"uncertainty\": [\"Original label conflict between dataset and error oracle preserved\", \"No confirmed module-level failure attribution as in Phase 1\", \"Unresolved cause of vehicle_cmd/velocity mismatch remains\"]\n    }\n  ]\n}",
+  "parsed_response": {
+    "case_id": "case_010",
+    "candidate_specs": [
+      {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Adjust puddle positions to align closer to ego's planned route from spawn to destination, keep original weather and mission parameters",
+        "mutation_intent": "Preserves all Phase 1 root cause constraints: no additional dynamic actors, original start/goal on Town01, high rain/wetness with multiple puddles, and conflicting lane invasion label structure. Shifting puddles closer tests if traction variation triggers the observed vehicle_cmd/velocity mismatch",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 0.8,
+                "y": -2.5
+              },
+              "level_delta": 0.04,
+              "size_scale": 1.05
+            },
+            {
+              "puddle_index": 1,
+              "location_offset": {
+                "x": -1.2,
+                "y": -0.8
+              },
+              "level_delta": -0.03,
+              "size_scale": 0.95
+            },
+            {
+              "puddle_index": 2,
+              "location_offset": {
+                "x": 1.1,
+                "y": -3.2
+              },
+              "level_delta": 0.02,
+              "size_scale": 1.0
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "No dynamic actors added to the scenario",
+          "Map remains Town01, original spawn/destination preserved",
+          "Conflicting lane invasion label structure retained"
+        ],
+        "post_execution_validation_rules": [
+          "Verify if zero vehicle_cmd / non-zero velocity mismatch reproduces",
+          "Check for actual lane boundary crossing to resolve label conflict",
+          "Confirm multiple puddle regions are present"
+        ],
+        "uncertainty": [
+          "Original label conflict between dataset and error oracle preserved",
+          "No module-level failure attribution confirmed",
+          "Unresolved vehicle_cmd/velocity mismatch remains"
+        ]
+      },
+      {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Slightly reduce rain, wetness and puddle intensity, keep all original puddle positions and mission unchanged",
+        "mutation_intent": "Preserves all core Phase 1 root cause constraints: no dynamic actors, original mission on Town01, multiple puddles, and conflicting label structure. Slight weather adjustment tests if the observed vehicle_cmd/velocity mismatch depends on the original exact high wetness level",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": -12,
+            "fog": 0,
+            "wetness": -10,
+            "puddle": -8
+          },
+          "actor_mutations": [],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": 0.0,
+              "size_scale": 1.0
+            },
+            {
+              "puddle_index": 1,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": 0.0,
+              "size_scale": 1.0
+            },
+            {
+              "puddle_index": 2,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": 0.0,
+              "size_scale": 1.0
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "No additional dynamic actors added",
+          "Original spawn/destination on Town01 preserved",
+          "Multiple puddles and conflicting label structure retained"
+        ],
+        "post_execution_validation_rules": [
+          "Check if vehicle_cmd/velocity mismatch reproduces at adjusted wetness",
+          "Check for actual lane crossing to resolve original label conflict",
+          "Confirm weather stays within adjusted delta range"
+        ],
+        "uncertainty": [
+          "Original label conflict between dataset and error oracle preserved",
+          "No confirmed module-level failure attribution as in Phase 1",
+          "Unresolved cause of vehicle_cmd/velocity mismatch remains"
+        ]
+      }
+    ]
+  },
+  "raw_api_payload": {
+    "id": "0217829231851311759647e7543ede3d3e5e601fa3b6a5b8486cf",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "{\n  \"case_id\": \"case_010\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Adjust puddle positions to align closer to ego's planned route from spawn to destination, keep original weather and mission parameters\",\n      \"mutation_intent\": \"Preserves all Phase 1 root cause constraints: no additional dynamic actors, original start/goal on Town01, high rain/wetness with multiple puddles, and conflicting lane invasion label structure. Shifting puddles closer tests if traction variation triggers the observed vehicle_cmd/velocity mismatch\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": 0.8, \"y\": -2.5}, \"level_delta\": 0.04, \"size_scale\": 1.05},\n          {\"puddle_index\": 1, \"location_offset\": {\"x\": -1.2, \"y\": -0.8}, \"level_delta\": -0.03, \"size_scale\": 0.95},\n          {\"puddle_index\": 2, \"location_offset\": {\"x\": 1.1, \"y\": -3.2}, \"level_delta\": 0.02, \"size_scale\": 1.0}\n        ],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"No dynamic actors added to the scenario\", \"Map remains Town01, original spawn/destination preserved\", \"Conflicting lane invasion label structure retained\"],\n      \"post_execution_validation_rules\": [\"Verify if zero vehicle_cmd / non-zero velocity mismatch reproduces\", \"Check for actual lane boundary crossing to resolve label conflict\", \"Confirm multiple puddle regions are present\"],\n      \"uncertainty\": [\"Original label conflict between dataset and error oracle preserved\", \"No module-level failure attribution confirmed\", \"Unresolved vehicle_cmd/velocity mismatch remains\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Slightly reduce rain, wetness and puddle intensity, keep all original puddle positions and mission unchanged\",\n      \"mutation_intent\": \"Preserves all core Phase 1 root cause constraints: no dynamic actors, original mission on Town01, multiple puddles, and conflicting label structure. Slight weather adjustment tests if the observed vehicle_cmd/velocity mismatch depends on the original exact high wetness level\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": -12, \"fog\": 0, \"wetness\": -10, \"puddle\": -8},\n        \"actor_mutations\": [],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": 0.0, \"size_scale\": 1.0},\n          {\"puddle_index\": 1, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": 0.0, \"size_scale\": 1.0},\n          {\"puddle_index\": 2, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": 0.0, \"size_scale\": 1.0}\n        ],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"No additional dynamic actors added\", \"Original spawn/destination on Town01 preserved\", \"Multiple puddles and conflicting label structure retained\"],\n      \"post_execution_validation_rules\": [\"Check if vehicle_cmd/velocity mismatch reproduces at adjusted wetness\", \"Check for actual lane crossing to resolve original label conflict\", \"Confirm weather stays within adjusted delta range\"],\n      \"uncertainty\": [\"Original label conflict between dataset and error oracle preserved\", \"No confirmed module-level failure attribution as in Phase 1\", \"Unresolved cause of vehicle_cmd/velocity mismatch remains\"]\n    }\n  ]\n}",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null,
+          "reasoning_content": "\nGot it, let's build this step by step. First, the case_id is case_010, right? Then we need exactly two candidate_specs.\n\nFirst candidate: cand_001. Let's think of the high_level_variant. It should be a slight adjustment of puddle positions to align them closer to ego's path, preserving all constraints. Mutation intent: preserves all original constraints (no other actors, original start/goal, high rain/wetness, label conflict) just moves puddles closer to ego's route to increase chance of any traction-related behavior that could cause the observed mismatch. Expected oracle? Wait, the original is compound? No, wait original has conflicting labels, dataset says lane_invasion, oracle says no. Let's see, the expected oracle should be... wait the original says preserve the conflicting label structure, so expected_oracle is compound? Wait no, let's check: the root cause has label conflict between lane invasion and no, so expected_oracle is compound? Wait let's see. Modifications: first weather delta, let's keep it slightly increased rain and wetness, within 20. Like rain +10, wetness +10, puddle +10, fog 0, that's within [-20,20]. Actor mutations: there are no actors, so empty array? Wait original actors is empty, preservation says no other dynamic actors, so actor_mutations is empty. Puddle mutations: each puddle, let's shift them a bit towards ego's path. Puddle 0: x offset +0.5, y -3.0, level delta +0.05, size scale 1.0. Puddle 1: x -1.0, y -0.5, level delta 0, size 1.0. Puddle 2: x +1.5, y -4.0, level delta -0.05, size 1.0. All within the allowed ranges, right? Position offsets are within [-8,8], level delta within [-0.2, 0.2], size scale 0.8-1.2. Mission mutation: keep_original true, right? Because preservation says preserve original start and goal. Pre execution rules: [\"no additional dynamic actors added\", \"map remains Town01\", \"preserve original label conflict structure for validation\"], post execution: [\"check for mismatch between zero vehicle_cmd and non-zero ego velocity\", \"verify if actual lane invasion occurred to resolve label conflict\"], uncertainty: same as original, [\"confirmed label conflict between dataset and error oracle\", \"no module-level failure attribution still holds\"].\n\nThen second candidate, cand_002. High_level_variant: Slight reduction in wetness/rain to test if the vehicle_cmd/velocity mismatch persists under slightly lower precipitation, while preserving all other constraints. Mutation intent: preserves all core root cause properties (no actors, original mission, multiple puddles, label conflict) only adjusts weather slightly to test if the mismatch is dependent on high wetness levels, still preserves the conflicting label structure for validation. Expected_oracle: still compound? Wait or unknown? Wait no, original has unresolved conflict, so expected_oracle is compound? Wait let's see: expected_oracle options are collision | red_light | lane_invasion | stuck | compound | unknown. The original has conflicting lane invasion labels and a control/status mismatch, so that's compound. Wait let's confirm. Modifications: weather delta: rain -10, wetness -10, puddle -8, fog 0, all within 20, good. Actor_mutations: still empty, since no actors allowed. Puddle mutations: keep all original puddle locations, levels, sizes. So each? Wait or can we do no changes? Like each puddle has 0 offset, 0 delta, size 1.0. Mission mutation: keep_original true, per constraints. Pre execution rules: [\"no additional dynamic actors added\", \"map remains Town01\", \"label conflict structure preserved\"], post execution: [\"check if vehicle_cmd/velocity mismatch reproduces\", \"check for actual lane boundary crossing to resolve label conflict\"], uncertainty: [\"no confirmed module-level failure\", \"label conflict preserved as original\", \"unresolved vehicle_cmd/velocity mismatch remains\"].\n\nWait let's check all rules: exactly two candidates, all offsets are within ranges. Let's check: actor position offsets: no actors, so that's fine. Speed delta: none. Mission offsets: keep original, so that's okay. Weather deltas are all within [-20,20], yes. Puddle level delta within [-0.2, 0.2], size scale 0.8-1.2, yes. Preserve all preservation constraints: no other dynamic actors, original start/goal, high wetness/rain multiple puddles, conflicting label structure. That's all good. Uncertainty is preserved because original is uncertainty-heavy, so we keep that.\n\nWait let's structure the JSON correctly. Let's fill in all fields properly.\n\nFirst, case_id is \"case_010\". Then candidate_specs array has two elements. First is cand_001, second cand_002.\n\nWait for candidate 1's high_level_variant: \"Adjust puddle positions to align closer to ego's planned route from spawn to destination, keep original weather and mission\". Mutation_intent: \"Preserves all Phase 1 root cause constraints: no additional dynamic actors, original start/goal on Town01, high rain/wetness with multiple puddles, and conflicting lane invasion label structure. Shifting puddles closer tests if traction variation causes the observed vehicle_cmd/velocity mismatch\". Expected_oracle: \"compound\" (because it has the possible lane invasion and the control mismatch conflict). Correct.\n\nModifications for cand_001: weather_delta is {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0}? Wait no, I thought earlier maybe +10, but even 0 is okay. Wait let's do weather delta 0 for cand 001, because change is only puddles. That makes sense. Then actor_mutations is empty array, since no actors. Puddle_mutations: three entries, for each index 0,1,2. Let's do:\n\npuddle 0: location_offset {\"x\": 0.8, \"y\": -2.5, \"z\": 0}, level_delta 0.04, size_scale 1.05. That's all within limits.\n\npuddle 1: location_offset {\"x\": -1.2, \"y\": -0.8, \"z\": 0}, level_delta -0.03, size_scale 0.95. Good.\n\npuddle 2: location_offset {\"x\": 1.1, \"y\": -3.2, \"z\": 0}, level_delta 0.02, size_scale 1.0. All within allowed ranges: x and y offsets are way less than 8, level delta 0.04 <0.2, size 0.95-1.05 between 0.8 and 1.2. Perfect.\n\nMission mutation: {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}. Correct, per preservation constraint to keep original start and goal.\n\nPre execution rules: [\"No dynamic actors added to the scenario\", \"Map remains Town01, original spawn and destination are preserved\", \"Conflicting lane invasion label structure from original is retained for validation\"]\n\nPost execution rules: [\"Verify if mismatch between all-zero vehicle_cmd and non-zero ego velocity reproduces\", \"Check for actual lane boundary crossing to resolve the original label conflict\", \"Confirm multiple puddle regions are present in the scenario\"]\n\nUncertainty: [\"Original label conflict between dataset and error oracle is preserved\", \"No module-level failure attribution is still unconfirmed\", \"Unresolved vehicle_cmd/velocity mismatch remains as in Phase 1\"]\n\nThat's cand_001. Now cand_002:\n\ncandidate_id: \"cand_002\"\n\nhigh_level_variant: \"Slightly adjust weather conditions (moderate reduction in rain, wetness and puddle intensity) while keeping all original puddle positions and mission unchanged\"\n\nmutation_intent: \"Preserves all core Phase 1 root cause constraints: no dynamic actors, original mission on Town01, multiple puddles, and conflicting label structure. Slight weather adjustment tests if the observed vehicle_cmd/velocity mismatch is dependent on the exact high wetness level of the original seed scenario\"\n\nexpected_oracle: \"compound\" (still, same conflict)\n\nmodifications:\n\nweather_delta: {\"rain\": -12, \"fog\": 0, \"wetness\": -10, \"puddle\": -8} all within [-20, 20], perfect, still high enough to be high wetness, just slightly lower, which is what we want.\n\nactor_mutations: [] (no actors, preserve that constraint)\n\npuddle_mutations: each puddle has 0 offset, 0 delta, size 1.0. So:\n\n[\n{\"puddle_index\": 0, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": 0.0, \"size_scale\": 1.0},\n{\"puddle_index\": 1, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": 0.0, \"size_scale\": 1.0},\n{\"puddle_index\": 2, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": 0.0, \"size_scale\": 1.0}\n]\n\nThat's correct.\n\nmission_mutation: {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}} again, preserve original positions.\n\npre_execution_validation_rules: [\"No additional dynamic actors added to the scenario\", \"Original spawn and destination positions on Town01 are preserved\", \"Multiple puddle regions are retained, conflicting label structure is preserved\"]\n\npost_execution_validation_rules: [\"Check if the mismatch between all-zero vehicle_cmd and non-zero ego velocity reproduces at adjusted wetness levels\", \"Check for actual lane crossing to resolve original label conflict\", \"Confirm weather conditions are within the adjusted delta range\"]\n\nuncertainty: [\"Original label conflict between dataset and error oracle is preserved\", \"No confirmed module-level failure attribution as in Phase 1\", \"Unresolved cause of vehicle_cmd/velocity mismatch remains\"]\n\nWait that all checks out. Let's put it all together into valid JSON, no extra stuff, exactly as per schema. Let's make sure all brackets are correct, commas are right. Let's check:\n\nWait the schema has location_offset for puddles, it's x and y, that's fine, we can add z 0 but no, the original has z, but the schema shows x and y, but it's okay. Wait no, the modification for puddle has location_offset x and y, that's okay. Let's make sure all fields are present. Yes.\n\nAnother check: actor position offsets are within [-8,8], since we have no actors, that's fine. Speed delta is within [-3,3], no actors, so okay. Mission keep original is true, so offsets are 0, which is okay. Weather deltas are all within [-20,20], yes, -12, -10, -8 are all within. Puddle level delta for cand 001 is 0.04, -0.03, 0.02, all within [-0.2, 0.2], size scale 1.05, 0.95, 1.0, all between 0.8 and 1.2. Perfect. Exactly two candidates, as required. Preserves all root cause and constraints from phase 1. Doesn't invent new labels, preserves the conflict, uncertainty is kept. That's all good."
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "doubao-seed-2-0-lite-260215",
+    "object": "chat.completion",
+    "service_tier": "default",
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 3717,
+      "prompt_tokens": 1349,
+      "total_tokens": 5066,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 2658,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": null,
+        "cached_tokens": 0
+      }
+    }
+  },
+  "error_message": "",
+  "elapsed_sec": 52.201,
+  "timestamp": "<REDACTED_TIMESTAMP>"
+}

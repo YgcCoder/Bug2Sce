@@ -1,0 +1,422 @@
+{
+  "case_id": "case_002",
+  "model_name": "gpt-5.1",
+  "workflow": "phase2_grounded_generation",
+  "status": "completed",
+  "schema_valid": true,
+  "schema_errors": [],
+  "phase1_ready": "yes",
+  "num_candidates_requested": 2,
+  "num_candidates_written": 2,
+  "num_pre_valid": 2,
+  "candidate_records": [
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/gpt-5.1/json/case_002/case_002__cand_001.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/gpt-5.1/metadata/case_002/case_002__cand_001.metadata.json",
+      "case_id": "case_002",
+      "model_name": "gpt-5.1",
+      "candidate_index": 1,
+      "candidate_spec": {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Ego remains near original spawn at a signalized junction with slightly reduced rain, nearby stopped vehicle repositioned to subtly alter occlusions while ego exhibits minimal motion and an ambiguous relation to the red light is maintained.",
+        "mutation_intent": "Preserve a red-light violation with available traffic-light and final_waypoints data while keeping ego displacement minimal and route–light association ambiguous, by making small spatial adjustments to a nearby static vehicle and slightly easing weather without clarifying the stop-line geometry.",
+        "expected_oracle": "red_light",
+        "modifications": {
+          "weather_delta": {
+            "rain": -10,
+            "fog": 0,
+            "wetness": -5,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 2.0,
+                "y": -1.5
+              },
+              "speed_delta": 0.0
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": -3.0,
+                "y": 2.0
+              },
+              "speed_delta": -1.5
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Ensure the mission spawn and destination remain on or near valid lanes in Town01 after applying no additional offsets.",
+          "Verify at least one traffic light is present and publishes to /carla/traffic_lights near the ego spawn area.",
+          "Confirm that actor_index 0 and 1 spawns are collision-free with static environment and each other after position offsets.",
+          "Check that actor_index 1 maintains a valid forward driving corridor for its reduced speed without immediate collision risk at t=0.",
+          "Validate that weather parameters after deltas remain within engine bounds and do not disable traffic-light visibility logic."
+        ],
+        "post_execution_validation_rules": [
+          "Confirm error.json reports a red-light violation and does not primarily record collision, lane_invasion, or stuck as the main oracle.",
+          "Verify that /carla/traffic_lights messages exist throughout the critical window and include at least one red state.",
+          "Check that /final_waypoints are non-null and available up to just before the violation timestamp.",
+          "Inspect summaries to ensure route_light_relation_confirmed and stop_line_crossing_confirmed remain unknown or not explicitly true/false.",
+          "Measure ego odometry/current_pose to confirm only small displacement from spawn (e.g., within a few meters) over the entire run.",
+          "Ensure no definitive module-level blame (perception/planning/control/simulator) is inferred solely from logs; responsibility should remain unclear."
+        ],
+        "uncertainty": [
+          "Which exact traffic light instance the oracle considered for the violation may remain ambiguous.",
+          "Whether the ego actually crosses a stop line or only approaches it may not be conclusively derivable from the logs.",
+          "Controller behavior versus environment configuration as the cause of red-light violation is still unclear."
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": -10.0,
+          "fog": 0.0,
+          "wetness": -5.0,
+          "puddle": 0.0
+        },
+        "actor_mutations": [
+          {
+            "actor_index": 0,
+            "position_offset": {
+              "x": 2.0,
+              "y": -1.5
+            },
+            "speed_delta": 0.0
+          },
+          {
+            "actor_index": 1,
+            "position_offset": {
+              "x": -3.0,
+              "y": 2.0
+            },
+            "speed_delta": -1.5
+          }
+        ],
+        "puddle_mutations": [],
+        "mission_mutation": {
+          "keep_original": true
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_002__gpt-5.1.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_002__gpt-5.1.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    },
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/gpt-5.1/json/case_002/case_002__cand_002.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/gpt-5.1/metadata/case_002/case_002__cand_002.metadata.json",
+      "case_id": "case_002",
+      "model_name": "gpt-5.1",
+      "candidate_index": 2,
+      "candidate_spec": {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Ego spawn is slightly shifted along its route and destination subtly adjusted while nearby vehicles are minimally repositioned, maintaining low ego motion and ambiguous stop-line interaction under slightly increased fog and wetness.",
+        "mutation_intent": "Stress the same red-light oracle condition with traffic-light and waypoint data present while preserving near-zero ego displacement and uncertainty about whether the ego’s planned route truly crosses the red light, by nudging mission geometry and visibility without clarifying line markings.",
+        "expected_oracle": "red_light",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 10,
+            "wetness": 10,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": -1.0,
+                "y": 1.0
+              },
+              "speed_delta": 0.0
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": 4.0,
+                "y": -2.0
+              },
+              "speed_delta": -0.5
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": false,
+            "spawn_offset": {
+              "x": 3.0,
+              "y": -2.0
+            },
+            "destination_offset": {
+              "x": -4.0,
+              "y": 1.5
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Validate that the shifted mission spawn and destination remain on valid driveable lanes in Town01 and preserve a route that passes near at least one signalized intersection.",
+          "Ensure that /carla/traffic_lights actors are present within perception range of the ego’s shifted route.",
+          "Confirm that actor_index 0 and 1 do not spawn overlapping with the ego or each other after offsets.",
+          "Check that increased fog and wetness values do not exceed simulator bounds or disable traffic-light state publishing."
+        ],
+        "post_execution_validation_rules": [
+          "Verify that error.json again reports a red-light violation as the primary oracle without additional main symptoms such as collision or lane_invasion.",
+          "Confirm continuous availability of /carla/traffic_lights with varying states (including red) around the violation time.",
+          "Check that /final_waypoints remain non-null and extend close to the violation timestamp for the shifted mission route.",
+          "Inspect that route_light_relation_confirmed and stop_line_crossing_confirmed are left undefined/unknown or ambiguous in the post-run summaries.",
+          "Ensure ego pose shows minimal overall displacement from the (shifted) spawn point, consistent with low-motion behavior.",
+          "Do not assign clear responsibility to perception, planning, control, or simulator layers unless logs provide unambiguous proof."
+        ],
+        "uncertainty": [
+          "The precise geometric alignment between the shifted route and the nearest red light remains uncertain.",
+          "It may be unclear whether the ego even reaches the physical stop line before the violation is triggered.",
+          "Ambiguity persists regarding whether the red-light violation stems from perception, planning, control, or logging/oracle artifacts."
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 0.0,
+          "fog": 10.0,
+          "wetness": 10.0,
+          "puddle": 0.0
+        },
+        "actor_mutations": [
+          {
+            "actor_index": 0,
+            "position_offset": {
+              "x": -1.0,
+              "y": 1.0
+            },
+            "speed_delta": 0.0
+          },
+          {
+            "actor_index": 1,
+            "position_offset": {
+              "x": 4.0,
+              "y": -2.0
+            },
+            "speed_delta": -0.5
+          }
+        ],
+        "puddle_mutations": [],
+        "mission_mutation": {
+          "spawn_offset": {
+            "x": 3.0,
+            "y": -2.0
+          },
+          "destination_offset": {
+            "x": -4.0,
+            "y": 1.5
+          }
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_002__gpt-5.1.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_002__gpt-5.1.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    }
+  ],
+  "seed_artifact_zip": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/gpt-5.1/seed-artifact/seed-artifact-case_002.zip",
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_prompts/case_002__gpt-5.1.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_002__gpt-5.1.json",
+  "prompt_estimated_tokens": 1424,
+  "usage": {
+    "prompt_tokens": 1395,
+    "completion_tokens": 1459,
+    "total_tokens": 2854
+  },
+  "raw_response": "{\n  \"case_id\": \"case_002\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Ego remains near original spawn at a signalized junction with slightly reduced rain, nearby stopped vehicle repositioned to subtly alter occlusions while ego exhibits minimal motion and an ambiguous relation to the red light is maintained.\",\n      \"mutation_intent\": \"Preserve a red-light violation with available traffic-light and final_waypoints data while keeping ego displacement minimal and route–light association ambiguous, by making small spatial adjustments to a nearby static vehicle and slightly easing weather without clarifying the stop-line geometry.\",\n      \"expected_oracle\": \"red_light\",\n      \"modifications\": {\n        \"weather_delta\": {\n          \"rain\": -10,\n          \"fog\": 0,\n          \"wetness\": -5,\n          \"puddle\": 0\n        },\n        \"actor_mutations\": [\n          {\n            \"actor_index\": 0,\n            \"position_offset\": {\n              \"x\": 2.0,\n              \"y\": -1.5\n            },\n            \"speed_delta\": 0.0\n          },\n          {\n            \"actor_index\": 1,\n            \"position_offset\": {\n              \"x\": -3.0,\n              \"y\": 2.0\n            },\n            \"speed_delta\": -1.5\n          }\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\n          \"keep_original\": true,\n          \"spawn_offset\": {\n            \"x\": 0.0,\n            \"y\": 0.0\n          },\n          \"destination_offset\": {\n            \"x\": 0.0,\n            \"y\": 0.0\n          }\n        }\n      },\n      \"pre_execution_validation_rules\": [\n        \"Ensure the mission spawn and destination remain on or near valid lanes in Town01 after applying no additional offsets.\",\n        \"Verify at least one traffic light is present and publishes to /carla/traffic_lights near the ego spawn area.\",\n        \"Confirm that actor_index 0 and 1 spawns are collision-free with static environment and each other after position offsets.\",\n        \"Check that actor_index 1 maintains a valid forward driving corridor for its reduced speed without immediate collision risk at t=0.\",\n        \"Validate that weather parameters after deltas remain within engine bounds and do not disable traffic-light visibility logic.\"\n      ],\n      \"post_execution_validation_rules\": [\n        \"Confirm error.json reports a red-light violation and does not primarily record collision, lane_invasion, or stuck as the main oracle.\",\n        \"Verify that /carla/traffic_lights messages exist throughout the critical window and include at least one red state.\",\n        \"Check that /final_waypoints are non-null and available up to just before the violation timestamp.\",\n        \"Inspect summaries to ensure route_light_relation_confirmed and stop_line_crossing_confirmed remain unknown or not explicitly true/false.\",\n        \"Measure ego odometry/current_pose to confirm only small displacement from spawn (e.g., within a few meters) over the entire run.\",\n        \"Ensure no definitive module-level blame (perception/planning/control/simulator) is inferred solely from logs; responsibility should remain unclear.\"\n      ],\n      \"uncertainty\": [\n        \"Which exact traffic light instance the oracle considered for the violation may remain ambiguous.\",\n        \"Whether the ego actually crosses a stop line or only approaches it may not be conclusively derivable from the logs.\",\n        \"Controller behavior versus environment configuration as the cause of red-light violation is still unclear.\"\n      ]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Ego spawn is slightly shifted along its route and destination subtly adjusted while nearby vehicles are minimally repositioned, maintaining low ego motion and ambiguous stop-line interaction under slightly increased fog and wetness.\",\n      \"mutation_intent\": \"Stress the same red-light oracle condition with traffic-light and waypoint data present while preserving near-zero ego displacement and uncertainty about whether the ego’s planned route truly crosses the red light, by nudging mission geometry and visibility without clarifying line markings.\",\n      \"expected_oracle\": \"red_light\",\n      \"modifications\": {\n        \"weather_delta\": {\n          \"rain\": 0,\n          \"fog\": 10,\n          \"wetness\": 10,\n          \"puddle\": 0\n        },\n        \"actor_mutations\": [\n          {\n            \"actor_index\": 0,\n            \"position_offset\": {\n              \"x\": -1.0,\n              \"y\": 1.0\n            },\n            \"speed_delta\": 0.0\n          },\n          {\n            \"actor_index\": 1,\n            \"position_offset\": {\n              \"x\": 4.0,\n              \"y\": -2.0\n            },\n            \"speed_delta\": -0.5\n          }\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\n          \"keep_original\": false,\n          \"spawn_offset\": {\n            \"x\": 3.0,\n            \"y\": -2.0\n          },\n            \"destination_offset\": {\n            \"x\": -4.0,\n            \"y\": 1.5\n          }\n        }\n      },\n      \"pre_execution_validation_rules\": [\n        \"Validate that the shifted mission spawn and destination remain on valid driveable lanes in Town01 and preserve a route that passes near at least one signalized intersection.\",\n        \"Ensure that /carla/traffic_lights actors are present within perception range of the ego’s shifted route.\",\n        \"Confirm that actor_index 0 and 1 do not spawn overlapping with the ego or each other after offsets.\",\n        \"Check that increased fog and wetness values do not exceed simulator bounds or disable traffic-light state publishing.\"\n      ],\n      \"post_execution_validation_rules\": [\n        \"Verify that error.json again reports a red-light violation as the primary oracle without additional main symptoms such as collision or lane_invasion.\",\n        \"Confirm continuous availability of /carla/traffic_lights with varying states (including red) around the violation time.\",\n        \"Check that /final_waypoints remain non-null and extend close to the violation timestamp for the shifted mission route.\",\n        \"Inspect that route_light_relation_confirmed and stop_line_crossing_confirmed are left undefined/unknown or ambiguous in the post-run summaries.\",\n        \"Ensure ego pose shows minimal overall displacement from the (shifted) spawn point, consistent with low-motion behavior.\",\n        \"Do not assign clear responsibility to perception, planning, control, or simulator layers unless logs provide unambiguous proof.\"\n      ],\n      \"uncertainty\": [\n        \"The precise geometric alignment between the shifted route and the nearest red light remains uncertain.\",\n        \"It may be unclear whether the ego even reaches the physical stop line before the violation is triggered.\",\n        \"Ambiguity persists regarding whether the red-light violation stems from perception, planning, control, or logging/oracle artifacts.\"\n      ]\n    }\n  ]\n}",
+  "parsed_response": {
+    "case_id": "case_002",
+    "candidate_specs": [
+      {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Ego remains near original spawn at a signalized junction with slightly reduced rain, nearby stopped vehicle repositioned to subtly alter occlusions while ego exhibits minimal motion and an ambiguous relation to the red light is maintained.",
+        "mutation_intent": "Preserve a red-light violation with available traffic-light and final_waypoints data while keeping ego displacement minimal and route–light association ambiguous, by making small spatial adjustments to a nearby static vehicle and slightly easing weather without clarifying the stop-line geometry.",
+        "expected_oracle": "red_light",
+        "modifications": {
+          "weather_delta": {
+            "rain": -10,
+            "fog": 0,
+            "wetness": -5,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 2.0,
+                "y": -1.5
+              },
+              "speed_delta": 0.0
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": -3.0,
+                "y": 2.0
+              },
+              "speed_delta": -1.5
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Ensure the mission spawn and destination remain on or near valid lanes in Town01 after applying no additional offsets.",
+          "Verify at least one traffic light is present and publishes to /carla/traffic_lights near the ego spawn area.",
+          "Confirm that actor_index 0 and 1 spawns are collision-free with static environment and each other after position offsets.",
+          "Check that actor_index 1 maintains a valid forward driving corridor for its reduced speed without immediate collision risk at t=0.",
+          "Validate that weather parameters after deltas remain within engine bounds and do not disable traffic-light visibility logic."
+        ],
+        "post_execution_validation_rules": [
+          "Confirm error.json reports a red-light violation and does not primarily record collision, lane_invasion, or stuck as the main oracle.",
+          "Verify that /carla/traffic_lights messages exist throughout the critical window and include at least one red state.",
+          "Check that /final_waypoints are non-null and available up to just before the violation timestamp.",
+          "Inspect summaries to ensure route_light_relation_confirmed and stop_line_crossing_confirmed remain unknown or not explicitly true/false.",
+          "Measure ego odometry/current_pose to confirm only small displacement from spawn (e.g., within a few meters) over the entire run.",
+          "Ensure no definitive module-level blame (perception/planning/control/simulator) is inferred solely from logs; responsibility should remain unclear."
+        ],
+        "uncertainty": [
+          "Which exact traffic light instance the oracle considered for the violation may remain ambiguous.",
+          "Whether the ego actually crosses a stop line or only approaches it may not be conclusively derivable from the logs.",
+          "Controller behavior versus environment configuration as the cause of red-light violation is still unclear."
+        ]
+      },
+      {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Ego spawn is slightly shifted along its route and destination subtly adjusted while nearby vehicles are minimally repositioned, maintaining low ego motion and ambiguous stop-line interaction under slightly increased fog and wetness.",
+        "mutation_intent": "Stress the same red-light oracle condition with traffic-light and waypoint data present while preserving near-zero ego displacement and uncertainty about whether the ego’s planned route truly crosses the red light, by nudging mission geometry and visibility without clarifying line markings.",
+        "expected_oracle": "red_light",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 10,
+            "wetness": 10,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": -1.0,
+                "y": 1.0
+              },
+              "speed_delta": 0.0
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": 4.0,
+                "y": -2.0
+              },
+              "speed_delta": -0.5
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": false,
+            "spawn_offset": {
+              "x": 3.0,
+              "y": -2.0
+            },
+            "destination_offset": {
+              "x": -4.0,
+              "y": 1.5
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Validate that the shifted mission spawn and destination remain on valid driveable lanes in Town01 and preserve a route that passes near at least one signalized intersection.",
+          "Ensure that /carla/traffic_lights actors are present within perception range of the ego’s shifted route.",
+          "Confirm that actor_index 0 and 1 do not spawn overlapping with the ego or each other after offsets.",
+          "Check that increased fog and wetness values do not exceed simulator bounds or disable traffic-light state publishing."
+        ],
+        "post_execution_validation_rules": [
+          "Verify that error.json again reports a red-light violation as the primary oracle without additional main symptoms such as collision or lane_invasion.",
+          "Confirm continuous availability of /carla/traffic_lights with varying states (including red) around the violation time.",
+          "Check that /final_waypoints remain non-null and extend close to the violation timestamp for the shifted mission route.",
+          "Inspect that route_light_relation_confirmed and stop_line_crossing_confirmed are left undefined/unknown or ambiguous in the post-run summaries.",
+          "Ensure ego pose shows minimal overall displacement from the (shifted) spawn point, consistent with low-motion behavior.",
+          "Do not assign clear responsibility to perception, planning, control, or simulator layers unless logs provide unambiguous proof."
+        ],
+        "uncertainty": [
+          "The precise geometric alignment between the shifted route and the nearest red light remains uncertain.",
+          "It may be unclear whether the ego even reaches the physical stop line before the violation is triggered.",
+          "Ambiguity persists regarding whether the red-light violation stems from perception, planning, control, or logging/oracle artifacts."
+        ]
+      }
+    ]
+  },
+  "raw_api_payload": {
+    "id": "<REDACTED_RESPONSE_ID>",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "{\n  \"case_id\": \"case_002\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Ego remains near original spawn at a signalized junction with slightly reduced rain, nearby stopped vehicle repositioned to subtly alter occlusions while ego exhibits minimal motion and an ambiguous relation to the red light is maintained.\",\n      \"mutation_intent\": \"Preserve a red-light violation with available traffic-light and final_waypoints data while keeping ego displacement minimal and route–light association ambiguous, by making small spatial adjustments to a nearby static vehicle and slightly easing weather without clarifying the stop-line geometry.\",\n      \"expected_oracle\": \"red_light\",\n      \"modifications\": {\n        \"weather_delta\": {\n          \"rain\": -10,\n          \"fog\": 0,\n          \"wetness\": -5,\n          \"puddle\": 0\n        },\n        \"actor_mutations\": [\n          {\n            \"actor_index\": 0,\n            \"position_offset\": {\n              \"x\": 2.0,\n              \"y\": -1.5\n            },\n            \"speed_delta\": 0.0\n          },\n          {\n            \"actor_index\": 1,\n            \"position_offset\": {\n              \"x\": -3.0,\n              \"y\": 2.0\n            },\n            \"speed_delta\": -1.5\n          }\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\n          \"keep_original\": true,\n          \"spawn_offset\": {\n            \"x\": 0.0,\n            \"y\": 0.0\n          },\n          \"destination_offset\": {\n            \"x\": 0.0,\n            \"y\": 0.0\n          }\n        }\n      },\n      \"pre_execution_validation_rules\": [\n        \"Ensure the mission spawn and destination remain on or near valid lanes in Town01 after applying no additional offsets.\",\n        \"Verify at least one traffic light is present and publishes to /carla/traffic_lights near the ego spawn area.\",\n        \"Confirm that actor_index 0 and 1 spawns are collision-free with static environment and each other after position offsets.\",\n        \"Check that actor_index 1 maintains a valid forward driving corridor for its reduced speed without immediate collision risk at t=0.\",\n        \"Validate that weather parameters after deltas remain within engine bounds and do not disable traffic-light visibility logic.\"\n      ],\n      \"post_execution_validation_rules\": [\n        \"Confirm error.json reports a red-light violation and does not primarily record collision, lane_invasion, or stuck as the main oracle.\",\n        \"Verify that /carla/traffic_lights messages exist throughout the critical window and include at least one red state.\",\n        \"Check that /final_waypoints are non-null and available up to just before the violation timestamp.\",\n        \"Inspect summaries to ensure route_light_relation_confirmed and stop_line_crossing_confirmed remain unknown or not explicitly true/false.\",\n        \"Measure ego odometry/current_pose to confirm only small displacement from spawn (e.g., within a few meters) over the entire run.\",\n        \"Ensure no definitive module-level blame (perception/planning/control/simulator) is inferred solely from logs; responsibility should remain unclear.\"\n      ],\n      \"uncertainty\": [\n        \"Which exact traffic light instance the oracle considered for the violation may remain ambiguous.\",\n        \"Whether the ego actually crosses a stop line or only approaches it may not be conclusively derivable from the logs.\",\n        \"Controller behavior versus environment configuration as the cause of red-light violation is still unclear.\"\n      ]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Ego spawn is slightly shifted along its route and destination subtly adjusted while nearby vehicles are minimally repositioned, maintaining low ego motion and ambiguous stop-line interaction under slightly increased fog and wetness.\",\n      \"mutation_intent\": \"Stress the same red-light oracle condition with traffic-light and waypoint data present while preserving near-zero ego displacement and uncertainty about whether the ego’s planned route truly crosses the red light, by nudging mission geometry and visibility without clarifying line markings.\",\n      \"expected_oracle\": \"red_light\",\n      \"modifications\": {\n        \"weather_delta\": {\n          \"rain\": 0,\n          \"fog\": 10,\n          \"wetness\": 10,\n          \"puddle\": 0\n        },\n        \"actor_mutations\": [\n          {\n            \"actor_index\": 0,\n            \"position_offset\": {\n              \"x\": -1.0,\n              \"y\": 1.0\n            },\n            \"speed_delta\": 0.0\n          },\n          {\n            \"actor_index\": 1,\n            \"position_offset\": {\n              \"x\": 4.0,\n              \"y\": -2.0\n            },\n            \"speed_delta\": -0.5\n          }\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\n          \"keep_original\": false,\n          \"spawn_offset\": {\n            \"x\": 3.0,\n            \"y\": -2.0\n          },\n            \"destination_offset\": {\n            \"x\": -4.0,\n            \"y\": 1.5\n          }\n        }\n      },\n      \"pre_execution_validation_rules\": [\n        \"Validate that the shifted mission spawn and destination remain on valid driveable lanes in Town01 and preserve a route that passes near at least one signalized intersection.\",\n        \"Ensure that /carla/traffic_lights actors are present within perception range of the ego’s shifted route.\",\n        \"Confirm that actor_index 0 and 1 do not spawn overlapping with the ego or each other after offsets.\",\n        \"Check that increased fog and wetness values do not exceed simulator bounds or disable traffic-light state publishing.\"\n      ],\n      \"post_execution_validation_rules\": [\n        \"Verify that error.json again reports a red-light violation as the primary oracle without additional main symptoms such as collision or lane_invasion.\",\n        \"Confirm continuous availability of /carla/traffic_lights with varying states (including red) around the violation time.\",\n        \"Check that /final_waypoints remain non-null and extend close to the violation timestamp for the shifted mission route.\",\n        \"Inspect that route_light_relation_confirmed and stop_line_crossing_confirmed are left undefined/unknown or ambiguous in the post-run summaries.\",\n        \"Ensure ego pose shows minimal overall displacement from the (shifted) spawn point, consistent with low-motion behavior.\",\n        \"Do not assign clear responsibility to perception, planning, control, or simulator layers unless logs provide unambiguous proof.\"\n      ],\n      \"uncertainty\": [\n        \"The precise geometric alignment between the shifted route and the nearest red light remains uncertain.\",\n        \"It may be unclear whether the ego even reaches the physical stop line before the violation is triggered.\",\n        \"Ambiguity persists regarding whether the red-light violation stems from perception, planning, control, or logging/oracle artifacts.\"\n      ]\n    }\n  ]\n}",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": [],
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "gpt-5.1-2025-11-13",
+    "object": "chat.completion",
+    "service_tier": "default",
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 1459,
+      "prompt_tokens": 1395,
+      "total_tokens": 2854,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": 0,
+        "audio_tokens": 0,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 0
+      }
+    }
+  },
+  "error_message": "",
+  "elapsed_sec": 22.548,
+  "timestamp": "<REDACTED_TIMESTAMP>"
+}

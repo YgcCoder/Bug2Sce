@@ -1,0 +1,139 @@
+{
+  "case_id": "case_151",
+  "model_name": "ark-doubao-seed-2.0-lite-260215",
+  "candidate_index": 1,
+  "candidate_spec": {
+    "candidate_id": "cand_001",
+    "high_level_variant": "Slightly offset positions of existing actors and puddles with minor weather adjustments",
+    "mutation_intent": "Creates a valid variant while strictly preserving all core root cause properties: conflicting failure labels, all-zero actuation commands, 101 available final waypoints, 2 actors/2 puddles, and low final ego velocity",
+    "expected_oracle": "compound",
+    "modifications": {
+      "weather_delta": {
+        "rain": 5,
+        "fog": -3,
+        "wetness": 4,
+        "puddle": 2
+      },
+      "actor_mutations": [
+        {
+          "actor_index": 0,
+          "position_offset": {
+            "x": 1.2,
+            "y": -0.8
+          },
+          "speed_delta": 0.5
+        },
+        {
+          "actor_index": 1,
+          "position_offset": {
+            "x": -0.9,
+            "y": 1.1
+          },
+          "speed_delta": -0.2
+        }
+      ],
+      "puddle_mutations": [
+        {
+          "puddle_index": 0,
+          "location_offset": {
+            "x": 0.5,
+            "y": -0.3
+          },
+          "level_delta": 0.05,
+          "size_scale": 1.05
+        },
+        {
+          "puddle_index": 1,
+          "location_offset": {
+            "x": -0.2,
+            "y": 0.4
+          },
+          "level_delta": -0.03,
+          "size_scale": 0.95
+        }
+      ],
+      "mission_mutation": {
+        "keep_original": true,
+        "spawn_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "destination_offset": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Verify 2 actors and 2 puddles are preserved",
+      "Verify 101 final waypoints are available throughout critical window",
+      "Confirm all-zero actuation commands are set for ego"
+    ],
+    "post_execution_validation_rules": [
+      "Verify low mean ego velocity in final 60 seconds",
+      "Confirm conflicting labels between dataset and error oracle are retained"
+    ],
+    "uncertainty": [
+      "Conflicting stuck and lane invasion labels remain unresolved",
+      "No evidence of lane boundary crossing exists to confirm lane invasion",
+      "No specific module-level failure can be confirmed"
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": 5.0,
+      "fog": -3.0,
+      "wetness": 4.0,
+      "puddle": 2.0
+    },
+    "actor_mutations": [
+      {
+        "actor_index": 0,
+        "position_offset": {
+          "x": 1.2,
+          "y": -0.8
+        },
+        "speed_delta": 0.5
+      },
+      {
+        "actor_index": 1,
+        "position_offset": {
+          "x": -0.9,
+          "y": 1.1
+        },
+        "speed_delta": -0.2
+      }
+    ],
+    "puddle_mutations": [
+      {
+        "puddle_index": 0,
+        "location_offset": {
+          "x": 0.5,
+          "y": -0.3
+        },
+        "level_delta": 0.05,
+        "size_scale": 1.05
+      },
+      {
+        "puddle_index": 1,
+        "location_offset": {
+          "x": -0.2,
+          "y": 0.4
+        },
+        "level_delta": -0.03,
+        "size_scale": 0.95
+      }
+    ],
+    "mission_mutation": {
+      "keep_original": true
+    }
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_151__ark-doubao-seed-2.0-lite-260215.json",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_151__ark-doubao-seed-2.0-lite-260215.json",
+  "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+}

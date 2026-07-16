@@ -1,0 +1,123 @@
+{
+  "case_id": "case_069",
+  "workflow": "phase1_causal_explanation",
+  "model_name": "ark-doubao-seed-2.0-lite-260215",
+  "model_id": "ark-doubao-seed-2.0-lite-260215",
+  "status": "completed",
+  "dry_run": false,
+  "schema_valid": true,
+  "schema_errors": [],
+  "quality_flags": [],
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_prompts/case_069__ark-doubao-seed-2.0-lite-260215.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_069__ark-doubao-seed-2.0-lite-260215.json",
+  "prompt_estimated_tokens": 3081,
+  "usage": {
+    "prompt_tokens": 4067,
+    "completion_tokens": 2553,
+    "total_tokens": 6620
+  },
+  "estimated_cost_usd": null,
+  "raw_response": "{\n  \"case_id\": \"case_069\",\n  \"fault_layer\": \"unknown\",\n  \"fault_component\": \"unknown\",\n  \"causal_explanation\": \"Dataset labels collision and lane invasion, but error.json records neither event, only speeding. A mismatch exists between all-zero /vehicle_cmd actuation commands and non-zero throttle/positive ego velocity from /vehicle_status in the critical pre-event window. No specific module failure is directly confirmed by available evidence.\",\n  \"root_cause_pattern\": \"Conservative pattern: Unresolved label conflict between dataset and error.json oracle labels, paired with an unexplained mismatch between commanded zero actuation and observed moving ego vehicle state, with unconfirmed collision and lane invasion symptoms.\",\n  \"preservation_constraints\": [\n    \"Preserve the mismatch between all-zero actuation commands and non-zero observed throttle/positive ego velocity in the critical window\",\n    \"Preserve the label conflict between dataset and error.json for collision and lane invasion symptoms\",\n    \"Preserve the total count of two actors in the scenario\",\n    \"Preserve the absence of reported blocked waypoints in the critical pre-event window\",\n    \"Preserve the base map as Town01\"\n  ],\n  \"modifiable_factors\": [\"actor_position\", \"cloudiness\", \"rain_intensity\", \"wind_speed\", \"fog_density\", \"mission start/goal offset\"],\n  \"non_modifiable_conditions\": [\"Label conflict between dataset and error.json for collision and lane invasion\", \"Mismatch between all-zero vehicle_cmd and non-zero observed vehicle movement\", \"Total of two actors in the scenario\", \"No blocked waypoints reported in pre-event critical window\"],\n  \"uncertainty\": [\n    \"Conflict between dataset labels (collision=1, lane_invasion=1) and error.json events (collision=0, lane_invasion=0)\",\n    \"No critical-window evidence directly attributes failure to a specific Autoware module\",\n    \"The mismatch between vehicle_cmd and vehicle_status cannot be confirmed as an actuation fault from this mismatch alone\",\n    \"Collision and lane invasion symptoms are not confirmed by error.json\"\n  ],\n  \"evidence_support\": [\n    {\"evidence_id\": \"label_conflict\", \"claim\": \"Dataset labels collision and lane invasion, while error.json records neither event\"},\n    {\"evidence_id\": \"collision_window_control_stats\", \"claim\": \"All vehicle_cmd acceleration, brake, and steer commands are zero in the critical pre-collision window\"},\n    {\"evidence_id\": \"vehicle_status_stats\", \"claim\": \"Vehicle_status reports non-zero throttle and positive ego velocity in the critical pre-collision window\"},\n    {\"evidence_id\": \"final_waypoints_summary\", \"claim\": \"No blocked waypoints were reported in the critical pre-event window\"}\n  ],\n  \"confidence\": \"low\",\n  \"ready_for_phase2_generation\": \"uncertain\",\n  \"notes_for_validator\": [\n    \"Resolve the label conflict between dataset and error.json before validating any generated case with this root cause\",\n    \"Verify that the actuation command-vehicle state mismatch is reproduced in generated candidate cases\",\n    \"Check for collision or lane invasion events during generated case execution to resolve label ambiguity\"\n  ]\n}",
+  "parsed_response": {
+    "case_id": "case_069",
+    "fault_layer": "unknown",
+    "fault_component": "unknown",
+    "causal_explanation": "Dataset labels collision and lane invasion, but error.json records neither event, only speeding. A mismatch exists between all-zero /vehicle_cmd actuation commands and non-zero throttle/positive ego velocity from /vehicle_status in the critical pre-event window. No specific module failure is directly confirmed by available evidence.",
+    "root_cause_pattern": "Conservative pattern: Unresolved label conflict between dataset and error.json oracle labels, paired with an unexplained mismatch between commanded zero actuation and observed moving ego vehicle state, with unconfirmed collision and lane invasion symptoms.",
+    "preservation_constraints": [
+      "Preserve the mismatch between all-zero actuation commands and non-zero observed throttle/positive ego velocity in the critical window",
+      "Preserve the label conflict between dataset and error.json for collision and lane invasion symptoms",
+      "Preserve the total count of two actors in the scenario",
+      "Preserve the absence of reported blocked waypoints in the critical pre-event window",
+      "Preserve the base map as Town01"
+    ],
+    "modifiable_factors": [
+      "actor_position",
+      "cloudiness",
+      "rain_intensity",
+      "wind_speed",
+      "fog_density",
+      "mission start/goal offset"
+    ],
+    "non_modifiable_conditions": [
+      "Label conflict between dataset and error.json for collision and lane invasion",
+      "Mismatch between all-zero vehicle_cmd and non-zero observed vehicle movement",
+      "Total of two actors in the scenario",
+      "No blocked waypoints reported in pre-event critical window"
+    ],
+    "uncertainty": [
+      "Conflict between dataset labels (collision=1, lane_invasion=1) and error.json events (collision=0, lane_invasion=0)",
+      "No critical-window evidence directly attributes failure to a specific Autoware module",
+      "The mismatch between vehicle_cmd and vehicle_status cannot be confirmed as an actuation fault from this mismatch alone",
+      "Collision and lane invasion symptoms are not confirmed by error.json"
+    ],
+    "evidence_support": [
+      {
+        "evidence_id": "label_conflict",
+        "claim": "Dataset labels collision and lane invasion, while error.json records neither event"
+      },
+      {
+        "evidence_id": "collision_window_control_stats",
+        "claim": "All vehicle_cmd acceleration, brake, and steer commands are zero in the critical pre-collision window"
+      },
+      {
+        "evidence_id": "vehicle_status_stats",
+        "claim": "Vehicle_status reports non-zero throttle and positive ego velocity in the critical pre-collision window"
+      },
+      {
+        "evidence_id": "final_waypoints_summary",
+        "claim": "No blocked waypoints were reported in the critical pre-event window"
+      }
+    ],
+    "confidence": "low",
+    "ready_for_phase2_generation": "uncertain",
+    "notes_for_validator": [
+      "Resolve the label conflict between dataset and error.json before validating any generated case with this root cause",
+      "Verify that the actuation command-vehicle state mismatch is reproduced in generated candidate cases",
+      "Check for collision or lane invasion events during generated case execution to resolve label ambiguity"
+    ]
+  },
+  "raw_api_payload": {
+    "id": "02178291934775399f913e5b3ccf9b27055ed4462532329ac3056",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "{\n  \"case_id\": \"case_069\",\n  \"fault_layer\": \"unknown\",\n  \"fault_component\": \"unknown\",\n  \"causal_explanation\": \"Dataset labels collision and lane invasion, but error.json records neither event, only speeding. A mismatch exists between all-zero /vehicle_cmd actuation commands and non-zero throttle/positive ego velocity from /vehicle_status in the critical pre-event window. No specific module failure is directly confirmed by available evidence.\",\n  \"root_cause_pattern\": \"Conservative pattern: Unresolved label conflict between dataset and error.json oracle labels, paired with an unexplained mismatch between commanded zero actuation and observed moving ego vehicle state, with unconfirmed collision and lane invasion symptoms.\",\n  \"preservation_constraints\": [\n    \"Preserve the mismatch between all-zero actuation commands and non-zero observed throttle/positive ego velocity in the critical window\",\n    \"Preserve the label conflict between dataset and error.json for collision and lane invasion symptoms\",\n    \"Preserve the total count of two actors in the scenario\",\n    \"Preserve the absence of reported blocked waypoints in the critical pre-event window\",\n    \"Preserve the base map as Town01\"\n  ],\n  \"modifiable_factors\": [\"actor_position\", \"cloudiness\", \"rain_intensity\", \"wind_speed\", \"fog_density\", \"mission start/goal offset\"],\n  \"non_modifiable_conditions\": [\"Label conflict between dataset and error.json for collision and lane invasion\", \"Mismatch between all-zero vehicle_cmd and non-zero observed vehicle movement\", \"Total of two actors in the scenario\", \"No blocked waypoints reported in pre-event critical window\"],\n  \"uncertainty\": [\n    \"Conflict between dataset labels (collision=1, lane_invasion=1) and error.json events (collision=0, lane_invasion=0)\",\n    \"No critical-window evidence directly attributes failure to a specific Autoware module\",\n    \"The mismatch between vehicle_cmd and vehicle_status cannot be confirmed as an actuation fault from this mismatch alone\",\n    \"Collision and lane invasion symptoms are not confirmed by error.json\"\n  ],\n  \"evidence_support\": [\n    {\"evidence_id\": \"label_conflict\", \"claim\": \"Dataset labels collision and lane invasion, while error.json records neither event\"},\n    {\"evidence_id\": \"collision_window_control_stats\", \"claim\": \"All vehicle_cmd acceleration, brake, and steer commands are zero in the critical pre-collision window\"},\n    {\"evidence_id\": \"vehicle_status_stats\", \"claim\": \"Vehicle_status reports non-zero throttle and positive ego velocity in the critical pre-collision window\"},\n    {\"evidence_id\": \"final_waypoints_summary\", \"claim\": \"No blocked waypoints were reported in the critical pre-event window\"}\n  ],\n  \"confidence\": \"low\",\n  \"ready_for_phase2_generation\": \"uncertain\",\n  \"notes_for_validator\": [\n    \"Resolve the label conflict between dataset and error.json before validating any generated case with this root cause\",\n    \"Verify that the actuation command-vehicle state mismatch is reproduced in generated candidate cases\",\n    \"Check for collision or lane invasion events during generated case execution to resolve label ambiguity\"\n  ]\n}",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null,
+          "reasoning_content": "\nOkay, let's work through this step by step. First, the case_id is case_069, right? Got that from input.\n\nNext, fault_layer. Let's see. There's a conflict between dataset labels (collision 1, lane invasion 1) and error_json says none. Also, look at vehicle_cmd: all commands are zero, but vehicle_status has throttle non-zero, speed moving. Wait, let's check: vehicle_cmd all zero, but vehicle_status has throttle from 0.22 to 1, brake zero, speed around 5. So mismatch, can't confirm actuation. No direct evidence for any module, right? Wait, let's check: dataset says C+L, error_json has no collision no lane invasion, only speeding. So fault_layer, since attribution not clear, it's unknown? Wait, wait, let's check the rules: if labels conflict, mark uncertainty. Prefer fault_layer unknown when no direct module evidence. Yeah.\n\nFault component: unknown, right? Because no direct evidence.\n\nCausal explanation: Dataset labels collision and lane invasion, but error.json records no such events, only speeding. There is a mismatch between all-zero /vehicle_cmd commands and non-zero throttle/positive ego velocity in vehicle_status before the reported collision timestamp. No module failure is directly confirmed by critical window evidence.\n\nRoot cause pattern: Conservative pattern: Label conflict between dataset and error.json exists, with an unexplained mismatch between commanded vehicle actuation and observed vehicle movement, and reported collision/lane invasion symptoms that are not confirmed by error.json.\n\nPreservation constraints: Let's make 3-6. Let's see: 1. Preserve the mismatch between all-zero actuation commands and non-zero observed throttle/velocity. 2. Preserve the label conflict between dataset and error.json for collision and lane invasion. 3. Preserve the presence of two actors in the scenario. 4. Preserve the final waypoints count with no blocked waypoints reported before the event. That's good.\n\nModifiable factors: Let's see, things that can change: actor positions, weather conditions, start/goal position within same map, mission route. Wait, input has weather with rain 5, puddles 0, so modifiable: actor_position, weather, mission, fog, wind. Yeah.\n\nNon-modifiable conditions: same map (Town01), two actors total, mismatch between zero vehicle_cmd and non-zero observed vehicle velocity/throttle, label conflict between dataset and error.json.\n\nUncertainty: Let's list: 1. Conflict between dataset labels (collision=1, lane_invasion=1) and error.json (no collision, no lane_invasion). 2. No direct evidence localizes failure to a specific Autoware module. 3. Actuation mismatch between vehicle_cmd and vehicle_status can't be confirmed as controller fault from available evidence. That's right.\n\nEvidence support: Let's list each. First: {\"evidence_id\": \"oracle_consistency\", \"claim\": \"Dataset labels conflict with error.json events for collision and lane invasion.\"}, then {\"evidence_id\": \"collision_window_control\", \"claim\": \"All vehicle_cmd values are zero while vehicle_status reports non-zero throttle and positive ego velocity before the reported collision.\"}, {\"evidence_id\": \"final_waypoints_before_collision\", \"claim\": \"No blocked waypoints were reported in the critical window before the event.\"}, {\"evidence_id\": \"detected_objects\", \"claim\": \"At least one object was detected by perception before the reported event.\"} That's good.\n\nConfidence: Low, right? Because of conflict and no module attribution.\n\nReady_for_phase2_generation: Yes? Wait, rule says use yes when there's a checkable conservative pattern. We have that. Wait, but label conflict, but the pattern is checkable. Let's see, rule says \"use yes when there is a checkable conservative preservation pattern; use uncertain when labels conflict or a key condition is missing.\" Wait wait, rule says: \"Do not set ready_for_phase2_generation=no solely because fault_layer is unknown. Use yes when there is a checkable conservative preservation pattern; use uncertain when labels conflict or a key condition is missing.\" Oh, labels conflict here, so uncertain? Wait let's recheck that rule: yes when checkable conservative, uncertain when labels conflict or key condition missing. Oh right, this case has label conflict, so ready_for_phase2 is uncertain? Wait no, let's read again: \"If Dataset.xlsx and error.json disagree, mark uncertainty and do not treat the dataset label as confirmed ground truth.\" So ready_for_phase2: uncertain? Because labels conflict. Yeah.\n\nNotes_for_validator: [\"Must resolve label conflict between dataset and error.json before confirming generated case validity.\", \"Check if the actuation command-vehicle status mismatch is reproduced in generated cases.\"] That's good.\n\nWait let's put it all together correctly, make sure it follows all rules. Let's check each part again.\n\nWait fault_layer: is there any way it's actuation? Let's see: vehicle_cmd is all zero, but vehicle moves. Rule says: \"If vehicle_cmd is all zero but vehicle_status shows movement/braking, mark controller behavior as uncertain. Do not assign fault_layer=actuation from this mismatch alone.\" Oh right! So can't assign actuation, so fault_layer is unknown. Correct.\n\nFault component: unknown, correct.\n\nCausal explanation: Let's make it concise: \"Dataset labels this case as having both collision and lane invasion, but error.json records neither event, only speeding. A mismatch exists between all-zero actuation commands on /vehicle_cmd and non-zero throttle/positive ego velocity reported by /vehicle_status in the critical window before the reported collision. No specific module failure is directly confirmed by available evidence.\" That's good, concise.\n\nRoot_cause_pattern: \"Conservative pattern: Unresolved label conflict between dataset and error.json oracle labels, paired with an unexplained mismatch between commanded zero actuation and observed moving ego vehicle state, with unconfirmed collision and lane invasion symptoms.\" That's good.\n\nPreservation_constraints: Let's list:\n[\n\"Preserve the mismatch between all-zero actuation commands and non-zero observed throttle/positive ego velocity in the critical window\",\n\"Preserve the label conflict between dataset and error.json for collision and lane invasion symptoms\",\n\"Preserve the total count of two actors in the scenario\",\n\"Preserve the absence of reported blocked waypoints in the critical pre-event window\",\n\"Preserve the map as Town01\"\n] That's 5, perfect, 3-6.\n\nModifiable_factors: [\"actor_position\", \"weather_cloudiness\", \"rain_intensity\", \"wind_speed\", \"fog_density\", \"mission goal offset\"] Correct.\n\nNon_modifiable_conditions: [\"Label conflict between dataset and error.json for collision and lane invasion\", \"Mismatch between all-zero vehicle_cmd and non-zero observed vehicle movement\", \"Total of two actors in the scenario\", \"No blocked waypoints reported in pre-event critical window\"] Correct.\n\nUncertainty: [\"Conflict between dataset labels (collision=1, lane_invasion=1) and error.json events (collision=0, lane_invasion=0)\", \"No critical-window evidence directly attributes failure to a specific Autoware module\", \"The mismatch between vehicle_cmd and vehicle_status cannot be confirmed as an actuation controller fault from available evidence alone\", \"Collision and lane invasion symptoms are not confirmed by error.json\"] Correct.\n\nEvidence_support: Let's do each correctly:\n[\n{\"evidence_id\": \"label_conflict\", \"claim\": \"Dataset labels collision and lane invasion, while error.json records neither event\"},\n{\"evidence_id\": \"collision_window_control_stats\", \"claim\": \"All vehicle_cmd acceleration, brake, and steer commands are zero in the critical pre-collision window\"},\n{\"evidence_id\": \"vehicle_status_stats\", \"claim\": \"Vehicle_status reports non-zero throttle and positive ego velocity in the critical pre-collision window\"},\n{\"evidence_id\": \"final_waypoints_summary\", \"claim\": \"No blocked waypoints were reported in the critical pre-event window\"}\n] Correct.\n\nConfidence: low, right? Because all the uncertainty.\n\nReady_for_phase2_generation: uncertain, because labels conflict, per rule.\n\nNotes_for_validator: [\"Resolve the label conflict between dataset and error.json before validating any generated case with this root cause\", \"Verify that the actuation command-vehicle state mismatch is reproduced in generated candidate cases\", \"Check for collision or lane invasion events in generated case execution to resolve label ambiguity\"] That's good.\n\nWait let's make sure it's all valid JSON, no trailing commas. Let's put it all together now."
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "doubao-seed-2-0-lite-260215",
+    "object": "chat.completion",
+    "service_tier": "default",
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 2553,
+      "prompt_tokens": 4067,
+      "total_tokens": 6620,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 1855,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": null,
+        "cached_tokens": 0
+      }
+    }
+  },
+  "error_message": "",
+  "timestamp": "<REDACTED_TIMESTAMP>",
+  "elapsed_sec": 52.725
+}

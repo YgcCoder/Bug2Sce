@@ -1,0 +1,115 @@
+{
+  "case_id": "case_037",
+  "model_name": "gpt-5.1",
+  "candidate_index": 2,
+  "candidate_spec": {
+    "candidate_id": "cand_002",
+    "high_level_variant": "Shift the ego mission slightly while keeping it near the same signalized junction and reposition both the oncoming vehicle and a nearby walker to force close proximity under heavy rain, preserving a red-light violation with a late collision impulse and minimal ego control commands.",
+    "mutation_intent": "Conservatively alter spatial relationships so that both a vehicle and a pedestrian are close to the ego near failure time, increasing the chance of a collision oracle impulse while still mirroring the original pattern: red-light violation in error.json, full non-blocked waypoints, near-zero vehicle_cmd, and uncertain collision and lane-invasion labels.",
+    "expected_oracle": "compound",
+    "modifications": {
+      "weather_delta": {
+        "rain": -5,
+        "fog": 10,
+        "wetness": 10,
+        "puddle": 0
+      },
+      "actor_mutations": [
+        {
+          "actor_index": 0,
+          "position_offset": {
+            "x": -3.0,
+            "y": 1.5
+          },
+          "speed_delta": -0.5
+        },
+        {
+          "actor_index": 1,
+          "position_offset": {
+            "x": 1.0,
+            "y": -2.5
+          },
+          "speed_delta": 0.3
+        }
+      ],
+      "puddle_mutations": [],
+      "mission_mutation": {
+        "keep_original": false,
+        "spawn_offset": {
+          "x": 3.0,
+          "y": -2.0
+        },
+        "destination_offset": {
+          "x": -4.0,
+          "y": 1.5
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Confirm that the adjusted mission still traverses at least one traffic-light-controlled intersection in Town01.",
+      "Ensure the traffic light governing the ego’s approach can be red while the ego is near or slightly beyond the stop line, to allow a red-light violation to be triggered.",
+      "Verify that after offsets, actor_index 0’s lane and actor_index 1’s walking path both pass within 2–4 meters of the ego near the end of the run.",
+      "Confirm heavy rain or near-heavy conditions are preserved (rain ≥ 80 or wetness ≥ 80) and that fog stays within realistic bounds for visibility degradation.",
+      "Check that the planning stack is configured to generate final_waypoints that are not marked as blocked in the time leading up to the potential collision.",
+      "Ensure Autoware control configuration keeps vehicle_cmd accel, brake, steer, and target speed near zero throughout the run."
+    ],
+    "post_execution_validation_rules": [
+      "Validate that error.json records at least one red-light violation for this scenario.",
+      "Confirm the collision oracle topic logs at least one collision/impulse event near the end of the drive, regardless of whether error.json lists a crash.",
+      "Check that at least one of the non-ego actors (vehicle or walker) is within 0–3 meters of the ego at the time of the collision impulse.",
+      "Verify final_waypoints exist and are not blocked in the few seconds leading up to the collision impulse timestamp.",
+      "Confirm that vehicle_cmd remains near zero while vehicle_status or odometry indicates slight ego motion in the collision window.",
+      "Treat any lane-invasion oracle events as observational only; do not override the uncertainty about lane-invasion ground truth in higher-level labeling."
+    ],
+    "uncertainty": [
+      "It remains unclear whether any lane boundary is actually crossed during the red-light violation or collision.",
+      "The exact timing relationship between the red phase, ego position, and collision impulse is not constrained, so the causal order of red-light violation and collision is uncertain.",
+      "Responsibility among perception, planning, and actuation modules cannot be resolved from these high-level scenario mutations and must remain unspecified."
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": -5.0,
+      "fog": 10.0,
+      "wetness": 10.0,
+      "puddle": 0.0
+    },
+    "actor_mutations": [
+      {
+        "actor_index": 0,
+        "position_offset": {
+          "x": -3.0,
+          "y": 1.5
+        },
+        "speed_delta": -0.5
+      },
+      {
+        "actor_index": 1,
+        "position_offset": {
+          "x": 1.0,
+          "y": -2.5
+        },
+        "speed_delta": 0.3
+      }
+    ],
+    "puddle_mutations": [],
+    "mission_mutation": {
+      "spawn_offset": {
+        "x": 3.0,
+        "y": -2.0
+      },
+      "destination_offset": {
+        "x": -4.0,
+        "y": 1.5
+      }
+    }
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_037__gpt-5.1.json",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_037__gpt-5.1.json",
+  "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+}

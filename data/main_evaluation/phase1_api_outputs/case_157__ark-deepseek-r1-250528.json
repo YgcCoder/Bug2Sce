@@ -1,0 +1,118 @@
+{
+  "case_id": "case_157",
+  "workflow": "phase1_causal_explanation",
+  "model_name": "ark-deepseek-r1-250528",
+  "model_id": "ark-deepseek-r1-250528",
+  "status": "completed",
+  "dry_run": false,
+  "schema_valid": true,
+  "schema_errors": [],
+  "quality_flags": [],
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_prompts/case_157__ark-deepseek-r1-250528.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_157__ark-deepseek-r1-250528.json",
+  "prompt_estimated_tokens": 2968,
+  "usage": {
+    "prompt_tokens": 4035,
+    "completion_tokens": 2387,
+    "total_tokens": 6422
+  },
+  "estimated_cost_usd": null,
+  "raw_response": "{\n  \"case_id\": \"case_157\",\n  \"fault_layer\": \"unknown\",\n  \"fault_component\": \"unknown\",\n  \"causal_explanation\": \"Confirmed collision between ego and another actor. Pre-collision critical window shows all vehicle control commands are zero, but ego continued moving at ~4.7 m/s with no braking applied. Planning reported no blocked waypoints immediately before collision despite the approaching actor. No module-level fault can be confirmed from available evidence.\",\n  \"root_cause_pattern\": \"Conservative pattern: Ego receives zero actuation commands for all control outputs while continuing to move toward a nearby actor on the planned route, resulting in collision, with unconfirmed module-level root cause.\",\n  \"preservation_constraints\": [\n    \"Preserve confirmed collision as the oracle symptom\",\n    \"All vehicle control commands (accel, brake, steer, velocity) are zero in the pre-collision critical window\",\n    \"Ego maintains non-zero forward speed with no braking in the pre-collision window\",\n    \"Planning reports no blocked waypoints immediately before collision\"\n  ],\n  \"modifiable_factors\": [\"actor_position\", \"weather_conditions\", \"number of non-colliding actors\", \"mission start position offset\"],\n  \"non_modifiable_conditions\": [\"confirmed collision outcome\", \"all-zero pre-collision vehicle control commands\", \"non-zero pre-collision ego speed with zero braking\", \"unblocked pre-collision final waypoints\"],\n  \"uncertainty\": [\n    \"Mismatch between all-zero vehicle_cmd and moving ego cannot confirm actuation layer fault per analysis rules\",\n    \"No direct evidence confirms whether perception, planning, or actuation failed to respond to the colliding actor\",\n    \"Module-level fault attribution is not supported by critical window evidence\"\n  ],\n  \"evidence_support\": [\n    {\"evidence_id\": \"oracle_consistency\", \"claim\": \"Collision label is consistent between dataset and error.json\"},\n    {\"evidence_id\": \"critical_window_vehicle_cmd\", \"claim\": \"All vehicle control commands are zero in the entire pre-collision window\"},\n    {\"evidence_id\": \"critical_window_vehicle_status\", \"claim\": \"Ego maintains ~4.7 m/s speed with zero brake pre-collision\"},\n    {\"evidence_id\": \"critical_window_final_waypoints\", \"claim\": \"No waypoints were marked blocked immediately before collision\"}\n  ],\n  \"confidence\": \"low\",\n  \"ready_for_phase2_generation\": \"yes\",\n  \"notes_for_validator\": [\n    \"Post-generation validation must confirm pre-collision zero commands, non-zero ego speed, no braking, and collision outcome\",\n    \"Module-level fault should not be assumed unless post-execution critical window evidence directly supports attribution\"\n  ]\n}",
+  "parsed_response": {
+    "case_id": "case_157",
+    "fault_layer": "unknown",
+    "fault_component": "unknown",
+    "causal_explanation": "Confirmed collision between ego and another actor. Pre-collision critical window shows all vehicle control commands are zero, but ego continued moving at ~4.7 m/s with no braking applied. Planning reported no blocked waypoints immediately before collision despite the approaching actor. No module-level fault can be confirmed from available evidence.",
+    "root_cause_pattern": "Conservative pattern: Ego receives zero actuation commands for all control outputs while continuing to move toward a nearby actor on the planned route, resulting in collision, with unconfirmed module-level root cause.",
+    "preservation_constraints": [
+      "Preserve confirmed collision as the oracle symptom",
+      "All vehicle control commands (accel, brake, steer, velocity) are zero in the pre-collision critical window",
+      "Ego maintains non-zero forward speed with no braking in the pre-collision window",
+      "Planning reports no blocked waypoints immediately before collision"
+    ],
+    "modifiable_factors": [
+      "actor_position",
+      "weather_conditions",
+      "number of non-colliding actors",
+      "mission start position offset"
+    ],
+    "non_modifiable_conditions": [
+      "confirmed collision outcome",
+      "all-zero pre-collision vehicle control commands",
+      "non-zero pre-collision ego speed with zero braking",
+      "unblocked pre-collision final waypoints"
+    ],
+    "uncertainty": [
+      "Mismatch between all-zero vehicle_cmd and moving ego cannot confirm actuation layer fault per analysis rules",
+      "No direct evidence confirms whether perception, planning, or actuation failed to respond to the colliding actor",
+      "Module-level fault attribution is not supported by critical window evidence"
+    ],
+    "evidence_support": [
+      {
+        "evidence_id": "oracle_consistency",
+        "claim": "Collision label is consistent between dataset and error.json"
+      },
+      {
+        "evidence_id": "critical_window_vehicle_cmd",
+        "claim": "All vehicle control commands are zero in the entire pre-collision window"
+      },
+      {
+        "evidence_id": "critical_window_vehicle_status",
+        "claim": "Ego maintains ~4.7 m/s speed with zero brake pre-collision"
+      },
+      {
+        "evidence_id": "critical_window_final_waypoints",
+        "claim": "No waypoints were marked blocked immediately before collision"
+      }
+    ],
+    "confidence": "low",
+    "ready_for_phase2_generation": "yes",
+    "notes_for_validator": [
+      "Post-generation validation must confirm pre-collision zero commands, non-zero ego speed, no braking, and collision outcome",
+      "Module-level fault should not be assumed unless post-execution critical window evidence directly supports attribution"
+    ]
+  },
+  "raw_api_payload": {
+    "id": "0217829215102195ab88183db28c1bc6bd9a1d3f70c5b508ad262",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "{\n  \"case_id\": \"case_157\",\n  \"fault_layer\": \"unknown\",\n  \"fault_component\": \"unknown\",\n  \"causal_explanation\": \"Confirmed collision between ego and another actor. Pre-collision critical window shows all vehicle control commands are zero, but ego continued moving at ~4.7 m/s with no braking applied. Planning reported no blocked waypoints immediately before collision despite the approaching actor. No module-level fault can be confirmed from available evidence.\",\n  \"root_cause_pattern\": \"Conservative pattern: Ego receives zero actuation commands for all control outputs while continuing to move toward a nearby actor on the planned route, resulting in collision, with unconfirmed module-level root cause.\",\n  \"preservation_constraints\": [\n    \"Preserve confirmed collision as the oracle symptom\",\n    \"All vehicle control commands (accel, brake, steer, velocity) are zero in the pre-collision critical window\",\n    \"Ego maintains non-zero forward speed with no braking in the pre-collision window\",\n    \"Planning reports no blocked waypoints immediately before collision\"\n  ],\n  \"modifiable_factors\": [\"actor_position\", \"weather_conditions\", \"number of non-colliding actors\", \"mission start position offset\"],\n  \"non_modifiable_conditions\": [\"confirmed collision outcome\", \"all-zero pre-collision vehicle control commands\", \"non-zero pre-collision ego speed with zero braking\", \"unblocked pre-collision final waypoints\"],\n  \"uncertainty\": [\n    \"Mismatch between all-zero vehicle_cmd and moving ego cannot confirm actuation layer fault per analysis rules\",\n    \"No direct evidence confirms whether perception, planning, or actuation failed to respond to the colliding actor\",\n    \"Module-level fault attribution is not supported by critical window evidence\"\n  ],\n  \"evidence_support\": [\n    {\"evidence_id\": \"oracle_consistency\", \"claim\": \"Collision label is consistent between dataset and error.json\"},\n    {\"evidence_id\": \"critical_window_vehicle_cmd\", \"claim\": \"All vehicle control commands are zero in the entire pre-collision window\"},\n    {\"evidence_id\": \"critical_window_vehicle_status\", \"claim\": \"Ego maintains ~4.7 m/s speed with zero brake pre-collision\"},\n    {\"evidence_id\": \"critical_window_final_waypoints\", \"claim\": \"No waypoints were marked blocked immediately before collision\"}\n  ],\n  \"confidence\": \"low\",\n  \"ready_for_phase2_generation\": \"yes\",\n  \"notes_for_validator\": [\n    \"Post-generation validation must confirm pre-collision zero commands, non-zero ego speed, no braking, and collision outcome\",\n    \"Module-level fault should not be assumed unless post-execution critical window evidence directly supports attribution\"\n  ]\n}",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null,
+          "reasoning_content": "\nGot it, let's work through this step by step. First, case_id is case_157, right? Let's get that first.\n\nNext, fault_layer. Let's look at the evidence. Vehicle_cmd all zero, but vehicle_status has throttle non-zero, ego is moving at ~4.7 m/s before collision. Wait, vehicle_cmd is all zero (accel, brake, steer all zero the whole window), but vehicle_status has throttle up to 0.56, speed is ~4.7, no braking. What modules? Let's see: planning has final_waypoints, none blocked. Perception detected 1 object last, predicted 1. But wait, the mismatch: vehicle_cmd is all zero, but ego is moving. Wait the rule says if vehicle_cmd all zero but vehicle_status shows movement, don't assign actuation from that alone. Oh right, rule says that. So fault attribution is not clear? Wait let's check: collision happened, closest detected object was 3.486m away before collision, closest object distance in final waypoint is 0.0? Wait no, the nearest pre-collision final waypoint row says closest_object_distance 0.0. Wait let's see: vehicle_cmd is all zero commands, but ego is still moving, speed didn't decrease, no braking. But we can't assign actuation fault directly because of the mismatch rule. Wait let's list the facts:\n\nCollision confirmed, oracle consistent. Vehicle_cmd (all commands: accel, brake, steer, velocity) are all zero in the entire critical window, but vehicle_status shows throttle non-zero, ego speed ~4.7 m/s, no braking, no speed decrease before collision. Final waypoints are all unblocked, even right before collision. Perception detected at least one object (the collision one) before collision, last detected count is 1. Wait the closest object was 3.486m earlier, then collision. Wait what's the causal explanation? Let's see: Confirmed collision between ego and another actor. In the pre-collision critical window, all vehicle commands are zero, but ego continued moving at ~4.7 m/s with no braking applied (neither vehicle_cmd nor vehicle_status has non-zero brake). Planning reported no blocked waypoints immediately before collision, even with the collision actor nearby. We have a mismatch between zero vehicle_cmd and moving ego, per rules can't confirm actuation fault. So fault_layer is unknown? Wait wait, let's check again. Wait vehicle_cmd is from the planning/control to actuator right? All zero, but actuator (vehicle_status) has throttle non-zero. But rule says don't assign fault_layer=actuation from mismatch alone. Right, the rule says: \"If vehicle_cmd is all zero but vehicle_status shows movement/braking, mark controller behavior as uncertain. Do not assign fault_layer=actuation from this mismatch alone.\" So yes, so fault_layer is unknown, fault_component unknown? Wait or is there any? Let's see: planning says no blocked waypoints when there's an obstacle close. Is that evidence? Wait the closest_object_distance in final waypoint is 0.0 at collision timestamp, but before that it wasn't marked blocked. Wait but do we have direct evidence that planning failed? Let's see, the evidence says blocked_waypoint_event_total is zero, is_blocked is false even at nearest pre-collision. But is that enough? Wait the rule says don't say a module fails to unless evidence directly supports. Wait let's be cautious.\n\nCausal explanation: Let's write it correctly: Confirmed collision between ego vehicle and another actor. Pre-collision critical window shows all vehicle output commands are zero, but ego continued moving at ~4.7 m/s with no braking applied (no non-zero brake in either vehicle_cmd or vehicle_status). Planning did not mark any waypoints as blocked immediately before collision, despite the approaching actor. No direct module-level fault can be confirmed from the available evidence.\n\nRoot cause pattern: Conservative pattern: ego vehicle receives zero actuation commands for all control outputs (accel, brake, steer) while continuing to move toward a nearby actor on the planned route, resulting in collision, with unconfirmed module-level root cause.\n\nPreservation constraints: Let's make 3-6, right. Let's see:\n1. Preserve confirmed collision as the oracle symptom.\n2. All vehicle control commands (accel, brake, steer, velocity) are zero in the pre-collision critical window.\n3. Ego vehicle maintains non-zero forward speed with no braking in the pre-collision window.\n4. Planning reports no blocked waypoints immediately before collision.\nThat's four, good.\n\nModifiable factors: Let's see, what can be changed? Actor position, weather conditions, start and goal position within the same route, number of other actors, right? Wait the scenario has 4 actors, weather has rain etc, 0 puddles. So modifiable_factors: [\"actor_position\", \"weather_conditions\", \"number of non-colliding actors\", \"mission start offset\"] or something, that's fine.\n\nNon_modifiable_conditions: [\"confirmed collision oracle outcome\", \"all zero vehicle control commands pre-collision\", \"non-zero ego speed with no braking pre-collision\", \"unblocked final waypoints pre-collision\"] that's good.\n\nUncertainty: Let's list what's uncertain. First, Mismatch between zero vehicle_cmd and moving ego can't confirm actuation fault per rules. No direct evidence that perception failed to detect the collision actor or that planning incorrectly failed to block waypoints. Module-level fault attribution is not directly supported by available critical window evidence. Right. So uncertainty: [\"Mismatch between all-zero vehicle_cmd and moving ego does not confirm actuation layer fault per analysis rules\", \"No direct evidence is available to confirm whether perception, planning, or actuation failed to respond to the colliding actor\", \"Module-level fault attribution is unsupported by critical window evidence\"]\n\nEvidence support: Let's list each evidence. Let's see:\n{\"evidence_id\": \"oracle_consistency\", \"claim\": \"Collision label is consistent between dataset and error.json\"},\n{\"evidence_id\": \"critical_window_vehicle_cmd\", \"claim\": \"All vehicle control commands are zero in the entire pre-collision critical window\"},\n{\"evidence_id\": \"critical_window_vehicle_status\", \"claim\": \"Ego maintains non-zero speed (~4.7 m/s) with zero brake in pre-collision window\"},\n{\"evidence_id\": \"critical_window_final_waypoints\", \"claim\": \"No waypoints were marked blocked immediately before collision\"}\nThat's good.\n\nConfidence: What confidence? We have consistent oracle, but fault attribution is unknown, so confidence is low? Wait or medium? Wait no, the symptom is confirmed, root is unknown, so confidence low? Wait let's see: confidence is about the causal explanation and root pattern. Our causal explanation is based on available evidence, but attribution is unknown, so confidence low? Wait maybe medium? Wait no, let's think: the pattern we have is conservative, so confidence low? Wait let's check: the example has low when attribution unknown. Yeah.\n\nReady_for_phase2_generation: We have a conservative checkable pattern, so yes, right? The rule says use yes when there's a checkable conservative pattern even if fault layer is unknown. So yes.\n\nNotes_for_validator: [\"Post-generation validation must check that pre-collision vehicle commands are all zero, ego maintains non-zero speed with no braking, and collision occurs as oracle outcome\", \"Module-level fault should not be assumed unless post-generation critical window evidence directly supports attribution\"]\n\nWait let's check all rules: Did we invent anything? No, all from evidence. Let's check the rule about vehicle_cmd mismatch: we didn't assign actuation, we marked uncertain, that's correct. Oracle is consistent, no conflict, so that's fine. Let's put it all together in JSON correctly.\n\nWait let's adjust fault_layer: yes, it's unknown, because we can't attribute to any layer per rules. Fault_component is unknown. Let's make everything concise. Let's write it properly.\n\nWait let's check the collision object: detected 1 last, so perception did detect something, right? Yes, detected_object_count last is 1, so that's why we don't say perception failed, because it did detect at least one. So that's correct.\n\nOkay, let's build the JSON now."
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "doubao-seed-2-0-lite-260215",
+    "object": "chat.completion",
+    "service_tier": "default",
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 2387,
+      "prompt_tokens": 4035,
+      "total_tokens": 6422,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 1784,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": null,
+        "cached_tokens": 0
+      }
+    }
+  },
+  "error_message": "",
+  "timestamp": "<REDACTED_TIMESTAMP>",
+  "elapsed_sec": 44.036
+}

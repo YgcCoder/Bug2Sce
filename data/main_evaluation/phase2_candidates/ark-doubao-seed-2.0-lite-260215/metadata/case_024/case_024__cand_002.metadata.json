@@ -1,0 +1,111 @@
+{
+  "case_id": "case_024",
+  "model_name": "ark-doubao-seed-2.0-lite-260215",
+  "candidate_index": 2,
+  "candidate_spec": {
+    "candidate_id": "cand_002",
+    "high_level_variant": "Ego spawn shifted slightly toward the nearby actor, nearby actor speed reduced to maintain proximity longer in the critical pre-collision window",
+    "mutation_intent": "Retains all root-cause pattern requirements: zero actuation commands pre-collision, nearby actor within 3m, active red light, and the intended compound failure oracle",
+    "expected_oracle": "compound",
+    "modifications": {
+      "weather_delta": {
+        "rain": 0,
+        "fog": 0,
+        "wetness": 0,
+        "puddle": 0
+      },
+      "actor_mutations": [
+        {
+          "actor_index": 0,
+          "position_offset": {
+            "x": 0.5,
+            "y": -1.0
+          },
+          "speed_delta": -1.2
+        }
+      ],
+      "puddle_mutations": [
+        {
+          "puddle_index": 0,
+          "location_offset": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "level_delta": 0.0,
+          "size_scale": 1.0
+        }
+      ],
+      "mission_mutation": {
+        "keep_original": false,
+        "spawn_offset": {
+          "x": 1.5,
+          "y": -0.8
+        },
+        "destination_offset": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Check that nearby actor stays within 3m of ego through the entire pre-collision critical window",
+      "Confirm all vehicle_cmd output is zero pre-collision",
+      "Verify at least one red traffic light is active in the critical window"
+    ],
+    "post_execution_validation_rules": [
+      "Validate both collision and red-light oracle labels are recorded",
+      "Confirm the core mismatch between zero vehicle_cmd and non-zero vehicle_status braking is preserved"
+    ],
+    "uncertainty": [
+      "No specific module failure can be confirmed from available evidence",
+      "Stop-line crossing for red-light violation remains unconfirmed"
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": 0.0,
+      "fog": 0.0,
+      "wetness": 0.0,
+      "puddle": 0.0
+    },
+    "actor_mutations": [
+      {
+        "actor_index": 0,
+        "position_offset": {
+          "x": 0.5,
+          "y": -1.0
+        },
+        "speed_delta": -1.2
+      }
+    ],
+    "puddle_mutations": [
+      {
+        "puddle_index": 0,
+        "location_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "level_delta": 0.0,
+        "size_scale": 1.0
+      }
+    ],
+    "mission_mutation": {
+      "spawn_offset": {
+        "x": 1.5,
+        "y": -0.8
+      },
+      "destination_offset": {
+        "x": 0.0,
+        "y": 0.0
+      }
+    }
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_024__ark-doubao-seed-2.0-lite-260215.json",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_024__ark-doubao-seed-2.0-lite-260215.json",
+  "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+}

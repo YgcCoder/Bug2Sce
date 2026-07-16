@@ -1,0 +1,84 @@
+{
+  "case_id": "case_037",
+  "model_name": "ark-doubao-seed-2.0-lite-260215",
+  "candidate_index": 1,
+  "candidate_spec": {
+    "candidate_id": "cand_001",
+    "high_level_variant": "Minor positional offset to the non-ego vehicle, retain all original weather, mission and actor count",
+    "mutation_intent": "Preserves all root cause requirements: conflicting dataset/error.json labels, actuation command-status mismatch, original Town01 map, original mission, heavy rain/high wetness, two-actor setup. Minor variation tests symptom consistency without changing the core root cause pattern",
+    "expected_oracle": "red_light",
+    "modifications": {
+      "weather_delta": {
+        "rain": 0,
+        "fog": 0,
+        "wetness": 0,
+        "puddle": 0
+      },
+      "actor_mutations": [
+        {
+          "actor_index": 0,
+          "position_offset": {
+            "x": 1.5,
+            "y": -0.5
+          },
+          "speed_delta": 0.3
+        }
+      ],
+      "puddle_mutations": [],
+      "mission_mutation": {
+        "keep_original": true,
+        "spawn_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "destination_offset": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Retain original Town01 map and start-goal mission",
+      "Preserve actuation mismatch between all-zero /vehicle_cmd and non-zero /vehicle_status in critical window",
+      "Maintain two-actor scenario setup"
+    ],
+    "post_execution_validation_rules": [
+      "Verify conflicting label structure between generated output and original oracles",
+      "Check that red light violation is recorded as confirmed by error.json"
+    ],
+    "uncertainty": [
+      "Collision and lane invasion are not confirmed by error.json",
+      "Actuation mismatch root cause cannot be localized to a specific module"
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": 0.0,
+      "fog": 0.0,
+      "wetness": 0.0,
+      "puddle": 0.0
+    },
+    "actor_mutations": [
+      {
+        "actor_index": 0,
+        "position_offset": {
+          "x": 1.5,
+          "y": -0.5
+        },
+        "speed_delta": 0.3
+      }
+    ],
+    "puddle_mutations": [],
+    "mission_mutation": {
+      "keep_original": true
+    }
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_037__ark-doubao-seed-2.0-lite-260215.json",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_037__ark-doubao-seed-2.0-lite-260215.json",
+  "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+}

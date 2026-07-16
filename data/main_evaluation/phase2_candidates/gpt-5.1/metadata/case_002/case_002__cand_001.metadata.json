@@ -1,0 +1,107 @@
+{
+  "case_id": "case_002",
+  "model_name": "gpt-5.1",
+  "candidate_index": 1,
+  "candidate_spec": {
+    "candidate_id": "cand_001",
+    "high_level_variant": "Ego remains near original spawn at a signalized junction with slightly reduced rain, nearby stopped vehicle repositioned to subtly alter occlusions while ego exhibits minimal motion and an ambiguous relation to the red light is maintained.",
+    "mutation_intent": "Preserve a red-light violation with available traffic-light and final_waypoints data while keeping ego displacement minimal and route–light association ambiguous, by making small spatial adjustments to a nearby static vehicle and slightly easing weather without clarifying the stop-line geometry.",
+    "expected_oracle": "red_light",
+    "modifications": {
+      "weather_delta": {
+        "rain": -10,
+        "fog": 0,
+        "wetness": -5,
+        "puddle": 0
+      },
+      "actor_mutations": [
+        {
+          "actor_index": 0,
+          "position_offset": {
+            "x": 2.0,
+            "y": -1.5
+          },
+          "speed_delta": 0.0
+        },
+        {
+          "actor_index": 1,
+          "position_offset": {
+            "x": -3.0,
+            "y": 2.0
+          },
+          "speed_delta": -1.5
+        }
+      ],
+      "puddle_mutations": [],
+      "mission_mutation": {
+        "keep_original": true,
+        "spawn_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "destination_offset": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Ensure the mission spawn and destination remain on or near valid lanes in Town01 after applying no additional offsets.",
+      "Verify at least one traffic light is present and publishes to /carla/traffic_lights near the ego spawn area.",
+      "Confirm that actor_index 0 and 1 spawns are collision-free with static environment and each other after position offsets.",
+      "Check that actor_index 1 maintains a valid forward driving corridor for its reduced speed without immediate collision risk at t=0.",
+      "Validate that weather parameters after deltas remain within engine bounds and do not disable traffic-light visibility logic."
+    ],
+    "post_execution_validation_rules": [
+      "Confirm error.json reports a red-light violation and does not primarily record collision, lane_invasion, or stuck as the main oracle.",
+      "Verify that /carla/traffic_lights messages exist throughout the critical window and include at least one red state.",
+      "Check that /final_waypoints are non-null and available up to just before the violation timestamp.",
+      "Inspect summaries to ensure route_light_relation_confirmed and stop_line_crossing_confirmed remain unknown or not explicitly true/false.",
+      "Measure ego odometry/current_pose to confirm only small displacement from spawn (e.g., within a few meters) over the entire run.",
+      "Ensure no definitive module-level blame (perception/planning/control/simulator) is inferred solely from logs; responsibility should remain unclear."
+    ],
+    "uncertainty": [
+      "Which exact traffic light instance the oracle considered for the violation may remain ambiguous.",
+      "Whether the ego actually crosses a stop line or only approaches it may not be conclusively derivable from the logs.",
+      "Controller behavior versus environment configuration as the cause of red-light violation is still unclear."
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": -10.0,
+      "fog": 0.0,
+      "wetness": -5.0,
+      "puddle": 0.0
+    },
+    "actor_mutations": [
+      {
+        "actor_index": 0,
+        "position_offset": {
+          "x": 2.0,
+          "y": -1.5
+        },
+        "speed_delta": 0.0
+      },
+      {
+        "actor_index": 1,
+        "position_offset": {
+          "x": -3.0,
+          "y": 2.0
+        },
+        "speed_delta": -1.5
+      }
+    ],
+    "puddle_mutations": [],
+    "mission_mutation": {
+      "keep_original": true
+    }
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_002__gpt-5.1.json",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_002__gpt-5.1.json",
+  "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+}

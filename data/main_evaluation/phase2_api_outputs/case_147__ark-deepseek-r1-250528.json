@@ -1,0 +1,345 @@
+{
+  "case_id": "case_147",
+  "model_name": "ark-deepseek-r1-250528",
+  "workflow": "phase2_grounded_generation",
+  "status": "completed",
+  "schema_valid": true,
+  "schema_errors": [],
+  "phase1_ready": "uncertain",
+  "num_candidates_requested": 2,
+  "num_candidates_written": 2,
+  "num_pre_valid": 2,
+  "candidate_records": [
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-deepseek-r1-250528/json/case_147/case_147__cand_001.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-deepseek-r1-250528/metadata/case_147/case_147__cand_001.metadata.json",
+      "case_id": "case_147",
+      "model_name": "ark-deepseek-r1-250528",
+      "candidate_index": 1,
+      "candidate_spec": {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Nearby pedestrian actor 0 is positioned slightly closer to ego's planned route to maintain the required pre-collision distance",
+        "mutation_intent": "Preserves all Phase 1 root cause constraints: confirmed collision outcome, nearby object within ~3 meters of ego pre-collision, zero commanded/applied braking, and vehicle_cmd/vehicle_status mismatch, while retaining all original uncertainty around labels and root cause attribution",
+        "expected_oracle": "collision",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": -0.6,
+                "y": -0.2
+              },
+              "speed_delta": 0.2
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Verify actor 0 is between 2.8 and 3.4 meters of ego pre-collision",
+          "Confirm zero commanded braking is set in the pre-collision critical window"
+        ],
+        "post_execution_validation_rules": [
+          "Confirm collision occurs before scenario end",
+          "Verify mismatch between all-zero vehicle_cmd and non-zero ego movement pre-collision"
+        ],
+        "uncertainty": [
+          "Conflicting lane invasion labels between dataset and error.json preserved",
+          "Unconfirmed actuation failure root cause preserved"
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 0.0,
+          "fog": 0.0,
+          "wetness": 0.0,
+          "puddle": 0.0
+        },
+        "actor_mutations": [
+          {
+            "actor_index": 0,
+            "position_offset": {
+              "x": -0.6,
+              "y": -0.2
+            },
+            "speed_delta": 0.2
+          }
+        ],
+        "puddle_mutations": [],
+        "mission_mutation": {
+          "keep_original": true
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_147__ark-deepseek-r1-250528.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_147__ark-deepseek-r1-250528.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    },
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-deepseek-r1-250528/json/case_147/case_147__cand_002.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-deepseek-r1-250528/metadata/case_147/case_147__cand_002.metadata.json",
+      "case_id": "case_147",
+      "model_name": "ark-deepseek-r1-250528",
+      "candidate_index": 2,
+      "candidate_spec": {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Ego spawn position shifted slightly along route to adjust approach timing, with small speed adjustment to the nearby pedestrian",
+        "mutation_intent": "Retains all core root cause pattern properties: collision outcome, ~3m pre-collision object distance, zero pre-collision braking, control status mismatch, and preserves all original uncertainty per Phase 1 constraints",
+        "expected_oracle": "collision",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 0.3,
+                "y": 0.1
+              },
+              "speed_delta": -0.15
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": false,
+            "spawn_offset": {
+              "x": 0.7,
+              "y": -0.4
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Verify actor 0 is between 2.7 and 3.5 meters of ego pre-collision",
+          "Confirm zero applied braking is active in the pre-collision window"
+        ],
+        "post_execution_validation_rules": [
+          "Confirm collision occurs before scenario end",
+          "Resolve lane invasion label conflict via manual replay review per Phase 1 notes"
+        ],
+        "uncertainty": [
+          "Uncertainty around module-level root cause localization preserved",
+          "Conflicting fault group labels between dataset and error.json preserved"
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 0.0,
+          "fog": 0.0,
+          "wetness": 0.0,
+          "puddle": 0.0
+        },
+        "actor_mutations": [
+          {
+            "actor_index": 0,
+            "position_offset": {
+              "x": 0.3,
+              "y": 0.1
+            },
+            "speed_delta": -0.15
+          }
+        ],
+        "puddle_mutations": [],
+        "mission_mutation": {
+          "spawn_offset": {
+            "x": 0.7,
+            "y": -0.4
+          },
+          "destination_offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_147__ark-deepseek-r1-250528.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_147__ark-deepseek-r1-250528.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    }
+  ],
+  "seed_artifact_zip": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-deepseek-r1-250528/seed-artifact/seed-artifact-case_147.zip",
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_prompts/case_147__ark-deepseek-r1-250528.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_147__ark-deepseek-r1-250528.json",
+  "prompt_estimated_tokens": 1187,
+  "usage": {
+    "prompt_tokens": 1450,
+    "completion_tokens": 1910,
+    "total_tokens": 3360
+  },
+  "raw_response": "{\n  \"case_id\": \"case_147\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Nearby pedestrian actor 0 is positioned slightly closer to ego's planned route to maintain the required pre-collision distance\",\n      \"mutation_intent\": \"Preserves all Phase 1 root cause constraints: confirmed collision outcome, nearby object within ~3 meters of ego pre-collision, zero commanded/applied braking, and vehicle_cmd/vehicle_status mismatch, while retaining all original uncertainty around labels and root cause attribution\",\n      \"expected_oracle\": \"collision\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": -0.6, \"y\": -0.2}, \"speed_delta\": 0.2}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Verify actor 0 is between 2.8 and 3.4 meters of ego pre-collision\", \"Confirm zero commanded braking is set in the pre-collision critical window\"],\n      \"post_execution_validation_rules\": [\"Confirm collision occurs before scenario end\", \"Verify mismatch between all-zero vehicle_cmd and non-zero ego movement pre-collision\"],\n      \"uncertainty\": [\"Conflicting lane invasion labels between dataset and error.json preserved\", \"Unconfirmed actuation failure root cause preserved\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Ego spawn position shifted slightly along route to adjust approach timing, with small speed adjustment to the nearby pedestrian\",\n      \"mutation_intent\": \"Retains all core root cause pattern properties: collision outcome, ~3m pre-collision object distance, zero pre-collision braking, control status mismatch, and preserves all original uncertainty per Phase 1 constraints\",\n      \"expected_oracle\": \"collision\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 0.3, \"y\": 0.1}, \"speed_delta\": -0.15}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": false, \"spawn_offset\": {\"x\": 0.7, \"y\": -0.4}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Verify actor 0 is between 2.7 and 3.5 meters of ego pre-collision\", \"Confirm zero applied braking is active in the pre-collision window\"],\n      \"post_execution_validation_rules\": [\"Confirm collision occurs before scenario end\", \"Resolve lane invasion label conflict via manual replay review per Phase 1 notes\"],\n      \"uncertainty\": [\"Uncertainty around module-level root cause localization preserved\", \"Conflicting fault group labels between dataset and error.json preserved\"]\n    }\n  ]\n}",
+  "parsed_response": {
+    "case_id": "case_147",
+    "candidate_specs": [
+      {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Nearby pedestrian actor 0 is positioned slightly closer to ego's planned route to maintain the required pre-collision distance",
+        "mutation_intent": "Preserves all Phase 1 root cause constraints: confirmed collision outcome, nearby object within ~3 meters of ego pre-collision, zero commanded/applied braking, and vehicle_cmd/vehicle_status mismatch, while retaining all original uncertainty around labels and root cause attribution",
+        "expected_oracle": "collision",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": -0.6,
+                "y": -0.2
+              },
+              "speed_delta": 0.2
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Verify actor 0 is between 2.8 and 3.4 meters of ego pre-collision",
+          "Confirm zero commanded braking is set in the pre-collision critical window"
+        ],
+        "post_execution_validation_rules": [
+          "Confirm collision occurs before scenario end",
+          "Verify mismatch between all-zero vehicle_cmd and non-zero ego movement pre-collision"
+        ],
+        "uncertainty": [
+          "Conflicting lane invasion labels between dataset and error.json preserved",
+          "Unconfirmed actuation failure root cause preserved"
+        ]
+      },
+      {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Ego spawn position shifted slightly along route to adjust approach timing, with small speed adjustment to the nearby pedestrian",
+        "mutation_intent": "Retains all core root cause pattern properties: collision outcome, ~3m pre-collision object distance, zero pre-collision braking, control status mismatch, and preserves all original uncertainty per Phase 1 constraints",
+        "expected_oracle": "collision",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 0.3,
+                "y": 0.1
+              },
+              "speed_delta": -0.15
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": false,
+            "spawn_offset": {
+              "x": 0.7,
+              "y": -0.4
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Verify actor 0 is between 2.7 and 3.5 meters of ego pre-collision",
+          "Confirm zero applied braking is active in the pre-collision window"
+        ],
+        "post_execution_validation_rules": [
+          "Confirm collision occurs before scenario end",
+          "Resolve lane invasion label conflict via manual replay review per Phase 1 notes"
+        ],
+        "uncertainty": [
+          "Uncertainty around module-level root cause localization preserved",
+          "Conflicting fault group labels between dataset and error.json preserved"
+        ]
+      }
+    ]
+  },
+  "raw_api_payload": {
+    "id": "02178292417047431edffe5894cf4edd820b8db875d15b8ae0962",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "{\n  \"case_id\": \"case_147\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Nearby pedestrian actor 0 is positioned slightly closer to ego's planned route to maintain the required pre-collision distance\",\n      \"mutation_intent\": \"Preserves all Phase 1 root cause constraints: confirmed collision outcome, nearby object within ~3 meters of ego pre-collision, zero commanded/applied braking, and vehicle_cmd/vehicle_status mismatch, while retaining all original uncertainty around labels and root cause attribution\",\n      \"expected_oracle\": \"collision\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": -0.6, \"y\": -0.2}, \"speed_delta\": 0.2}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Verify actor 0 is between 2.8 and 3.4 meters of ego pre-collision\", \"Confirm zero commanded braking is set in the pre-collision critical window\"],\n      \"post_execution_validation_rules\": [\"Confirm collision occurs before scenario end\", \"Verify mismatch between all-zero vehicle_cmd and non-zero ego movement pre-collision\"],\n      \"uncertainty\": [\"Conflicting lane invasion labels between dataset and error.json preserved\", \"Unconfirmed actuation failure root cause preserved\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Ego spawn position shifted slightly along route to adjust approach timing, with small speed adjustment to the nearby pedestrian\",\n      \"mutation_intent\": \"Retains all core root cause pattern properties: collision outcome, ~3m pre-collision object distance, zero pre-collision braking, control status mismatch, and preserves all original uncertainty per Phase 1 constraints\",\n      \"expected_oracle\": \"collision\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 0.3, \"y\": 0.1}, \"speed_delta\": -0.15}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": false, \"spawn_offset\": {\"x\": 0.7, \"y\": -0.4}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Verify actor 0 is between 2.7 and 3.5 meters of ego pre-collision\", \"Confirm zero applied braking is active in the pre-collision window\"],\n      \"post_execution_validation_rules\": [\"Confirm collision occurs before scenario end\", \"Resolve lane invasion label conflict via manual replay review per Phase 1 notes\"],\n      \"uncertainty\": [\"Uncertainty around module-level root cause localization preserved\", \"Conflicting fault group labels between dataset and error.json preserved\"]\n    }\n  ]\n}",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null,
+          "reasoning_content": "\nGot it, let's build this JSON step by step. First, case_id is case_147, right? We need two candidate specs. Let's start with the first one, cand_001.\n\nFirst, high_level_variant for cand 001: What's a good variant? Shift the nearby pedestrian (actor 0, that's the one near the collision, right?) a little closer to ego's route, keep all other constraints. Wait, the root cause is ego approaching nearby object no braking, collision. Let's make first variant: \"Nearby pedestrian (actor 0) positioned slightly closer to ego's pre-collision path while keeping all other original scenario parameters\". Then mutation_intent: \"Preserves all core root cause pattern constraints: confirms collision outcome, keeps nearby object within ~3 meters of ego pre-collision, maintains zero commanded braking and vehicle_cmd/vehicle_status mismatch, preserves uncertainty around lane invasion and fault attribution\". Expected oracle is collision, right? Because collision is confirmed.\n\nThen modifications: Let's do weather delta all 0, original weather is fine. Actor mutations: actor 0, position offset x: -0.5, y: -0.3, that's within [-8,8], speed delta +0.2, that's within [-3,3]. Wait, actor 1 can stay same? Or just actor 0 here. Puddles are empty, so puddle mutations is empty. Mission mutation keep_original true, right?\n\nPre execution validation rules: Let's see, [\"Verify actor 0 is within 2.8-3.4 meters of ego pre-collision\", \"Confirm zero commanded braking is set in pre-collision critical window\"]. Post execution: [\"Confirm collision occurs before scenario end\", \"Verify mismatch between all-zero vehicle_cmd and non-zero ego movement pre-collision\"]. Uncertainty: [\"Uncertainty around lane invasion label preserved\", \"Uncertainty around actuation failure root cause preserved\"].\n\nNow cand_002, second candidate. Let's think of another variant. Shift ego's spawn position a little to adjust the approach timing, keep the object distance. High_level_variant: \"Ego spawn position shifted slightly along route to adjust approach timing to the nearby pedestrian, keeping object distance and control constraints intact\". Mutation_intent: \"Preserves all core root cause constraints: maintains collision outcome, nearby object ~3 meters from ego pre-collision, zero pre-collision braking, vehicle_cmd/vehicle_status mismatch, and preserves all existing uncertainty per phase 1 requirements\". Expected oracle still collision, right?\n\nModifications: Weather delta all 0 again. Actor mutations: let's keep actor 0 same? Or wait, maybe actor 0 speed delta -0.15, position offset x +0.2 y +0.2? No, wait, mission mutation here: keep_original false, spawn offset x 0.8 y -0.5, destination offset 0 0, right? Because mission offset within [-5,5], that's fine. Actor mutations: actor 0, position offset 0 0, speed delta -0.2, that's within [-3,3]. Puddle mutations empty, since no puddles.\n\nPre execution rules: [\"Verify pedestrian (actor 0) is within 2.7-3.5 meters of ego pre-collision\", \"Confirm zero applied/commanded braking is active in pre-collision window\"]. Post execution: [\"Confirm collision occurs before scenario end\", \"Resolve lane invasion label conflict via replay review per phase 1 notes\"]. Uncertainty: [\"Uncertainty around module-level root cause preserved\", \"Conflict between dataset and error.json labels preserved\"].\n\nWait let's check all rules: exactly two candidates, all offsets within limits, speed delta within [-3,3], mission offsets within [-5,5], weather deltas all within [-20,20], no new oracles, preserve collision which is confirmed. Uncertainty preserved as per phase 1. Let's structure it correctly.\n\nWait the seed scenario has no puddles, so puddle_mutations is empty array, right? Yes. Let's check the schema. Let's put it all together.\n\nWait case_id is case_147, correct. Candidate 1 id cand_001, candidate 2 cand_002. Let's write it properly:\n\nWait let's check the preservation constraints: we preserved collision, nearby object within 3m, zero braking, mismatch. Correct. Expected oracle is collision, that's confirmed. Let's make sure all offsets are within the allowed ranges. For example, cand 001 actor 0 x offset -0.5, y -0.3, that's way within [-8,8], speed delta +0.2, within [-3,3]. Correct. Cand 002 mission spawn offset x 0.8, y -0.5, within [-5,5], correct. Weather deltas all 0, which is within [-20,20], correct.\n\nUncertainty is preserved as per phase 1, which is uncertainty-heavy, so we kept uncertainty in each candidate. Correct.\n\nOkay let's write the JSON now, no markdown, exactly one object, two candidates."
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "doubao-seed-2-0-lite-260215",
+    "object": "chat.completion",
+    "service_tier": "default",
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 1910,
+      "prompt_tokens": 1450,
+      "total_tokens": 3360,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 1111,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": null,
+        "cached_tokens": 0
+      }
+    }
+  },
+  "error_message": "",
+  "elapsed_sec": 29.854,
+  "timestamp": "<REDACTED_TIMESTAMP>"
+}

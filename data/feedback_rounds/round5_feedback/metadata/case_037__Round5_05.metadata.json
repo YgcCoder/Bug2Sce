@@ -1,0 +1,102 @@
+{
+  "case_id": "case_037",
+  "round": 5,
+  "model_name": "claude-sonnet-4-5",
+  "candidate_index": 5,
+  "candidate_spec": {
+    "candidate_id": "cand_005",
+    "high_level_variant": "Heavy rain and wetness with vehicle actor positioned closer and slower",
+    "mutation_intent": "Combine maximum weather severity with tight actor geometry. Slower actor increases dwell time in collision zone while weather stresses perception to trigger compound failure.",
+    "expected_oracle": "compound",
+    "modifications": {
+      "weather_delta": {
+        "rain": 20,
+        "fog": 10,
+        "wetness": 20,
+        "puddle": 15
+      },
+      "actor_mutations": [
+        {
+          "actor_index": 0,
+          "position_offset": {
+            "x": 4.5,
+            "y": -1.5
+          },
+          "speed_delta": -3.0
+        },
+        {
+          "actor_index": 1,
+          "position_offset": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "speed_delta": 0.0
+        }
+      ],
+      "puddle_mutations": [],
+      "mission_mutation": {
+        "keep_original": true,
+        "spawn_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "destination_offset": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Weather parameters within allowed bounds and actor within 5m of route"
+    ],
+    "post_execution_validation_rules": [
+      "Confirm collision and red_light oracles with actuation mismatch under heavy weather"
+    ],
+    "uncertainty": [
+      "Extreme weather may degrade perception but not guarantee collision trigger"
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": 20,
+      "fog": 10.0,
+      "wetness": 20,
+      "puddle": 15.0
+    },
+    "actor_mutations": [
+      {
+        "actor_index": 0,
+        "position_offset": {
+          "x": 4.5,
+          "y": -1.5
+        },
+        "speed_delta": -3
+      },
+      {
+        "actor_index": 1,
+        "position_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "speed_delta": 0.0
+      }
+    ],
+    "puddle_mutations": [],
+    "mission_mutation": {
+      "keep_original": true
+    },
+    "safety_repairs": []
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "authoritative_original_phase1_output": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_037__claude-sonnet-4-5.json",
+  "round1_feedback_count": 6,
+  "round2_feedback_count": 2,
+  "round3_feedback_count": 6,
+  "round4_feedback_count": 6,
+  "feedback_memory_policy": "all_same_seed_outcomes_retained",
+  "round5_api_output": "<WORKSPACE_ROOT>/processed/experiments/round5_feedback/api_outputs/case_037__claude-sonnet-4-5.json"
+}

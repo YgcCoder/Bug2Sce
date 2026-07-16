@@ -1,0 +1,101 @@
+{
+  "case_id": "case_079",
+  "model_name": "claude-sonnet-4-5",
+  "candidate_index": 1,
+  "candidate_spec": {
+    "candidate_id": "cand_001",
+    "high_level_variant": "Reduce weather intensity while preserving red light and vehicle command mismatch",
+    "mutation_intent": "Lower rain and fog to isolate red light violation from perception degradation",
+    "expected_oracle": "red_light",
+    "modifications": {
+      "weather_delta": {
+        "rain": -20,
+        "fog": -15,
+        "wetness": -15,
+        "puddle": -20
+      },
+      "actor_mutations": [
+        {
+          "actor_index": 0,
+          "position_offset": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "speed_delta": 0.0
+        },
+        {
+          "actor_index": 1,
+          "position_offset": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "speed_delta": 0.0
+        }
+      ],
+      "puddle_mutations": [],
+      "mission_mutation": {
+        "keep_original": true,
+        "spawn_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "destination_offset": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Traffic light with red state exists on ego route",
+      "Ego spawn within 50m of traffic light"
+    ],
+    "post_execution_validation_rules": [
+      "Red light oracle triggered",
+      "Vehicle_cmd zero while vehicle_status shows movement",
+      "Traffic light state red before failure"
+    ],
+    "uncertainty": [
+      "Lane invasion label conflict unresolved",
+      "Vehicle_cmd mismatch may be simulator artifact",
+      "Stop line relation not confirmed"
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": -20,
+      "fog": -15.0,
+      "wetness": -15.0,
+      "puddle": -20
+    },
+    "actor_mutations": [
+      {
+        "actor_index": 0,
+        "position_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "speed_delta": 0.0
+      },
+      {
+        "actor_index": 1,
+        "position_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "speed_delta": 0.0
+      }
+    ],
+    "puddle_mutations": [],
+    "mission_mutation": {
+      "keep_original": true
+    }
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_079__claude-sonnet-4-5.json",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_079__claude-sonnet-4-5.json",
+  "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+}

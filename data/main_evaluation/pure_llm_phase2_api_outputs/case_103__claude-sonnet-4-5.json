@@ -1,0 +1,245 @@
+{
+  "case_id": "case_103",
+  "model_name": "claude-sonnet-4-5",
+  "workflow": "pure_llm_phase2_baseline",
+  "status": "completed",
+  "schema_valid": true,
+  "schema_errors": [],
+  "num_candidates_requested": 1,
+  "num_candidates_written": 1,
+  "num_pre_valid": 1,
+  "candidate_records": [
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/pure_llm_phase2_candidates/claude-sonnet-4-5/json/case_103/case_103__model_claude-sonnet-4-5__cand_001.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/pure_llm_phase2_candidates/claude-sonnet-4-5/metadata/case_103/case_103__model_claude-sonnet-4-5__cand_001.metadata.json",
+      "case_id": "case_103",
+      "model_name": "claude-sonnet-4-5",
+      "candidate_index": 1,
+      "candidate_spec": {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Increase rain and wetness, shift actor closer to ego path",
+        "mutation_intent": "Worsen weather visibility and road grip while moving vehicle actor nearer to trigger lane invasion and red light violations",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": 4,
+            "fog": 10,
+            "wetness": 8,
+            "puddle": 5
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": -3.0,
+                "y": -4.0
+              },
+              "speed_delta": 0.5
+            }
+          ],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": -2.0,
+                "y": 1.0
+              },
+              "level_delta": 0.05,
+              "size_scale": 1.1
+            },
+            {
+              "puddle_index": 1,
+              "location_offset": {
+                "x": 1.5,
+                "y": -1.5
+              },
+              "level_delta": 0.03,
+              "size_scale": 1.05
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Actor speed remains positive",
+          "Puddle levels stay below 0.5"
+        ],
+        "post_execution_validation_rules": [
+          "Check lane invasion and red light events occurred"
+        ],
+        "uncertainty": [
+          "Actor trajectory may vary under increased wetness"
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 4.0,
+          "fog": 10.0,
+          "wetness": 8.0,
+          "puddle": 5.0
+        },
+        "actor_mutations": [
+          {
+            "actor_index": 0,
+            "position_offset": {
+              "x": -3.0,
+              "y": -4.0
+            },
+            "speed_delta": 0.5
+          }
+        ],
+        "puddle_mutations": [
+          {
+            "puddle_index": 0,
+            "location_offset": {
+              "x": -2.0,
+              "y": 1.0
+            },
+            "level_delta": 0.05,
+            "size_scale": 1.1
+          },
+          {
+            "puddle_index": 1,
+            "location_offset": {
+              "x": 1.5,
+              "y": -1.5
+            },
+            "level_delta": 0.03,
+            "size_scale": 1.05
+          }
+        ],
+        "mission_mutation": {
+          "keep_original": true
+        },
+        "safety_repairs": []
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": []
+      }
+    }
+  ],
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/pure_llm_phase2_api_prompts/case_103__claude-sonnet-4-5.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/pure_llm_phase2_api_outputs/case_103__claude-sonnet-4-5.json",
+  "prompt_estimated_tokens": 810,
+  "usage": {
+    "prompt_tokens": 1129,
+    "completion_tokens": 449,
+    "total_tokens": 1578
+  },
+  "raw_response": "```json\n{\n  \"case_id\": \"case_103\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Increase rain and wetness, shift actor closer to ego path\",\n      \"mutation_intent\": \"Worsen weather visibility and road grip while moving vehicle actor nearer to trigger lane invasion and red light violations\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 4, \"fog\": 10, \"wetness\": 8, \"puddle\": 5},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": -3.0, \"y\": -4.0}, \"speed_delta\": 0.5}\n        ],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": -2.0, \"y\": 1.0}, \"level_delta\": 0.05, \"size_scale\": 1.1},\n          {\"puddle_index\": 1, \"location_offset\": {\"x\": 1.5, \"y\": -1.5}, \"level_delta\": 0.03, \"size_scale\": 1.05}\n        ],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Actor speed remains positive\", \"Puddle levels stay below 0.5\"],\n      \"post_execution_validation_rules\": [\"Check lane invasion and red light events occurred\"],\n      \"uncertainty\": [\"Actor trajectory may vary under increased wetness\"]\n    }\n  ]\n}\n```",
+  "parsed_response": {
+    "case_id": "case_103",
+    "candidate_specs": [
+      {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Increase rain and wetness, shift actor closer to ego path",
+        "mutation_intent": "Worsen weather visibility and road grip while moving vehicle actor nearer to trigger lane invasion and red light violations",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": 4,
+            "fog": 10,
+            "wetness": 8,
+            "puddle": 5
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": -3.0,
+                "y": -4.0
+              },
+              "speed_delta": 0.5
+            }
+          ],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": -2.0,
+                "y": 1.0
+              },
+              "level_delta": 0.05,
+              "size_scale": 1.1
+            },
+            {
+              "puddle_index": 1,
+              "location_offset": {
+                "x": 1.5,
+                "y": -1.5
+              },
+              "level_delta": 0.03,
+              "size_scale": 1.05
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Actor speed remains positive",
+          "Puddle levels stay below 0.5"
+        ],
+        "post_execution_validation_rules": [
+          "Check lane invasion and red light events occurred"
+        ],
+        "uncertainty": [
+          "Actor trajectory may vary under increased wetness"
+        ]
+      }
+    ]
+  },
+  "raw_api_payload": {
+    "id": "<REDACTED_RESPONSE_ID>",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "```json\n{\n  \"case_id\": \"case_103\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Increase rain and wetness, shift actor closer to ego path\",\n      \"mutation_intent\": \"Worsen weather visibility and road grip while moving vehicle actor nearer to trigger lane invasion and red light violations\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 4, \"fog\": 10, \"wetness\": 8, \"puddle\": 5},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": -3.0, \"y\": -4.0}, \"speed_delta\": 0.5}\n        ],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": -2.0, \"y\": 1.0}, \"level_delta\": 0.05, \"size_scale\": 1.1},\n          {\"puddle_index\": 1, \"location_offset\": {\"x\": 1.5, \"y\": -1.5}, \"level_delta\": 0.03, \"size_scale\": 1.05}\n        ],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Actor speed remains positive\", \"Puddle levels stay below 0.5\"],\n      \"post_execution_validation_rules\": [\"Check lane invasion and red light events occurred\"],\n      \"uncertainty\": [\"Actor trajectory may vary under increased wetness\"]\n    }\n  ]\n}\n```",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "claude-sonnet-4-5",
+    "object": "chat.completion",
+    "service_tier": null,
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 449,
+      "prompt_tokens": 1129,
+      "total_tokens": 1578,
+      "completion_tokens_details": null,
+      "prompt_tokens_details": null
+    }
+  },
+  "error_message": "",
+  "elapsed_sec": 10.606,
+  "timestamp": "<REDACTED_TIMESTAMP>"
+}

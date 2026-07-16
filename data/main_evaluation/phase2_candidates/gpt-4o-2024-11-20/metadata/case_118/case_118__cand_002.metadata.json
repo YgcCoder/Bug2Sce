@@ -1,0 +1,85 @@
+{
+  "case_id": "case_118",
+  "model_name": "gpt-4o-2024-11-20",
+  "candidate_index": 2,
+  "candidate_spec": {
+    "candidate_id": "cand_002",
+    "high_level_variant": "Ego vehicle approaches intersection with slightly increased fog and minor puddle relocation.",
+    "mutation_intent": "This variant tests the same collision and red-light violation symptoms by maintaining ego movement with non-zero velocity and throttle while introducing minor visibility and puddle changes to evaluate controller robustness.",
+    "expected_oracle": "collision",
+    "modifications": {
+      "weather_delta": {
+        "rain": 0,
+        "fog": 10,
+        "wetness": 0,
+        "puddle": 0
+      },
+      "actor_mutations": [],
+      "puddle_mutations": [
+        {
+          "puddle_index": 1,
+          "location_offset": {
+            "x": -2.0,
+            "y": 2.0
+          },
+          "level_delta": 0.1,
+          "size_scale": 0.9
+        }
+      ],
+      "mission_mutation": {
+        "keep_original": true,
+        "spawn_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "destination_offset": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Ensure ego velocity and throttle remain non-zero before collision."
+    ],
+    "post_execution_validation_rules": [
+      "Validate critical-window ego speed, throttle, and vehicle_cmd consistency."
+    ],
+    "uncertainty": [
+      "Dataset.xlsx and error.json conflict on lane invasion.",
+      "Controller behavior remains uncertain."
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": 0.0,
+      "fog": 10.0,
+      "wetness": 0.0,
+      "puddle": 0.0
+    },
+    "actor_mutations": [],
+    "puddle_mutations": [
+      {
+        "puddle_index": 1,
+        "location_offset": {
+          "x": -2.0,
+          "y": 2.0
+        },
+        "level_delta": 0.1,
+        "size_scale": 0.9
+      }
+    ],
+    "mission_mutation": {
+      "keep_original": true
+    }
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": [
+      "no actors in candidate scenario"
+    ]
+  },
+  "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_118__gpt-4o-2024-11-20.json",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_118__gpt-4o-2024-11-20.json",
+  "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+}

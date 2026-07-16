@@ -1,0 +1,148 @@
+{
+  "case_id": "case_157",
+  "workflow": "phase1_causal_explanation",
+  "model_name": "gpt-5.1",
+  "model_id": "gpt-5.1",
+  "status": "completed",
+  "dry_run": false,
+  "schema_valid": true,
+  "schema_errors": [],
+  "quality_flags": [],
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_prompts/case_157__gpt-5.1.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_157__gpt-5.1.json",
+  "prompt_estimated_tokens": 2968,
+  "usage": {
+    "prompt_tokens": 3188,
+    "completion_tokens": 1365,
+    "total_tokens": 4553
+  },
+  "estimated_cost_usd": null,
+  "raw_response": "{\n  \"case_id\": \"case_157\",\n  \"fault_layer\": \"unknown\",\n  \"fault_component\": \"unknown\",\n  \"causal_explanation\": \"A collision is reported at 20.38s while the ego is moving at about 4.7 m/s with nonzero throttle and zero brake. Perception and prediction topics report at least one object throughout the window, and planning publishes a full set of final waypoints with no blocked flags; the closest-object distance in the waypoint summary is recorded as 0.0 with 0.0 velocity despite the oracle reporting a nearby actor at 3.486 m. The control command topic shows all-zero accel/brake/steer/target speed while the low-level vehicle status indicates the ego is actually moving under throttle, so the interaction between planning outputs, control commands, and the vehicle’s motion is unclear. Available evidence confirms that the ego continues forward into another actor without braking, but it does not isolate whether the root cause lies in perception, prediction, planning, actuation, or the simulator interface.\",\n  \"root_cause_pattern\": \"Conservative preservation pattern: the ego vehicle is in motion and approaches a nearby actor before a collision, with object and prediction topics active and unblocked final waypoints available, while there is no braking and the vehicle_cmd stream remains all zero despite continued ego motion.\",\n  \"preservation_constraints\": [\n    \"The generated scenario should preserve a collision between the ego vehicle and another actor as reported by the oracle collision topic.\",\n    \"The ego should be moving (nonzero velocity in vehicle_status or odometry) in the seconds leading up to the collision, with no significant braking behavior recorded.\",\n    \"Perception and prediction object topics should be present and report at least one nearby actor before the collision.\",\n    \"Planning final_waypoints should be available with a full set of waypoints and no blocked flags in the critical window before the collision.\",\n    \"The vehicle_cmd topic should remain with zero accel, brake, steer, and target speed ranges while vehicle_status shows nonzero velocity in the same window.\"\n  ],\n  \"modifiable_factors\": [\n    \"actor_position\",\n    \"actor_speed\",\n    \"weather\",\n    \"mission\",\n    \"ego_start_pose\",\n    \"traffic_light_states\"\n  ],\n  \"non_modifiable_conditions\": [\n    \"same oracle collision symptom must occur\",\n    \"ego must have nonzero speed shortly before collision\",\n    \"a nearby actor must be present according to perception/prediction before collision\",\n    \"final_waypoints must remain available and not marked as blocked before the collision\",\n    \"vehicle_cmd must remain effectively zero while ego continues to move\"\n  ],\n  \"uncertainty\": [\n    \"Module-level attribution is unclear because perception detects objects, prediction produces trajectories, planning publishes unblocked waypoints, yet vehicle_cmd is all zero while vehicle_status shows motion.\",\n    \"The discrepancy between closest_object_distance=0.0 in final_waypoints summary and 3.486 m distance in oracle objects is not explained by the evidence.\",\n    \"The data does not reveal whether the collision resulted from perception mislocalization, planning decisions, controller behavior, or simulator/vehicle interface issues.\"\n  ],\n  \"evidence_support\": [\n    {\n      \"evidence_id\": \"oracle_error_json_events\",\n      \"claim\": \"The oracle reports a crash event with no stuck, lane invasion, or red-light violations.\"\n    },\n    {\n      \"evidence_id\": \"collision_window_ego_speed_before_collision\",\n      \"claim\": \"Ego speed in the collision window reaches about 4.94 m/s with last pre-collision speed 4.70 m/s and no speed decrease indicating braking.\"\n    },\n    {\n      \"evidence_id\": \"collision_window_evidence_of_braking_or_stopping\",\n      \"claim\": \"Both vehicle_status and vehicle_cmd report zero brake, and there is no observed speed decrease within the window.\"\n    },\n    {\n      \"evidence_id\": \"trace_summary_perception_detection_objects\",\n      \"claim\": \"Detection objects exist throughout the run, with at least one object detected and labels including car and unknown.\"\n    },\n    {\n      \"evidence_id\": \"trace_summary_perception_prediction_objects\",\n      \"claim\": \"Prediction objects exist with 1–23 predicted objects per message and labels including car and unknown in the time leading to the collision.\"\n    },\n    {\n      \"evidence_id\": \"critical_window_final_waypoints_before_collision\",\n      \"claim\": \"Final waypoints are continuously available with 101 waypoints and no blocked flags prior to collision; closest_object_distance is summarized as 0.0 at the nearest pre-collision row.\"\n    },\n    {\n      \"evidence_id\": \"closest_available_object_info\",\n      \"claim\": \"The oracle collision data reports a closest available object (id 10283, classification 6) at a distance of 3.486 m from the ego before the collision.\"\n    },\n    {\n      \"evidence_id\": \"collision_topic_objects_sample\",\n      \"claim\": \"The oracle collision topic lists other_actor_ids including 10283 with a wide range of impulse magnitudes, indicating an actual collision with that actor.\"\n    },\n    {\n      \"evidence_id\": \"trace_summary_actuation_vehicle_cmd\",\n      \"claim\": \"The vehicle_cmd topic exists, but accel_cmd, brake_cmd, steer_cmd, and target_speed ranges remain at zero from 10.23s to 21.13s.\"\n    },\n    {\n      \"evidence_id\": \"trace_summary_actuation_vehicle_status\",\n      \"claim\": \"Vehicle_status shows ego velocity ranging from 0.0 to 9.75 m/s and nonzero throttle values, indicating that the vehicle moves despite all-zero vehicle_cmd.\"\n    }\n  ],\n  \"confidence\": \"medium\",\n  \"ready_for_phase2_generation\": \"yes\",\n  \"notes_for_validator\": [\n    \"Verify that the oracle collision topic in the generated case confirms a collision between ego and at least one non-ego actor near the end of the run.\",\n    \"Check that ego velocity from vehicle_status or odometry is nonzero and does not significantly decrease due to braking within several seconds before the collision.\",\n    \"Confirm that detection and prediction object topics are populated and show at least one actor near ego in the critical window.\",\n    \"Ensure final_waypoints are present with a consistent waypoint count and no blocked flags before the collision event.\",\n    \"Confirm that vehicle_cmd accel_cmd, brake_cmd, steer_cmd, and target_speed remain effectively zero while vehicle_status indicates ego motion, reproducing the command–status mismatch pattern.\"\n  ]\n}",
+  "parsed_response": {
+    "case_id": "case_157",
+    "fault_layer": "unknown",
+    "fault_component": "unknown",
+    "causal_explanation": "A collision is reported at 20.38s while the ego is moving at about 4.7 m/s with nonzero throttle and zero brake. Perception and prediction topics report at least one object throughout the window, and planning publishes a full set of final waypoints with no blocked flags; the closest-object distance in the waypoint summary is recorded as 0.0 with 0.0 velocity despite the oracle reporting a nearby actor at 3.486 m. The control command topic shows all-zero accel/brake/steer/target speed while the low-level vehicle status indicates the ego is actually moving under throttle, so the interaction between planning outputs, control commands, and the vehicle’s motion is unclear. Available evidence confirms that the ego continues forward into another actor without braking, but it does not isolate whether the root cause lies in perception, prediction, planning, actuation, or the simulator interface.",
+    "root_cause_pattern": "Conservative preservation pattern: the ego vehicle is in motion and approaches a nearby actor before a collision, with object and prediction topics active and unblocked final waypoints available, while there is no braking and the vehicle_cmd stream remains all zero despite continued ego motion.",
+    "preservation_constraints": [
+      "The generated scenario should preserve a collision between the ego vehicle and another actor as reported by the oracle collision topic.",
+      "The ego should be moving (nonzero velocity in vehicle_status or odometry) in the seconds leading up to the collision, with no significant braking behavior recorded.",
+      "Perception and prediction object topics should be present and report at least one nearby actor before the collision.",
+      "Planning final_waypoints should be available with a full set of waypoints and no blocked flags in the critical window before the collision.",
+      "The vehicle_cmd topic should remain with zero accel, brake, steer, and target speed ranges while vehicle_status shows nonzero velocity in the same window."
+    ],
+    "modifiable_factors": [
+      "actor_position",
+      "actor_speed",
+      "weather",
+      "mission",
+      "ego_start_pose",
+      "traffic_light_states"
+    ],
+    "non_modifiable_conditions": [
+      "same oracle collision symptom must occur",
+      "ego must have nonzero speed shortly before collision",
+      "a nearby actor must be present according to perception/prediction before collision",
+      "final_waypoints must remain available and not marked as blocked before the collision",
+      "vehicle_cmd must remain effectively zero while ego continues to move"
+    ],
+    "uncertainty": [
+      "Module-level attribution is unclear because perception detects objects, prediction produces trajectories, planning publishes unblocked waypoints, yet vehicle_cmd is all zero while vehicle_status shows motion.",
+      "The discrepancy between closest_object_distance=0.0 in final_waypoints summary and 3.486 m distance in oracle objects is not explained by the evidence.",
+      "The data does not reveal whether the collision resulted from perception mislocalization, planning decisions, controller behavior, or simulator/vehicle interface issues."
+    ],
+    "evidence_support": [
+      {
+        "evidence_id": "oracle_error_json_events",
+        "claim": "The oracle reports a crash event with no stuck, lane invasion, or red-light violations."
+      },
+      {
+        "evidence_id": "collision_window_ego_speed_before_collision",
+        "claim": "Ego speed in the collision window reaches about 4.94 m/s with last pre-collision speed 4.70 m/s and no speed decrease indicating braking."
+      },
+      {
+        "evidence_id": "collision_window_evidence_of_braking_or_stopping",
+        "claim": "Both vehicle_status and vehicle_cmd report zero brake, and there is no observed speed decrease within the window."
+      },
+      {
+        "evidence_id": "trace_summary_perception_detection_objects",
+        "claim": "Detection objects exist throughout the run, with at least one object detected and labels including car and unknown."
+      },
+      {
+        "evidence_id": "trace_summary_perception_prediction_objects",
+        "claim": "Prediction objects exist with 1–23 predicted objects per message and labels including car and unknown in the time leading to the collision."
+      },
+      {
+        "evidence_id": "critical_window_final_waypoints_before_collision",
+        "claim": "Final waypoints are continuously available with 101 waypoints and no blocked flags prior to collision; closest_object_distance is summarized as 0.0 at the nearest pre-collision row."
+      },
+      {
+        "evidence_id": "closest_available_object_info",
+        "claim": "The oracle collision data reports a closest available object (id 10283, classification 6) at a distance of 3.486 m from the ego before the collision."
+      },
+      {
+        "evidence_id": "collision_topic_objects_sample",
+        "claim": "The oracle collision topic lists other_actor_ids including 10283 with a wide range of impulse magnitudes, indicating an actual collision with that actor."
+      },
+      {
+        "evidence_id": "trace_summary_actuation_vehicle_cmd",
+        "claim": "The vehicle_cmd topic exists, but accel_cmd, brake_cmd, steer_cmd, and target_speed ranges remain at zero from 10.23s to 21.13s."
+      },
+      {
+        "evidence_id": "trace_summary_actuation_vehicle_status",
+        "claim": "Vehicle_status shows ego velocity ranging from 0.0 to 9.75 m/s and nonzero throttle values, indicating that the vehicle moves despite all-zero vehicle_cmd."
+      }
+    ],
+    "confidence": "medium",
+    "ready_for_phase2_generation": "yes",
+    "notes_for_validator": [
+      "Verify that the oracle collision topic in the generated case confirms a collision between ego and at least one non-ego actor near the end of the run.",
+      "Check that ego velocity from vehicle_status or odometry is nonzero and does not significantly decrease due to braking within several seconds before the collision.",
+      "Confirm that detection and prediction object topics are populated and show at least one actor near ego in the critical window.",
+      "Ensure final_waypoints are present with a consistent waypoint count and no blocked flags before the collision event.",
+      "Confirm that vehicle_cmd accel_cmd, brake_cmd, steer_cmd, and target_speed remain effectively zero while vehicle_status indicates ego motion, reproducing the command–status mismatch pattern."
+    ]
+  },
+  "raw_api_payload": {
+    "id": "<REDACTED_RESPONSE_ID>",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "{\n  \"case_id\": \"case_157\",\n  \"fault_layer\": \"unknown\",\n  \"fault_component\": \"unknown\",\n  \"causal_explanation\": \"A collision is reported at 20.38s while the ego is moving at about 4.7 m/s with nonzero throttle and zero brake. Perception and prediction topics report at least one object throughout the window, and planning publishes a full set of final waypoints with no blocked flags; the closest-object distance in the waypoint summary is recorded as 0.0 with 0.0 velocity despite the oracle reporting a nearby actor at 3.486 m. The control command topic shows all-zero accel/brake/steer/target speed while the low-level vehicle status indicates the ego is actually moving under throttle, so the interaction between planning outputs, control commands, and the vehicle’s motion is unclear. Available evidence confirms that the ego continues forward into another actor without braking, but it does not isolate whether the root cause lies in perception, prediction, planning, actuation, or the simulator interface.\",\n  \"root_cause_pattern\": \"Conservative preservation pattern: the ego vehicle is in motion and approaches a nearby actor before a collision, with object and prediction topics active and unblocked final waypoints available, while there is no braking and the vehicle_cmd stream remains all zero despite continued ego motion.\",\n  \"preservation_constraints\": [\n    \"The generated scenario should preserve a collision between the ego vehicle and another actor as reported by the oracle collision topic.\",\n    \"The ego should be moving (nonzero velocity in vehicle_status or odometry) in the seconds leading up to the collision, with no significant braking behavior recorded.\",\n    \"Perception and prediction object topics should be present and report at least one nearby actor before the collision.\",\n    \"Planning final_waypoints should be available with a full set of waypoints and no blocked flags in the critical window before the collision.\",\n    \"The vehicle_cmd topic should remain with zero accel, brake, steer, and target speed ranges while vehicle_status shows nonzero velocity in the same window.\"\n  ],\n  \"modifiable_factors\": [\n    \"actor_position\",\n    \"actor_speed\",\n    \"weather\",\n    \"mission\",\n    \"ego_start_pose\",\n    \"traffic_light_states\"\n  ],\n  \"non_modifiable_conditions\": [\n    \"same oracle collision symptom must occur\",\n    \"ego must have nonzero speed shortly before collision\",\n    \"a nearby actor must be present according to perception/prediction before collision\",\n    \"final_waypoints must remain available and not marked as blocked before the collision\",\n    \"vehicle_cmd must remain effectively zero while ego continues to move\"\n  ],\n  \"uncertainty\": [\n    \"Module-level attribution is unclear because perception detects objects, prediction produces trajectories, planning publishes unblocked waypoints, yet vehicle_cmd is all zero while vehicle_status shows motion.\",\n    \"The discrepancy between closest_object_distance=0.0 in final_waypoints summary and 3.486 m distance in oracle objects is not explained by the evidence.\",\n    \"The data does not reveal whether the collision resulted from perception mislocalization, planning decisions, controller behavior, or simulator/vehicle interface issues.\"\n  ],\n  \"evidence_support\": [\n    {\n      \"evidence_id\": \"oracle_error_json_events\",\n      \"claim\": \"The oracle reports a crash event with no stuck, lane invasion, or red-light violations.\"\n    },\n    {\n      \"evidence_id\": \"collision_window_ego_speed_before_collision\",\n      \"claim\": \"Ego speed in the collision window reaches about 4.94 m/s with last pre-collision speed 4.70 m/s and no speed decrease indicating braking.\"\n    },\n    {\n      \"evidence_id\": \"collision_window_evidence_of_braking_or_stopping\",\n      \"claim\": \"Both vehicle_status and vehicle_cmd report zero brake, and there is no observed speed decrease within the window.\"\n    },\n    {\n      \"evidence_id\": \"trace_summary_perception_detection_objects\",\n      \"claim\": \"Detection objects exist throughout the run, with at least one object detected and labels including car and unknown.\"\n    },\n    {\n      \"evidence_id\": \"trace_summary_perception_prediction_objects\",\n      \"claim\": \"Prediction objects exist with 1–23 predicted objects per message and labels including car and unknown in the time leading to the collision.\"\n    },\n    {\n      \"evidence_id\": \"critical_window_final_waypoints_before_collision\",\n      \"claim\": \"Final waypoints are continuously available with 101 waypoints and no blocked flags prior to collision; closest_object_distance is summarized as 0.0 at the nearest pre-collision row.\"\n    },\n    {\n      \"evidence_id\": \"closest_available_object_info\",\n      \"claim\": \"The oracle collision data reports a closest available object (id 10283, classification 6) at a distance of 3.486 m from the ego before the collision.\"\n    },\n    {\n      \"evidence_id\": \"collision_topic_objects_sample\",\n      \"claim\": \"The oracle collision topic lists other_actor_ids including 10283 with a wide range of impulse magnitudes, indicating an actual collision with that actor.\"\n    },\n    {\n      \"evidence_id\": \"trace_summary_actuation_vehicle_cmd\",\n      \"claim\": \"The vehicle_cmd topic exists, but accel_cmd, brake_cmd, steer_cmd, and target_speed ranges remain at zero from 10.23s to 21.13s.\"\n    },\n    {\n      \"evidence_id\": \"trace_summary_actuation_vehicle_status\",\n      \"claim\": \"Vehicle_status shows ego velocity ranging from 0.0 to 9.75 m/s and nonzero throttle values, indicating that the vehicle moves despite all-zero vehicle_cmd.\"\n    }\n  ],\n  \"confidence\": \"medium\",\n  \"ready_for_phase2_generation\": \"yes\",\n  \"notes_for_validator\": [\n    \"Verify that the oracle collision topic in the generated case confirms a collision between ego and at least one non-ego actor near the end of the run.\",\n    \"Check that ego velocity from vehicle_status or odometry is nonzero and does not significantly decrease due to braking within several seconds before the collision.\",\n    \"Confirm that detection and prediction object topics are populated and show at least one actor near ego in the critical window.\",\n    \"Ensure final_waypoints are present with a consistent waypoint count and no blocked flags before the collision event.\",\n    \"Confirm that vehicle_cmd accel_cmd, brake_cmd, steer_cmd, and target_speed remain effectively zero while vehicle_status indicates ego motion, reproducing the command–status mismatch pattern.\"\n  ]\n}",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": [],
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "gpt-5.1-2025-11-13",
+    "object": "chat.completion",
+    "service_tier": "default",
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 1365,
+      "prompt_tokens": 3188,
+      "total_tokens": 4553,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": 0,
+        "audio_tokens": 0,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 0
+      }
+    }
+  },
+  "error_message": "",
+  "timestamp": "<REDACTED_TIMESTAMP>",
+  "elapsed_sec": 17.957
+}

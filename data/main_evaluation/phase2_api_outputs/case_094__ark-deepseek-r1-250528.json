@@ -1,0 +1,517 @@
+{
+  "case_id": "case_094",
+  "model_name": "ark-deepseek-r1-250528",
+  "workflow": "phase2_grounded_generation",
+  "status": "completed",
+  "schema_valid": true,
+  "schema_errors": [],
+  "phase1_ready": "uncertain",
+  "num_candidates_requested": 2,
+  "num_candidates_written": 2,
+  "num_pre_valid": 2,
+  "candidate_records": [
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-deepseek-r1-250528/json/case_094/case_094__cand_001.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-deepseek-r1-250528/metadata/case_094/case_094__cand_001.metadata.json",
+      "case_id": "case_094",
+      "model_name": "ark-deepseek-r1-250528",
+      "candidate_index": 1,
+      "candidate_spec": {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Shift the first walking actor closer to ego's planned path, moderately increase road wetness and puddle level while keeping all core scenario structure",
+        "mutation_intent": "Preserves all required root-cause constraints: keeps all-zero pre-collision vehicle commands, non-zero ego throttle and velocity, zero detected blocked waypoints, retains two actors and two puddles, maintains the confirmed core collision symptom",
+        "expected_oracle": "collision",
+        "modifications": {
+          "weather_delta": {
+            "rain": 5,
+            "fog": 0,
+            "wetness": 8,
+            "puddle": 3
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": -2.0,
+                "y": 1.5
+              },
+              "speed_delta": 0.3
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "speed_delta": 0.0
+            }
+          ],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 1.0,
+                "y": -0.5
+              },
+              "level_delta": 0.1,
+              "size_scale": 1.05
+            },
+            {
+              "puddle_index": 1,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": 0.0,
+              "size_scale": 1.0
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Verify all vehicle control commands are zero in the pre-collision window",
+          "Confirm non-zero ego throttle and positive forward velocity are preserved pre-collision",
+          "Ensure no blocked waypoints are detected by the planning module",
+          "Confirm exactly two actors and two puddle regions are spawned"
+        ],
+        "post_execution_validation_rules": [
+          "Verify collision occurred as the core confirmed failure symptom",
+          "Check that the vehicle_cmd/ego status mismatch is preserved"
+        ],
+        "uncertainty": [
+          "Original conflicting stuck/lane invasion label uncertainty is preserved",
+          "No confirmation of perception failure or module-level root cause is retained as per original evidence"
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 5.0,
+          "fog": 0.0,
+          "wetness": 8.0,
+          "puddle": 3.0
+        },
+        "actor_mutations": [
+          {
+            "actor_index": 0,
+            "position_offset": {
+              "x": -2.0,
+              "y": 1.5
+            },
+            "speed_delta": 0.3
+          },
+          {
+            "actor_index": 1,
+            "position_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "speed_delta": 0.0
+          }
+        ],
+        "puddle_mutations": [
+          {
+            "puddle_index": 0,
+            "location_offset": {
+              "x": 1.0,
+              "y": -0.5
+            },
+            "level_delta": 0.1,
+            "size_scale": 1.05
+          },
+          {
+            "puddle_index": 1,
+            "location_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "level_delta": 0.0,
+            "size_scale": 1.0
+          }
+        ],
+        "mission_mutation": {
+          "keep_original": true
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_094__ark-deepseek-r1-250528.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_094__ark-deepseek-r1-250528.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    },
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-deepseek-r1-250528/json/case_094/case_094__cand_002.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-deepseek-r1-250528/metadata/case_094/case_094__cand_002.metadata.json",
+      "case_id": "case_094",
+      "model_name": "ark-deepseek-r1-250528",
+      "candidate_index": 2,
+      "candidate_spec": {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Slightly shift ego's spawn and destination, move the second walking actor toward ego's route, add mild fog to introduce low perception uncertainty while maintaining core structure",
+        "mutation_intent": "Retains all original root-cause pattern constraints: all-zero pre-collision vehicle commands, non-zero ego throttle/velocity, no blocked waypoints, two actors and two puddles, preserves the confirmed collision outcome",
+        "expected_oracle": "collision",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 6,
+            "wetness": 4,
+            "puddle": 2
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "speed_delta": 0.0
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": 1.2,
+                "y": -2.5
+              },
+              "speed_delta": -0.5
+            }
+          ],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": 0.0,
+              "size_scale": 1.0
+            },
+            {
+              "puddle_index": 1,
+              "location_offset": {
+                "x": -0.8,
+                "y": 1.2
+              },
+              "level_delta": -0.05,
+              "size_scale": 0.95
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": false,
+            "spawn_offset": {
+              "x": 1.5,
+              "y": -1.0
+            },
+            "destination_offset": {
+              "x": -1.0,
+              "y": 0.8
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Confirm all vehicle control commands remain zero in the pre-collision window",
+          "Verify non-zero ego throttle and positive velocity are preserved pre-collision",
+          "Check that no blocked waypoints are detected in planning output",
+          "Ensure two actors and two puddles are correctly spawned"
+        ],
+        "post_execution_validation_rules": [
+          "Validate that collision occurs as the core confirmed failure symptom",
+          "Check that the vehicle_cmd/ego status mismatch is maintained"
+        ],
+        "uncertainty": [
+          "Original conflicting stuck and lane invasion label uncertainty is preserved",
+          "Module-level root cause attribution remains uncertain per original evidence",
+          "Perception failure presence remains unconfirmed as in the original case"
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 0.0,
+          "fog": 6.0,
+          "wetness": 4.0,
+          "puddle": 2.0
+        },
+        "actor_mutations": [
+          {
+            "actor_index": 0,
+            "position_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "speed_delta": 0.0
+          },
+          {
+            "actor_index": 1,
+            "position_offset": {
+              "x": 1.2,
+              "y": -2.5
+            },
+            "speed_delta": -0.5
+          }
+        ],
+        "puddle_mutations": [
+          {
+            "puddle_index": 0,
+            "location_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "level_delta": 0.0,
+            "size_scale": 1.0
+          },
+          {
+            "puddle_index": 1,
+            "location_offset": {
+              "x": -0.8,
+              "y": 1.2
+            },
+            "level_delta": -0.05,
+            "size_scale": 0.95
+          }
+        ],
+        "mission_mutation": {
+          "spawn_offset": {
+            "x": 1.5,
+            "y": -1.0
+          },
+          "destination_offset": {
+            "x": -1.0,
+            "y": 0.8
+          }
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_094__ark-deepseek-r1-250528.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_094__ark-deepseek-r1-250528.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    }
+  ],
+  "seed_artifact_zip": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-deepseek-r1-250528/seed-artifact/seed-artifact-case_094.zip",
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_prompts/case_094__ark-deepseek-r1-250528.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_094__ark-deepseek-r1-250528.json",
+  "prompt_estimated_tokens": 1183,
+  "usage": {
+    "prompt_tokens": 1537,
+    "completion_tokens": 2509,
+    "total_tokens": 4046
+  },
+  "raw_response": "{\n  \"case_id\": \"case_094\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Shift the first walking actor closer to ego's planned path, moderately increase road wetness and puddle level while keeping all core scenario structure\",\n      \"mutation_intent\": \"Preserves all required root-cause constraints: keeps all-zero pre-collision vehicle commands, non-zero ego throttle and velocity, zero detected blocked waypoints, retains two actors and two puddles, maintains the confirmed core collision symptom\",\n      \"expected_oracle\": \"collision\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 5, \"fog\": 0, \"wetness\": 8, \"puddle\": 3},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": -2.0, \"y\": 1.5}, \"speed_delta\": 0.3},\n          {\"actor_index\": 1, \"position_offset\": {\"x\": 0.0, \"y\": 0.0}, \"speed_delta\": 0.0}\n        ],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": 1.0, \"y\": -0.5}, \"level_delta\": 0.1, \"size_scale\": 1.05},\n          {\"puddle_index\": 1, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": 0.0, \"size_scale\": 1.0}\n        ],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\n        \"Verify all vehicle control commands are zero in the pre-collision window\",\n        \"Confirm non-zero ego throttle and positive forward velocity are preserved pre-collision\",\n        \"Ensure no blocked waypoints are detected by the planning module\",\n        \"Confirm exactly two actors and two puddle regions are spawned\"\n      ],\n      \"post_execution_validation_rules\": [\n        \"Verify collision occurred as the core confirmed failure symptom\",\n        \"Check that the vehicle_cmd/ego status mismatch is preserved\"\n      ],\n      \"uncertainty\": [\n        \"Original conflicting stuck/lane invasion label uncertainty is preserved\",\n        \"No confirmation of perception failure or module-level root cause is retained as per original evidence\"\n      ]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Slightly shift ego's spawn and destination, move the second walking actor toward ego's route, add mild fog to introduce low perception uncertainty while maintaining core structure\",\n      \"mutation_intent\": \"Retains all original root-cause pattern constraints: all-zero pre-collision vehicle commands, non-zero ego throttle/velocity, no blocked waypoints, two actors and two puddles, preserves the confirmed collision outcome\",\n      \"expected_oracle\": \"collision\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 6, \"wetness\": 4, \"puddle\": 2},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 0.0, \"y\": 0.0}, \"speed_delta\": 0.0},\n          {\"actor_index\": 1, \"position_offset\": {\"x\": 1.2, \"y\": -2.5}, \"speed_delta\": -0.5}\n        ],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": 0.0, \"size_scale\": 1.0},\n          {\"puddle_index\": 1, \"location_offset\": {\"x\": -0.8, \"y\": 1.2}, \"level_delta\": -0.05, \"size_scale\": 0.95}\n        ],\n        \"mission_mutation\": {\"keep_original\": false, \"spawn_offset\": {\"x\": 1.5, \"y\": -1.0}, \"destination_offset\": {\"x\": -1.0, \"y\": 0.8}}\n      },\n      \"pre_execution_validation_rules\": [\n        \"Confirm all vehicle control commands remain zero in the pre-collision window\",\n        \"Verify non-zero ego throttle and positive velocity are preserved pre-collision\",\n        \"Check that no blocked waypoints are detected in planning output\",\n        \"Ensure two actors and two puddles are correctly spawned\"\n      ],\n      \"post_execution_validation_rules\": [\n        \"Validate that collision occurs as the core confirmed failure symptom\",\n        \"Check that the vehicle_cmd/ego status mismatch is maintained\"\n      ],\n      \"uncertainty\": [\n        \"Original conflicting stuck and lane invasion label uncertainty is preserved\",\n        \"Module-level root cause attribution remains uncertain per original evidence\",\n        \"Perception failure presence remains unconfirmed as in the original case\"\n      ]\n    }\n  ]\n}",
+  "parsed_response": {
+    "case_id": "case_094",
+    "candidate_specs": [
+      {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Shift the first walking actor closer to ego's planned path, moderately increase road wetness and puddle level while keeping all core scenario structure",
+        "mutation_intent": "Preserves all required root-cause constraints: keeps all-zero pre-collision vehicle commands, non-zero ego throttle and velocity, zero detected blocked waypoints, retains two actors and two puddles, maintains the confirmed core collision symptom",
+        "expected_oracle": "collision",
+        "modifications": {
+          "weather_delta": {
+            "rain": 5,
+            "fog": 0,
+            "wetness": 8,
+            "puddle": 3
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": -2.0,
+                "y": 1.5
+              },
+              "speed_delta": 0.3
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "speed_delta": 0.0
+            }
+          ],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 1.0,
+                "y": -0.5
+              },
+              "level_delta": 0.1,
+              "size_scale": 1.05
+            },
+            {
+              "puddle_index": 1,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": 0.0,
+              "size_scale": 1.0
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Verify all vehicle control commands are zero in the pre-collision window",
+          "Confirm non-zero ego throttle and positive forward velocity are preserved pre-collision",
+          "Ensure no blocked waypoints are detected by the planning module",
+          "Confirm exactly two actors and two puddle regions are spawned"
+        ],
+        "post_execution_validation_rules": [
+          "Verify collision occurred as the core confirmed failure symptom",
+          "Check that the vehicle_cmd/ego status mismatch is preserved"
+        ],
+        "uncertainty": [
+          "Original conflicting stuck/lane invasion label uncertainty is preserved",
+          "No confirmation of perception failure or module-level root cause is retained as per original evidence"
+        ]
+      },
+      {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Slightly shift ego's spawn and destination, move the second walking actor toward ego's route, add mild fog to introduce low perception uncertainty while maintaining core structure",
+        "mutation_intent": "Retains all original root-cause pattern constraints: all-zero pre-collision vehicle commands, non-zero ego throttle/velocity, no blocked waypoints, two actors and two puddles, preserves the confirmed collision outcome",
+        "expected_oracle": "collision",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 6,
+            "wetness": 4,
+            "puddle": 2
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "speed_delta": 0.0
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": 1.2,
+                "y": -2.5
+              },
+              "speed_delta": -0.5
+            }
+          ],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": 0.0,
+              "size_scale": 1.0
+            },
+            {
+              "puddle_index": 1,
+              "location_offset": {
+                "x": -0.8,
+                "y": 1.2
+              },
+              "level_delta": -0.05,
+              "size_scale": 0.95
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": false,
+            "spawn_offset": {
+              "x": 1.5,
+              "y": -1.0
+            },
+            "destination_offset": {
+              "x": -1.0,
+              "y": 0.8
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Confirm all vehicle control commands remain zero in the pre-collision window",
+          "Verify non-zero ego throttle and positive velocity are preserved pre-collision",
+          "Check that no blocked waypoints are detected in planning output",
+          "Ensure two actors and two puddles are correctly spawned"
+        ],
+        "post_execution_validation_rules": [
+          "Validate that collision occurs as the core confirmed failure symptom",
+          "Check that the vehicle_cmd/ego status mismatch is maintained"
+        ],
+        "uncertainty": [
+          "Original conflicting stuck and lane invasion label uncertainty is preserved",
+          "Module-level root cause attribution remains uncertain per original evidence",
+          "Perception failure presence remains unconfirmed as in the original case"
+        ]
+      }
+    ]
+  },
+  "raw_api_payload": {
+    "id": "02178292371735890b54e8a6ac9d8f31999a1fe47d3c2b082d964",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "{\n  \"case_id\": \"case_094\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Shift the first walking actor closer to ego's planned path, moderately increase road wetness and puddle level while keeping all core scenario structure\",\n      \"mutation_intent\": \"Preserves all required root-cause constraints: keeps all-zero pre-collision vehicle commands, non-zero ego throttle and velocity, zero detected blocked waypoints, retains two actors and two puddles, maintains the confirmed core collision symptom\",\n      \"expected_oracle\": \"collision\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 5, \"fog\": 0, \"wetness\": 8, \"puddle\": 3},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": -2.0, \"y\": 1.5}, \"speed_delta\": 0.3},\n          {\"actor_index\": 1, \"position_offset\": {\"x\": 0.0, \"y\": 0.0}, \"speed_delta\": 0.0}\n        ],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": 1.0, \"y\": -0.5}, \"level_delta\": 0.1, \"size_scale\": 1.05},\n          {\"puddle_index\": 1, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": 0.0, \"size_scale\": 1.0}\n        ],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\n        \"Verify all vehicle control commands are zero in the pre-collision window\",\n        \"Confirm non-zero ego throttle and positive forward velocity are preserved pre-collision\",\n        \"Ensure no blocked waypoints are detected by the planning module\",\n        \"Confirm exactly two actors and two puddle regions are spawned\"\n      ],\n      \"post_execution_validation_rules\": [\n        \"Verify collision occurred as the core confirmed failure symptom\",\n        \"Check that the vehicle_cmd/ego status mismatch is preserved\"\n      ],\n      \"uncertainty\": [\n        \"Original conflicting stuck/lane invasion label uncertainty is preserved\",\n        \"No confirmation of perception failure or module-level root cause is retained as per original evidence\"\n      ]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Slightly shift ego's spawn and destination, move the second walking actor toward ego's route, add mild fog to introduce low perception uncertainty while maintaining core structure\",\n      \"mutation_intent\": \"Retains all original root-cause pattern constraints: all-zero pre-collision vehicle commands, non-zero ego throttle/velocity, no blocked waypoints, two actors and two puddles, preserves the confirmed collision outcome\",\n      \"expected_oracle\": \"collision\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 6, \"wetness\": 4, \"puddle\": 2},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 0.0, \"y\": 0.0}, \"speed_delta\": 0.0},\n          {\"actor_index\": 1, \"position_offset\": {\"x\": 1.2, \"y\": -2.5}, \"speed_delta\": -0.5}\n        ],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": 0.0, \"size_scale\": 1.0},\n          {\"puddle_index\": 1, \"location_offset\": {\"x\": -0.8, \"y\": 1.2}, \"level_delta\": -0.05, \"size_scale\": 0.95}\n        ],\n        \"mission_mutation\": {\"keep_original\": false, \"spawn_offset\": {\"x\": 1.5, \"y\": -1.0}, \"destination_offset\": {\"x\": -1.0, \"y\": 0.8}}\n      },\n      \"pre_execution_validation_rules\": [\n        \"Confirm all vehicle control commands remain zero in the pre-collision window\",\n        \"Verify non-zero ego throttle and positive velocity are preserved pre-collision\",\n        \"Check that no blocked waypoints are detected in planning output\",\n        \"Ensure two actors and two puddles are correctly spawned\"\n      ],\n      \"post_execution_validation_rules\": [\n        \"Validate that collision occurs as the core confirmed failure symptom\",\n        \"Check that the vehicle_cmd/ego status mismatch is maintained\"\n      ],\n      \"uncertainty\": [\n        \"Original conflicting stuck and lane invasion label uncertainty is preserved\",\n        \"Module-level root cause attribution remains uncertain per original evidence\",\n        \"Perception failure presence remains unconfirmed as in the original case\"\n      ]\n    }\n  ]\n}",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null,
+          "reasoning_content": "\nGot it, let's build this step by step. First, the case_id is case_094, right? We need two candidate_specs. Let's start with cand_001 first.\n\nFirst, high_level_variant for cand 001: Slightly move the first walker closer to ego's path, increase road wetness moderately, keep all core constraints. Wait, mutation intent should say it preserves all root cause patterns: keeps all-zero vehicle commands, non-zero ego throttle/velocity, no blocked waypoints, two actors two puddles, preserves confirmed collision. Expected oracle is collision, right? Because collision is confirmed.\n\nThen modifications: weather delta. Let's see, original rain is 0, let's do rain +5, wetness +8, fog 0, puddle +3? Wait keep deltas within [-20,20], that's fine. Actor mutations: actor 0 (first walker) position offset: x -2, y +1.5, that's within [-8,8]. Speed delta: +0.3, within [-3,3]. Actor 1 can be 0 offset, 0 delta? Or leave? Wait, let's do actor_mutations: first one offset, second keep original? Wait, no, let's list both if needed? Or just one. Wait, the schema has actor_mutations as array, so okay. Puddle mutations: puddle 0, location offset x +1, y -0.5, level delta +0.1, size scale 1.05, that's within the allowed ranges. Puddle 1: keep? Or offset 0, level 0, size 1. Mission mutation: keep_original true, right? Because preservation constraint says keep the mission, so keep_original is true.\n\nPre-execution rules: need to check that vehicle commands are all zero pre-collision, non-zero ego throttle and velocity, no blocked waypoints detected, two actors and two puddles present. Let's write [\"Verify all vehicle control commands are zero in pre-collision window\", \"Confirm non-zero ego throttle and positive forward velocity pre-collision\", \"Ensure no blocked waypoints are detected by planning module\", \"Confirm exactly two actors and two puddles are spawned\"]. Post execution: [\"Verify collision between ego and another actor occurred\", \"Check that core symptom of vehicle_cmd/velocity mismatch is preserved\"]. Uncertainty: [\"Uncertainty about whether perception failed to detect the collided actor preserved\", \"Module-level root cause attribution remains uncertain per original evidence\"].\n\nNow cand_002. Let's make another variant. High level variant: Slightly shift ego spawn position, move the second walker toward ego's route, increase fog slightly to introduce mild perception uncertainty while keeping core constraints. Mutation intent: Preserves all original root cause pattern elements: all-zero actuation commands, non-zero ego throttle/velocity, no blocked waypoints, two actors two puddles, keeps confirmed collision as core symptom, retains original uncertainty. Expected oracle is collision, right? Because that's confirmed.\n\nModifications: weather delta: rain 0, fog +6, wetness +4, puddle +2, that's within range. Actor mutations: actor index 1, position offset x +1.2, y -2.5, speed delta -0.5, that's within [-8,8] offset, [-3,3] delta. Actor 0: offset 0, speed delta 0. Puddle mutations: puddle 1, location offset x -0.8, y +1.2, level delta -0.05, size scale 0.95, that's okay. Puddle 0: offset 0, level 0, size 1. Mission mutation: keep_original false? Wait, spawn offset x +1.5, y -1, destination offset x -1, y +0.8, that's within [-5,5], right? So \"mission_mutation\": {\"keep_original\": false, \"spawn_offset\": {\"x\": 1.5, \"y\": -1.0}, \"destination_offset\": {\"x\": -1.0, \"y\": 0.8}}.\n\nPre execution rules for cand 002: [\"Confirm all vehicle control commands remain zero in pre-collision window\", \"Verify non-zero ego throttle and positive velocity are preserved pre-collision\", \"Check that no blocked waypoints are detected in planning output\", \"Ensure two actors and two puddles are correctly spawned per constraints\"]. Post execution: [\"Validate that collision occurs as the core failure symptom\", \"Check that vehicle_cmd/ego status mismatch is maintained\"]. Uncertainty: [\"Preserves original conflicting label uncertainty for stuck/lane invasion\", \"Module-level root cause remains unconfirmed per original evidence\", \"Perception failure presence remains unconfirmed\"].\n\nWait let's check all rules: exactly two candidates, all offsets within ranges, deltas within allowed, preserve root cause, keep expected oracle as collision, which is confirmed. The uncertainty is preserved as per phase 1. Let's fit into the schema correctly.\n\nWait let's check the actor positions: for cand 001, actor 0 x offset -2, y +1.5, that's well within [-8,8], speed delta +0.3, within [-3,3], good. Weather deltas: all are within [-20,20], yes. Puddle level delta: +0.1, which is within [-0.2, 0.2], size scale 1.05, between 0.8 and 1.2, good. Mission for cand 001 keep original, that's fine. For cand 002, mission offsets are all within [-5,5], good. Puddle level delta -0.05, okay, size 0.95 okay.\n\nExpected oracle: both are collision, right? Because collision is confirmed, the other labels are conflicting, so we keep the confirmed one. Uncertainty is preserved as per phase 1.\n\nOkay let's put it all together into the JSON correctly, no extra stuff, exactly as per schema."
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "doubao-seed-2-0-lite-260215",
+    "object": "chat.completion",
+    "service_tier": "default",
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 2509,
+      "prompt_tokens": 1537,
+      "total_tokens": 4046,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 1308,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": null,
+        "cached_tokens": 0
+      }
+    }
+  },
+  "error_message": "",
+  "elapsed_sec": 41.053,
+  "timestamp": "<REDACTED_TIMESTAMP>"
+}

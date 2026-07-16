@@ -1,0 +1,101 @@
+{
+  "case_id": "case_002",
+  "model_name": "claude-sonnet-4-5",
+  "candidate_index": 1,
+  "candidate_spec": {
+    "candidate_id": "cand_001",
+    "high_level_variant": "Reduce fog and rain to clarify traffic light visibility",
+    "mutation_intent": "Test if red-light violation persists with better visibility, isolating perception vs planning failure",
+    "expected_oracle": "red_light",
+    "modifications": {
+      "weather_delta": {
+        "rain": -20,
+        "fog": -15,
+        "wetness": -10,
+        "puddle": -10
+      },
+      "actor_mutations": [
+        {
+          "actor_index": 0,
+          "position_offset": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "speed_delta": 0.0
+        },
+        {
+          "actor_index": 1,
+          "position_offset": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "speed_delta": 0.0
+        }
+      ],
+      "puddle_mutations": [],
+      "mission_mutation": {
+        "keep_original": true,
+        "spawn_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "destination_offset": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Traffic lights exist on ego route",
+      "Spawn and destination unchanged",
+      "Weather improved for visibility"
+    ],
+    "post_execution_validation_rules": [
+      "Red-light oracle triggered",
+      "Traffic light transitioned to red before violation",
+      "Final waypoints show invalid stop-line IDs"
+    ],
+    "uncertainty": [
+      "Unclear if perception or planning causes failure",
+      "Vehicle command vs status mismatch origin unknown"
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": -20,
+      "fog": -15.0,
+      "wetness": -10.0,
+      "puddle": -10.0
+    },
+    "actor_mutations": [
+      {
+        "actor_index": 0,
+        "position_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "speed_delta": 0.0
+      },
+      {
+        "actor_index": 1,
+        "position_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "speed_delta": 0.0
+      }
+    ],
+    "puddle_mutations": [],
+    "mission_mutation": {
+      "keep_original": true
+    }
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_002__claude-sonnet-4-5.json",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_002__claude-sonnet-4-5.json",
+  "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+}

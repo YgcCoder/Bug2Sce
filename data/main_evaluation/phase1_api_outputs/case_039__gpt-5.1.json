@@ -1,0 +1,137 @@
+{
+  "case_id": "case_039",
+  "workflow": "phase1_causal_explanation",
+  "model_name": "gpt-5.1",
+  "model_id": "gpt-5.1",
+  "status": "completed",
+  "dry_run": false,
+  "schema_valid": true,
+  "schema_errors": [],
+  "quality_flags": [],
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_prompts/case_039__gpt-5.1.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_039__gpt-5.1.json",
+  "prompt_estimated_tokens": 2808,
+  "usage": {
+    "prompt_tokens": 2993,
+    "completion_tokens": 1224,
+    "total_tokens": 4217
+  },
+  "estimated_cost_usd": null,
+  "raw_response": "{\n  \"case_id\": \"case_039\",\n  \"fault_layer\": \"unknown\",\n  \"fault_component\": \"unknown\",\n  \"causal_explanation\": \"The dataset labels this case as stuck with lane invasion, but the error.json oracle reports only a goal-related failure with no stuck or lane-invasion events. Critical-window data show that the ego moves over 100 m in the last 60 seconds with nonzero velocity and active vehicle_status actuation, while vehicle_cmd remains zero throughout. Planning outputs stable final_waypoints and lane_waypoints_array. Because the oracle does not confirm stuck or lane invasion and the actuation mismatch (nonzero motion with zero vehicle_cmd) cannot be resolved with the given evidence, the underlying root cause and module-level fault remain unknown.\",\n  \"root_cause_pattern\": \"Conservative preservation pattern: a goal-related failure occurs in a scenario with continuous ego motion, stable final_waypoints, available perception and prediction objects, zeroed vehicle_cmd, and vehicle_status indicating nonzero velocity and displacement, while oracle events for stuck and lane invasion are absent despite dataset labels.\",\n  \"preservation_constraints\": [\n    \"The generated case should reproduce a non-success goal outcome (e.g., significant goal error) without oracle-confirmed collision, stuck, lane-invasion, red-light, or speeding events.\",\n    \"Perception and prediction objects should be published throughout the critical window.\",\n    \"Planning topics (final_waypoints and a lane_waypoints_array-style route) should be present and stable in count during the critical window.\",\n    \"vehicle_cmd should remain effectively zero for acceleration, braking, steering, and target speed during the critical window.\",\n    \"vehicle_status or equivalent feedback should show nonzero ego motion and displacement over the same interval.\"\n  ],\n  \"modifiable_factors\": [\n    \"actor_position\",\n    \"weather\",\n    \"mission\",\n    \"puddles\",\n    \"traffic_light_timing\",\n    \"initial_speed\"\n  ],\n  \"non_modifiable_conditions\": [\n    \"The oracle must report a non-success goal or large goal error rather than explicit collision, stuck, lane-invasion, red-light, or speeding events.\",\n    \"Perception and prediction outputs must remain available near the failure time.\",\n    \"Planning outputs (route and final waypoints) must remain available and non-null.\",\n    \"An actuation-interface mismatch pattern must be preserved, where the low-level motion feedback indicates movement while high-level vehicle command topic remains at or near zero.\",\n    \"Dataset-oracle label inconsistency (e.g., dataset indicating stuck and/or lane invasion while error_json does not) must be preserved.\"\n  ],\n  \"uncertainty\": [\n    \"Dataset.xlsx labels indicate stuck and lane invasion, but error.json reports none; the true oracle symptom is uncertain.\",\n    \"The cause of nonzero ego motion with zero vehicle_cmd is unclear; it could stem from controller behavior, simulator behavior, or logging/bridging artifacts.\",\n    \"No direct evidence links the goal failure to specific perception, planning, control, map, or simulator defects.\",\n    \"Lane invasion is not supported by any lane-boundary crossing evidence despite the dataset label.\"\n  ],\n  \"evidence_support\": [\n    {\n      \"evidence_id\": \"fault_label_and_oracle_consistency\",\n      \"claim\": \"Dataset marks collision=0, stuck=1, lane_invasion=1, red_light=0, while error_json reports no stuck, lane invasion, collision, red-light, or speeding events and instead flags a goal-related error.\"\n    },\n    {\n      \"evidence_id\": \"critical_window_stuck_window\",\n      \"claim\": \"In the last ~60 seconds the ego travels about 101.955 m with a mean velocity around 1.05 m/s and final velocity about 4.17 m/s, indicating it is not stationary despite the dataset stuck label.\"\n    },\n    {\n      \"evidence_id\": \"critical_window_vehicle_status_control_stats\",\n      \"claim\": \"vehicle_status shows nonzero throttle and steering statistics in the last 60 seconds, indicating active actuation at the vehicle-status level.\"\n    },\n    {\n      \"evidence_id\": \"critical_window_vehicle_cmd_stats\",\n      \"claim\": \"vehicle_cmd accel_cmd, brake_cmd, steer_cmd, and target_speed remain zero across the sampled window, suggesting a mismatch between high-level command topic and observed motion.\"\n    },\n    {\n      \"evidence_id\": \"trace_summary_planning\",\n      \"claim\": \"final_waypoints and lane_waypoints_array are present with stable waypoint counts and no null rows, indicating that planning outputs are continuously available.\"\n    },\n    {\n      \"evidence_id\": \"trace_summary_perception_and_prediction\",\n      \"claim\": \"Detection and prediction objects are published over most of the run with nonzero object counts, showing active perception and prediction topics.\"\n    },\n    {\n      \"evidence_id\": \"oracle_objects_and_traffic_lights\",\n      \"claim\": \"Oracle topics for world objects and traffic lights are present without any reported collision or red-light events.\"\n    }\n  ],\n  \"confidence\": \"low\",\n  \"ready_for_phase2_generation\": \"uncertain\",\n  \"notes_for_validator\": [\n    \"Treat dataset stuck and lane-invasion labels as unconfirmed; rely primarily on error_json for oracle symptom verification.\",\n    \"After executing a generated scenario, verify that error_json (or equivalent oracle) still reports a goal-related failure without explicit collision, stuck, lane-invasion, red-light, or speeding events.\",\n    \"Check that vehicle_cmd remains effectively zero while vehicle_status (or equivalent) confirms nonzero ego motion during the critical window.\",\n    \"Confirm that planning topics (final waypoints and route) remain available and non-null up to the failure time.\",\n    \"Do not infer module-level root cause (perception vs. planning vs. actuation vs. simulator) solely from the command-status mismatch; this pattern is only a candidate mechanism.\"\n  ]\n}",
+  "parsed_response": {
+    "case_id": "case_039",
+    "fault_layer": "unknown",
+    "fault_component": "unknown",
+    "causal_explanation": "The dataset labels this case as stuck with lane invasion, but the error.json oracle reports only a goal-related failure with no stuck or lane-invasion events. Critical-window data show that the ego moves over 100 m in the last 60 seconds with nonzero velocity and active vehicle_status actuation, while vehicle_cmd remains zero throughout. Planning outputs stable final_waypoints and lane_waypoints_array. Because the oracle does not confirm stuck or lane invasion and the actuation mismatch (nonzero motion with zero vehicle_cmd) cannot be resolved with the given evidence, the underlying root cause and module-level fault remain unknown.",
+    "root_cause_pattern": "Conservative preservation pattern: a goal-related failure occurs in a scenario with continuous ego motion, stable final_waypoints, available perception and prediction objects, zeroed vehicle_cmd, and vehicle_status indicating nonzero velocity and displacement, while oracle events for stuck and lane invasion are absent despite dataset labels.",
+    "preservation_constraints": [
+      "The generated case should reproduce a non-success goal outcome (e.g., significant goal error) without oracle-confirmed collision, stuck, lane-invasion, red-light, or speeding events.",
+      "Perception and prediction objects should be published throughout the critical window.",
+      "Planning topics (final_waypoints and a lane_waypoints_array-style route) should be present and stable in count during the critical window.",
+      "vehicle_cmd should remain effectively zero for acceleration, braking, steering, and target speed during the critical window.",
+      "vehicle_status or equivalent feedback should show nonzero ego motion and displacement over the same interval."
+    ],
+    "modifiable_factors": [
+      "actor_position",
+      "weather",
+      "mission",
+      "puddles",
+      "traffic_light_timing",
+      "initial_speed"
+    ],
+    "non_modifiable_conditions": [
+      "The oracle must report a non-success goal or large goal error rather than explicit collision, stuck, lane-invasion, red-light, or speeding events.",
+      "Perception and prediction outputs must remain available near the failure time.",
+      "Planning outputs (route and final waypoints) must remain available and non-null.",
+      "An actuation-interface mismatch pattern must be preserved, where the low-level motion feedback indicates movement while high-level vehicle command topic remains at or near zero.",
+      "Dataset-oracle label inconsistency (e.g., dataset indicating stuck and/or lane invasion while error_json does not) must be preserved."
+    ],
+    "uncertainty": [
+      "Dataset.xlsx labels indicate stuck and lane invasion, but error.json reports none; the true oracle symptom is uncertain.",
+      "The cause of nonzero ego motion with zero vehicle_cmd is unclear; it could stem from controller behavior, simulator behavior, or logging/bridging artifacts.",
+      "No direct evidence links the goal failure to specific perception, planning, control, map, or simulator defects.",
+      "Lane invasion is not supported by any lane-boundary crossing evidence despite the dataset label."
+    ],
+    "evidence_support": [
+      {
+        "evidence_id": "fault_label_and_oracle_consistency",
+        "claim": "Dataset marks collision=0, stuck=1, lane_invasion=1, red_light=0, while error_json reports no stuck, lane invasion, collision, red-light, or speeding events and instead flags a goal-related error."
+      },
+      {
+        "evidence_id": "critical_window_stuck_window",
+        "claim": "In the last ~60 seconds the ego travels about 101.955 m with a mean velocity around 1.05 m/s and final velocity about 4.17 m/s, indicating it is not stationary despite the dataset stuck label."
+      },
+      {
+        "evidence_id": "critical_window_vehicle_status_control_stats",
+        "claim": "vehicle_status shows nonzero throttle and steering statistics in the last 60 seconds, indicating active actuation at the vehicle-status level."
+      },
+      {
+        "evidence_id": "critical_window_vehicle_cmd_stats",
+        "claim": "vehicle_cmd accel_cmd, brake_cmd, steer_cmd, and target_speed remain zero across the sampled window, suggesting a mismatch between high-level command topic and observed motion."
+      },
+      {
+        "evidence_id": "trace_summary_planning",
+        "claim": "final_waypoints and lane_waypoints_array are present with stable waypoint counts and no null rows, indicating that planning outputs are continuously available."
+      },
+      {
+        "evidence_id": "trace_summary_perception_and_prediction",
+        "claim": "Detection and prediction objects are published over most of the run with nonzero object counts, showing active perception and prediction topics."
+      },
+      {
+        "evidence_id": "oracle_objects_and_traffic_lights",
+        "claim": "Oracle topics for world objects and traffic lights are present without any reported collision or red-light events."
+      }
+    ],
+    "confidence": "low",
+    "ready_for_phase2_generation": "uncertain",
+    "notes_for_validator": [
+      "Treat dataset stuck and lane-invasion labels as unconfirmed; rely primarily on error_json for oracle symptom verification.",
+      "After executing a generated scenario, verify that error_json (or equivalent oracle) still reports a goal-related failure without explicit collision, stuck, lane-invasion, red-light, or speeding events.",
+      "Check that vehicle_cmd remains effectively zero while vehicle_status (or equivalent) confirms nonzero ego motion during the critical window.",
+      "Confirm that planning topics (final waypoints and route) remain available and non-null up to the failure time.",
+      "Do not infer module-level root cause (perception vs. planning vs. actuation vs. simulator) solely from the command-status mismatch; this pattern is only a candidate mechanism."
+    ]
+  },
+  "raw_api_payload": {
+    "id": "<REDACTED_RESPONSE_ID>",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "{\n  \"case_id\": \"case_039\",\n  \"fault_layer\": \"unknown\",\n  \"fault_component\": \"unknown\",\n  \"causal_explanation\": \"The dataset labels this case as stuck with lane invasion, but the error.json oracle reports only a goal-related failure with no stuck or lane-invasion events. Critical-window data show that the ego moves over 100 m in the last 60 seconds with nonzero velocity and active vehicle_status actuation, while vehicle_cmd remains zero throughout. Planning outputs stable final_waypoints and lane_waypoints_array. Because the oracle does not confirm stuck or lane invasion and the actuation mismatch (nonzero motion with zero vehicle_cmd) cannot be resolved with the given evidence, the underlying root cause and module-level fault remain unknown.\",\n  \"root_cause_pattern\": \"Conservative preservation pattern: a goal-related failure occurs in a scenario with continuous ego motion, stable final_waypoints, available perception and prediction objects, zeroed vehicle_cmd, and vehicle_status indicating nonzero velocity and displacement, while oracle events for stuck and lane invasion are absent despite dataset labels.\",\n  \"preservation_constraints\": [\n    \"The generated case should reproduce a non-success goal outcome (e.g., significant goal error) without oracle-confirmed collision, stuck, lane-invasion, red-light, or speeding events.\",\n    \"Perception and prediction objects should be published throughout the critical window.\",\n    \"Planning topics (final_waypoints and a lane_waypoints_array-style route) should be present and stable in count during the critical window.\",\n    \"vehicle_cmd should remain effectively zero for acceleration, braking, steering, and target speed during the critical window.\",\n    \"vehicle_status or equivalent feedback should show nonzero ego motion and displacement over the same interval.\"\n  ],\n  \"modifiable_factors\": [\n    \"actor_position\",\n    \"weather\",\n    \"mission\",\n    \"puddles\",\n    \"traffic_light_timing\",\n    \"initial_speed\"\n  ],\n  \"non_modifiable_conditions\": [\n    \"The oracle must report a non-success goal or large goal error rather than explicit collision, stuck, lane-invasion, red-light, or speeding events.\",\n    \"Perception and prediction outputs must remain available near the failure time.\",\n    \"Planning outputs (route and final waypoints) must remain available and non-null.\",\n    \"An actuation-interface mismatch pattern must be preserved, where the low-level motion feedback indicates movement while high-level vehicle command topic remains at or near zero.\",\n    \"Dataset-oracle label inconsistency (e.g., dataset indicating stuck and/or lane invasion while error_json does not) must be preserved.\"\n  ],\n  \"uncertainty\": [\n    \"Dataset.xlsx labels indicate stuck and lane invasion, but error.json reports none; the true oracle symptom is uncertain.\",\n    \"The cause of nonzero ego motion with zero vehicle_cmd is unclear; it could stem from controller behavior, simulator behavior, or logging/bridging artifacts.\",\n    \"No direct evidence links the goal failure to specific perception, planning, control, map, or simulator defects.\",\n    \"Lane invasion is not supported by any lane-boundary crossing evidence despite the dataset label.\"\n  ],\n  \"evidence_support\": [\n    {\n      \"evidence_id\": \"fault_label_and_oracle_consistency\",\n      \"claim\": \"Dataset marks collision=0, stuck=1, lane_invasion=1, red_light=0, while error_json reports no stuck, lane invasion, collision, red-light, or speeding events and instead flags a goal-related error.\"\n    },\n    {\n      \"evidence_id\": \"critical_window_stuck_window\",\n      \"claim\": \"In the last ~60 seconds the ego travels about 101.955 m with a mean velocity around 1.05 m/s and final velocity about 4.17 m/s, indicating it is not stationary despite the dataset stuck label.\"\n    },\n    {\n      \"evidence_id\": \"critical_window_vehicle_status_control_stats\",\n      \"claim\": \"vehicle_status shows nonzero throttle and steering statistics in the last 60 seconds, indicating active actuation at the vehicle-status level.\"\n    },\n    {\n      \"evidence_id\": \"critical_window_vehicle_cmd_stats\",\n      \"claim\": \"vehicle_cmd accel_cmd, brake_cmd, steer_cmd, and target_speed remain zero across the sampled window, suggesting a mismatch between high-level command topic and observed motion.\"\n    },\n    {\n      \"evidence_id\": \"trace_summary_planning\",\n      \"claim\": \"final_waypoints and lane_waypoints_array are present with stable waypoint counts and no null rows, indicating that planning outputs are continuously available.\"\n    },\n    {\n      \"evidence_id\": \"trace_summary_perception_and_prediction\",\n      \"claim\": \"Detection and prediction objects are published over most of the run with nonzero object counts, showing active perception and prediction topics.\"\n    },\n    {\n      \"evidence_id\": \"oracle_objects_and_traffic_lights\",\n      \"claim\": \"Oracle topics for world objects and traffic lights are present without any reported collision or red-light events.\"\n    }\n  ],\n  \"confidence\": \"low\",\n  \"ready_for_phase2_generation\": \"uncertain\",\n  \"notes_for_validator\": [\n    \"Treat dataset stuck and lane-invasion labels as unconfirmed; rely primarily on error_json for oracle symptom verification.\",\n    \"After executing a generated scenario, verify that error_json (or equivalent oracle) still reports a goal-related failure without explicit collision, stuck, lane-invasion, red-light, or speeding events.\",\n    \"Check that vehicle_cmd remains effectively zero while vehicle_status (or equivalent) confirms nonzero ego motion during the critical window.\",\n    \"Confirm that planning topics (final waypoints and route) remain available and non-null up to the failure time.\",\n    \"Do not infer module-level root cause (perception vs. planning vs. actuation vs. simulator) solely from the command-status mismatch; this pattern is only a candidate mechanism.\"\n  ]\n}",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": [],
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "gpt-5.1-2025-11-13",
+    "object": "chat.completion",
+    "service_tier": "default",
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 1224,
+      "prompt_tokens": 2993,
+      "total_tokens": 4217,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": 0,
+        "audio_tokens": 0,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 0
+      }
+    }
+  },
+  "error_message": "",
+  "timestamp": "<REDACTED_TIMESTAMP>",
+  "elapsed_sec": 25.087
+}

@@ -1,0 +1,107 @@
+{
+  "case_id": "case_112",
+  "model_name": "ark-doubao-seed-2.0-lite-260215",
+  "candidate_index": 2,
+  "candidate_spec": {
+    "candidate_id": "cand_002",
+    "high_level_variant": "Slightly shift ego spawn position closer to the collision point and reduce the speed of the background vehicle",
+    "mutation_intent": "Adjusts time-to-collision while strictly preserving all root-cause requirements: confirmed collision, zero pre-collision vehicle_cmd, positive ego speed with no braking, and conflicting lane invasion annotations",
+    "expected_oracle": "collision",
+    "modifications": {
+      "weather_delta": {
+        "rain": 5,
+        "fog": -5,
+        "wetness": 3,
+        "puddle": 2
+      },
+      "actor_mutations": [
+        {
+          "actor_index": 0,
+          "position_offset": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "speed_delta": 0.0
+        },
+        {
+          "actor_index": 1,
+          "position_offset": {
+            "x": -0.6,
+            "y": 0.4
+          },
+          "speed_delta": -1.1
+        }
+      ],
+      "puddle_mutations": [],
+      "mission_mutation": {
+        "keep_original": false,
+        "spawn_offset": {
+          "x": 1.8,
+          "y": 1.2
+        },
+        "destination_offset": {
+          "x": -1.0,
+          "y": 0.8
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Verify all vehicle_cmd outputs are zero in pre-collision critical window",
+      "Verify lane invasion label conflict between dataset and error.json is preserved",
+      "Verify ego maintains positive speed with zero braking before collision"
+    ],
+    "post_execution_validation_rules": [
+      "Verify collision outcome occurs",
+      "Check for module-level failure evidence only if direct evidence exists post-execution"
+    ],
+    "uncertainty": [
+      "Conflicting lane invasion labels preserved per original evidence",
+      "No proven module-level failure in sensing, perception or planning per original uncertainty"
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": 5.0,
+      "fog": -5.0,
+      "wetness": 3.0,
+      "puddle": 2.0
+    },
+    "actor_mutations": [
+      {
+        "actor_index": 0,
+        "position_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "speed_delta": 0.0
+      },
+      {
+        "actor_index": 1,
+        "position_offset": {
+          "x": -0.6,
+          "y": 0.4
+        },
+        "speed_delta": -1.1
+      }
+    ],
+    "puddle_mutations": [],
+    "mission_mutation": {
+      "spawn_offset": {
+        "x": 1.8,
+        "y": 1.2
+      },
+      "destination_offset": {
+        "x": -1.0,
+        "y": 0.8
+      }
+    }
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_112__ark-doubao-seed-2.0-lite-260215.json",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_112__ark-doubao-seed-2.0-lite-260215.json",
+  "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+}

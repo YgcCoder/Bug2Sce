@@ -1,0 +1,378 @@
+{
+  "case_id": "case_104",
+  "model_name": "gpt-5.1",
+  "workflow": "phase2_grounded_generation",
+  "status": "completed",
+  "schema_valid": true,
+  "schema_errors": [],
+  "phase1_ready": "uncertain",
+  "num_candidates_requested": 2,
+  "num_candidates_written": 2,
+  "num_pre_valid": 2,
+  "candidate_records": [
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/gpt-5.1/json/case_104/case_104__cand_001.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/gpt-5.1/metadata/case_104/case_104__cand_001.metadata.json",
+      "case_id": "case_104",
+      "model_name": "gpt-5.1",
+      "candidate_index": 1,
+      "candidate_spec": {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Ego stuck near spawn at an intersection with active traffic light cycling; dataset labels red_light but runtime oracle may only show goal-related failure while ego hardly moves.",
+        "mutation_intent": "Preserve the low-motion, near-spawn behavior with available route and traffic-light information, mirroring the mismatch where the dataset labels a red-light violation but runtime logs do not confirm any red event. Traffic lights should still cycle through multiple states while ego remains effectively stationary with near-zero vehicle_cmd targets.",
+        "expected_oracle": "red_light",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": -10,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 1.5,
+                "y": -2.0
+              },
+              "level_delta": 0.05,
+              "size_scale": 1.0
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Ensure the ego spawn is close to an intersection that has at least one controlled traffic light visible on /carla/traffic_lights.",
+          "Configure the routing so that final_waypoints are generated from spawn toward a lane that passes a signalized intersection, even if ego will not reach it.",
+          "Verify that traffic light messages for at least one relevant light show multiple state transitions (e.g., green, yellow, red) during the scenario time window."
+        ],
+        "post_execution_validation_rules": [
+          "Check that Dataset or external label for this run records a red_light violation or red_light group, even if runtime oracle (error.json) logs no explicit red event.",
+          "Confirm ego pose at end of run is within 3 meters of the start position (very small net displacement) based on odometry/current_pose.",
+          "Verify that vehicle_cmd target_speed and longitudinal controls remain near zero throughout (e.g., absolute target_speed < 0.5 m/s for at least 95% of the run).",
+          "Confirm that final_waypoints are available and non-blocked with relatively stable waypoint counts (variation less than 20%) during the critical time window.",
+          "Verify that /carla/traffic_lights topic shows at least two distinct states for the relevant intersection light during the scenario.",
+          "Check that error.json (or equivalent runtime oracle) does not report a dedicated red event despite the dataset red_light label."
+        ],
+        "uncertainty": [
+          "It is unknown whether the dataset’s red_light label is triggered by route-light relation, a heuristic timeout, or an unseen rule; this scenario assumes the label can occur even while the ego barely moves.",
+          "The exact distance at which the route-light relation is considered active is not specified; ego may remain too far from the intersection to clearly establish a stop-line crossing.",
+          "The relationship between near-zero vehicle_cmd and any controller or actuation limitation is not observable from the available summaries."
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 0.0,
+          "fog": -10.0,
+          "wetness": 0.0,
+          "puddle": 0.0
+        },
+        "actor_mutations": [],
+        "puddle_mutations": [
+          {
+            "puddle_index": 0,
+            "location_offset": {
+              "x": 1.5,
+              "y": -2.0
+            },
+            "level_delta": 0.05,
+            "size_scale": 1.0
+          }
+        ],
+        "mission_mutation": {
+          "keep_original": true
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": [
+          "no actors in candidate scenario"
+        ]
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_104__gpt-5.1.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_104__gpt-5.1.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    },
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/gpt-5.1/json/case_104/case_104__cand_002.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/gpt-5.1/metadata/case_104/case_104__cand_002.metadata.json",
+      "case_id": "case_104",
+      "model_name": "gpt-5.1",
+      "candidate_index": 2,
+      "candidate_spec": {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Ego remains stalled near spawn on a slightly different alignment toward the signalized corridor, with modestly reduced fog and a slightly shifted large puddle, still leading to a dataset-level red_light label without a runtime red event.",
+        "mutation_intent": "Introduce a small mission offset and minor environmental changes while preserving the core pattern: ego near start pose with minimal motion, stable waypoints, available traffic-light cycling, and a dataset red_light label that may not be corroborated by runtime oracles.",
+        "expected_oracle": "red_light",
+        "modifications": {
+          "weather_delta": {
+            "rain": 5,
+            "fog": -15,
+            "wetness": 5,
+            "puddle": 0
+          },
+          "actor_mutations": [],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": -2.5,
+                "y": 1.0
+              },
+              "level_delta": -0.05,
+              "size_scale": 1.1
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": false,
+            "spawn_offset": {
+              "x": 2.0,
+              "y": -1.5
+            },
+            "destination_offset": {
+              "x": -3.0,
+              "y": 2.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Verify that the new spawn pose still places ego on a lane that is routed through at least one traffic light controlled intersection.",
+          "Ensure routing and map matching succeed so that final_waypoints are produced from spawn toward the corridor containing a traffic light.",
+          "Confirm that the traffic light nearest to the routed corridor publishes multiple state changes over the scenario duration."
+        ],
+        "post_execution_validation_rules": [
+          "Check that the dataset or labeling pipeline classifies the outcome under a red_light-related group, even if the vehicle barely moves.",
+          "Confirm that ego’s final position is within 5 meters of its initial pose, indicating very low overall displacement.",
+          "Verify that vehicle_cmd messages exist and show target_speed and longitudinal commands close to zero for almost the entire run (e.g., > 90% of samples).",
+          "Ensure final_waypoints remain present during the main part of the run with no blocked flags and limited variation in count.",
+          "Validate that /carla/traffic_lights reports at least two distinct state values (e.g., green and red or red and yellow) for a light that lies along the planned route.",
+          "Inspect error.json (or equivalent) and confirm absence of an explicit red event entry, to preserve the mismatch between dataset red_light label and runtime oracle."
+        ],
+        "uncertainty": [
+          "Whether the slight change in spawn and destination offsets alters the internal route-light relation logic is unknown; the scenario aims to keep the ego in a low-motion regime regardless.",
+          "The labeling mechanism that marks a red_light violation might depend on internal conditions not exposed here, so reproducing the exact labeling behavior cannot be guaranteed.",
+          "It remains unclear whether the large puddle or modest weather adjustments have any impact on the red_light labeling process, so their influence should be treated as secondary."
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 5.0,
+          "fog": -15.0,
+          "wetness": 5.0,
+          "puddle": 0.0
+        },
+        "actor_mutations": [],
+        "puddle_mutations": [
+          {
+            "puddle_index": 0,
+            "location_offset": {
+              "x": -2.5,
+              "y": 1.0
+            },
+            "level_delta": -0.05,
+            "size_scale": 1.1
+          }
+        ],
+        "mission_mutation": {
+          "spawn_offset": {
+            "x": 2.0,
+            "y": -1.5
+          },
+          "destination_offset": {
+            "x": -3.0,
+            "y": 2.0
+          }
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": [
+          "no actors in candidate scenario"
+        ]
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_104__gpt-5.1.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_104__gpt-5.1.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    }
+  ],
+  "seed_artifact_zip": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/gpt-5.1/seed-artifact/seed-artifact-case_104.zip",
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_prompts/case_104__gpt-5.1.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_104__gpt-5.1.json",
+  "prompt_estimated_tokens": 1511,
+  "usage": {
+    "prompt_tokens": 1420,
+    "completion_tokens": 1467,
+    "total_tokens": 2887
+  },
+  "raw_response": "{\n  \"case_id\": \"case_104\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Ego stuck near spawn at an intersection with active traffic light cycling; dataset labels red_light but runtime oracle may only show goal-related failure while ego hardly moves.\",\n      \"mutation_intent\": \"Preserve the low-motion, near-spawn behavior with available route and traffic-light information, mirroring the mismatch where the dataset labels a red-light violation but runtime logs do not confirm any red event. Traffic lights should still cycle through multiple states while ego remains effectively stationary with near-zero vehicle_cmd targets.\",\n      \"expected_oracle\": \"red_light\",\n      \"modifications\": {\n        \"weather_delta\": {\n          \"rain\": 0,\n          \"fog\": -10,\n          \"wetness\": 0,\n          \"puddle\": 0\n        },\n        \"actor_mutations\": [],\n        \"puddle_mutations\": [\n          {\n            \"puddle_index\": 0,\n            \"location_offset\": {\n              \"x\": 1.5,\n              \"y\": -2.0\n            },\n            \"level_delta\": 0.05,\n            \"size_scale\": 1.0\n          }\n        ],\n        \"mission_mutation\": {\n          \"keep_original\": true,\n          \"spawn_offset\": {\n            \"x\": 0.0,\n            \"y\": 0.0\n          },\n          \"destination_offset\": {\n            \"x\": 0.0,\n            \"y\": 0.0\n          }\n        }\n      },\n      \"pre_execution_validation_rules\": [\n        \"Ensure the ego spawn is close to an intersection that has at least one controlled traffic light visible on /carla/traffic_lights.\",\n        \"Configure the routing so that final_waypoints are generated from spawn toward a lane that passes a signalized intersection, even if ego will not reach it.\",\n        \"Verify that traffic light messages for at least one relevant light show multiple state transitions (e.g., green, yellow, red) during the scenario time window.\"\n      ],\n      \"post_execution_validation_rules\": [\n        \"Check that Dataset or external label for this run records a red_light violation or red_light group, even if runtime oracle (error.json) logs no explicit red event.\",\n        \"Confirm ego pose at end of run is within 3 meters of the start position (very small net displacement) based on odometry/current_pose.\",\n        \"Verify that vehicle_cmd target_speed and longitudinal controls remain near zero throughout (e.g., absolute target_speed < 0.5 m/s for at least 95% of the run).\",\n        \"Confirm that final_waypoints are available and non-blocked with relatively stable waypoint counts (variation less than 20%) during the critical time window.\",\n        \"Verify that /carla/traffic_lights topic shows at least two distinct states for the relevant intersection light during the scenario.\",\n        \"Check that error.json (or equivalent runtime oracle) does not report a dedicated red event despite the dataset red_light label.\"\n      ],\n      \"uncertainty\": [\n        \"It is unknown whether the dataset’s red_light label is triggered by route-light relation, a heuristic timeout, or an unseen rule; this scenario assumes the label can occur even while the ego barely moves.\",\n        \"The exact distance at which the route-light relation is considered active is not specified; ego may remain too far from the intersection to clearly establish a stop-line crossing.\",\n        \"The relationship between near-zero vehicle_cmd and any controller or actuation limitation is not observable from the available summaries.\"\n      ]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Ego remains stalled near spawn on a slightly different alignment toward the signalized corridor, with modestly reduced fog and a slightly shifted large puddle, still leading to a dataset-level red_light label without a runtime red event.\",\n      \"mutation_intent\": \"Introduce a small mission offset and minor environmental changes while preserving the core pattern: ego near start pose with minimal motion, stable waypoints, available traffic-light cycling, and a dataset red_light label that may not be corroborated by runtime oracles.\",\n      \"expected_oracle\": \"red_light\",\n      \"modifications\": {\n        \"weather_delta\": {\n          \"rain\": 5,\n          \"fog\": -15,\n          \"wetness\": 5,\n          \"puddle\": 0\n        },\n        \"actor_mutations\": [],\n        \"puddle_mutations\": [\n          {\n            \"puddle_index\": 0,\n            \"location_offset\": {\n              \"x\": -2.5,\n              \"y\": 1.0\n            },\n            \"level_delta\": -0.05,\n            \"size_scale\": 1.1\n          }\n        ],\n        \"mission_mutation\": {\n          \"keep_original\": false,\n          \"spawn_offset\": {\n            \"x\": 2.0,\n            \"y\": -1.5\n          },\n          \"destination_offset\": {\n            \"x\": -3.0,\n            \"y\": 2.0\n          }\n        }\n      },\n      \"pre_execution_validation_rules\": [\n        \"Verify that the new spawn pose still places ego on a lane that is routed through at least one traffic light controlled intersection.\",\n        \"Ensure routing and map matching succeed so that final_waypoints are produced from spawn toward the corridor containing a traffic light.\",\n        \"Confirm that the traffic light nearest to the routed corridor publishes multiple state changes over the scenario duration.\"\n      ],\n      \"post_execution_validation_rules\": [\n        \"Check that the dataset or labeling pipeline classifies the outcome under a red_light-related group, even if the vehicle barely moves.\",\n        \"Confirm that ego’s final position is within 5 meters of its initial pose, indicating very low overall displacement.\",\n        \"Verify that vehicle_cmd messages exist and show target_speed and longitudinal commands close to zero for almost the entire run (e.g., > 90% of samples).\",\n        \"Ensure final_waypoints remain present during the main part of the run with no blocked flags and limited variation in count.\",\n        \"Validate that /carla/traffic_lights reports at least two distinct state values (e.g., green and red or red and yellow) for a light that lies along the planned route.\",\n        \"Inspect error.json (or equivalent) and confirm absence of an explicit red event entry, to preserve the mismatch between dataset red_light label and runtime oracle.\"\n      ],\n      \"uncertainty\": [\n        \"Whether the slight change in spawn and destination offsets alters the internal route-light relation logic is unknown; the scenario aims to keep the ego in a low-motion regime regardless.\",\n        \"The labeling mechanism that marks a red_light violation might depend on internal conditions not exposed here, so reproducing the exact labeling behavior cannot be guaranteed.\",\n        \"It remains unclear whether the large puddle or modest weather adjustments have any impact on the red_light labeling process, so their influence should be treated as secondary.\"\n      ]\n    }\n  ]\n}",
+  "parsed_response": {
+    "case_id": "case_104",
+    "candidate_specs": [
+      {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Ego stuck near spawn at an intersection with active traffic light cycling; dataset labels red_light but runtime oracle may only show goal-related failure while ego hardly moves.",
+        "mutation_intent": "Preserve the low-motion, near-spawn behavior with available route and traffic-light information, mirroring the mismatch where the dataset labels a red-light violation but runtime logs do not confirm any red event. Traffic lights should still cycle through multiple states while ego remains effectively stationary with near-zero vehicle_cmd targets.",
+        "expected_oracle": "red_light",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": -10,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 1.5,
+                "y": -2.0
+              },
+              "level_delta": 0.05,
+              "size_scale": 1.0
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Ensure the ego spawn is close to an intersection that has at least one controlled traffic light visible on /carla/traffic_lights.",
+          "Configure the routing so that final_waypoints are generated from spawn toward a lane that passes a signalized intersection, even if ego will not reach it.",
+          "Verify that traffic light messages for at least one relevant light show multiple state transitions (e.g., green, yellow, red) during the scenario time window."
+        ],
+        "post_execution_validation_rules": [
+          "Check that Dataset or external label for this run records a red_light violation or red_light group, even if runtime oracle (error.json) logs no explicit red event.",
+          "Confirm ego pose at end of run is within 3 meters of the start position (very small net displacement) based on odometry/current_pose.",
+          "Verify that vehicle_cmd target_speed and longitudinal controls remain near zero throughout (e.g., absolute target_speed < 0.5 m/s for at least 95% of the run).",
+          "Confirm that final_waypoints are available and non-blocked with relatively stable waypoint counts (variation less than 20%) during the critical time window.",
+          "Verify that /carla/traffic_lights topic shows at least two distinct states for the relevant intersection light during the scenario.",
+          "Check that error.json (or equivalent runtime oracle) does not report a dedicated red event despite the dataset red_light label."
+        ],
+        "uncertainty": [
+          "It is unknown whether the dataset’s red_light label is triggered by route-light relation, a heuristic timeout, or an unseen rule; this scenario assumes the label can occur even while the ego barely moves.",
+          "The exact distance at which the route-light relation is considered active is not specified; ego may remain too far from the intersection to clearly establish a stop-line crossing.",
+          "The relationship between near-zero vehicle_cmd and any controller or actuation limitation is not observable from the available summaries."
+        ]
+      },
+      {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Ego remains stalled near spawn on a slightly different alignment toward the signalized corridor, with modestly reduced fog and a slightly shifted large puddle, still leading to a dataset-level red_light label without a runtime red event.",
+        "mutation_intent": "Introduce a small mission offset and minor environmental changes while preserving the core pattern: ego near start pose with minimal motion, stable waypoints, available traffic-light cycling, and a dataset red_light label that may not be corroborated by runtime oracles.",
+        "expected_oracle": "red_light",
+        "modifications": {
+          "weather_delta": {
+            "rain": 5,
+            "fog": -15,
+            "wetness": 5,
+            "puddle": 0
+          },
+          "actor_mutations": [],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": -2.5,
+                "y": 1.0
+              },
+              "level_delta": -0.05,
+              "size_scale": 1.1
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": false,
+            "spawn_offset": {
+              "x": 2.0,
+              "y": -1.5
+            },
+            "destination_offset": {
+              "x": -3.0,
+              "y": 2.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Verify that the new spawn pose still places ego on a lane that is routed through at least one traffic light controlled intersection.",
+          "Ensure routing and map matching succeed so that final_waypoints are produced from spawn toward the corridor containing a traffic light.",
+          "Confirm that the traffic light nearest to the routed corridor publishes multiple state changes over the scenario duration."
+        ],
+        "post_execution_validation_rules": [
+          "Check that the dataset or labeling pipeline classifies the outcome under a red_light-related group, even if the vehicle barely moves.",
+          "Confirm that ego’s final position is within 5 meters of its initial pose, indicating very low overall displacement.",
+          "Verify that vehicle_cmd messages exist and show target_speed and longitudinal commands close to zero for almost the entire run (e.g., > 90% of samples).",
+          "Ensure final_waypoints remain present during the main part of the run with no blocked flags and limited variation in count.",
+          "Validate that /carla/traffic_lights reports at least two distinct state values (e.g., green and red or red and yellow) for a light that lies along the planned route.",
+          "Inspect error.json (or equivalent) and confirm absence of an explicit red event entry, to preserve the mismatch between dataset red_light label and runtime oracle."
+        ],
+        "uncertainty": [
+          "Whether the slight change in spawn and destination offsets alters the internal route-light relation logic is unknown; the scenario aims to keep the ego in a low-motion regime regardless.",
+          "The labeling mechanism that marks a red_light violation might depend on internal conditions not exposed here, so reproducing the exact labeling behavior cannot be guaranteed.",
+          "It remains unclear whether the large puddle or modest weather adjustments have any impact on the red_light labeling process, so their influence should be treated as secondary."
+        ]
+      }
+    ]
+  },
+  "raw_api_payload": {
+    "id": "<REDACTED_RESPONSE_ID>",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "{\n  \"case_id\": \"case_104\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Ego stuck near spawn at an intersection with active traffic light cycling; dataset labels red_light but runtime oracle may only show goal-related failure while ego hardly moves.\",\n      \"mutation_intent\": \"Preserve the low-motion, near-spawn behavior with available route and traffic-light information, mirroring the mismatch where the dataset labels a red-light violation but runtime logs do not confirm any red event. Traffic lights should still cycle through multiple states while ego remains effectively stationary with near-zero vehicle_cmd targets.\",\n      \"expected_oracle\": \"red_light\",\n      \"modifications\": {\n        \"weather_delta\": {\n          \"rain\": 0,\n          \"fog\": -10,\n          \"wetness\": 0,\n          \"puddle\": 0\n        },\n        \"actor_mutations\": [],\n        \"puddle_mutations\": [\n          {\n            \"puddle_index\": 0,\n            \"location_offset\": {\n              \"x\": 1.5,\n              \"y\": -2.0\n            },\n            \"level_delta\": 0.05,\n            \"size_scale\": 1.0\n          }\n        ],\n        \"mission_mutation\": {\n          \"keep_original\": true,\n          \"spawn_offset\": {\n            \"x\": 0.0,\n            \"y\": 0.0\n          },\n          \"destination_offset\": {\n            \"x\": 0.0,\n            \"y\": 0.0\n          }\n        }\n      },\n      \"pre_execution_validation_rules\": [\n        \"Ensure the ego spawn is close to an intersection that has at least one controlled traffic light visible on /carla/traffic_lights.\",\n        \"Configure the routing so that final_waypoints are generated from spawn toward a lane that passes a signalized intersection, even if ego will not reach it.\",\n        \"Verify that traffic light messages for at least one relevant light show multiple state transitions (e.g., green, yellow, red) during the scenario time window.\"\n      ],\n      \"post_execution_validation_rules\": [\n        \"Check that Dataset or external label for this run records a red_light violation or red_light group, even if runtime oracle (error.json) logs no explicit red event.\",\n        \"Confirm ego pose at end of run is within 3 meters of the start position (very small net displacement) based on odometry/current_pose.\",\n        \"Verify that vehicle_cmd target_speed and longitudinal controls remain near zero throughout (e.g., absolute target_speed < 0.5 m/s for at least 95% of the run).\",\n        \"Confirm that final_waypoints are available and non-blocked with relatively stable waypoint counts (variation less than 20%) during the critical time window.\",\n        \"Verify that /carla/traffic_lights topic shows at least two distinct states for the relevant intersection light during the scenario.\",\n        \"Check that error.json (or equivalent runtime oracle) does not report a dedicated red event despite the dataset red_light label.\"\n      ],\n      \"uncertainty\": [\n        \"It is unknown whether the dataset’s red_light label is triggered by route-light relation, a heuristic timeout, or an unseen rule; this scenario assumes the label can occur even while the ego barely moves.\",\n        \"The exact distance at which the route-light relation is considered active is not specified; ego may remain too far from the intersection to clearly establish a stop-line crossing.\",\n        \"The relationship between near-zero vehicle_cmd and any controller or actuation limitation is not observable from the available summaries.\"\n      ]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Ego remains stalled near spawn on a slightly different alignment toward the signalized corridor, with modestly reduced fog and a slightly shifted large puddle, still leading to a dataset-level red_light label without a runtime red event.\",\n      \"mutation_intent\": \"Introduce a small mission offset and minor environmental changes while preserving the core pattern: ego near start pose with minimal motion, stable waypoints, available traffic-light cycling, and a dataset red_light label that may not be corroborated by runtime oracles.\",\n      \"expected_oracle\": \"red_light\",\n      \"modifications\": {\n        \"weather_delta\": {\n          \"rain\": 5,\n          \"fog\": -15,\n          \"wetness\": 5,\n          \"puddle\": 0\n        },\n        \"actor_mutations\": [],\n        \"puddle_mutations\": [\n          {\n            \"puddle_index\": 0,\n            \"location_offset\": {\n              \"x\": -2.5,\n              \"y\": 1.0\n            },\n            \"level_delta\": -0.05,\n            \"size_scale\": 1.1\n          }\n        ],\n        \"mission_mutation\": {\n          \"keep_original\": false,\n          \"spawn_offset\": {\n            \"x\": 2.0,\n            \"y\": -1.5\n          },\n          \"destination_offset\": {\n            \"x\": -3.0,\n            \"y\": 2.0\n          }\n        }\n      },\n      \"pre_execution_validation_rules\": [\n        \"Verify that the new spawn pose still places ego on a lane that is routed through at least one traffic light controlled intersection.\",\n        \"Ensure routing and map matching succeed so that final_waypoints are produced from spawn toward the corridor containing a traffic light.\",\n        \"Confirm that the traffic light nearest to the routed corridor publishes multiple state changes over the scenario duration.\"\n      ],\n      \"post_execution_validation_rules\": [\n        \"Check that the dataset or labeling pipeline classifies the outcome under a red_light-related group, even if the vehicle barely moves.\",\n        \"Confirm that ego’s final position is within 5 meters of its initial pose, indicating very low overall displacement.\",\n        \"Verify that vehicle_cmd messages exist and show target_speed and longitudinal commands close to zero for almost the entire run (e.g., > 90% of samples).\",\n        \"Ensure final_waypoints remain present during the main part of the run with no blocked flags and limited variation in count.\",\n        \"Validate that /carla/traffic_lights reports at least two distinct state values (e.g., green and red or red and yellow) for a light that lies along the planned route.\",\n        \"Inspect error.json (or equivalent) and confirm absence of an explicit red event entry, to preserve the mismatch between dataset red_light label and runtime oracle.\"\n      ],\n      \"uncertainty\": [\n        \"Whether the slight change in spawn and destination offsets alters the internal route-light relation logic is unknown; the scenario aims to keep the ego in a low-motion regime regardless.\",\n        \"The labeling mechanism that marks a red_light violation might depend on internal conditions not exposed here, so reproducing the exact labeling behavior cannot be guaranteed.\",\n        \"It remains unclear whether the large puddle or modest weather adjustments have any impact on the red_light labeling process, so their influence should be treated as secondary.\"\n      ]\n    }\n  ]\n}",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": [],
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "gpt-5.1-2025-11-13",
+    "object": "chat.completion",
+    "service_tier": "default",
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 1467,
+      "prompt_tokens": 1420,
+      "total_tokens": 2887,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": 0,
+        "audio_tokens": 0,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 0
+      }
+    }
+  },
+  "error_message": "",
+  "elapsed_sec": 25.091,
+  "timestamp": "<REDACTED_TIMESTAMP>"
+}

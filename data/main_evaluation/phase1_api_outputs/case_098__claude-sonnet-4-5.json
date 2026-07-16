@@ -1,0 +1,130 @@
+{
+  "case_id": "case_098",
+  "workflow": "phase1_causal_explanation",
+  "model_name": "claude-sonnet-4-5",
+  "model_id": "claude-sonnet-4-5",
+  "status": "completed",
+  "dry_run": false,
+  "schema_valid": true,
+  "schema_errors": [],
+  "quality_flags": [],
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_prompts/case_098__claude-sonnet-4-5.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_098__claude-sonnet-4-5.json",
+  "prompt_estimated_tokens": 2969,
+  "usage": {
+    "prompt_tokens": 3723,
+    "completion_tokens": 1144,
+    "total_tokens": 4867
+  },
+  "estimated_cost_usd": null,
+  "raw_response": "```json\n{\n  \"case_id\": \"case_098\",\n  \"fault_layer\": \"unknown\",\n  \"fault_component\": \"unknown\",\n  \"causal_explanation\": \"The oracle confirms a collision at 29.09s with actor 5275. Critical-window evidence shows ego moving at ~4.8 m/s before collision, with detected and predicted objects present (last count: 1 detected, 11 predicted). However, vehicle_cmd is all zero throughout (steer, accel, brake, target_speed all 0.0), while vehicle_status shows nonzero throttle (last 0.309) and steering (last 5.5e-05), indicating a command-actuation mismatch. Final waypoints are available (101 waypoints, not blocked) up to 28.99s. The evidence does not directly prove which module failed to avoid the collision.\",\n  \"root_cause_pattern\": \"Conservative preservation pattern: ego encounters a nearby actor (classification 6, distance ~4m) on or near the planned route before a collision, while vehicle_cmd remains zero despite vehicle_status showing active throttle and steering. Module-level attribution remains unknown.\",\n  \"preservation_constraints\": [\n    \"The generated candidate should preserve the collision oracle symptom.\",\n    \"A nearby actor should be present near the ego route before the failure (distance <10m).\",\n    \"Ego should be moving (velocity >3 m/s) in the critical window before collision.\",\n    \"Final waypoints should be available and not blocked before the collision.\",\n    \"Post-execution validation should check critical-window ego speed, actor proximity, and vehicle_cmd/vehicle_status consistency.\"\n  ],\n  \"modifiable_factors\": [\n    \"actor_position\",\n    \"actor_type\",\n    \"weather\",\n    \"puddles\",\n    \"mission\"\n  ],\n  \"non_modifiable_conditions\": [\n    \"collision oracle symptom\",\n    \"nearby actor-route interaction\",\n    \"ego moving before collision\",\n    \"final waypoints available\"\n  ],\n  \"uncertainty\": [\n    \"vehicle_cmd is all zero while vehicle_status shows nonzero throttle and steering; the cause of this mismatch is unclear.\",\n    \"The evidence does not directly localize the failure to perception, planning, or actuation.\",\n    \"Closest object info shows actor 5275 at 4.048m distance, but it is unclear whether planning or control failed to respond.\",\n    \"No evidence of braking or stopping attempts in vehicle_status or vehicle_cmd.\"\n  ],\n  \"evidence_support\": [\n    {\n      \"evidence_id\": \"collision_window.collision_timestamp\",\n      \"claim\": \"Collision confirmed at 29.091650286s with actor 5275.\"\n    },\n    {\n      \"evidence_id\": \"collision_window.ego_speed_before_collision\",\n      \"claim\": \"Ego was moving at ~4.8 m/s before collision.\"\n    },\n    {\n      \"evidence_id\": \"collision_window.detected_object_count_before_collision\",\n      \"claim\": \"1 detected object present before collision.\"\n    },\n    {\n      \"evidence_id\": \"collision_window.predicted_object_count_before_collision\",\n      \"claim\": \"11 predicted objects present before collision.\"\n    },\n    {\n      \"evidence_id\": \"collision_window.final_waypoints_before_collision\",\n      \"claim\": \"Final waypoints available (101 waypoints, not blocked) up to 28.99s.\"\n    },\n    {\n      \"evidence_id\": \"collision_window.ego_control_before_collision\",\n      \"claim\": \"vehicle_cmd all zero (accel, brake, steer, velocity all 0.0) while vehicle_status shows throttle 0.309 and steer 5.5e-05.\"\n    },\n    {\n      \"evidence_id\": \"collision_window.closest_available_object_info\",\n      \"claim\": \"Actor 5275 (classification 6) at 4.048m distance before collision.\"\n    },\n    {\n      \"evidence_id\": \"collision_window.evidence_of_braking_or_stopping\",\n      \"claim\": \"No evidence of braking or stopping attempts.\"\n    }\n  ],\n  \"confidence\": \"low\",\n  \"ready_for_phase2_generation\": \"yes\",\n  \"notes_for_validator\": [\n    \"Do not count a generated case as same-root-cause unless post-execution evidence preserves the actor-route interaction, ego moving before collision, and collision oracle symptom.\",\n    \"Check vehicle_cmd vs vehicle_status consistency in the generated case.\",\n    \"Verify that final waypoints are available and not blocked before the collision.\",\n    \"Confirm that ego speed is >3 m/s and actor distance is <10m in the critical window.\"\n  ]\n}\n```",
+  "parsed_response": {
+    "case_id": "case_098",
+    "fault_layer": "unknown",
+    "fault_component": "unknown",
+    "causal_explanation": "The oracle confirms a collision at 29.09s with actor 5275. Critical-window evidence shows ego moving at ~4.8 m/s before collision, with detected and predicted objects present (last count: 1 detected, 11 predicted). However, vehicle_cmd is all zero throughout (steer, accel, brake, target_speed all 0.0), while vehicle_status shows nonzero throttle (last 0.309) and steering (last 5.5e-05), indicating a command-actuation mismatch. Final waypoints are available (101 waypoints, not blocked) up to 28.99s. The evidence does not directly prove which module failed to avoid the collision.",
+    "root_cause_pattern": "Conservative preservation pattern: ego encounters a nearby actor (classification 6, distance ~4m) on or near the planned route before a collision, while vehicle_cmd remains zero despite vehicle_status showing active throttle and steering. Module-level attribution remains unknown.",
+    "preservation_constraints": [
+      "The generated candidate should preserve the collision oracle symptom.",
+      "A nearby actor should be present near the ego route before the failure (distance <10m).",
+      "Ego should be moving (velocity >3 m/s) in the critical window before collision.",
+      "Final waypoints should be available and not blocked before the collision.",
+      "Post-execution validation should check critical-window ego speed, actor proximity, and vehicle_cmd/vehicle_status consistency."
+    ],
+    "modifiable_factors": [
+      "actor_position",
+      "actor_type",
+      "weather",
+      "puddles",
+      "mission"
+    ],
+    "non_modifiable_conditions": [
+      "collision oracle symptom",
+      "nearby actor-route interaction",
+      "ego moving before collision",
+      "final waypoints available"
+    ],
+    "uncertainty": [
+      "vehicle_cmd is all zero while vehicle_status shows nonzero throttle and steering; the cause of this mismatch is unclear.",
+      "The evidence does not directly localize the failure to perception, planning, or actuation.",
+      "Closest object info shows actor 5275 at 4.048m distance, but it is unclear whether planning or control failed to respond.",
+      "No evidence of braking or stopping attempts in vehicle_status or vehicle_cmd."
+    ],
+    "evidence_support": [
+      {
+        "evidence_id": "collision_window.collision_timestamp",
+        "claim": "Collision confirmed at 29.091650286s with actor 5275."
+      },
+      {
+        "evidence_id": "collision_window.ego_speed_before_collision",
+        "claim": "Ego was moving at ~4.8 m/s before collision."
+      },
+      {
+        "evidence_id": "collision_window.detected_object_count_before_collision",
+        "claim": "1 detected object present before collision."
+      },
+      {
+        "evidence_id": "collision_window.predicted_object_count_before_collision",
+        "claim": "11 predicted objects present before collision."
+      },
+      {
+        "evidence_id": "collision_window.final_waypoints_before_collision",
+        "claim": "Final waypoints available (101 waypoints, not blocked) up to 28.99s."
+      },
+      {
+        "evidence_id": "collision_window.ego_control_before_collision",
+        "claim": "vehicle_cmd all zero (accel, brake, steer, velocity all 0.0) while vehicle_status shows throttle 0.309 and steer 5.5e-05."
+      },
+      {
+        "evidence_id": "collision_window.closest_available_object_info",
+        "claim": "Actor 5275 (classification 6) at 4.048m distance before collision."
+      },
+      {
+        "evidence_id": "collision_window.evidence_of_braking_or_stopping",
+        "claim": "No evidence of braking or stopping attempts."
+      }
+    ],
+    "confidence": "low",
+    "ready_for_phase2_generation": "yes",
+    "notes_for_validator": [
+      "Do not count a generated case as same-root-cause unless post-execution evidence preserves the actor-route interaction, ego moving before collision, and collision oracle symptom.",
+      "Check vehicle_cmd vs vehicle_status consistency in the generated case.",
+      "Verify that final waypoints are available and not blocked before the collision.",
+      "Confirm that ego speed is >3 m/s and actor distance is <10m in the critical window."
+    ]
+  },
+  "raw_api_payload": {
+    "id": "<REDACTED_RESPONSE_ID>",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "```json\n{\n  \"case_id\": \"case_098\",\n  \"fault_layer\": \"unknown\",\n  \"fault_component\": \"unknown\",\n  \"causal_explanation\": \"The oracle confirms a collision at 29.09s with actor 5275. Critical-window evidence shows ego moving at ~4.8 m/s before collision, with detected and predicted objects present (last count: 1 detected, 11 predicted). However, vehicle_cmd is all zero throughout (steer, accel, brake, target_speed all 0.0), while vehicle_status shows nonzero throttle (last 0.309) and steering (last 5.5e-05), indicating a command-actuation mismatch. Final waypoints are available (101 waypoints, not blocked) up to 28.99s. The evidence does not directly prove which module failed to avoid the collision.\",\n  \"root_cause_pattern\": \"Conservative preservation pattern: ego encounters a nearby actor (classification 6, distance ~4m) on or near the planned route before a collision, while vehicle_cmd remains zero despite vehicle_status showing active throttle and steering. Module-level attribution remains unknown.\",\n  \"preservation_constraints\": [\n    \"The generated candidate should preserve the collision oracle symptom.\",\n    \"A nearby actor should be present near the ego route before the failure (distance <10m).\",\n    \"Ego should be moving (velocity >3 m/s) in the critical window before collision.\",\n    \"Final waypoints should be available and not blocked before the collision.\",\n    \"Post-execution validation should check critical-window ego speed, actor proximity, and vehicle_cmd/vehicle_status consistency.\"\n  ],\n  \"modifiable_factors\": [\n    \"actor_position\",\n    \"actor_type\",\n    \"weather\",\n    \"puddles\",\n    \"mission\"\n  ],\n  \"non_modifiable_conditions\": [\n    \"collision oracle symptom\",\n    \"nearby actor-route interaction\",\n    \"ego moving before collision\",\n    \"final waypoints available\"\n  ],\n  \"uncertainty\": [\n    \"vehicle_cmd is all zero while vehicle_status shows nonzero throttle and steering; the cause of this mismatch is unclear.\",\n    \"The evidence does not directly localize the failure to perception, planning, or actuation.\",\n    \"Closest object info shows actor 5275 at 4.048m distance, but it is unclear whether planning or control failed to respond.\",\n    \"No evidence of braking or stopping attempts in vehicle_status or vehicle_cmd.\"\n  ],\n  \"evidence_support\": [\n    {\n      \"evidence_id\": \"collision_window.collision_timestamp\",\n      \"claim\": \"Collision confirmed at 29.091650286s with actor 5275.\"\n    },\n    {\n      \"evidence_id\": \"collision_window.ego_speed_before_collision\",\n      \"claim\": \"Ego was moving at ~4.8 m/s before collision.\"\n    },\n    {\n      \"evidence_id\": \"collision_window.detected_object_count_before_collision\",\n      \"claim\": \"1 detected object present before collision.\"\n    },\n    {\n      \"evidence_id\": \"collision_window.predicted_object_count_before_collision\",\n      \"claim\": \"11 predicted objects present before collision.\"\n    },\n    {\n      \"evidence_id\": \"collision_window.final_waypoints_before_collision\",\n      \"claim\": \"Final waypoints available (101 waypoints, not blocked) up to 28.99s.\"\n    },\n    {\n      \"evidence_id\": \"collision_window.ego_control_before_collision\",\n      \"claim\": \"vehicle_cmd all zero (accel, brake, steer, velocity all 0.0) while vehicle_status shows throttle 0.309 and steer 5.5e-05.\"\n    },\n    {\n      \"evidence_id\": \"collision_window.closest_available_object_info\",\n      \"claim\": \"Actor 5275 (classification 6) at 4.048m distance before collision.\"\n    },\n    {\n      \"evidence_id\": \"collision_window.evidence_of_braking_or_stopping\",\n      \"claim\": \"No evidence of braking or stopping attempts.\"\n    }\n  ],\n  \"confidence\": \"low\",\n  \"ready_for_phase2_generation\": \"yes\",\n  \"notes_for_validator\": [\n    \"Do not count a generated case as same-root-cause unless post-execution evidence preserves the actor-route interaction, ego moving before collision, and collision oracle symptom.\",\n    \"Check vehicle_cmd vs vehicle_status consistency in the generated case.\",\n    \"Verify that final waypoints are available and not blocked before the collision.\",\n    \"Confirm that ego speed is >3 m/s and actor distance is <10m in the critical window.\"\n  ]\n}\n```",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "claude-sonnet-4-5",
+    "object": "chat.completion",
+    "service_tier": null,
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 1144,
+      "prompt_tokens": 3723,
+      "total_tokens": 4867,
+      "completion_tokens_details": null,
+      "prompt_tokens_details": null
+    }
+  },
+  "error_message": "",
+  "timestamp": "<REDACTED_TIMESTAMP>",
+  "elapsed_sec": 18.95
+}

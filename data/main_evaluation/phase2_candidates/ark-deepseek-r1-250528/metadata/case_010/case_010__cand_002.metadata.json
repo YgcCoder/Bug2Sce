@@ -1,0 +1,126 @@
+{
+  "case_id": "case_010",
+  "model_name": "ark-deepseek-r1-250528",
+  "candidate_index": 2,
+  "candidate_spec": {
+    "candidate_id": "cand_002",
+    "high_level_variant": "Slightly reduce rain, wetness and puddle intensity, keep all original puddle positions and mission unchanged",
+    "mutation_intent": "Preserves all core Phase 1 root cause constraints: no dynamic actors, original mission on Town01, multiple puddles, and conflicting label structure. Slight weather adjustment tests if the observed vehicle_cmd/velocity mismatch depends on the original exact high wetness level",
+    "expected_oracle": "compound",
+    "modifications": {
+      "weather_delta": {
+        "rain": -12,
+        "fog": 0,
+        "wetness": -10,
+        "puddle": -8
+      },
+      "actor_mutations": [],
+      "puddle_mutations": [
+        {
+          "puddle_index": 0,
+          "location_offset": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "level_delta": 0.0,
+          "size_scale": 1.0
+        },
+        {
+          "puddle_index": 1,
+          "location_offset": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "level_delta": 0.0,
+          "size_scale": 1.0
+        },
+        {
+          "puddle_index": 2,
+          "location_offset": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "level_delta": 0.0,
+          "size_scale": 1.0
+        }
+      ],
+      "mission_mutation": {
+        "keep_original": true,
+        "spawn_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "destination_offset": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "No additional dynamic actors added",
+      "Original spawn/destination on Town01 preserved",
+      "Multiple puddles and conflicting label structure retained"
+    ],
+    "post_execution_validation_rules": [
+      "Check if vehicle_cmd/velocity mismatch reproduces at adjusted wetness",
+      "Check for actual lane crossing to resolve original label conflict",
+      "Confirm weather stays within adjusted delta range"
+    ],
+    "uncertainty": [
+      "Original label conflict between dataset and error oracle preserved",
+      "No confirmed module-level failure attribution as in Phase 1",
+      "Unresolved cause of vehicle_cmd/velocity mismatch remains"
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": -12.0,
+      "fog": 0.0,
+      "wetness": -10.0,
+      "puddle": -8.0
+    },
+    "actor_mutations": [],
+    "puddle_mutations": [
+      {
+        "puddle_index": 0,
+        "location_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "level_delta": 0.0,
+        "size_scale": 1.0
+      },
+      {
+        "puddle_index": 1,
+        "location_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "level_delta": 0.0,
+        "size_scale": 1.0
+      },
+      {
+        "puddle_index": 2,
+        "location_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "level_delta": 0.0,
+        "size_scale": 1.0
+      }
+    ],
+    "mission_mutation": {
+      "keep_original": true
+    }
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": [
+      "no actors in candidate scenario"
+    ]
+  },
+  "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_010__ark-deepseek-r1-250528.json",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_010__ark-deepseek-r1-250528.json",
+  "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+}

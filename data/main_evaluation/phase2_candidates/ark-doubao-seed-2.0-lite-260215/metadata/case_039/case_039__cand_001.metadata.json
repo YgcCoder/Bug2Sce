@@ -1,0 +1,140 @@
+{
+  "case_id": "case_039",
+  "model_name": "ark-doubao-seed-2.0-lite-260215",
+  "candidate_index": 1,
+  "candidate_spec": {
+    "candidate_id": "cand_001",
+    "high_level_variant": "Slight positional offset of the static actor while keeping all core scenario properties unchanged",
+    "mutation_intent": "Preserves all Phase 1 root cause constraints: maintains all-zero actuation commands, non-zero ego movement, conflicting failure labels between dataset and error.json, 1 actor, 3 puddles on Town01, and available final waypoints",
+    "expected_oracle": "compound",
+    "modifications": {
+      "weather_delta": {
+        "rain": 0,
+        "fog": 0,
+        "wetness": 2,
+        "puddle": 0
+      },
+      "actor_mutations": [
+        {
+          "actor_index": 0,
+          "position_offset": {
+            "x": 1.2,
+            "y": -0.8
+          },
+          "speed_delta": 0.0
+        }
+      ],
+      "puddle_mutations": [
+        {
+          "puddle_index": 0,
+          "location_offset": {
+            "x": 0.5,
+            "y": 0.3
+          },
+          "level_delta": 0.1,
+          "size_scale": 1.0
+        },
+        {
+          "puddle_index": 1,
+          "location_offset": {
+            "x": -0.2,
+            "y": 0.4
+          },
+          "level_delta": -0.05,
+          "size_scale": 1.0
+        },
+        {
+          "puddle_index": 2,
+          "location_offset": {
+            "x": 0.1,
+            "y": -0.2
+          },
+          "level_delta": 0.08,
+          "size_scale": 1.0
+        }
+      ],
+      "mission_mutation": {
+        "keep_original": true,
+        "spawn_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "destination_offset": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Verify all accel/brake/steer commands are zero in the critical window",
+      "Confirm 1 actor and 3 puddles are placed correctly on Town01",
+      "Check conflicting failure annotations between dataset and error.json are preserved"
+    ],
+    "post_execution_validation_rules": [
+      "Validate mismatch between zero actuation commands and non-zero ego movement exists",
+      "Confirm final waypoints remain available throughout the critical window"
+    ],
+    "uncertainty": [
+      "No confirmed module-level cause for the actuation-movement mismatch",
+      "Conflicting failure labels between dataset and error.json remain unresolved"
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": 0.0,
+      "fog": 0.0,
+      "wetness": 2.0,
+      "puddle": 0.0
+    },
+    "actor_mutations": [
+      {
+        "actor_index": 0,
+        "position_offset": {
+          "x": 1.2,
+          "y": -0.8
+        },
+        "speed_delta": 0.0
+      }
+    ],
+    "puddle_mutations": [
+      {
+        "puddle_index": 0,
+        "location_offset": {
+          "x": 0.5,
+          "y": 0.3
+        },
+        "level_delta": 0.1,
+        "size_scale": 1.0
+      },
+      {
+        "puddle_index": 1,
+        "location_offset": {
+          "x": -0.2,
+          "y": 0.4
+        },
+        "level_delta": -0.05,
+        "size_scale": 1.0
+      },
+      {
+        "puddle_index": 2,
+        "location_offset": {
+          "x": 0.1,
+          "y": -0.2
+        },
+        "level_delta": 0.08,
+        "size_scale": 1.0
+      }
+    ],
+    "mission_mutation": {
+      "keep_original": true
+    }
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_039__ark-doubao-seed-2.0-lite-260215.json",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_039__ark-doubao-seed-2.0-lite-260215.json",
+  "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+}

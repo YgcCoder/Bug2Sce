@@ -1,0 +1,147 @@
+{
+  "case_id": "case_039",
+  "model_name": "ark-doubao-seed-2.0-lite-260215",
+  "candidate_index": 2,
+  "candidate_spec": {
+    "candidate_id": "cand_002",
+    "high_level_variant": "Slight increase in road wetness and small ego mission spawn/destination offset, minor actor speed adjustment",
+    "mutation_intent": "Preserves all core root cause pattern requirements while testing the scenario under marginally different road conditions, maintains all conflicting annotations and actuation-movement mismatch",
+    "expected_oracle": "compound",
+    "modifications": {
+      "weather_delta": {
+        "rain": 2,
+        "fog": 0,
+        "wetness": 3,
+        "puddle": 1
+      },
+      "actor_mutations": [
+        {
+          "actor_index": 0,
+          "position_offset": {
+            "x": 0.0,
+            "y": 2.1
+          },
+          "speed_delta": 0.5
+        }
+      ],
+      "puddle_mutations": [
+        {
+          "puddle_index": 0,
+          "location_offset": {
+            "x": -0.3,
+            "y": 0.2
+          },
+          "level_delta": 0.05,
+          "size_scale": 1.05
+        },
+        {
+          "puddle_index": 1,
+          "location_offset": {
+            "x": 0.4,
+            "y": -0.1
+          },
+          "level_delta": -0.1,
+          "size_scale": 0.95
+        },
+        {
+          "puddle_index": 2,
+          "location_offset": {
+            "x": 0.2,
+            "y": 0.3
+          },
+          "level_delta": 0.02,
+          "size_scale": 1.0
+        }
+      ],
+      "mission_mutation": {
+        "keep_original": false,
+        "spawn_offset": {
+          "x": 0.5,
+          "y": -0.3
+        },
+        "destination_offset": {
+          "x": 0.8,
+          "y": 0.2
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Confirm all actuation commands are zero during the critical window",
+      "Check that ego mission waypoints remain consistently available",
+      "Verify 1 actor and 3 puddles are present as required"
+    ],
+    "post_execution_validation_rules": [
+      "Check non-zero ego velocity and movement is present despite zero actuation",
+      "Confirm conflicting failure annotation state is preserved"
+    ],
+    "uncertainty": [
+      "No proven module-level cause for the mismatch between zero commands and non-zero movement",
+      "No direct evidence of lane crossing to confirm lane invasion label, conflict with error.json detection remains"
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": 2.0,
+      "fog": 0.0,
+      "wetness": 3.0,
+      "puddle": 1.0
+    },
+    "actor_mutations": [
+      {
+        "actor_index": 0,
+        "position_offset": {
+          "x": 0.0,
+          "y": 2.1
+        },
+        "speed_delta": 0.5
+      }
+    ],
+    "puddle_mutations": [
+      {
+        "puddle_index": 0,
+        "location_offset": {
+          "x": -0.3,
+          "y": 0.2
+        },
+        "level_delta": 0.05,
+        "size_scale": 1.05
+      },
+      {
+        "puddle_index": 1,
+        "location_offset": {
+          "x": 0.4,
+          "y": -0.1
+        },
+        "level_delta": -0.1,
+        "size_scale": 0.95
+      },
+      {
+        "puddle_index": 2,
+        "location_offset": {
+          "x": 0.2,
+          "y": 0.3
+        },
+        "level_delta": 0.02,
+        "size_scale": 1.0
+      }
+    ],
+    "mission_mutation": {
+      "spawn_offset": {
+        "x": 0.5,
+        "y": -0.3
+      },
+      "destination_offset": {
+        "x": 0.8,
+        "y": 0.2
+      }
+    }
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_039__ark-doubao-seed-2.0-lite-260215.json",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_039__ark-doubao-seed-2.0-lite-260215.json",
+  "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+}

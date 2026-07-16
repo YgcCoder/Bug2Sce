@@ -1,0 +1,105 @@
+{
+  "case_id": "case_142",
+  "model_name": "ark-doubao-seed-2.0-lite-260215",
+  "candidate_index": 1,
+  "candidate_spec": {
+    "candidate_id": "cand_001",
+    "high_level_variant": "Increased rain, wetness and puddle level near the intersection, shift crossing vehicle slightly closer to ego's planned path",
+    "mutation_intent": "Preserves all core root cause constraints: zero actuation commands from Autoware pre-collision, non-zero throttle reported by vehicle status, 3 actors on Town01, confirmed collision and red light violation symptoms. Varies road conditions to test root cause robustness",
+    "expected_oracle": "compound",
+    "modifications": {
+      "weather_delta": {
+        "rain": 10,
+        "fog": 0,
+        "wetness": 10,
+        "puddle": 5
+      },
+      "actor_mutations": [
+        {
+          "actor_index": 1,
+          "position_offset": {
+            "x": -1.2,
+            "y": 0.8
+          },
+          "speed_delta": 0.5
+        }
+      ],
+      "puddle_mutations": [
+        {
+          "puddle_index": 0,
+          "location_offset": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "level_delta": 0.1,
+          "size_scale": 1.1
+        }
+      ],
+      "mission_mutation": {
+        "keep_original": true,
+        "spawn_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "destination_offset": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Preserve zero actuation commands in pre-collision critical window",
+      "Ensure vehicle status reports non-zero throttle in critical window",
+      "Maintain exactly 3 actors on Town01 map"
+    ],
+    "post_execution_validation_rules": [
+      "Confirm collision event occurred",
+      "Confirm red light violation occurred",
+      "Verify actuation command/vehicle status mismatch is present"
+    ],
+    "uncertainty": [
+      "Unresolved lane invasion label conflict is preserved",
+      "No specific Autoware module failure is confirmed as root cause per original pattern"
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": 10.0,
+      "fog": 0.0,
+      "wetness": 10.0,
+      "puddle": 5.0
+    },
+    "actor_mutations": [
+      {
+        "actor_index": 1,
+        "position_offset": {
+          "x": -1.2,
+          "y": 0.8
+        },
+        "speed_delta": 0.5
+      }
+    ],
+    "puddle_mutations": [
+      {
+        "puddle_index": 0,
+        "location_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "level_delta": 0.1,
+        "size_scale": 1.1
+      }
+    ],
+    "mission_mutation": {
+      "keep_original": true
+    }
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_142__ark-doubao-seed-2.0-lite-260215.json",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_142__ark-doubao-seed-2.0-lite-260215.json",
+  "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+}

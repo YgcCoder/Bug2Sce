@@ -1,0 +1,97 @@
+{
+  "case_id": "case_002",
+  "model_name": "claude-sonnet-4-5",
+  "workflow": "pure_llm_phase2_baseline",
+  "candidate_index": 1,
+  "candidate_spec": {
+    "candidate_id": "cand_001",
+    "high_level_variant": "Increase moving vehicle speed and reduce weather visibility",
+    "mutation_intent": "Stress red-light violation by making actor faster and reducing fog visibility for detection challenge",
+    "expected_oracle": "red_light",
+    "modifications": {
+      "weather_delta": {
+        "rain": 10,
+        "fog": 15,
+        "wetness": 0,
+        "puddle": 0
+      },
+      "actor_mutations": [
+        {
+          "actor_index": 1,
+          "position_offset": {
+            "x": -3.0,
+            "y": 0.0
+          },
+          "speed_delta": 2.5
+        }
+      ],
+      "puddle_mutations": [],
+      "mission_mutation": {
+        "keep_original": true,
+        "spawn_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "destination_offset": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Actor 1 speed must be positive and within safe bounds"
+    ],
+    "post_execution_validation_rules": [
+      "Check red light violation occurred at intersection"
+    ],
+    "uncertainty": [
+      "Faster actor may change trajectory timing at traffic light"
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": 10.0,
+      "fog": 15.0,
+      "wetness": 0.0,
+      "puddle": 0.0
+    },
+    "actor_mutations": [
+      {
+        "actor_index": 1,
+        "position_offset": {
+          "x": -3.0,
+          "y": 0.0
+        },
+        "speed_delta": 2.5
+      }
+    ],
+    "puddle_mutations": [],
+    "mission_mutation": {
+      "keep_original": true
+    },
+    "safety_repairs": [
+      {
+        "type": "actor_min_distance",
+        "actor_index": 1,
+        "old_spawn": {
+          "x": 303.513,
+          "y": 331.0
+        },
+        "new_spawn": {
+          "x": 303.78576218719815,
+          "y": 331.0577425797504
+        },
+        "old_distance": 2.221,
+        "min_distance": 2.5
+      }
+    ]
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/pure_llm_phase2_api_prompts/case_002__claude-sonnet-4-5.md",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/pure_llm_phase2_api_outputs/case_002__claude-sonnet-4-5.json",
+  "baseline_note": "Pure-LLM baseline: prompt used no root-cause pattern or critical-window evidence."
+}

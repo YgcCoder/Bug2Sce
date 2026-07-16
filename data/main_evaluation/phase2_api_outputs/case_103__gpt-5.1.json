@@ -1,0 +1,473 @@
+{
+  "case_id": "case_103",
+  "model_name": "gpt-5.1",
+  "workflow": "phase2_grounded_generation",
+  "status": "completed",
+  "schema_valid": true,
+  "schema_errors": [],
+  "phase1_ready": "uncertain",
+  "num_candidates_requested": 2,
+  "num_candidates_written": 2,
+  "num_pre_valid": 2,
+  "candidate_records": [
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/gpt-5.1/json/case_103/case_103__cand_001.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/gpt-5.1/metadata/case_103/case_103__cand_001.metadata.json",
+      "case_id": "case_103",
+      "model_name": "gpt-5.1",
+      "candidate_index": 1,
+      "candidate_spec": {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Same route, moderate rain, ego slightly shifted toward intersection center.",
+        "mutation_intent": "Perturb ego path near lights while preserving traffic-light data and red_light violation.",
+        "expected_oracle": "red_light",
+        "modifications": {
+          "weather_delta": {
+            "rain": -10,
+            "fog": 0,
+            "wetness": -5,
+            "puddle": -5
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": -2.0,
+                "y": 1.5
+              },
+              "speed_delta": 0.5
+            }
+          ],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 1.0,
+                "y": -2.0
+              },
+              "level_delta": -0.05,
+              "size_scale": 0.9
+            },
+            {
+              "puddle_index": 1,
+              "location_offset": {
+                "x": -1.5,
+                "y": 1.0
+              },
+              "level_delta": -0.05,
+              "size_scale": 0.9
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": false,
+            "spawn_offset": {
+              "x": 1.5,
+              "y": -2.0
+            },
+            "destination_offset": {
+              "x": -2.0,
+              "y": 1.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Confirm traffic-light topic has multiple lights and state changes.",
+          "Ensure ego pose and odometry available near intersection.",
+          "Verify planning waypoints present around red-light event."
+        ],
+        "post_execution_validation_rules": [
+          "Check error_json red_light=true and scenario not stuck.",
+          "Confirm traffic-light data exists within 5s of violation.",
+          "Do not require lane_invasion flag to match."
+        ],
+        "uncertainty": [
+          "Governing light for ego route may remain unknown.",
+          "Stop-line and lane-boundary crossing may stay unconfirmed."
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": -10.0,
+          "fog": 0.0,
+          "wetness": -5.0,
+          "puddle": -5.0
+        },
+        "actor_mutations": [
+          {
+            "actor_index": 0,
+            "position_offset": {
+              "x": -2.0,
+              "y": 1.5
+            },
+            "speed_delta": 0.5
+          }
+        ],
+        "puddle_mutations": [
+          {
+            "puddle_index": 0,
+            "location_offset": {
+              "x": 1.0,
+              "y": -2.0
+            },
+            "level_delta": -0.05,
+            "size_scale": 0.9
+          },
+          {
+            "puddle_index": 1,
+            "location_offset": {
+              "x": -1.5,
+              "y": 1.0
+            },
+            "level_delta": -0.05,
+            "size_scale": 0.9
+          }
+        ],
+        "mission_mutation": {
+          "spawn_offset": {
+            "x": 1.5,
+            "y": -2.0
+          },
+          "destination_offset": {
+            "x": -2.0,
+            "y": 1.0
+          }
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_103__gpt-5.1.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_103__gpt-5.1.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    },
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/gpt-5.1/json/case_103/case_103__cand_002.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/gpt-5.1/metadata/case_103/case_103__cand_002.metadata.json",
+      "case_id": "case_103",
+      "model_name": "gpt-5.1",
+      "candidate_index": 2,
+      "candidate_spec": {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Same spawn, ego route slightly shifted laterally, slightly slower background vehicle.",
+        "mutation_intent": "Change surrounding vehicle influence while preserving red_light violation conditions.",
+        "expected_oracle": "red_light",
+        "modifications": {
+          "weather_delta": {
+            "rain": -5,
+            "fog": 5,
+            "wetness": -3,
+            "puddle": -3
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 3.0,
+                "y": -1.0
+              },
+              "speed_delta": -1.0
+            }
+          ],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": -2.0,
+                "y": 2.0
+              },
+              "level_delta": 0.05,
+              "size_scale": 1.1
+            },
+            {
+              "puddle_index": 1,
+              "location_offset": {
+                "x": 2.0,
+                "y": -1.5
+              },
+              "level_delta": 0.05,
+              "size_scale": 1.1
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": false,
+            "spawn_offset": {
+              "x": -1.0,
+              "y": 1.5
+            },
+            "destination_offset": {
+              "x": 1.0,
+              "y": -1.5
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Ensure traffic-light messages active along ego route.",
+          "Verify ego odometry and pose continuous at junction.",
+          "Confirm planner waypoints cross at least one light."
+        ],
+        "post_execution_validation_rules": [
+          "Check error_json red_light=true, regardless of lane_invasion.",
+          "Confirm at least two light state changes before violation.",
+          "Verify no run-level logging failures occurred."
+        ],
+        "uncertainty": [
+          "Module-level root cause remains unresolved.",
+          "Lane_invasion label mismatch may persist."
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": -5.0,
+          "fog": 5.0,
+          "wetness": -3.0,
+          "puddle": -3.0
+        },
+        "actor_mutations": [
+          {
+            "actor_index": 0,
+            "position_offset": {
+              "x": 3.0,
+              "y": -1.0
+            },
+            "speed_delta": -1.0
+          }
+        ],
+        "puddle_mutations": [
+          {
+            "puddle_index": 0,
+            "location_offset": {
+              "x": -2.0,
+              "y": 2.0
+            },
+            "level_delta": 0.05,
+            "size_scale": 1.1
+          },
+          {
+            "puddle_index": 1,
+            "location_offset": {
+              "x": 2.0,
+              "y": -1.5
+            },
+            "level_delta": 0.05,
+            "size_scale": 1.1
+          }
+        ],
+        "mission_mutation": {
+          "spawn_offset": {
+            "x": -1.0,
+            "y": 1.5
+          },
+          "destination_offset": {
+            "x": 1.0,
+            "y": -1.5
+          }
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_103__gpt-5.1.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_103__gpt-5.1.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    }
+  ],
+  "seed_artifact_zip": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/gpt-5.1/seed-artifact/seed-artifact-case_103.zip",
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_prompts/case_103__gpt-5.1.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_103__gpt-5.1.json",
+  "prompt_estimated_tokens": 1352,
+  "usage": {
+    "prompt_tokens": 1405,
+    "completion_tokens": 1010,
+    "total_tokens": 2415
+  },
+  "raw_response": "{\n  \"case_id\": \"case_103\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Same route, moderate rain, ego slightly shifted toward intersection center.\",\n      \"mutation_intent\": \"Perturb ego path near lights while preserving traffic-light data and red_light violation.\",\n      \"expected_oracle\": \"red_light\",\n      \"modifications\": {\n        \"weather_delta\": {\n          \"rain\": -10,\n          \"fog\": 0,\n          \"wetness\": -5,\n          \"puddle\": -5\n        },\n        \"actor_mutations\": [\n          {\n            \"actor_index\": 0,\n            \"position_offset\": {\n              \"x\": -2.0,\n              \"y\": 1.5\n            },\n            \"speed_delta\": 0.5\n          }\n        ],\n        \"puddle_mutations\": [\n          {\n            \"puddle_index\": 0,\n            \"location_offset\": {\n              \"x\": 1.0,\n              \"y\": -2.0\n            },\n            \"level_delta\": -0.05,\n            \"size_scale\": 0.9\n          },\n          {\n            \"puddle_index\": 1,\n            \"location_offset\": {\n              \"x\": -1.5,\n              \"y\": 1.0\n            },\n            \"level_delta\": -0.05,\n            \"size_scale\": 0.9\n          }\n        ],\n        \"mission_mutation\": {\n          \"keep_original\": false,\n          \"spawn_offset\": {\n            \"x\": 1.5,\n            \"y\": -2.0\n          },\n          \"destination_offset\": {\n            \"x\": -2.0,\n            \"y\": 1.0\n          }\n        }\n      },\n      \"pre_execution_validation_rules\": [\n        \"Confirm traffic-light topic has multiple lights and state changes.\",\n        \"Ensure ego pose and odometry available near intersection.\",\n        \"Verify planning waypoints present around red-light event.\"\n      ],\n      \"post_execution_validation_rules\": [\n        \"Check error_json red_light=true and scenario not stuck.\",\n        \"Confirm traffic-light data exists within 5s of violation.\",\n        \"Do not require lane_invasion flag to match.\"\n      ],\n      \"uncertainty\": [\n        \"Governing light for ego route may remain unknown.\",\n        \"Stop-line and lane-boundary crossing may stay unconfirmed.\"\n      ]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Same spawn, ego route slightly shifted laterally, slightly slower background vehicle.\",\n      \"mutation_intent\": \"Change surrounding vehicle influence while preserving red_light violation conditions.\",\n      \"expected_oracle\": \"red_light\",\n      \"modifications\": {\n        \"weather_delta\": {\n          \"rain\": -5,\n          \"fog\": 5,\n          \"wetness\": -3,\n          \"puddle\": -3\n        },\n        \"actor_mutations\": [\n          {\n            \"actor_index\": 0,\n            \"position_offset\": {\n              \"x\": 3.0,\n              \"y\": -1.0\n            },\n            \"speed_delta\": -1.0\n          }\n        ],\n        \"puddle_mutations\": [\n          {\n            \"puddle_index\": 0,\n            \"location_offset\": {\n              \"x\": -2.0,\n              \"y\": 2.0\n            },\n            \"level_delta\": 0.05,\n            \"size_scale\": 1.1\n          },\n          {\n            \"puddle_index\": 1,\n            \"location_offset\": {\n              \"x\": 2.0,\n              \"y\": -1.5\n            },\n            \"level_delta\": 0.05,\n            \"size_scale\": 1.1\n          }\n        ],\n        \"mission_mutation\": {\n          \"keep_original\": false,\n          \"spawn_offset\": {\n            \"x\": -1.0,\n            \"y\": 1.5\n          },\n          \"destination_offset\": {\n            \"x\": 1.0,\n            \"y\": -1.5\n          }\n        }\n      },\n      \"pre_execution_validation_rules\": [\n        \"Ensure traffic-light messages active along ego route.\",\n        \"Verify ego odometry and pose continuous at junction.\",\n        \"Confirm planner waypoints cross at least one light.\"\n      ],\n      \"post_execution_validation_rules\": [\n        \"Check error_json red_light=true, regardless of lane_invasion.\",\n        \"Confirm at least two light state changes before violation.\",\n        \"Verify no run-level logging failures occurred.\"\n      ],\n      \"uncertainty\": [\n        \"Module-level root cause remains unresolved.\",\n        \"Lane_invasion label mismatch may persist.\"\n      ]\n    }\n  ]\n}",
+  "parsed_response": {
+    "case_id": "case_103",
+    "candidate_specs": [
+      {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Same route, moderate rain, ego slightly shifted toward intersection center.",
+        "mutation_intent": "Perturb ego path near lights while preserving traffic-light data and red_light violation.",
+        "expected_oracle": "red_light",
+        "modifications": {
+          "weather_delta": {
+            "rain": -10,
+            "fog": 0,
+            "wetness": -5,
+            "puddle": -5
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": -2.0,
+                "y": 1.5
+              },
+              "speed_delta": 0.5
+            }
+          ],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 1.0,
+                "y": -2.0
+              },
+              "level_delta": -0.05,
+              "size_scale": 0.9
+            },
+            {
+              "puddle_index": 1,
+              "location_offset": {
+                "x": -1.5,
+                "y": 1.0
+              },
+              "level_delta": -0.05,
+              "size_scale": 0.9
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": false,
+            "spawn_offset": {
+              "x": 1.5,
+              "y": -2.0
+            },
+            "destination_offset": {
+              "x": -2.0,
+              "y": 1.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Confirm traffic-light topic has multiple lights and state changes.",
+          "Ensure ego pose and odometry available near intersection.",
+          "Verify planning waypoints present around red-light event."
+        ],
+        "post_execution_validation_rules": [
+          "Check error_json red_light=true and scenario not stuck.",
+          "Confirm traffic-light data exists within 5s of violation.",
+          "Do not require lane_invasion flag to match."
+        ],
+        "uncertainty": [
+          "Governing light for ego route may remain unknown.",
+          "Stop-line and lane-boundary crossing may stay unconfirmed."
+        ]
+      },
+      {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Same spawn, ego route slightly shifted laterally, slightly slower background vehicle.",
+        "mutation_intent": "Change surrounding vehicle influence while preserving red_light violation conditions.",
+        "expected_oracle": "red_light",
+        "modifications": {
+          "weather_delta": {
+            "rain": -5,
+            "fog": 5,
+            "wetness": -3,
+            "puddle": -3
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 3.0,
+                "y": -1.0
+              },
+              "speed_delta": -1.0
+            }
+          ],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": -2.0,
+                "y": 2.0
+              },
+              "level_delta": 0.05,
+              "size_scale": 1.1
+            },
+            {
+              "puddle_index": 1,
+              "location_offset": {
+                "x": 2.0,
+                "y": -1.5
+              },
+              "level_delta": 0.05,
+              "size_scale": 1.1
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": false,
+            "spawn_offset": {
+              "x": -1.0,
+              "y": 1.5
+            },
+            "destination_offset": {
+              "x": 1.0,
+              "y": -1.5
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Ensure traffic-light messages active along ego route.",
+          "Verify ego odometry and pose continuous at junction.",
+          "Confirm planner waypoints cross at least one light."
+        ],
+        "post_execution_validation_rules": [
+          "Check error_json red_light=true, regardless of lane_invasion.",
+          "Confirm at least two light state changes before violation.",
+          "Verify no run-level logging failures occurred."
+        ],
+        "uncertainty": [
+          "Module-level root cause remains unresolved.",
+          "Lane_invasion label mismatch may persist."
+        ]
+      }
+    ]
+  },
+  "raw_api_payload": {
+    "id": "<REDACTED_RESPONSE_ID>",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "{\n  \"case_id\": \"case_103\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Same route, moderate rain, ego slightly shifted toward intersection center.\",\n      \"mutation_intent\": \"Perturb ego path near lights while preserving traffic-light data and red_light violation.\",\n      \"expected_oracle\": \"red_light\",\n      \"modifications\": {\n        \"weather_delta\": {\n          \"rain\": -10,\n          \"fog\": 0,\n          \"wetness\": -5,\n          \"puddle\": -5\n        },\n        \"actor_mutations\": [\n          {\n            \"actor_index\": 0,\n            \"position_offset\": {\n              \"x\": -2.0,\n              \"y\": 1.5\n            },\n            \"speed_delta\": 0.5\n          }\n        ],\n        \"puddle_mutations\": [\n          {\n            \"puddle_index\": 0,\n            \"location_offset\": {\n              \"x\": 1.0,\n              \"y\": -2.0\n            },\n            \"level_delta\": -0.05,\n            \"size_scale\": 0.9\n          },\n          {\n            \"puddle_index\": 1,\n            \"location_offset\": {\n              \"x\": -1.5,\n              \"y\": 1.0\n            },\n            \"level_delta\": -0.05,\n            \"size_scale\": 0.9\n          }\n        ],\n        \"mission_mutation\": {\n          \"keep_original\": false,\n          \"spawn_offset\": {\n            \"x\": 1.5,\n            \"y\": -2.0\n          },\n          \"destination_offset\": {\n            \"x\": -2.0,\n            \"y\": 1.0\n          }\n        }\n      },\n      \"pre_execution_validation_rules\": [\n        \"Confirm traffic-light topic has multiple lights and state changes.\",\n        \"Ensure ego pose and odometry available near intersection.\",\n        \"Verify planning waypoints present around red-light event.\"\n      ],\n      \"post_execution_validation_rules\": [\n        \"Check error_json red_light=true and scenario not stuck.\",\n        \"Confirm traffic-light data exists within 5s of violation.\",\n        \"Do not require lane_invasion flag to match.\"\n      ],\n      \"uncertainty\": [\n        \"Governing light for ego route may remain unknown.\",\n        \"Stop-line and lane-boundary crossing may stay unconfirmed.\"\n      ]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Same spawn, ego route slightly shifted laterally, slightly slower background vehicle.\",\n      \"mutation_intent\": \"Change surrounding vehicle influence while preserving red_light violation conditions.\",\n      \"expected_oracle\": \"red_light\",\n      \"modifications\": {\n        \"weather_delta\": {\n          \"rain\": -5,\n          \"fog\": 5,\n          \"wetness\": -3,\n          \"puddle\": -3\n        },\n        \"actor_mutations\": [\n          {\n            \"actor_index\": 0,\n            \"position_offset\": {\n              \"x\": 3.0,\n              \"y\": -1.0\n            },\n            \"speed_delta\": -1.0\n          }\n        ],\n        \"puddle_mutations\": [\n          {\n            \"puddle_index\": 0,\n            \"location_offset\": {\n              \"x\": -2.0,\n              \"y\": 2.0\n            },\n            \"level_delta\": 0.05,\n            \"size_scale\": 1.1\n          },\n          {\n            \"puddle_index\": 1,\n            \"location_offset\": {\n              \"x\": 2.0,\n              \"y\": -1.5\n            },\n            \"level_delta\": 0.05,\n            \"size_scale\": 1.1\n          }\n        ],\n        \"mission_mutation\": {\n          \"keep_original\": false,\n          \"spawn_offset\": {\n            \"x\": -1.0,\n            \"y\": 1.5\n          },\n          \"destination_offset\": {\n            \"x\": 1.0,\n            \"y\": -1.5\n          }\n        }\n      },\n      \"pre_execution_validation_rules\": [\n        \"Ensure traffic-light messages active along ego route.\",\n        \"Verify ego odometry and pose continuous at junction.\",\n        \"Confirm planner waypoints cross at least one light.\"\n      ],\n      \"post_execution_validation_rules\": [\n        \"Check error_json red_light=true, regardless of lane_invasion.\",\n        \"Confirm at least two light state changes before violation.\",\n        \"Verify no run-level logging failures occurred.\"\n      ],\n      \"uncertainty\": [\n        \"Module-level root cause remains unresolved.\",\n        \"Lane_invasion label mismatch may persist.\"\n      ]\n    }\n  ]\n}",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": [],
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "gpt-5.1-2025-11-13",
+    "object": "chat.completion",
+    "service_tier": "default",
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 1010,
+      "prompt_tokens": 1405,
+      "total_tokens": 2415,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": 0,
+        "audio_tokens": 0,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 0
+      }
+    }
+  },
+  "error_message": "",
+  "elapsed_sec": 16.469,
+  "timestamp": "<REDACTED_TIMESTAMP>"
+}

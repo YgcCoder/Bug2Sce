@@ -1,0 +1,151 @@
+{
+  "case_id": "case_094",
+  "workflow": "phase1_causal_explanation",
+  "model_name": "gpt-5.1",
+  "model_id": "gpt-5.1",
+  "status": "completed",
+  "dry_run": false,
+  "schema_valid": true,
+  "schema_errors": [],
+  "quality_flags": [],
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_prompts/case_094__gpt-5.1.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_094__gpt-5.1.json",
+  "prompt_estimated_tokens": 3336,
+  "usage": {
+    "prompt_tokens": 3679,
+    "completion_tokens": 1417,
+    "total_tokens": 5096
+  },
+  "estimated_cost_usd": null,
+  "raw_response": "{\n  \"case_id\": \"case_094\",\n  \"fault_layer\": \"unknown\",\n  \"fault_component\": \"unknown\",\n  \"causal_explanation\": \"The oracle confirms a collision around 98.6s while ego is moving at about 5 m/s with nonzero throttle and zero brake in the last 5 seconds. An external actor is present within tens of meters before impact, perception and prediction topics show at least one tracked object, and planning provides stable, unblocked final waypoints. However, the control command topic contains only zero commands throughout the run, while vehicle_status reports varying throttle, steering, and speed, indicating a mismatch between Autoware command outputs and the executed motion. The available evidence does not localize the cause of the eventual collision to a specific Autoware layer; the apparent controller–status inconsistency could stem from actuation, simulator, or logging behavior.\",\n  \"root_cause_pattern\": \"Conservative preservation pattern: ego is in motion along a planned route with valid final waypoints and at least one nearby actor present before a collision, while the actuator command topic remains effectively zeroed throughout the run and vehicle_status shows nonzero motion and control, leaving the true module-level cause of the collision unknown.\",\n  \"preservation_constraints\": [\n    \"The generated case should reproduce an oracle-reported collision event during ego motion.\",\n    \"At least one non-ego actor should be present within a moderate distance of the ego before the collision, as indicated by simulator or perception topics.\",\n    \"Planning should publish valid final waypoints (nonempty, unblocked) up to shortly before the collision.\",\n    \"The actuator command topic (vehicle_cmd or equivalent) should remain at or near zero for accel, brake, and steering across the critical window.\",\n    \"Vehicle status or odometry should indicate that the ego actually moves with nonzero speed and control variation before the collision.\"\n  ],\n  \"modifiable_factors\": [\n    \"actor_position\",\n    \"actor_speed\",\n    \"weather\",\n    \"puddles\",\n    \"mission\",\n    \"ego_initial_speed\"\n  ],\n  \"non_modifiable_conditions\": [\n    \"Same oracle symptom: a collision involving the ego vehicle occurs.\",\n    \"Planning continues to output valid, unblocked final waypoints before the collision.\",\n    \"A nearby actor is present before impact, as reflected in available object or simulator topics.\",\n    \"Actuator command topics remain effectively zero while ego motion is observed in vehicle status or odometry.\"\n  ],\n  \"uncertainty\": [\n    \"Dataset.xlsx labels indicate stuck and lane_invasion, but error.json only reports collision; the true presence of stuck or lane invasion is uncertain.\",\n    \"The mismatch between zero vehicle_cmd and varying vehicle_status may be due to simulator behavior, logging configuration, or an actuation/controller issue; the root module is not identifiable from the evidence.\",\n    \"The mechanism by which ego and the nearby actor come into contact (who yields, right-of-way, exact geometry) is not specified in the summaries.\"\n  ],\n  \"evidence_support\": [\n    {\n      \"evidence_id\": \"critical_window_collision_window\",\n      \"claim\": \"A collision occurs at about 98.6s with ego speed around 5.1 m/s, nonzero throttle, zero brake, and no speed decrease in the last 5 seconds.\"\n    },\n    {\n      \"evidence_id\": \"critical_window_detected_object_count_before_collision\",\n      \"claim\": \"Perception detects at least one object (labels including person/unknown) in the collision window, with object counts between 1 and 2 before collision.\"\n    },\n    {\n      \"evidence_id\": \"critical_window_predicted_object_count_before_collision\",\n      \"claim\": \"Prediction publishes objects for detected actors with counts between 1 and 12 before collision.\"\n    },\n    {\n      \"evidence_id\": \"critical_window_final_waypoints_before_collision\",\n      \"claim\": \"Planning publishes 101 final waypoints consistently, with no blocked flags and closest_object_distance reported as 0.0 in the nearest pre-collision row.\"\n    },\n    {\n      \"evidence_id\": \"critical_window_closest_available_object_info\",\n      \"claim\": \"A closest available object with ID 4916 and classification 4 is reported at about 48.2 units from the ego before collision.\"\n    },\n    {\n      \"evidence_id\": \"critical_window_vehicle_cmd_stats\",\n      \"claim\": \"Throughout the collision window, accel_cmd, brake_cmd, steer_cmd, and linear_velocity_cmd remain zero, indicating no variation in commanded actuation from this topic.\"\n    },\n    {\n      \"evidence_id\": \"critical_window_vehicle_status_control_stats\",\n      \"claim\": \"Vehicle_status reports nonzero throttle and steering and a nonzero ego speed range in the collision window, implying ego motion despite zero vehicle_cmd.\"\n    },\n    {\n      \"evidence_id\": \"critical_window_stuck_window_last_60_seconds\",\n      \"claim\": \"Over the last 60 seconds, ego moves more than 70 units with a nonzero mean velocity, so the car is not stationary despite dataset stuck label; vehicle_cmd remains all zeros while vehicle_status varies.\"\n    },\n    {\n      \"evidence_id\": \"oracle_consistency_label_conflict\",\n      \"claim\": \"Dataset group is C+S+L while error_json reports only C, highlighting disagreement on stuck and lane_invasion labels.\"\n    },\n    {\n      \"evidence_id\": \"trace_summary_compact_planning_final_waypoints\",\n      \"claim\": \"Final_waypoints exist from about 16.75s to 99.35s with constant count and no blocked rows, indicating continuous route availability.\"\n    },\n    {\n      \"evidence_id\": \"trace_summary_compact_oracle_collision\",\n      \"claim\": \"Collision topic exists with impulses up to 6562, confirming a significant collision event near the end of the run.\"\n    }\n  ],\n  \"confidence\": \"medium\",\n  \"ready_for_phase2_generation\": \"uncertain\",\n  \"notes_for_validator\": [\n    \"Check that the generated case produces an oracle collision event similar in timing (near the end of the run) and that ego is moving with nonzero speed shortly before impact.\",\n    \"Verify that planning publishes stable, non-blocked final waypoints up to the critical window before the collision.\",\n    \"Confirm that actuator command topics remain effectively zero (no significant accel, brake, or steering commands) while vehicle_status or odometry still shows ego motion and control variation.\",\n    \"Ensure at least one non-ego actor is present within a moderate distance of ego before collision and is represented in either simulator objects or perception/prediction topics.\",\n    \"Do not require stuck or lane_invasion symptoms as correctness criteria due to label conflicts; they may or may not appear in valid same-root-cause reproductions.\"\n  ]\n}",
+  "parsed_response": {
+    "case_id": "case_094",
+    "fault_layer": "unknown",
+    "fault_component": "unknown",
+    "causal_explanation": "The oracle confirms a collision around 98.6s while ego is moving at about 5 m/s with nonzero throttle and zero brake in the last 5 seconds. An external actor is present within tens of meters before impact, perception and prediction topics show at least one tracked object, and planning provides stable, unblocked final waypoints. However, the control command topic contains only zero commands throughout the run, while vehicle_status reports varying throttle, steering, and speed, indicating a mismatch between Autoware command outputs and the executed motion. The available evidence does not localize the cause of the eventual collision to a specific Autoware layer; the apparent controller–status inconsistency could stem from actuation, simulator, or logging behavior.",
+    "root_cause_pattern": "Conservative preservation pattern: ego is in motion along a planned route with valid final waypoints and at least one nearby actor present before a collision, while the actuator command topic remains effectively zeroed throughout the run and vehicle_status shows nonzero motion and control, leaving the true module-level cause of the collision unknown.",
+    "preservation_constraints": [
+      "The generated case should reproduce an oracle-reported collision event during ego motion.",
+      "At least one non-ego actor should be present within a moderate distance of the ego before the collision, as indicated by simulator or perception topics.",
+      "Planning should publish valid final waypoints (nonempty, unblocked) up to shortly before the collision.",
+      "The actuator command topic (vehicle_cmd or equivalent) should remain at or near zero for accel, brake, and steering across the critical window.",
+      "Vehicle status or odometry should indicate that the ego actually moves with nonzero speed and control variation before the collision."
+    ],
+    "modifiable_factors": [
+      "actor_position",
+      "actor_speed",
+      "weather",
+      "puddles",
+      "mission",
+      "ego_initial_speed"
+    ],
+    "non_modifiable_conditions": [
+      "Same oracle symptom: a collision involving the ego vehicle occurs.",
+      "Planning continues to output valid, unblocked final waypoints before the collision.",
+      "A nearby actor is present before impact, as reflected in available object or simulator topics.",
+      "Actuator command topics remain effectively zero while ego motion is observed in vehicle status or odometry."
+    ],
+    "uncertainty": [
+      "Dataset.xlsx labels indicate stuck and lane_invasion, but error.json only reports collision; the true presence of stuck or lane invasion is uncertain.",
+      "The mismatch between zero vehicle_cmd and varying vehicle_status may be due to simulator behavior, logging configuration, or an actuation/controller issue; the root module is not identifiable from the evidence.",
+      "The mechanism by which ego and the nearby actor come into contact (who yields, right-of-way, exact geometry) is not specified in the summaries."
+    ],
+    "evidence_support": [
+      {
+        "evidence_id": "critical_window_collision_window",
+        "claim": "A collision occurs at about 98.6s with ego speed around 5.1 m/s, nonzero throttle, zero brake, and no speed decrease in the last 5 seconds."
+      },
+      {
+        "evidence_id": "critical_window_detected_object_count_before_collision",
+        "claim": "Perception detects at least one object (labels including person/unknown) in the collision window, with object counts between 1 and 2 before collision."
+      },
+      {
+        "evidence_id": "critical_window_predicted_object_count_before_collision",
+        "claim": "Prediction publishes objects for detected actors with counts between 1 and 12 before collision."
+      },
+      {
+        "evidence_id": "critical_window_final_waypoints_before_collision",
+        "claim": "Planning publishes 101 final waypoints consistently, with no blocked flags and closest_object_distance reported as 0.0 in the nearest pre-collision row."
+      },
+      {
+        "evidence_id": "critical_window_closest_available_object_info",
+        "claim": "A closest available object with ID 4916 and classification 4 is reported at about 48.2 units from the ego before collision."
+      },
+      {
+        "evidence_id": "critical_window_vehicle_cmd_stats",
+        "claim": "Throughout the collision window, accel_cmd, brake_cmd, steer_cmd, and linear_velocity_cmd remain zero, indicating no variation in commanded actuation from this topic."
+      },
+      {
+        "evidence_id": "critical_window_vehicle_status_control_stats",
+        "claim": "Vehicle_status reports nonzero throttle and steering and a nonzero ego speed range in the collision window, implying ego motion despite zero vehicle_cmd."
+      },
+      {
+        "evidence_id": "critical_window_stuck_window_last_60_seconds",
+        "claim": "Over the last 60 seconds, ego moves more than 70 units with a nonzero mean velocity, so the car is not stationary despite dataset stuck label; vehicle_cmd remains all zeros while vehicle_status varies."
+      },
+      {
+        "evidence_id": "oracle_consistency_label_conflict",
+        "claim": "Dataset group is C+S+L while error_json reports only C, highlighting disagreement on stuck and lane_invasion labels."
+      },
+      {
+        "evidence_id": "trace_summary_compact_planning_final_waypoints",
+        "claim": "Final_waypoints exist from about 16.75s to 99.35s with constant count and no blocked rows, indicating continuous route availability."
+      },
+      {
+        "evidence_id": "trace_summary_compact_oracle_collision",
+        "claim": "Collision topic exists with impulses up to 6562, confirming a significant collision event near the end of the run."
+      }
+    ],
+    "confidence": "medium",
+    "ready_for_phase2_generation": "uncertain",
+    "notes_for_validator": [
+      "Check that the generated case produces an oracle collision event similar in timing (near the end of the run) and that ego is moving with nonzero speed shortly before impact.",
+      "Verify that planning publishes stable, non-blocked final waypoints up to the critical window before the collision.",
+      "Confirm that actuator command topics remain effectively zero (no significant accel, brake, or steering commands) while vehicle_status or odometry still shows ego motion and control variation.",
+      "Ensure at least one non-ego actor is present within a moderate distance of ego before collision and is represented in either simulator objects or perception/prediction topics.",
+      "Do not require stuck or lane_invasion symptoms as correctness criteria due to label conflicts; they may or may not appear in valid same-root-cause reproductions."
+    ]
+  },
+  "raw_api_payload": {
+    "id": "<REDACTED_RESPONSE_ID>",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "{\n  \"case_id\": \"case_094\",\n  \"fault_layer\": \"unknown\",\n  \"fault_component\": \"unknown\",\n  \"causal_explanation\": \"The oracle confirms a collision around 98.6s while ego is moving at about 5 m/s with nonzero throttle and zero brake in the last 5 seconds. An external actor is present within tens of meters before impact, perception and prediction topics show at least one tracked object, and planning provides stable, unblocked final waypoints. However, the control command topic contains only zero commands throughout the run, while vehicle_status reports varying throttle, steering, and speed, indicating a mismatch between Autoware command outputs and the executed motion. The available evidence does not localize the cause of the eventual collision to a specific Autoware layer; the apparent controller–status inconsistency could stem from actuation, simulator, or logging behavior.\",\n  \"root_cause_pattern\": \"Conservative preservation pattern: ego is in motion along a planned route with valid final waypoints and at least one nearby actor present before a collision, while the actuator command topic remains effectively zeroed throughout the run and vehicle_status shows nonzero motion and control, leaving the true module-level cause of the collision unknown.\",\n  \"preservation_constraints\": [\n    \"The generated case should reproduce an oracle-reported collision event during ego motion.\",\n    \"At least one non-ego actor should be present within a moderate distance of the ego before the collision, as indicated by simulator or perception topics.\",\n    \"Planning should publish valid final waypoints (nonempty, unblocked) up to shortly before the collision.\",\n    \"The actuator command topic (vehicle_cmd or equivalent) should remain at or near zero for accel, brake, and steering across the critical window.\",\n    \"Vehicle status or odometry should indicate that the ego actually moves with nonzero speed and control variation before the collision.\"\n  ],\n  \"modifiable_factors\": [\n    \"actor_position\",\n    \"actor_speed\",\n    \"weather\",\n    \"puddles\",\n    \"mission\",\n    \"ego_initial_speed\"\n  ],\n  \"non_modifiable_conditions\": [\n    \"Same oracle symptom: a collision involving the ego vehicle occurs.\",\n    \"Planning continues to output valid, unblocked final waypoints before the collision.\",\n    \"A nearby actor is present before impact, as reflected in available object or simulator topics.\",\n    \"Actuator command topics remain effectively zero while ego motion is observed in vehicle status or odometry.\"\n  ],\n  \"uncertainty\": [\n    \"Dataset.xlsx labels indicate stuck and lane_invasion, but error.json only reports collision; the true presence of stuck or lane invasion is uncertain.\",\n    \"The mismatch between zero vehicle_cmd and varying vehicle_status may be due to simulator behavior, logging configuration, or an actuation/controller issue; the root module is not identifiable from the evidence.\",\n    \"The mechanism by which ego and the nearby actor come into contact (who yields, right-of-way, exact geometry) is not specified in the summaries.\"\n  ],\n  \"evidence_support\": [\n    {\n      \"evidence_id\": \"critical_window_collision_window\",\n      \"claim\": \"A collision occurs at about 98.6s with ego speed around 5.1 m/s, nonzero throttle, zero brake, and no speed decrease in the last 5 seconds.\"\n    },\n    {\n      \"evidence_id\": \"critical_window_detected_object_count_before_collision\",\n      \"claim\": \"Perception detects at least one object (labels including person/unknown) in the collision window, with object counts between 1 and 2 before collision.\"\n    },\n    {\n      \"evidence_id\": \"critical_window_predicted_object_count_before_collision\",\n      \"claim\": \"Prediction publishes objects for detected actors with counts between 1 and 12 before collision.\"\n    },\n    {\n      \"evidence_id\": \"critical_window_final_waypoints_before_collision\",\n      \"claim\": \"Planning publishes 101 final waypoints consistently, with no blocked flags and closest_object_distance reported as 0.0 in the nearest pre-collision row.\"\n    },\n    {\n      \"evidence_id\": \"critical_window_closest_available_object_info\",\n      \"claim\": \"A closest available object with ID 4916 and classification 4 is reported at about 48.2 units from the ego before collision.\"\n    },\n    {\n      \"evidence_id\": \"critical_window_vehicle_cmd_stats\",\n      \"claim\": \"Throughout the collision window, accel_cmd, brake_cmd, steer_cmd, and linear_velocity_cmd remain zero, indicating no variation in commanded actuation from this topic.\"\n    },\n    {\n      \"evidence_id\": \"critical_window_vehicle_status_control_stats\",\n      \"claim\": \"Vehicle_status reports nonzero throttle and steering and a nonzero ego speed range in the collision window, implying ego motion despite zero vehicle_cmd.\"\n    },\n    {\n      \"evidence_id\": \"critical_window_stuck_window_last_60_seconds\",\n      \"claim\": \"Over the last 60 seconds, ego moves more than 70 units with a nonzero mean velocity, so the car is not stationary despite dataset stuck label; vehicle_cmd remains all zeros while vehicle_status varies.\"\n    },\n    {\n      \"evidence_id\": \"oracle_consistency_label_conflict\",\n      \"claim\": \"Dataset group is C+S+L while error_json reports only C, highlighting disagreement on stuck and lane_invasion labels.\"\n    },\n    {\n      \"evidence_id\": \"trace_summary_compact_planning_final_waypoints\",\n      \"claim\": \"Final_waypoints exist from about 16.75s to 99.35s with constant count and no blocked rows, indicating continuous route availability.\"\n    },\n    {\n      \"evidence_id\": \"trace_summary_compact_oracle_collision\",\n      \"claim\": \"Collision topic exists with impulses up to 6562, confirming a significant collision event near the end of the run.\"\n    }\n  ],\n  \"confidence\": \"medium\",\n  \"ready_for_phase2_generation\": \"uncertain\",\n  \"notes_for_validator\": [\n    \"Check that the generated case produces an oracle collision event similar in timing (near the end of the run) and that ego is moving with nonzero speed shortly before impact.\",\n    \"Verify that planning publishes stable, non-blocked final waypoints up to the critical window before the collision.\",\n    \"Confirm that actuator command topics remain effectively zero (no significant accel, brake, or steering commands) while vehicle_status or odometry still shows ego motion and control variation.\",\n    \"Ensure at least one non-ego actor is present within a moderate distance of ego before collision and is represented in either simulator objects or perception/prediction topics.\",\n    \"Do not require stuck or lane_invasion symptoms as correctness criteria due to label conflicts; they may or may not appear in valid same-root-cause reproductions.\"\n  ]\n}",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": [],
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "gpt-5.1-2025-11-13",
+    "object": "chat.completion",
+    "service_tier": "default",
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 1417,
+      "prompt_tokens": 3679,
+      "total_tokens": 5096,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": 0,
+        "audio_tokens": 0,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 0
+      }
+    }
+  },
+  "error_message": "",
+  "timestamp": "<REDACTED_TIMESTAMP>",
+  "elapsed_sec": 24.999
+}

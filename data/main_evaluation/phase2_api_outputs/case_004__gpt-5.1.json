@@ -1,0 +1,384 @@
+{
+  "case_id": "case_004",
+  "model_name": "gpt-5.1",
+  "workflow": "phase2_grounded_generation",
+  "status": "completed",
+  "schema_valid": true,
+  "schema_errors": [],
+  "phase1_ready": "yes",
+  "num_candidates_requested": 2,
+  "num_candidates_written": 2,
+  "num_pre_valid": 2,
+  "candidate_records": [
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/gpt-5.1/json/case_004/case_004__cand_001.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/gpt-5.1/metadata/case_004/case_004__cand_001.metadata.json",
+      "case_id": "case_004",
+      "model_name": "gpt-5.1",
+      "candidate_index": 1,
+      "candidate_spec": {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Same intersection and start pose with ego almost stationary near a signalized junction; slight mission destination shift while preserving minimal motion so that a red-light violation is still triggered without confirmed stop-line or lane-boundary context.",
+        "mutation_intent": "Preserves the pattern of an oracle red-light violation in a largely static scene with traffic-light data and minimal ego displacement, while slightly perturbing mission geometry to test robustness of the oracle-level violation under near-identical kinematics and no dynamic actors.",
+        "expected_oracle": "red_light",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": 0.0,
+              "size_scale": 1.0
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": false,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 2.0,
+              "y": -2.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Ensure no additional dynamic actors (vehicles, pedestrians, cyclists) are spawned beyond static traffic-light objects.",
+          "Verify that the ego spawn pose remains aligned with the same lane and junction region as the seed scenario (orientation within a few degrees of original yaw).",
+          "Confirm that traffic-light objects relevant to the junction are present in the map and that their state topic is being published before ego motion begins."
+        ],
+        "post_execution_validation_rules": [
+          "Check oracle output: red=true, crash=false, stuck=false, lane_invasion=false, with no additional failure flags set.",
+          "Confirm ego odometry shows very small net displacement between first and last samples (e.g., within a few meters), consistent with “almost stationary” behavior.",
+          "Verify traffic-light state messages exist throughout the run, but logs do not provide explicit association between the ego route and any particular stop line or governing signal.",
+          "Ensure there is no clearly logged lane-boundary crossing event or explicit planner reference to lane invasion; if present, treat as deviation from this case pattern."
+        ],
+        "uncertainty": [
+          "Mechanism by which the oracle triggers red=true (whether due to internal stop-line mapping, timing, or perception) remains unknown and should not be overconstrained.",
+          "Dataset-level lane_invasion labels from analogous cases may conflict with online oracle; do not enforce lane invasion here even if offline labels suggest it."
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 0.0,
+          "fog": 0.0,
+          "wetness": 0.0,
+          "puddle": 0.0
+        },
+        "actor_mutations": [],
+        "puddle_mutations": [
+          {
+            "puddle_index": 0,
+            "location_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "level_delta": 0.0,
+            "size_scale": 1.0
+          }
+        ],
+        "mission_mutation": {
+          "spawn_offset": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "destination_offset": {
+            "x": 2.0,
+            "y": -2.0
+          }
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": [
+          "no actors in candidate scenario"
+        ]
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_004__gpt-5.1.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_004__gpt-5.1.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    },
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/gpt-5.1/json/case_004/case_004__cand_002.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/gpt-5.1/metadata/case_004/case_004__cand_002.metadata.json",
+      "case_id": "case_004",
+      "model_name": "gpt-5.1",
+      "candidate_index": 2,
+      "candidate_spec": {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Ego slightly offset laterally within the lane and with a small forward speed bias near the same signalized junction, keeping overall displacement minimal so that the oracle still flags a red-light violation without explicit evidence of crossing the stop line or lane boundaries.",
+        "mutation_intent": "Tests whether a small change in ego pose and low-speed behavior near the junction preserves an oracle red violation in a scene with static environment, available traffic-light states, and no dynamic actors, while maintaining ambiguity about the precise physical infraction.",
+        "expected_oracle": "red_light",
+        "modifications": {
+          "weather_delta": {
+            "rain": -3,
+            "fog": 2,
+            "wetness": 3,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 0.5,
+                "y": 0.5
+              },
+              "speed_delta": 0.5
+            }
+          ],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 1.5,
+                "y": -1.0
+              },
+              "level_delta": 0.05,
+              "size_scale": 1.1
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Interpret actor_index=0 as the ego vehicle when applying actor_mutations; do not introduce any non-ego dynamic actors.",
+          "Confirm that the ego remains within the same logical approach lane toward the junction; lateral offset must not clearly place the ego into an adjacent lane.",
+          "Verify that traffic-light state data is being published before the ego begins to move, and that the junction remains signal-controlled."
+        ],
+        "post_execution_validation_rules": [
+          "Verify oracle red=true with crash=false, stuck=false, lane_invasion=false at run completion.",
+          "Ensure ego net displacement from start to end remains small (e.g., limited forward creep, not a full intersection traversal).",
+          "Check that no explicit stop-line crossing event or clear route–signal linkage is recorded in planner or map-matching logs; if such evidence exists, classify as deviating from the intended ambiguous mechanism.",
+          "Confirm that any dataset-style lane invasion indicators are not used as ground truth; rely only on the online oracle flags when comparing to the root-cause pattern."
+        ],
+        "uncertainty": [
+          "Small lateral and speed adjustments may alter planner or perception behavior in ways that change how the oracle evaluates red violations; this variant intentionally explores that regime while still targeting the same high-level outcome.",
+          "The exact spatial relation between ego, lane markings, and stop line remains under-specified; validation must avoid assuming a particular geometry when judging red-light causality."
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": -3.0,
+          "fog": 2.0,
+          "wetness": 3.0,
+          "puddle": 0.0
+        },
+        "actor_mutations": [],
+        "puddle_mutations": [
+          {
+            "puddle_index": 0,
+            "location_offset": {
+              "x": 1.5,
+              "y": -1.0
+            },
+            "level_delta": 0.05,
+            "size_scale": 1.1
+          }
+        ],
+        "mission_mutation": {
+          "keep_original": true
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": [
+          "no actors in candidate scenario"
+        ]
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_004__gpt-5.1.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_004__gpt-5.1.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    }
+  ],
+  "seed_artifact_zip": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/gpt-5.1/seed-artifact/seed-artifact-case_004.zip",
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_prompts/case_004__gpt-5.1.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_004__gpt-5.1.json",
+  "prompt_estimated_tokens": 1377,
+  "usage": {
+    "prompt_tokens": 1333,
+    "completion_tokens": 1061,
+    "total_tokens": 2394
+  },
+  "raw_response": "{\"case_id\":\"case_004\",\"candidate_specs\":[{\"candidate_id\":\"cand_001\",\"high_level_variant\":\"Same intersection and start pose with ego almost stationary near a signalized junction; slight mission destination shift while preserving minimal motion so that a red-light violation is still triggered without confirmed stop-line or lane-boundary context.\",\"mutation_intent\":\"Preserves the pattern of an oracle red-light violation in a largely static scene with traffic-light data and minimal ego displacement, while slightly perturbing mission geometry to test robustness of the oracle-level violation under near-identical kinematics and no dynamic actors.\",\"expected_oracle\":\"red_light\",\"modifications\":{\"weather_delta\":{\"rain\":0,\"fog\":0,\"wetness\":0,\"puddle\":0},\"actor_mutations\":[],\"puddle_mutations\":[{\"puddle_index\":0,\"location_offset\":{\"x\":0.0,\"y\":0.0},\"level_delta\":0.0,\"size_scale\":1.0}],\"mission_mutation\":{\"keep_original\":false,\"spawn_offset\":{\"x\":0.0,\"y\":0.0},\"destination_offset\":{\"x\":2.0,\"y\":-2.0}}},\"pre_execution_validation_rules\":[\"Ensure no additional dynamic actors (vehicles, pedestrians, cyclists) are spawned beyond static traffic-light objects.\",\"Verify that the ego spawn pose remains aligned with the same lane and junction region as the seed scenario (orientation within a few degrees of original yaw).\",\"Confirm that traffic-light objects relevant to the junction are present in the map and that their state topic is being published before ego motion begins.\"],\"post_execution_validation_rules\":[\"Check oracle output: red=true, crash=false, stuck=false, lane_invasion=false, with no additional failure flags set.\",\"Confirm ego odometry shows very small net displacement between first and last samples (e.g., within a few meters), consistent with \\u201calmost stationary\\u201d behavior.\",\"Verify traffic-light state messages exist throughout the run, but logs do not provide explicit association between the ego route and any particular stop line or governing signal.\",\"Ensure there is no clearly logged lane-boundary crossing event or explicit planner reference to lane invasion; if present, treat as deviation from this case pattern.\"],\"uncertainty\":[\"Mechanism by which the oracle triggers red=true (whether due to internal stop-line mapping, timing, or perception) remains unknown and should not be overconstrained.\",\"Dataset-level lane_invasion labels from analogous cases may conflict with online oracle; do not enforce lane invasion here even if offline labels suggest it.\"]},{\"candidate_id\":\"cand_002\",\"high_level_variant\":\"Ego slightly offset laterally within the lane and with a small forward speed bias near the same signalized junction, keeping overall displacement minimal so that the oracle still flags a red-light violation without explicit evidence of crossing the stop line or lane boundaries.\",\"mutation_intent\":\"Tests whether a small change in ego pose and low-speed behavior near the junction preserves an oracle red violation in a scene with static environment, available traffic-light states, and no dynamic actors, while maintaining ambiguity about the precise physical infraction.\",\"expected_oracle\":\"red_light\",\"modifications\":{\"weather_delta\":{\"rain\":-3,\"fog\":2,\"wetness\":3,\"puddle\":0},\"actor_mutations\":[{\"actor_index\":0,\"position_offset\":{\"x\":0.5,\"y\":0.5},\"speed_delta\":0.5}],\"puddle_mutations\":[{\"puddle_index\":0,\"location_offset\":{\"x\":1.5,\"y\":-1.0},\"level_delta\":0.05,\"size_scale\":1.1}],\"mission_mutation\":{\"keep_original\":true,\"spawn_offset\":{\"x\":0.0,\"y\":0.0},\"destination_offset\":{\"x\":0.0,\"y\":0.0}}},\"pre_execution_validation_rules\":[\"Interpret actor_index=0 as the ego vehicle when applying actor_mutations; do not introduce any non-ego dynamic actors.\",\"Confirm that the ego remains within the same logical approach lane toward the junction; lateral offset must not clearly place the ego into an adjacent lane.\",\"Verify that traffic-light state data is being published before the ego begins to move, and that the junction remains signal-controlled.\"],\"post_execution_validation_rules\":[\"Verify oracle red=true with crash=false, stuck=false, lane_invasion=false at run completion.\",\"Ensure ego net displacement from start to end remains small (e.g., limited forward creep, not a full intersection traversal).\",\"Check that no explicit stop-line crossing event or clear route–signal linkage is recorded in planner or map-matching logs; if such evidence exists, classify as deviating from the intended ambiguous mechanism.\",\"Confirm that any dataset-style lane invasion indicators are not used as ground truth; rely only on the online oracle flags when comparing to the root-cause pattern.\"],\"uncertainty\":[\"Small lateral and speed adjustments may alter planner or perception behavior in ways that change how the oracle evaluates red violations; this variant intentionally explores that regime while still targeting the same high-level outcome.\",\"The exact spatial relation between ego, lane markings, and stop line remains under-specified; validation must avoid assuming a particular geometry when judging red-light causality.\"]}]}",
+  "parsed_response": {
+    "case_id": "case_004",
+    "candidate_specs": [
+      {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Same intersection and start pose with ego almost stationary near a signalized junction; slight mission destination shift while preserving minimal motion so that a red-light violation is still triggered without confirmed stop-line or lane-boundary context.",
+        "mutation_intent": "Preserves the pattern of an oracle red-light violation in a largely static scene with traffic-light data and minimal ego displacement, while slightly perturbing mission geometry to test robustness of the oracle-level violation under near-identical kinematics and no dynamic actors.",
+        "expected_oracle": "red_light",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": 0.0,
+              "size_scale": 1.0
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": false,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 2.0,
+              "y": -2.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Ensure no additional dynamic actors (vehicles, pedestrians, cyclists) are spawned beyond static traffic-light objects.",
+          "Verify that the ego spawn pose remains aligned with the same lane and junction region as the seed scenario (orientation within a few degrees of original yaw).",
+          "Confirm that traffic-light objects relevant to the junction are present in the map and that their state topic is being published before ego motion begins."
+        ],
+        "post_execution_validation_rules": [
+          "Check oracle output: red=true, crash=false, stuck=false, lane_invasion=false, with no additional failure flags set.",
+          "Confirm ego odometry shows very small net displacement between first and last samples (e.g., within a few meters), consistent with “almost stationary” behavior.",
+          "Verify traffic-light state messages exist throughout the run, but logs do not provide explicit association between the ego route and any particular stop line or governing signal.",
+          "Ensure there is no clearly logged lane-boundary crossing event or explicit planner reference to lane invasion; if present, treat as deviation from this case pattern."
+        ],
+        "uncertainty": [
+          "Mechanism by which the oracle triggers red=true (whether due to internal stop-line mapping, timing, or perception) remains unknown and should not be overconstrained.",
+          "Dataset-level lane_invasion labels from analogous cases may conflict with online oracle; do not enforce lane invasion here even if offline labels suggest it."
+        ]
+      },
+      {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Ego slightly offset laterally within the lane and with a small forward speed bias near the same signalized junction, keeping overall displacement minimal so that the oracle still flags a red-light violation without explicit evidence of crossing the stop line or lane boundaries.",
+        "mutation_intent": "Tests whether a small change in ego pose and low-speed behavior near the junction preserves an oracle red violation in a scene with static environment, available traffic-light states, and no dynamic actors, while maintaining ambiguity about the precise physical infraction.",
+        "expected_oracle": "red_light",
+        "modifications": {
+          "weather_delta": {
+            "rain": -3,
+            "fog": 2,
+            "wetness": 3,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 0.5,
+                "y": 0.5
+              },
+              "speed_delta": 0.5
+            }
+          ],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 1.5,
+                "y": -1.0
+              },
+              "level_delta": 0.05,
+              "size_scale": 1.1
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Interpret actor_index=0 as the ego vehicle when applying actor_mutations; do not introduce any non-ego dynamic actors.",
+          "Confirm that the ego remains within the same logical approach lane toward the junction; lateral offset must not clearly place the ego into an adjacent lane.",
+          "Verify that traffic-light state data is being published before the ego begins to move, and that the junction remains signal-controlled."
+        ],
+        "post_execution_validation_rules": [
+          "Verify oracle red=true with crash=false, stuck=false, lane_invasion=false at run completion.",
+          "Ensure ego net displacement from start to end remains small (e.g., limited forward creep, not a full intersection traversal).",
+          "Check that no explicit stop-line crossing event or clear route–signal linkage is recorded in planner or map-matching logs; if such evidence exists, classify as deviating from the intended ambiguous mechanism.",
+          "Confirm that any dataset-style lane invasion indicators are not used as ground truth; rely only on the online oracle flags when comparing to the root-cause pattern."
+        ],
+        "uncertainty": [
+          "Small lateral and speed adjustments may alter planner or perception behavior in ways that change how the oracle evaluates red violations; this variant intentionally explores that regime while still targeting the same high-level outcome.",
+          "The exact spatial relation between ego, lane markings, and stop line remains under-specified; validation must avoid assuming a particular geometry when judging red-light causality."
+        ]
+      }
+    ]
+  },
+  "raw_api_payload": {
+    "id": "<REDACTED_RESPONSE_ID>",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "{\"case_id\":\"case_004\",\"candidate_specs\":[{\"candidate_id\":\"cand_001\",\"high_level_variant\":\"Same intersection and start pose with ego almost stationary near a signalized junction; slight mission destination shift while preserving minimal motion so that a red-light violation is still triggered without confirmed stop-line or lane-boundary context.\",\"mutation_intent\":\"Preserves the pattern of an oracle red-light violation in a largely static scene with traffic-light data and minimal ego displacement, while slightly perturbing mission geometry to test robustness of the oracle-level violation under near-identical kinematics and no dynamic actors.\",\"expected_oracle\":\"red_light\",\"modifications\":{\"weather_delta\":{\"rain\":0,\"fog\":0,\"wetness\":0,\"puddle\":0},\"actor_mutations\":[],\"puddle_mutations\":[{\"puddle_index\":0,\"location_offset\":{\"x\":0.0,\"y\":0.0},\"level_delta\":0.0,\"size_scale\":1.0}],\"mission_mutation\":{\"keep_original\":false,\"spawn_offset\":{\"x\":0.0,\"y\":0.0},\"destination_offset\":{\"x\":2.0,\"y\":-2.0}}},\"pre_execution_validation_rules\":[\"Ensure no additional dynamic actors (vehicles, pedestrians, cyclists) are spawned beyond static traffic-light objects.\",\"Verify that the ego spawn pose remains aligned with the same lane and junction region as the seed scenario (orientation within a few degrees of original yaw).\",\"Confirm that traffic-light objects relevant to the junction are present in the map and that their state topic is being published before ego motion begins.\"],\"post_execution_validation_rules\":[\"Check oracle output: red=true, crash=false, stuck=false, lane_invasion=false, with no additional failure flags set.\",\"Confirm ego odometry shows very small net displacement between first and last samples (e.g., within a few meters), consistent with \\u201calmost stationary\\u201d behavior.\",\"Verify traffic-light state messages exist throughout the run, but logs do not provide explicit association between the ego route and any particular stop line or governing signal.\",\"Ensure there is no clearly logged lane-boundary crossing event or explicit planner reference to lane invasion; if present, treat as deviation from this case pattern.\"],\"uncertainty\":[\"Mechanism by which the oracle triggers red=true (whether due to internal stop-line mapping, timing, or perception) remains unknown and should not be overconstrained.\",\"Dataset-level lane_invasion labels from analogous cases may conflict with online oracle; do not enforce lane invasion here even if offline labels suggest it.\"]},{\"candidate_id\":\"cand_002\",\"high_level_variant\":\"Ego slightly offset laterally within the lane and with a small forward speed bias near the same signalized junction, keeping overall displacement minimal so that the oracle still flags a red-light violation without explicit evidence of crossing the stop line or lane boundaries.\",\"mutation_intent\":\"Tests whether a small change in ego pose and low-speed behavior near the junction preserves an oracle red violation in a scene with static environment, available traffic-light states, and no dynamic actors, while maintaining ambiguity about the precise physical infraction.\",\"expected_oracle\":\"red_light\",\"modifications\":{\"weather_delta\":{\"rain\":-3,\"fog\":2,\"wetness\":3,\"puddle\":0},\"actor_mutations\":[{\"actor_index\":0,\"position_offset\":{\"x\":0.5,\"y\":0.5},\"speed_delta\":0.5}],\"puddle_mutations\":[{\"puddle_index\":0,\"location_offset\":{\"x\":1.5,\"y\":-1.0},\"level_delta\":0.05,\"size_scale\":1.1}],\"mission_mutation\":{\"keep_original\":true,\"spawn_offset\":{\"x\":0.0,\"y\":0.0},\"destination_offset\":{\"x\":0.0,\"y\":0.0}}},\"pre_execution_validation_rules\":[\"Interpret actor_index=0 as the ego vehicle when applying actor_mutations; do not introduce any non-ego dynamic actors.\",\"Confirm that the ego remains within the same logical approach lane toward the junction; lateral offset must not clearly place the ego into an adjacent lane.\",\"Verify that traffic-light state data is being published before the ego begins to move, and that the junction remains signal-controlled.\"],\"post_execution_validation_rules\":[\"Verify oracle red=true with crash=false, stuck=false, lane_invasion=false at run completion.\",\"Ensure ego net displacement from start to end remains small (e.g., limited forward creep, not a full intersection traversal).\",\"Check that no explicit stop-line crossing event or clear route–signal linkage is recorded in planner or map-matching logs; if such evidence exists, classify as deviating from the intended ambiguous mechanism.\",\"Confirm that any dataset-style lane invasion indicators are not used as ground truth; rely only on the online oracle flags when comparing to the root-cause pattern.\"],\"uncertainty\":[\"Small lateral and speed adjustments may alter planner or perception behavior in ways that change how the oracle evaluates red violations; this variant intentionally explores that regime while still targeting the same high-level outcome.\",\"The exact spatial relation between ego, lane markings, and stop line remains under-specified; validation must avoid assuming a particular geometry when judging red-light causality.\"]}]}",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": [],
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "gpt-5.1-2025-11-13",
+    "object": "chat.completion",
+    "service_tier": "priority",
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 1061,
+      "prompt_tokens": 1333,
+      "total_tokens": 2394,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": 0,
+        "audio_tokens": 0,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 0
+      }
+    }
+  },
+  "error_message": "",
+  "elapsed_sec": 16.798,
+  "timestamp": "<REDACTED_TIMESTAMP>"
+}

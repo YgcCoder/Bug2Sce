@@ -1,0 +1,185 @@
+{
+  "case_id": "case_142",
+  "model_name": "gpt-5.1",
+  "candidate_index": 1,
+  "candidate_spec": {
+    "candidate_id": "cand_001",
+    "high_level_variant": "Slightly closer oncoming/autopilot vehicle ahead of ego near signalized intersection, preserving late-run on-route collision under active non-green traffic lights.",
+    "mutation_intent": "Tighten spatial interaction between ego and the primary vehicle actor while keeping overall route, traffic lights, and environment similar, so that the ego remains in motion with adequate perception/planning signals but still collides near the end of the run without clear braking, matching the unresolved-module root-cause pattern.",
+    "expected_oracle": "collision",
+    "modifications": {
+      "weather_delta": {
+        "rain": 5,
+        "fog": -10,
+        "wetness": 5,
+        "puddle": 0
+      },
+      "actor_mutations": [
+        {
+          "actor_index": 0,
+          "position_offset": {
+            "x": -3.0,
+            "y": -2.0
+          },
+          "speed_delta": -0.5
+        },
+        {
+          "actor_index": 1,
+          "position_offset": {
+            "x": 2.0,
+            "y": 4.0
+          },
+          "speed_delta": -1.0
+        },
+        {
+          "actor_index": 2,
+          "position_offset": {
+            "x": 1.0,
+            "y": -1.0
+          },
+          "speed_delta": 0.0
+        }
+      ],
+      "puddle_mutations": [
+        {
+          "puddle_index": 0,
+          "location_offset": {
+            "x": -2.0,
+            "y": -1.5
+          },
+          "level_delta": 0.05,
+          "size_scale": 1.05
+        },
+        {
+          "puddle_index": 1,
+          "location_offset": {
+            "x": 0.5,
+            "y": 2.0
+          },
+          "level_delta": 0.0,
+          "size_scale": 1.0
+        },
+        {
+          "puddle_index": 2,
+          "location_offset": {
+            "x": -1.0,
+            "y": 1.0
+          },
+          "level_delta": 0.02,
+          "size_scale": 1.0
+        }
+      ],
+      "mission_mutation": {
+        "keep_original": false,
+        "spawn_offset": {
+          "x": -2.0,
+          "y": -1.0
+        },
+        "destination_offset": {
+          "x": 3.0,
+          "y": 2.0
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Ensure mission route still passes through at least one signalized intersection with active traffic_lights messages.",
+      "Verify that all mutated actors (indices 0,1,2) spawn successfully on valid lanes or walkable areas and remain within map drivable bounds.",
+      "Check that overall scenario duration and route length are sufficient for a late-run interaction between ego and actor_index 0.",
+      "Confirm that moderate rain/fog/wetness adjustments do not disable or drastically degrade perception topics (detection, prediction)."
+    ],
+    "post_execution_validation_rules": [
+      "Check oracle summary for a collision involving the ego near the end of the run; discard runs without a late-run collision.",
+      "Confirm traffic_lights topic exists and includes at least one red or non-green state in the time window leading up to the collision.",
+      "Verify ego has nonzero forward speed (using vehicle_status or odometry) immediately before impact; filter out cases where ego is fully stopped prior to collision.",
+      "Ensure detection and prediction topics report at least one nearby object during the pre-collision window, and planning final_waypoints remain populated and continuous up to the collision.",
+      "Do not require lane_invasion or a confirmed red-light stop-line crossing; treat such labels as non-essential for same-root-cause.",
+      "Check that braking commands in vehicle_cmd or effective deceleration in vehicle_status remain weak or delayed relative to the time of impact, consistent with minimal or no timely braking before collision."
+    ],
+    "uncertainty": [
+      "Exact spatial relation between ego path and traffic light stop line remains unconstrained; red-light violation may or may not be reported.",
+      "Responsibility among perception, planning, actuation, or simulator for the lack of timely braking is not identifiable from runtime logs alone.",
+      "Lane_invasion labels, if present, may disagree between dataset and error.json and should not be relied on for root-cause matching."
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": 5.0,
+      "fog": -10.0,
+      "wetness": 5.0,
+      "puddle": 0.0
+    },
+    "actor_mutations": [
+      {
+        "actor_index": 0,
+        "position_offset": {
+          "x": -3.0,
+          "y": -2.0
+        },
+        "speed_delta": -0.5
+      },
+      {
+        "actor_index": 1,
+        "position_offset": {
+          "x": 2.0,
+          "y": 4.0
+        },
+        "speed_delta": -1.0
+      },
+      {
+        "actor_index": 2,
+        "position_offset": {
+          "x": 1.0,
+          "y": -1.0
+        },
+        "speed_delta": 0.0
+      }
+    ],
+    "puddle_mutations": [
+      {
+        "puddle_index": 0,
+        "location_offset": {
+          "x": -2.0,
+          "y": -1.5
+        },
+        "level_delta": 0.05,
+        "size_scale": 1.05
+      },
+      {
+        "puddle_index": 1,
+        "location_offset": {
+          "x": 0.5,
+          "y": 2.0
+        },
+        "level_delta": 0.0,
+        "size_scale": 1.0
+      },
+      {
+        "puddle_index": 2,
+        "location_offset": {
+          "x": -1.0,
+          "y": 1.0
+        },
+        "level_delta": 0.02,
+        "size_scale": 1.0
+      }
+    ],
+    "mission_mutation": {
+      "spawn_offset": {
+        "x": -2.0,
+        "y": -1.0
+      },
+      "destination_offset": {
+        "x": 3.0,
+        "y": 2.0
+      }
+    }
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_142__gpt-5.1.json",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_142__gpt-5.1.json",
+  "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+}

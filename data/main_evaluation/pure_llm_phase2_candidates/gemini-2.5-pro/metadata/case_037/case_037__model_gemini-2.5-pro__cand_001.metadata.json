@@ -1,0 +1,82 @@
+{
+  "case_id": "case_037",
+  "model_name": "gemini-2.5-pro",
+  "workflow": "pure_llm_phase2_baseline",
+  "candidate_index": 1,
+  "candidate_spec": {
+    "candidate_id": "cand_001",
+    "high_level_variant": "Increase rain and fog, and make the other vehicle slightly faster and closer.",
+    "mutation_intent": "Intensify adverse weather and make the primary vehicle actor more aggressive to reproduce the compound failure.",
+    "expected_oracle": "compound",
+    "modifications": {
+      "weather_delta": {
+        "rain": 7,
+        "fog": 15,
+        "wetness": 10,
+        "puddle": 0
+      },
+      "actor_mutations": [
+        {
+          "actor_index": 0,
+          "position_offset": {
+            "x": -2.5,
+            "y": 1.5
+          },
+          "speed_delta": 1.8
+        }
+      ],
+      "puddle_mutations": [],
+      "mission_mutation": {
+        "keep_original": true,
+        "spawn_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "destination_offset": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Actors must be on the road."
+    ],
+    "post_execution_validation_rules": [
+      "Ego must drive for at least 5 seconds."
+    ],
+    "uncertainty": [
+      "Uncertain which factor (weather, actor) is most critical for the C+L+R failure."
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": 7.0,
+      "fog": 15.0,
+      "wetness": 10.0,
+      "puddle": 0.0
+    },
+    "actor_mutations": [
+      {
+        "actor_index": 0,
+        "position_offset": {
+          "x": -2.5,
+          "y": 1.5
+        },
+        "speed_delta": 1.8
+      }
+    ],
+    "puddle_mutations": [],
+    "mission_mutation": {
+      "keep_original": true
+    },
+    "safety_repairs": []
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/pure_llm_phase2_api_prompts/case_037__gemini-2.5-pro.md",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/pure_llm_phase2_api_outputs/case_037__gemini-2.5-pro.json",
+  "baseline_note": "Pure-LLM baseline: prompt used no root-cause pattern or critical-window evidence."
+}

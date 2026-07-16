@@ -1,0 +1,186 @@
+{
+  "case_id": "case_040",
+  "model_name": "claude-sonnet-4-5",
+  "workflow": "pure_llm_phase2_baseline",
+  "status": "completed",
+  "schema_valid": true,
+  "schema_errors": [],
+  "num_candidates_requested": 1,
+  "num_candidates_written": 1,
+  "num_pre_valid": 1,
+  "candidate_records": [
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/pure_llm_phase2_candidates/claude-sonnet-4-5/json/case_040/case_040__model_claude-sonnet-4-5__cand_001.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/pure_llm_phase2_candidates/claude-sonnet-4-5/metadata/case_040/case_040__model_claude-sonnet-4-5__cand_001.metadata.json",
+      "case_id": "case_040",
+      "model_name": "claude-sonnet-4-5",
+      "candidate_index": 1,
+      "candidate_spec": {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Increase rain and move vehicle closer to intersection",
+        "mutation_intent": "Worsen visibility and reduce reaction distance to test red light violation under harsher conditions",
+        "expected_oracle": "red_light",
+        "modifications": {
+          "weather_delta": {
+            "rain": 15,
+            "fog": 10,
+            "wetness": 10,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": 0.0,
+                "y": -4.0
+              },
+              "speed_delta": 1.5
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Vehicle actor must spawn before intersection with positive speed"
+        ],
+        "post_execution_validation_rules": [
+          "Check ego crosses stop line during red signal phase"
+        ],
+        "uncertainty": [
+          "Traffic light timing may vary with actor proximity changes"
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 15.0,
+          "fog": 10.0,
+          "wetness": 10.0,
+          "puddle": 0.0
+        },
+        "actor_mutations": [
+          {
+            "actor_index": 1,
+            "position_offset": {
+              "x": 0.0,
+              "y": -4.0
+            },
+            "speed_delta": 1.5
+          }
+        ],
+        "puddle_mutations": [],
+        "mission_mutation": {
+          "keep_original": true
+        },
+        "safety_repairs": []
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": []
+      }
+    }
+  ],
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/pure_llm_phase2_api_prompts/case_040__claude-sonnet-4-5.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/pure_llm_phase2_api_outputs/case_040__claude-sonnet-4-5.json",
+  "prompt_estimated_tokens": 771,
+  "usage": {
+    "prompt_tokens": 1053,
+    "completion_tokens": 331,
+    "total_tokens": 1384
+  },
+  "raw_response": "```json\n{\n  \"case_id\": \"case_040\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Increase rain and move vehicle closer to intersection\",\n      \"mutation_intent\": \"Worsen visibility and reduce reaction distance to test red light violation under harsher conditions\",\n      \"expected_oracle\": \"red_light\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 15, \"fog\": 10, \"wetness\": 10, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 1, \"position_offset\": {\"x\": 0.0, \"y\": -4.0}, \"speed_delta\": 1.5}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Vehicle actor must spawn before intersection with positive speed\"],\n      \"post_execution_validation_rules\": [\"Check ego crosses stop line during red signal phase\"],\n      \"uncertainty\": [\"Traffic light timing may vary with actor proximity changes\"]\n    }\n  ]\n}\n```",
+  "parsed_response": {
+    "case_id": "case_040",
+    "candidate_specs": [
+      {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Increase rain and move vehicle closer to intersection",
+        "mutation_intent": "Worsen visibility and reduce reaction distance to test red light violation under harsher conditions",
+        "expected_oracle": "red_light",
+        "modifications": {
+          "weather_delta": {
+            "rain": 15,
+            "fog": 10,
+            "wetness": 10,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": 0.0,
+                "y": -4.0
+              },
+              "speed_delta": 1.5
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Vehicle actor must spawn before intersection with positive speed"
+        ],
+        "post_execution_validation_rules": [
+          "Check ego crosses stop line during red signal phase"
+        ],
+        "uncertainty": [
+          "Traffic light timing may vary with actor proximity changes"
+        ]
+      }
+    ]
+  },
+  "raw_api_payload": {
+    "id": "<REDACTED_RESPONSE_ID>",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "```json\n{\n  \"case_id\": \"case_040\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Increase rain and move vehicle closer to intersection\",\n      \"mutation_intent\": \"Worsen visibility and reduce reaction distance to test red light violation under harsher conditions\",\n      \"expected_oracle\": \"red_light\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 15, \"fog\": 10, \"wetness\": 10, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 1, \"position_offset\": {\"x\": 0.0, \"y\": -4.0}, \"speed_delta\": 1.5}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Vehicle actor must spawn before intersection with positive speed\"],\n      \"post_execution_validation_rules\": [\"Check ego crosses stop line during red signal phase\"],\n      \"uncertainty\": [\"Traffic light timing may vary with actor proximity changes\"]\n    }\n  ]\n}\n```",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "claude-sonnet-4-5",
+    "object": "chat.completion",
+    "service_tier": null,
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 331,
+      "prompt_tokens": 1053,
+      "total_tokens": 1384,
+      "completion_tokens_details": null,
+      "prompt_tokens_details": null
+    }
+  },
+  "error_message": "",
+  "elapsed_sec": 8.66,
+  "timestamp": "<REDACTED_TIMESTAMP>"
+}

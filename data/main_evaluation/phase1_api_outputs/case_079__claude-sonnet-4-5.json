@@ -1,0 +1,116 @@
+{
+  "case_id": "case_079",
+  "workflow": "phase1_causal_explanation",
+  "model_name": "claude-sonnet-4-5",
+  "model_id": "claude-sonnet-4-5",
+  "status": "completed",
+  "dry_run": false,
+  "schema_valid": true,
+  "schema_errors": [],
+  "quality_flags": [],
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_prompts/case_079__claude-sonnet-4-5.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_079__claude-sonnet-4-5.json",
+  "prompt_estimated_tokens": 2780,
+  "usage": {
+    "prompt_tokens": 3352,
+    "completion_tokens": 1032,
+    "total_tokens": 4384
+  },
+  "estimated_cost_usd": null,
+  "raw_response": "```json\n{\n  \"case_id\": \"case_079\",\n  \"fault_layer\": \"unknown\",\n  \"fault_component\": \"unknown\",\n  \"causal_explanation\": \"Dataset.xlsx labels this case as lane_invasion=1 and red_light=1 (group L+R), but error.json reports only red_light=1 (group R). Critical-window evidence shows traffic lights exist with states 0 and 2, but route-light relation and stop-line crossing are not confirmed. Vehicle_cmd is all zero (steer, accel, brake, target_speed all 0.0) while vehicle_status shows velocity up to 9.27 m/s and throttle up to 0.37, indicating possible actuation mismatch or simulator behavior. Final waypoints exist with stop_line_id=4294967295 (invalid). The evidence does not directly prove which module failed or whether lane invasion occurred.\",\n  \"root_cause_pattern\": \"Conservative preservation pattern: ego approaches a traffic-light-controlled intersection with available traffic light states (red present), while vehicle_cmd remains zero and vehicle_status shows movement; module-level attribution and lane-invasion confirmation remain uncertain.\",\n  \"preservation_constraints\": [\n    \"The generated candidate should preserve the red_light oracle symptom from error.json.\",\n    \"Traffic light states (including red) should be present near the ego route before the failure.\",\n    \"Vehicle_cmd should remain zero or near-zero while vehicle_status shows non-zero velocity or throttle.\",\n    \"Post-execution validation should check traffic light state, vehicle_cmd vs. vehicle_status mismatch, and final waypoint stop_line_id validity.\"\n  ],\n  \"modifiable_factors\": [\n    \"actor_position\",\n    \"weather\",\n    \"puddles\",\n    \"mission\"\n  ],\n  \"non_modifiable_conditions\": [\n    \"red_light oracle symptom\",\n    \"traffic light states available\",\n    \"vehicle_cmd zero with vehicle_status movement\"\n  ],\n  \"uncertainty\": [\n    \"Dataset.xlsx labels lane_invasion=1, but error.json does not confirm it; lane-boundary crossing evidence is absent.\",\n    \"Route-light relation and stop-line crossing are not confirmed by the summaries.\",\n    \"Vehicle_cmd is all zero while vehicle_status shows movement and throttle; controller behavior or simulator actuation is uncertain.\",\n    \"Final waypoint stop_line_id is 4294967295 (invalid), so stop-line planning cannot be verified.\",\n    \"The evidence does not directly localize the failure to perception, planning, or actuation.\"\n  ],\n  \"evidence_support\": [\n    {\n      \"evidence_id\": \"oracle_consistency\",\n      \"claim\": \"Dataset and error.json disagree on lane_invasion; only red_light is confirmed by error.json.\"\n    },\n    {\n      \"evidence_id\": \"red_light_window\",\n      \"claim\": \"Traffic light states (0 and 2) are available, but route-light relation and stop-line crossing are not confirmed.\"\n    },\n    {\n      \"evidence_id\": \"vehicle_cmd\",\n      \"claim\": \"All vehicle_cmd fields (steer, accel, brake, target_speed) are 0.0 throughout the sampled trace.\"\n    },\n    {\n      \"evidence_id\": \"vehicle_status\",\n      \"claim\": \"Vehicle_status shows velocity up to 9.27 m/s and throttle up to 0.37, indicating movement despite zero vehicle_cmd.\"\n    },\n    {\n      \"evidence_id\": \"final_waypoints\",\n      \"claim\": \"Final waypoints exist with stop_line_id=4294967295 (invalid), so stop-line planning cannot be verified.\"\n    }\n  ],\n  \"confidence\": \"low\",\n  \"ready_for_phase2_generation\": \"uncertain\",\n  \"notes_for_validator\": [\n    \"Do not count a generated case as same-root-cause unless post-execution evidence preserves the red_light oracle symptom and the vehicle_cmd vs. vehicle_status mismatch.\",\n    \"Manual review is needed to resolve the lane_invasion label conflict before confirming root cause.\",\n    \"Check whether the vehicle_cmd zero / vehicle_status movement mismatch is a simulator artifact or a controller fault.\",\n    \"Verify traffic light state and route-light relation in the generated scenario before oracle validation.\"\n  ]\n}\n```",
+  "parsed_response": {
+    "case_id": "case_079",
+    "fault_layer": "unknown",
+    "fault_component": "unknown",
+    "causal_explanation": "Dataset.xlsx labels this case as lane_invasion=1 and red_light=1 (group L+R), but error.json reports only red_light=1 (group R). Critical-window evidence shows traffic lights exist with states 0 and 2, but route-light relation and stop-line crossing are not confirmed. Vehicle_cmd is all zero (steer, accel, brake, target_speed all 0.0) while vehicle_status shows velocity up to 9.27 m/s and throttle up to 0.37, indicating possible actuation mismatch or simulator behavior. Final waypoints exist with stop_line_id=4294967295 (invalid). The evidence does not directly prove which module failed or whether lane invasion occurred.",
+    "root_cause_pattern": "Conservative preservation pattern: ego approaches a traffic-light-controlled intersection with available traffic light states (red present), while vehicle_cmd remains zero and vehicle_status shows movement; module-level attribution and lane-invasion confirmation remain uncertain.",
+    "preservation_constraints": [
+      "The generated candidate should preserve the red_light oracle symptom from error.json.",
+      "Traffic light states (including red) should be present near the ego route before the failure.",
+      "Vehicle_cmd should remain zero or near-zero while vehicle_status shows non-zero velocity or throttle.",
+      "Post-execution validation should check traffic light state, vehicle_cmd vs. vehicle_status mismatch, and final waypoint stop_line_id validity."
+    ],
+    "modifiable_factors": [
+      "actor_position",
+      "weather",
+      "puddles",
+      "mission"
+    ],
+    "non_modifiable_conditions": [
+      "red_light oracle symptom",
+      "traffic light states available",
+      "vehicle_cmd zero with vehicle_status movement"
+    ],
+    "uncertainty": [
+      "Dataset.xlsx labels lane_invasion=1, but error.json does not confirm it; lane-boundary crossing evidence is absent.",
+      "Route-light relation and stop-line crossing are not confirmed by the summaries.",
+      "Vehicle_cmd is all zero while vehicle_status shows movement and throttle; controller behavior or simulator actuation is uncertain.",
+      "Final waypoint stop_line_id is 4294967295 (invalid), so stop-line planning cannot be verified.",
+      "The evidence does not directly localize the failure to perception, planning, or actuation."
+    ],
+    "evidence_support": [
+      {
+        "evidence_id": "oracle_consistency",
+        "claim": "Dataset and error.json disagree on lane_invasion; only red_light is confirmed by error.json."
+      },
+      {
+        "evidence_id": "red_light_window",
+        "claim": "Traffic light states (0 and 2) are available, but route-light relation and stop-line crossing are not confirmed."
+      },
+      {
+        "evidence_id": "vehicle_cmd",
+        "claim": "All vehicle_cmd fields (steer, accel, brake, target_speed) are 0.0 throughout the sampled trace."
+      },
+      {
+        "evidence_id": "vehicle_status",
+        "claim": "Vehicle_status shows velocity up to 9.27 m/s and throttle up to 0.37, indicating movement despite zero vehicle_cmd."
+      },
+      {
+        "evidence_id": "final_waypoints",
+        "claim": "Final waypoints exist with stop_line_id=4294967295 (invalid), so stop-line planning cannot be verified."
+      }
+    ],
+    "confidence": "low",
+    "ready_for_phase2_generation": "uncertain",
+    "notes_for_validator": [
+      "Do not count a generated case as same-root-cause unless post-execution evidence preserves the red_light oracle symptom and the vehicle_cmd vs. vehicle_status mismatch.",
+      "Manual review is needed to resolve the lane_invasion label conflict before confirming root cause.",
+      "Check whether the vehicle_cmd zero / vehicle_status movement mismatch is a simulator artifact or a controller fault.",
+      "Verify traffic light state and route-light relation in the generated scenario before oracle validation."
+    ]
+  },
+  "raw_api_payload": {
+    "id": "<REDACTED_RESPONSE_ID>",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "```json\n{\n  \"case_id\": \"case_079\",\n  \"fault_layer\": \"unknown\",\n  \"fault_component\": \"unknown\",\n  \"causal_explanation\": \"Dataset.xlsx labels this case as lane_invasion=1 and red_light=1 (group L+R), but error.json reports only red_light=1 (group R). Critical-window evidence shows traffic lights exist with states 0 and 2, but route-light relation and stop-line crossing are not confirmed. Vehicle_cmd is all zero (steer, accel, brake, target_speed all 0.0) while vehicle_status shows velocity up to 9.27 m/s and throttle up to 0.37, indicating possible actuation mismatch or simulator behavior. Final waypoints exist with stop_line_id=4294967295 (invalid). The evidence does not directly prove which module failed or whether lane invasion occurred.\",\n  \"root_cause_pattern\": \"Conservative preservation pattern: ego approaches a traffic-light-controlled intersection with available traffic light states (red present), while vehicle_cmd remains zero and vehicle_status shows movement; module-level attribution and lane-invasion confirmation remain uncertain.\",\n  \"preservation_constraints\": [\n    \"The generated candidate should preserve the red_light oracle symptom from error.json.\",\n    \"Traffic light states (including red) should be present near the ego route before the failure.\",\n    \"Vehicle_cmd should remain zero or near-zero while vehicle_status shows non-zero velocity or throttle.\",\n    \"Post-execution validation should check traffic light state, vehicle_cmd vs. vehicle_status mismatch, and final waypoint stop_line_id validity.\"\n  ],\n  \"modifiable_factors\": [\n    \"actor_position\",\n    \"weather\",\n    \"puddles\",\n    \"mission\"\n  ],\n  \"non_modifiable_conditions\": [\n    \"red_light oracle symptom\",\n    \"traffic light states available\",\n    \"vehicle_cmd zero with vehicle_status movement\"\n  ],\n  \"uncertainty\": [\n    \"Dataset.xlsx labels lane_invasion=1, but error.json does not confirm it; lane-boundary crossing evidence is absent.\",\n    \"Route-light relation and stop-line crossing are not confirmed by the summaries.\",\n    \"Vehicle_cmd is all zero while vehicle_status shows movement and throttle; controller behavior or simulator actuation is uncertain.\",\n    \"Final waypoint stop_line_id is 4294967295 (invalid), so stop-line planning cannot be verified.\",\n    \"The evidence does not directly localize the failure to perception, planning, or actuation.\"\n  ],\n  \"evidence_support\": [\n    {\n      \"evidence_id\": \"oracle_consistency\",\n      \"claim\": \"Dataset and error.json disagree on lane_invasion; only red_light is confirmed by error.json.\"\n    },\n    {\n      \"evidence_id\": \"red_light_window\",\n      \"claim\": \"Traffic light states (0 and 2) are available, but route-light relation and stop-line crossing are not confirmed.\"\n    },\n    {\n      \"evidence_id\": \"vehicle_cmd\",\n      \"claim\": \"All vehicle_cmd fields (steer, accel, brake, target_speed) are 0.0 throughout the sampled trace.\"\n    },\n    {\n      \"evidence_id\": \"vehicle_status\",\n      \"claim\": \"Vehicle_status shows velocity up to 9.27 m/s and throttle up to 0.37, indicating movement despite zero vehicle_cmd.\"\n    },\n    {\n      \"evidence_id\": \"final_waypoints\",\n      \"claim\": \"Final waypoints exist with stop_line_id=4294967295 (invalid), so stop-line planning cannot be verified.\"\n    }\n  ],\n  \"confidence\": \"low\",\n  \"ready_for_phase2_generation\": \"uncertain\",\n  \"notes_for_validator\": [\n    \"Do not count a generated case as same-root-cause unless post-execution evidence preserves the red_light oracle symptom and the vehicle_cmd vs. vehicle_status mismatch.\",\n    \"Manual review is needed to resolve the lane_invasion label conflict before confirming root cause.\",\n    \"Check whether the vehicle_cmd zero / vehicle_status movement mismatch is a simulator artifact or a controller fault.\",\n    \"Verify traffic light state and route-light relation in the generated scenario before oracle validation.\"\n  ]\n}\n```",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "claude-sonnet-4-5",
+    "object": "chat.completion",
+    "service_tier": null,
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 1032,
+      "prompt_tokens": 3352,
+      "total_tokens": 4384,
+      "completion_tokens_details": null,
+      "prompt_tokens_details": null
+    }
+  },
+  "error_message": "",
+  "timestamp": "<REDACTED_TIMESTAMP>",
+  "elapsed_sec": 19.617
+}

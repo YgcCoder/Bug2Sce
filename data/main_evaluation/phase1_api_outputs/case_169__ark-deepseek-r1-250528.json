@@ -1,0 +1,118 @@
+{
+  "case_id": "case_169",
+  "workflow": "phase1_causal_explanation",
+  "model_name": "ark-deepseek-r1-250528",
+  "model_id": "ark-deepseek-r1-250528",
+  "status": "completed",
+  "dry_run": false,
+  "schema_valid": true,
+  "schema_errors": [],
+  "quality_flags": [],
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_prompts/case_169__ark-deepseek-r1-250528.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_169__ark-deepseek-r1-250528.json",
+  "prompt_estimated_tokens": 2602,
+  "usage": {
+    "prompt_tokens": 3360,
+    "completion_tokens": 1769,
+    "total_tokens": 5129
+  },
+  "estimated_cost_usd": null,
+  "raw_response": "{\n  \"case_id\": \"case_169\",\n  \"fault_layer\": \"unknown\",\n  \"fault_component\": \"unknown\",\n  \"causal_explanation\": \"Consistent labeling between dataset and error.json confirms a red light violation event. No actors or puddles are present in the scenario. All sampled vehicle_cmd outputs are zero in the critical window, but vehicle status shows non-zero velocity up to 9.75 m/s. Route-light relation and stop-line crossing are not confirmed by available evidence, and no specific module failure is directly proven.\",\n  \"root_cause_pattern\": \"Conservative candidate pattern: Ego travels on a route with red traffic lights, all-zero critical window vehicle command outputs are observed while ego has non-zero movement, resulting in a consistently labeled red light violation with unconfirmed stop-line crossing.\",\n  \"preservation_constraints\": [\n    \"Preserve consistent red light violation labeling between dataset and error json\",\n    \"Preserve zero dynamic actors and zero puddle regions in the scenario\",\n    \"Preserve Town01 map and ego's start-goal mission route\",\n    \"Preserve all-zero vehicle command values in the critical sampling window\"\n  ],\n  \"modifiable_factors\": [\"weather_parameters\", \"traffic_light_state_distribution\", \"ego starting position offset\"],\n  \"non_modifiable_conditions\": [\"consistent red light violation oracle label\", \"zero dynamic actors\", \"zero puddle regions\", \"all-zero critical window vehicle command outputs\"],\n  \"uncertainty\": [\n    \"Route-light relation is unconfirmed: it is unknown if the red light was on ego's planned route\",\n    \"Stop-line crossing is unconfirmed, so the red light violation is not geographically verified\",\n    \"Module-level fault cannot be attributed due to missing critical evidence of internal module behavior\",\n    \"Mismatch between all-zero vehicle_cmd and non-zero vehicle velocity is unexplained\"\n  ],\n  \"evidence_support\": [\n    {\"evidence_id\": \"oracle_consistency\", \"claim\": \"Dataset and error.json labels are consistent for red light violation\"},\n    {\"evidence_id\": \"scenario_config\", \"claim\": \"Scenario contains 0 actors and 0 puddle regions\"},\n    {\"evidence_id\": \"critical_window_summary\", \"claim\": \"Route-light relation and stop-line crossing are not confirmed by available summaries\"},\n    {\"evidence_id\": \"trace_summary_compact.actuation\", \"claim\": \"All sampled vehicle_cmd values are zero, while vehicle_status records non-zero velocity\"}\n  ],\n  \"confidence\": \"low\",\n  \"ready_for_phase2_generation\": \"yes\",\n  \"notes_for_validator\": [\n    \"Record stop-line crossing status during execution to verify the red light violation event\",\n    \"Check if the mismatch between all-zero vehicle_cmd and non-zero ego movement is preserved in generated cases\"\n  ]\n}",
+  "parsed_response": {
+    "case_id": "case_169",
+    "fault_layer": "unknown",
+    "fault_component": "unknown",
+    "causal_explanation": "Consistent labeling between dataset and error.json confirms a red light violation event. No actors or puddles are present in the scenario. All sampled vehicle_cmd outputs are zero in the critical window, but vehicle status shows non-zero velocity up to 9.75 m/s. Route-light relation and stop-line crossing are not confirmed by available evidence, and no specific module failure is directly proven.",
+    "root_cause_pattern": "Conservative candidate pattern: Ego travels on a route with red traffic lights, all-zero critical window vehicle command outputs are observed while ego has non-zero movement, resulting in a consistently labeled red light violation with unconfirmed stop-line crossing.",
+    "preservation_constraints": [
+      "Preserve consistent red light violation labeling between dataset and error json",
+      "Preserve zero dynamic actors and zero puddle regions in the scenario",
+      "Preserve Town01 map and ego's start-goal mission route",
+      "Preserve all-zero vehicle command values in the critical sampling window"
+    ],
+    "modifiable_factors": [
+      "weather_parameters",
+      "traffic_light_state_distribution",
+      "ego starting position offset"
+    ],
+    "non_modifiable_conditions": [
+      "consistent red light violation oracle label",
+      "zero dynamic actors",
+      "zero puddle regions",
+      "all-zero critical window vehicle command outputs"
+    ],
+    "uncertainty": [
+      "Route-light relation is unconfirmed: it is unknown if the red light was on ego's planned route",
+      "Stop-line crossing is unconfirmed, so the red light violation is not geographically verified",
+      "Module-level fault cannot be attributed due to missing critical evidence of internal module behavior",
+      "Mismatch between all-zero vehicle_cmd and non-zero vehicle velocity is unexplained"
+    ],
+    "evidence_support": [
+      {
+        "evidence_id": "oracle_consistency",
+        "claim": "Dataset and error.json labels are consistent for red light violation"
+      },
+      {
+        "evidence_id": "scenario_config",
+        "claim": "Scenario contains 0 actors and 0 puddle regions"
+      },
+      {
+        "evidence_id": "critical_window_summary",
+        "claim": "Route-light relation and stop-line crossing are not confirmed by available summaries"
+      },
+      {
+        "evidence_id": "trace_summary_compact.actuation",
+        "claim": "All sampled vehicle_cmd values are zero, while vehicle_status records non-zero velocity"
+      }
+    ],
+    "confidence": "low",
+    "ready_for_phase2_generation": "yes",
+    "notes_for_validator": [
+      "Record stop-line crossing status during execution to verify the red light violation event",
+      "Check if the mismatch between all-zero vehicle_cmd and non-zero ego movement is preserved in generated cases"
+    ]
+  },
+  "raw_api_payload": {
+    "id": "0217829216025373b2b0407ffd677ecb32e5e07988358b950d519",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "{\n  \"case_id\": \"case_169\",\n  \"fault_layer\": \"unknown\",\n  \"fault_component\": \"unknown\",\n  \"causal_explanation\": \"Consistent labeling between dataset and error.json confirms a red light violation event. No actors or puddles are present in the scenario. All sampled vehicle_cmd outputs are zero in the critical window, but vehicle status shows non-zero velocity up to 9.75 m/s. Route-light relation and stop-line crossing are not confirmed by available evidence, and no specific module failure is directly proven.\",\n  \"root_cause_pattern\": \"Conservative candidate pattern: Ego travels on a route with red traffic lights, all-zero critical window vehicle command outputs are observed while ego has non-zero movement, resulting in a consistently labeled red light violation with unconfirmed stop-line crossing.\",\n  \"preservation_constraints\": [\n    \"Preserve consistent red light violation labeling between dataset and error json\",\n    \"Preserve zero dynamic actors and zero puddle regions in the scenario\",\n    \"Preserve Town01 map and ego's start-goal mission route\",\n    \"Preserve all-zero vehicle command values in the critical sampling window\"\n  ],\n  \"modifiable_factors\": [\"weather_parameters\", \"traffic_light_state_distribution\", \"ego starting position offset\"],\n  \"non_modifiable_conditions\": [\"consistent red light violation oracle label\", \"zero dynamic actors\", \"zero puddle regions\", \"all-zero critical window vehicle command outputs\"],\n  \"uncertainty\": [\n    \"Route-light relation is unconfirmed: it is unknown if the red light was on ego's planned route\",\n    \"Stop-line crossing is unconfirmed, so the red light violation is not geographically verified\",\n    \"Module-level fault cannot be attributed due to missing critical evidence of internal module behavior\",\n    \"Mismatch between all-zero vehicle_cmd and non-zero vehicle velocity is unexplained\"\n  ],\n  \"evidence_support\": [\n    {\"evidence_id\": \"oracle_consistency\", \"claim\": \"Dataset and error.json labels are consistent for red light violation\"},\n    {\"evidence_id\": \"scenario_config\", \"claim\": \"Scenario contains 0 actors and 0 puddle regions\"},\n    {\"evidence_id\": \"critical_window_summary\", \"claim\": \"Route-light relation and stop-line crossing are not confirmed by available summaries\"},\n    {\"evidence_id\": \"trace_summary_compact.actuation\", \"claim\": \"All sampled vehicle_cmd values are zero, while vehicle_status records non-zero velocity\"}\n  ],\n  \"confidence\": \"low\",\n  \"ready_for_phase2_generation\": \"yes\",\n  \"notes_for_validator\": [\n    \"Record stop-line crossing status during execution to verify the red light violation event\",\n    \"Check if the mismatch between all-zero vehicle_cmd and non-zero ego movement is preserved in generated cases\"\n  ]\n}",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null,
+          "reasoning_content": "\nGot it, let's work through this step by step. First, case_id is case_169, right? Then fault_layer. Let's see the evidence. We have a red light violation labeled, but we don't have confirmed route-light relation or stop line crossing. Also vehicle_cmd all zero but vehicle_status has velocity up to 9.75, so controller is uncertain. Wait, no module is directly proven wrong. Let's check: fault_layer, since we can't attribute, it's unknown? Wait wait, let's see. The evidence says nearest_final_waypoints_stop_line_ids is 4294967295 which is max int, probably no stop line id found? But route_light relation is unknown, stop line crossing unknown. So fault_layer can't be determined, so unknown. Fault component is unknown too.\n\nCausal explanation: Let's write that. The oracle labels a red light violation, all labels are consistent between dataset and error.json. There are no actors or puddles, traffic light topic exists with red light samples, but route-light relation and stop-line crossing are not confirmed by available evidence, and no module failure is directly proven. Wait, also vehicle_cmd is all zero but vehicle status has non-zero velocity, that's a mismatch. Oh right, actuation has all zero cmd but velocity goes up to 9.75. So include that? Let's make it concise: \"Consistent labeling confirms a red light violation event. No actors or puddles are present in the scenario. Vehicle command outputs are all zero in the critical window, but vehicle status shows non-zero velocity up to 9.75 m/s. Route-light relation and stop-line crossing are not confirmed by available evidence, and no specific module failure is directly proven.\"\n\nRoot cause pattern: Let's make it a conservative pattern. \"Candidate pattern: Ego travels on a route with a red traffic light, where vehicle command outputs are all zero while ego has non-zero movement, resulting in a labeled red light violation with unconfirmed stop-line crossing.\" Wait, that's good.\n\nPreservation constraints: Let's do 3-6. Let's see: 1. Preserve the consistent red light violation oracle label. 2. Preserve zero actors and zero puddles in the scenario. 3. Preserve the same map (Town01) and ego mission route. 4. Preserve all-zero vehicle command values during the critical window. Wait that's four, good.\n\nModifiable factors: What can be changed? Weather parameters (cloud, rain, fog, wind, wetness, etc.), right? Because the current weather has various values, can change those. Also, starting position offset, traffic light state distribution? Wait let's list: [\"weather_parameters\", \"traffic_light_state_distribution\", \"ego_start_position_offset\"]. Wait that's okay.\n\nNon-modifiable conditions: [\"consistent red light violation labeling\", \"zero dynamic actors\", \"zero puddle regions\", \"all-zero critical window vehicle command outputs\"]. That's right.\n\nUncertainty: Let's list what's uncertain. 1. Route-light relation is not confirmed, so it is unknown if the violated traffic light was on ego's route. 2. Stop-line crossing is not confirmed, so the red light violation event is not geographically verified. 3. Module-level failure cannot be attributed because critical evidence for module behavior is missing. 4. Mismatch between all-zero vehicle_cmd and non-zero vehicle velocity is unexplained. That's good.\n\nEvidence support: Let's map each. 1. {\"evidence_id\": \"oracle_consistency\", \"claim\": \"Dataset and error.json labels are consistent for red light violation.\"} 2. {\"evidence_id\": \"scenario_config\", \"claim\": \"Scenario has 0 actors and 0 puddles.\"} 3. {\"evidence_id\": \"critical_window_summary\", \"claim\": \"Route-light relation and stop-line crossing are not confirmed.\"} 4. {\"evidence_id\": \"trace_summary_compact.actuation\", \"claim\": \"All vehicle_cmd values are zero in the sampled window, while vehicle_status has non-zero velocity.\"} That's right.\n\nConfidence: Low? Wait wait, labels are consistent, but attribution is unknown, so confidence low? Or medium? Wait, let's see: we know the symptom is confirmed consistent, but root cause is unknown, so confidence low for the root cause attribution, right? Wait the confidence field is for the causal explanation and root cause. So confidence is low, because we can't attribute the fault.\n\nReady_for_phase2_generation: Yes, because we have a checkable conservative pattern. Wait right, the rule says use yes when there is a checkable conservative pattern. So yes.\n\nNotes_for_validator: [\"Check that stop-line crossing status is recorded during execution to confirm the red light violation event.\", \"Check module outputs to identify if the mismatch between vehicle_cmd and vehicle movement is preserved.\"] That's good.\n\nWait let's put it all together correctly, make sure it follows all rules. Let's check the rules again: no inference of route-light relation or stop line crossing, which we didn't. We marked uncertainty where needed. Fault layer is unknown because we can't attribute, that's correct. Because vehicle_cmd all zero but movement, we don't assign actuation just from that, which follows the rule. Correct.\n\nWait let's adjust any parts to be concise. Let's write the JSON properly now."
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "doubao-seed-2-0-lite-260215",
+    "object": "chat.completion",
+    "service_tier": "default",
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 1769,
+      "prompt_tokens": 3360,
+      "total_tokens": 5129,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 1149,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": null,
+        "cached_tokens": 0
+      }
+    }
+  },
+  "error_message": "",
+  "timestamp": "<REDACTED_TIMESTAMP>",
+  "elapsed_sec": 33.921
+}

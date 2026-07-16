@@ -1,0 +1,94 @@
+{
+  "case_id": "case_004",
+  "model_name": "gemini-2.5-pro",
+  "candidate_index": 2,
+  "candidate_spec": {
+    "candidate_id": "cand_002",
+    "high_level_variant": "Isolate the red light trigger by removing adverse weather conditions.",
+    "mutation_intent": "Test if the planner freeze is specifically tied to the red light by removing potential perception confounders like rain and fog.",
+    "expected_oracle": "red_light",
+    "modifications": {
+      "weather_delta": {
+        "rain": -7,
+        "fog": -19,
+        "wetness": -29,
+        "puddle": -9
+      },
+      "actor_mutations": [],
+      "puddle_mutations": [
+        {
+          "puddle_index": 0,
+          "location_offset": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "level_delta": -0.09,
+          "size_scale": 1.0
+        }
+      ],
+      "mission_mutation": {
+        "keep_original": false,
+        "spawn_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "destination_offset": {
+          "x": -2.0,
+          "y": 2.0
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Ego's planned route passes through a red light.",
+      "Weather is clear."
+    ],
+    "post_execution_validation_rules": [
+      "Planner commands zero velocity.",
+      "Oracle reports a red light violation."
+    ],
+    "uncertainty": [
+      "Root cause of planner's failure to see stop line is unknown.",
+      "Dataset label conflict (Lane Invasion) remains unresolved."
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": -7.0,
+      "fog": -19.0,
+      "wetness": -20,
+      "puddle": -9.0
+    },
+    "actor_mutations": [],
+    "puddle_mutations": [
+      {
+        "puddle_index": 0,
+        "location_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "level_delta": -0.09,
+        "size_scale": 1.0
+      }
+    ],
+    "mission_mutation": {
+      "spawn_offset": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "destination_offset": {
+        "x": -2.0,
+        "y": 2.0
+      }
+    }
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": [
+      "no actors in candidate scenario"
+    ]
+  },
+  "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_004__gemini-2.5-pro.json",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_004__gemini-2.5-pro.json",
+  "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+}

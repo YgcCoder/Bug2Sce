@@ -1,0 +1,568 @@
+{
+  "case_id": "case_039",
+  "model_name": "claude-sonnet-4-5",
+  "workflow": "round3_feedback_guided_b2s",
+  "authoritative_target": "original_seed_and_original_phase1_root_cause",
+  "status": "completed",
+  "schema_valid": true,
+  "schema_errors": [],
+  "num_round1_feedback_records": 6,
+  "num_round2_feedback_records": 2,
+  "num_candidates_requested": 6,
+  "num_candidates_written": 6,
+  "num_pre_valid": 6,
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/round3_feedback/prompts/case_039.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/round3_feedback/api_outputs/case_039__claude-sonnet-4-5.json",
+  "prompt_estimated_tokens": 5028,
+  "usage": {
+    "prompt_tokens": 6064,
+    "completion_tokens": 3029,
+    "total_tokens": 9093
+  },
+  "candidate_records": [
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/round3_feedback/candidates/case_039__Round3_01.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/round3_feedback/metadata/case_039__Round3_01.metadata.json",
+      "pre_valid": true,
+      "pre_validation_errors": [],
+      "pre_validation_warnings": []
+    },
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/round3_feedback/candidates/case_039__Round3_02.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/round3_feedback/metadata/case_039__Round3_02.metadata.json",
+      "pre_valid": true,
+      "pre_validation_errors": [],
+      "pre_validation_warnings": []
+    },
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/round3_feedback/candidates/case_039__Round3_03.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/round3_feedback/metadata/case_039__Round3_03.metadata.json",
+      "pre_valid": true,
+      "pre_validation_errors": [],
+      "pre_validation_warnings": []
+    },
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/round3_feedback/candidates/case_039__Round3_04.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/round3_feedback/metadata/case_039__Round3_04.metadata.json",
+      "pre_valid": true,
+      "pre_validation_errors": [],
+      "pre_validation_warnings": []
+    },
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/round3_feedback/candidates/case_039__Round3_05.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/round3_feedback/metadata/case_039__Round3_05.metadata.json",
+      "pre_valid": true,
+      "pre_validation_errors": [],
+      "pre_validation_warnings": []
+    },
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/round3_feedback/candidates/case_039__Round3_06.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/round3_feedback/metadata/case_039__Round3_06.metadata.json",
+      "pre_valid": true,
+      "pre_validation_errors": [],
+      "pre_validation_warnings": []
+    }
+  ],
+  "raw_response": "```json\n{\n  \"case_id\": \"case_039\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Keep original weather and mission, move actor minimally perpendicular to ego path\",\n      \"mutation_intent\": \"Preserve vehicle_cmd=0 with vehicle_status actuation by keeping all environmental factors identical and only shifting actor 1m laterally to avoid collision triggers\",\n      \"expected_oracle\": \"unknown\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 0.0, \"y\": 1.0}, \"speed_delta\": 0.0}\n        ],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": 0.0, \"size_scale\": 1.0},\n          {\"puddle_index\": 1, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": 0.0, \"size_scale\": 1.0},\n          {\"puddle_index\": 2, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": 0.0, \"size_scale\": 1.0}\n        ],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Actor remains immobile\", \"All weather parameters unchanged\", \"Mission spawn and destination unchanged\"],\n      \"post_execution_validation_rules\": [\"Check vehicle_cmd all zero\", \"Verify vehicle_status shows non-zero throttle/brake/steer\", \"Confirm low average velocity around 1 m/s\"],\n      \"uncertainty\": [\"Oracle label mismatch between dataset and error.json may persist\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Identical scenario with actor moved backward along road axis\",\n      \"mutation_intent\": \"Test if moving actor 2m backward preserves low-speed movement pattern without triggering collision or red_light oracles\",\n      \"expected_oracle\": \"unknown\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": -2.0, \"y\": 0.0}, \"speed_delta\": 0.0}\n        ],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": 0.0, \"size_scale\": 1.0},\n          {\"puddle_index\": 1, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": 0.0, \"size_scale\": 1.0},\n          {\"puddle_index\": 2, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": 0.0, \"size_scale\": 1.0}\n        ],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Actor position shifted backward only\", \"Weather and puddles unchanged\", \"Mission parameters identical\"],\n      \"post_execution_validation_rules\": [\"Verify vehicle_cmd remains zero throughout\", \"Check vehicle_status actuation present\", \"Confirm final waypoints available\"],\n      \"uncertainty\": [\"Unclear if actor distance affects vehicle_cmd/vehicle_status mismatch\"]\n    },\n    {\n      \"candidate_id\": \"cand_003\",\n      \"high_level_variant\": \"Minimal puddle level reduction on middle puddle only\",\n      \"mutation_intent\": \"Test if slight puddle level change preserves vehicle_cmd=0 pattern while keeping actor and weather identical to avoid Round 1 collision triggers\",\n      \"expected_oracle\": \"unknown\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 0.0, \"y\": 0.0}, \"speed_delta\": 0.0}\n        ],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": 0.0, \"size_scale\": 1.0},\n          {\"puddle_index\": 1, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": -0.03, \"size_scale\": 1.0},\n          {\"puddle_index\": 2, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": 0.0, \"size_scale\": 1.0}\n        ],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Only puddle_index 1 level modified\", \"Actor and weather unchanged\", \"Mission identical\"],\n      \"post_execution_validation_rules\": [\"Check vehicle_cmd zero with vehicle_status actuation\", \"Verify low-speed movement preserved\", \"Confirm no collision or red_light\"],\n      \"uncertainty\": [\"Puddle level impact on controller behavior unknown\"]\n    },\n    {\n      \"candidate_id\": \"cand_004\",\n      \"high_level_variant\": \"Actor moved diagonally away from ego path by small offset\",\n      \"mutation_intent\": \"Preserve vehicle_cmd=0 pattern by moving actor 1.5m diagonally to reduce proximity without changing weather or mission\",\n      \"expected_oracle\": \"unknown\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 1.0, \"y\": 1.2}, \"speed_delta\": 0.0}\n        ],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": 0.0, \"size_scale\": 1.0},\n          {\"puddle_index\": 1, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": 0.0, \"size_scale\": 1.0},\n          {\"puddle_index\": 2, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": 0.0, \"size_scale\": 1.0}\n        ],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Actor moved diagonally only\", \"All other parameters unchanged\", \"Mission preserved\"],\n      \"post_execution_validation_rules\": [\"Verify vehicle_cmd=0 with vehicle_status actuation\", \"Check low average velocity maintained\", \"Confirm oracle label consistency\"],\n      \"uncertainty\": [\"Actor diagonal offset effect on planning behavior uncertain\"]\n    },\n    {\n      \"candidate_id\": \"cand_005\",\n      \"high_level_variant\": \"Increase fog slightly while keeping all other parameters identical\",\n      \"mutation_intent\": \"Test if minimal fog increase preserves vehicle_cmd=0 pattern without triggering collision or red_light seen in Round 1 high-weather cases\",\n      \"expected_oracle\": \"unknown\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 3, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 0.0, \"y\": 0.0}, \"speed_delta\": 0.0}\n        ],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": 0.0, \"size_scale\": 1.0},\n          {\"puddle_index\": 1, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": 0.0, \"size_scale\": 1.0},\n          {\"puddle_index\": 2, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": 0.0, \"size_scale\": 1.0}\n        ],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Only fog increased by 3\", \"Actor and puddles unchanged\", \"Mission identical\"],\n      \"post_execution_validation_rules\": [\"Check vehicle_cmd zero throughout\", \"Verify vehicle_status shows actuation\", \"Confirm low-speed movement pattern\"],\n      \"uncertainty\": [\"Minimal fog impact on perception and planning unclear\"]\n    },\n    {\n      \"candidate_id\": \"cand_006\",\n      \"high_level_variant\": \"Slightly scale down middle puddle size while keeping level unchanged\",\n      \"mutation_intent\": \"Test if puddle size reduction preserves vehicle_cmd=0 with vehicle_status actuation without altering actor position or weather\",\n      \"expected_oracle\": \"unknown\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 0.0, \"y\": 0.0}, \"speed_delta\": 0.0}\n        ],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": 0.0, \"size_scale\": 1.0},\n          {\"puddle_index\": 1, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": 0.0, \"size_scale\": 0.9},\n          {\"puddle_index\": 2, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": 0.0, \"size_scale\": 1.0}\n        ],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Only puddle_index 1 size scaled\", \"Actor and weather unchanged\", \"Mission preserved\"],\n      \"post_execution_validation_rules\": [\"Verify vehicle_cmd=0 with vehicle_status actuation\", \"Check low-speed movement maintained\", \"Confirm final waypoints available\"],\n      \"uncertainty\": [\"Puddle size effect on vehicle dynamics and controller uncertain\"]\n    }\n  ]\n}\n```",
+  "parsed_response": {
+    "case_id": "case_039",
+    "candidate_specs": [
+      {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Keep original weather and mission, move actor minimally perpendicular to ego path",
+        "mutation_intent": "Preserve vehicle_cmd=0 with vehicle_status actuation by keeping all environmental factors identical and only shifting actor 1m laterally to avoid collision triggers",
+        "expected_oracle": "unknown",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 0.0,
+                "y": 1.0
+              },
+              "speed_delta": 0.0
+            }
+          ],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": 0.0,
+              "size_scale": 1.0
+            },
+            {
+              "puddle_index": 1,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": 0.0,
+              "size_scale": 1.0
+            },
+            {
+              "puddle_index": 2,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": 0.0,
+              "size_scale": 1.0
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Actor remains immobile",
+          "All weather parameters unchanged",
+          "Mission spawn and destination unchanged"
+        ],
+        "post_execution_validation_rules": [
+          "Check vehicle_cmd all zero",
+          "Verify vehicle_status shows non-zero throttle/brake/steer",
+          "Confirm low average velocity around 1 m/s"
+        ],
+        "uncertainty": [
+          "Oracle label mismatch between dataset and error.json may persist"
+        ]
+      },
+      {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Identical scenario with actor moved backward along road axis",
+        "mutation_intent": "Test if moving actor 2m backward preserves low-speed movement pattern without triggering collision or red_light oracles",
+        "expected_oracle": "unknown",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": -2.0,
+                "y": 0.0
+              },
+              "speed_delta": 0.0
+            }
+          ],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": 0.0,
+              "size_scale": 1.0
+            },
+            {
+              "puddle_index": 1,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": 0.0,
+              "size_scale": 1.0
+            },
+            {
+              "puddle_index": 2,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": 0.0,
+              "size_scale": 1.0
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Actor position shifted backward only",
+          "Weather and puddles unchanged",
+          "Mission parameters identical"
+        ],
+        "post_execution_validation_rules": [
+          "Verify vehicle_cmd remains zero throughout",
+          "Check vehicle_status actuation present",
+          "Confirm final waypoints available"
+        ],
+        "uncertainty": [
+          "Unclear if actor distance affects vehicle_cmd/vehicle_status mismatch"
+        ]
+      },
+      {
+        "candidate_id": "cand_003",
+        "high_level_variant": "Minimal puddle level reduction on middle puddle only",
+        "mutation_intent": "Test if slight puddle level change preserves vehicle_cmd=0 pattern while keeping actor and weather identical to avoid Round 1 collision triggers",
+        "expected_oracle": "unknown",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "speed_delta": 0.0
+            }
+          ],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": 0.0,
+              "size_scale": 1.0
+            },
+            {
+              "puddle_index": 1,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": -0.03,
+              "size_scale": 1.0
+            },
+            {
+              "puddle_index": 2,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": 0.0,
+              "size_scale": 1.0
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Only puddle_index 1 level modified",
+          "Actor and weather unchanged",
+          "Mission identical"
+        ],
+        "post_execution_validation_rules": [
+          "Check vehicle_cmd zero with vehicle_status actuation",
+          "Verify low-speed movement preserved",
+          "Confirm no collision or red_light"
+        ],
+        "uncertainty": [
+          "Puddle level impact on controller behavior unknown"
+        ]
+      },
+      {
+        "candidate_id": "cand_004",
+        "high_level_variant": "Actor moved diagonally away from ego path by small offset",
+        "mutation_intent": "Preserve vehicle_cmd=0 pattern by moving actor 1.5m diagonally to reduce proximity without changing weather or mission",
+        "expected_oracle": "unknown",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 1.0,
+                "y": 1.2
+              },
+              "speed_delta": 0.0
+            }
+          ],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": 0.0,
+              "size_scale": 1.0
+            },
+            {
+              "puddle_index": 1,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": 0.0,
+              "size_scale": 1.0
+            },
+            {
+              "puddle_index": 2,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": 0.0,
+              "size_scale": 1.0
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Actor moved diagonally only",
+          "All other parameters unchanged",
+          "Mission preserved"
+        ],
+        "post_execution_validation_rules": [
+          "Verify vehicle_cmd=0 with vehicle_status actuation",
+          "Check low average velocity maintained",
+          "Confirm oracle label consistency"
+        ],
+        "uncertainty": [
+          "Actor diagonal offset effect on planning behavior uncertain"
+        ]
+      },
+      {
+        "candidate_id": "cand_005",
+        "high_level_variant": "Increase fog slightly while keeping all other parameters identical",
+        "mutation_intent": "Test if minimal fog increase preserves vehicle_cmd=0 pattern without triggering collision or red_light seen in Round 1 high-weather cases",
+        "expected_oracle": "unknown",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 3,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "speed_delta": 0.0
+            }
+          ],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": 0.0,
+              "size_scale": 1.0
+            },
+            {
+              "puddle_index": 1,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": 0.0,
+              "size_scale": 1.0
+            },
+            {
+              "puddle_index": 2,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": 0.0,
+              "size_scale": 1.0
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Only fog increased by 3",
+          "Actor and puddles unchanged",
+          "Mission identical"
+        ],
+        "post_execution_validation_rules": [
+          "Check vehicle_cmd zero throughout",
+          "Verify vehicle_status shows actuation",
+          "Confirm low-speed movement pattern"
+        ],
+        "uncertainty": [
+          "Minimal fog impact on perception and planning unclear"
+        ]
+      },
+      {
+        "candidate_id": "cand_006",
+        "high_level_variant": "Slightly scale down middle puddle size while keeping level unchanged",
+        "mutation_intent": "Test if puddle size reduction preserves vehicle_cmd=0 with vehicle_status actuation without altering actor position or weather",
+        "expected_oracle": "unknown",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "speed_delta": 0.0
+            }
+          ],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": 0.0,
+              "size_scale": 1.0
+            },
+            {
+              "puddle_index": 1,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": 0.0,
+              "size_scale": 0.9
+            },
+            {
+              "puddle_index": 2,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": 0.0,
+              "size_scale": 1.0
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Only puddle_index 1 size scaled",
+          "Actor and weather unchanged",
+          "Mission preserved"
+        ],
+        "post_execution_validation_rules": [
+          "Verify vehicle_cmd=0 with vehicle_status actuation",
+          "Check low-speed movement maintained",
+          "Confirm final waypoints available"
+        ],
+        "uncertainty": [
+          "Puddle size effect on vehicle dynamics and controller uncertain"
+        ]
+      }
+    ]
+  },
+  "error_message": "",
+  "timestamp": "<REDACTED_TIMESTAMP>",
+  "raw_api_payload": {
+    "id": "<REDACTED_RESPONSE_ID>",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "```json\n{\n  \"case_id\": \"case_039\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Keep original weather and mission, move actor minimally perpendicular to ego path\",\n      \"mutation_intent\": \"Preserve vehicle_cmd=0 with vehicle_status actuation by keeping all environmental factors identical and only shifting actor 1m laterally to avoid collision triggers\",\n      \"expected_oracle\": \"unknown\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 0.0, \"y\": 1.0}, \"speed_delta\": 0.0}\n        ],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": 0.0, \"size_scale\": 1.0},\n          {\"puddle_index\": 1, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": 0.0, \"size_scale\": 1.0},\n          {\"puddle_index\": 2, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": 0.0, \"size_scale\": 1.0}\n        ],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Actor remains immobile\", \"All weather parameters unchanged\", \"Mission spawn and destination unchanged\"],\n      \"post_execution_validation_rules\": [\"Check vehicle_cmd all zero\", \"Verify vehicle_status shows non-zero throttle/brake/steer\", \"Confirm low average velocity around 1 m/s\"],\n      \"uncertainty\": [\"Oracle label mismatch between dataset and error.json may persist\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Identical scenario with actor moved backward along road axis\",\n      \"mutation_intent\": \"Test if moving actor 2m backward preserves low-speed movement pattern without triggering collision or red_light oracles\",\n      \"expected_oracle\": \"unknown\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": -2.0, \"y\": 0.0}, \"speed_delta\": 0.0}\n        ],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": 0.0, \"size_scale\": 1.0},\n          {\"puddle_index\": 1, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": 0.0, \"size_scale\": 1.0},\n          {\"puddle_index\": 2, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": 0.0, \"size_scale\": 1.0}\n        ],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Actor position shifted backward only\", \"Weather and puddles unchanged\", \"Mission parameters identical\"],\n      \"post_execution_validation_rules\": [\"Verify vehicle_cmd remains zero throughout\", \"Check vehicle_status actuation present\", \"Confirm final waypoints available\"],\n      \"uncertainty\": [\"Unclear if actor distance affects vehicle_cmd/vehicle_status mismatch\"]\n    },\n    {\n      \"candidate_id\": \"cand_003\",\n      \"high_level_variant\": \"Minimal puddle level reduction on middle puddle only\",\n      \"mutation_intent\": \"Test if slight puddle level change preserves vehicle_cmd=0 pattern while keeping actor and weather identical to avoid Round 1 collision triggers\",\n      \"expected_oracle\": \"unknown\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 0.0, \"y\": 0.0}, \"speed_delta\": 0.0}\n        ],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": 0.0, \"size_scale\": 1.0},\n          {\"puddle_index\": 1, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": -0.03, \"size_scale\": 1.0},\n          {\"puddle_index\": 2, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": 0.0, \"size_scale\": 1.0}\n        ],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Only puddle_index 1 level modified\", \"Actor and weather unchanged\", \"Mission identical\"],\n      \"post_execution_validation_rules\": [\"Check vehicle_cmd zero with vehicle_status actuation\", \"Verify low-speed movement preserved\", \"Confirm no collision or red_light\"],\n      \"uncertainty\": [\"Puddle level impact on controller behavior unknown\"]\n    },\n    {\n      \"candidate_id\": \"cand_004\",\n      \"high_level_variant\": \"Actor moved diagonally away from ego path by small offset\",\n      \"mutation_intent\": \"Preserve vehicle_cmd=0 pattern by moving actor 1.5m diagonally to reduce proximity without changing weather or mission\",\n      \"expected_oracle\": \"unknown\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 1.0, \"y\": 1.2}, \"speed_delta\": 0.0}\n        ],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": 0.0, \"size_scale\": 1.0},\n          {\"puddle_index\": 1, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": 0.0, \"size_scale\": 1.0},\n          {\"puddle_index\": 2, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": 0.0, \"size_scale\": 1.0}\n        ],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Actor moved diagonally only\", \"All other parameters unchanged\", \"Mission preserved\"],\n      \"post_execution_validation_rules\": [\"Verify vehicle_cmd=0 with vehicle_status actuation\", \"Check low average velocity maintained\", \"Confirm oracle label consistency\"],\n      \"uncertainty\": [\"Actor diagonal offset effect on planning behavior uncertain\"]\n    },\n    {\n      \"candidate_id\": \"cand_005\",\n      \"high_level_variant\": \"Increase fog slightly while keeping all other parameters identical\",\n      \"mutation_intent\": \"Test if minimal fog increase preserves vehicle_cmd=0 pattern without triggering collision or red_light seen in Round 1 high-weather cases\",\n      \"expected_oracle\": \"unknown\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 3, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 0.0, \"y\": 0.0}, \"speed_delta\": 0.0}\n        ],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": 0.0, \"size_scale\": 1.0},\n          {\"puddle_index\": 1, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": 0.0, \"size_scale\": 1.0},\n          {\"puddle_index\": 2, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": 0.0, \"size_scale\": 1.0}\n        ],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Only fog increased by 3\", \"Actor and puddles unchanged\", \"Mission identical\"],\n      \"post_execution_validation_rules\": [\"Check vehicle_cmd zero throughout\", \"Verify vehicle_status shows actuation\", \"Confirm low-speed movement pattern\"],\n      \"uncertainty\": [\"Minimal fog impact on perception and planning unclear\"]\n    },\n    {\n      \"candidate_id\": \"cand_006\",\n      \"high_level_variant\": \"Slightly scale down middle puddle size while keeping level unchanged\",\n      \"mutation_intent\": \"Test if puddle size reduction preserves vehicle_cmd=0 with vehicle_status actuation without altering actor position or weather\",\n      \"expected_oracle\": \"unknown\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 0.0, \"y\": 0.0}, \"speed_delta\": 0.0}\n        ],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": 0.0, \"size_scale\": 1.0},\n          {\"puddle_index\": 1, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": 0.0, \"size_scale\": 0.9},\n          {\"puddle_index\": 2, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": 0.0, \"size_scale\": 1.0}\n        ],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Only puddle_index 1 size scaled\", \"Actor and weather unchanged\", \"Mission preserved\"],\n      \"post_execution_validation_rules\": [\"Verify vehicle_cmd=0 with vehicle_status actuation\", \"Check low-speed movement maintained\", \"Confirm final waypoints available\"],\n      \"uncertainty\": [\"Puddle size effect on vehicle dynamics and controller uncertain\"]\n    }\n  ]\n}\n```",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "claude-sonnet-4-5",
+    "object": "chat.completion",
+    "service_tier": null,
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 3029,
+      "prompt_tokens": 6064,
+      "total_tokens": 9093,
+      "completion_tokens_details": null,
+      "prompt_tokens_details": null
+    }
+  },
+  "elapsed_sec": 38.709
+}

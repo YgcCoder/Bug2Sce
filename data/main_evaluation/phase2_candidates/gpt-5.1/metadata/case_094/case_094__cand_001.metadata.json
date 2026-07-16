@@ -1,0 +1,151 @@
+{
+  "case_id": "case_094",
+  "model_name": "gpt-5.1",
+  "candidate_index": 1,
+  "candidate_spec": {
+    "candidate_id": "cand_001",
+    "high_level_variant": "Baseline replication with nearby slow walker preserved and minor mission/spawn perturbation to keep ego in motion toward a pedestrian near the lane edge before a late-run collision",
+    "mutation_intent": "Keep the same basic geometry and actor configuration so that ego follows a stable planned route while a slow walker remains within moderate distance near the ego’s path. Only small spatial nudges are applied to maintain proximity and interaction likelihood, aiming to preserve the pattern where planning publishes valid waypoints, ego moves, vehicle_cmd stays near zero, yet a collision occurs near the end of the run. Changes are conservative to maintain the unknown-layer root-cause and logging/actuation mismatch ambiguity.",
+    "expected_oracle": "collision",
+    "modifications": {
+      "weather_delta": {
+        "rain": 0,
+        "fog": 0,
+        "wetness": 0,
+        "puddle": 0
+      },
+      "actor_mutations": [
+        {
+          "actor_index": 0,
+          "position_offset": {
+            "x": 1.0,
+            "y": -1.5
+          },
+          "speed_delta": 0.2
+        },
+        {
+          "actor_index": 1,
+          "position_offset": {
+            "x": -2.0,
+            "y": 1.0
+          },
+          "speed_delta": -0.5
+        }
+      ],
+      "puddle_mutations": [
+        {
+          "puddle_index": 0,
+          "location_offset": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "level_delta": 0.05,
+          "size_scale": 1.0
+        },
+        {
+          "puddle_index": 1,
+          "location_offset": {
+            "x": -0.5,
+            "y": -0.5
+          },
+          "level_delta": -0.03,
+          "size_scale": 1.0
+        }
+      ],
+      "mission_mutation": {
+        "keep_original": false,
+        "spawn_offset": {
+          "x": 2.0,
+          "y": -1.0
+        },
+        "destination_offset": {
+          "x": -1.5,
+          "y": 2.0
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Ensure ego spawn and destination are valid lane positions on Town01 and produce a drivable planned route without hard planner blockage.",
+      "Verify at least one non-ego actor (preferably actor_index 0) is within 40 m of ego at some time before the final 10 s of the run, based on simulator ground truth.",
+      "Check that the scenario length is sufficient for ego to reach nonzero speed (>2 m/s) and approach the nearby actor before the end of the run.",
+      "Confirm that perception or prediction topics can detect and track at least one actor before the anticipated collision window (no complete sensor blackout)."
+    ],
+    "post_execution_validation_rules": [
+      "Confirm the oracle reports a collision event occurring near the end of the log (e.g., after 80% of total simulation time) while ego still has nonzero speed shortly before impact.",
+      "Verify that planning publishes valid, non-blocked final waypoints continuously up to within a few seconds before the collision (no long planner stop due to blockage).",
+      "Check that the actuator command topic (vehicle_cmd or equivalent) has accel, brake, and steering commands effectively at or near zero over the critical window leading to the collision.",
+      "Confirm that vehicle_status or odometry reports nonzero ego speed and some variation in heading or steering over the same window, indicating motion despite near-zero commands.",
+      "Ensure a non-ego actor is within moderate distance (<= 10–15 m) of ego in the seconds preceding collision, and that this actor is visible in simulator/perception data.",
+      "Do not require stuck or lane_invasion labels; treat the run as valid if the collision and command–status mismatch patterns are satisfied even without those symptoms."
+    ],
+    "uncertainty": [
+      "The exact interaction geometry leading to the collision (pedestrian crossing vs. ego side-swipe) is not fixed; multiple layouts that keep the actor close to ego may be consistent with the original logs.",
+      "The source of the apparent controller–status mismatch (actuator layer, simulator bridge, or logging configuration) remains unidentified; this scenario only preserves the observed symptom pattern.",
+      "The original data contained conflicting labels for stuck and lane_invasion; these behaviors may or may not emerge here and are not enforced."
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": 0.0,
+      "fog": 0.0,
+      "wetness": 0.0,
+      "puddle": 0.0
+    },
+    "actor_mutations": [
+      {
+        "actor_index": 0,
+        "position_offset": {
+          "x": 1.0,
+          "y": -1.5
+        },
+        "speed_delta": 0.2
+      },
+      {
+        "actor_index": 1,
+        "position_offset": {
+          "x": -2.0,
+          "y": 1.0
+        },
+        "speed_delta": -0.5
+      }
+    ],
+    "puddle_mutations": [
+      {
+        "puddle_index": 0,
+        "location_offset": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "level_delta": 0.05,
+        "size_scale": 1.0
+      },
+      {
+        "puddle_index": 1,
+        "location_offset": {
+          "x": -0.5,
+          "y": -0.5
+        },
+        "level_delta": -0.03,
+        "size_scale": 1.0
+      }
+    ],
+    "mission_mutation": {
+      "spawn_offset": {
+        "x": 2.0,
+        "y": -1.0
+      },
+      "destination_offset": {
+        "x": -1.5,
+        "y": 2.0
+      }
+    }
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_094__gpt-5.1.json",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_094__gpt-5.1.json",
+  "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+}

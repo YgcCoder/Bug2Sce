@@ -1,0 +1,123 @@
+{
+  "case_id": "case_037",
+  "workflow": "phase1_causal_explanation",
+  "model_name": "ark-deepseek-r1-250528",
+  "model_id": "ark-deepseek-r1-250528",
+  "status": "completed",
+  "dry_run": false,
+  "schema_valid": true,
+  "schema_errors": [],
+  "quality_flags": [],
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_prompts/case_037__ark-deepseek-r1-250528.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_037__ark-deepseek-r1-250528.json",
+  "prompt_estimated_tokens": 3277,
+  "usage": {
+    "prompt_tokens": 4445,
+    "completion_tokens": 2027,
+    "total_tokens": 6472
+  },
+  "estimated_cost_usd": null,
+  "raw_response": "{\n  \"case_id\": \"case_037\",\n  \"fault_layer\": \"unknown\",\n  \"fault_component\": \"unknown\",\n  \"causal_explanation\": \"Labels conflict between dataset (marks collision, lane invasion, red light violation) and error.json (only red light violation is confirmed). Vehicle_cmd output is all-zero throughout the trace, but vehicle_status reports non-zero throttle and moving ego in the critical window. No module-level failure is directly confirmed by available evidence, and red light event details are unconfirmed.\",\n  \"root_cause_pattern\": \"Conservative preservation pattern: Autoware outputs all-zero vehicle actuation commands while the ego vehicle continues moving in heavy rain high-wetness conditions, with conflicting failure labels and an unconfirmed red light event.\",\n  \"preservation_constraints\": [\n    \"Preserve the original Town01 map and mission start/goal positions\",\n    \"Preserve the original heavy rain and high wetness weather conditions\",\n    \"Preserve 2 actors in the scenario\",\n    \"Preserve all-zero vehicle_cmd output observed in the original trace\",\n    \"Preserve the conflicting label status between dataset and error.json\"\n  ],\n  \"modifiable_factors\": [\"actor_position\", \"cloud_cover\", \"wind_speed\", \"fog_density\", \"minor_start_position_perturbation\"],\n  \"non_modifiable_conditions\": [\n    \"same map Town01\",\n    \"same original mission route\",\n    \"heavy rain with 81% wetness\",\n    \"all-zero vehicle_cmd output in the critical window\",\n    \"2 actors present in the scenario\"\n  ],\n  \"uncertainty\": [\n    \"Conflicting labels for collision and lane invasion between dataset and error.json\",\n    \"Route-light relation and stop-line crossing for the red light event are not confirmed\",\n    \"Mismatch between all-zero vehicle_cmd and moving vehicle status cannot confirm actuation fault alone\",\n    \"No module-level failure is directly confirmed by critical-window evidence\"\n  ],\n  \"evidence_support\": [\n    {\"evidence_id\": \"oracle_consistency\", \"claim\": \"Dataset and error.json have conflicting labels for collision and lane invasion\"},\n    {\"evidence_id\": \"critical_window_collision\", \"claim\": \"All vehicle_cmd values are zero pre-collision, while vehicle_status reports non-zero throttle and 4.77 m/s ego speed\"},\n    {\"evidence_id\": \"red_light_window\", \"claim\": \"Red light violation is reported by error.json, but route-light relation and stop-line crossing are unconfirmed\"},\n    {\"evidence_id\": \"scenario_config\", \"claim\": \"Scenario has 2 actors, 93% rain and 81% wetness on Town01 map\"}\n  ],\n  \"confidence\": \"low\",\n  \"ready_for_phase2_generation\": \"yes\",\n  \"notes_for_validator\": [\n    \"Verify all-zero vehicle_cmd output in the generated trace to confirm root cause preservation\",\n    \"Manually check which failures (collision, lane invasion, red light violation) actually occur after execution\",\n    \"Confirm whether the mismatch between all-zero commands and ego movement reproduces in the generated case\"\n  ]\n}",
+  "parsed_response": {
+    "case_id": "case_037",
+    "fault_layer": "unknown",
+    "fault_component": "unknown",
+    "causal_explanation": "Labels conflict between dataset (marks collision, lane invasion, red light violation) and error.json (only red light violation is confirmed). Vehicle_cmd output is all-zero throughout the trace, but vehicle_status reports non-zero throttle and moving ego in the critical window. No module-level failure is directly confirmed by available evidence, and red light event details are unconfirmed.",
+    "root_cause_pattern": "Conservative preservation pattern: Autoware outputs all-zero vehicle actuation commands while the ego vehicle continues moving in heavy rain high-wetness conditions, with conflicting failure labels and an unconfirmed red light event.",
+    "preservation_constraints": [
+      "Preserve the original Town01 map and mission start/goal positions",
+      "Preserve the original heavy rain and high wetness weather conditions",
+      "Preserve 2 actors in the scenario",
+      "Preserve all-zero vehicle_cmd output observed in the original trace",
+      "Preserve the conflicting label status between dataset and error.json"
+    ],
+    "modifiable_factors": [
+      "actor_position",
+      "cloud_cover",
+      "wind_speed",
+      "fog_density",
+      "minor_start_position_perturbation"
+    ],
+    "non_modifiable_conditions": [
+      "same map Town01",
+      "same original mission route",
+      "heavy rain with 81% wetness",
+      "all-zero vehicle_cmd output in the critical window",
+      "2 actors present in the scenario"
+    ],
+    "uncertainty": [
+      "Conflicting labels for collision and lane invasion between dataset and error.json",
+      "Route-light relation and stop-line crossing for the red light event are not confirmed",
+      "Mismatch between all-zero vehicle_cmd and moving vehicle status cannot confirm actuation fault alone",
+      "No module-level failure is directly confirmed by critical-window evidence"
+    ],
+    "evidence_support": [
+      {
+        "evidence_id": "oracle_consistency",
+        "claim": "Dataset and error.json have conflicting labels for collision and lane invasion"
+      },
+      {
+        "evidence_id": "critical_window_collision",
+        "claim": "All vehicle_cmd values are zero pre-collision, while vehicle_status reports non-zero throttle and 4.77 m/s ego speed"
+      },
+      {
+        "evidence_id": "red_light_window",
+        "claim": "Red light violation is reported by error.json, but route-light relation and stop-line crossing are unconfirmed"
+      },
+      {
+        "evidence_id": "scenario_config",
+        "claim": "Scenario has 2 actors, 93% rain and 81% wetness on Town01 map"
+      }
+    ],
+    "confidence": "low",
+    "ready_for_phase2_generation": "yes",
+    "notes_for_validator": [
+      "Verify all-zero vehicle_cmd output in the generated trace to confirm root cause preservation",
+      "Manually check which failures (collision, lane invasion, red light violation) actually occur after execution",
+      "Confirm whether the mismatch between all-zero commands and ego movement reproduces in the generated case"
+    ]
+  },
+  "raw_api_payload": {
+    "id": "021782920616757ad8f78454eef31552c89ebf2f2559e7d8de427",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "{\n  \"case_id\": \"case_037\",\n  \"fault_layer\": \"unknown\",\n  \"fault_component\": \"unknown\",\n  \"causal_explanation\": \"Labels conflict between dataset (marks collision, lane invasion, red light violation) and error.json (only red light violation is confirmed). Vehicle_cmd output is all-zero throughout the trace, but vehicle_status reports non-zero throttle and moving ego in the critical window. No module-level failure is directly confirmed by available evidence, and red light event details are unconfirmed.\",\n  \"root_cause_pattern\": \"Conservative preservation pattern: Autoware outputs all-zero vehicle actuation commands while the ego vehicle continues moving in heavy rain high-wetness conditions, with conflicting failure labels and an unconfirmed red light event.\",\n  \"preservation_constraints\": [\n    \"Preserve the original Town01 map and mission start/goal positions\",\n    \"Preserve the original heavy rain and high wetness weather conditions\",\n    \"Preserve 2 actors in the scenario\",\n    \"Preserve all-zero vehicle_cmd output observed in the original trace\",\n    \"Preserve the conflicting label status between dataset and error.json\"\n  ],\n  \"modifiable_factors\": [\"actor_position\", \"cloud_cover\", \"wind_speed\", \"fog_density\", \"minor_start_position_perturbation\"],\n  \"non_modifiable_conditions\": [\n    \"same map Town01\",\n    \"same original mission route\",\n    \"heavy rain with 81% wetness\",\n    \"all-zero vehicle_cmd output in the critical window\",\n    \"2 actors present in the scenario\"\n  ],\n  \"uncertainty\": [\n    \"Conflicting labels for collision and lane invasion between dataset and error.json\",\n    \"Route-light relation and stop-line crossing for the red light event are not confirmed\",\n    \"Mismatch between all-zero vehicle_cmd and moving vehicle status cannot confirm actuation fault alone\",\n    \"No module-level failure is directly confirmed by critical-window evidence\"\n  ],\n  \"evidence_support\": [\n    {\"evidence_id\": \"oracle_consistency\", \"claim\": \"Dataset and error.json have conflicting labels for collision and lane invasion\"},\n    {\"evidence_id\": \"critical_window_collision\", \"claim\": \"All vehicle_cmd values are zero pre-collision, while vehicle_status reports non-zero throttle and 4.77 m/s ego speed\"},\n    {\"evidence_id\": \"red_light_window\", \"claim\": \"Red light violation is reported by error.json, but route-light relation and stop-line crossing are unconfirmed\"},\n    {\"evidence_id\": \"scenario_config\", \"claim\": \"Scenario has 2 actors, 93% rain and 81% wetness on Town01 map\"}\n  ],\n  \"confidence\": \"low\",\n  \"ready_for_phase2_generation\": \"yes\",\n  \"notes_for_validator\": [\n    \"Verify all-zero vehicle_cmd output in the generated trace to confirm root cause preservation\",\n    \"Manually check which failures (collision, lane invasion, red light violation) actually occur after execution\",\n    \"Confirm whether the mismatch between all-zero commands and ego movement reproduces in the generated case\"\n  ]\n}",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null,
+          "reasoning_content": "\nGot it, let's work through this step by step. First, the case_id is case_037, right? Got that from the input.\n\nNext, fault_layer. Let's see, there's a conflict between dataset and error.json. Dataset says C+L+R, error says only R. Also, vehicle_cmd is all zero but vehicle_status... wait, wait, look at actuation: vehicle_cmd all commands are zero, but vehicle_status before collision had throttle up to 0.72, last 0.47, brake zero, speed 4.77. Wait but the label conflict is there. Also, we can't confirm which module is wrong. Wait let's check the rules: if they disagree, mark uncertainty, fault layer unknown? Wait let's see: the evidence says vehicle_cmd is all zero in the whole range, but vehicle_status has non-zero throttle and speed. But the rule says if vehicle_cmd is all zero but vehicle_status shows movement, don't assign actuation fault from that alone. Right. And labels conflict: collision, lane invasion are 1 in dataset, 0 in error.json, only red light is confirmed in error.json. Also, no confirmed route-light relation or stop line crossing. So fault_layer should be unknown, right? Fault component unknown too.\n\nCausal explanation: Let's write that. There is a label conflict between dataset (labels collision, lane invasion, red light violation) and error.json (only red light violation confirmed). Vehicle_cmd all commands are zero throughout the trace, but vehicle_status reports non-zero throttle, movement and speed in the collision window, but no module-level failure is directly confirmed by critical window evidence. Only red light violation is reported by error.json, but route-light relation and stop-line crossing are unconfirmed. That makes sense.\n\nRoot cause pattern: Conservative pattern: Ego vehicle in heavy rain wet conditions has all zero actuation commands from the planning/control pipeline while vehicle status reports movement, with a conflicting label between dataset and error.json, and unconfirmed red light violation. Wait, no, let's phrase it correctly. Like \"Conservative preservation pattern: Autoware outputs all-zero vehicle actuation commands while the ego vehicle continues moving in heavy wet weather, with an unconfirmed red light event and conflicting failure labels across dataset and error log.\" Yeah that's good.\n\nPreservation constraints: Let's do 3-6. Let's see: 1. Preserve the original map (Town01) and mission start/goal positions. 2. Preserve the original heavy rain and high wetness weather conditions. 3. Preserve the presence of 2 actors in the scenario. 4. Preserve the all-zero vehicle_cmd output observed in the original trace. 5. Preserve the conflicting label status between dataset and error.json oracle outputs. That's 5, good.\n\nModifiable factors: Let's see, what can we change? Actor positions, cloud density, wind speed, fog density, puddle count. Wait original has 0 puddles? Wait input says puddles: 0 puddle regions. Oh right, so modifiable: actor_position, cloud density, wind speed, fog density, maybe start position perturbation? Wait let's list: [\"actor_position\", \"cloud_cover\", \"wind_speed\", \"fog_density\", \"minor_start_position_perturbation\"] that's fine.\n\nNon-modifiable conditions: Let's see, [\"same map Town01\", \"same start and goal mission\", \"heavy rain with high wetness conditions\", \"all-zero vehicle_cmd output in the critical window\", \"2 actors present in the scenario\"] yeah that's right.\n\nUncertainty: Let's list them. 1. Conflict between dataset labels (collision, lane invasion, red light) and error.json labels (only red light). 2. Route-light relation and stop-line crossing for the red light event are not confirmed. 3. Vehicle_cmd all zero but vehicle_status movement mismatch can't confirm actuation controller fault alone. 4. No module-level failure is directly confirmed by critical window evidence. That's right.\n\nEvidence support: Let's do each evidence. First, {\"evidence_id\": \"oracle_consistency\", \"claim\": \"Dataset and error.json have conflicting failure labels for collision and lane invasion\"}, then {\"evidence_id\": \"critical_window_collision\", \"claim\": \"Vehicle_cmd all commands are zero in the pre-collision window, while vehicle_status reports non-zero throttle and ego speed of ~4.77 m/s\"}, then {\"evidence_id\": \"red_light_window\", \"claim\": \"Red light violation is reported by error.json, but route-light relation and stop-line crossing are unconfirmed\"}, then {\"evidence_id\": \"scenario_config\", \"claim\": \"Scenario has 2 actors, heavy rain (93) and high wetness (81) on Town01 map\"}. That's good.\n\nConfidence: Low, right? Because of all the uncertainty and conflicting labels. So confidence is low.\n\nReady_for_phase2_generation: Yes, because we have a checkable conservative preservation pattern, right? The rules say use yes when there's a checkable pattern even if fault layer is unknown. So yes.\n\nNotes_for_validator: [\"Check for the all-zero vehicle_cmd output in the generated trace after execution to confirm root cause preservation\", \"Resolve label conflicts manually after execution to confirm which failures actually occur\", \"Verify if red light violation, collision or lane invasion occur in the generated scenario\"] that's good.\n\nWait let's check all the rules. Did we invent anything? No, all from evidence. Did we mark uncertainty where needed? Yes. Let's make sure the JSON is correct, no extra stuff. Let's put it all together properly.\n\nWait let's double check fault_layer: yes, since we can't confirm which module, it's unknown. Fault component is unknown. Correct. Causal explanation is concise, grounded. Root cause pattern is a conservative mechanism, correct. Preservation constraints are semantic, no timestamps, correct. Modifiable factors are fine. Non-modifiable are correct. Uncertainty lists all the conflicts and missing info. Evidence support each has evidence id and claim. Confidence low, correct. Ready for phase 2 yes, because we have a checkable pattern. Notes are correct.\n\nOkay let's write the JSON now."
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "doubao-seed-2-0-lite-260215",
+    "object": "chat.completion",
+    "service_tier": "default",
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 2027,
+      "prompt_tokens": 4445,
+      "total_tokens": 6472,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 1330,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": null,
+        "cached_tokens": 0
+      }
+    }
+  },
+  "error_message": "",
+  "timestamp": "<REDACTED_TIMESTAMP>",
+  "elapsed_sec": 41.544
+}

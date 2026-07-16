@@ -1,0 +1,64 @@
+{
+  "case_id": "case_169",
+  "model_name": "gemini-2.5-pro",
+  "candidate_index": 2,
+  "candidate_spec": {
+    "candidate_id": "cand_002",
+    "high_level_variant": "Slightly reduce fog but add rain and wetness to create a compound weather challenge.",
+    "mutation_intent": "Introduce rain as a confounding factor to see if it affects the fog-induced perception failure.",
+    "expected_oracle": "red_light",
+    "modifications": {
+      "weather_delta": {
+        "rain": 20,
+        "fog": -13,
+        "wetness": 20,
+        "puddle": 0
+      },
+      "actor_mutations": [],
+      "puddle_mutations": [],
+      "mission_mutation": {
+        "keep_original": true,
+        "spawn_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "destination_offset": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Ego vehicle must approach a red light."
+    ],
+    "post_execution_validation_rules": [
+      "Ego vehicle must run the red light."
+    ],
+    "uncertainty": [
+      "Uncertain how rain interacts with the fog-induced perception failure."
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": 20,
+      "fog": -13.0,
+      "wetness": 20,
+      "puddle": 0.0
+    },
+    "actor_mutations": [],
+    "puddle_mutations": [],
+    "mission_mutation": {
+      "keep_original": true
+    }
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": [
+      "no actors in candidate scenario"
+    ]
+  },
+  "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_169__gemini-2.5-pro.json",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_169__gemini-2.5-pro.json",
+  "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+}

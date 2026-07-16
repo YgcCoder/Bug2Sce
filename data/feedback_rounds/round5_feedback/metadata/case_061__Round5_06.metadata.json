@@ -1,0 +1,109 @@
+{
+  "case_id": "case_061",
+  "round": 5,
+  "model_name": "claude-sonnet-4-5",
+  "candidate_index": 6,
+  "candidate_spec": {
+    "candidate_id": "cand_006",
+    "high_level_variant": "Ego spawn shifted laterally with walker 0 repositioned for direct path intersection",
+    "mutation_intent": "Adjust ego starting lateral position to alter lane alignment while moving walker to intersect new ego trajectory",
+    "expected_oracle": "collision",
+    "modifications": {
+      "weather_delta": {
+        "rain": 3,
+        "fog": 2,
+        "wetness": 4,
+        "puddle": 0
+      },
+      "actor_mutations": [
+        {
+          "actor_index": 0,
+          "position_offset": {
+            "x": 0.5,
+            "y": -2.5
+          },
+          "speed_delta": 0.3
+        },
+        {
+          "actor_index": 1,
+          "position_offset": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "speed_delta": 0.0
+        }
+      ],
+      "puddle_mutations": [],
+      "mission_mutation": {
+        "keep_original": false,
+        "spawn_offset": {
+          "x": 0.0,
+          "y": -2.0
+        },
+        "destination_offset": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Ego spawn shifted -2.0m y with walker 0 adjusted to align with new path"
+    ],
+    "post_execution_validation_rules": [
+      "Check collision oracle and vehicle_cmd/status mismatch under altered spawn alignment"
+    ],
+    "uncertainty": [
+      "Lateral ego spawn shift may affect traffic light route relation and intersection approach"
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": 3.0,
+      "fog": 2.0,
+      "wetness": 4.0,
+      "puddle": 0.0
+    },
+    "actor_mutations": [
+      {
+        "actor_index": 0,
+        "position_offset": {
+          "x": 0.5,
+          "y": -2.5
+        },
+        "speed_delta": 0.3
+      },
+      {
+        "actor_index": 1,
+        "position_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "speed_delta": 0.0
+      }
+    ],
+    "puddle_mutations": [],
+    "mission_mutation": {
+      "spawn_offset": {
+        "x": 0.0,
+        "y": -2.0
+      },
+      "destination_offset": {
+        "x": 0.0,
+        "y": 0.0
+      }
+    },
+    "safety_repairs": []
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "authoritative_original_phase1_output": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_061__claude-sonnet-4-5.json",
+  "round1_feedback_count": 6,
+  "round2_feedback_count": 2,
+  "round3_feedback_count": 6,
+  "round4_feedback_count": 6,
+  "feedback_memory_policy": "all_same_seed_outcomes_retained",
+  "round5_api_output": "<WORKSPACE_ROOT>/processed/experiments/round5_feedback/api_outputs/case_061__claude-sonnet-4-5.json"
+}

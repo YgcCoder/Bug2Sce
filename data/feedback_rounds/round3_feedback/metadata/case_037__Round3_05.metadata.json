@@ -1,0 +1,103 @@
+{
+  "case_id": "case_037",
+  "round": 3,
+  "model_name": "claude-sonnet-4-5",
+  "candidate_index": 5,
+  "candidate_spec": {
+    "candidate_id": "cand_005",
+    "high_level_variant": "Move both actors closer to ego spawn, reduce fog slightly",
+    "mutation_intent": "Dual actor proximity increases interaction complexity. Tests if multiple nearby actors trigger collision while preserving actuation mismatch.",
+    "expected_oracle": "compound",
+    "modifications": {
+      "weather_delta": {
+        "rain": 0,
+        "fog": -4,
+        "wetness": 0,
+        "puddle": 0
+      },
+      "actor_mutations": [
+        {
+          "actor_index": 0,
+          "position_offset": {
+            "x": 7.0,
+            "y": -4.0
+          },
+          "speed_delta": -1.0
+        },
+        {
+          "actor_index": 1,
+          "position_offset": {
+            "x": 3.0,
+            "y": -2.5
+          },
+          "speed_delta": 0.0
+        }
+      ],
+      "puddle_mutations": [],
+      "mission_mutation": {
+        "keep_original": true,
+        "spawn_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "destination_offset": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Both actors shifted toward ego",
+      "Fog reduced within bounds"
+    ],
+    "post_execution_validation_rules": [
+      "Verify multiple actors within 5m during critical window",
+      "Check vehicle_cmd vs vehicle_status mismatch",
+      "Confirm ego speed 2-5 m/s"
+    ],
+    "uncertainty": [
+      "Multiple actors may not trigger collision oracle",
+      "Red-light may remain sole symptom"
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": 0.0,
+      "fog": -4.0,
+      "wetness": 0.0,
+      "puddle": 0.0
+    },
+    "actor_mutations": [
+      {
+        "actor_index": 0,
+        "position_offset": {
+          "x": 7.0,
+          "y": -4.0
+        },
+        "speed_delta": -1.0
+      },
+      {
+        "actor_index": 1,
+        "position_offset": {
+          "x": 3.0,
+          "y": -2.5
+        },
+        "speed_delta": 0.0
+      }
+    ],
+    "puddle_mutations": [],
+    "mission_mutation": {
+      "keep_original": true
+    },
+    "safety_repairs": []
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "authoritative_original_phase1_output": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_037__claude-sonnet-4-5.json",
+  "round1_feedback_count": 6,
+  "round2_feedback_count": 2,
+  "round3_api_output": "<WORKSPACE_ROOT>/processed/experiments/round3_feedback/api_outputs/case_037__claude-sonnet-4-5.json"
+}

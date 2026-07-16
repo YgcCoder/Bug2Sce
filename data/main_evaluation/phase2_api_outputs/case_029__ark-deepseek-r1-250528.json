@@ -1,0 +1,398 @@
+{
+  "case_id": "case_029",
+  "model_name": "ark-deepseek-r1-250528",
+  "workflow": "phase2_grounded_generation",
+  "status": "completed",
+  "schema_valid": true,
+  "schema_errors": [],
+  "phase1_ready": "uncertain",
+  "num_candidates_requested": 2,
+  "num_candidates_written": 2,
+  "num_pre_valid": 2,
+  "candidate_records": [
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-deepseek-r1-250528/json/case_029/case_029__cand_001.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-deepseek-r1-250528/metadata/case_029/case_029__cand_001.metadata.json",
+      "case_id": "case_029",
+      "model_name": "ark-deepseek-r1-250528",
+      "candidate_index": 1,
+      "candidate_spec": {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Slight offset of the first crossing walker toward ego's planned travel lane with a small speed increase",
+        "mutation_intent": "Preserves all Phase 1 root-cause constraints: keeps original mission spawn/destination, retains 2 actors, keeps enabled rain, preserves the confirmed red light event, maintains the conflicting lane invasion label between dataset and error.json by moving the walker closer to ego's path without forcing a definite lane crossing outcome, retains original uncertainty about root cause",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 3,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 1.2,
+                "y": -0.8
+              },
+              "speed_delta": 0.5
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "speed_delta": 0.0
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Verify 2 actors are spawned correctly",
+          "Verify red light is active when ego approaches the intersection",
+          "Verify rain remains enabled per constraint"
+        ],
+        "post_execution_validation_rules": [
+          "Confirm red light violation matches original error.json recording",
+          "Check for lane boundary crossing to resolve original label conflict",
+          "Validate vehicle cmd vs velocity pattern to retain actuation uncertainty"
+        ],
+        "uncertainty": [
+          "Preserves original conflict between dataset and error.json on lane invasion label",
+          "Root cause attribution to specific Autoware module remains unconfirmed",
+          "Actuation behavior uncertainty is retained per original findings"
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 0.0,
+          "fog": 0.0,
+          "wetness": 3.0,
+          "puddle": 0.0
+        },
+        "actor_mutations": [
+          {
+            "actor_index": 0,
+            "position_offset": {
+              "x": 1.2,
+              "y": -0.8
+            },
+            "speed_delta": 0.5
+          },
+          {
+            "actor_index": 1,
+            "position_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "speed_delta": 0.0
+          }
+        ],
+        "puddle_mutations": [],
+        "mission_mutation": {
+          "keep_original": true
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_029__ark-deepseek-r1-250528.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_029__ark-deepseek-r1-250528.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    },
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-deepseek-r1-250528/json/case_029/case_029__cand_002.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-deepseek-r1-250528/metadata/case_029/case_029__cand_002.metadata.json",
+      "case_id": "case_029",
+      "model_name": "ark-deepseek-r1-250528",
+      "candidate_index": 2,
+      "candidate_spec": {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Slight increase in scenario wetness and offset of the second walker toward the intersection stop line where ego encounters red light",
+        "mutation_intent": "Follows all Phase 1 preservation constraints: keeps original mission positions, retains 2 actors, maintains enabled rain, preserves the confirmed red light event, keeps the open label conflict on lane invasion by shifting the second walker near the stop line to retain lane crossing possibility without forcing a definite outcome, preserves original uncertainty pattern",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 7,
+            "puddle": 2
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "speed_delta": 0.0
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": -0.9,
+                "y": 1.5
+              },
+              "speed_delta": -0.3
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Verify rain remains enabled per original constraint",
+          "Verify both actors spawn at modified positions correctly",
+          "Verify red light is active during ego's intersection approach"
+        ],
+        "post_execution_validation_rules": [
+          "Confirm red light violation matches original confirmed event",
+          "Check for lane invasion to compare against conflicting original labels",
+          "Check vehicle cmd against vehicle status to retain original actuation uncertainty"
+        ],
+        "uncertainty": [
+          "Preserves original label conflict between dataset and error.json for lane invasion",
+          "No confirmed module-level root cause is retained as original",
+          "Actuation behavior uncertainty remains unchanged from original scenario"
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 0.0,
+          "fog": 0.0,
+          "wetness": 7.0,
+          "puddle": 2.0
+        },
+        "actor_mutations": [
+          {
+            "actor_index": 0,
+            "position_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "speed_delta": 0.0
+          },
+          {
+            "actor_index": 1,
+            "position_offset": {
+              "x": -0.9,
+              "y": 1.5
+            },
+            "speed_delta": -0.3
+          }
+        ],
+        "puddle_mutations": [],
+        "mission_mutation": {
+          "keep_original": true
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_029__ark-deepseek-r1-250528.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_029__ark-deepseek-r1-250528.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    }
+  ],
+  "seed_artifact_zip": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-deepseek-r1-250528/seed-artifact/seed-artifact-case_029.zip",
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_prompts/case_029__ark-deepseek-r1-250528.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_029__ark-deepseek-r1-250528.json",
+  "prompt_estimated_tokens": 1144,
+  "usage": {
+    "prompt_tokens": 1422,
+    "completion_tokens": 3072,
+    "total_tokens": 4494
+  },
+  "raw_response": "{\n  \"case_id\": \"case_029\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Slight offset of the first crossing walker toward ego's planned travel lane with a small speed increase\",\n      \"mutation_intent\": \"Preserves all Phase 1 root-cause constraints: keeps original mission spawn/destination, retains 2 actors, keeps enabled rain, preserves the confirmed red light event, maintains the conflicting lane invasion label between dataset and error.json by moving the walker closer to ego's path without forcing a definite lane crossing outcome, retains original uncertainty about root cause\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 3, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 1.2, \"y\": -0.8}, \"speed_delta\": 0.5},\n          {\"actor_index\": 1, \"position_offset\": {\"x\": 0.0, \"y\": 0.0}, \"speed_delta\": 0.0}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Verify 2 actors are spawned correctly\", \"Verify red light is active when ego approaches the intersection\", \"Verify rain remains enabled per constraint\"],\n      \"post_execution_validation_rules\": [\"Confirm red light violation matches original error.json recording\", \"Check for lane boundary crossing to resolve original label conflict\", \"Validate vehicle cmd vs velocity pattern to retain actuation uncertainty\"],\n      \"uncertainty\": [\"Preserves original conflict between dataset and error.json on lane invasion label\", \"Root cause attribution to specific Autoware module remains unconfirmed\", \"Actuation behavior uncertainty is retained per original findings\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Slight increase in scenario wetness and offset of the second walker toward the intersection stop line where ego encounters red light\",\n      \"mutation_intent\": \"Follows all Phase 1 preservation constraints: keeps original mission positions, retains 2 actors, maintains enabled rain, preserves the confirmed red light event, keeps the open label conflict on lane invasion by shifting the second walker near the stop line to retain lane crossing possibility without forcing a definite outcome, preserves original uncertainty pattern\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 7, \"puddle\": 2},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 0.0, \"y\": 0.0}, \"speed_delta\": 0.0},\n          {\"actor_index\": 1, \"position_offset\": {\"x\": -0.9, \"y\": 1.5}, \"speed_delta\": -0.3}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Verify rain remains enabled per original constraint\", \"Verify both actors spawn at modified positions correctly\", \"Verify red light is active during ego's intersection approach\"],\n      \"post_execution_validation_rules\": [\"Confirm red light violation matches original confirmed event\", \"Check for lane invasion to compare against conflicting original labels\", \"Check vehicle cmd against vehicle status to retain original actuation uncertainty\"],\n      \"uncertainty\": [\"Preserves original label conflict between dataset and error.json for lane invasion\", \"No confirmed module-level root cause is retained as original\", \"Actuation behavior uncertainty remains unchanged from original scenario\"]\n    }\n  ]\n}",
+  "parsed_response": {
+    "case_id": "case_029",
+    "candidate_specs": [
+      {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Slight offset of the first crossing walker toward ego's planned travel lane with a small speed increase",
+        "mutation_intent": "Preserves all Phase 1 root-cause constraints: keeps original mission spawn/destination, retains 2 actors, keeps enabled rain, preserves the confirmed red light event, maintains the conflicting lane invasion label between dataset and error.json by moving the walker closer to ego's path without forcing a definite lane crossing outcome, retains original uncertainty about root cause",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 3,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 1.2,
+                "y": -0.8
+              },
+              "speed_delta": 0.5
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "speed_delta": 0.0
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Verify 2 actors are spawned correctly",
+          "Verify red light is active when ego approaches the intersection",
+          "Verify rain remains enabled per constraint"
+        ],
+        "post_execution_validation_rules": [
+          "Confirm red light violation matches original error.json recording",
+          "Check for lane boundary crossing to resolve original label conflict",
+          "Validate vehicle cmd vs velocity pattern to retain actuation uncertainty"
+        ],
+        "uncertainty": [
+          "Preserves original conflict between dataset and error.json on lane invasion label",
+          "Root cause attribution to specific Autoware module remains unconfirmed",
+          "Actuation behavior uncertainty is retained per original findings"
+        ]
+      },
+      {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Slight increase in scenario wetness and offset of the second walker toward the intersection stop line where ego encounters red light",
+        "mutation_intent": "Follows all Phase 1 preservation constraints: keeps original mission positions, retains 2 actors, maintains enabled rain, preserves the confirmed red light event, keeps the open label conflict on lane invasion by shifting the second walker near the stop line to retain lane crossing possibility without forcing a definite outcome, preserves original uncertainty pattern",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 7,
+            "puddle": 2
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "speed_delta": 0.0
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": -0.9,
+                "y": 1.5
+              },
+              "speed_delta": -0.3
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Verify rain remains enabled per original constraint",
+          "Verify both actors spawn at modified positions correctly",
+          "Verify red light is active during ego's intersection approach"
+        ],
+        "post_execution_validation_rules": [
+          "Confirm red light violation matches original confirmed event",
+          "Check for lane invasion to compare against conflicting original labels",
+          "Check vehicle cmd against vehicle status to retain original actuation uncertainty"
+        ],
+        "uncertainty": [
+          "Preserves original label conflict between dataset and error.json for lane invasion",
+          "No confirmed module-level root cause is retained as original",
+          "Actuation behavior uncertainty remains unchanged from original scenario"
+        ]
+      }
+    ]
+  },
+  "raw_api_payload": {
+    "id": "02178292330944152e41e2783ec5c4cff790c8cff2820f65014ca",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "{\n  \"case_id\": \"case_029\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Slight offset of the first crossing walker toward ego's planned travel lane with a small speed increase\",\n      \"mutation_intent\": \"Preserves all Phase 1 root-cause constraints: keeps original mission spawn/destination, retains 2 actors, keeps enabled rain, preserves the confirmed red light event, maintains the conflicting lane invasion label between dataset and error.json by moving the walker closer to ego's path without forcing a definite lane crossing outcome, retains original uncertainty about root cause\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 3, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 1.2, \"y\": -0.8}, \"speed_delta\": 0.5},\n          {\"actor_index\": 1, \"position_offset\": {\"x\": 0.0, \"y\": 0.0}, \"speed_delta\": 0.0}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Verify 2 actors are spawned correctly\", \"Verify red light is active when ego approaches the intersection\", \"Verify rain remains enabled per constraint\"],\n      \"post_execution_validation_rules\": [\"Confirm red light violation matches original error.json recording\", \"Check for lane boundary crossing to resolve original label conflict\", \"Validate vehicle cmd vs velocity pattern to retain actuation uncertainty\"],\n      \"uncertainty\": [\"Preserves original conflict between dataset and error.json on lane invasion label\", \"Root cause attribution to specific Autoware module remains unconfirmed\", \"Actuation behavior uncertainty is retained per original findings\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Slight increase in scenario wetness and offset of the second walker toward the intersection stop line where ego encounters red light\",\n      \"mutation_intent\": \"Follows all Phase 1 preservation constraints: keeps original mission positions, retains 2 actors, maintains enabled rain, preserves the confirmed red light event, keeps the open label conflict on lane invasion by shifting the second walker near the stop line to retain lane crossing possibility without forcing a definite outcome, preserves original uncertainty pattern\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 7, \"puddle\": 2},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 0.0, \"y\": 0.0}, \"speed_delta\": 0.0},\n          {\"actor_index\": 1, \"position_offset\": {\"x\": -0.9, \"y\": 1.5}, \"speed_delta\": -0.3}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Verify rain remains enabled per original constraint\", \"Verify both actors spawn at modified positions correctly\", \"Verify red light is active during ego's intersection approach\"],\n      \"post_execution_validation_rules\": [\"Confirm red light violation matches original confirmed event\", \"Check for lane invasion to compare against conflicting original labels\", \"Check vehicle cmd against vehicle status to retain original actuation uncertainty\"],\n      \"uncertainty\": [\"Preserves original label conflict between dataset and error.json for lane invasion\", \"No confirmed module-level root cause is retained as original\", \"Actuation behavior uncertainty remains unchanged from original scenario\"]\n    }\n  ]\n}",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null,
+          "reasoning_content": "\nGot it, let's build this JSON step by step. First, case_id is case_029 right? Then we need two candidate specs, cand_001 and cand_002.\n\nFirst, let's recall the preservation constraints. We have to keep mission start and goal, 2 actors, red light event, conflicting labels, enabled rain. Uncertainty is there, so variants should be conservative.\n\nFirst candidate (cand_001): Let's think of a variant where we shift the first walker a bit towards the ego's lane to keep the lane invasion possibility open, while keeping rain same, just slight speed change. High level variant: \"Slight offset of the first crossing walker toward ego's planned lane with small speed increase\". Mutation intent: \"Preserves all original constraints: 2 actors, original mission positions, enabled rain, confirmed red light event, retains the conflicting lane invasion possibility by moving walker closer to ego's path without forcing a new fault, preserves uncertainty about label conflict\". Expected oracle: compound, right? Because original has red light and possible lane invasion, so compound. Wait original says dataset has both, error.json only confirms red, so expected oracle is compound? Yeah.\n\nModifications: weather delta. Original rain is 1, we keep it enabled, so rain delta 0, fog 0, wetness +5? Wait within [-20,20], that's fine. Wait no, preservation says keep enabled rain, so rain delta 0, maybe wetness +3, that's okay. Actor mutations: actor 0 (first walker) position offset x: 1.2, y: -0.8, speed delta +0.5, which is within [-3,3], good. Actor 1: offset 0,0, speed delta 0? Wait or slight? No, first candidate can mutate actor 0. Puddles are empty, so puddle_mutations is empty? Wait seed has puddles empty, so yeah. Mission mutation: keep_original true, because constraint says preserve start and goal. Pre-execution rules: [\"Verify 2 actors are spawned correctly\", \"Verify red light is active at ego's approach path\", \"Verify rain remains enabled\"], post execution: [\"Verify red light violation is recorded if it occurs\", \"Check for lane boundary crossing to resolve label conflict\", \"Check for collision between actors and ego\"], uncertainty: [\"Still unconfirmed if lane invasion will occur, preserves original label conflict between dataset and error.json\", \"Actuation behavior uncertainty remains as original\"].\n\nNow second candidate, cand_002. Let's do a different variant: slightly increase rain wetness and shift the second walker closer to the ego's stop line, which keeps the red light scenario, still preserves uncertainty. High level variant: \"Slight increase in wetness level and offset of the second walker toward the intersection stop line where ego encounters red light\". Mutation intent: \"Preserves all original root-cause constraints: original mission positions, 2 actors, enabled rain, confirmed red light event, retains the open conflict on lane invasion label by adding minor position shift that could result in lane crossing while not forcing a new outcome, preserves original uncertainty pattern\". Expected oracle: compound again? Or wait, same expected, because we preserve the original conflict. Expected oracle is compound, right? Because original has both labels conflicting, so keep that.\n\nModifications: weather delta: rain 0 (still enabled), wetness +8, fog 0, puddle +2, that's within delta 20, okay. Actor mutations: actor 1, position offset x: -0.9, y: 1.5, speed delta -0.3, which is within limits. Actor 0: all zero. Puddle mutations: empty, since original has no puddles. Mission mutation: keep_original true. Pre-execution rules: [\"Verify rain remains enabled per original constraint\", \"Verify both actors spawn at correct offset positions\", \"Verify red light is active when ego enters the intersection\"], post execution: [\"Confirm red light violation event matches original error.json recording\", \"Check if lane invasion occurs to compare against conflicting original labels\", \"Validate ego velocity against actuation commands to retain original actuation uncertainty\"], uncertainty: [\"Preserves original conflict between dataset and error.json on lane invasion label\", \"Root cause module attribution remains unconfirmed as original\", \"Actuation behavior uncertainty is preserved\"].\n\nWait let's check all the rules: actor offsets within [-8,8], yes, 1.5 is way under. Speed delta within [-3,3], yes, 0.5, -0.3 all good. Mission keep original, which is allowed, offsets are zero. Weather deltas are all within [-20,20], yes. Two candidates, exactly. Let's fit the schema correctly.\n\nWait let's check the input: seed has actors 0 and 1, two actors, we keep two, that's per preservation constraint. Preserve mission start and goal, so we set keep_original true for mission, that's correct. Preserve enabled rain, so rain delta 0 in both, so rain stays 1, enabled, correct. Preserve red light event, so our mutations don't remove that, correct. Preserve conflicting labels, so we keep that in uncertainty, correct.\n\nNow let's structure the JSON properly. Let's make sure all fields are there. Let's write it out:\n\nFirst, case_id is \"case_029\". Then candidate_specs is an array of two.\n\nFirst candidate:\ncandidate_id: \"cand_001\"\nhigh_level_variant: \"Slight offset of the first crossing walker toward ego's planned travel lane with a small speed increase\"\nmutation_intent: \"Preserves all Phase 1 root-cause constraints: keeps original mission spawn/destination, retains 2 actors, keeps enabled rain, preserves the confirmed red light event, maintains the conflicting lane invasion label between dataset and error.json by moving the walker closer to ego's path without forcing a definite lane crossing outcome, retains original uncertainty about root cause\"\nexpected_oracle: \"compound\"\nmodifications:\nweather_delta: {\"rain\": 0, \"fog\": 0, \"wetness\": 3, \"puddle\": 0} – that's okay, all deltas within 20.\nactor_mutations: [{\"actor_index\": 0, \"position_offset\": {\"x\": 1.2, \"y\": -0.8}, \"speed_delta\": 0.5}, {\"actor_index\": 1, \"position_offset\": {\"x\": 0.0, \"y\": 0.0}, \"speed_delta\": 0.0}]\npuddle_mutations: [] because seed has no puddles.\nmission_mutation: {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\npre_execution_validation_rules: [\"Verify 2 actors are spawned correctly in the scenario\", \"Verify red light is active when ego approaches the intersection\", \"Verify rain remains enabled per preservation constraint\"]\npost_execution_validation_rules: [\"Confirm red light violation is detected matching original error.json\", \"Check for lane boundary crossing to resolve the original conflicting lane invasion label\", \"Validate that non-zero velocity and zero vehicle cmd pattern is retained to preserve actuation uncertainty\"]\nuncertainty: [\"Preserves original conflict between dataset and error.json on lane invasion label\", \"Root cause attribution to specific Autoware module remains unconfirmed as original\", \"Actuation behavior uncertainty is retained per original Phase 1 findings\"]\n\nThen second candidate cand_002:\ncandidate_id: \"cand_002\"\nhigh_level_variant: \"Slight increase in scenario wetness and offset of the second walker toward the intersection stop line where ego encounters the red light\"\nmutation_intent: \"Follows all Phase 1 preservation constraints: keeps original mission positions, retains 2 actors, maintains enabled rain, preserves the confirmed red light event, keeps the open label conflict on lane invasion by shifting the second walker near the stop line to retain the possibility of lane crossing without forcing a definite outcome, preserves original uncertainty pattern\"\nexpected_oracle: \"compound\"\nmodifications:\nweather_delta: {\"rain\": 0, \"fog\": 0, \"wetness\": 7, \"puddle\": 2} – all deltas within 20, good.\nactor_mutations: [{\"actor_index\": 0, \"position_offset\": {\"x\": 0.0, \"y\": 0.0}, \"speed_delta\": 0.0}, {\"actor_index\": 1, \"position_offset\": {\"x\": -0.9, \"y\": 1.5}, \"speed_delta\": -0.3}]\npuddle_mutations: []\nmission_mutation: {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\npre_execution_validation_rules: [\"Verify rain and increased wetness are set correctly\", \"Verify both actors are spawned at their modified positions\", \"Verify red light is active during ego's approach to the intersection\"]\npost_execution_validation_rules: [\"Confirm red light violation event matches the original confirmed event in error.json\", \"Check for lane boundary crossing to compare against conflicting original labels\", \"Retain original actuation uncertainty by checking vehicle cmd against vehicle status\"]\nuncertainty: [\"Preserves original label conflict between dataset and error.json for lane invasion\", \"No confirmed module-level root cause is retained as per original\", \"Actuation behavior uncertainty remains unchanged from the original scenario\"]\n\nWait that all checks out. Let's make sure no markdown, exactly one JSON object, two candidates, all constraints followed. Let's put it all together correctly now."
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "doubao-seed-2-0-lite-260215",
+    "object": "chat.completion",
+    "service_tier": "default",
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 3072,
+      "prompt_tokens": 1422,
+      "total_tokens": 4494,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 2123,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": null,
+        "cached_tokens": 0
+      }
+    }
+  },
+  "error_message": "",
+  "elapsed_sec": 65.71,
+  "timestamp": "<REDACTED_TIMESTAMP>"
+}

@@ -1,0 +1,432 @@
+{
+  "case_id": "case_098",
+  "model_name": "ark-doubao-seed-2.0-lite-260215",
+  "workflow": "phase2_grounded_generation",
+  "status": "completed",
+  "schema_valid": true,
+  "schema_errors": [],
+  "phase1_ready": "yes",
+  "num_candidates_requested": 2,
+  "num_candidates_written": 2,
+  "num_pre_valid": 2,
+  "candidate_records": [
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-doubao-seed-2.0-lite-260215/json/case_098/case_098__cand_001.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-doubao-seed-2.0-lite-260215/metadata/case_098/case_098__cand_001.metadata.json",
+      "case_id": "case_098",
+      "model_name": "ark-doubao-seed-2.0-lite-260215",
+      "candidate_index": 1,
+      "candidate_spec": {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Leading foreground vehicle shifted closer to ego spawn to encourage collision while preserving core failure conditions",
+        "mutation_intent": "Preserves all required root cause pattern constraints: all-zero pre-collision vehicle_cmd, non-zero ego speed/throttle, zero braking, no blocked waypoints, maintains the expected collision outcome",
+        "expected_oracle": "collision",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": 0.0,
+                "y": -2.2
+              },
+              "speed_delta": -0.4
+            }
+          ],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": 0.0,
+              "size_scale": 1.0
+            },
+            {
+              "puddle_index": 1,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": 0.0,
+              "size_scale": 1.0
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Check that vehicle_cmd is all-zero in pre-collision critical window",
+          "Confirm no blocked final waypoints before collision"
+        ],
+        "post_execution_validation_rules": [
+          "Validate that collision outcome is reproduced",
+          "Verify non-zero ego speed and throttle with zero braking pre-collision"
+        ],
+        "uncertainty": [
+          "Original uncertainty around root cause of vehicle_cmd/actuation mismatch preserved",
+          "No new assumptions about internal system failure added"
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 0.0,
+          "fog": 0.0,
+          "wetness": 0.0,
+          "puddle": 0.0
+        },
+        "actor_mutations": [
+          {
+            "actor_index": 1,
+            "position_offset": {
+              "x": 0.0,
+              "y": -2.2
+            },
+            "speed_delta": -0.4
+          }
+        ],
+        "puddle_mutations": [
+          {
+            "puddle_index": 0,
+            "location_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "level_delta": 0.0,
+            "size_scale": 1.0
+          },
+          {
+            "puddle_index": 1,
+            "location_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "level_delta": 0.0,
+            "size_scale": 1.0
+          }
+        ],
+        "mission_mutation": {
+          "keep_original": true
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_098__ark-doubao-seed-2.0-lite-260215.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_098__ark-doubao-seed-2.0-lite-260215.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    },
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-doubao-seed-2.0-lite-260215/json/case_098/case_098__cand_002.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-doubao-seed-2.0-lite-260215/metadata/case_098/case_098__cand_002.metadata.json",
+      "case_id": "case_098",
+      "model_name": "ark-doubao-seed-2.0-lite-260215",
+      "candidate_index": 2,
+      "candidate_spec": {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Minor conservative increase in rain/wetness, adjusted ego spawn position to test collision reproduction under slightly changed conditions",
+        "mutation_intent": "Weather changes are within allowed limits, all core root cause conditions (zero vehicle_cmd, non-zero movement, no blocked waypoints) are fully preserved, collision outcome remains expected",
+        "expected_oracle": "collision",
+        "modifications": {
+          "weather_delta": {
+            "rain": 5,
+            "fog": 0,
+            "wetness": 4,
+            "puddle": 2
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": 0.0,
+                "y": -1.0
+              },
+              "speed_delta": -0.3
+            }
+          ],
+          "puddle_mutations": [
+            {
+              "puddle_index": 1,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.5
+              },
+              "level_delta": 0.1,
+              "size_scale": 1.05
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": false,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 1.5
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Confirm all-zero vehicle_cmd in pre-collision window",
+          "Verify no blocked waypoints are present pre-collision"
+        ],
+        "post_execution_validation_rules": [
+          "Check that collision between ego and foreground vehicle occurs",
+          "Confirm mismatch between zero vehicle_cmd and non-zero ego movement is preserved"
+        ],
+        "uncertainty": [
+          "Original uncertainty regarding the source of the vehicle_cmd/actuation discrepancy is retained",
+          "No new root cause attribution is introduced"
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 5.0,
+          "fog": 0.0,
+          "wetness": 4.0,
+          "puddle": 2.0
+        },
+        "actor_mutations": [
+          {
+            "actor_index": 1,
+            "position_offset": {
+              "x": 0.0,
+              "y": -1.0
+            },
+            "speed_delta": -0.3
+          }
+        ],
+        "puddle_mutations": [
+          {
+            "puddle_index": 1,
+            "location_offset": {
+              "x": 0.0,
+              "y": 0.5
+            },
+            "level_delta": 0.1,
+            "size_scale": 1.05
+          }
+        ],
+        "mission_mutation": {
+          "spawn_offset": {
+            "x": 0.0,
+            "y": 1.5
+          },
+          "destination_offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_098__ark-doubao-seed-2.0-lite-260215.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_098__ark-doubao-seed-2.0-lite-260215.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    }
+  ],
+  "seed_artifact_zip": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-doubao-seed-2.0-lite-260215/seed-artifact/seed-artifact-case_098.zip",
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_prompts/case_098__ark-doubao-seed-2.0-lite-260215.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_098__ark-doubao-seed-2.0-lite-260215.json",
+  "prompt_estimated_tokens": 1185,
+  "usage": {
+    "prompt_tokens": 1574,
+    "completion_tokens": 2543,
+    "total_tokens": 4117
+  },
+  "raw_response": "{\n  \"case_id\": \"case_098\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Leading foreground vehicle shifted closer to ego spawn to encourage collision while preserving core failure conditions\",\n      \"mutation_intent\": \"Preserves all required root cause pattern constraints: all-zero pre-collision vehicle_cmd, non-zero ego speed/throttle, zero braking, no blocked waypoints, maintains the expected collision outcome\",\n      \"expected_oracle\": \"collision\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 1, \"position_offset\": {\"x\": 0.0, \"y\": -2.2}, \"speed_delta\": -0.4}\n        ],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": 0.0, \"size_scale\": 1.0},\n          {\"puddle_index\": 1, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": 0.0, \"size_scale\": 1.0}\n        ],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Check that vehicle_cmd is all-zero in pre-collision critical window\", \"Confirm no blocked final waypoints before collision\"],\n      \"post_execution_validation_rules\": [\"Validate that collision outcome is reproduced\", \"Verify non-zero ego speed and throttle with zero braking pre-collision\"],\n      \"uncertainty\": [\"Original uncertainty around root cause of vehicle_cmd/actuation mismatch preserved\", \"No new assumptions about internal system failure added\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Minor conservative increase in rain/wetness, adjusted ego spawn position to test collision reproduction under slightly changed conditions\",\n      \"mutation_intent\": \"Weather changes are within allowed limits, all core root cause conditions (zero vehicle_cmd, non-zero movement, no blocked waypoints) are fully preserved, collision outcome remains expected\",\n      \"expected_oracle\": \"collision\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 5, \"fog\": 0, \"wetness\": 4, \"puddle\": 2},\n        \"actor_mutations\": [\n          {\"actor_index\": 1, \"position_offset\": {\"x\": 0.0, \"y\": -1.0}, \"speed_delta\": -0.3}\n        ],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 1, \"location_offset\": {\"x\": 0.0, \"y\": 0.5}, \"level_delta\": 0.1, \"size_scale\": 1.05}\n        ],\n        \"mission_mutation\": {\"keep_original\": false, \"spawn_offset\": {\"x\": 0.0, \"y\": 1.5}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Confirm all-zero vehicle_cmd in pre-collision window\", \"Verify no blocked waypoints are present pre-collision\"],\n      \"post_execution_validation_rules\": [\"Check that collision between ego and foreground vehicle occurs\", \"Confirm mismatch between zero vehicle_cmd and non-zero ego movement is preserved\"],\n      \"uncertainty\": [\"Original uncertainty regarding the source of the vehicle_cmd/actuation discrepancy is retained\", \"No new root cause attribution is introduced\"]\n    }\n  ]\n}",
+  "parsed_response": {
+    "case_id": "case_098",
+    "candidate_specs": [
+      {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Leading foreground vehicle shifted closer to ego spawn to encourage collision while preserving core failure conditions",
+        "mutation_intent": "Preserves all required root cause pattern constraints: all-zero pre-collision vehicle_cmd, non-zero ego speed/throttle, zero braking, no blocked waypoints, maintains the expected collision outcome",
+        "expected_oracle": "collision",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": 0.0,
+                "y": -2.2
+              },
+              "speed_delta": -0.4
+            }
+          ],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": 0.0,
+              "size_scale": 1.0
+            },
+            {
+              "puddle_index": 1,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": 0.0,
+              "size_scale": 1.0
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Check that vehicle_cmd is all-zero in pre-collision critical window",
+          "Confirm no blocked final waypoints before collision"
+        ],
+        "post_execution_validation_rules": [
+          "Validate that collision outcome is reproduced",
+          "Verify non-zero ego speed and throttle with zero braking pre-collision"
+        ],
+        "uncertainty": [
+          "Original uncertainty around root cause of vehicle_cmd/actuation mismatch preserved",
+          "No new assumptions about internal system failure added"
+        ]
+      },
+      {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Minor conservative increase in rain/wetness, adjusted ego spawn position to test collision reproduction under slightly changed conditions",
+        "mutation_intent": "Weather changes are within allowed limits, all core root cause conditions (zero vehicle_cmd, non-zero movement, no blocked waypoints) are fully preserved, collision outcome remains expected",
+        "expected_oracle": "collision",
+        "modifications": {
+          "weather_delta": {
+            "rain": 5,
+            "fog": 0,
+            "wetness": 4,
+            "puddle": 2
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": 0.0,
+                "y": -1.0
+              },
+              "speed_delta": -0.3
+            }
+          ],
+          "puddle_mutations": [
+            {
+              "puddle_index": 1,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.5
+              },
+              "level_delta": 0.1,
+              "size_scale": 1.05
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": false,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 1.5
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Confirm all-zero vehicle_cmd in pre-collision window",
+          "Verify no blocked waypoints are present pre-collision"
+        ],
+        "post_execution_validation_rules": [
+          "Check that collision between ego and foreground vehicle occurs",
+          "Confirm mismatch between zero vehicle_cmd and non-zero ego movement is preserved"
+        ],
+        "uncertainty": [
+          "Original uncertainty regarding the source of the vehicle_cmd/actuation discrepancy is retained",
+          "No new root cause attribution is introduced"
+        ]
+      }
+    ]
+  },
+  "raw_api_payload": {
+    "id": "0217829224282677097180e458ae3c6e16036676cea376f566bca",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "{\n  \"case_id\": \"case_098\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Leading foreground vehicle shifted closer to ego spawn to encourage collision while preserving core failure conditions\",\n      \"mutation_intent\": \"Preserves all required root cause pattern constraints: all-zero pre-collision vehicle_cmd, non-zero ego speed/throttle, zero braking, no blocked waypoints, maintains the expected collision outcome\",\n      \"expected_oracle\": \"collision\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 1, \"position_offset\": {\"x\": 0.0, \"y\": -2.2}, \"speed_delta\": -0.4}\n        ],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": 0.0, \"size_scale\": 1.0},\n          {\"puddle_index\": 1, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": 0.0, \"size_scale\": 1.0}\n        ],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Check that vehicle_cmd is all-zero in pre-collision critical window\", \"Confirm no blocked final waypoints before collision\"],\n      \"post_execution_validation_rules\": [\"Validate that collision outcome is reproduced\", \"Verify non-zero ego speed and throttle with zero braking pre-collision\"],\n      \"uncertainty\": [\"Original uncertainty around root cause of vehicle_cmd/actuation mismatch preserved\", \"No new assumptions about internal system failure added\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Minor conservative increase in rain/wetness, adjusted ego spawn position to test collision reproduction under slightly changed conditions\",\n      \"mutation_intent\": \"Weather changes are within allowed limits, all core root cause conditions (zero vehicle_cmd, non-zero movement, no blocked waypoints) are fully preserved, collision outcome remains expected\",\n      \"expected_oracle\": \"collision\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 5, \"fog\": 0, \"wetness\": 4, \"puddle\": 2},\n        \"actor_mutations\": [\n          {\"actor_index\": 1, \"position_offset\": {\"x\": 0.0, \"y\": -1.0}, \"speed_delta\": -0.3}\n        ],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 1, \"location_offset\": {\"x\": 0.0, \"y\": 0.5}, \"level_delta\": 0.1, \"size_scale\": 1.05}\n        ],\n        \"mission_mutation\": {\"keep_original\": false, \"spawn_offset\": {\"x\": 0.0, \"y\": 1.5}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Confirm all-zero vehicle_cmd in pre-collision window\", \"Verify no blocked waypoints are present pre-collision\"],\n      \"post_execution_validation_rules\": [\"Check that collision between ego and foreground vehicle occurs\", \"Confirm mismatch between zero vehicle_cmd and non-zero ego movement is preserved\"],\n      \"uncertainty\": [\"Original uncertainty regarding the source of the vehicle_cmd/actuation discrepancy is retained\", \"No new root cause attribution is introduced\"]\n    }\n  ]\n}",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null,
+          "reasoning_content": "\nGot it, let's build this JSON step by step. First, the case_id is case_098 right? Then we need two candidate specs, cand_001 and cand_002.\n\nFirst, let's recall the root cause: all zero vehicle_cmd but non-zero throttle, ego moving, collision, no blocked waypoints. Preservation constraints must be followed.\n\nFirst candidate (cand_001): High level variant could be \"Slightly closer leading vehicle position to ego spawn to preserve collision outcome\". Mutation intent: \"Shifts the slower leading actor closer to ego spawn while keeping all root cause conditions: all-zero vehicle_cmd, non-zero throttle, no blocked waypoints, collision outcome preserved\". Expected oracle is collision, right? Because original is collision.\n\nModifications: Let's see, actor 1 is the slower one, right? Actor index 1, position offset x 0, y -2.5 (so closer to ego which is at y 116, actor 1 is at 109, so moving y down 2.5 makes it closer). Speed delta: 0? Wait no, keep within [-3,3], maybe -0.5, that's okay. Weather delta: let's keep original rain etc? Wait original weather has rain 4, maybe delta 0 for all? Wait no, maybe first candidate doesn't change weather. Puddle mutations: keep original, so index 0 and 1, delta 0, size 1. Mission mutation keep_original true. Wait, let's fill that correctly.\n\nPre-execution rules: \"Verify all vehicle_cmd commands are zero in pre-collision window\", \"Verify no final waypoints are marked blocked\". Post-execution: \"Verify collision occurred between ego and actor 1\", \"Verify mismatch between zero vehicle_cmd and non-zero ego speed/throttle\". Uncertainty: \"Preserves original uncertainty around root cause of vehicle_cmd/actuation mismatch\".\n\nNow cand_002: What's another variant? Maybe slightly increase wetness/rain a bit, shift ego spawn a little closer to the other vehicle. High level variant: \"Slightly increased wetness and adjusted ego spawn position to test collision reproduction under minor weather change\". Mutation intent: \"Preserves all core root cause conditions (zero vehicle_cmd, non-zero throttle, no blocked waypoints) while adding minor conservative weather change that doesn't alter the failure pattern, still expects collision\". Expected oracle is collision again.\n\nModifications: Weather delta: rain +5, wetness +4, others 0, that's within [-20,20], good. Actor mutations: actor 0 (wait no, actor 1 again? Or ego? Wait mission mutation: spawn offset x 0, y +1.2, keep_original false? Wait no, mission spawn offset: x 0, y 1.0, keep_original is false? Wait no, schema has keep_original, if we offset, set keep_original false? Wait original says mission spawn/destination offsets within [-5,5], so 1.0 is fine. Actor 1: position offset x 0, y -1.0, speed delta -0.3, that's within [-3,3], good. Puddle mutations: puddle index 1 (the one closer to spawn) level delta +0.1, size scale 1.05, that's within [0.8,1.2] and [-0.2,0.2], good.\n\nPre-execution rules: same as before, \"Confirm all zero vehicle_cmd in pre-collision window\", \"Confirm no blocked waypoints before collision\". Post-execution: \"Confirm collision outcome is achieved\", \"Verify non-zero ego speed and throttle with zero braking as required\". Uncertainty: \"Original uncertainty around the cause of vehicle_cmd/actuation mismatch remains, no new root cause introduced\".\n\nWait let's check all rules: two candidates, all offsets within limits. Root cause preserved, oracle is collision, which is correct. Let's structure the JSON correctly.\n\nWait let's check the schema: case_id is case_098, candidate_specs array of two. Let's fill each part correctly.\n\nWait for the first candidate cand_001:\nhigh_level_variant: \"Leading vehicle shifted closer to ego spawn position to encourage collision while preserving core conditions\"\nmutation_intent: \"Preserves all required root cause pattern conditions: all-zero pre-collision vehicle_cmd, non-zero ego speed/throttle, zero braking, no blocked waypoints, maintains collision outcome requirement\"\nexpected_oracle: \"collision\"\nmodifications: weather_delta all 0. actor_mutations: actor index 1, position offset x 0.0, y -2.2, speed_delta -0.4, that's within limits. puddle_mutations: all original, so index 0: x 0 y 0, level 0, size 1; index 1: same. mission_mutation: keep_original: true.\npre_execution_validation_rules: [\"Check that vehicle_cmd is all-zero in pre-collision critical window\", \"Confirm no blocked final waypoints before collision\"]\npost_execution_validation_rules: [\"Validate that collision outcome is reproduced\", \"Verify non-zero ego speed and throttle with zero braking pre-collision\"]\nuncertainty: [\"Original uncertainty around root cause of vehicle_cmd/actuation mismatch preserved\", \"No new assumptions about internal failure added\"]\n\nThen cand_002:\ncandidate_id: cand_002\nhigh_level_variant: \"Minor increase in rain and wetness, adjusted ego spawn position to test collision reproduction under slightly changed conditions\"\nmutation_intent: \"Conservative weather change within allowed limits, all core root cause conditions (zero vehicle_cmd, non-zero movement, no blocked waypoints) are preserved, collision outcome is still expected\"\nexpected_oracle: \"collision\"\nmodifications:\nweather_delta: {\"rain\": 5, \"fog\": 0, \"wetness\": 4, \"puddle\": 2} all within 20, good.\nactor_mutations: [{\"actor_index\": 1, \"position_offset\": {\"x\": 0.0, \"y\": -1.0}, \"speed_delta\": -0.3}] that's okay.\npuddle_mutations: [{\"puddle_index\": 1, \"location_offset\": {\"x\": 0.0, \"y\": 0.5}, \"level_delta\": 0.1, \"size_scale\": 1.05}] that's within limits, level delta 0.1 <0.2, size 1.05 between 0.8 and 1.2, good.\nmission_mutation: {\"keep_original\": false, \"spawn_offset\": {\"x\": 0.0, \"y\": 1.5}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}} 1.5 is within 5, good.\npre_execution_validation_rules: [\"Confirm all-zero vehicle_cmd in pre-collision window\", \"Verify no blocked waypoints are present pre-collision\"]\npost_execution_validation_rules: [\"Check that collision between ego and foreground vehicle occurs\", \"Confirm mismatch between zero vehicle_cmd and non-zero ego movement is preserved\"]\nuncertainty: [\"Original uncertainty regarding the source of the vehicle_cmd/actuation discrepancy is retained\", \"No new root cause attribution is made\"]\n\nWait that all checks out. Let's put it all into valid JSON, no extra stuff, exactly as required. Let's make sure all numbers are correct, all fields are present. Yep. Let's write it now."
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "doubao-seed-2-0-lite-260215",
+    "object": "chat.completion",
+    "service_tier": "default",
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 2543,
+      "prompt_tokens": 1574,
+      "total_tokens": 4117,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 1644,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": null,
+        "cached_tokens": 0
+      }
+    }
+  },
+  "error_message": "",
+  "elapsed_sec": 40.525,
+  "timestamp": "<REDACTED_TIMESTAMP>"
+}

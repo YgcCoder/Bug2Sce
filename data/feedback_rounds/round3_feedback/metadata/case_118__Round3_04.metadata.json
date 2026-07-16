@@ -1,0 +1,77 @@
+{
+  "case_id": "case_118",
+  "round": 3,
+  "model_name": "claude-sonnet-4-5",
+  "candidate_index": 4,
+  "candidate_spec": {
+    "candidate_id": "cand_004",
+    "high_level_variant": "Destination offset to alter route planning while preserving intersection approach",
+    "mutation_intent": "Shift destination laterally to test if collision persists when route geometry changes slightly but still crosses intersection",
+    "expected_oracle": "collision",
+    "modifications": {
+      "weather_delta": {
+        "rain": 0,
+        "fog": 0,
+        "wetness": 0,
+        "puddle": 0
+      },
+      "actor_mutations": [],
+      "puddle_mutations": [],
+      "mission_mutation": {
+        "keep_original": false,
+        "spawn_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "destination_offset": {
+          "x": 0.0,
+          "y": -3.5
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Ensure destination offset results in valid goal position",
+      "Verify route still requires intersection crossing"
+    ],
+    "post_execution_validation_rules": [
+      "Confirm collision with non-zero throttle in vehicle_status",
+      "Check for detected objects in critical window"
+    ],
+    "uncertainty": [
+      "Route planner may select different path",
+      "Intersection approach angle may change"
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": 0.0,
+      "fog": 0.0,
+      "wetness": 0.0,
+      "puddle": 0.0
+    },
+    "actor_mutations": [],
+    "puddle_mutations": [],
+    "mission_mutation": {
+      "spawn_offset": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "destination_offset": {
+        "x": 0.0,
+        "y": -3.5
+      }
+    },
+    "safety_repairs": []
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": [
+      "no actors in candidate scenario"
+    ]
+  },
+  "authoritative_original_phase1_output": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_118__claude-sonnet-4-5.json",
+  "round1_feedback_count": 6,
+  "round2_feedback_count": 2,
+  "round3_api_output": "<WORKSPACE_ROOT>/processed/experiments/round3_feedback/api_outputs/case_118__claude-sonnet-4-5.json"
+}

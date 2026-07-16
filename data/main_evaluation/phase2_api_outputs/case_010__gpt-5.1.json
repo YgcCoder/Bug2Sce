@@ -1,0 +1,501 @@
+{
+  "case_id": "case_010",
+  "model_name": "gpt-5.1",
+  "workflow": "phase2_grounded_generation",
+  "status": "completed",
+  "schema_valid": true,
+  "schema_errors": [],
+  "phase1_ready": "uncertain",
+  "num_candidates_requested": 2,
+  "num_candidates_written": 2,
+  "num_pre_valid": 2,
+  "candidate_records": [
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/gpt-5.1/json/case_010/case_010__cand_001.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/gpt-5.1/metadata/case_010/case_010__cand_001.metadata.json",
+      "case_id": "case_010",
+      "model_name": "gpt-5.1",
+      "candidate_index": 1,
+      "candidate_spec": {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Short straight Town01 mission in heavy rain/puddles with minimal spawn shift; ego moves a few meters with active perception/planning and zeroed commands, retaining the original lane-invasion label vs. oracle mismatch.",
+        "mutation_intent": "Preserves a short-distance Town01 route in rainy, highly wet and puddled conditions with stable planning and active perception, while ensuring that the external oracle still reports no lane invasion despite the scenario being lane-invasion-group labeled. Small spatial tweaks and slightly intensified wetness/puddles probe robustness without changing the fundamental uncertainty about actual lane crossing.",
+        "expected_oracle": "lane_invasion",
+        "modifications": {
+          "weather_delta": {
+            "rain": 5,
+            "fog": 5,
+            "wetness": 10,
+            "puddle": 8
+          },
+          "actor_mutations": [],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 1.5,
+                "y": -2.0
+              },
+              "level_delta": 0.05,
+              "size_scale": 1.1
+            },
+            {
+              "puddle_index": 1,
+              "location_offset": {
+                "x": -2.0,
+                "y": 1.0
+              },
+              "level_delta": 0.02,
+              "size_scale": 1.0
+            },
+            {
+              "puddle_index": 2,
+              "location_offset": {
+                "x": 2.5,
+                "y": -1.5
+              },
+              "level_delta": -0.05,
+              "size_scale": 0.9
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": false,
+            "spawn_offset": {
+              "x": 1.0,
+              "y": -1.0
+            },
+            "destination_offset": {
+              "x": 2.0,
+              "y": 1.5
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Ensure map is Town01.",
+          "Verify ego spawn and destination remain within ~10 m Euclidean distance to keep the mission short-range.",
+          "Confirm rainy, high-wetness conditions: rain > 50, wetness > 70, puddles > 60.",
+          "Check that puddles still intersect or closely flank the ego route corridor between spawn and destination.",
+          "Ensure no additional dynamic actors are present (actors list remains empty)."
+        ],
+        "post_execution_validation_rules": [
+          "Verify error.json (or equivalent oracle) reports lane_invasion=false.",
+          "Verify higher-level metadata or grouping still classifies the case as lane-invasion-related or lane-group.",
+          "Confirm perception object and prediction topics publish at expected frequencies up to termination.",
+          "Confirm planning final_waypoints are continuously available with relatively stable waypoint count (no long gaps).",
+          "Check that the ego travels only a short distance from start (e.g., under ~20 m).",
+          "Confirm vehicle_cmd linear and angular outputs remain near zero throughout (within implementation tolerance)."
+        ],
+        "uncertainty": [
+          "Actual lane-boundary geometry and lane-crossing events are not directly observed; the presence of lane invasion remains unconfirmed.",
+          "Controller behavior with non-zero ego speed but near-zero commands may depend on low-level vehicle dynamics not visible in logs.",
+          "Puddle-road interaction effects on perception and planning consistency are not explicitly observable from the high-level traces."
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 5.0,
+          "fog": 5.0,
+          "wetness": 10.0,
+          "puddle": 8.0
+        },
+        "actor_mutations": [],
+        "puddle_mutations": [
+          {
+            "puddle_index": 0,
+            "location_offset": {
+              "x": 1.5,
+              "y": -2.0
+            },
+            "level_delta": 0.05,
+            "size_scale": 1.1
+          },
+          {
+            "puddle_index": 1,
+            "location_offset": {
+              "x": -2.0,
+              "y": 1.0
+            },
+            "level_delta": 0.02,
+            "size_scale": 1.0
+          },
+          {
+            "puddle_index": 2,
+            "location_offset": {
+              "x": 2.5,
+              "y": -1.5
+            },
+            "level_delta": -0.05,
+            "size_scale": 0.9
+          }
+        ],
+        "mission_mutation": {
+          "spawn_offset": {
+            "x": 1.0,
+            "y": -1.0
+          },
+          "destination_offset": {
+            "x": 2.0,
+            "y": 1.5
+          }
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": [
+          "no actors in candidate scenario"
+        ]
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_010__gpt-5.1.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_010__gpt-5.1.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    },
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/gpt-5.1/json/case_010/case_010__cand_002.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/gpt-5.1/metadata/case_010/case_010__cand_002.metadata.json",
+      "case_id": "case_010",
+      "model_name": "gpt-5.1",
+      "candidate_index": 2,
+      "candidate_spec": {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Short offset Town01 mission that slightly reorients the start–goal vector across a puddled section, keeping heavy rain and short travel while preserving the label–oracle disagreement about lane invasion.",
+        "mutation_intent": "Explores a nearby short route on Town01 that nudges the ego trajectory laterally relative to puddles while maintaining similar environmental conditions and system behavior (active perception/planning, zeroed commands). This variant keeps the ambiguity of any true lane crossing but stresses a slightly different alignment with wet-road features under the same lane-invasion labeling conflict.",
+        "expected_oracle": "lane_invasion",
+        "modifications": {
+          "weather_delta": {
+            "rain": -3,
+            "fog": 10,
+            "wetness": 5,
+            "puddle": -5
+          },
+          "actor_mutations": [],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": -1.0,
+                "y": 1.5
+              },
+              "level_delta": 0.02,
+              "size_scale": 1.0
+            },
+            {
+              "puddle_index": 1,
+              "location_offset": {
+                "x": 3.0,
+                "y": -1.0
+              },
+              "level_delta": -0.1,
+              "size_scale": 0.95
+            },
+            {
+              "puddle_index": 2,
+              "location_offset": {
+                "x": -2.5,
+                "y": 2.0
+              },
+              "level_delta": 0.1,
+              "size_scale": 1.05
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": false,
+            "spawn_offset": {
+              "x": -2.0,
+              "y": 2.0
+            },
+            "destination_offset": {
+              "x": -3.0,
+              "y": -2.5
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Ensure map is Town01.",
+          "Validate that spawn and destination offsets keep the mission length short (under ~25 m along road network).",
+          "Confirm weather remains rainy and wet: rain >= 50 after delta, wetness >= 75, puddles >= 60.",
+          "Check that at least one large puddle overlaps or closely borders the new ego path corridor.",
+          "Ensure there are still no non-ego actors present."
+        ],
+        "post_execution_validation_rules": [
+          "Verify error.json (or equivalent) still reports lane_invasion=false for the ego.",
+          "Confirm that the scenario is still tagged or grouped as lane-invasion-related by any higher-level metadata.",
+          "Check that perception object and prediction topics are active and non-empty up to termination.",
+          "Confirm planning final_waypoints stay continuously available with stable waypoint count and no prolonged dropouts.",
+          "Measure ego trajectory length and ensure only limited motion from the start (comparable to the seed scenario).",
+          "Confirm that commanded accelerations/steering remain near zero even if the ego attains non-zero velocity."
+        ],
+        "uncertainty": [
+          "Whether the lateral offset causes the ego path to cross any true lane boundary is unknown due to absent lane geometry in logs.",
+          "The impact of mildly reduced rain but increased fog on perception and planning reliability is not directly inferable.",
+          "Potential differences in low-level vehicle dynamics along the laterally shifted path are not visible from high-level summaries."
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": -3.0,
+          "fog": 10.0,
+          "wetness": 5.0,
+          "puddle": -5.0
+        },
+        "actor_mutations": [],
+        "puddle_mutations": [
+          {
+            "puddle_index": 0,
+            "location_offset": {
+              "x": -1.0,
+              "y": 1.5
+            },
+            "level_delta": 0.02,
+            "size_scale": 1.0
+          },
+          {
+            "puddle_index": 1,
+            "location_offset": {
+              "x": 3.0,
+              "y": -1.0
+            },
+            "level_delta": -0.1,
+            "size_scale": 0.95
+          },
+          {
+            "puddle_index": 2,
+            "location_offset": {
+              "x": -2.5,
+              "y": 2.0
+            },
+            "level_delta": 0.1,
+            "size_scale": 1.05
+          }
+        ],
+        "mission_mutation": {
+          "spawn_offset": {
+            "x": -2.0,
+            "y": 2.0
+          },
+          "destination_offset": {
+            "x": -3.0,
+            "y": -2.5
+          }
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": [
+          "no actors in candidate scenario"
+        ]
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_010__gpt-5.1.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_010__gpt-5.1.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    }
+  ],
+  "seed_artifact_zip": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/gpt-5.1/seed-artifact/seed-artifact-case_010.zip",
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_prompts/case_010__gpt-5.1.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_010__gpt-5.1.json",
+  "prompt_estimated_tokens": 1365,
+  "usage": {
+    "prompt_tokens": 1371,
+    "completion_tokens": 1570,
+    "total_tokens": 2941
+  },
+  "raw_response": "{\n  \"case_id\": \"case_010\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Short straight Town01 mission in heavy rain/puddles with minimal spawn shift; ego moves a few meters with active perception/planning and zeroed commands, retaining the original lane-invasion label vs. oracle mismatch.\",\n      \"mutation_intent\": \"Preserves a short-distance Town01 route in rainy, highly wet and puddled conditions with stable planning and active perception, while ensuring that the external oracle still reports no lane invasion despite the scenario being lane-invasion-group labeled. Small spatial tweaks and slightly intensified wetness/puddles probe robustness without changing the fundamental uncertainty about actual lane crossing.\",\n      \"expected_oracle\": \"lane_invasion\",\n      \"modifications\": {\n        \"weather_delta\": {\n          \"rain\": 5,\n          \"fog\": 5,\n          \"wetness\": 10,\n          \"puddle\": 8\n        },\n        \"actor_mutations\": [],\n        \"puddle_mutations\": [\n          {\n            \"puddle_index\": 0,\n            \"location_offset\": {\n              \"x\": 1.5,\n              \"y\": -2.0\n            },\n            \"level_delta\": 0.05,\n            \"size_scale\": 1.1\n          },\n          {\n            \"puddle_index\": 1,\n            \"location_offset\": {\n              \"x\": -2.0,\n              \"y\": 1.0\n            },\n            \"level_delta\": 0.02,\n            \"size_scale\": 1.0\n          },\n          {\n            \"puddle_index\": 2,\n            \"location_offset\": {\n              \"x\": 2.5,\n              \"y\": -1.5\n            },\n            \"level_delta\": -0.05,\n            \"size_scale\": 0.9\n          }\n        ],\n        \"mission_mutation\": {\n          \"keep_original\": false,\n          \"spawn_offset\": {\n            \"x\": 1.0,\n            \"y\": -1.0\n          },\n          \"destination_offset\": {\n            \"x\": 2.0,\n            \"y\": 1.5\n          }\n        }\n      },\n      \"pre_execution_validation_rules\": [\n        \"Ensure map is Town01.\",\n        \"Verify ego spawn and destination remain within ~10 m Euclidean distance to keep the mission short-range.\",\n        \"Confirm rainy, high-wetness conditions: rain > 50, wetness > 70, puddles > 60.\",\n        \"Check that puddles still intersect or closely flank the ego route corridor between spawn and destination.\",\n        \"Ensure no additional dynamic actors are present (actors list remains empty).\"\n      ],\n      \"post_execution_validation_rules\": [\n        \"Verify error.json (or equivalent oracle) reports lane_invasion=false.\",\n        \"Verify higher-level metadata or grouping still classifies the case as lane-invasion-related or lane-group.\",\n        \"Confirm perception object and prediction topics publish at expected frequencies up to termination.\",\n        \"Confirm planning final_waypoints are continuously available with relatively stable waypoint count (no long gaps).\",\n        \"Check that the ego travels only a short distance from start (e.g., under ~20 m).\",\n        \"Confirm vehicle_cmd linear and angular outputs remain near zero throughout (within implementation tolerance).\"\n      ],\n      \"uncertainty\": [\n        \"Actual lane-boundary geometry and lane-crossing events are not directly observed; the presence of lane invasion remains unconfirmed.\",\n        \"Controller behavior with non-zero ego speed but near-zero commands may depend on low-level vehicle dynamics not visible in logs.\",\n        \"Puddle-road interaction effects on perception and planning consistency are not explicitly observable from the high-level traces.\"\n      ]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Short offset Town01 mission that slightly reorients the start–goal vector across a puddled section, keeping heavy rain and short travel while preserving the label–oracle disagreement about lane invasion.\",\n      \"mutation_intent\": \"Explores a nearby short route on Town01 that nudges the ego trajectory laterally relative to puddles while maintaining similar environmental conditions and system behavior (active perception/planning, zeroed commands). This variant keeps the ambiguity of any true lane crossing but stresses a slightly different alignment with wet-road features under the same lane-invasion labeling conflict.\",\n      \"expected_oracle\": \"lane_invasion\",\n      \"modifications\": {\n        \"weather_delta\": {\n          \"rain\": -3,\n          \"fog\": 10,\n          \"wetness\": 5,\n          \"puddle\": -5\n        },\n        \"actor_mutations\": [],\n        \"puddle_mutations\": [\n          {\n            \"puddle_index\": 0,\n            \"location_offset\": {\n              \"x\": -1.0,\n              \"y\": 1.5\n            },\n            \"level_delta\": 0.02,\n            \"size_scale\": 1.0\n          },\n          {\n            \"puddle_index\": 1,\n            \"location_offset\": {\n              \"x\": 3.0,\n              \"y\": -1.0\n            },\n            \"level_delta\": -0.1,\n            \"size_scale\": 0.95\n          },\n          {\n            \"puddle_index\": 2,\n            \"location_offset\": {\n              \"x\": -2.5,\n              \"y\": 2.0\n            },\n            \"level_delta\": 0.1,\n            \"size_scale\": 1.05\n          }\n        ],\n        \"mission_mutation\": {\n          \"keep_original\": false,\n          \"spawn_offset\": {\n            \"x\": -2.0,\n            \"y\": 2.0\n          },\n          \"destination_offset\": {\n            \"x\": -3.0,\n            \"y\": -2.5\n          }\n        }\n      },\n      \"pre_execution_validation_rules\": [\n        \"Ensure map is Town01.\",\n        \"Validate that spawn and destination offsets keep the mission length short (under ~25 m along road network).\",\n        \"Confirm weather remains rainy and wet: rain >= 50 after delta, wetness >= 75, puddles >= 60.\",\n        \"Check that at least one large puddle overlaps or closely borders the new ego path corridor.\",\n        \"Ensure there are still no non-ego actors present.\"\n      ],\n      \"post_execution_validation_rules\": [\n        \"Verify error.json (or equivalent) still reports lane_invasion=false for the ego.\",\n        \"Confirm that the scenario is still tagged or grouped as lane-invasion-related by any higher-level metadata.\",\n        \"Check that perception object and prediction topics are active and non-empty up to termination.\",\n        \"Confirm planning final_waypoints stay continuously available with stable waypoint count and no prolonged dropouts.\",\n        \"Measure ego trajectory length and ensure only limited motion from the start (comparable to the seed scenario).\",\n        \"Confirm that commanded accelerations/steering remain near zero even if the ego attains non-zero velocity.\"\n      ],\n      \"uncertainty\": [\n        \"Whether the lateral offset causes the ego path to cross any true lane boundary is unknown due to absent lane geometry in logs.\",\n        \"The impact of mildly reduced rain but increased fog on perception and planning reliability is not directly inferable.\",\n        \"Potential differences in low-level vehicle dynamics along the laterally shifted path are not visible from high-level summaries.\"\n      ]\n    }\n  ]\n}",
+  "parsed_response": {
+    "case_id": "case_010",
+    "candidate_specs": [
+      {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Short straight Town01 mission in heavy rain/puddles with minimal spawn shift; ego moves a few meters with active perception/planning and zeroed commands, retaining the original lane-invasion label vs. oracle mismatch.",
+        "mutation_intent": "Preserves a short-distance Town01 route in rainy, highly wet and puddled conditions with stable planning and active perception, while ensuring that the external oracle still reports no lane invasion despite the scenario being lane-invasion-group labeled. Small spatial tweaks and slightly intensified wetness/puddles probe robustness without changing the fundamental uncertainty about actual lane crossing.",
+        "expected_oracle": "lane_invasion",
+        "modifications": {
+          "weather_delta": {
+            "rain": 5,
+            "fog": 5,
+            "wetness": 10,
+            "puddle": 8
+          },
+          "actor_mutations": [],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 1.5,
+                "y": -2.0
+              },
+              "level_delta": 0.05,
+              "size_scale": 1.1
+            },
+            {
+              "puddle_index": 1,
+              "location_offset": {
+                "x": -2.0,
+                "y": 1.0
+              },
+              "level_delta": 0.02,
+              "size_scale": 1.0
+            },
+            {
+              "puddle_index": 2,
+              "location_offset": {
+                "x": 2.5,
+                "y": -1.5
+              },
+              "level_delta": -0.05,
+              "size_scale": 0.9
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": false,
+            "spawn_offset": {
+              "x": 1.0,
+              "y": -1.0
+            },
+            "destination_offset": {
+              "x": 2.0,
+              "y": 1.5
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Ensure map is Town01.",
+          "Verify ego spawn and destination remain within ~10 m Euclidean distance to keep the mission short-range.",
+          "Confirm rainy, high-wetness conditions: rain > 50, wetness > 70, puddles > 60.",
+          "Check that puddles still intersect or closely flank the ego route corridor between spawn and destination.",
+          "Ensure no additional dynamic actors are present (actors list remains empty)."
+        ],
+        "post_execution_validation_rules": [
+          "Verify error.json (or equivalent oracle) reports lane_invasion=false.",
+          "Verify higher-level metadata or grouping still classifies the case as lane-invasion-related or lane-group.",
+          "Confirm perception object and prediction topics publish at expected frequencies up to termination.",
+          "Confirm planning final_waypoints are continuously available with relatively stable waypoint count (no long gaps).",
+          "Check that the ego travels only a short distance from start (e.g., under ~20 m).",
+          "Confirm vehicle_cmd linear and angular outputs remain near zero throughout (within implementation tolerance)."
+        ],
+        "uncertainty": [
+          "Actual lane-boundary geometry and lane-crossing events are not directly observed; the presence of lane invasion remains unconfirmed.",
+          "Controller behavior with non-zero ego speed but near-zero commands may depend on low-level vehicle dynamics not visible in logs.",
+          "Puddle-road interaction effects on perception and planning consistency are not explicitly observable from the high-level traces."
+        ]
+      },
+      {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Short offset Town01 mission that slightly reorients the start–goal vector across a puddled section, keeping heavy rain and short travel while preserving the label–oracle disagreement about lane invasion.",
+        "mutation_intent": "Explores a nearby short route on Town01 that nudges the ego trajectory laterally relative to puddles while maintaining similar environmental conditions and system behavior (active perception/planning, zeroed commands). This variant keeps the ambiguity of any true lane crossing but stresses a slightly different alignment with wet-road features under the same lane-invasion labeling conflict.",
+        "expected_oracle": "lane_invasion",
+        "modifications": {
+          "weather_delta": {
+            "rain": -3,
+            "fog": 10,
+            "wetness": 5,
+            "puddle": -5
+          },
+          "actor_mutations": [],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": -1.0,
+                "y": 1.5
+              },
+              "level_delta": 0.02,
+              "size_scale": 1.0
+            },
+            {
+              "puddle_index": 1,
+              "location_offset": {
+                "x": 3.0,
+                "y": -1.0
+              },
+              "level_delta": -0.1,
+              "size_scale": 0.95
+            },
+            {
+              "puddle_index": 2,
+              "location_offset": {
+                "x": -2.5,
+                "y": 2.0
+              },
+              "level_delta": 0.1,
+              "size_scale": 1.05
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": false,
+            "spawn_offset": {
+              "x": -2.0,
+              "y": 2.0
+            },
+            "destination_offset": {
+              "x": -3.0,
+              "y": -2.5
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Ensure map is Town01.",
+          "Validate that spawn and destination offsets keep the mission length short (under ~25 m along road network).",
+          "Confirm weather remains rainy and wet: rain >= 50 after delta, wetness >= 75, puddles >= 60.",
+          "Check that at least one large puddle overlaps or closely borders the new ego path corridor.",
+          "Ensure there are still no non-ego actors present."
+        ],
+        "post_execution_validation_rules": [
+          "Verify error.json (or equivalent) still reports lane_invasion=false for the ego.",
+          "Confirm that the scenario is still tagged or grouped as lane-invasion-related by any higher-level metadata.",
+          "Check that perception object and prediction topics are active and non-empty up to termination.",
+          "Confirm planning final_waypoints stay continuously available with stable waypoint count and no prolonged dropouts.",
+          "Measure ego trajectory length and ensure only limited motion from the start (comparable to the seed scenario).",
+          "Confirm that commanded accelerations/steering remain near zero even if the ego attains non-zero velocity."
+        ],
+        "uncertainty": [
+          "Whether the lateral offset causes the ego path to cross any true lane boundary is unknown due to absent lane geometry in logs.",
+          "The impact of mildly reduced rain but increased fog on perception and planning reliability is not directly inferable.",
+          "Potential differences in low-level vehicle dynamics along the laterally shifted path are not visible from high-level summaries."
+        ]
+      }
+    ]
+  },
+  "raw_api_payload": {
+    "id": "<REDACTED_RESPONSE_ID>",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "{\n  \"case_id\": \"case_010\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Short straight Town01 mission in heavy rain/puddles with minimal spawn shift; ego moves a few meters with active perception/planning and zeroed commands, retaining the original lane-invasion label vs. oracle mismatch.\",\n      \"mutation_intent\": \"Preserves a short-distance Town01 route in rainy, highly wet and puddled conditions with stable planning and active perception, while ensuring that the external oracle still reports no lane invasion despite the scenario being lane-invasion-group labeled. Small spatial tweaks and slightly intensified wetness/puddles probe robustness without changing the fundamental uncertainty about actual lane crossing.\",\n      \"expected_oracle\": \"lane_invasion\",\n      \"modifications\": {\n        \"weather_delta\": {\n          \"rain\": 5,\n          \"fog\": 5,\n          \"wetness\": 10,\n          \"puddle\": 8\n        },\n        \"actor_mutations\": [],\n        \"puddle_mutations\": [\n          {\n            \"puddle_index\": 0,\n            \"location_offset\": {\n              \"x\": 1.5,\n              \"y\": -2.0\n            },\n            \"level_delta\": 0.05,\n            \"size_scale\": 1.1\n          },\n          {\n            \"puddle_index\": 1,\n            \"location_offset\": {\n              \"x\": -2.0,\n              \"y\": 1.0\n            },\n            \"level_delta\": 0.02,\n            \"size_scale\": 1.0\n          },\n          {\n            \"puddle_index\": 2,\n            \"location_offset\": {\n              \"x\": 2.5,\n              \"y\": -1.5\n            },\n            \"level_delta\": -0.05,\n            \"size_scale\": 0.9\n          }\n        ],\n        \"mission_mutation\": {\n          \"keep_original\": false,\n          \"spawn_offset\": {\n            \"x\": 1.0,\n            \"y\": -1.0\n          },\n          \"destination_offset\": {\n            \"x\": 2.0,\n            \"y\": 1.5\n          }\n        }\n      },\n      \"pre_execution_validation_rules\": [\n        \"Ensure map is Town01.\",\n        \"Verify ego spawn and destination remain within ~10 m Euclidean distance to keep the mission short-range.\",\n        \"Confirm rainy, high-wetness conditions: rain > 50, wetness > 70, puddles > 60.\",\n        \"Check that puddles still intersect or closely flank the ego route corridor between spawn and destination.\",\n        \"Ensure no additional dynamic actors are present (actors list remains empty).\"\n      ],\n      \"post_execution_validation_rules\": [\n        \"Verify error.json (or equivalent oracle) reports lane_invasion=false.\",\n        \"Verify higher-level metadata or grouping still classifies the case as lane-invasion-related or lane-group.\",\n        \"Confirm perception object and prediction topics publish at expected frequencies up to termination.\",\n        \"Confirm planning final_waypoints are continuously available with relatively stable waypoint count (no long gaps).\",\n        \"Check that the ego travels only a short distance from start (e.g., under ~20 m).\",\n        \"Confirm vehicle_cmd linear and angular outputs remain near zero throughout (within implementation tolerance).\"\n      ],\n      \"uncertainty\": [\n        \"Actual lane-boundary geometry and lane-crossing events are not directly observed; the presence of lane invasion remains unconfirmed.\",\n        \"Controller behavior with non-zero ego speed but near-zero commands may depend on low-level vehicle dynamics not visible in logs.\",\n        \"Puddle-road interaction effects on perception and planning consistency are not explicitly observable from the high-level traces.\"\n      ]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Short offset Town01 mission that slightly reorients the start–goal vector across a puddled section, keeping heavy rain and short travel while preserving the label–oracle disagreement about lane invasion.\",\n      \"mutation_intent\": \"Explores a nearby short route on Town01 that nudges the ego trajectory laterally relative to puddles while maintaining similar environmental conditions and system behavior (active perception/planning, zeroed commands). This variant keeps the ambiguity of any true lane crossing but stresses a slightly different alignment with wet-road features under the same lane-invasion labeling conflict.\",\n      \"expected_oracle\": \"lane_invasion\",\n      \"modifications\": {\n        \"weather_delta\": {\n          \"rain\": -3,\n          \"fog\": 10,\n          \"wetness\": 5,\n          \"puddle\": -5\n        },\n        \"actor_mutations\": [],\n        \"puddle_mutations\": [\n          {\n            \"puddle_index\": 0,\n            \"location_offset\": {\n              \"x\": -1.0,\n              \"y\": 1.5\n            },\n            \"level_delta\": 0.02,\n            \"size_scale\": 1.0\n          },\n          {\n            \"puddle_index\": 1,\n            \"location_offset\": {\n              \"x\": 3.0,\n              \"y\": -1.0\n            },\n            \"level_delta\": -0.1,\n            \"size_scale\": 0.95\n          },\n          {\n            \"puddle_index\": 2,\n            \"location_offset\": {\n              \"x\": -2.5,\n              \"y\": 2.0\n            },\n            \"level_delta\": 0.1,\n            \"size_scale\": 1.05\n          }\n        ],\n        \"mission_mutation\": {\n          \"keep_original\": false,\n          \"spawn_offset\": {\n            \"x\": -2.0,\n            \"y\": 2.0\n          },\n          \"destination_offset\": {\n            \"x\": -3.0,\n            \"y\": -2.5\n          }\n        }\n      },\n      \"pre_execution_validation_rules\": [\n        \"Ensure map is Town01.\",\n        \"Validate that spawn and destination offsets keep the mission length short (under ~25 m along road network).\",\n        \"Confirm weather remains rainy and wet: rain >= 50 after delta, wetness >= 75, puddles >= 60.\",\n        \"Check that at least one large puddle overlaps or closely borders the new ego path corridor.\",\n        \"Ensure there are still no non-ego actors present.\"\n      ],\n      \"post_execution_validation_rules\": [\n        \"Verify error.json (or equivalent) still reports lane_invasion=false for the ego.\",\n        \"Confirm that the scenario is still tagged or grouped as lane-invasion-related by any higher-level metadata.\",\n        \"Check that perception object and prediction topics are active and non-empty up to termination.\",\n        \"Confirm planning final_waypoints stay continuously available with stable waypoint count and no prolonged dropouts.\",\n        \"Measure ego trajectory length and ensure only limited motion from the start (comparable to the seed scenario).\",\n        \"Confirm that commanded accelerations/steering remain near zero even if the ego attains non-zero velocity.\"\n      ],\n      \"uncertainty\": [\n        \"Whether the lateral offset causes the ego path to cross any true lane boundary is unknown due to absent lane geometry in logs.\",\n        \"The impact of mildly reduced rain but increased fog on perception and planning reliability is not directly inferable.\",\n        \"Potential differences in low-level vehicle dynamics along the laterally shifted path are not visible from high-level summaries.\"\n      ]\n    }\n  ]\n}",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": [],
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "gpt-5.1-2025-11-13",
+    "object": "chat.completion",
+    "service_tier": "default",
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 1570,
+      "prompt_tokens": 1371,
+      "total_tokens": 2941,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": 0,
+        "audio_tokens": 0,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 0
+      }
+    }
+  },
+  "error_message": "",
+  "elapsed_sec": 19.829,
+  "timestamp": "<REDACTED_TIMESTAMP>"
+}

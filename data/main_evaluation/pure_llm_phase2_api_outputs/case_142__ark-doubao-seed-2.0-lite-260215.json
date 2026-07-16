@@ -1,0 +1,249 @@
+{
+  "case_id": "case_142",
+  "model_name": "ark-doubao-seed-2.0-lite-260215",
+  "workflow": "pure_llm_phase2_baseline",
+  "status": "completed",
+  "schema_valid": true,
+  "schema_errors": [],
+  "num_candidates_requested": 1,
+  "num_candidates_written": 1,
+  "num_pre_valid": 1,
+  "candidate_records": [
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/pure_llm_phase2_candidates/ark-doubao-seed-2.0-lite-260215/json/case_142/case_142__model_ark-doubao-seed-2.0-lite-260215__cand_001.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/pure_llm_phase2_candidates/ark-doubao-seed-2.0-lite-260215/metadata/case_142/case_142__model_ark-doubao-seed-2.0-lite-260215__cand_001.metadata.json",
+      "case_id": "case_142",
+      "model_name": "ark-doubao-seed-2.0-lite-260215",
+      "candidate_index": 1,
+      "candidate_spec": {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Shift vehicle and increase fog to reduce visibility",
+        "mutation_intent": "Create visibility challenge to trigger compound fault",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": 4,
+            "fog": 7,
+            "wetness": 5,
+            "puddle": 2
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 2.0,
+                "y": -1.5
+              },
+              "speed_delta": 1.2
+            },
+            {
+              "actor_index": 2,
+              "position_offset": {
+                "x": 1.0,
+                "y": 0.8
+              },
+              "speed_delta": 0.0
+            }
+          ],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 0.5,
+                "y": -1.0
+              },
+              "level_delta": 0.1,
+              "size_scale": 1.1
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "All actors stay within valid road bounds"
+        ],
+        "post_execution_validation_rules": [
+          "Check all expected fault types are triggered"
+        ],
+        "uncertainty": [
+          "Exact fault trigger order is unconfirmed"
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 4.0,
+          "fog": 7.0,
+          "wetness": 5.0,
+          "puddle": 2.0
+        },
+        "actor_mutations": [
+          {
+            "actor_index": 0,
+            "position_offset": {
+              "x": 2.0,
+              "y": -1.5
+            },
+            "speed_delta": 1.2
+          },
+          {
+            "actor_index": 2,
+            "position_offset": {
+              "x": 1.0,
+              "y": 0.8
+            },
+            "speed_delta": 0.0
+          }
+        ],
+        "puddle_mutations": [
+          {
+            "puddle_index": 0,
+            "location_offset": {
+              "x": 0.5,
+              "y": -1.0
+            },
+            "level_delta": 0.1,
+            "size_scale": 1.1
+          }
+        ],
+        "mission_mutation": {
+          "keep_original": true
+        },
+        "safety_repairs": []
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": []
+      }
+    }
+  ],
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/pure_llm_phase2_api_prompts/case_142__ark-doubao-seed-2.0-lite-260215.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/pure_llm_phase2_api_outputs/case_142__ark-doubao-seed-2.0-lite-260215.json",
+  "prompt_estimated_tokens": 903,
+  "usage": {
+    "prompt_tokens": 1422,
+    "completion_tokens": 1570,
+    "total_tokens": 2992
+  },
+  "raw_response": "{\n  \"case_id\": \"case_142\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Shift vehicle and increase fog to reduce visibility\",\n      \"mutation_intent\": \"Create visibility challenge to trigger compound fault\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 4, \"fog\": 7, \"wetness\": 5, \"puddle\": 2},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 2.0, \"y\": -1.5}, \"speed_delta\": 1.2},\n          {\"actor_index\": 2, \"position_offset\": {\"x\": 1.0, \"y\": 0.8}, \"speed_delta\": 0.0}\n        ],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": 0.5, \"y\": -1.0}, \"level_delta\": 0.1, \"size_scale\": 1.1}\n        ],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"All actors stay within valid road bounds\"],\n      \"post_execution_validation_rules\": [\"Check all expected fault types are triggered\"],\n      \"uncertainty\": [\"Exact fault trigger order is unconfirmed\"]\n    }\n  ]\n}",
+  "parsed_response": {
+    "case_id": "case_142",
+    "candidate_specs": [
+      {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Shift vehicle and increase fog to reduce visibility",
+        "mutation_intent": "Create visibility challenge to trigger compound fault",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": 4,
+            "fog": 7,
+            "wetness": 5,
+            "puddle": 2
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 2.0,
+                "y": -1.5
+              },
+              "speed_delta": 1.2
+            },
+            {
+              "actor_index": 2,
+              "position_offset": {
+                "x": 1.0,
+                "y": 0.8
+              },
+              "speed_delta": 0.0
+            }
+          ],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 0.5,
+                "y": -1.0
+              },
+              "level_delta": 0.1,
+              "size_scale": 1.1
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "All actors stay within valid road bounds"
+        ],
+        "post_execution_validation_rules": [
+          "Check all expected fault types are triggered"
+        ],
+        "uncertainty": [
+          "Exact fault trigger order is unconfirmed"
+        ]
+      }
+    ]
+  },
+  "raw_api_payload": {
+    "id": "021783587247380f17176ac9df90535d88cbb24b1f2709b9fb00c",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "{\n  \"case_id\": \"case_142\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Shift vehicle and increase fog to reduce visibility\",\n      \"mutation_intent\": \"Create visibility challenge to trigger compound fault\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 4, \"fog\": 7, \"wetness\": 5, \"puddle\": 2},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 2.0, \"y\": -1.5}, \"speed_delta\": 1.2},\n          {\"actor_index\": 2, \"position_offset\": {\"x\": 1.0, \"y\": 0.8}, \"speed_delta\": 0.0}\n        ],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": 0.5, \"y\": -1.0}, \"level_delta\": 0.1, \"size_scale\": 1.1}\n        ],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"All actors stay within valid road bounds\"],\n      \"post_execution_validation_rules\": [\"Check all expected fault types are triggered\"],\n      \"uncertainty\": [\"Exact fault trigger order is unconfirmed\"]\n    }\n  ]\n}",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null,
+          "reasoning_content": "\nGot it, let's work through this step by step. First, the case_id is case_142 from the input. Then candidate_specs has one entry, candidate_id cand_001.\n\nHigh level variant: Let's see, fault label is collision, lane invasion, red light so compound. High level variant could be \"Shift oncoming vehicle and add rain to test handling\". Wait no, keep under 20 words. Let's make it \"Shift crossing vehicle and increase fog for visibility test\". Yeah that's short.\n\nMutation intent: What's the intent? We need under 30 words. Let's do \"Induce visibility reduction and conflicting trajectory to trigger compound fault\". Wait count words: Induce visibility reduction and conflicting trajectory to trigger compound fault. That's 10 words, fine, under 30.\n\nExpected oracle: The fault label has collision, lane_invasion, red_light so it's compound. Right, that matches.\n\nNow modifications: weather delta. Let's do rain +5, fog +8, wetness +6, puddle +4? Wait keep within [-20,20], that's fine. Wait let's do: \"weather_delta\": {\"rain\": 5, \"fog\": 8, \"wetness\": 6, \"puddle\": 3} that's okay.\n\nActor mutations: Let's take actor 0, which is the crossing vehicle. Position offset x 1.5, y -2.0, speed delta +1.2. Wait keep within [-8,8] x/y, that's fine, speed delta 1.2 is within [-3,3]. Also actor 2 is the walker, let's add another? Wait no, the schema example has one, but we can do two? Wait no, input has 3 actors, let's do actor 0 first, wait let's see: actor 0 index 0, x 2.0, y -1.5, speed delta 1.0. Then actor 2 (walker) index 2, x 1.0, y -0.5, speed delta 0.0. Wait but that's okay. Wait no, let's just keep it correct. Wait the seed has actor 0 vehicle, let's mutate that. Let's do: \"actor_mutations\": [{\"actor_index\": 0, \"position_offset\": {\"x\": 2.0, \"y\": -1.5}, \"speed_delta\": 1.2}, {\"actor_index\": 2, \"position_offset\": {\"x\": 1.0, \"y\": 0.8}, \"speed_delta\": 0.0}] Wait but is that okay? Yeah, offsets are within range.\n\nPuddle mutations: Let's take puddle 0, which is near actor 0. Location offset x 0.5, y -1.0, level delta 0.1, size scale 1.1. That's within the limits: level delta 0.1 is between -0.2 and 0.2, size 1.1 between 0.8 and 1.2, perfect. So \"puddle_mutations\": [{\"puddle_index\": 0, \"location_offset\": {\"x\": 0.5, \"y\": -1.0}, \"level_delta\": 0.1, \"size_scale\": 1.1}]\n\nMission mutation: keep_original true, so that's easy, \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n\nPre execution validation rules: need under 18 words. Let's do \"All actors within road bounds, no out of map\". That's fine, short.\n\nPost execution validation rules: \"Verify fault matches expected compound violation\". That's good, under 18 words.\n\nUncertainty: \"Position effect on fault trigger is not confirmed\". That's under 18 words, perfect.\n\nWait let's check all the rules: case_id is case_142, correct. One candidate_specs item, yes. Expected oracle is compound, which is correct because we have multiple faults. All offsets are within range: actor x 2.0, y -1.5, that's way within [-8,8]. Speed delta 1.2 within [-3,3]. Weather deltas all under 20, yes. Puddle level delta 0.1 within [-0.2, 0.2], size 1.1 within [0.8, 1.2], yes. Mission keep original is true, correct. All strings are short, no extra stuff. JSON is valid.\n\nWait let's put it all together properly, check syntax. Let's write it out:\n\nWait let's make sure high_level_variant is under 20 words. Let's adjust it to \"Shift crossing vehicle and increase fog to reduce visibility\" that's 10 words, fine. Mutation intent: \"Create visibility challenge and conflicting path to trigger compound fault\" that's 10 words, under 30, perfect.\n\nWait expected_oracle is compound, right? Because the fault label has collision, lane_invasion, red_light all 1, so that's compound, yes.\n\nLet me check all keys: yes, matches the schema. No extra keys, no trailing commas. Let's write it correctly now."
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "doubao-seed-2-0-lite-260215",
+    "object": "chat.completion",
+    "service_tier": "default",
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 1570,
+      "prompt_tokens": 1422,
+      "total_tokens": 2992,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 1180,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": null,
+        "cached_tokens": 0
+      }
+    }
+  },
+  "error_message": "",
+  "elapsed_sec": 40.459,
+  "timestamp": "<REDACTED_TIMESTAMP>"
+}

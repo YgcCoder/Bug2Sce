@@ -1,0 +1,98 @@
+{
+  "case_id": "case_037",
+  "model_name": "claude-sonnet-4-5",
+  "workflow": "pure_llm_phase2_baseline",
+  "candidate_index": 1,
+  "candidate_spec": {
+    "candidate_id": "cand_001",
+    "high_level_variant": "Increase rain and fog to worsen visibility near intersection",
+    "mutation_intent": "Amplify weather severity to stress perception and decision-making at traffic light with pedestrian present",
+    "expected_oracle": "compound",
+    "modifications": {
+      "weather_delta": {
+        "rain": 7,
+        "fog": 15,
+        "wetness": 10,
+        "puddle": 8
+      },
+      "actor_mutations": [
+        {
+          "actor_index": 0,
+          "position_offset": {
+            "x": -2.0,
+            "y": 1.5
+          },
+          "speed_delta": 1.5
+        },
+        {
+          "actor_index": 1,
+          "position_offset": {
+            "x": 1.0,
+            "y": -1.0
+          },
+          "speed_delta": 0.2
+        }
+      ],
+      "puddle_mutations": [],
+      "mission_mutation": {
+        "keep_original": true,
+        "spawn_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "destination_offset": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Verify vehicle and walker spawn within 8m offset and speed delta within 3"
+    ],
+    "post_execution_validation_rules": [
+      "Check for collision, red light violation, or lane invasion events"
+    ],
+    "uncertainty": [
+      "Weather interaction with sensor models may vary across simulation runs"
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": 7.0,
+      "fog": 15.0,
+      "wetness": 10.0,
+      "puddle": 8.0
+    },
+    "actor_mutations": [
+      {
+        "actor_index": 0,
+        "position_offset": {
+          "x": -2.0,
+          "y": 1.5
+        },
+        "speed_delta": 1.5
+      },
+      {
+        "actor_index": 1,
+        "position_offset": {
+          "x": 1.0,
+          "y": -1.0
+        },
+        "speed_delta": 0.2
+      }
+    ],
+    "puddle_mutations": [],
+    "mission_mutation": {
+      "keep_original": true
+    },
+    "safety_repairs": []
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/pure_llm_phase2_api_prompts/case_037__claude-sonnet-4-5.md",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/pure_llm_phase2_api_outputs/case_037__claude-sonnet-4-5.json",
+  "baseline_note": "Pure-LLM baseline: prompt used no root-cause pattern or critical-window evidence."
+}

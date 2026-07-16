@@ -1,0 +1,132 @@
+{
+  "case_id": "case_118",
+  "model_name": "ark-doubao-seed-2.0-lite-260215",
+  "candidate_index": 2,
+  "candidate_spec": {
+    "candidate_id": "cand_002",
+    "high_level_variant": "Minor shift of ego spawn/destination and small adjustment to puddle levels",
+    "mutation_intent": "Retains all core root-cause constraints: no dynamic actors, all-zero pre-collision vehicle_cmd, 3 puddles, and preserves the expected collision + red-light violation failure pattern",
+    "expected_oracle": "compound",
+    "modifications": {
+      "weather_delta": {
+        "rain": 0,
+        "fog": 0,
+        "wetness": 0,
+        "puddle": 0
+      },
+      "actor_mutations": [],
+      "puddle_mutations": [
+        {
+          "puddle_index": 0,
+          "location_offset": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "level_delta": -0.1,
+          "size_scale": 1.0
+        },
+        {
+          "puddle_index": 1,
+          "location_offset": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "level_delta": 0.08,
+          "size_scale": 0.9
+        },
+        {
+          "puddle_index": 2,
+          "location_offset": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "level_delta": -0.05,
+          "size_scale": 1.1
+        }
+      ],
+      "mission_mutation": {
+        "keep_original": false,
+        "spawn_offset": {
+          "x": 1.2,
+          "y": -0.8
+        },
+        "destination_offset": {
+          "x": -0.5,
+          "y": 0.3
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Spawn and destination offsets are within allowed bounds",
+      "Confirm 3 puddle regions are preserved and no dynamic actors added",
+      "Enforce all-zero pre-collision vehicle_cmd requirement"
+    ],
+    "post_execution_validation_rules": [
+      "Confirm collision and red-light violation outcomes are observed",
+      "Validate the mismatch between zero vehicle_cmd and non-zero ego movement is present"
+    ],
+    "uncertainty": [
+      "Lane invasion label conflict remains unresolved",
+      "Failure module attribution is still unconfirmed",
+      "Stop-line crossing for red-light violation remains unconfirmed"
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": 0.0,
+      "fog": 0.0,
+      "wetness": 0.0,
+      "puddle": 0.0
+    },
+    "actor_mutations": [],
+    "puddle_mutations": [
+      {
+        "puddle_index": 0,
+        "location_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "level_delta": -0.1,
+        "size_scale": 1.0
+      },
+      {
+        "puddle_index": 1,
+        "location_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "level_delta": 0.08,
+        "size_scale": 0.9
+      },
+      {
+        "puddle_index": 2,
+        "location_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "level_delta": -0.05,
+        "size_scale": 1.1
+      }
+    ],
+    "mission_mutation": {
+      "spawn_offset": {
+        "x": 1.2,
+        "y": -0.8
+      },
+      "destination_offset": {
+        "x": -0.5,
+        "y": 0.3
+      }
+    }
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": [
+      "no actors in candidate scenario"
+    ]
+  },
+  "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_118__ark-doubao-seed-2.0-lite-260215.json",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_118__ark-doubao-seed-2.0-lite-260215.json",
+  "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+}

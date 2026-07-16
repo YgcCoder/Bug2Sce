@@ -1,0 +1,98 @@
+{
+  "case_id": "case_061",
+  "model_name": "ark-deepseek-r1-250528",
+  "workflow": "pure_llm_phase2_baseline",
+  "candidate_index": 1,
+  "candidate_spec": {
+    "candidate_id": "cand_001",
+    "high_level_variant": "Move pedestrians closer to ego's driving lane",
+    "mutation_intent": "Induce Ego to collide, cross lane and run red light",
+    "expected_oracle": "compound",
+    "modifications": {
+      "weather_delta": {
+        "rain": 5,
+        "fog": 3,
+        "wetness": 8,
+        "puddle": 4
+      },
+      "actor_mutations": [
+        {
+          "actor_index": 0,
+          "position_offset": {
+            "x": 1.8,
+            "y": -1.2
+          },
+          "speed_delta": 0.6
+        },
+        {
+          "actor_index": 1,
+          "position_offset": {
+            "x": 0.9,
+            "y": 0.4
+          },
+          "speed_delta": 0.3
+        }
+      ],
+      "puddle_mutations": [],
+      "mission_mutation": {
+        "keep_original": true,
+        "spawn_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "destination_offset": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Check actors are within valid map bounds"
+    ],
+    "post_execution_validation_rules": [
+      "Verify all expected fault types occurred"
+    ],
+    "uncertainty": [
+      "Actor offset may place pedestrian off road"
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": 5.0,
+      "fog": 3.0,
+      "wetness": 8.0,
+      "puddle": 4.0
+    },
+    "actor_mutations": [
+      {
+        "actor_index": 0,
+        "position_offset": {
+          "x": 1.8,
+          "y": -1.2
+        },
+        "speed_delta": 0.6
+      },
+      {
+        "actor_index": 1,
+        "position_offset": {
+          "x": 0.9,
+          "y": 0.4
+        },
+        "speed_delta": 0.3
+      }
+    ],
+    "puddle_mutations": [],
+    "mission_mutation": {
+      "keep_original": true
+    },
+    "safety_repairs": []
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/pure_llm_phase2_api_prompts/case_061__ark-deepseek-r1-250528.md",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/pure_llm_phase2_api_outputs/case_061__ark-deepseek-r1-250528.json",
+  "baseline_note": "Pure-LLM baseline: prompt used no root-cause pattern or critical-window evidence."
+}

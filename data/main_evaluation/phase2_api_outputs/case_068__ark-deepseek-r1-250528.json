@@ -1,0 +1,353 @@
+{
+  "case_id": "case_068",
+  "model_name": "ark-deepseek-r1-250528",
+  "workflow": "phase2_grounded_generation",
+  "status": "completed",
+  "schema_valid": true,
+  "schema_errors": [],
+  "phase1_ready": "yes",
+  "num_candidates_requested": 2,
+  "num_candidates_written": 2,
+  "num_pre_valid": 2,
+  "candidate_records": [
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-deepseek-r1-250528/json/case_068/case_068__cand_001.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-deepseek-r1-250528/metadata/case_068/case_068__cand_001.metadata.json",
+      "case_id": "case_068",
+      "model_name": "ark-deepseek-r1-250528",
+      "candidate_index": 1,
+      "candidate_spec": {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Ego spawn shifted 2m closer to the intersection stop line with active red traffic light, other actor remains in near-original position",
+        "mutation_intent": "Preserves core red-light violation pattern matching original oracle labeling, adjusts ego position to resolve original uncertainty around stop-line crossing, adheres to all preservation constraints: one actor, Town01 map, all core topics available",
+        "expected_oracle": "red_light",
+        "modifications": {
+          "weather_delta": {
+            "rain": 5,
+            "fog": 0,
+            "wetness": 5,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 1.0,
+                "y": -0.5
+              },
+              "speed_delta": 0.0
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": false,
+            "spawn_offset": {
+              "x": 2.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Ego route must pass through intersection with active red traffic light",
+          "Only one actor present",
+          "Scenario uses Town01 map"
+        ],
+        "post_execution_validation_rules": [
+          "Confirm ego crossed stop line while traffic light was red",
+          "Check for mismatch between vehicle_cmd and vehicle_status velocity",
+          "Collect module-level evidence for root cause refinement"
+        ],
+        "uncertainty": [
+          "Specific failed Autoware module remains unconfirmed",
+          "Actuation behavior mismatch is unconfirmed until execution"
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 5.0,
+          "fog": 0.0,
+          "wetness": 5.0,
+          "puddle": 0.0
+        },
+        "actor_mutations": [
+          {
+            "actor_index": 0,
+            "position_offset": {
+              "x": 1.0,
+              "y": -0.5
+            },
+            "speed_delta": 0.0
+          }
+        ],
+        "puddle_mutations": [],
+        "mission_mutation": {
+          "spawn_offset": {
+            "x": 2.0,
+            "y": 0.0
+          },
+          "destination_offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_068__ark-deepseek-r1-250528.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_068__ark-deepseek-r1-250528.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    },
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-deepseek-r1-250528/json/case_068/case_068__cand_002.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-deepseek-r1-250528/metadata/case_068/case_068__cand_002.metadata.json",
+      "case_id": "case_068",
+      "model_name": "ark-deepseek-r1-250528",
+      "candidate_index": 2,
+      "candidate_spec": {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Original ego spawn and destination kept, existing actor shifted 3m toward the ego lane and set to move slowly toward the intersection",
+        "mutation_intent": "Introduces minor scene variation while preserving original core red-light violation pattern, meets all preservation constraints, tests if a near-lane actor affects the original failure behavior",
+        "expected_oracle": "red_light",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 3,
+            "wetness": 3,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 1.5,
+                "y": 2.5
+              },
+              "speed_delta": 1.0
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Actor position and speed within allowed offset ranges",
+          "Ego route passes through red-light intersection",
+          "Only one actor, Town01 map used"
+        ],
+        "post_execution_validation_rules": [
+          "Confirm red-light violation occurred matching original labeling",
+          "Check for actuation mismatch between vehicle commands and measured velocity",
+          "Check if actor position influenced ego behavior relative to red light"
+        ],
+        "uncertainty": [
+          "Module-level root cause remains unconfirmed before execution",
+          "Stop-line crossing outcome is not confirmed prior to execution"
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 0.0,
+          "fog": 3.0,
+          "wetness": 3.0,
+          "puddle": 0.0
+        },
+        "actor_mutations": [
+          {
+            "actor_index": 0,
+            "position_offset": {
+              "x": 1.5,
+              "y": 2.5
+            },
+            "speed_delta": 1.0
+          }
+        ],
+        "puddle_mutations": [],
+        "mission_mutation": {
+          "keep_original": true
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_068__ark-deepseek-r1-250528.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_068__ark-deepseek-r1-250528.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    }
+  ],
+  "seed_artifact_zip": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-deepseek-r1-250528/seed-artifact/seed-artifact-case_068.zip",
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_prompts/case_068__ark-deepseek-r1-250528.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_068__ark-deepseek-r1-250528.json",
+  "prompt_estimated_tokens": 1061,
+  "usage": {
+    "prompt_tokens": 1300,
+    "completion_tokens": 2858,
+    "total_tokens": 4158
+  },
+  "raw_response": "{\n  \"case_id\": \"case_068\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Ego spawn shifted 2m closer to the intersection stop line with active red traffic light, other actor remains in near-original position\",\n      \"mutation_intent\": \"Preserves core red-light violation pattern matching original oracle labeling, adjusts ego position to resolve original uncertainty around stop-line crossing, adheres to all preservation constraints: one actor, Town01 map, all core topics available\",\n      \"expected_oracle\": \"red_light\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 5, \"fog\": 0, \"wetness\": 5, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 1.0, \"y\": -0.5}, \"speed_delta\": 0.0}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": false, \"spawn_offset\": {\"x\": 2.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Ego route must pass through intersection with active red traffic light\", \"Only one actor present\", \"Scenario uses Town01 map\"],\n      \"post_execution_validation_rules\": [\"Confirm ego crossed stop line while traffic light was red\", \"Check for mismatch between vehicle_cmd and vehicle_status velocity\", \"Collect module-level evidence for root cause refinement\"],\n      \"uncertainty\": [\"Specific failed Autoware module remains unconfirmed\", \"Actuation behavior mismatch is unconfirmed until execution\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Original ego spawn and destination kept, existing actor shifted 3m toward the ego lane and set to move slowly toward the intersection\",\n      \"mutation_intent\": \"Introduces minor scene variation while preserving original core red-light violation pattern, meets all preservation constraints, tests if a near-lane actor affects the original failure behavior\",\n      \"expected_oracle\": \"red_light\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 3, \"wetness\": 3, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 1.5, \"y\": 2.5}, \"speed_delta\": 1.0}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Actor position and speed within allowed offset ranges\", \"Ego route passes through red-light intersection\", \"Only one actor, Town01 map used\"],\n      \"post_execution_validation_rules\": [\"Confirm red-light violation occurred matching original labeling\", \"Check for actuation mismatch between vehicle commands and measured velocity\", \"Check if actor position influenced ego behavior relative to red light\"],\n      \"uncertainty\": [\"Module-level root cause remains unconfirmed before execution\", \"Stop-line crossing outcome is not confirmed prior to execution\"]\n    }\n  ]\n}",
+  "parsed_response": {
+    "case_id": "case_068",
+    "candidate_specs": [
+      {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Ego spawn shifted 2m closer to the intersection stop line with active red traffic light, other actor remains in near-original position",
+        "mutation_intent": "Preserves core red-light violation pattern matching original oracle labeling, adjusts ego position to resolve original uncertainty around stop-line crossing, adheres to all preservation constraints: one actor, Town01 map, all core topics available",
+        "expected_oracle": "red_light",
+        "modifications": {
+          "weather_delta": {
+            "rain": 5,
+            "fog": 0,
+            "wetness": 5,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 1.0,
+                "y": -0.5
+              },
+              "speed_delta": 0.0
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": false,
+            "spawn_offset": {
+              "x": 2.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Ego route must pass through intersection with active red traffic light",
+          "Only one actor present",
+          "Scenario uses Town01 map"
+        ],
+        "post_execution_validation_rules": [
+          "Confirm ego crossed stop line while traffic light was red",
+          "Check for mismatch between vehicle_cmd and vehicle_status velocity",
+          "Collect module-level evidence for root cause refinement"
+        ],
+        "uncertainty": [
+          "Specific failed Autoware module remains unconfirmed",
+          "Actuation behavior mismatch is unconfirmed until execution"
+        ]
+      },
+      {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Original ego spawn and destination kept, existing actor shifted 3m toward the ego lane and set to move slowly toward the intersection",
+        "mutation_intent": "Introduces minor scene variation while preserving original core red-light violation pattern, meets all preservation constraints, tests if a near-lane actor affects the original failure behavior",
+        "expected_oracle": "red_light",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 3,
+            "wetness": 3,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 1.5,
+                "y": 2.5
+              },
+              "speed_delta": 1.0
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Actor position and speed within allowed offset ranges",
+          "Ego route passes through red-light intersection",
+          "Only one actor, Town01 map used"
+        ],
+        "post_execution_validation_rules": [
+          "Confirm red-light violation occurred matching original labeling",
+          "Check for actuation mismatch between vehicle commands and measured velocity",
+          "Check if actor position influenced ego behavior relative to red light"
+        ],
+        "uncertainty": [
+          "Module-level root cause remains unconfirmed before execution",
+          "Stop-line crossing outcome is not confirmed prior to execution"
+        ]
+      }
+    ]
+  },
+  "raw_api_payload": {
+    "id": "02178292357843228a04e35a69bbadd2802274f74f3d7f0b894f1",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "{\n  \"case_id\": \"case_068\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Ego spawn shifted 2m closer to the intersection stop line with active red traffic light, other actor remains in near-original position\",\n      \"mutation_intent\": \"Preserves core red-light violation pattern matching original oracle labeling, adjusts ego position to resolve original uncertainty around stop-line crossing, adheres to all preservation constraints: one actor, Town01 map, all core topics available\",\n      \"expected_oracle\": \"red_light\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 5, \"fog\": 0, \"wetness\": 5, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 1.0, \"y\": -0.5}, \"speed_delta\": 0.0}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": false, \"spawn_offset\": {\"x\": 2.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Ego route must pass through intersection with active red traffic light\", \"Only one actor present\", \"Scenario uses Town01 map\"],\n      \"post_execution_validation_rules\": [\"Confirm ego crossed stop line while traffic light was red\", \"Check for mismatch between vehicle_cmd and vehicle_status velocity\", \"Collect module-level evidence for root cause refinement\"],\n      \"uncertainty\": [\"Specific failed Autoware module remains unconfirmed\", \"Actuation behavior mismatch is unconfirmed until execution\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Original ego spawn and destination kept, existing actor shifted 3m toward the ego lane and set to move slowly toward the intersection\",\n      \"mutation_intent\": \"Introduces minor scene variation while preserving original core red-light violation pattern, meets all preservation constraints, tests if a near-lane actor affects the original failure behavior\",\n      \"expected_oracle\": \"red_light\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 3, \"wetness\": 3, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 1.5, \"y\": 2.5}, \"speed_delta\": 1.0}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Actor position and speed within allowed offset ranges\", \"Ego route passes through red-light intersection\", \"Only one actor, Town01 map used\"],\n      \"post_execution_validation_rules\": [\"Confirm red-light violation occurred matching original labeling\", \"Check for actuation mismatch between vehicle commands and measured velocity\", \"Check if actor position influenced ego behavior relative to red light\"],\n      \"uncertainty\": [\"Module-level root cause remains unconfirmed before execution\", \"Stop-line crossing outcome is not confirmed prior to execution\"]\n    }\n  ]\n}",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null,
+          "reasoning_content": "\nGot it, let's build this JSON step by step. First, case_id is case_068, right? Need two candidate specs, cand_001 and cand_002.\n\nFirst, let's remember the preservation constraints: preserve red-light violation labeling, one actor, Town01, all core topics. Root cause is unconfirmed module, red light case.\n\nFirst candidate (cand_001): Let's think of a variant where we shift the ego spawn a bit closer to the stop line, keep the actor offset a little. High level variant: Ego spawn shifted 2m closer to the intersection stop line with the red traffic light, other actor stays near its original position. Mutation intent: Preserves the original red-light violation scenario core, adjusts ego position to test for stop-line crossing which was uncertain originally, keeps all constraints (one actor, Town01, core topics). Expected oracle is red_light, right? Because original is labeled red-light.\n\nModifications for cand_001: Weather delta let's do small changes, maybe rain +5, fog 0, wetness +5, puddle 0? Wait, keep deltas within [-20,20], that's fine. Actor mutations: actor index 0, position offset x 1.0, y -0.5, speed delta 0, since it's immobile. Puddles are empty original, so puddle_mutations is empty? Wait original seed has no puddles, yeah. Mission mutation: keep_original false? Wait spawn offset x 2, y 0, destination offset 0 0, right? Wait mission: spawn offset x 2.0, y 0.0, destination keep, so keep_original is false? Wait no, the schema has keep_original, if you change it, set keep_original false, right? Wait original says if keep_original is true, that means no change. So for cand_001, mission mutation: keep_original: false, spawn_offset x 2.0, y 0.0, destination offset x 0, y 0. That's within [-5,5], good.\n\nPre execution rules: [\"Ego route must pass through the intersection with active red traffic light\", \"Only one actor exists in the scenario\", \"Map remains Town01\"] Post execution: [\"Confirm red light was active when ego crossed stop line\", \"Check vehicle_cmd and vehicle_status for actuation mismatch\"] Uncertainty: [\"Still unconfirmed which Autoware module caused the violation\", \"Actuation behavior mismatch remains unconfirmed until execution\"] That fits.\n\nNow cand_002: Second variant. Let's do: Adjust the other actor position 3m to the side of the ego route, increase the actor speed delta by 1 m/s (so it's moving slowly instead of immobile, still one actor). Wait wait, original actor is immobile speed 0, so speed delta +1, that's within [-3,3], good. Position offset within [-8,8], yeah. High level variant: Static actor shifted 3m into the lane near the intersection, set to move slowly toward the intersection, ego spawn matches original position. Mutation intent: Preserves the red-light violation core scenario, tests if a slowly moving actor near the stop line affects ego's decision to run red light, keeps all constraints (one actor, Town01, core topics). Expected oracle is still red_light, right? Wait or compound? Wait no, original is red-light violation, let's keep expected oracle red_light, or wait compound? No, original says preserve the oracle, original is labeled red-light. Wait let's check: original says \"Both dataset and error.json oracle consistently label this as a red-light violation case\", so expected oracle is red_light for both? Or maybe one could be compound? Wait no, let's preserve. Wait mutation intent for cand 002: Adjusts actor position and speed to introduce minor variation while keeping the core red-light violation pattern that matches original labeling, meets all preservation constraints.\n\nModifications for cand_002: Weather delta: rain 0, fog +3, wetness +3, puddle 0, that's conservative. Actor mutations: actor index 0, position offset x 1.5, y 2.5, speed delta +1.0, that's within limits. Puddle mutations still empty because original has none. Mission mutation: keep_original true, right? Because we're not changing ego spawn or destination. That fits, keep_original is true, offsets can be 0.\n\nPre execution rules: [\"Actor is within 8m of original position, speed delta within allowed range\", \"Ego route passes through red-light intersection\", \"Map is Town01, only one actor present\"] Post execution: [\"Confirm red-light violation occurred as expected\", \"Check for actuation mismatch between vehicle_cmd and vehicle_status\", \"Verify actor position did not change the core failure scenario\"] Uncertainty: [\"Module-level root cause remains unconfirmed\", \"Stop-line crossing is not confirmed until execution\"]\n\nWait let's check all rules: exactly two candidates, all offsets within limits. Root cause preserved: yes, we keep the red-light pattern, preserve uncertainty, don't invent new oracles. Let's structure it properly.\n\nWait let's check the schema: case_id is case_068, candidate_specs array of two. Let's fill in all fields correctly.\n\nWait original seed has no puddles, so puddle_mutations is empty array, right? Yes. Let's confirm all deltas: actor position offsets are within [-8,8], yes, 2.5 is fine. Speed delta 1 is within [-3,3], yes. Mission spawn offsets 2m is within [-5,5], yes. Weather deltas 5, 3 are within [-20,20], yes. All good.\n\nWait let's write the JSON correctly now. Let's make sure no mistakes. Let's see:\n\nFirst candidate:\ncandidate_id: cand_001\nhigh_level_variant: \"Ego spawn shifted 2m closer to the intersection stop line with active red traffic light, other actor remains in near-original position\"\nmutation_intent: \"Preserves core red-light violation pattern matching original oracle labeling, adjusts ego position to resolve the original uncertainty around stop-line crossing, adheres to all preservation constraints (one actor, Town01 map, all core topics available)\"\nexpected_oracle: \"red_light\"\nmodifications:\nweather_delta: {\"rain\": 5, \"fog\": 0, \"wetness\": 5, \"puddle\": 0}\nactor_mutations: [{\"actor_index\": 0, \"position_offset\": {\"x\": 1.0, \"y\": -0.5}, \"speed_delta\": 0.0}]\npuddle_mutations: []\nmission_mutation: {\"keep_original\": false, \"spawn_offset\": {\"x\": 2.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\npre_execution_validation_rules: [\"Ego route must pass through the intersection with an active red traffic light\", \"Only one actor is present in the scenario\", \"Scenario runs on Town01 map\"]\npost_execution_validation_rules: [\"Confirm ego crossed the stop line while the traffic light was red\", \"Check for mismatch between all-zero vehicle_cmd and non-zero vehicle velocity\", \"Collect module-level evidence to refine root cause attribution\"]\nuncertainty: [\"Specific failed Autoware module remains unconfirmed before execution\", \"Actuation mismatch is still unconfirmed until post-examination\"]\n\nThen second candidate cand_002:\nhigh_level_variant: \"Original ego spawn and destination kept, existing actor shifted 3m toward the ego lane and set to move slowly toward the intersection\"\nmutation_intent: \"Introduces minor scene variation while preserving the original core red-light violation pattern, all preservation constraints are satisfied, tests if a near-lane actor affects the original failure behavior\"\nexpected_oracle: \"red_light\"\nmodifications:\nweather_delta: {\"rain\": 0, \"fog\": 3, \"wetness\": 3, \"puddle\": 0}\nactor_mutations: [{\"actor_index\": 0, \"position_offset\": {\"x\": 1.5, \"y\": 2.5}, \"speed_delta\": 1.0}]\npuddle_mutations: []\nmission_mutation: {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\npre_execution_validation_rules: [\"Actor position and speed are within allowed offset ranges\", \"Ego route passes through the red-light intersection\", \"Only one actor, Town01 map used\"]\npost_execution_validation_rules: [\"Confirm red-light violation occurred as labeled originally\", \"Verify actuation status mismatch if present\", \"Check if the actor position influenced ego's behavior relative to the red light\"]\nuncertainty: [\"Root cause module localization remains unconfirmed before execution\", \"Stop-line crossing outcome is not confirmed prior to execution\"]\n\nWait that all checks out. Let's put it all into the correct JSON structure, make sure it's valid, no extra commas, all fields are there. Let's see:\n\nYes, that fits all the rules. Two candidates, all offsets are within the required ranges, preserves the root cause pattern, preserves the oracle as red-light, keeps all preservation constraints, preserves uncertainty as required. Okay, that's the JSON."
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "doubao-seed-2-0-lite-260215",
+    "object": "chat.completion",
+    "service_tier": "default",
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 2858,
+      "prompt_tokens": 1300,
+      "total_tokens": 4158,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 2068,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": null,
+        "cached_tokens": 0
+      }
+    }
+  },
+  "error_message": "",
+  "elapsed_sec": 45.014,
+  "timestamp": "<REDACTED_TIMESTAMP>"
+}

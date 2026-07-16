@@ -1,0 +1,410 @@
+{
+  "case_id": "case_168",
+  "model_name": "ark-deepseek-r1-250528",
+  "workflow": "phase2_grounded_generation",
+  "status": "completed",
+  "schema_valid": true,
+  "schema_errors": [],
+  "phase1_ready": "yes",
+  "num_candidates_requested": 2,
+  "num_candidates_written": 2,
+  "num_pre_valid": 2,
+  "candidate_records": [
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-deepseek-r1-250528/json/case_168/case_168__cand_001.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-deepseek-r1-250528/metadata/case_168/case_168__cand_001.metadata.json",
+      "case_id": "case_168",
+      "model_name": "ark-deepseek-r1-250528",
+      "candidate_index": 1,
+      "candidate_spec": {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Slightly increased rain, fog and wetness while preserving all original core scenario parameters",
+        "mutation_intent": "Preserves all Phase 1 constraints: original ego mission, 0 dynamic actors, existing puddle regions, confirmed red-light violation outcome, retains unconfirmed lane invasion uncertainty, only adjusts weather within conservative bounds to test failure reproducibility",
+        "expected_oracle": "red_light",
+        "modifications": {
+          "weather_delta": {
+            "rain": 10,
+            "fog": 10,
+            "wetness": 8,
+            "puddle": 5
+          },
+          "actor_mutations": [],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 1.2,
+                "y": -0.8
+              },
+              "level_delta": 0.1,
+              "size_scale": 1.05
+            },
+            {
+              "puddle_index": 1,
+              "location_offset": {
+                "x": -0.5,
+                "y": 1.1
+              },
+              "level_delta": 0.05,
+              "size_scale": 0.98
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "verify 0 dynamic actors are present",
+          "verify original ego mission spawn and destination are preserved",
+          "verify all mutation parameters are within conservative bounds"
+        ],
+        "post_execution_validation_rules": [
+          "validate that red-light violation is reproduced",
+          "check for actuation command-status mismatch as noted in Phase 1",
+          "record if lane invasion occurs to resolve original label conflict"
+        ],
+        "uncertainty": [
+          "lane invasion outcome remains unconfirmed per original conflicting labels",
+          "failure module attribution remains unknown"
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 10.0,
+          "fog": 10.0,
+          "wetness": 8.0,
+          "puddle": 5.0
+        },
+        "actor_mutations": [],
+        "puddle_mutations": [
+          {
+            "puddle_index": 0,
+            "location_offset": {
+              "x": 1.2,
+              "y": -0.8
+            },
+            "level_delta": 0.1,
+            "size_scale": 1.05
+          },
+          {
+            "puddle_index": 1,
+            "location_offset": {
+              "x": -0.5,
+              "y": 1.1
+            },
+            "level_delta": 0.05,
+            "size_scale": 0.98
+          }
+        ],
+        "mission_mutation": {
+          "keep_original": true
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": [
+          "no actors in candidate scenario"
+        ]
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_168__ark-deepseek-r1-250528.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_168__ark-deepseek-r1-250528.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    },
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-deepseek-r1-250528/json/case_168/case_168__cand_002.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-deepseek-r1-250528/metadata/case_168/case_168__cand_002.metadata.json",
+      "case_id": "case_168",
+      "model_name": "ark-deepseek-r1-250528",
+      "candidate_index": 2,
+      "candidate_spec": {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Slightly adjusted puddle levels and positions with moderately reduced fog, preserves all core scenario structure",
+        "mutation_intent": "Follows all Phase 1 preservation constraints: keeps original ego mission, 0 dynamic actors, retains puddle presence, preserves expected confirmed red-light violation outcome, keeps original uncertainty for unconfirmed lane invasion and module attribution, only makes conservative adjustments to puddles and weather",
+        "expected_oracle": "red_light",
+        "modifications": {
+          "weather_delta": {
+            "rain": -5,
+            "fog": -12,
+            "wetness": -4,
+            "puddle": -3
+          },
+          "actor_mutations": [],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": -2.1,
+                "y": 1.8
+              },
+              "level_delta": -0.12,
+              "size_scale": 0.92
+            },
+            {
+              "puddle_index": 1,
+              "location_offset": {
+                "x": 1.3,
+                "y": -0.9
+              },
+              "level_delta": 0.09,
+              "size_scale": 1.08
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "verify no additional dynamic actors added to scenario",
+          "verify puddles are still present along ego's planned route",
+          "verify all mutation deltas are within allowed conservative ranges"
+        ],
+        "post_execution_validation_rules": [
+          "confirm red-light violation is reproduced",
+          "check for actuation command and vehicle status mismatch",
+          "log lane boundary crossing status to help resolve original label conflict"
+        ],
+        "uncertainty": [
+          "failure attribution to specific Autoware module remains unknown",
+          "lane invasion label conflict remains unresolved until post-execution validation"
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": -5.0,
+          "fog": -12.0,
+          "wetness": -4.0,
+          "puddle": -3.0
+        },
+        "actor_mutations": [],
+        "puddle_mutations": [
+          {
+            "puddle_index": 0,
+            "location_offset": {
+              "x": -2.1,
+              "y": 1.8
+            },
+            "level_delta": -0.12,
+            "size_scale": 0.92
+          },
+          {
+            "puddle_index": 1,
+            "location_offset": {
+              "x": 1.3,
+              "y": -0.9
+            },
+            "level_delta": 0.09,
+            "size_scale": 1.08
+          }
+        ],
+        "mission_mutation": {
+          "keep_original": true
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": [
+          "no actors in candidate scenario"
+        ]
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_168__ark-deepseek-r1-250528.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_168__ark-deepseek-r1-250528.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    }
+  ],
+  "seed_artifact_zip": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-deepseek-r1-250528/seed-artifact/seed-artifact-case_168.zip",
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_prompts/case_168__ark-deepseek-r1-250528.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_168__ark-deepseek-r1-250528.json",
+  "prompt_estimated_tokens": 1138,
+  "usage": {
+    "prompt_tokens": 1408,
+    "completion_tokens": 1957,
+    "total_tokens": 3365
+  },
+  "raw_response": "{\n  \"case_id\": \"case_168\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Slightly increased rain, fog and wetness while preserving all original core scenario parameters\",\n      \"mutation_intent\": \"Preserves all Phase 1 constraints: original ego mission, 0 dynamic actors, existing puddle regions, confirmed red-light violation outcome, retains unconfirmed lane invasion uncertainty, only adjusts weather within conservative bounds to test failure reproducibility\",\n      \"expected_oracle\": \"red_light\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 10, \"fog\": 10, \"wetness\": 8, \"puddle\": 5},\n        \"actor_mutations\": [],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": 1.2, \"y\": -0.8}, \"level_delta\": 0.1, \"size_scale\": 1.05},\n          {\"puddle_index\": 1, \"location_offset\": {\"x\": -0.5, \"y\": 1.1}, \"level_delta\": 0.05, \"size_scale\": 0.98}\n        ],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"verify 0 dynamic actors are present\", \"verify original ego mission spawn and destination are preserved\", \"verify all mutation parameters are within conservative bounds\"],\n      \"post_execution_validation_rules\": [\"validate that red-light violation is reproduced\", \"check for actuation command-status mismatch as noted in Phase 1\", \"record if lane invasion occurs to resolve original label conflict\"],\n      \"uncertainty\": [\"lane invasion outcome remains unconfirmed per original conflicting labels\", \"failure module attribution remains unknown\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Slightly adjusted puddle levels and positions with moderately reduced fog, preserves all core scenario structure\",\n      \"mutation_intent\": \"Follows all Phase 1 preservation constraints: keeps original ego mission, 0 dynamic actors, retains puddle presence, preserves expected confirmed red-light violation outcome, keeps original uncertainty for unconfirmed lane invasion and module attribution, only makes conservative adjustments to puddles and weather\",\n      \"expected_oracle\": \"red_light\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": -5, \"fog\": -12, \"wetness\": -4, \"puddle\": -3},\n        \"actor_mutations\": [],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": -2.1, \"y\": 1.8}, \"level_delta\": -0.12, \"size_scale\": 0.92},\n          {\"puddle_index\": 1, \"location_offset\": {\"x\": 1.3, \"y\": -0.9}, \"level_delta\": 0.09, \"size_scale\": 1.08}\n        ],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"verify no additional dynamic actors added to scenario\", \"verify puddles are still present along ego's planned route\", \"verify all mutation deltas are within allowed conservative ranges\"],\n      \"post_execution_validation_rules\": [\"confirm red-light violation is reproduced\", \"check for actuation command and vehicle status mismatch\", \"log lane boundary crossing status to help resolve original label conflict\"],\n      \"uncertainty\": [\"failure attribution to specific Autoware module remains unknown\", \"lane invasion label conflict remains unresolved until post-execution validation\"]\n    }\n  ]\n}",
+  "parsed_response": {
+    "case_id": "case_168",
+    "candidate_specs": [
+      {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Slightly increased rain, fog and wetness while preserving all original core scenario parameters",
+        "mutation_intent": "Preserves all Phase 1 constraints: original ego mission, 0 dynamic actors, existing puddle regions, confirmed red-light violation outcome, retains unconfirmed lane invasion uncertainty, only adjusts weather within conservative bounds to test failure reproducibility",
+        "expected_oracle": "red_light",
+        "modifications": {
+          "weather_delta": {
+            "rain": 10,
+            "fog": 10,
+            "wetness": 8,
+            "puddle": 5
+          },
+          "actor_mutations": [],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 1.2,
+                "y": -0.8
+              },
+              "level_delta": 0.1,
+              "size_scale": 1.05
+            },
+            {
+              "puddle_index": 1,
+              "location_offset": {
+                "x": -0.5,
+                "y": 1.1
+              },
+              "level_delta": 0.05,
+              "size_scale": 0.98
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "verify 0 dynamic actors are present",
+          "verify original ego mission spawn and destination are preserved",
+          "verify all mutation parameters are within conservative bounds"
+        ],
+        "post_execution_validation_rules": [
+          "validate that red-light violation is reproduced",
+          "check for actuation command-status mismatch as noted in Phase 1",
+          "record if lane invasion occurs to resolve original label conflict"
+        ],
+        "uncertainty": [
+          "lane invasion outcome remains unconfirmed per original conflicting labels",
+          "failure module attribution remains unknown"
+        ]
+      },
+      {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Slightly adjusted puddle levels and positions with moderately reduced fog, preserves all core scenario structure",
+        "mutation_intent": "Follows all Phase 1 preservation constraints: keeps original ego mission, 0 dynamic actors, retains puddle presence, preserves expected confirmed red-light violation outcome, keeps original uncertainty for unconfirmed lane invasion and module attribution, only makes conservative adjustments to puddles and weather",
+        "expected_oracle": "red_light",
+        "modifications": {
+          "weather_delta": {
+            "rain": -5,
+            "fog": -12,
+            "wetness": -4,
+            "puddle": -3
+          },
+          "actor_mutations": [],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": -2.1,
+                "y": 1.8
+              },
+              "level_delta": -0.12,
+              "size_scale": 0.92
+            },
+            {
+              "puddle_index": 1,
+              "location_offset": {
+                "x": 1.3,
+                "y": -0.9
+              },
+              "level_delta": 0.09,
+              "size_scale": 1.08
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "verify no additional dynamic actors added to scenario",
+          "verify puddles are still present along ego's planned route",
+          "verify all mutation deltas are within allowed conservative ranges"
+        ],
+        "post_execution_validation_rules": [
+          "confirm red-light violation is reproduced",
+          "check for actuation command and vehicle status mismatch",
+          "log lane boundary crossing status to help resolve original label conflict"
+        ],
+        "uncertainty": [
+          "failure attribution to specific Autoware module remains unknown",
+          "lane invasion label conflict remains unresolved until post-execution validation"
+        ]
+      }
+    ]
+  },
+  "raw_api_payload": {
+    "id": "021782924320202a5cf16cfa3c4ebff37e7c43914719d1a7b63fb",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "{\n  \"case_id\": \"case_168\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Slightly increased rain, fog and wetness while preserving all original core scenario parameters\",\n      \"mutation_intent\": \"Preserves all Phase 1 constraints: original ego mission, 0 dynamic actors, existing puddle regions, confirmed red-light violation outcome, retains unconfirmed lane invasion uncertainty, only adjusts weather within conservative bounds to test failure reproducibility\",\n      \"expected_oracle\": \"red_light\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 10, \"fog\": 10, \"wetness\": 8, \"puddle\": 5},\n        \"actor_mutations\": [],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": 1.2, \"y\": -0.8}, \"level_delta\": 0.1, \"size_scale\": 1.05},\n          {\"puddle_index\": 1, \"location_offset\": {\"x\": -0.5, \"y\": 1.1}, \"level_delta\": 0.05, \"size_scale\": 0.98}\n        ],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"verify 0 dynamic actors are present\", \"verify original ego mission spawn and destination are preserved\", \"verify all mutation parameters are within conservative bounds\"],\n      \"post_execution_validation_rules\": [\"validate that red-light violation is reproduced\", \"check for actuation command-status mismatch as noted in Phase 1\", \"record if lane invasion occurs to resolve original label conflict\"],\n      \"uncertainty\": [\"lane invasion outcome remains unconfirmed per original conflicting labels\", \"failure module attribution remains unknown\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Slightly adjusted puddle levels and positions with moderately reduced fog, preserves all core scenario structure\",\n      \"mutation_intent\": \"Follows all Phase 1 preservation constraints: keeps original ego mission, 0 dynamic actors, retains puddle presence, preserves expected confirmed red-light violation outcome, keeps original uncertainty for unconfirmed lane invasion and module attribution, only makes conservative adjustments to puddles and weather\",\n      \"expected_oracle\": \"red_light\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": -5, \"fog\": -12, \"wetness\": -4, \"puddle\": -3},\n        \"actor_mutations\": [],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": -2.1, \"y\": 1.8}, \"level_delta\": -0.12, \"size_scale\": 0.92},\n          {\"puddle_index\": 1, \"location_offset\": {\"x\": 1.3, \"y\": -0.9}, \"level_delta\": 0.09, \"size_scale\": 1.08}\n        ],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"verify no additional dynamic actors added to scenario\", \"verify puddles are still present along ego's planned route\", \"verify all mutation deltas are within allowed conservative ranges\"],\n      \"post_execution_validation_rules\": [\"confirm red-light violation is reproduced\", \"check for actuation command and vehicle status mismatch\", \"log lane boundary crossing status to help resolve original label conflict\"],\n      \"uncertainty\": [\"failure attribution to specific Autoware module remains unknown\", \"lane invasion label conflict remains unresolved until post-execution validation\"]\n    }\n  ]\n}",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null,
+          "reasoning_content": "\nGot it, let's build this JSON step by step. First, case_id is case_168 right? Then we need exactly two candidate_specs.\n\nFirst candidate, cand_001. Let's think of the high level variant. The original has rainy foggy, so first variant could be slightly increased rain and fog to test if the red light violation still happens, keep everything else same per constraints. Mutation intent: preserves all original constraints (0 actors, original mission, puddles, confirmed red light oracle, retains lane invasion uncertainty) by only slightly adjusting weather, doesn't change core scenario. Expected oracle is red-light, right? Because original confirmed that. Then modifications: weather delta, let's do rain +10, fog +10, wetness +8, puddle +5, that's within [-20,20], good. Actor mutations: original actors are 0, so... wait original actors is empty array, so actor_mutations can be empty? Wait no, wait preservation constraint says preserve 0 other actors, so actor_mutations is empty. Puddle mutations: let's adjust first puddle a bit, like location offset x 1, y -1, level delta +0.1, size scale 1.05, that's within limits. Second puddle? Or just do both? Wait, let's do both? No, or one, that's fine. Mission mutation: keep_original true, right, because constraint says preserve original start and goal. Pre execution rules: [\"verify 0 dynamic actors present\", \"verify mission spawn/destination matches original\", \"verify weather delta within allowed bounds\"], post execution: [\"verify red-light violation occurred\", \"check for actuation command-status mismatch\", \"record if lane invasion occurred to resolve label conflict\"], uncertainty: [\"lane invasion outcome remains unconfirmed per original conflicting labels\", \"failure module attribution remains unknown\"]. That's first candidate.\n\nNow second candidate, cand_002. High level variant: slightly adjusted puddle positions and levels, slightly reduced fog to test consistency of red-light violation. Mutation intent: still preserves all core constraints: 0 actors, original mission, preserves puddle presence, keeps red-light as expected oracle, retains original uncertainty for lane invasion and module attribution. Expected oracle is still red-light. Modifications: weather delta: rain -5, fog -12, wetness -3, puddle -4, all within [-20,20], good. Actor mutations still empty, since 0 actors. Puddle mutations: index 0: location offset x -1.5, y 2.0, level delta -0.12, size scale 0.95, that's within the delta for level (-0.2 to 0.2, yes, -0.12 is okay, size 0.95 between 0.8 and 1.2, good). Index 1: location offset x 0.8, y -1.2, level delta +0.08, size scale 1.02, that's fine. Mission mutation: keep_original true, right, because we have to preserve original mission. Pre execution rules: [\"verify no additional dynamic actors added\", \"verify puddles remain present in the route path\", \"verify all mutation parameters within allowed bounds\"], post execution: [\"confirm red-light violation is reproduced\", \"check actuation command vs status mismatch\", \"log lane boundary crossing status for label conflict resolution\"], uncertainty: [\"failure module attribution is still unknown\", \"lane invasion label conflict remains unresolved until post-validation\"].\n\nWait let's check all rules: exactly two candidates, offsets all within limits, speed delta for actors? Well there are no actors, so actor_mutations is empty, that's okay. Root cause preserved: yes, follows the preservation constraints. Preserve 0 actors, original mission, puddles, red light oracle, retain uncertainty. Let's check all the schema: yes, the structure is correct. Let's put it all together now.\n\nWait let's make sure the expected oracle is correct: original says confirmed red-light, unconfirmed lane invasion, so expected oracle is red-light, right? Because we preserve that. Let's confirm the case_id is case_168, yes. Candidate ids: cand_001 and cand_002, correct.\n\nWait let's check the weather deltas: all are within [-20,20], yes. Puddle level delta: all within [-0.2, 0.2], size between 0.8 and 1.2, yes. All offsets are within [-8,8], yes, all the puddle offsets are like 1, 2, way under 8. Mission is keep_original true, which follows the constraint to preserve original mission.\n\nOkay, let's write the JSON correctly now, no extra stuff, exactly as per schema."
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "doubao-seed-2-0-lite-260215",
+    "object": "chat.completion",
+    "service_tier": "default",
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 1957,
+      "prompt_tokens": 1408,
+      "total_tokens": 3365,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 1030,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": null,
+        "cached_tokens": 0
+      }
+    }
+  },
+  "error_message": "",
+  "elapsed_sec": 30.502,
+  "timestamp": "<REDACTED_TIMESTAMP>"
+}

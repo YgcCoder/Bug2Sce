@@ -1,0 +1,348 @@
+{
+  "case_id": "case_040",
+  "model_name": "ark-doubao-seed-2.0-lite-260215",
+  "workflow": "phase2_grounded_generation",
+  "status": "completed",
+  "schema_valid": true,
+  "schema_errors": [],
+  "phase1_ready": "yes",
+  "num_candidates_requested": 2,
+  "num_candidates_written": 2,
+  "num_pre_valid": 2,
+  "candidate_records": [
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-doubao-seed-2.0-lite-260215/json/case_040/case_040__cand_001.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-doubao-seed-2.0-lite-260215/metadata/case_040/case_040__cand_001.metadata.json",
+      "case_id": "case_040",
+      "model_name": "ark-doubao-seed-2.0-lite-260215",
+      "candidate_index": 1,
+      "candidate_spec": {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Slight positional adjustment of the oncoming vehicle and minor increase in rain and wetness",
+        "mutation_intent": "Preserves the original root cause pattern of consistently labeled unconfirmed red light violation, keeps all core constraints including Town01 map, mission positions, and 36 traffic lights, creates a conservative variant that maintains uncertainty",
+        "expected_oracle": "red_light",
+        "modifications": {
+          "weather_delta": {
+            "rain": 5,
+            "fog": 0,
+            "wetness": 5,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": 1.2,
+                "y": -0.8
+              },
+              "speed_delta": 1.0
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Confirm total traffic light count remains 36",
+          "Confirm map is still Town01",
+          "Check all mutation parameters are within allowed bounds"
+        ],
+        "post_execution_validation_rules": [
+          "Confirm stop-line crossing and route-light relation",
+          "Verify consistent red light violation label across generated outputs"
+        ],
+        "uncertainty": [
+          "Route-light relation is unconfirmed pre-generation",
+          "Module-level root cause remains unlocalized",
+          "Actuation behavior uncertainty is preserved"
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 5.0,
+          "fog": 0.0,
+          "wetness": 5.0,
+          "puddle": 0.0
+        },
+        "actor_mutations": [
+          {
+            "actor_index": 1,
+            "position_offset": {
+              "x": 1.2,
+              "y": -0.8
+            },
+            "speed_delta": 1.0
+          }
+        ],
+        "puddle_mutations": [],
+        "mission_mutation": {
+          "keep_original": true
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_040__ark-doubao-seed-2.0-lite-260215.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_040__ark-doubao-seed-2.0-lite-260215.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    },
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-doubao-seed-2.0-lite-260215/json/case_040/case_040__cand_002.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-doubao-seed-2.0-lite-260215/metadata/case_040/case_040__cand_002.metadata.json",
+      "case_id": "case_040",
+      "model_name": "ark-doubao-seed-2.0-lite-260215",
+      "candidate_index": 2,
+      "candidate_spec": {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Slight speed reduction of the oncoming vehicle and minor increase in fog intensity",
+        "mutation_intent": "Creates a conservative variant that maintains all original preservation constraints, keeps the unconfirmed root cause pattern and consistent red light violation oracle label",
+        "expected_oracle": "red_light",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 8,
+            "wetness": 3,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": -0.5,
+                "y": 0.3
+              },
+              "speed_delta": -1.2
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Confirm total traffic light count remains 36",
+          "Confirm mission spawn and destination positions are unchanged",
+          "Confirm map is Town01"
+        ],
+        "post_execution_validation_rules": [
+          "Confirm stop-line crossing and route-light relation",
+          "Verify consistent red light violation labeling",
+          "Check consistency between control commands and vehicle movement"
+        ],
+        "uncertainty": [
+          "No critical-window evidence localizes failure to a specific module",
+          "Actuation behavior inconsistency uncertainty is preserved",
+          "Stop-line crossing is unconfirmed pre-generation"
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 0.0,
+          "fog": 8.0,
+          "wetness": 3.0,
+          "puddle": 0.0
+        },
+        "actor_mutations": [
+          {
+            "actor_index": 1,
+            "position_offset": {
+              "x": -0.5,
+              "y": 0.3
+            },
+            "speed_delta": -1.2
+          }
+        ],
+        "puddle_mutations": [],
+        "mission_mutation": {
+          "keep_original": true
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_040__ark-doubao-seed-2.0-lite-260215.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_040__ark-doubao-seed-2.0-lite-260215.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    }
+  ],
+  "seed_artifact_zip": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-doubao-seed-2.0-lite-260215/seed-artifact/seed-artifact-case_040.zip",
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_prompts/case_040__ark-doubao-seed-2.0-lite-260215.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_040__ark-doubao-seed-2.0-lite-260215.json",
+  "prompt_estimated_tokens": 1085,
+  "usage": {
+    "prompt_tokens": 1297,
+    "completion_tokens": 2413,
+    "total_tokens": 3710
+  },
+  "raw_response": "{\n  \"case_id\": \"case_040\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Slight positional adjustment of the oncoming vehicle and minor increase in rain and wetness\",\n      \"mutation_intent\": \"Preserves the original root cause pattern of consistently labeled unconfirmed red light violation, keeps all core constraints including Town01 map, mission positions, and 36 traffic lights, creates a conservative variant that maintains uncertainty\",\n      \"expected_oracle\": \"red_light\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 5, \"fog\": 0, \"wetness\": 5, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 1, \"position_offset\": {\"x\": 1.2, \"y\": -0.8}, \"speed_delta\": 1.0}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Confirm total traffic light count remains 36\", \"Confirm map is still Town01\", \"Check all mutation parameters are within allowed bounds\"],\n      \"post_execution_validation_rules\": [\"Confirm stop-line crossing and route-light relation\", \"Verify consistent red light violation label across generated outputs\"],\n      \"uncertainty\": [\"Route-light relation is unconfirmed pre-generation\", \"Module-level root cause remains unlocalized\", \"Actuation behavior uncertainty is preserved\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Slight speed reduction of the oncoming vehicle and minor increase in fog intensity\",\n      \"mutation_intent\": \"Creates a conservative variant that maintains all original preservation constraints, keeps the unconfirmed root cause pattern and consistent red light violation oracle label\",\n      \"expected_oracle\": \"red_light\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 8, \"wetness\": 3, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 1, \"position_offset\": {\"x\": -0.5, \"y\": 0.3}, \"speed_delta\": -1.2}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Confirm total traffic light count remains 36\", \"Confirm mission spawn and destination positions are unchanged\", \"Confirm map is Town01\"],\n      \"post_execution_validation_rules\": [\"Confirm stop-line crossing and route-light relation\", \"Verify consistent red light violation labeling\", \"Check consistency between control commands and vehicle movement\"],\n      \"uncertainty\": [\"No critical-window evidence localizes failure to a specific module\", \"Actuation behavior inconsistency uncertainty is preserved\", \"Stop-line crossing is unconfirmed pre-generation\"]\n    }\n  ]\n}",
+  "parsed_response": {
+    "case_id": "case_040",
+    "candidate_specs": [
+      {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Slight positional adjustment of the oncoming vehicle and minor increase in rain and wetness",
+        "mutation_intent": "Preserves the original root cause pattern of consistently labeled unconfirmed red light violation, keeps all core constraints including Town01 map, mission positions, and 36 traffic lights, creates a conservative variant that maintains uncertainty",
+        "expected_oracle": "red_light",
+        "modifications": {
+          "weather_delta": {
+            "rain": 5,
+            "fog": 0,
+            "wetness": 5,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": 1.2,
+                "y": -0.8
+              },
+              "speed_delta": 1.0
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Confirm total traffic light count remains 36",
+          "Confirm map is still Town01",
+          "Check all mutation parameters are within allowed bounds"
+        ],
+        "post_execution_validation_rules": [
+          "Confirm stop-line crossing and route-light relation",
+          "Verify consistent red light violation label across generated outputs"
+        ],
+        "uncertainty": [
+          "Route-light relation is unconfirmed pre-generation",
+          "Module-level root cause remains unlocalized",
+          "Actuation behavior uncertainty is preserved"
+        ]
+      },
+      {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Slight speed reduction of the oncoming vehicle and minor increase in fog intensity",
+        "mutation_intent": "Creates a conservative variant that maintains all original preservation constraints, keeps the unconfirmed root cause pattern and consistent red light violation oracle label",
+        "expected_oracle": "red_light",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 8,
+            "wetness": 3,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": -0.5,
+                "y": 0.3
+              },
+              "speed_delta": -1.2
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Confirm total traffic light count remains 36",
+          "Confirm mission spawn and destination positions are unchanged",
+          "Confirm map is Town01"
+        ],
+        "post_execution_validation_rules": [
+          "Confirm stop-line crossing and route-light relation",
+          "Verify consistent red light violation labeling",
+          "Check consistency between control commands and vehicle movement"
+        ],
+        "uncertainty": [
+          "No critical-window evidence localizes failure to a specific module",
+          "Actuation behavior inconsistency uncertainty is preserved",
+          "Stop-line crossing is unconfirmed pre-generation"
+        ]
+      }
+    ]
+  },
+  "raw_api_payload": {
+    "id": "0217829221485628ac096c5b7437945ca13d80bc44bde5bd99af0",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "{\n  \"case_id\": \"case_040\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Slight positional adjustment of the oncoming vehicle and minor increase in rain and wetness\",\n      \"mutation_intent\": \"Preserves the original root cause pattern of consistently labeled unconfirmed red light violation, keeps all core constraints including Town01 map, mission positions, and 36 traffic lights, creates a conservative variant that maintains uncertainty\",\n      \"expected_oracle\": \"red_light\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 5, \"fog\": 0, \"wetness\": 5, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 1, \"position_offset\": {\"x\": 1.2, \"y\": -0.8}, \"speed_delta\": 1.0}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Confirm total traffic light count remains 36\", \"Confirm map is still Town01\", \"Check all mutation parameters are within allowed bounds\"],\n      \"post_execution_validation_rules\": [\"Confirm stop-line crossing and route-light relation\", \"Verify consistent red light violation label across generated outputs\"],\n      \"uncertainty\": [\"Route-light relation is unconfirmed pre-generation\", \"Module-level root cause remains unlocalized\", \"Actuation behavior uncertainty is preserved\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Slight speed reduction of the oncoming vehicle and minor increase in fog intensity\",\n      \"mutation_intent\": \"Creates a conservative variant that maintains all original preservation constraints, keeps the unconfirmed root cause pattern and consistent red light violation oracle label\",\n      \"expected_oracle\": \"red_light\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 8, \"wetness\": 3, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 1, \"position_offset\": {\"x\": -0.5, \"y\": 0.3}, \"speed_delta\": -1.2}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Confirm total traffic light count remains 36\", \"Confirm mission spawn and destination positions are unchanged\", \"Confirm map is Town01\"],\n      \"post_execution_validation_rules\": [\"Confirm stop-line crossing and route-light relation\", \"Verify consistent red light violation labeling\", \"Check consistency between control commands and vehicle movement\"],\n      \"uncertainty\": [\"No critical-window evidence localizes failure to a specific module\", \"Actuation behavior inconsistency uncertainty is preserved\", \"Stop-line crossing is unconfirmed pre-generation\"]\n    }\n  ]\n}",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null,
+          "reasoning_content": "\nGot it, let's build this JSON step by step. First, the case_id is case_040 right? Then we need exactly 2 candidate specs.\n\nFirst, let's recall the preservation constraints: preserve red light oracle, Town01, same mission start/goal, 36 traffic lights, post validation check stop line and route light. The root cause is unconfirmed module red light violation.\n\nFirst candidate (cand_001): High level variant could be \"Slight offset of the leading vehicle to bring it closer to ego's approach to the red light intersection, minor increase in rain intensity\". Mutation intent: \"Preserves the original red light violation oracle, keeps all core scenario elements, only adjusts actor position and weather to test if the violation persists while keeping the root cause uncertainty\". Expected oracle is red_light, right? Because that's the labeled one.\n\nModifications for cand_001: Weather delta: rain +5, wetness +5, others 0. That's within [-20,20], good. Actor mutations: actor index 1 (the vehicle) position offset x 1.2, y -0.8, speed delta +1.0. That's within [-8,8] for x/y, [-3,3] speed, good. Puddles are empty in original, so puddle_mutations is empty. Mission mutation keep_original true, offsets 0. Pre execution rules: [\"Confirm total traffic light count remains 36 in Town01\", \"Confirm actor position offset is within allowed bounds\"], post execution: [\"Confirm stop-line crossing and route-light relation\", \"Verify red light violation label consistency\"], uncertainty: same as original, like [\"Route-light relation unconfirmed pre-generation\", \"Actuation behavior uncertainty preserved\"].\n\nNow second candidate, cand_002. High level variant: \"Slight slowdown of the oncoming vehicle, minor fog increase, keep all mission parameters same\". Mutation intent: \"Preserves the original root cause pattern of unconfirmed red light violation, maintains all required constraints, creates a conservative variant with adjusted weather and actor speed to test violation consistency\". Expected oracle is red_light again.\n\nModifications: Weather delta: fog +8, wetness +3, others 0. Still within bounds. Actor mutations: actor 1, position offset x -0.5, y 0.3, speed delta -1.2. That's within allowed ranges. Puddle mutations empty. Mission keep_original true. Pre execution rules: [\"Confirm 36 total traffic lights are preserved\", \"Map remains Town01\"], post execution: [\"Confirm stop-line crossing and route-light relation\", \"Check consistency between control commands and vehicle movement\", \"Verify consistent red light violation labeling\"], uncertainty: [\"Module-level root cause remains unconfirmed\", \"Actuation behavior inconsistency uncertainty preserved\"].\n\nWait let's check all rules: exactly 2 candidates, all offsets within limits, speed delta within [-3,3], weather deltas within [-20,20], preserve oracle as red light, keep mission original which satisfies the constraint to keep same start and goal. Preserve Town01, 36 traffic lights. Root cause preserved, uncertainty preserved.\n\nLet me structure this correctly into the JSON schema. Let's make sure all fields are there. Let's check:\n\ncase_id is case_040, correct. candidate_specs array has two objects. Each has candidate_id, high_level_variant, mutation_intent, expected_oracle, modifications, pre, post, uncertainty.\n\nWait original seed has no puddles, so puddle_mutations is empty array, right? Yes. Mission mutation for both keep_original is true, since the constraint says preserve same spawn and destination, so that's correct.\n\nLet me write it out properly:\n\nFirst cand_001:\n\"candidate_id\": \"cand_001\",\n\"high_level_variant\": \"Slight positional adjustment of the oncoming vehicle and minor increase in rain and wetness\",\n\"mutation_intent\": \"Preserves the original root cause pattern of consistently labeled unconfirmed red light violation, keeps all core constraints including Town01 map, mission positions, and 36 traffic lights, creates a conservative variant that maintains uncertainty\",\n\"expected_oracle\": \"red_light\",\n\"modifications\": {\n  \"weather_delta\": {\"rain\": 5, \"fog\": 0, \"wetness\": 5, \"puddle\": 0},\n  \"actor_mutations\": [\n    {\"actor_index\": 1, \"position_offset\": {\"x\": 1.2, \"y\": -0.8}, \"speed_delta\": 1.0}\n  ],\n  \"puddle_mutations\": [],\n  \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n},\n\"pre_execution_validation_rules\": [\"Confirm total traffic light count remains 36\", \"Confirm map is still Town01\", \"Check all mutation parameters are within allowed bounds\"],\n\"post_execution_validation_rules\": [\"Confirm stop-line crossing and route-light relation\", \"Verify consistent red light violation label across generated outputs\"],\n\"uncertainty\": [\"Route-light relation is unconfirmed pre-generation\", \"Module-level root cause remains unlocalized\", \"Actuation behavior uncertainty is preserved\"]\n\nThen cand_002:\n\"candidate_id\": \"cand_002\",\n\"high_level_variant\": \"Slight speed reduction of the oncoming vehicle and minor increase in fog intensity\",\n\"mutation_intent\": \"Creates a conservative variant that maintains all original preservation constraints, keeps the unconfirmed root cause pattern and consistent red light violation oracle label\",\n\"expected_oracle\": \"red_light\",\n\"modifications\": {\n  \"weather_delta\": {\"rain\": 0, \"fog\": 8, \"wetness\": 3, \"puddle\": 0},\n  \"actor_mutations\": [\n    {\"actor_index\": 1, \"position_offset\": {\"x\": -0.5, \"y\": 0.3}, \"speed_delta\": -1.2}\n  ],\n  \"puddle_mutations\": [],\n  \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n},\n\"pre_execution_validation_rules\": [\"Confirm total traffic light count remains 36\", \"Confirm mission spawn and destination positions are unchanged\", \"Confirm map is Town01\"],\n\"post_execution_validation_rules\": [\"Confirm stop-line crossing and route-light relation\", \"Verify consistent red light violation labeling\", \"Check consistency between control commands and vehicle movement\"],\n\"uncertainty\": [\"No critical-window evidence localizes failure to a specific module\", \"Actuation behavior inconsistency uncertainty is preserved\", \"Stop-line crossing is unconfirmed pre-generation\"]\n\nWait that all checks out. Let's put it all together into the correct JSON, make sure no syntax errors. Let's check all the constraints: actor offsets are all less than 8, speed delta 1.0 and -1.2, both within [-3,3]. Weather deltas 5, 5, 8, 3 all within [-20,20]. Mission keep original true, which satisfies the constraint to preserve same start and goal. Expected oracle is red_light, which preserves the original label. Two candidates, exactly. Uncertainty preserved as per phase 1. Root cause pattern preserved. Yep. That should be it."
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "doubao-seed-2-0-lite-260215",
+    "object": "chat.completion",
+    "service_tier": "default",
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 2413,
+      "prompt_tokens": 1297,
+      "total_tokens": 3710,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 1654,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": null,
+        "cached_tokens": 0
+      }
+    }
+  },
+  "error_message": "",
+  "elapsed_sec": 40.327,
+  "timestamp": "<REDACTED_TIMESTAMP>"
+}

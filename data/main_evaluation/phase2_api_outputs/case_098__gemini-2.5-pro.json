@@ -1,0 +1,305 @@
+{
+  "case_id": "case_098",
+  "model_name": "gemini-2.5-pro",
+  "workflow": "phase2_grounded_generation",
+  "status": "completed",
+  "schema_valid": true,
+  "schema_errors": [],
+  "phase1_ready": "yes",
+  "num_candidates_requested": 2,
+  "num_candidates_written": 2,
+  "num_pre_valid": 2,
+  "candidate_records": [
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/gemini-2.5-pro/json/case_098/case_098__cand_001.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/gemini-2.5-pro/metadata/case_098/case_098__cand_001.metadata.json",
+      "case_id": "case_098",
+      "model_name": "gemini-2.5-pro",
+      "candidate_index": 1,
+      "candidate_spec": {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Increase the speed of the lead vehicle to test response to a faster obstacle.",
+        "mutation_intent": "Determine if a faster obstacle exacerbates the command/status discrepancy or changes planner behavior.",
+        "expected_oracle": "collision",
+        "modifications": {
+          "weather_delta": {
+            "rain": 10,
+            "fog": 0,
+            "wetness": 10,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "speed_delta": 2.0
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Actor 1 speed is increased."
+        ],
+        "post_execution_validation_rules": [
+          "Collision occurs.",
+          "Vehicle moves while vehicle_cmd is zero."
+        ],
+        "uncertainty": [
+          "Unclear if planner or control is the primary fault."
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 10.0,
+          "fog": 0.0,
+          "wetness": 10.0,
+          "puddle": 0.0
+        },
+        "actor_mutations": [
+          {
+            "actor_index": 1,
+            "position_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "speed_delta": 2.0
+          }
+        ],
+        "puddle_mutations": [],
+        "mission_mutation": {
+          "keep_original": true
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_098__gemini-2.5-pro.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_098__gemini-2.5-pro.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    },
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/gemini-2.5-pro/json/case_098/case_098__cand_002.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/gemini-2.5-pro/metadata/case_098/case_098__cand_002.metadata.json",
+      "case_id": "case_098",
+      "model_name": "gemini-2.5-pro",
+      "candidate_index": 2,
+      "candidate_spec": {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Move the lead vehicle closer to the ego vehicle at the start of the scenario.",
+        "mutation_intent": "Investigate if the failure is sensitive to the initial distance to the obstacle.",
+        "expected_oracle": "collision",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": 0.0,
+                "y": 4.0
+              },
+              "speed_delta": 0.0
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Actor 1 is closer to ego at spawn."
+        ],
+        "post_execution_validation_rules": [
+          "Collision occurs.",
+          "Vehicle moves while vehicle_cmd is zero."
+        ],
+        "uncertainty": [
+          "Unclear if reduced distance will trigger a different failure mode."
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 0.0,
+          "fog": 0.0,
+          "wetness": 0.0,
+          "puddle": 0.0
+        },
+        "actor_mutations": [
+          {
+            "actor_index": 1,
+            "position_offset": {
+              "x": 0.0,
+              "y": 4.0
+            },
+            "speed_delta": 0.0
+          }
+        ],
+        "puddle_mutations": [],
+        "mission_mutation": {
+          "keep_original": true
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_098__gemini-2.5-pro.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_098__gemini-2.5-pro.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    }
+  ],
+  "seed_artifact_zip": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/gemini-2.5-pro/seed-artifact/seed-artifact-case_098.zip",
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_prompts/case_098__gemini-2.5-pro.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_098__gemini-2.5-pro.json",
+  "prompt_estimated_tokens": 1015,
+  "usage": {
+    "prompt_tokens": 1458,
+    "completion_tokens": 2662,
+    "total_tokens": 4120
+  },
+  "raw_response": "```json\n{\n  \"case_id\": \"case_098\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Increase the speed of the lead vehicle to test response to a faster obstacle.\",\n      \"mutation_intent\": \"Determine if a faster obstacle exacerbates the command/status discrepancy or changes planner behavior.\",\n      \"expected_oracle\": \"collision\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 10, \"fog\": 0, \"wetness\": 10, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 1, \"position_offset\": {\"x\": 0.0, \"y\": 0.0}, \"speed_delta\": 2.0}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true}\n      },\n      \"pre_execution_validation_rules\": [\"Actor 1 speed is increased.\"],\n      \"post_execution_validation_rules\": [\"Collision occurs.\", \"Vehicle moves while vehicle_cmd is zero.\"],\n      \"uncertainty\": [\"Unclear if planner or control is the primary fault.\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Move the lead vehicle closer to the ego vehicle at the start of the scenario.\",\n      \"mutation_intent\": \"Investigate if the failure is sensitive to the initial distance to the obstacle.\",\n      \"expected_oracle\": \"collision\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 1, \"position_offset\": {\"x\": 0.0, \"y\": 4.0}, \"speed_delta\": 0.0}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true}\n      },\n      \"pre_execution_validation_rules\": [\"Actor 1 is closer to ego at spawn.\"],\n      \"post_execution_validation_rules\": [\"Collision occurs.\", \"Vehicle moves while vehicle_cmd is zero.\"],\n      \"uncertainty\": [\"Unclear if reduced distance will trigger a different failure mode.\"]\n    }\n  ]\n}\n```",
+  "parsed_response": {
+    "case_id": "case_098",
+    "candidate_specs": [
+      {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Increase the speed of the lead vehicle to test response to a faster obstacle.",
+        "mutation_intent": "Determine if a faster obstacle exacerbates the command/status discrepancy or changes planner behavior.",
+        "expected_oracle": "collision",
+        "modifications": {
+          "weather_delta": {
+            "rain": 10,
+            "fog": 0,
+            "wetness": 10,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "speed_delta": 2.0
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Actor 1 speed is increased."
+        ],
+        "post_execution_validation_rules": [
+          "Collision occurs.",
+          "Vehicle moves while vehicle_cmd is zero."
+        ],
+        "uncertainty": [
+          "Unclear if planner or control is the primary fault."
+        ]
+      },
+      {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Move the lead vehicle closer to the ego vehicle at the start of the scenario.",
+        "mutation_intent": "Investigate if the failure is sensitive to the initial distance to the obstacle.",
+        "expected_oracle": "collision",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": 0.0,
+                "y": 4.0
+              },
+              "speed_delta": 0.0
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Actor 1 is closer to ego at spawn."
+        ],
+        "post_execution_validation_rules": [
+          "Collision occurs.",
+          "Vehicle moves while vehicle_cmd is zero."
+        ],
+        "uncertainty": [
+          "Unclear if reduced distance will trigger a different failure mode."
+        ]
+      }
+    ]
+  },
+  "raw_api_payload": {
+    "id": "<REDACTED_RESPONSE_ID>",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "```json\n{\n  \"case_id\": \"case_098\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Increase the speed of the lead vehicle to test response to a faster obstacle.\",\n      \"mutation_intent\": \"Determine if a faster obstacle exacerbates the command/status discrepancy or changes planner behavior.\",\n      \"expected_oracle\": \"collision\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 10, \"fog\": 0, \"wetness\": 10, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 1, \"position_offset\": {\"x\": 0.0, \"y\": 0.0}, \"speed_delta\": 2.0}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true}\n      },\n      \"pre_execution_validation_rules\": [\"Actor 1 speed is increased.\"],\n      \"post_execution_validation_rules\": [\"Collision occurs.\", \"Vehicle moves while vehicle_cmd is zero.\"],\n      \"uncertainty\": [\"Unclear if planner or control is the primary fault.\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Move the lead vehicle closer to the ego vehicle at the start of the scenario.\",\n      \"mutation_intent\": \"Investigate if the failure is sensitive to the initial distance to the obstacle.\",\n      \"expected_oracle\": \"collision\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 1, \"position_offset\": {\"x\": 0.0, \"y\": 4.0}, \"speed_delta\": 0.0}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true}\n      },\n      \"pre_execution_validation_rules\": [\"Actor 1 is closer to ego at spawn.\"],\n      \"post_execution_validation_rules\": [\"Collision occurs.\", \"Vehicle moves while vehicle_cmd is zero.\"],\n      \"uncertainty\": [\"Unclear if reduced distance will trigger a different failure mode.\"]\n    }\n  ]\n}\n```",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "gemini-2.5-pro",
+    "object": "chat.completion",
+    "service_tier": null,
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 2662,
+      "prompt_tokens": 1458,
+      "total_tokens": 4120,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": 0,
+        "reasoning_tokens": 2100,
+        "rejected_prediction_tokens": null,
+        "text_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 0,
+        "text_tokens": 1458,
+        "image_tokens": 0
+      },
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "input_tokens_details": null,
+      "claude_cache_creation_5_m_tokens": 0,
+      "claude_cache_creation_1_h_tokens": 0
+    }
+  },
+  "error_message": "",
+  "elapsed_sec": 25.982,
+  "timestamp": "<REDACTED_TIMESTAMP>"
+}

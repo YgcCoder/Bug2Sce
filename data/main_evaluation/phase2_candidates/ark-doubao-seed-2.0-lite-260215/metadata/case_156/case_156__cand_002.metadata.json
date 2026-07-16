@@ -1,0 +1,110 @@
+{
+  "case_id": "case_156",
+  "model_name": "ark-doubao-seed-2.0-lite-260215",
+  "candidate_index": 2,
+  "candidate_spec": {
+    "candidate_id": "cand_002",
+    "high_level_variant": "Slightly reduce rain and wetness, offset ego spawn position, shift immobile actor further along ego's planned route",
+    "mutation_intent": "Variant with different road and actor positioning that preserves all core root cause pattern constraints: no pre-stuck collision/red light, non-empty planned waypoints, all-zero actuation during stuck, and the stuck failure outcome",
+    "expected_oracle": "stuck",
+    "modifications": {
+      "weather_delta": {
+        "rain": -4,
+        "fog": 0,
+        "wetness": -3,
+        "puddle": -2
+      },
+      "actor_mutations": [
+        {
+          "actor_index": 0,
+          "position_offset": {
+            "x": -3.0,
+            "y": 2.0
+          },
+          "speed_delta": 0.0
+        }
+      ],
+      "puddle_mutations": [
+        {
+          "puddle_index": 2,
+          "location_offset": {
+            "x": -1.5,
+            "y": 0.0
+          },
+          "level_delta": -0.1,
+          "size_scale": 0.95
+        }
+      ],
+      "mission_mutation": {
+        "keep_original": false,
+        "spawn_offset": {
+          "x": 2.5,
+          "y": -1.0
+        },
+        "destination_offset": {
+          "x": 1.5,
+          "y": 0.5
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Confirm no collision or red light event occurs prior to expected stuck state",
+      "Confirm the planned path maintains non-empty final waypoints throughout the test window"
+    ],
+    "post_execution_validation_rules": [
+      "Confirm ego remains stuck with zero velocity and near-zero displacement over 60 seconds",
+      "Confirm all vehicle control actuation commands are zero during the stuck window"
+    ],
+    "uncertainty": [
+      "No available evidence explains why zero actuation commands are generated despite available final waypoints",
+      "Module-level failure attribution cannot be confirmed from available evidence"
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": -4.0,
+      "fog": 0.0,
+      "wetness": -3.0,
+      "puddle": -2.0
+    },
+    "actor_mutations": [
+      {
+        "actor_index": 0,
+        "position_offset": {
+          "x": -3.0,
+          "y": 2.0
+        },
+        "speed_delta": 0.0
+      }
+    ],
+    "puddle_mutations": [
+      {
+        "puddle_index": 2,
+        "location_offset": {
+          "x": -1.5,
+          "y": 0.0
+        },
+        "level_delta": -0.1,
+        "size_scale": 0.95
+      }
+    ],
+    "mission_mutation": {
+      "spawn_offset": {
+        "x": 2.5,
+        "y": -1.0
+      },
+      "destination_offset": {
+        "x": 1.5,
+        "y": 0.5
+      }
+    }
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_156__ark-doubao-seed-2.0-lite-260215.json",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_156__ark-doubao-seed-2.0-lite-260215.json",
+  "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+}

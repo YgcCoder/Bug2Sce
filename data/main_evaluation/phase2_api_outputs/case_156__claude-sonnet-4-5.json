@@ -1,0 +1,516 @@
+{
+  "case_id": "case_156",
+  "model_name": "claude-sonnet-4-5",
+  "workflow": "phase2_grounded_generation",
+  "status": "completed",
+  "schema_valid": true,
+  "schema_errors": [],
+  "phase1_ready": "yes",
+  "num_candidates_requested": 2,
+  "num_candidates_written": 2,
+  "num_pre_valid": 2,
+  "candidate_records": [
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/claude-sonnet-4-5/json/case_156/case_156__cand_001.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/claude-sonnet-4-5/metadata/case_156/case_156__cand_001.metadata.json",
+      "case_id": "case_156",
+      "model_name": "claude-sonnet-4-5",
+      "candidate_index": 1,
+      "candidate_spec": {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Reduce puddle severity and move immobile actor slightly closer",
+        "mutation_intent": "Test if reduced puddle levels or minor actor repositioning prevents stuck behavior while preserving final waypoints",
+        "expected_oracle": "stuck",
+        "modifications": {
+          "weather_delta": {
+            "rain": -5,
+            "fog": 0,
+            "wetness": -3,
+            "puddle": -5
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": -2.0,
+                "y": 0.5
+              },
+              "speed_delta": 0.0
+            }
+          ],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": -0.15,
+              "size_scale": 0.9
+            },
+            {
+              "puddle_index": 1,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": -0.12,
+              "size_scale": 0.9
+            },
+            {
+              "puddle_index": 2,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": -0.08,
+              "size_scale": 0.95
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Immobile actor within 8m of spawn",
+          "Puddle levels remain non-negative",
+          "Weather values within valid ranges"
+        ],
+        "post_execution_validation_rules": [
+          "Last 60s displacement under 0.5m",
+          "Final velocity near zero",
+          "Final waypoints present and non-empty"
+        ],
+        "uncertainty": [
+          "Unknown if puddle or actor proximity causes stuck",
+          "Module-level fault remains unlocalized",
+          "Reduced conditions may or may not reproduce stuck"
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": -5.0,
+          "fog": 0.0,
+          "wetness": -3.0,
+          "puddle": -5.0
+        },
+        "actor_mutations": [
+          {
+            "actor_index": 0,
+            "position_offset": {
+              "x": -2.0,
+              "y": 0.5
+            },
+            "speed_delta": 0.0
+          }
+        ],
+        "puddle_mutations": [
+          {
+            "puddle_index": 0,
+            "location_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "level_delta": -0.15,
+            "size_scale": 0.9
+          },
+          {
+            "puddle_index": 1,
+            "location_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "level_delta": -0.12,
+            "size_scale": 0.9
+          },
+          {
+            "puddle_index": 2,
+            "location_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "level_delta": -0.08,
+            "size_scale": 0.95
+          }
+        ],
+        "mission_mutation": {
+          "keep_original": true
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_156__claude-sonnet-4-5.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_156__claude-sonnet-4-5.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    },
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/claude-sonnet-4-5/json/case_156/case_156__cand_002.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/claude-sonnet-4-5/metadata/case_156/case_156__cand_002.metadata.json",
+      "case_id": "case_156",
+      "model_name": "claude-sonnet-4-5",
+      "candidate_index": 2,
+      "candidate_spec": {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Increase weather severity and shift spawn slightly forward",
+        "mutation_intent": "Amplify environmental conditions and adjust spawn to test if stuck persists under harsher weather with altered initial position",
+        "expected_oracle": "stuck",
+        "modifications": {
+          "weather_delta": {
+            "rain": 10,
+            "fog": 5,
+            "wetness": 8,
+            "puddle": 10
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 1.5,
+                "y": -1.0
+              },
+              "speed_delta": 0.0
+            }
+          ],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 1.0,
+                "y": 0.0
+              },
+              "level_delta": 0.1,
+              "size_scale": 1.05
+            },
+            {
+              "puddle_index": 1,
+              "location_offset": {
+                "x": -1.0,
+                "y": 0.0
+              },
+              "level_delta": 0.08,
+              "size_scale": 1.05
+            },
+            {
+              "puddle_index": 2,
+              "location_offset": {
+                "x": 0.0,
+                "y": 1.0
+              },
+              "level_delta": 0.05,
+              "size_scale": 1.1
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": false,
+            "spawn_offset": {
+              "x": 2.0,
+              "y": 0.5
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Spawn offset within 5m",
+          "Puddle levels under 1.0",
+          "Weather deltas within conservative bounds"
+        ],
+        "post_execution_validation_rules": [
+          "Stuck duration exceeds 30s",
+          "Vehicle commands near zero during stuck",
+          "Final waypoints available"
+        ],
+        "uncertainty": [
+          "Harsher weather may introduce new failure modes",
+          "Spawn shift may bypass or trigger stuck differently",
+          "Root cause module still unknown"
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 10.0,
+          "fog": 5.0,
+          "wetness": 8.0,
+          "puddle": 10.0
+        },
+        "actor_mutations": [
+          {
+            "actor_index": 0,
+            "position_offset": {
+              "x": 1.5,
+              "y": -1.0
+            },
+            "speed_delta": 0.0
+          }
+        ],
+        "puddle_mutations": [
+          {
+            "puddle_index": 0,
+            "location_offset": {
+              "x": 1.0,
+              "y": 0.0
+            },
+            "level_delta": 0.1,
+            "size_scale": 1.05
+          },
+          {
+            "puddle_index": 1,
+            "location_offset": {
+              "x": -1.0,
+              "y": 0.0
+            },
+            "level_delta": 0.08,
+            "size_scale": 1.05
+          },
+          {
+            "puddle_index": 2,
+            "location_offset": {
+              "x": 0.0,
+              "y": 1.0
+            },
+            "level_delta": 0.05,
+            "size_scale": 1.1
+          }
+        ],
+        "mission_mutation": {
+          "spawn_offset": {
+            "x": 2.0,
+            "y": 0.5
+          },
+          "destination_offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_156__claude-sonnet-4-5.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_156__claude-sonnet-4-5.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    }
+  ],
+  "seed_artifact_zip": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/claude-sonnet-4-5/seed-artifact/seed-artifact-case_156.zip",
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_prompts/case_156__claude-sonnet-4-5.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_156__claude-sonnet-4-5.json",
+  "prompt_estimated_tokens": 1275,
+  "usage": {
+    "prompt_tokens": 1569,
+    "completion_tokens": 1058,
+    "total_tokens": 2627
+  },
+  "raw_response": "```json\n{\n  \"case_id\": \"case_156\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Reduce puddle severity and move immobile actor slightly closer\",\n      \"mutation_intent\": \"Test if reduced puddle levels or minor actor repositioning prevents stuck behavior while preserving final waypoints\",\n      \"expected_oracle\": \"stuck\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": -5, \"fog\": 0, \"wetness\": -3, \"puddle\": -5},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": -2.0, \"y\": 0.5}, \"speed_delta\": 0.0}\n        ],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": -0.15, \"size_scale\": 0.9},\n          {\"puddle_index\": 1, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": -0.12, \"size_scale\": 0.9},\n          {\"puddle_index\": 2, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": -0.08, \"size_scale\": 0.95}\n        ],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Immobile actor within 8m of spawn\", \"Puddle levels remain non-negative\", \"Weather values within valid ranges\"],\n      \"post_execution_validation_rules\": [\"Last 60s displacement under 0.5m\", \"Final velocity near zero\", \"Final waypoints present and non-empty\"],\n      \"uncertainty\": [\"Unknown if puddle or actor proximity causes stuck\", \"Module-level fault remains unlocalized\", \"Reduced conditions may or may not reproduce stuck\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Increase weather severity and shift spawn slightly forward\",\n      \"mutation_intent\": \"Amplify environmental conditions and adjust spawn to test if stuck persists under harsher weather with altered initial position\",\n      \"expected_oracle\": \"stuck\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 10, \"fog\": 5, \"wetness\": 8, \"puddle\": 10},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 1.5, \"y\": -1.0}, \"speed_delta\": 0.0}\n        ],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": 1.0, \"y\": 0.0}, \"level_delta\": 0.1, \"size_scale\": 1.05},\n          {\"puddle_index\": 1, \"location_offset\": {\"x\": -1.0, \"y\": 0.0}, \"level_delta\": 0.08, \"size_scale\": 1.05},\n          {\"puddle_index\": 2, \"location_offset\": {\"x\": 0.0, \"y\": 1.0}, \"level_delta\": 0.05, \"size_scale\": 1.1}\n        ],\n        \"mission_mutation\": {\"keep_original\": false, \"spawn_offset\": {\"x\": 2.0, \"y\": 0.5}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Spawn offset within 5m\", \"Puddle levels under 1.0\", \"Weather deltas within conservative bounds\"],\n      \"post_execution_validation_rules\": [\"Stuck duration exceeds 30s\", \"Vehicle commands near zero during stuck\", \"Final waypoints available\"],\n      \"uncertainty\": [\"Harsher weather may introduce new failure modes\", \"Spawn shift may bypass or trigger stuck differently\", \"Root cause module still unknown\"]\n    }\n  ]\n}\n```",
+  "parsed_response": {
+    "case_id": "case_156",
+    "candidate_specs": [
+      {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Reduce puddle severity and move immobile actor slightly closer",
+        "mutation_intent": "Test if reduced puddle levels or minor actor repositioning prevents stuck behavior while preserving final waypoints",
+        "expected_oracle": "stuck",
+        "modifications": {
+          "weather_delta": {
+            "rain": -5,
+            "fog": 0,
+            "wetness": -3,
+            "puddle": -5
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": -2.0,
+                "y": 0.5
+              },
+              "speed_delta": 0.0
+            }
+          ],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": -0.15,
+              "size_scale": 0.9
+            },
+            {
+              "puddle_index": 1,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": -0.12,
+              "size_scale": 0.9
+            },
+            {
+              "puddle_index": 2,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": -0.08,
+              "size_scale": 0.95
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Immobile actor within 8m of spawn",
+          "Puddle levels remain non-negative",
+          "Weather values within valid ranges"
+        ],
+        "post_execution_validation_rules": [
+          "Last 60s displacement under 0.5m",
+          "Final velocity near zero",
+          "Final waypoints present and non-empty"
+        ],
+        "uncertainty": [
+          "Unknown if puddle or actor proximity causes stuck",
+          "Module-level fault remains unlocalized",
+          "Reduced conditions may or may not reproduce stuck"
+        ]
+      },
+      {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Increase weather severity and shift spawn slightly forward",
+        "mutation_intent": "Amplify environmental conditions and adjust spawn to test if stuck persists under harsher weather with altered initial position",
+        "expected_oracle": "stuck",
+        "modifications": {
+          "weather_delta": {
+            "rain": 10,
+            "fog": 5,
+            "wetness": 8,
+            "puddle": 10
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 1.5,
+                "y": -1.0
+              },
+              "speed_delta": 0.0
+            }
+          ],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 1.0,
+                "y": 0.0
+              },
+              "level_delta": 0.1,
+              "size_scale": 1.05
+            },
+            {
+              "puddle_index": 1,
+              "location_offset": {
+                "x": -1.0,
+                "y": 0.0
+              },
+              "level_delta": 0.08,
+              "size_scale": 1.05
+            },
+            {
+              "puddle_index": 2,
+              "location_offset": {
+                "x": 0.0,
+                "y": 1.0
+              },
+              "level_delta": 0.05,
+              "size_scale": 1.1
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": false,
+            "spawn_offset": {
+              "x": 2.0,
+              "y": 0.5
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Spawn offset within 5m",
+          "Puddle levels under 1.0",
+          "Weather deltas within conservative bounds"
+        ],
+        "post_execution_validation_rules": [
+          "Stuck duration exceeds 30s",
+          "Vehicle commands near zero during stuck",
+          "Final waypoints available"
+        ],
+        "uncertainty": [
+          "Harsher weather may introduce new failure modes",
+          "Spawn shift may bypass or trigger stuck differently",
+          "Root cause module still unknown"
+        ]
+      }
+    ]
+  },
+  "raw_api_payload": {
+    "id": "<REDACTED_RESPONSE_ID>",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "```json\n{\n  \"case_id\": \"case_156\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Reduce puddle severity and move immobile actor slightly closer\",\n      \"mutation_intent\": \"Test if reduced puddle levels or minor actor repositioning prevents stuck behavior while preserving final waypoints\",\n      \"expected_oracle\": \"stuck\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": -5, \"fog\": 0, \"wetness\": -3, \"puddle\": -5},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": -2.0, \"y\": 0.5}, \"speed_delta\": 0.0}\n        ],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": -0.15, \"size_scale\": 0.9},\n          {\"puddle_index\": 1, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": -0.12, \"size_scale\": 0.9},\n          {\"puddle_index\": 2, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": -0.08, \"size_scale\": 0.95}\n        ],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Immobile actor within 8m of spawn\", \"Puddle levels remain non-negative\", \"Weather values within valid ranges\"],\n      \"post_execution_validation_rules\": [\"Last 60s displacement under 0.5m\", \"Final velocity near zero\", \"Final waypoints present and non-empty\"],\n      \"uncertainty\": [\"Unknown if puddle or actor proximity causes stuck\", \"Module-level fault remains unlocalized\", \"Reduced conditions may or may not reproduce stuck\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Increase weather severity and shift spawn slightly forward\",\n      \"mutation_intent\": \"Amplify environmental conditions and adjust spawn to test if stuck persists under harsher weather with altered initial position\",\n      \"expected_oracle\": \"stuck\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 10, \"fog\": 5, \"wetness\": 8, \"puddle\": 10},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 1.5, \"y\": -1.0}, \"speed_delta\": 0.0}\n        ],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": 1.0, \"y\": 0.0}, \"level_delta\": 0.1, \"size_scale\": 1.05},\n          {\"puddle_index\": 1, \"location_offset\": {\"x\": -1.0, \"y\": 0.0}, \"level_delta\": 0.08, \"size_scale\": 1.05},\n          {\"puddle_index\": 2, \"location_offset\": {\"x\": 0.0, \"y\": 1.0}, \"level_delta\": 0.05, \"size_scale\": 1.1}\n        ],\n        \"mission_mutation\": {\"keep_original\": false, \"spawn_offset\": {\"x\": 2.0, \"y\": 0.5}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Spawn offset within 5m\", \"Puddle levels under 1.0\", \"Weather deltas within conservative bounds\"],\n      \"post_execution_validation_rules\": [\"Stuck duration exceeds 30s\", \"Vehicle commands near zero during stuck\", \"Final waypoints available\"],\n      \"uncertainty\": [\"Harsher weather may introduce new failure modes\", \"Spawn shift may bypass or trigger stuck differently\", \"Root cause module still unknown\"]\n    }\n  ]\n}\n```",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "claude-sonnet-4-5",
+    "object": "chat.completion",
+    "service_tier": null,
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 1058,
+      "prompt_tokens": 1569,
+      "total_tokens": 2627,
+      "completion_tokens_details": null,
+      "prompt_tokens_details": null
+    }
+  },
+  "error_message": "",
+  "elapsed_sec": 18.114,
+  "timestamp": "<REDACTED_TIMESTAMP>"
+}

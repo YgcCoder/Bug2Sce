@@ -1,0 +1,63 @@
+{
+  "case_id": "case_040",
+  "model_name": "gemini-2.5-pro",
+  "candidate_index": 1,
+  "candidate_spec": {
+    "candidate_id": "cand_001",
+    "high_level_variant": "Replicate red light violation with slightly better weather.",
+    "mutation_intent": "Confirm the planner's failure to stop for a red light by reducing potential weather-related perception noise.",
+    "expected_oracle": "red_light",
+    "modifications": {
+      "weather_delta": {
+        "rain": -20,
+        "fog": -15,
+        "wetness": -20,
+        "puddle": 0
+      },
+      "actor_mutations": [],
+      "puddle_mutations": [],
+      "mission_mutation": {
+        "keep_original": true,
+        "spawn_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "destination_offset": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "A traffic light on the ego's route must be red."
+    ],
+    "post_execution_validation_rules": [
+      "Ego must violate the red light.",
+      "Planner waypoints must lack a stop command."
+    ],
+    "uncertainty": [
+      "Route-to-light relationship is not confirmed by evidence."
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": -20,
+      "fog": -15.0,
+      "wetness": -20,
+      "puddle": 0.0
+    },
+    "actor_mutations": [],
+    "puddle_mutations": [],
+    "mission_mutation": {
+      "keep_original": true
+    }
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_040__gemini-2.5-pro.json",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_040__gemini-2.5-pro.json",
+  "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+}

@@ -1,0 +1,645 @@
+{
+  "case_id": "case_142",
+  "model_name": "gpt-5.1",
+  "workflow": "phase2_grounded_generation",
+  "status": "completed",
+  "schema_valid": true,
+  "schema_errors": [],
+  "phase1_ready": "yes",
+  "num_candidates_requested": 2,
+  "num_candidates_written": 2,
+  "num_pre_valid": 2,
+  "candidate_records": [
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/gpt-5.1/json/case_142/case_142__cand_001.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/gpt-5.1/metadata/case_142/case_142__cand_001.metadata.json",
+      "case_id": "case_142",
+      "model_name": "gpt-5.1",
+      "candidate_index": 1,
+      "candidate_spec": {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Slightly closer oncoming/autopilot vehicle ahead of ego near signalized intersection, preserving late-run on-route collision under active non-green traffic lights.",
+        "mutation_intent": "Tighten spatial interaction between ego and the primary vehicle actor while keeping overall route, traffic lights, and environment similar, so that the ego remains in motion with adequate perception/planning signals but still collides near the end of the run without clear braking, matching the unresolved-module root-cause pattern.",
+        "expected_oracle": "collision",
+        "modifications": {
+          "weather_delta": {
+            "rain": 5,
+            "fog": -10,
+            "wetness": 5,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": -3.0,
+                "y": -2.0
+              },
+              "speed_delta": -0.5
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": 2.0,
+                "y": 4.0
+              },
+              "speed_delta": -1.0
+            },
+            {
+              "actor_index": 2,
+              "position_offset": {
+                "x": 1.0,
+                "y": -1.0
+              },
+              "speed_delta": 0.0
+            }
+          ],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": -2.0,
+                "y": -1.5
+              },
+              "level_delta": 0.05,
+              "size_scale": 1.05
+            },
+            {
+              "puddle_index": 1,
+              "location_offset": {
+                "x": 0.5,
+                "y": 2.0
+              },
+              "level_delta": 0.0,
+              "size_scale": 1.0
+            },
+            {
+              "puddle_index": 2,
+              "location_offset": {
+                "x": -1.0,
+                "y": 1.0
+              },
+              "level_delta": 0.02,
+              "size_scale": 1.0
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": false,
+            "spawn_offset": {
+              "x": -2.0,
+              "y": -1.0
+            },
+            "destination_offset": {
+              "x": 3.0,
+              "y": 2.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Ensure mission route still passes through at least one signalized intersection with active traffic_lights messages.",
+          "Verify that all mutated actors (indices 0,1,2) spawn successfully on valid lanes or walkable areas and remain within map drivable bounds.",
+          "Check that overall scenario duration and route length are sufficient for a late-run interaction between ego and actor_index 0.",
+          "Confirm that moderate rain/fog/wetness adjustments do not disable or drastically degrade perception topics (detection, prediction)."
+        ],
+        "post_execution_validation_rules": [
+          "Check oracle summary for a collision involving the ego near the end of the run; discard runs without a late-run collision.",
+          "Confirm traffic_lights topic exists and includes at least one red or non-green state in the time window leading up to the collision.",
+          "Verify ego has nonzero forward speed (using vehicle_status or odometry) immediately before impact; filter out cases where ego is fully stopped prior to collision.",
+          "Ensure detection and prediction topics report at least one nearby object during the pre-collision window, and planning final_waypoints remain populated and continuous up to the collision.",
+          "Do not require lane_invasion or a confirmed red-light stop-line crossing; treat such labels as non-essential for same-root-cause.",
+          "Check that braking commands in vehicle_cmd or effective deceleration in vehicle_status remain weak or delayed relative to the time of impact, consistent with minimal or no timely braking before collision."
+        ],
+        "uncertainty": [
+          "Exact spatial relation between ego path and traffic light stop line remains unconstrained; red-light violation may or may not be reported.",
+          "Responsibility among perception, planning, actuation, or simulator for the lack of timely braking is not identifiable from runtime logs alone.",
+          "Lane_invasion labels, if present, may disagree between dataset and error.json and should not be relied on for root-cause matching."
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 5.0,
+          "fog": -10.0,
+          "wetness": 5.0,
+          "puddle": 0.0
+        },
+        "actor_mutations": [
+          {
+            "actor_index": 0,
+            "position_offset": {
+              "x": -3.0,
+              "y": -2.0
+            },
+            "speed_delta": -0.5
+          },
+          {
+            "actor_index": 1,
+            "position_offset": {
+              "x": 2.0,
+              "y": 4.0
+            },
+            "speed_delta": -1.0
+          },
+          {
+            "actor_index": 2,
+            "position_offset": {
+              "x": 1.0,
+              "y": -1.0
+            },
+            "speed_delta": 0.0
+          }
+        ],
+        "puddle_mutations": [
+          {
+            "puddle_index": 0,
+            "location_offset": {
+              "x": -2.0,
+              "y": -1.5
+            },
+            "level_delta": 0.05,
+            "size_scale": 1.05
+          },
+          {
+            "puddle_index": 1,
+            "location_offset": {
+              "x": 0.5,
+              "y": 2.0
+            },
+            "level_delta": 0.0,
+            "size_scale": 1.0
+          },
+          {
+            "puddle_index": 2,
+            "location_offset": {
+              "x": -1.0,
+              "y": 1.0
+            },
+            "level_delta": 0.02,
+            "size_scale": 1.0
+          }
+        ],
+        "mission_mutation": {
+          "spawn_offset": {
+            "x": -2.0,
+            "y": -1.0
+          },
+          "destination_offset": {
+            "x": 3.0,
+            "y": 2.0
+          }
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_142__gpt-5.1.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_142__gpt-5.1.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    },
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/gpt-5.1/json/case_142/case_142__cand_002.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/gpt-5.1/metadata/case_142/case_142__cand_002.metadata.json",
+      "case_id": "case_142",
+      "model_name": "gpt-5.1",
+      "candidate_index": 2,
+      "candidate_spec": {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Ego follows a slightly shifted route with a slower cross-traffic vehicle introduced near a red or changing light, encouraging a side-impact collision while ego keeps moving without clear braking.",
+        "mutation_intent": "Reposition the linear-moving vehicle to act as cross-traffic near a controlled intersection and slightly adjust ego mission, so a collision occurs under active non-green signals with intact perception/prediction/waypoints and no clear braking, while keeping the underlying responsibility ambiguous across modules.",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": -5,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 1.5,
+                "y": -2.5
+              },
+              "speed_delta": 0.0
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": -4.0,
+                "y": 6.0
+              },
+              "speed_delta": -2.0
+            },
+            {
+              "actor_index": 2,
+              "position_offset": {
+                "x": -2.0,
+                "y": 0.5
+              },
+              "speed_delta": 0.0
+            }
+          ],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 1.0,
+                "y": 0.0
+              },
+              "level_delta": 0.0,
+              "size_scale": 1.0
+            },
+            {
+              "puddle_index": 1,
+              "location_offset": {
+                "x": -1.5,
+                "y": 1.0
+              },
+              "level_delta": 0.03,
+              "size_scale": 1.1
+            },
+            {
+              "puddle_index": 2,
+              "location_offset": {
+                "x": 0.0,
+                "y": -2.0
+              },
+              "level_delta": -0.05,
+              "size_scale": 0.9
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": false,
+            "spawn_offset": {
+              "x": 1.0,
+              "y": 2.5
+            },
+            "destination_offset": {
+              "x": -4.0,
+              "y": -1.5
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Verify that the adjusted mission route still encounters at least one intersection controlled by traffic lights with proper signal scheduling.",
+          "Ensure actor_index 1 (linear vehicle) trajectory intersects or closely passes the ego route near a signalized junction within the run duration.",
+          "Confirm that ego and actor_index 1 are configured so they reach the intersection with overlapping time windows likely to create a collision opportunity.",
+          "Check that perception-related topics are enabled and not suppressed by the slight improvement in visibility (reduced fog)."
+        ],
+        "post_execution_validation_rules": [
+          "Require oracle to report a collision involving the ego; additionally, accept cases where a red_light violation is also reported, treating them as compound outcomes.",
+          "Confirm via logs that at least one traffic light affecting or near the ego path shows a red or transitioning state shortly before collision.",
+          "Check that ego maintains nonzero forward speed in the final seconds before collision; exclude runs where ego is fully stationary well before impact.",
+          "Verify presence of detection objects and prediction tracks for nearby actors (especially actor_index 1) in the pre-collision window, and continuous final_waypoints up to collision.",
+          "Inspect vehicle_cmd and vehicle_status to ensure there is no strong, sustained braking sufficiently ahead of impact to count as a successful avoidance maneuver.",
+          "Do not enforce lane_invasion as necessary; treat any reported lane_invasion as incidental and not defining for same-root-cause.",
+          "If the oracle only reports collision without red_light, still accept as same-root-cause as long as non-green traffic light states existed in the vicinity and time window of the collision."
+        ],
+        "uncertainty": [
+          "Whether the oracle will flag a red_light violation in addition to collision depends on the exact stop-line geometry and signal phase at crossing time.",
+          "The precise allocation of fault between perception (e.g., missed objects), planning (e.g., unadjusted waypoints), and actuation (e.g., ineffective braking) cannot be determined from scenario-level specification.",
+          "Lane-invasion behavior may or may not be present and is not constrained by this variant."
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 0.0,
+          "fog": -5.0,
+          "wetness": 0.0,
+          "puddle": 0.0
+        },
+        "actor_mutations": [
+          {
+            "actor_index": 0,
+            "position_offset": {
+              "x": 1.5,
+              "y": -2.5
+            },
+            "speed_delta": 0.0
+          },
+          {
+            "actor_index": 1,
+            "position_offset": {
+              "x": -4.0,
+              "y": 6.0
+            },
+            "speed_delta": -2.0
+          },
+          {
+            "actor_index": 2,
+            "position_offset": {
+              "x": -2.0,
+              "y": 0.5
+            },
+            "speed_delta": 0.0
+          }
+        ],
+        "puddle_mutations": [
+          {
+            "puddle_index": 0,
+            "location_offset": {
+              "x": 1.0,
+              "y": 0.0
+            },
+            "level_delta": 0.0,
+            "size_scale": 1.0
+          },
+          {
+            "puddle_index": 1,
+            "location_offset": {
+              "x": -1.5,
+              "y": 1.0
+            },
+            "level_delta": 0.03,
+            "size_scale": 1.1
+          },
+          {
+            "puddle_index": 2,
+            "location_offset": {
+              "x": 0.0,
+              "y": -2.0
+            },
+            "level_delta": -0.05,
+            "size_scale": 0.9
+          }
+        ],
+        "mission_mutation": {
+          "spawn_offset": {
+            "x": 1.0,
+            "y": 2.5
+          },
+          "destination_offset": {
+            "x": -4.0,
+            "y": -1.5
+          }
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_142__gpt-5.1.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_142__gpt-5.1.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    }
+  ],
+  "seed_artifact_zip": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/gpt-5.1/seed-artifact/seed-artifact-case_142.zip",
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_prompts/case_142__gpt-5.1.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_142__gpt-5.1.json",
+  "prompt_estimated_tokens": 1564,
+  "usage": {
+    "prompt_tokens": 1614,
+    "completion_tokens": 2041,
+    "total_tokens": 3655
+  },
+  "raw_response": "{\n  \"case_id\": \"case_142\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Slightly closer oncoming/autopilot vehicle ahead of ego near signalized intersection, preserving late-run on-route collision under active non-green traffic lights.\",\n      \"mutation_intent\": \"Tighten spatial interaction between ego and the primary vehicle actor while keeping overall route, traffic lights, and environment similar, so that the ego remains in motion with adequate perception/planning signals but still collides near the end of the run without clear braking, matching the unresolved-module root-cause pattern.\",\n      \"expected_oracle\": \"collision\",\n      \"modifications\": {\n        \"weather_delta\": {\n          \"rain\": 5,\n          \"fog\": -10,\n          \"wetness\": 5,\n          \"puddle\": 0\n        },\n        \"actor_mutations\": [\n          {\n            \"actor_index\": 0,\n            \"position_offset\": {\n              \"x\": -3.0,\n              \"y\": -2.0\n            },\n            \"speed_delta\": -0.5\n          },\n          {\n            \"actor_index\": 1,\n            \"position_offset\": {\n              \"x\": 2.0,\n              \"y\": 4.0\n            },\n            \"speed_delta\": -1.0\n          },\n          {\n            \"actor_index\": 2,\n            \"position_offset\": {\n              \"x\": 1.0,\n              \"y\": -1.0\n            },\n            \"speed_delta\": 0.0\n          }\n        ],\n        \"puddle_mutations\": [\n          {\n            \"puddle_index\": 0,\n            \"location_offset\": {\n              \"x\": -2.0,\n              \"y\": -1.5\n            },\n            \"level_delta\": 0.05,\n            \"size_scale\": 1.05\n          },\n          {\n            \"puddle_index\": 1,\n            \"location_offset\": {\n              \"x\": 0.5,\n              \"y\": 2.0\n            },\n            \"level_delta\": 0.0,\n            \"size_scale\": 1.0\n          },\n          {\n            \"puddle_index\": 2,\n            \"location_offset\": {\n              \"x\": -1.0,\n              \"y\": 1.0\n            },\n            \"level_delta\": 0.02,\n            \"size_scale\": 1.0\n          }\n        ],\n        \"mission_mutation\": {\n          \"keep_original\": false,\n          \"spawn_offset\": {\n            \"x\": -2.0,\n            \"y\": -1.0\n          },\n          \"destination_offset\": {\n            \"x\": 3.0,\n            \"y\": 2.0\n          }\n        }\n      },\n      \"pre_execution_validation_rules\": [\n        \"Ensure mission route still passes through at least one signalized intersection with active traffic_lights messages.\",\n        \"Verify that all mutated actors (indices 0,1,2) spawn successfully on valid lanes or walkable areas and remain within map drivable bounds.\",\n        \"Check that overall scenario duration and route length are sufficient for a late-run interaction between ego and actor_index 0.\",\n        \"Confirm that moderate rain/fog/wetness adjustments do not disable or drastically degrade perception topics (detection, prediction).\"\n      ],\n      \"post_execution_validation_rules\": [\n        \"Check oracle summary for a collision involving the ego near the end of the run; discard runs without a late-run collision.\",\n        \"Confirm traffic_lights topic exists and includes at least one red or non-green state in the time window leading up to the collision.\",\n        \"Verify ego has nonzero forward speed (using vehicle_status or odometry) immediately before impact; filter out cases where ego is fully stopped prior to collision.\",\n        \"Ensure detection and prediction topics report at least one nearby object during the pre-collision window, and planning final_waypoints remain populated and continuous up to the collision.\",\n        \"Do not require lane_invasion or a confirmed red-light stop-line crossing; treat such labels as non-essential for same-root-cause.\",\n        \"Check that braking commands in vehicle_cmd or effective deceleration in vehicle_status remain weak or delayed relative to the time of impact, consistent with minimal or no timely braking before collision.\"\n      ],\n      \"uncertainty\": [\n        \"Exact spatial relation between ego path and traffic light stop line remains unconstrained; red-light violation may or may not be reported.\",\n        \"Responsibility among perception, planning, actuation, or simulator for the lack of timely braking is not identifiable from runtime logs alone.\",\n        \"Lane_invasion labels, if present, may disagree between dataset and error.json and should not be relied on for root-cause matching.\"\n      ]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Ego follows a slightly shifted route with a slower cross-traffic vehicle introduced near a red or changing light, encouraging a side-impact collision while ego keeps moving without clear braking.\",\n      \"mutation_intent\": \"Reposition the linear-moving vehicle to act as cross-traffic near a controlled intersection and slightly adjust ego mission, so a collision occurs under active non-green signals with intact perception/prediction/waypoints and no clear braking, while keeping the underlying responsibility ambiguous across modules.\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\n          \"rain\": 0,\n          \"fog\": -5,\n          \"wetness\": 0,\n          \"puddle\": 0\n        },\n        \"actor_mutations\": [\n          {\n            \"actor_index\": 0,\n            \"position_offset\": {\n              \"x\": 1.5,\n              \"y\": -2.5\n            },\n            \"speed_delta\": 0.0\n          },\n          {\n            \"actor_index\": 1,\n            \"position_offset\": {\n              \"x\": -4.0,\n              \"y\": 6.0\n            },\n            \"speed_delta\": -2.0\n          },\n          {\n            \"actor_index\": 2,\n            \"position_offset\": {\n              \"x\": -2.0,\n              \"y\": 0.5\n            },\n            \"speed_delta\": 0.0\n          }\n        ],\n        \"puddle_mutations\": [\n          {\n            \"puddle_index\": 0,\n            \"location_offset\": {\n              \"x\": 1.0,\n              \"y\": 0.0\n            },\n            \"level_delta\": 0.0,\n            \"size_scale\": 1.0\n          },\n          {\n            \"puddle_index\": 1,\n            \"location_offset\": {\n              \"x\": -1.5,\n              \"y\": 1.0\n            },\n            \"level_delta\": 0.03,\n            \"size_scale\": 1.1\n          },\n          {\n            \"puddle_index\": 2,\n            \"location_offset\": {\n              \"x\": 0.0,\n              \"y\": -2.0\n            },\n            \"level_delta\": -0.05,\n            \"size_scale\": 0.9\n          }\n        ],\n        \"mission_mutation\": {\n          \"keep_original\": false,\n          \"spawn_offset\": {\n            \"x\": 1.0,\n            \"y\": 2.5\n          },\n          \"destination_offset\": {\n            \"x\": -4.0,\n            \"y\": -1.5\n          }\n        }\n      },\n      \"pre_execution_validation_rules\": [\n        \"Verify that the adjusted mission route still encounters at least one intersection controlled by traffic lights with proper signal scheduling.\",\n        \"Ensure actor_index 1 (linear vehicle) trajectory intersects or closely passes the ego route near a signalized junction within the run duration.\",\n        \"Confirm that ego and actor_index 1 are configured so they reach the intersection with overlapping time windows likely to create a collision opportunity.\",\n        \"Check that perception-related topics are enabled and not suppressed by the slight improvement in visibility (reduced fog).\"\n      ],\n      \"post_execution_validation_rules\": [\n        \"Require oracle to report a collision involving the ego; additionally, accept cases where a red_light violation is also reported, treating them as compound outcomes.\",\n        \"Confirm via logs that at least one traffic light affecting or near the ego path shows a red or transitioning state shortly before collision.\",\n        \"Check that ego maintains nonzero forward speed in the final seconds before collision; exclude runs where ego is fully stationary well before impact.\",\n        \"Verify presence of detection objects and prediction tracks for nearby actors (especially actor_index 1) in the pre-collision window, and continuous final_waypoints up to collision.\",\n        \"Inspect vehicle_cmd and vehicle_status to ensure there is no strong, sustained braking sufficiently ahead of impact to count as a successful avoidance maneuver.\",\n        \"Do not enforce lane_invasion as necessary; treat any reported lane_invasion as incidental and not defining for same-root-cause.\",\n        \"If the oracle only reports collision without red_light, still accept as same-root-cause as long as non-green traffic light states existed in the vicinity and time window of the collision.\"\n      ],\n      \"uncertainty\": [\n        \"Whether the oracle will flag a red_light violation in addition to collision depends on the exact stop-line geometry and signal phase at crossing time.\",\n        \"The precise allocation of fault between perception (e.g., missed objects), planning (e.g., unadjusted waypoints), and actuation (e.g., ineffective braking) cannot be determined from scenario-level specification.\",\n        \"Lane-invasion behavior may or may not be present and is not constrained by this variant.\"\n      ]\n    }\n  ]\n}",
+  "parsed_response": {
+    "case_id": "case_142",
+    "candidate_specs": [
+      {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Slightly closer oncoming/autopilot vehicle ahead of ego near signalized intersection, preserving late-run on-route collision under active non-green traffic lights.",
+        "mutation_intent": "Tighten spatial interaction between ego and the primary vehicle actor while keeping overall route, traffic lights, and environment similar, so that the ego remains in motion with adequate perception/planning signals but still collides near the end of the run without clear braking, matching the unresolved-module root-cause pattern.",
+        "expected_oracle": "collision",
+        "modifications": {
+          "weather_delta": {
+            "rain": 5,
+            "fog": -10,
+            "wetness": 5,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": -3.0,
+                "y": -2.0
+              },
+              "speed_delta": -0.5
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": 2.0,
+                "y": 4.0
+              },
+              "speed_delta": -1.0
+            },
+            {
+              "actor_index": 2,
+              "position_offset": {
+                "x": 1.0,
+                "y": -1.0
+              },
+              "speed_delta": 0.0
+            }
+          ],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": -2.0,
+                "y": -1.5
+              },
+              "level_delta": 0.05,
+              "size_scale": 1.05
+            },
+            {
+              "puddle_index": 1,
+              "location_offset": {
+                "x": 0.5,
+                "y": 2.0
+              },
+              "level_delta": 0.0,
+              "size_scale": 1.0
+            },
+            {
+              "puddle_index": 2,
+              "location_offset": {
+                "x": -1.0,
+                "y": 1.0
+              },
+              "level_delta": 0.02,
+              "size_scale": 1.0
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": false,
+            "spawn_offset": {
+              "x": -2.0,
+              "y": -1.0
+            },
+            "destination_offset": {
+              "x": 3.0,
+              "y": 2.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Ensure mission route still passes through at least one signalized intersection with active traffic_lights messages.",
+          "Verify that all mutated actors (indices 0,1,2) spawn successfully on valid lanes or walkable areas and remain within map drivable bounds.",
+          "Check that overall scenario duration and route length are sufficient for a late-run interaction between ego and actor_index 0.",
+          "Confirm that moderate rain/fog/wetness adjustments do not disable or drastically degrade perception topics (detection, prediction)."
+        ],
+        "post_execution_validation_rules": [
+          "Check oracle summary for a collision involving the ego near the end of the run; discard runs without a late-run collision.",
+          "Confirm traffic_lights topic exists and includes at least one red or non-green state in the time window leading up to the collision.",
+          "Verify ego has nonzero forward speed (using vehicle_status or odometry) immediately before impact; filter out cases where ego is fully stopped prior to collision.",
+          "Ensure detection and prediction topics report at least one nearby object during the pre-collision window, and planning final_waypoints remain populated and continuous up to the collision.",
+          "Do not require lane_invasion or a confirmed red-light stop-line crossing; treat such labels as non-essential for same-root-cause.",
+          "Check that braking commands in vehicle_cmd or effective deceleration in vehicle_status remain weak or delayed relative to the time of impact, consistent with minimal or no timely braking before collision."
+        ],
+        "uncertainty": [
+          "Exact spatial relation between ego path and traffic light stop line remains unconstrained; red-light violation may or may not be reported.",
+          "Responsibility among perception, planning, actuation, or simulator for the lack of timely braking is not identifiable from runtime logs alone.",
+          "Lane_invasion labels, if present, may disagree between dataset and error.json and should not be relied on for root-cause matching."
+        ]
+      },
+      {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Ego follows a slightly shifted route with a slower cross-traffic vehicle introduced near a red or changing light, encouraging a side-impact collision while ego keeps moving without clear braking.",
+        "mutation_intent": "Reposition the linear-moving vehicle to act as cross-traffic near a controlled intersection and slightly adjust ego mission, so a collision occurs under active non-green signals with intact perception/prediction/waypoints and no clear braking, while keeping the underlying responsibility ambiguous across modules.",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": -5,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 1.5,
+                "y": -2.5
+              },
+              "speed_delta": 0.0
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": -4.0,
+                "y": 6.0
+              },
+              "speed_delta": -2.0
+            },
+            {
+              "actor_index": 2,
+              "position_offset": {
+                "x": -2.0,
+                "y": 0.5
+              },
+              "speed_delta": 0.0
+            }
+          ],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 1.0,
+                "y": 0.0
+              },
+              "level_delta": 0.0,
+              "size_scale": 1.0
+            },
+            {
+              "puddle_index": 1,
+              "location_offset": {
+                "x": -1.5,
+                "y": 1.0
+              },
+              "level_delta": 0.03,
+              "size_scale": 1.1
+            },
+            {
+              "puddle_index": 2,
+              "location_offset": {
+                "x": 0.0,
+                "y": -2.0
+              },
+              "level_delta": -0.05,
+              "size_scale": 0.9
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": false,
+            "spawn_offset": {
+              "x": 1.0,
+              "y": 2.5
+            },
+            "destination_offset": {
+              "x": -4.0,
+              "y": -1.5
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Verify that the adjusted mission route still encounters at least one intersection controlled by traffic lights with proper signal scheduling.",
+          "Ensure actor_index 1 (linear vehicle) trajectory intersects or closely passes the ego route near a signalized junction within the run duration.",
+          "Confirm that ego and actor_index 1 are configured so they reach the intersection with overlapping time windows likely to create a collision opportunity.",
+          "Check that perception-related topics are enabled and not suppressed by the slight improvement in visibility (reduced fog)."
+        ],
+        "post_execution_validation_rules": [
+          "Require oracle to report a collision involving the ego; additionally, accept cases where a red_light violation is also reported, treating them as compound outcomes.",
+          "Confirm via logs that at least one traffic light affecting or near the ego path shows a red or transitioning state shortly before collision.",
+          "Check that ego maintains nonzero forward speed in the final seconds before collision; exclude runs where ego is fully stationary well before impact.",
+          "Verify presence of detection objects and prediction tracks for nearby actors (especially actor_index 1) in the pre-collision window, and continuous final_waypoints up to collision.",
+          "Inspect vehicle_cmd and vehicle_status to ensure there is no strong, sustained braking sufficiently ahead of impact to count as a successful avoidance maneuver.",
+          "Do not enforce lane_invasion as necessary; treat any reported lane_invasion as incidental and not defining for same-root-cause.",
+          "If the oracle only reports collision without red_light, still accept as same-root-cause as long as non-green traffic light states existed in the vicinity and time window of the collision."
+        ],
+        "uncertainty": [
+          "Whether the oracle will flag a red_light violation in addition to collision depends on the exact stop-line geometry and signal phase at crossing time.",
+          "The precise allocation of fault between perception (e.g., missed objects), planning (e.g., unadjusted waypoints), and actuation (e.g., ineffective braking) cannot be determined from scenario-level specification.",
+          "Lane-invasion behavior may or may not be present and is not constrained by this variant."
+        ]
+      }
+    ]
+  },
+  "raw_api_payload": {
+    "id": "<REDACTED_RESPONSE_ID>",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "{\n  \"case_id\": \"case_142\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Slightly closer oncoming/autopilot vehicle ahead of ego near signalized intersection, preserving late-run on-route collision under active non-green traffic lights.\",\n      \"mutation_intent\": \"Tighten spatial interaction between ego and the primary vehicle actor while keeping overall route, traffic lights, and environment similar, so that the ego remains in motion with adequate perception/planning signals but still collides near the end of the run without clear braking, matching the unresolved-module root-cause pattern.\",\n      \"expected_oracle\": \"collision\",\n      \"modifications\": {\n        \"weather_delta\": {\n          \"rain\": 5,\n          \"fog\": -10,\n          \"wetness\": 5,\n          \"puddle\": 0\n        },\n        \"actor_mutations\": [\n          {\n            \"actor_index\": 0,\n            \"position_offset\": {\n              \"x\": -3.0,\n              \"y\": -2.0\n            },\n            \"speed_delta\": -0.5\n          },\n          {\n            \"actor_index\": 1,\n            \"position_offset\": {\n              \"x\": 2.0,\n              \"y\": 4.0\n            },\n            \"speed_delta\": -1.0\n          },\n          {\n            \"actor_index\": 2,\n            \"position_offset\": {\n              \"x\": 1.0,\n              \"y\": -1.0\n            },\n            \"speed_delta\": 0.0\n          }\n        ],\n        \"puddle_mutations\": [\n          {\n            \"puddle_index\": 0,\n            \"location_offset\": {\n              \"x\": -2.0,\n              \"y\": -1.5\n            },\n            \"level_delta\": 0.05,\n            \"size_scale\": 1.05\n          },\n          {\n            \"puddle_index\": 1,\n            \"location_offset\": {\n              \"x\": 0.5,\n              \"y\": 2.0\n            },\n            \"level_delta\": 0.0,\n            \"size_scale\": 1.0\n          },\n          {\n            \"puddle_index\": 2,\n            \"location_offset\": {\n              \"x\": -1.0,\n              \"y\": 1.0\n            },\n            \"level_delta\": 0.02,\n            \"size_scale\": 1.0\n          }\n        ],\n        \"mission_mutation\": {\n          \"keep_original\": false,\n          \"spawn_offset\": {\n            \"x\": -2.0,\n            \"y\": -1.0\n          },\n          \"destination_offset\": {\n            \"x\": 3.0,\n            \"y\": 2.0\n          }\n        }\n      },\n      \"pre_execution_validation_rules\": [\n        \"Ensure mission route still passes through at least one signalized intersection with active traffic_lights messages.\",\n        \"Verify that all mutated actors (indices 0,1,2) spawn successfully on valid lanes or walkable areas and remain within map drivable bounds.\",\n        \"Check that overall scenario duration and route length are sufficient for a late-run interaction between ego and actor_index 0.\",\n        \"Confirm that moderate rain/fog/wetness adjustments do not disable or drastically degrade perception topics (detection, prediction).\"\n      ],\n      \"post_execution_validation_rules\": [\n        \"Check oracle summary for a collision involving the ego near the end of the run; discard runs without a late-run collision.\",\n        \"Confirm traffic_lights topic exists and includes at least one red or non-green state in the time window leading up to the collision.\",\n        \"Verify ego has nonzero forward speed (using vehicle_status or odometry) immediately before impact; filter out cases where ego is fully stopped prior to collision.\",\n        \"Ensure detection and prediction topics report at least one nearby object during the pre-collision window, and planning final_waypoints remain populated and continuous up to the collision.\",\n        \"Do not require lane_invasion or a confirmed red-light stop-line crossing; treat such labels as non-essential for same-root-cause.\",\n        \"Check that braking commands in vehicle_cmd or effective deceleration in vehicle_status remain weak or delayed relative to the time of impact, consistent with minimal or no timely braking before collision.\"\n      ],\n      \"uncertainty\": [\n        \"Exact spatial relation between ego path and traffic light stop line remains unconstrained; red-light violation may or may not be reported.\",\n        \"Responsibility among perception, planning, actuation, or simulator for the lack of timely braking is not identifiable from runtime logs alone.\",\n        \"Lane_invasion labels, if present, may disagree between dataset and error.json and should not be relied on for root-cause matching.\"\n      ]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Ego follows a slightly shifted route with a slower cross-traffic vehicle introduced near a red or changing light, encouraging a side-impact collision while ego keeps moving without clear braking.\",\n      \"mutation_intent\": \"Reposition the linear-moving vehicle to act as cross-traffic near a controlled intersection and slightly adjust ego mission, so a collision occurs under active non-green signals with intact perception/prediction/waypoints and no clear braking, while keeping the underlying responsibility ambiguous across modules.\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\n          \"rain\": 0,\n          \"fog\": -5,\n          \"wetness\": 0,\n          \"puddle\": 0\n        },\n        \"actor_mutations\": [\n          {\n            \"actor_index\": 0,\n            \"position_offset\": {\n              \"x\": 1.5,\n              \"y\": -2.5\n            },\n            \"speed_delta\": 0.0\n          },\n          {\n            \"actor_index\": 1,\n            \"position_offset\": {\n              \"x\": -4.0,\n              \"y\": 6.0\n            },\n            \"speed_delta\": -2.0\n          },\n          {\n            \"actor_index\": 2,\n            \"position_offset\": {\n              \"x\": -2.0,\n              \"y\": 0.5\n            },\n            \"speed_delta\": 0.0\n          }\n        ],\n        \"puddle_mutations\": [\n          {\n            \"puddle_index\": 0,\n            \"location_offset\": {\n              \"x\": 1.0,\n              \"y\": 0.0\n            },\n            \"level_delta\": 0.0,\n            \"size_scale\": 1.0\n          },\n          {\n            \"puddle_index\": 1,\n            \"location_offset\": {\n              \"x\": -1.5,\n              \"y\": 1.0\n            },\n            \"level_delta\": 0.03,\n            \"size_scale\": 1.1\n          },\n          {\n            \"puddle_index\": 2,\n            \"location_offset\": {\n              \"x\": 0.0,\n              \"y\": -2.0\n            },\n            \"level_delta\": -0.05,\n            \"size_scale\": 0.9\n          }\n        ],\n        \"mission_mutation\": {\n          \"keep_original\": false,\n          \"spawn_offset\": {\n            \"x\": 1.0,\n            \"y\": 2.5\n          },\n          \"destination_offset\": {\n            \"x\": -4.0,\n            \"y\": -1.5\n          }\n        }\n      },\n      \"pre_execution_validation_rules\": [\n        \"Verify that the adjusted mission route still encounters at least one intersection controlled by traffic lights with proper signal scheduling.\",\n        \"Ensure actor_index 1 (linear vehicle) trajectory intersects or closely passes the ego route near a signalized junction within the run duration.\",\n        \"Confirm that ego and actor_index 1 are configured so they reach the intersection with overlapping time windows likely to create a collision opportunity.\",\n        \"Check that perception-related topics are enabled and not suppressed by the slight improvement in visibility (reduced fog).\"\n      ],\n      \"post_execution_validation_rules\": [\n        \"Require oracle to report a collision involving the ego; additionally, accept cases where a red_light violation is also reported, treating them as compound outcomes.\",\n        \"Confirm via logs that at least one traffic light affecting or near the ego path shows a red or transitioning state shortly before collision.\",\n        \"Check that ego maintains nonzero forward speed in the final seconds before collision; exclude runs where ego is fully stationary well before impact.\",\n        \"Verify presence of detection objects and prediction tracks for nearby actors (especially actor_index 1) in the pre-collision window, and continuous final_waypoints up to collision.\",\n        \"Inspect vehicle_cmd and vehicle_status to ensure there is no strong, sustained braking sufficiently ahead of impact to count as a successful avoidance maneuver.\",\n        \"Do not enforce lane_invasion as necessary; treat any reported lane_invasion as incidental and not defining for same-root-cause.\",\n        \"If the oracle only reports collision without red_light, still accept as same-root-cause as long as non-green traffic light states existed in the vicinity and time window of the collision.\"\n      ],\n      \"uncertainty\": [\n        \"Whether the oracle will flag a red_light violation in addition to collision depends on the exact stop-line geometry and signal phase at crossing time.\",\n        \"The precise allocation of fault between perception (e.g., missed objects), planning (e.g., unadjusted waypoints), and actuation (e.g., ineffective braking) cannot be determined from scenario-level specification.\",\n        \"Lane-invasion behavior may or may not be present and is not constrained by this variant.\"\n      ]\n    }\n  ]\n}",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": [],
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "gpt-5.1-2025-11-13",
+    "object": "chat.completion",
+    "service_tier": "priority",
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 2041,
+      "prompt_tokens": 1614,
+      "total_tokens": 3655,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": 0,
+        "audio_tokens": 0,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 0
+      }
+    }
+  },
+  "error_message": "",
+  "elapsed_sec": 19.834,
+  "timestamp": "<REDACTED_TIMESTAMP>"
+}

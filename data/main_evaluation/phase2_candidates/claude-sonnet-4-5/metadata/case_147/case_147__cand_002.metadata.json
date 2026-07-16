@@ -1,0 +1,84 @@
+{
+  "case_id": "case_147",
+  "model_name": "claude-sonnet-4-5",
+  "candidate_index": 2,
+  "candidate_spec": {
+    "candidate_id": "cand_002",
+    "high_level_variant": "Increase fog and wetness, shift second walker",
+    "mutation_intent": "Degrade perception conditions and reposition second walker to test detection robustness under reduced visibility",
+    "expected_oracle": "collision",
+    "modifications": {
+      "weather_delta": {
+        "rain": 10,
+        "fog": 15,
+        "wetness": 12,
+        "puddle": 8
+      },
+      "actor_mutations": [
+        {
+          "actor_index": 1,
+          "position_offset": {
+            "x": 5.0,
+            "y": -1.5
+          },
+          "speed_delta": 0.5
+        }
+      ],
+      "puddle_mutations": [],
+      "mission_mutation": {
+        "keep_original": true,
+        "spawn_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "destination_offset": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Weather parameters within valid ranges",
+      "Walker 1 spawn within 8m offset"
+    ],
+    "post_execution_validation_rules": [
+      "Collision oracle triggered",
+      "Object detection count >0 before collision",
+      "Ego velocity >3 m/s"
+    ],
+    "uncertainty": [
+      "Causal actor identity uncertain",
+      "Module-level fault localization unknown"
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": 10.0,
+      "fog": 15.0,
+      "wetness": 12.0,
+      "puddle": 8.0
+    },
+    "actor_mutations": [
+      {
+        "actor_index": 1,
+        "position_offset": {
+          "x": 5.0,
+          "y": -1.5
+        },
+        "speed_delta": 0.5
+      }
+    ],
+    "puddle_mutations": [],
+    "mission_mutation": {
+      "keep_original": true
+    }
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_147__claude-sonnet-4-5.json",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_147__claude-sonnet-4-5.json",
+  "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+}

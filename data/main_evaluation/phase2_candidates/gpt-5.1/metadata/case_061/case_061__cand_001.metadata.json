@@ -1,0 +1,105 @@
+{
+  "case_id": "case_061",
+  "model_name": "gpt-5.1",
+  "candidate_index": 1,
+  "candidate_spec": {
+    "candidate_id": "cand_001",
+    "high_level_variant": "Preserve original Town01 approach with the ego proceeding through the same signalized corridor while a nearby walker starts slightly closer to the ego’s path, encouraging a collision and red-light violation without altering mission endpoints.",
+    "mutation_intent": "Keep the overall route and environment nearly identical so that the same unexplained absence of vehicle_cmd actuation under motion can manifest, while modestly tightening the proximity of a pedestrian to increase the likelihood of a collision during a red-light violation, maintaining populated perception/prediction/planning topics.",
+    "expected_oracle": "compound",
+    "modifications": {
+      "weather_delta": {
+        "rain": 0,
+        "fog": 0,
+        "wetness": 0,
+        "puddle": 0
+      },
+      "actor_mutations": [
+        {
+          "actor_index": 0,
+          "position_offset": {
+            "x": -2.0,
+            "y": 1.5
+          },
+          "speed_delta": 0.5
+        },
+        {
+          "actor_index": 1,
+          "position_offset": {
+            "x": 1.5,
+            "y": -2.0
+          },
+          "speed_delta": 0.3
+        }
+      ],
+      "puddle_mutations": [],
+      "mission_mutation": {
+        "keep_original": true,
+        "spawn_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "destination_offset": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Ensure the ego mission uses the original Town01 spawn and destination so that intersection and signal geometry remain comparable to the seed.",
+      "Verify that at least one traffic light is present and can plausibly control the ego’s initial corridor, enabling a potential red-light violation.",
+      "Confirm that both walkers are spawned successfully with the specified offsets and speeds and that at least one crosses or approaches the ego’s lane within the first 60 seconds.",
+      "Check that perception and prediction configurations are enabled so that moving pedestrians are reported as objects prior to potential impact."
+    ],
+    "post_execution_validation_rules": [
+      "Confirm that a collision involving the ego is reported before scenario end and that a red-light violation (or equivalent traffic-signal violation) is raised by the oracle/error logging.",
+      "Verify that vehicle_status shows nonzero ego speed in the seconds before collision, with no strong deceleration trend (no significant drop suggesting hard braking) in the critical window.",
+      "Check that vehicle_cmd reports zero or null accel, brake, steer, and target speed values throughout the critical pre-collision window while the ego is moving.",
+      "Ensure that perception and prediction object topics contain at least one object (e.g., the walkers) detected before collision.",
+      "Confirm that planning final_waypoints are present and non-null up to collision, with unblocked flags (no blocked path reported) in the last pre-collision entry.",
+      "Do not require lane_invasion as a necessary outcome; log it if present but treat it as optional for matching the root-cause pattern."
+    ],
+    "uncertainty": [
+      "The exact interaction between the ego, pedestrians, and traffic signals that triggers the red-light violation remains unknown and may vary with small geometry changes.",
+      "The specific collision partner (which walker or possibly another object) and precise impact configuration cannot be guaranteed from these high-level adjustments."
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": 0.0,
+      "fog": 0.0,
+      "wetness": 0.0,
+      "puddle": 0.0
+    },
+    "actor_mutations": [
+      {
+        "actor_index": 0,
+        "position_offset": {
+          "x": -2.0,
+          "y": 1.5
+        },
+        "speed_delta": 0.5
+      },
+      {
+        "actor_index": 1,
+        "position_offset": {
+          "x": 1.5,
+          "y": -2.0
+        },
+        "speed_delta": 0.3
+      }
+    ],
+    "puddle_mutations": [],
+    "mission_mutation": {
+      "keep_original": true
+    }
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_061__gpt-5.1.json",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_061__gpt-5.1.json",
+  "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+}

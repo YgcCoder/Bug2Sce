@@ -1,0 +1,107 @@
+{
+  "case_id": "case_069",
+  "workflow": "phase1_causal_explanation",
+  "model_name": "gpt-4o-2024-11-20",
+  "model_id": "gpt-4o-2024-11-20",
+  "status": "completed",
+  "dry_run": false,
+  "schema_valid": true,
+  "schema_errors": [],
+  "quality_flags": [],
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_prompts/case_069__gpt-4o-2024-11-20.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_069__gpt-4o-2024-11-20.json",
+  "prompt_estimated_tokens": 3081,
+  "usage": {
+    "prompt_tokens": 3302,
+    "completion_tokens": 477,
+    "total_tokens": 3779
+  },
+  "estimated_cost_usd": null,
+  "raw_response": "{\n  \"case_id\": \"case_069\",\n  \"fault_layer\": \"unknown\",\n  \"fault_component\": \"unknown\",\n  \"causal_explanation\": \"The dataset indicates a collision and lane invasion, but error.json does not confirm these events. Critical-window evidence shows ego movement with non-zero velocity and throttle, no braking, and no blocked waypoints. The closest object was detected at 11.225m but no direct collision evidence is confirmed in error.json.\",\n  \"root_cause_pattern\": \"Conservative preservation pattern: ego vehicle moves with non-zero velocity and throttle, while no braking or blocked waypoints are observed. Closest object is within 12m, but module-level attribution is uncertain.\",\n  \"preservation_constraints\": [\n    \"The generated candidate should preserve the same oracle symptom (collision and lane invasion in dataset).\",\n    \"Ego velocity and throttle should remain non-zero before the failure.\",\n    \"Closest object should remain within 12m of the ego vehicle before the failure.\",\n    \"Final waypoints should remain unblocked before the failure.\"\n  ],\n  \"modifiable_factors\": [\"actor_position\", \"weather\", \"mission\"],\n  \"non_modifiable_conditions\": [\"same oracle symptom\", \"ego movement with non-zero velocity and throttle\"],\n  \"uncertainty\": [\n    \"Dataset.xlsx and error.json conflict on collision and lane invasion labels.\",\n    \"Error.json does not confirm collision or lane invasion despite dataset labels.\",\n    \"No direct evidence localizes the failure to a specific module.\"\n  ],\n  \"evidence_support\": [\n    {\"evidence_id\": \"critical_window_summary\", \"claim\": \"Ego vehicle moved with non-zero velocity and throttle before the failure, with no braking or blocked waypoints.\"},\n    {\"evidence_id\": \"trace_summary_compact\", \"claim\": \"Closest object was detected at 11.225m, but no direct collision evidence is confirmed in error.json.\"}\n  ],\n  \"confidence\": \"low\",\n  \"ready_for_phase2_generation\": \"uncertain\",\n  \"notes_for_validator\": [\n    \"Ensure generated cases preserve the oracle symptom (collision and lane invasion in dataset).\",\n    \"Check that ego velocity, throttle, and closest object distance constraints are maintained.\",\n    \"Validate whether dataset and error.json conflicts are resolved or remain uncertain.\"\n  ]\n}",
+  "parsed_response": {
+    "case_id": "case_069",
+    "fault_layer": "unknown",
+    "fault_component": "unknown",
+    "causal_explanation": "The dataset indicates a collision and lane invasion, but error.json does not confirm these events. Critical-window evidence shows ego movement with non-zero velocity and throttle, no braking, and no blocked waypoints. The closest object was detected at 11.225m but no direct collision evidence is confirmed in error.json.",
+    "root_cause_pattern": "Conservative preservation pattern: ego vehicle moves with non-zero velocity and throttle, while no braking or blocked waypoints are observed. Closest object is within 12m, but module-level attribution is uncertain.",
+    "preservation_constraints": [
+      "The generated candidate should preserve the same oracle symptom (collision and lane invasion in dataset).",
+      "Ego velocity and throttle should remain non-zero before the failure.",
+      "Closest object should remain within 12m of the ego vehicle before the failure.",
+      "Final waypoints should remain unblocked before the failure."
+    ],
+    "modifiable_factors": [
+      "actor_position",
+      "weather",
+      "mission"
+    ],
+    "non_modifiable_conditions": [
+      "same oracle symptom",
+      "ego movement with non-zero velocity and throttle"
+    ],
+    "uncertainty": [
+      "Dataset.xlsx and error.json conflict on collision and lane invasion labels.",
+      "Error.json does not confirm collision or lane invasion despite dataset labels.",
+      "No direct evidence localizes the failure to a specific module."
+    ],
+    "evidence_support": [
+      {
+        "evidence_id": "critical_window_summary",
+        "claim": "Ego vehicle moved with non-zero velocity and throttle before the failure, with no braking or blocked waypoints."
+      },
+      {
+        "evidence_id": "trace_summary_compact",
+        "claim": "Closest object was detected at 11.225m, but no direct collision evidence is confirmed in error.json."
+      }
+    ],
+    "confidence": "low",
+    "ready_for_phase2_generation": "uncertain",
+    "notes_for_validator": [
+      "Ensure generated cases preserve the oracle symptom (collision and lane invasion in dataset).",
+      "Check that ego velocity, throttle, and closest object distance constraints are maintained.",
+      "Validate whether dataset and error.json conflicts are resolved or remain uncertain."
+    ]
+  },
+  "raw_api_payload": {
+    "id": "<REDACTED_RESPONSE_ID>",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "{\n  \"case_id\": \"case_069\",\n  \"fault_layer\": \"unknown\",\n  \"fault_component\": \"unknown\",\n  \"causal_explanation\": \"The dataset indicates a collision and lane invasion, but error.json does not confirm these events. Critical-window evidence shows ego movement with non-zero velocity and throttle, no braking, and no blocked waypoints. The closest object was detected at 11.225m but no direct collision evidence is confirmed in error.json.\",\n  \"root_cause_pattern\": \"Conservative preservation pattern: ego vehicle moves with non-zero velocity and throttle, while no braking or blocked waypoints are observed. Closest object is within 12m, but module-level attribution is uncertain.\",\n  \"preservation_constraints\": [\n    \"The generated candidate should preserve the same oracle symptom (collision and lane invasion in dataset).\",\n    \"Ego velocity and throttle should remain non-zero before the failure.\",\n    \"Closest object should remain within 12m of the ego vehicle before the failure.\",\n    \"Final waypoints should remain unblocked before the failure.\"\n  ],\n  \"modifiable_factors\": [\"actor_position\", \"weather\", \"mission\"],\n  \"non_modifiable_conditions\": [\"same oracle symptom\", \"ego movement with non-zero velocity and throttle\"],\n  \"uncertainty\": [\n    \"Dataset.xlsx and error.json conflict on collision and lane invasion labels.\",\n    \"Error.json does not confirm collision or lane invasion despite dataset labels.\",\n    \"No direct evidence localizes the failure to a specific module.\"\n  ],\n  \"evidence_support\": [\n    {\"evidence_id\": \"critical_window_summary\", \"claim\": \"Ego vehicle moved with non-zero velocity and throttle before the failure, with no braking or blocked waypoints.\"},\n    {\"evidence_id\": \"trace_summary_compact\", \"claim\": \"Closest object was detected at 11.225m, but no direct collision evidence is confirmed in error.json.\"}\n  ],\n  \"confidence\": \"low\",\n  \"ready_for_phase2_generation\": \"uncertain\",\n  \"notes_for_validator\": [\n    \"Ensure generated cases preserve the oracle symptom (collision and lane invasion in dataset).\",\n    \"Check that ego velocity, throttle, and closest object distance constraints are maintained.\",\n    \"Validate whether dataset and error.json conflicts are resolved or remain uncertain.\"\n  ]\n}",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": [],
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "gpt-4o-2024-11-20",
+    "object": "chat.completion",
+    "service_tier": "default",
+    "system_fingerprint": "<REDACTED_SYSTEM_FINGERPRINT>",
+    "usage": {
+      "completion_tokens": 477,
+      "prompt_tokens": 3302,
+      "total_tokens": 3779,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": 0,
+        "audio_tokens": 0,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 0
+      }
+    }
+  },
+  "error_message": "",
+  "timestamp": "<REDACTED_TIMESTAMP>",
+  "elapsed_sec": 4.388
+}

@@ -1,0 +1,427 @@
+{
+  "case_id": "case_029",
+  "model_name": "gpt-5.1",
+  "workflow": "phase2_grounded_generation",
+  "status": "completed",
+  "schema_valid": true,
+  "schema_errors": [],
+  "phase1_ready": "uncertain",
+  "num_candidates_requested": 2,
+  "num_candidates_written": 2,
+  "num_pre_valid": 2,
+  "candidate_records": [
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/gpt-5.1/json/case_029/case_029__cand_001.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/gpt-5.1/metadata/case_029/case_029__cand_001.metadata.json",
+      "case_id": "case_029",
+      "model_name": "gpt-5.1",
+      "candidate_index": 1,
+      "candidate_spec": {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Baseline signalized approach with nearby pedestrian preserved; ego path slightly shifted but still approaching multi-light intersection under similar moderate wet conditions.",
+        "mutation_intent": "Maintain a scenario where ego drives toward a signalized junction with multiple active traffic lights, preserving the conditions for a red-light violation without enforcing or clarifying lane invasion or exact stop-line behavior. Small spatial and weather adjustments keep module behaviors and route–light relation effectively unknown while ensuring traffic light activity and planning/vehicle_status continuity.",
+        "expected_oracle": "red_light",
+        "modifications": {
+          "weather_delta": {
+            "rain": 5,
+            "fog": 5,
+            "wetness": 10,
+            "puddle": 5
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 2.0,
+                "y": -3.0
+              },
+              "speed_delta": 0.5
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": -2.0,
+                "y": 3.0
+              },
+              "speed_delta": -0.2
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": false,
+            "spawn_offset": {
+              "x": 3.0,
+              "y": -2.0
+            },
+            "destination_offset": {
+              "x": -4.0,
+              "y": 1.5
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Ensure the mission spawn and destination remain on valid drivable roads leading through at least one signalized intersection with multiple traffic lights visible to ego.",
+          "Verify at least one traffic light along the ego route is configured to cycle through red during the drive, with the cycle timing allowing ego to potentially enter on red.",
+          "Confirm that both walk actors are successfully spawned near the approach corridor but not forced into a collision path with ego before the intersection.",
+          "Check that weather remains in a moderate range (no extreme fog or rain that would radically change traffic light visibility)."
+        ],
+        "post_execution_validation_rules": [
+          "Verify error_json reports a red-light violation and does not report collision or stuck.",
+          "Check that traffic_lights topic contains multiple active lights and includes at least one red state immediately prior to the violation timestamp.",
+          "Confirm that final_waypoints and vehicle_status topics are present and non-empty up to and just after the violation time.",
+          "Do not require lane_invasion to be either present or absent; accept missing or conflicting lane invasion indications between error_json and any dataset labels.",
+          "Treat the geometric relation between the ego route and stop-line as unconstrained; do not reject runs where this remains unclear from logs."
+        ],
+        "uncertainty": [
+          "The exact lane invasion behavior at the time of the red-light violation is intentionally not enforced and may conflict across different label sources.",
+          "The precise position of ego relative to the stop-line at violation time is not constrained and may remain unknown from available logs.",
+          "No assumptions are made about which internal module (perception, planning, control) is responsible for the violation.",
+          "The effect of slightly adjusted pedestrian positions and speeds on driver model behavior is uncertain but assumed not to change the high-level red-light violation pattern."
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 5.0,
+          "fog": 5.0,
+          "wetness": 10.0,
+          "puddle": 5.0
+        },
+        "actor_mutations": [
+          {
+            "actor_index": 0,
+            "position_offset": {
+              "x": 2.0,
+              "y": -3.0
+            },
+            "speed_delta": 0.5
+          },
+          {
+            "actor_index": 1,
+            "position_offset": {
+              "x": -2.0,
+              "y": 3.0
+            },
+            "speed_delta": -0.2
+          }
+        ],
+        "puddle_mutations": [],
+        "mission_mutation": {
+          "spawn_offset": {
+            "x": 3.0,
+            "y": -2.0
+          },
+          "destination_offset": {
+            "x": -4.0,
+            "y": 1.5
+          }
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_029__gpt-5.1.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_029__gpt-5.1.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    },
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/gpt-5.1/json/case_029/case_029__cand_002.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/gpt-5.1/metadata/case_029/case_029__cand_002.metadata.json",
+      "case_id": "case_029",
+      "model_name": "gpt-5.1",
+      "candidate_index": 2,
+      "candidate_spec": {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Closer intersection entry with shifted ego route and reduced pedestrian influence to focus on signal interaction while preserving ambiguous lane/stop-line relation.",
+        "mutation_intent": "Bias ego to approach the signalized intersection from a slightly different lateral and longitudinal placement to explore robustness of red-light violation triggering under similar light activity, while keeping lane invasion and stop-line crossing unconstrained and module-level responsibility unknown.",
+        "expected_oracle": "red_light",
+        "modifications": {
+          "weather_delta": {
+            "rain": -5,
+            "fog": -3,
+            "wetness": -8,
+            "puddle": -5
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": -4.0,
+                "y": 2.5
+              },
+              "speed_delta": -0.8
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": 4.0,
+                "y": -2.5
+              },
+              "speed_delta": 0.3
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": false,
+            "spawn_offset": {
+              "x": -5.0,
+              "y": 1.0
+            },
+            "destination_offset": {
+              "x": 2.0,
+              "y": -3.5
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Confirm that the modified spawn and destination still require ego to traverse at least one active signalized intersection on Town01.",
+          "Verify that multiple traffic lights ahead of ego are active and publish state changes including red during the time ego approaches.",
+          "Ensure that pedestrian actors remain near the roadway but are not scripted to force an unavoidable collision with ego prior to any red-light event.",
+          "Check that overall weather remains similar to the seed case (no extreme changes that would invalidate comparison of behaviors)."
+        ],
+        "post_execution_validation_rules": [
+          "Confirm error_json indicates a red-light violation and does not indicate collision or stuck for the run.",
+          "Verify that traffic_lights messages around the time of violation include at least one light in red state, with ego in the vicinity of that intersection.",
+          "Ensure that final_waypoints and vehicle_status are available and non-zero leading up to the violation time.",
+          "Do not enforce any specific lane_invasion outcome; allow missing or contradictory lane invasion labeling as acceptable.",
+          "Keep the route–light geometric relationship and stop-line crossing status as nonrequirements; runs where these remain ambiguous are still valid."
+        ],
+        "uncertainty": [
+          "Whether ego crosses the physical stop-line before or during the red phase is intentionally not constrained and may be unobservable.",
+          "Lane boundary adherence at the time of the red-light violation may be unknown or inconsistently labeled and is not enforced.",
+          "The interplay between slightly altered pedestrian trajectories and ego decision-making remains uncertain and may vary across replays.",
+          "Potential internal causes of any red-light violation (e.g., misperceived signal state vs. planning decision vs. control execution) remain unidentified."
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": -5.0,
+          "fog": -3.0,
+          "wetness": -8.0,
+          "puddle": -5.0
+        },
+        "actor_mutations": [
+          {
+            "actor_index": 0,
+            "position_offset": {
+              "x": -4.0,
+              "y": 2.5
+            },
+            "speed_delta": -0.8
+          },
+          {
+            "actor_index": 1,
+            "position_offset": {
+              "x": 4.0,
+              "y": -2.5
+            },
+            "speed_delta": 0.3
+          }
+        ],
+        "puddle_mutations": [],
+        "mission_mutation": {
+          "spawn_offset": {
+            "x": -5,
+            "y": 1.0
+          },
+          "destination_offset": {
+            "x": 2.0,
+            "y": -3.5
+          }
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_029__gpt-5.1.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_029__gpt-5.1.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    }
+  ],
+  "seed_artifact_zip": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/gpt-5.1/seed-artifact/seed-artifact-case_029.zip",
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_prompts/case_029__gpt-5.1.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_029__gpt-5.1.json",
+  "prompt_estimated_tokens": 1391,
+  "usage": {
+    "prompt_tokens": 1365,
+    "completion_tokens": 1454,
+    "total_tokens": 2819
+  },
+  "raw_response": "{\n  \"case_id\": \"case_029\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Baseline signalized approach with nearby pedestrian preserved; ego path slightly shifted but still approaching multi-light intersection under similar moderate wet conditions.\",\n      \"mutation_intent\": \"Maintain a scenario where ego drives toward a signalized junction with multiple active traffic lights, preserving the conditions for a red-light violation without enforcing or clarifying lane invasion or exact stop-line behavior. Small spatial and weather adjustments keep module behaviors and route–light relation effectively unknown while ensuring traffic light activity and planning/vehicle_status continuity.\",\n      \"expected_oracle\": \"red_light\",\n      \"modifications\": {\n        \"weather_delta\": {\n          \"rain\": 5,\n          \"fog\": 5,\n          \"wetness\": 10,\n          \"puddle\": 5\n        },\n        \"actor_mutations\": [\n          {\n            \"actor_index\": 0,\n            \"position_offset\": {\n              \"x\": 2.0,\n              \"y\": -3.0\n            },\n            \"speed_delta\": 0.5\n          },\n          {\n            \"actor_index\": 1,\n            \"position_offset\": {\n              \"x\": -2.0,\n              \"y\": 3.0\n            },\n            \"speed_delta\": -0.2\n          }\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\n          \"keep_original\": false,\n          \"spawn_offset\": {\n            \"x\": 3.0,\n            \"y\": -2.0\n          },\n          \"destination_offset\": {\n            \"x\": -4.0,\n            \"y\": 1.5\n          }\n        }\n      },\n      \"pre_execution_validation_rules\": [\n        \"Ensure the mission spawn and destination remain on valid drivable roads leading through at least one signalized intersection with multiple traffic lights visible to ego.\",\n        \"Verify at least one traffic light along the ego route is configured to cycle through red during the drive, with the cycle timing allowing ego to potentially enter on red.\",\n        \"Confirm that both walk actors are successfully spawned near the approach corridor but not forced into a collision path with ego before the intersection.\",\n        \"Check that weather remains in a moderate range (no extreme fog or rain that would radically change traffic light visibility).\"\n      ],\n      \"post_execution_validation_rules\": [\n        \"Verify error_json reports a red-light violation and does not report collision or stuck.\",\n        \"Check that traffic_lights topic contains multiple active lights and includes at least one red state immediately prior to the violation timestamp.\",\n        \"Confirm that final_waypoints and vehicle_status topics are present and non-empty up to and just after the violation time.\",\n        \"Do not require lane_invasion to be either present or absent; accept missing or conflicting lane invasion indications between error_json and any dataset labels.\",\n        \"Treat the geometric relation between the ego route and stop-line as unconstrained; do not reject runs where this remains unclear from logs.\"\n      ],\n      \"uncertainty\": [\n        \"The exact lane invasion behavior at the time of the red-light violation is intentionally not enforced and may conflict across different label sources.\",\n        \"The precise position of ego relative to the stop-line at violation time is not constrained and may remain unknown from available logs.\",\n        \"No assumptions are made about which internal module (perception, planning, control) is responsible for the violation.\",\n        \"The effect of slightly adjusted pedestrian positions and speeds on driver model behavior is uncertain but assumed not to change the high-level red-light violation pattern.\"\n      ]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Closer intersection entry with shifted ego route and reduced pedestrian influence to focus on signal interaction while preserving ambiguous lane/stop-line relation.\",\n      \"mutation_intent\": \"Bias ego to approach the signalized intersection from a slightly different lateral and longitudinal placement to explore robustness of red-light violation triggering under similar light activity, while keeping lane invasion and stop-line crossing unconstrained and module-level responsibility unknown.\",\n      \"expected_oracle\": \"red_light\",\n      \"modifications\": {\n        \"weather_delta\": {\n          \"rain\": -5,\n          \"fog\": -3,\n          \"wetness\": -8,\n          \"puddle\": -5\n        },\n        \"actor_mutations\": [\n          {\n            \"actor_index\": 0,\n            \"position_offset\": {\n              \"x\": -4.0,\n              \"y\": 2.5\n            },\n            \"speed_delta\": -0.8\n          },\n          {\n            \"actor_index\": 1,\n            \"position_offset\": {\n              \"x\": 4.0,\n              \"y\": -2.5\n            },\n            \"speed_delta\": 0.3\n          }\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\n          \"keep_original\": false,\n          \"spawn_offset\": {\n            \"x\": -5.0,\n            \"y\": 1.0\n          },\n          \"destination_offset\": {\n            \"x\": 2.0,\n            \"y\": -3.5\n          }\n        }\n      },\n      \"pre_execution_validation_rules\": [\n        \"Confirm that the modified spawn and destination still require ego to traverse at least one active signalized intersection on Town01.\",\n        \"Verify that multiple traffic lights ahead of ego are active and publish state changes including red during the time ego approaches.\",\n        \"Ensure that pedestrian actors remain near the roadway but are not scripted to force an unavoidable collision with ego prior to any red-light event.\",\n        \"Check that overall weather remains similar to the seed case (no extreme changes that would invalidate comparison of behaviors).\"\n      ],\n      \"post_execution_validation_rules\": [\n        \"Confirm error_json indicates a red-light violation and does not indicate collision or stuck for the run.\",\n        \"Verify that traffic_lights messages around the time of violation include at least one light in red state, with ego in the vicinity of that intersection.\",\n        \"Ensure that final_waypoints and vehicle_status are available and non-zero leading up to the violation time.\",\n        \"Do not enforce any specific lane_invasion outcome; allow missing or contradictory lane invasion labeling as acceptable.\",\n        \"Keep the route–light geometric relationship and stop-line crossing status as nonrequirements; runs where these remain ambiguous are still valid.\"\n      ],\n      \"uncertainty\": [\n        \"Whether ego crosses the physical stop-line before or during the red phase is intentionally not constrained and may be unobservable.\",\n        \"Lane boundary adherence at the time of the red-light violation may be unknown or inconsistently labeled and is not enforced.\",\n        \"The interplay between slightly altered pedestrian trajectories and ego decision-making remains uncertain and may vary across replays.\",\n        \"Potential internal causes of any red-light violation (e.g., misperceived signal state vs. planning decision vs. control execution) remain unidentified.\"\n      ]\n    }\n  ]\n}",
+  "parsed_response": {
+    "case_id": "case_029",
+    "candidate_specs": [
+      {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Baseline signalized approach with nearby pedestrian preserved; ego path slightly shifted but still approaching multi-light intersection under similar moderate wet conditions.",
+        "mutation_intent": "Maintain a scenario where ego drives toward a signalized junction with multiple active traffic lights, preserving the conditions for a red-light violation without enforcing or clarifying lane invasion or exact stop-line behavior. Small spatial and weather adjustments keep module behaviors and route–light relation effectively unknown while ensuring traffic light activity and planning/vehicle_status continuity.",
+        "expected_oracle": "red_light",
+        "modifications": {
+          "weather_delta": {
+            "rain": 5,
+            "fog": 5,
+            "wetness": 10,
+            "puddle": 5
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 2.0,
+                "y": -3.0
+              },
+              "speed_delta": 0.5
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": -2.0,
+                "y": 3.0
+              },
+              "speed_delta": -0.2
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": false,
+            "spawn_offset": {
+              "x": 3.0,
+              "y": -2.0
+            },
+            "destination_offset": {
+              "x": -4.0,
+              "y": 1.5
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Ensure the mission spawn and destination remain on valid drivable roads leading through at least one signalized intersection with multiple traffic lights visible to ego.",
+          "Verify at least one traffic light along the ego route is configured to cycle through red during the drive, with the cycle timing allowing ego to potentially enter on red.",
+          "Confirm that both walk actors are successfully spawned near the approach corridor but not forced into a collision path with ego before the intersection.",
+          "Check that weather remains in a moderate range (no extreme fog or rain that would radically change traffic light visibility)."
+        ],
+        "post_execution_validation_rules": [
+          "Verify error_json reports a red-light violation and does not report collision or stuck.",
+          "Check that traffic_lights topic contains multiple active lights and includes at least one red state immediately prior to the violation timestamp.",
+          "Confirm that final_waypoints and vehicle_status topics are present and non-empty up to and just after the violation time.",
+          "Do not require lane_invasion to be either present or absent; accept missing or conflicting lane invasion indications between error_json and any dataset labels.",
+          "Treat the geometric relation between the ego route and stop-line as unconstrained; do not reject runs where this remains unclear from logs."
+        ],
+        "uncertainty": [
+          "The exact lane invasion behavior at the time of the red-light violation is intentionally not enforced and may conflict across different label sources.",
+          "The precise position of ego relative to the stop-line at violation time is not constrained and may remain unknown from available logs.",
+          "No assumptions are made about which internal module (perception, planning, control) is responsible for the violation.",
+          "The effect of slightly adjusted pedestrian positions and speeds on driver model behavior is uncertain but assumed not to change the high-level red-light violation pattern."
+        ]
+      },
+      {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Closer intersection entry with shifted ego route and reduced pedestrian influence to focus on signal interaction while preserving ambiguous lane/stop-line relation.",
+        "mutation_intent": "Bias ego to approach the signalized intersection from a slightly different lateral and longitudinal placement to explore robustness of red-light violation triggering under similar light activity, while keeping lane invasion and stop-line crossing unconstrained and module-level responsibility unknown.",
+        "expected_oracle": "red_light",
+        "modifications": {
+          "weather_delta": {
+            "rain": -5,
+            "fog": -3,
+            "wetness": -8,
+            "puddle": -5
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": -4.0,
+                "y": 2.5
+              },
+              "speed_delta": -0.8
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": 4.0,
+                "y": -2.5
+              },
+              "speed_delta": 0.3
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": false,
+            "spawn_offset": {
+              "x": -5.0,
+              "y": 1.0
+            },
+            "destination_offset": {
+              "x": 2.0,
+              "y": -3.5
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Confirm that the modified spawn and destination still require ego to traverse at least one active signalized intersection on Town01.",
+          "Verify that multiple traffic lights ahead of ego are active and publish state changes including red during the time ego approaches.",
+          "Ensure that pedestrian actors remain near the roadway but are not scripted to force an unavoidable collision with ego prior to any red-light event.",
+          "Check that overall weather remains similar to the seed case (no extreme changes that would invalidate comparison of behaviors)."
+        ],
+        "post_execution_validation_rules": [
+          "Confirm error_json indicates a red-light violation and does not indicate collision or stuck for the run.",
+          "Verify that traffic_lights messages around the time of violation include at least one light in red state, with ego in the vicinity of that intersection.",
+          "Ensure that final_waypoints and vehicle_status are available and non-zero leading up to the violation time.",
+          "Do not enforce any specific lane_invasion outcome; allow missing or contradictory lane invasion labeling as acceptable.",
+          "Keep the route–light geometric relationship and stop-line crossing status as nonrequirements; runs where these remain ambiguous are still valid."
+        ],
+        "uncertainty": [
+          "Whether ego crosses the physical stop-line before or during the red phase is intentionally not constrained and may be unobservable.",
+          "Lane boundary adherence at the time of the red-light violation may be unknown or inconsistently labeled and is not enforced.",
+          "The interplay between slightly altered pedestrian trajectories and ego decision-making remains uncertain and may vary across replays.",
+          "Potential internal causes of any red-light violation (e.g., misperceived signal state vs. planning decision vs. control execution) remain unidentified."
+        ]
+      }
+    ]
+  },
+  "raw_api_payload": {
+    "id": "<REDACTED_RESPONSE_ID>",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "{\n  \"case_id\": \"case_029\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Baseline signalized approach with nearby pedestrian preserved; ego path slightly shifted but still approaching multi-light intersection under similar moderate wet conditions.\",\n      \"mutation_intent\": \"Maintain a scenario where ego drives toward a signalized junction with multiple active traffic lights, preserving the conditions for a red-light violation without enforcing or clarifying lane invasion or exact stop-line behavior. Small spatial and weather adjustments keep module behaviors and route–light relation effectively unknown while ensuring traffic light activity and planning/vehicle_status continuity.\",\n      \"expected_oracle\": \"red_light\",\n      \"modifications\": {\n        \"weather_delta\": {\n          \"rain\": 5,\n          \"fog\": 5,\n          \"wetness\": 10,\n          \"puddle\": 5\n        },\n        \"actor_mutations\": [\n          {\n            \"actor_index\": 0,\n            \"position_offset\": {\n              \"x\": 2.0,\n              \"y\": -3.0\n            },\n            \"speed_delta\": 0.5\n          },\n          {\n            \"actor_index\": 1,\n            \"position_offset\": {\n              \"x\": -2.0,\n              \"y\": 3.0\n            },\n            \"speed_delta\": -0.2\n          }\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\n          \"keep_original\": false,\n          \"spawn_offset\": {\n            \"x\": 3.0,\n            \"y\": -2.0\n          },\n          \"destination_offset\": {\n            \"x\": -4.0,\n            \"y\": 1.5\n          }\n        }\n      },\n      \"pre_execution_validation_rules\": [\n        \"Ensure the mission spawn and destination remain on valid drivable roads leading through at least one signalized intersection with multiple traffic lights visible to ego.\",\n        \"Verify at least one traffic light along the ego route is configured to cycle through red during the drive, with the cycle timing allowing ego to potentially enter on red.\",\n        \"Confirm that both walk actors are successfully spawned near the approach corridor but not forced into a collision path with ego before the intersection.\",\n        \"Check that weather remains in a moderate range (no extreme fog or rain that would radically change traffic light visibility).\"\n      ],\n      \"post_execution_validation_rules\": [\n        \"Verify error_json reports a red-light violation and does not report collision or stuck.\",\n        \"Check that traffic_lights topic contains multiple active lights and includes at least one red state immediately prior to the violation timestamp.\",\n        \"Confirm that final_waypoints and vehicle_status topics are present and non-empty up to and just after the violation time.\",\n        \"Do not require lane_invasion to be either present or absent; accept missing or conflicting lane invasion indications between error_json and any dataset labels.\",\n        \"Treat the geometric relation between the ego route and stop-line as unconstrained; do not reject runs where this remains unclear from logs.\"\n      ],\n      \"uncertainty\": [\n        \"The exact lane invasion behavior at the time of the red-light violation is intentionally not enforced and may conflict across different label sources.\",\n        \"The precise position of ego relative to the stop-line at violation time is not constrained and may remain unknown from available logs.\",\n        \"No assumptions are made about which internal module (perception, planning, control) is responsible for the violation.\",\n        \"The effect of slightly adjusted pedestrian positions and speeds on driver model behavior is uncertain but assumed not to change the high-level red-light violation pattern.\"\n      ]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Closer intersection entry with shifted ego route and reduced pedestrian influence to focus on signal interaction while preserving ambiguous lane/stop-line relation.\",\n      \"mutation_intent\": \"Bias ego to approach the signalized intersection from a slightly different lateral and longitudinal placement to explore robustness of red-light violation triggering under similar light activity, while keeping lane invasion and stop-line crossing unconstrained and module-level responsibility unknown.\",\n      \"expected_oracle\": \"red_light\",\n      \"modifications\": {\n        \"weather_delta\": {\n          \"rain\": -5,\n          \"fog\": -3,\n          \"wetness\": -8,\n          \"puddle\": -5\n        },\n        \"actor_mutations\": [\n          {\n            \"actor_index\": 0,\n            \"position_offset\": {\n              \"x\": -4.0,\n              \"y\": 2.5\n            },\n            \"speed_delta\": -0.8\n          },\n          {\n            \"actor_index\": 1,\n            \"position_offset\": {\n              \"x\": 4.0,\n              \"y\": -2.5\n            },\n            \"speed_delta\": 0.3\n          }\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\n          \"keep_original\": false,\n          \"spawn_offset\": {\n            \"x\": -5.0,\n            \"y\": 1.0\n          },\n          \"destination_offset\": {\n            \"x\": 2.0,\n            \"y\": -3.5\n          }\n        }\n      },\n      \"pre_execution_validation_rules\": [\n        \"Confirm that the modified spawn and destination still require ego to traverse at least one active signalized intersection on Town01.\",\n        \"Verify that multiple traffic lights ahead of ego are active and publish state changes including red during the time ego approaches.\",\n        \"Ensure that pedestrian actors remain near the roadway but are not scripted to force an unavoidable collision with ego prior to any red-light event.\",\n        \"Check that overall weather remains similar to the seed case (no extreme changes that would invalidate comparison of behaviors).\"\n      ],\n      \"post_execution_validation_rules\": [\n        \"Confirm error_json indicates a red-light violation and does not indicate collision or stuck for the run.\",\n        \"Verify that traffic_lights messages around the time of violation include at least one light in red state, with ego in the vicinity of that intersection.\",\n        \"Ensure that final_waypoints and vehicle_status are available and non-zero leading up to the violation time.\",\n        \"Do not enforce any specific lane_invasion outcome; allow missing or contradictory lane invasion labeling as acceptable.\",\n        \"Keep the route–light geometric relationship and stop-line crossing status as nonrequirements; runs where these remain ambiguous are still valid.\"\n      ],\n      \"uncertainty\": [\n        \"Whether ego crosses the physical stop-line before or during the red phase is intentionally not constrained and may be unobservable.\",\n        \"Lane boundary adherence at the time of the red-light violation may be unknown or inconsistently labeled and is not enforced.\",\n        \"The interplay between slightly altered pedestrian trajectories and ego decision-making remains uncertain and may vary across replays.\",\n        \"Potential internal causes of any red-light violation (e.g., misperceived signal state vs. planning decision vs. control execution) remain unidentified.\"\n      ]\n    }\n  ]\n}",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": [],
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "gpt-5.1-2025-11-13",
+    "object": "chat.completion",
+    "service_tier": "default",
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 1454,
+      "prompt_tokens": 1365,
+      "total_tokens": 2819,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": 0,
+        "audio_tokens": 0,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 0
+      }
+    }
+  },
+  "error_message": "",
+  "elapsed_sec": 22.93,
+  "timestamp": "<REDACTED_TIMESTAMP>"
+}

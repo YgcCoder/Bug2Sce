@@ -1,0 +1,121 @@
+{
+  "case_id": "case_024",
+  "workflow": "phase1_causal_explanation",
+  "model_name": "gemini-2.5-pro",
+  "model_id": "gemini-2.5-pro",
+  "status": "completed",
+  "dry_run": false,
+  "schema_valid": true,
+  "schema_errors": [],
+  "quality_flags": [],
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_prompts/case_024__gemini-2.5-pro.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_024__gemini-2.5-pro.json",
+  "prompt_estimated_tokens": 3138,
+  "usage": {
+    "prompt_tokens": 4338,
+    "completion_tokens": 3332,
+    "total_tokens": 7670
+  },
+  "estimated_cost_usd": null,
+  "raw_response": "```json\n{\n  \"case_id\": \"case_024\",\n  \"fault_layer\": \"planning\",\n  \"fault_component\": \"behavior_path_planner or upstream\",\n  \"causal_explanation\": \"The ego vehicle did not plan to stop for a red light, causing a red-light violation and a collision with an actor in the intersection.\",\n  \"root_cause_pattern\": \"Planner fails to generate a stopping trajectory for a red light on the ego's route.\",\n  \"preservation_constraints\": [\n    \"Preserve red light violation and collision.\",\n    \"An actor is present in the intersection.\",\n    \"A traffic light on the ego's path is red.\"\n  ],\n  \"modifiable_factors\": [\n    \"actor_position\",\n    \"weather\",\n    \"ego_start_time\"\n  ],\n  \"non_modifiable_conditions\": [\n    \"Ego route passes a signalized intersection.\",\n    \"Red light and collision occur.\"\n  ],\n  \"uncertainty\": [\n    \"Route-light relation is not directly confirmed.\",\n    \"Controller behavior is uncertain due to zero vehicle_cmd.\"\n  ],\n  \"evidence_support\": [\n    {\n      \"evidence_id\": \"red_light_window\",\n      \"claim\": \"Oracle confirms red light violation.\"\n    },\n    {\n      \"evidence_id\": \"traffic_light_state_samples\",\n      \"claim\": \"A traffic light was red before the collision.\"\n    },\n    {\n      \"evidence_id\": \"final_waypoints_before_collision\",\n      \"claim\": \"Waypoints show no planned stop for a light.\"\n    },\n    {\n      \"evidence_id\": \"collision_window\",\n      \"claim\": \"Oracle confirms collision with a nearby object.\"\n    }\n  ],\n  \"confidence\": \"medium\",\n  \"ready_for_phase2_generation\": \"yes\",\n  \"notes_for_validator\": [\n    \"Key evidence: final_waypoints lack a stop plan.\",\n    \"The red light violation and collision are linked.\",\n    \"Controller uncertainty is a known platform issue.\"\n  ]\n}\n```",
+  "parsed_response": {
+    "case_id": "case_024",
+    "fault_layer": "planning",
+    "fault_component": "behavior_path_planner or upstream",
+    "causal_explanation": "The ego vehicle did not plan to stop for a red light, causing a red-light violation and a collision with an actor in the intersection.",
+    "root_cause_pattern": "Planner fails to generate a stopping trajectory for a red light on the ego's route.",
+    "preservation_constraints": [
+      "Preserve red light violation and collision.",
+      "An actor is present in the intersection.",
+      "A traffic light on the ego's path is red."
+    ],
+    "modifiable_factors": [
+      "actor_position",
+      "weather",
+      "ego_start_time"
+    ],
+    "non_modifiable_conditions": [
+      "Ego route passes a signalized intersection.",
+      "Red light and collision occur."
+    ],
+    "uncertainty": [
+      "Route-light relation is not directly confirmed.",
+      "Controller behavior is uncertain due to zero vehicle_cmd."
+    ],
+    "evidence_support": [
+      {
+        "evidence_id": "red_light_window",
+        "claim": "Oracle confirms red light violation."
+      },
+      {
+        "evidence_id": "traffic_light_state_samples",
+        "claim": "A traffic light was red before the collision."
+      },
+      {
+        "evidence_id": "final_waypoints_before_collision",
+        "claim": "Waypoints show no planned stop for a light."
+      },
+      {
+        "evidence_id": "collision_window",
+        "claim": "Oracle confirms collision with a nearby object."
+      }
+    ],
+    "confidence": "medium",
+    "ready_for_phase2_generation": "yes",
+    "notes_for_validator": [
+      "Key evidence: final_waypoints lack a stop plan.",
+      "The red light violation and collision are linked.",
+      "Controller uncertainty is a known platform issue."
+    ]
+  },
+  "raw_api_payload": {
+    "id": "<REDACTED_RESPONSE_ID>",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "```json\n{\n  \"case_id\": \"case_024\",\n  \"fault_layer\": \"planning\",\n  \"fault_component\": \"behavior_path_planner or upstream\",\n  \"causal_explanation\": \"The ego vehicle did not plan to stop for a red light, causing a red-light violation and a collision with an actor in the intersection.\",\n  \"root_cause_pattern\": \"Planner fails to generate a stopping trajectory for a red light on the ego's route.\",\n  \"preservation_constraints\": [\n    \"Preserve red light violation and collision.\",\n    \"An actor is present in the intersection.\",\n    \"A traffic light on the ego's path is red.\"\n  ],\n  \"modifiable_factors\": [\n    \"actor_position\",\n    \"weather\",\n    \"ego_start_time\"\n  ],\n  \"non_modifiable_conditions\": [\n    \"Ego route passes a signalized intersection.\",\n    \"Red light and collision occur.\"\n  ],\n  \"uncertainty\": [\n    \"Route-light relation is not directly confirmed.\",\n    \"Controller behavior is uncertain due to zero vehicle_cmd.\"\n  ],\n  \"evidence_support\": [\n    {\n      \"evidence_id\": \"red_light_window\",\n      \"claim\": \"Oracle confirms red light violation.\"\n    },\n    {\n      \"evidence_id\": \"traffic_light_state_samples\",\n      \"claim\": \"A traffic light was red before the collision.\"\n    },\n    {\n      \"evidence_id\": \"final_waypoints_before_collision\",\n      \"claim\": \"Waypoints show no planned stop for a light.\"\n    },\n    {\n      \"evidence_id\": \"collision_window\",\n      \"claim\": \"Oracle confirms collision with a nearby object.\"\n    }\n  ],\n  \"confidence\": \"medium\",\n  \"ready_for_phase2_generation\": \"yes\",\n  \"notes_for_validator\": [\n    \"Key evidence: final_waypoints lack a stop plan.\",\n    \"The red light violation and collision are linked.\",\n    \"Controller uncertainty is a known platform issue.\"\n  ]\n}\n```",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "gemini-2.5-pro",
+    "object": "chat.completion",
+    "service_tier": null,
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 3332,
+      "prompt_tokens": 4338,
+      "total_tokens": 7670,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": 0,
+        "reasoning_tokens": 2844,
+        "rejected_prediction_tokens": null,
+        "text_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 0,
+        "text_tokens": 4338,
+        "image_tokens": 0
+      },
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "input_tokens_details": null,
+      "claude_cache_creation_5_m_tokens": 0,
+      "claude_cache_creation_1_h_tokens": 0
+    }
+  },
+  "error_message": "",
+  "timestamp": "<REDACTED_TIMESTAMP>",
+  "elapsed_sec": 35.39
+}

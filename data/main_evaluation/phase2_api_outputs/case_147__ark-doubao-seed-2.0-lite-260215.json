@@ -1,0 +1,347 @@
+{
+  "case_id": "case_147",
+  "model_name": "ark-doubao-seed-2.0-lite-260215",
+  "workflow": "phase2_grounded_generation",
+  "status": "completed",
+  "schema_valid": true,
+  "schema_errors": [],
+  "phase1_ready": "yes",
+  "num_candidates_requested": 2,
+  "num_candidates_written": 2,
+  "num_pre_valid": 2,
+  "candidate_records": [
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-doubao-seed-2.0-lite-260215/json/case_147/case_147__cand_001.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-doubao-seed-2.0-lite-260215/metadata/case_147/case_147__cand_001.metadata.json",
+      "case_id": "case_147",
+      "model_name": "ark-doubao-seed-2.0-lite-260215",
+      "candidate_index": 1,
+      "candidate_spec": {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Shift the first crossing pedestrian closer to ego's travel path and slightly increase its walking speed",
+        "mutation_intent": "Preserves all root cause constraints: keeps actor within 4m of ego pre-collision, maintains the core pattern of collision with zero vehicle_cmd and non-zero ego forward speed, preserves the confirmed collision symptom",
+        "expected_oracle": "collision",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 5,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 2.0,
+                "y": -1.0
+              },
+              "speed_delta": 0.5
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "actor 0 must be within 4 meters of ego's pre-collision path",
+          "pre-collision critical window must have all zero vehicle_cmd commands"
+        ],
+        "post_execution_validation_rules": [
+          "collision must be detected",
+          "ego must have non-zero forward speed in pre-collision critical window"
+        ],
+        "uncertainty": [
+          "lane invasion label remains conflicting, same as original phase1 uncertainty",
+          "controller behavior cannot be confirmed from available evidence"
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 0.0,
+          "fog": 5.0,
+          "wetness": 0.0,
+          "puddle": 0.0
+        },
+        "actor_mutations": [
+          {
+            "actor_index": 0,
+            "position_offset": {
+              "x": 2.0,
+              "y": -1.0
+            },
+            "speed_delta": 0.5
+          }
+        ],
+        "puddle_mutations": [],
+        "mission_mutation": {
+          "keep_original": true
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_147__ark-doubao-seed-2.0-lite-260215.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_147__ark-doubao-seed-2.0-lite-260215.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    },
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-doubao-seed-2.0-lite-260215/json/case_147/case_147__cand_002.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-doubao-seed-2.0-lite-260215/metadata/case_147/case_147__cand_002.metadata.json",
+      "case_id": "case_147",
+      "model_name": "ark-doubao-seed-2.0-lite-260215",
+      "candidate_index": 2,
+      "candidate_spec": {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Slightly offset ego's spawn and destination, shift the second pedestrian closer to ego's route and reduce its walking speed slightly",
+        "mutation_intent": "Preserves all root cause pattern requirements: confirmed collision oracle, zero pre-collision vehicle_cmd, non-zero ego forward speed, no non-zero brake command, at least one actor within 4m of ego pre-collision",
+        "expected_oracle": "collision",
+        "modifications": {
+          "weather_delta": {
+            "rain": 3,
+            "fog": 0,
+            "wetness": 4,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": -1.5,
+                "y": 0.8
+              },
+              "speed_delta": -0.3
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": false,
+            "spawn_offset": {
+              "x": 1.0,
+              "y": 0.5
+            },
+            "destination_offset": {
+              "x": -1.0,
+              "y": 1.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "actor 1 must be within 4 meters of ego's pre-collision route",
+          "all mission offsets are within allowed bounds"
+        ],
+        "post_execution_validation_rules": [
+          "collision must be detected",
+          "verify pre-collision zero vehicle_cmd and non-zero ego velocity"
+        ],
+        "uncertainty": [
+          "lane invasion label conflict remains unresolved",
+          "no module-level failure attribution can be confirmed",
+          "controller behavior is still uncertain"
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 3.0,
+          "fog": 0.0,
+          "wetness": 4.0,
+          "puddle": 0.0
+        },
+        "actor_mutations": [
+          {
+            "actor_index": 1,
+            "position_offset": {
+              "x": -1.5,
+              "y": 0.8
+            },
+            "speed_delta": -0.3
+          }
+        ],
+        "puddle_mutations": [],
+        "mission_mutation": {
+          "spawn_offset": {
+            "x": 1.0,
+            "y": 0.5
+          },
+          "destination_offset": {
+            "x": -1.0,
+            "y": 1.0
+          }
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_147__ark-doubao-seed-2.0-lite-260215.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_147__ark-doubao-seed-2.0-lite-260215.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    }
+  ],
+  "seed_artifact_zip": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-doubao-seed-2.0-lite-260215/seed-artifact/seed-artifact-case_147.zip",
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_prompts/case_147__ark-doubao-seed-2.0-lite-260215.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_147__ark-doubao-seed-2.0-lite-260215.json",
+  "prompt_estimated_tokens": 1100,
+  "usage": {
+    "prompt_tokens": 1399,
+    "completion_tokens": 2244,
+    "total_tokens": 3643
+  },
+  "raw_response": "{\n  \"case_id\": \"case_147\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Shift the first crossing pedestrian closer to ego's travel path and slightly increase its walking speed\",\n      \"mutation_intent\": \"Preserves all root cause constraints: keeps actor within 4m of ego pre-collision, maintains the core pattern of collision with zero vehicle_cmd and non-zero ego forward speed, preserves the confirmed collision symptom\",\n      \"expected_oracle\": \"collision\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 5, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 2.0, \"y\": -1.0}, \"speed_delta\": 0.5}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"actor 0 must be within 4 meters of ego's pre-collision path\", \"pre-collision critical window must have all zero vehicle_cmd commands\"],\n      \"post_execution_validation_rules\": [\"collision must be detected\", \"ego must have non-zero forward speed in pre-collision critical window\"],\n      \"uncertainty\": [\"lane invasion label remains conflicting, same as original phase1 uncertainty\", \"controller behavior cannot be confirmed from available evidence\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Slightly offset ego's spawn and destination, shift the second pedestrian closer to ego's route and reduce its walking speed slightly\",\n      \"mutation_intent\": \"Preserves all root cause pattern requirements: confirmed collision oracle, zero pre-collision vehicle_cmd, non-zero ego forward speed, no non-zero brake command, at least one actor within 4m of ego pre-collision\",\n      \"expected_oracle\": \"collision\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 3, \"fog\": 0, \"wetness\": 4, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 1, \"position_offset\": {\"x\": -1.5, \"y\": 0.8}, \"speed_delta\": -0.3}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": false, \"spawn_offset\": {\"x\": 1.0, \"y\": 0.5}, \"destination_offset\": {\"x\": -1.0, \"y\": 1.0}}\n      },\n      \"pre_execution_validation_rules\": [\"actor 1 must be within 4 meters of ego's pre-collision route\", \"all mission offsets are within allowed bounds\"],\n      \"post_execution_validation_rules\": [\"collision must be detected\", \"verify pre-collision zero vehicle_cmd and non-zero ego velocity\"],\n      \"uncertainty\": [\"lane invasion label conflict remains unresolved\", \"no module-level failure attribution can be confirmed\", \"controller behavior is still uncertain\"]\n    }\n  ]\n}",
+  "parsed_response": {
+    "case_id": "case_147",
+    "candidate_specs": [
+      {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Shift the first crossing pedestrian closer to ego's travel path and slightly increase its walking speed",
+        "mutation_intent": "Preserves all root cause constraints: keeps actor within 4m of ego pre-collision, maintains the core pattern of collision with zero vehicle_cmd and non-zero ego forward speed, preserves the confirmed collision symptom",
+        "expected_oracle": "collision",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 5,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 2.0,
+                "y": -1.0
+              },
+              "speed_delta": 0.5
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "actor 0 must be within 4 meters of ego's pre-collision path",
+          "pre-collision critical window must have all zero vehicle_cmd commands"
+        ],
+        "post_execution_validation_rules": [
+          "collision must be detected",
+          "ego must have non-zero forward speed in pre-collision critical window"
+        ],
+        "uncertainty": [
+          "lane invasion label remains conflicting, same as original phase1 uncertainty",
+          "controller behavior cannot be confirmed from available evidence"
+        ]
+      },
+      {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Slightly offset ego's spawn and destination, shift the second pedestrian closer to ego's route and reduce its walking speed slightly",
+        "mutation_intent": "Preserves all root cause pattern requirements: confirmed collision oracle, zero pre-collision vehicle_cmd, non-zero ego forward speed, no non-zero brake command, at least one actor within 4m of ego pre-collision",
+        "expected_oracle": "collision",
+        "modifications": {
+          "weather_delta": {
+            "rain": 3,
+            "fog": 0,
+            "wetness": 4,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": -1.5,
+                "y": 0.8
+              },
+              "speed_delta": -0.3
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": false,
+            "spawn_offset": {
+              "x": 1.0,
+              "y": 0.5
+            },
+            "destination_offset": {
+              "x": -1.0,
+              "y": 1.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "actor 1 must be within 4 meters of ego's pre-collision route",
+          "all mission offsets are within allowed bounds"
+        ],
+        "post_execution_validation_rules": [
+          "collision must be detected",
+          "verify pre-collision zero vehicle_cmd and non-zero ego velocity"
+        ],
+        "uncertainty": [
+          "lane invasion label conflict remains unresolved",
+          "no module-level failure attribution can be confirmed",
+          "controller behavior is still uncertain"
+        ]
+      }
+    ]
+  },
+  "raw_api_payload": {
+    "id": "021782922761524e7a0e121a78287261e362ecd929ed8533d113a",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "{\n  \"case_id\": \"case_147\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Shift the first crossing pedestrian closer to ego's travel path and slightly increase its walking speed\",\n      \"mutation_intent\": \"Preserves all root cause constraints: keeps actor within 4m of ego pre-collision, maintains the core pattern of collision with zero vehicle_cmd and non-zero ego forward speed, preserves the confirmed collision symptom\",\n      \"expected_oracle\": \"collision\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 5, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 2.0, \"y\": -1.0}, \"speed_delta\": 0.5}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"actor 0 must be within 4 meters of ego's pre-collision path\", \"pre-collision critical window must have all zero vehicle_cmd commands\"],\n      \"post_execution_validation_rules\": [\"collision must be detected\", \"ego must have non-zero forward speed in pre-collision critical window\"],\n      \"uncertainty\": [\"lane invasion label remains conflicting, same as original phase1 uncertainty\", \"controller behavior cannot be confirmed from available evidence\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Slightly offset ego's spawn and destination, shift the second pedestrian closer to ego's route and reduce its walking speed slightly\",\n      \"mutation_intent\": \"Preserves all root cause pattern requirements: confirmed collision oracle, zero pre-collision vehicle_cmd, non-zero ego forward speed, no non-zero brake command, at least one actor within 4m of ego pre-collision\",\n      \"expected_oracle\": \"collision\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 3, \"fog\": 0, \"wetness\": 4, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 1, \"position_offset\": {\"x\": -1.5, \"y\": 0.8}, \"speed_delta\": -0.3}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": false, \"spawn_offset\": {\"x\": 1.0, \"y\": 0.5}, \"destination_offset\": {\"x\": -1.0, \"y\": 1.0}}\n      },\n      \"pre_execution_validation_rules\": [\"actor 1 must be within 4 meters of ego's pre-collision route\", \"all mission offsets are within allowed bounds\"],\n      \"post_execution_validation_rules\": [\"collision must be detected\", \"verify pre-collision zero vehicle_cmd and non-zero ego velocity\"],\n      \"uncertainty\": [\"lane invasion label conflict remains unresolved\", \"no module-level failure attribution can be confirmed\", \"controller behavior is still uncertain\"]\n    }\n  ]\n}",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null,
+          "reasoning_content": "\nGot it, let's build this JSON step by step. First, case_id is case_147 right? Then we need exactly two candidate_specs. Let's start with the first one, cand_001.\n\nFirst, high_level_variant for cand 001: Move the first pedestrian (actor 0) closer to ego's spawn path, slightly increase its speed. Mutation intent: Still keeps the collision condition, preserves all root cause constraints: zero vehicle_cmd, non-zero ego speed, actor within 4m of ego pre-collision, collision expected. Expected oracle is collision, right? Because the original has confirmed collision.\n\nThen modifications: Weather delta, let's keep it mostly same, maybe fog +5, that's within 20. Wait original weather has fog 70, +5 is 75, that's okay. Actor mutations: actor 0, position offset x is 2, y is -1. Wait that's within [-8,8], yeah. Speed delta +0.5, which is within [-3,3]. What about actor 1? Leave it zero? Wait no, can just do actor 0 first, or both? Wait no, first candidate mutates actor 0. Puddle mutations are empty because original has no puddles. Mission mutation keep_original true.\n\nPre execution rules: Check that actor 0 is within 4m of ego spawn path, confirm all vehicle_cmd are zero in pre-collision window. Post execution: Check collision occurred, confirm ego non-zero speed pre-collision. Uncertainty: Still the lane invasion label conflict, unknown controller attribution like original.\n\nNow cand_002, second candidate. High level variant: Slightly shift ego's spawn position, move the second pedestrian (actor 1) closer to ego's route, slight speed reduction. Mutation intent: Preserves all root cause constraints: confirmed collision oracle, zero vehicle_cmd pre-collision, non-zero ego speed, no brake command, actor within 4m of ego. Expected oracle still collision.\n\nModifications: Weather delta: rain +3, wetness +4, that's within [-20,20]. Actor mutations: actor 1, position offset x is -1.5, y 0.5, speed delta -0.3, that's within bounds. Mission mutation: keep_original false? Wait spawn offset x 1, y 0.5, destination offset x -1, y 1, all within [-5,5], right. Puddles still empty. Pre execution rules: Check that actor 1 is within 4 meters of ego's route pre-collision, confirm mission spawn and destination offsets are within allowed bounds. Post execution: Verify collision occurred, check that pre-collision vehicle_cmd are all zero and ego maintains non-zero forward speed. Uncertainty: Same as original: lane invasion label conflict, unconfirmed controller behavior, no module-level failure attribution.\n\nWait let's check all rules: two candidates, all offsets within limits. Speed delta within [-3,3], mission offsets within [-5,5], weather deltas within [-20,20]. Root cause preserved, collision oracle kept, all constraints from phase 1 are preserved. Let's structure it correctly.\n\nWait let's make sure the schema matches. Let's see:\n\nCase_id is case_147. Then candidate_specs array of two. Let's fill each field correctly.\n\nFirst candidate cand_001:\nhigh_level_variant: \"Shift the first crossing pedestrian closer to ego's travel path and slightly increase its walking speed\"\nmutation_intent: \"Preserves all root cause constraints: keeps actor within 4m of ego pre-collision, maintains the scenario where collision occurs with zero vehicle_cmd and non-zero ego forward speed, preserves confirmed collision symptom\"\nexpected_oracle: \"collision\"\nmodifications: weather_delta is {\"rain\": 0, \"fog\": 5, \"wetness\": 0, \"puddle\": 0} right? That's within delta. Actor_mutations: [{\"actor_index\": 0, \"position_offset\": {\"x\": 2.0, \"y\": -1.0}, \"speed_delta\": 0.5}] that's good, x and y within [-8,8], speed delta 0.5 within [-3,3]. Puddle_mutations is empty [] because original has no puddles. Mission_mutation: {\"keep_original\": true, ...} yeah, keep_original true.\n\npre_execution_validation_rules: [\"actor 0 must be within 4 meters of ego's pre-collision path\", \"all vehicle_cmd control commands must be zero in pre-collision critical window\"]\npost_execution_validation_rules: [\"collision must be detected\", \"ego must have non-zero forward speed in pre-collision critical window\"]\nuncertainty: [\"lane invasion label remains conflicting between dataset and error.json patterns\", \"controller behavior cannot be confirmed from available evidence\"]\n\nThen second candidate cand_002:\nhigh_level_variant: \"Slightly offset ego's spawn and destination, shift the second pedestrian closer to ego's route and reduce its walking speed slightly\"\nmutation_intent: \"Preserves all root cause pattern constraints: confirmed collision, zero pre-collision vehicle_cmd, non-zero ego forward speed, no brake command, actor within 4m of ego pre-collision\"\nexpected_oracle: \"collision\"\nmodifications: weather_delta: {\"rain\": 3, \"fog\": 0, \"wetness\": 4, \"puddle\": 0} all deltas within 20. Actor_mutations: [{\"actor_index\": 1, \"position_offset\": {\"x\": -1.5, \"y\": 0.8}, \"speed_delta\": -0.3}] that's okay, all within bounds. Puddle_mutations: []. Mission_mutation: {\"keep_original\": false, \"spawn_offset\": {\"x\": 1.0, \"y\": 0.5}, \"destination_offset\": {\"x\": -1.0, \"y\": 1.0}} all offsets within [-5,5], perfect.\n\npre_execution_validation_rules: [\"actor 1 must be within 4 meters of ego's pre-collision route\", \"mission spawn and destination offsets are within allowed bounds\"]\npost_execution_validation_rules: [\"collision must occur\", \"verify all vehicle_cmd are zero and ego has non-zero speed pre-collision\"]\nuncertainty: [\"lane invasion label conflict is unresolved\", \"no module-level failure attribution can be confirmed from available evidence\", \"controller behavior remains uncertain\"]\n\nWait that all checks out. Let's put it all together into correct JSON, no extra stuff, exactly what's needed. Let me check all the rules: exactly two candidates, all offsets are within limits, root cause preserved, oracle is collision which is confirmed, uncertainty preserved, no new oracles. Yep. Let's write it now."
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "doubao-seed-2-0-lite-260215",
+    "object": "chat.completion",
+    "service_tier": "default",
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 2244,
+      "prompt_tokens": 1399,
+      "total_tokens": 3643,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 1477,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": null,
+        "cached_tokens": 0
+      }
+    }
+  },
+  "error_message": "",
+  "elapsed_sec": 38.804,
+  "timestamp": "<REDACTED_TIMESTAMP>"
+}

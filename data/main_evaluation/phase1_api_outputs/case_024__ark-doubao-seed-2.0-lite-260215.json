@@ -1,0 +1,121 @@
+{
+  "case_id": "case_024",
+  "workflow": "phase1_causal_explanation",
+  "model_name": "ark-doubao-seed-2.0-lite-260215",
+  "model_id": "ark-doubao-seed-2.0-lite-260215",
+  "status": "completed",
+  "dry_run": false,
+  "schema_valid": true,
+  "schema_errors": [],
+  "quality_flags": [],
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_prompts/case_024__ark-doubao-seed-2.0-lite-260215.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_024__ark-doubao-seed-2.0-lite-260215.json",
+  "prompt_estimated_tokens": 3223,
+  "usage": {
+    "prompt_tokens": 4286,
+    "completion_tokens": 2010,
+    "total_tokens": 6296
+  },
+  "estimated_cost_usd": null,
+  "raw_response": "{\n  \"case_id\": \"case_024\",\n  \"fault_layer\": \"unknown\",\n  \"fault_component\": \"unknown\",\n  \"causal_explanation\": \"The oracle consistently confirms both a collision and a red-light event. In the pre-collision critical window, all vehicle_cmd output is zero while vehicle_status records non-zero braking, a nearby object 2.45m from ego is detected, and a red traffic light state is present. No specific module failure is directly proven by available evidence.\",\n  \"root_cause_pattern\": \"Conservative candidate mechanism: Ego experiences a collision when all actuation commands from the pipeline are zero in the pre-collision window, with a nearby actor and a red traffic light present in the scenario.\",\n  \"preservation_constraints\": [\n    \"Preserve the consistent oracle label of collision plus red-light event\",\n    \"All vehicle_cmd output must be zero in the pre-collision critical window\",\n    \"A nearby actor must be present within 3 meters of ego before collision\",\n    \"At least one red traffic light state must exist in the critical window\"\n  ],\n  \"modifiable_factors\": [\"actor_position\", \"rain_intensity\", \"puddle_location\", \"fog_density\", \"wind_speed\"],\n  \"non_modifiable_conditions\": [\"same Town01 map\", \"same start and goal mission\", \"zero vehicle_cmd output in pre-collision window\", \"oracle-confirmed collision event\"],\n  \"uncertainty\": [\n    \"Mismatch between all-zero vehicle_cmd and non-zero brake in vehicle_status makes actuation controller behavior uncertain\",\n    \"Route-light relation and stop-line crossing for red-light violation are unconfirmed\",\n    \"No direct evidence localizes failure to a specific Autoware module\",\n    \"Red-light violation timestamp is unknown\"\n  ],\n  \"evidence_support\": [\n    {\"evidence_id\": \"oracle_consistency\", \"claim\": \"Collision and red-light labels are consistent between dataset and error.json\"},\n    {\"evidence_id\": \"critical_window_control\", \"claim\": \"All vehicle_cmd commands are zero in pre-collision window, vehicle_status has non-zero brake just before collision\"},\n    {\"evidence_id\": \"object_detection\", \"claim\": \"At least one object is detected pre-collision, closest object is 2.45m from ego\"},\n    {\"evidence_id\": \"red_light_summary\", \"claim\": \"At least one traffic light has a red state in the critical window\"}\n  ],\n  \"confidence\": \"medium\",\n  \"ready_for_phase2_generation\": \"yes\",\n  \"notes_for_validator\": [\n    \"Verify zero vehicle_cmd output in the pre-collision window of generated cases\",\n    \"Confirm both collision and red-light events are present in oracle output\",\n    \"Check that the core mismatch between vehicle_cmd and vehicle_status braking is preserved\"\n  ]\n}",
+  "parsed_response": {
+    "case_id": "case_024",
+    "fault_layer": "unknown",
+    "fault_component": "unknown",
+    "causal_explanation": "The oracle consistently confirms both a collision and a red-light event. In the pre-collision critical window, all vehicle_cmd output is zero while vehicle_status records non-zero braking, a nearby object 2.45m from ego is detected, and a red traffic light state is present. No specific module failure is directly proven by available evidence.",
+    "root_cause_pattern": "Conservative candidate mechanism: Ego experiences a collision when all actuation commands from the pipeline are zero in the pre-collision window, with a nearby actor and a red traffic light present in the scenario.",
+    "preservation_constraints": [
+      "Preserve the consistent oracle label of collision plus red-light event",
+      "All vehicle_cmd output must be zero in the pre-collision critical window",
+      "A nearby actor must be present within 3 meters of ego before collision",
+      "At least one red traffic light state must exist in the critical window"
+    ],
+    "modifiable_factors": [
+      "actor_position",
+      "rain_intensity",
+      "puddle_location",
+      "fog_density",
+      "wind_speed"
+    ],
+    "non_modifiable_conditions": [
+      "same Town01 map",
+      "same start and goal mission",
+      "zero vehicle_cmd output in pre-collision window",
+      "oracle-confirmed collision event"
+    ],
+    "uncertainty": [
+      "Mismatch between all-zero vehicle_cmd and non-zero brake in vehicle_status makes actuation controller behavior uncertain",
+      "Route-light relation and stop-line crossing for red-light violation are unconfirmed",
+      "No direct evidence localizes failure to a specific Autoware module",
+      "Red-light violation timestamp is unknown"
+    ],
+    "evidence_support": [
+      {
+        "evidence_id": "oracle_consistency",
+        "claim": "Collision and red-light labels are consistent between dataset and error.json"
+      },
+      {
+        "evidence_id": "critical_window_control",
+        "claim": "All vehicle_cmd commands are zero in pre-collision window, vehicle_status has non-zero brake just before collision"
+      },
+      {
+        "evidence_id": "object_detection",
+        "claim": "At least one object is detected pre-collision, closest object is 2.45m from ego"
+      },
+      {
+        "evidence_id": "red_light_summary",
+        "claim": "At least one traffic light has a red state in the critical window"
+      }
+    ],
+    "confidence": "medium",
+    "ready_for_phase2_generation": "yes",
+    "notes_for_validator": [
+      "Verify zero vehicle_cmd output in the pre-collision window of generated cases",
+      "Confirm both collision and red-light events are present in oracle output",
+      "Check that the core mismatch between vehicle_cmd and vehicle_status braking is preserved"
+    ]
+  },
+  "raw_api_payload": {
+    "id": "021782918887828b19f2272b96096885d7095f98214c21096fcfa",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "{\n  \"case_id\": \"case_024\",\n  \"fault_layer\": \"unknown\",\n  \"fault_component\": \"unknown\",\n  \"causal_explanation\": \"The oracle consistently confirms both a collision and a red-light event. In the pre-collision critical window, all vehicle_cmd output is zero while vehicle_status records non-zero braking, a nearby object 2.45m from ego is detected, and a red traffic light state is present. No specific module failure is directly proven by available evidence.\",\n  \"root_cause_pattern\": \"Conservative candidate mechanism: Ego experiences a collision when all actuation commands from the pipeline are zero in the pre-collision window, with a nearby actor and a red traffic light present in the scenario.\",\n  \"preservation_constraints\": [\n    \"Preserve the consistent oracle label of collision plus red-light event\",\n    \"All vehicle_cmd output must be zero in the pre-collision critical window\",\n    \"A nearby actor must be present within 3 meters of ego before collision\",\n    \"At least one red traffic light state must exist in the critical window\"\n  ],\n  \"modifiable_factors\": [\"actor_position\", \"rain_intensity\", \"puddle_location\", \"fog_density\", \"wind_speed\"],\n  \"non_modifiable_conditions\": [\"same Town01 map\", \"same start and goal mission\", \"zero vehicle_cmd output in pre-collision window\", \"oracle-confirmed collision event\"],\n  \"uncertainty\": [\n    \"Mismatch between all-zero vehicle_cmd and non-zero brake in vehicle_status makes actuation controller behavior uncertain\",\n    \"Route-light relation and stop-line crossing for red-light violation are unconfirmed\",\n    \"No direct evidence localizes failure to a specific Autoware module\",\n    \"Red-light violation timestamp is unknown\"\n  ],\n  \"evidence_support\": [\n    {\"evidence_id\": \"oracle_consistency\", \"claim\": \"Collision and red-light labels are consistent between dataset and error.json\"},\n    {\"evidence_id\": \"critical_window_control\", \"claim\": \"All vehicle_cmd commands are zero in pre-collision window, vehicle_status has non-zero brake just before collision\"},\n    {\"evidence_id\": \"object_detection\", \"claim\": \"At least one object is detected pre-collision, closest object is 2.45m from ego\"},\n    {\"evidence_id\": \"red_light_summary\", \"claim\": \"At least one traffic light has a red state in the critical window\"}\n  ],\n  \"confidence\": \"medium\",\n  \"ready_for_phase2_generation\": \"yes\",\n  \"notes_for_validator\": [\n    \"Verify zero vehicle_cmd output in the pre-collision window of generated cases\",\n    \"Confirm both collision and red-light events are present in oracle output\",\n    \"Check that the core mismatch between vehicle_cmd and vehicle_status braking is preserved\"\n  ]\n}",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null,
+          "reasoning_content": "\nOkay, let's work through this step by step. First, the case_id is case_024. Let's go through each field.\n\nFirst, fault_layer. Let's see: vehicle_cmd is all zero, but vehicle_status has non-zero throttle/brake before collision. Attribution is uncertain, right? Wait, let's check the evidence. The manual says vehicle_cmd all zero vs vehicle_status movement, so uncertain. So fault_layer would be unknown? Wait, let's check: all the evidence, do we have a confirmed module? Let's see: vehicle_cmd is all zero, but vehicle_status has brake non-zero. So per rules, if vehicle_cmd all zero but vehicle_status shows movement/braking, mark controller uncertain, don't assign actuation from mismatch alone. What about other layers? Perception has detected objects, last count 1, the closest object is 2.45m away. Do we have proof perception missed it? No, wait, last detected count is 1, the closest object is there? Wait, closest object distance is 2.45, detected count last is 1. Hmm. No direct proof of module failure. So fault_layer is unknown, fault_component is unknown.\n\nCausal explanation: The oracle consistently labels this case as collision with red-light violation. Critical window evidence shows ego speed decreased before collision, vehicle_cmd has all zero commands in the critical window while vehicle_status shows non-zero brake just before collision, a nearby object was detected and predicted, traffic light states include a red light but route-light relation and stop-line crossing are unconfirmed, and no module failure is directly localized.\n\nRoot-cause pattern: Conservative pattern: Ego vehicle experiences a collision when all vehicle_cmd output is zero in the critical pre-collision window, with a nearby actor present and a confirmed red light present in the map.\n\nPreservation constraints: Let's think, 3-6. Let's list:\n1. Preserve the consistent oracle label of collision plus red-light event\n2. All vehicle_cmd commands must be zero in the pre-collision critical window\n3. A nearby actor must be present close to ego before collision\n4. At least one red traffic light state must be present in the critical window\n5. The map must be Town01 with the given start and goal mission. Wait, no, non-modifiable? Wait, preservation constraints are semantic. Let's adjust:\n\nWait, preservation constraints:\n[\"Consistent oracle symptom of collision plus red-light event must be preserved\", \"All vehicle_cmd output must be zero in the pre-collision critical window\", \"A nearby actor must be present within 3 meters of ego before collision\", \"At least one red traffic light state must be present in the critical collision window\"]\n\nModifiable factors: Let's see, what can we change? actor_position, weather, rain intensity, puddle size, fog density, wind speed. The scenario has weather rain 8, puddles 1. So modifiable_factors: [\"actor_position\", \"rain_intensity\", \"puddle_location\", \"fog_density\", \"wind_speed\"]\n\nNon_modifiable_conditions: [\"same map (Town01)\", \"same start and goal mission\", \"zero vehicle_cmd output in pre-collision window\", \"presence of collision event confirmed by oracle\"]\n\nUncertainty: Let's list what's uncertain: [\"Vehicle_cmd is all zero but vehicle_status shows non-zero braking, so actuation controller behavior is uncertain\", \"Route-light relation and stop-line crossing for red-light violation are unconfirmed\", \"No direct evidence localizes failure to a specific Autoware module\", \"Red-light violation timestamp is unknown\"]\n\nEvidence_support: Let's add each evidence:\nFirst, {\"evidence_id\": \"oracle_consistency\", \"claim\": \"Labels for collision and red-light are consistent between dataset and error.json\"},\n{\"evidence_id\": \"critical_window_vehicle_control\", \"claim\": \"All vehicle_cmd commands are zero in pre-collision window, vehicle_status shows non-zero brake just before collision\"},\n{\"evidence_id\": \"detected_objects\", \"claim\": \"At least one object was detected in the pre-collision window, closest object is 2.45m from ego\"},\n{\"evidence_id\": \"red_light_window\", \"claim\": \"At least one traffic light has a red state in the critical window, route-light relation and stop-line crossing are unconfirmed\"}\n\nConfidence: medium? Wait, let's see, labels are consistent, we have the vehicle_cmd zero, but attribution is unknown. So confidence is medium? Wait, low? No, the oracle is consistent, we have clear symptoms. Confidence is medium, because we have the symptom but not module attribution.\n\nReady_for_phase2_generation: yes, because we have a checkable conservative pattern.\n\nNotes_for_validator: [\"Check that vehicle_cmd is all zero in pre-collision window for generated cases\", \"Validate that both collision and red-light events are present as oracle labels\", \"Confirm that no unpreserved conditions are introduced that change the root candidate mechanism\"]\n\nWait, let's put it all together correctly, follow the schema. Let's check the rules again. Let's make sure fault_layer is unknown, right? Because no module is confirmed. Yes, per rules, if attribution is not directly supported, fault_layer is unknown.\n\nWait, let's check the vehicle_cmd: all zero in the whole sampled range, right? The actuation summary says vehicle_cmd steer, accel, brake, target speed all min max 0. Yes, so all zero. And vehicle_status has non-zero brake before collision, so per rule, can't assign actuation, so fault_layer unknown. Correct.\n\nOkay, let's write the JSON properly, no extra stuff, concise. Let's make it fit:\n\nWait, let's adjust causal explanation to be concise: \"The oracle consistently confirms both a collision and a red-light event. In the pre-collision critical window, all vehicle_cmd output is zero while vehicle_status records non-zero braking, a nearby object at 2.45m from ego is detected, and a red traffic light state is present but route-light relation and stop-line crossing are not confirmed. No specific module failure is directly proven by the available evidence.\"\n\nYes, that's good. Root cause pattern: \"Conservative mechanism candidate: Ego experiences a collision when all actuation commands from the planning/control pipeline are zero in the pre-collision window, with a nearby actor and a red traffic light present in the scenario.\" That's good.\n\nOkay, let's put all together now, make sure it's valid JSON."
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "doubao-seed-2-0-lite-260215",
+    "object": "chat.completion",
+    "service_tier": "default",
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 2010,
+      "prompt_tokens": 4286,
+      "total_tokens": 6296,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 1383,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": null,
+        "cached_tokens": 0
+      }
+    }
+  },
+  "error_message": "",
+  "timestamp": "<REDACTED_TIMESTAMP>",
+  "elapsed_sec": 40.685
+}

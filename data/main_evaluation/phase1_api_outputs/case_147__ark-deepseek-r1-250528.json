@@ -1,0 +1,121 @@
+{
+  "case_id": "case_147",
+  "workflow": "phase1_causal_explanation",
+  "model_name": "ark-deepseek-r1-250528",
+  "model_id": "ark-deepseek-r1-250528",
+  "status": "completed",
+  "dry_run": false,
+  "schema_valid": true,
+  "schema_errors": [],
+  "quality_flags": [],
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_prompts/case_147__ark-deepseek-r1-250528.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_147__ark-deepseek-r1-250528.json",
+  "prompt_estimated_tokens": 3075,
+  "usage": {
+    "prompt_tokens": 4136,
+    "completion_tokens": 2693,
+    "total_tokens": 6829
+  },
+  "estimated_cost_usd": null,
+  "raw_response": "{\n  \"case_id\": \"case_147\",\n  \"fault_layer\": \"unknown\",\n  \"fault_component\": \"unknown\",\n  \"causal_explanation\": \"Collision is confirmed by both dataset and error.json, while the lane invasion fault label conflicts between the two sources. Before collision, ego moved at ~3.45 m/s with no commanded or applied braking, and a nearby object was 3.128m from ego. All vehicle control commands are reported as zero in vehicle_cmd while vehicle_status indicates non-zero throttle and ongoing movement, but this mismatch alone is insufficient to confirm an actuation failure. No module-level root cause is directly proven by available evidence.\",\n  \"root_cause_pattern\": \"Conservative pattern: Ego approaches a nearby object on its planned route with no braking commanded or applied, leading to collision, while module-level fault attribution and lane invasion presence remain uncertain due to conflicting labels and incomplete evidence.\",\n  \"preservation_constraints\": [\n    \"Preserve the confirmed collision outcome before scenario end\",\n    \"Preserve a nearby object within ~3 meters of ego immediately before collision\",\n    \"Preserve zero commanded braking and zero applied braking in the pre-collision critical window\",\n    \"Preserve the mismatch between all-zero vehicle_cmd control values and non-zero ego movement pre-collision\"\n  ],\n  \"modifiable_factors\": [\"actor_position\", \"start_ego_pose\", \"cloud_cover\", \"fog_density\", \"wetness\", \"wind_speed\"],\n  \"non_modifiable_conditions\": [\"Confirmed collision event\", \"No braking in pre-collision critical window\", \"Nearby close object pre-collision\"],\n  \"uncertainty\": [\n    \"Dataset and error.json disagree on lane invasion label: dataset=1, error_json=0\",\n    \"Dataset and error.json disagree on fault group: dataset=C+L, error_json=C\",\n    \"Vehicle_cmd/vehicle_status mismatch cannot be confirmed as actuation failure from available evidence\",\n    \"No direct module-level failure evidence is available to localize root cause\"\n  ],\n  \"evidence_support\": [\n    {\"evidence_id\": \"oracle_consistency\", \"claim\": \"Collision is confirmed by both sources, lane invasion label is conflicting\"},\n    {\"evidence_id\": \"critical_window_summary\", \"claim\": \"Ego velocity was ~3.45 m/s pre-collision with no braking commanded or applied\"},\n    {\"evidence_id\": \"critical_window_summary\", \"claim\": \"Closest object was ~3.13m from ego pre-collision, no blocked waypoints were detected\"},\n    {\"evidence_id\": \"actuation_summary\", \"claim\": \"All vehicle_cmd values are zero pre-collision while vehicle_status reports non-zero throttle and moving ego\"}\n  ],\n  \"confidence\": \"low\",\n  \"ready_for_phase2_generation\": \"uncertain\",\n  \"notes_for_validator\": [\n    \"Resolve lane invasion label conflict via manual replay review before confirming same-root-cause classification\",\n    \"Verify the vehicle_cmd/vehicle_status mismatch during post-generation validation\",\n    \"Confirm collision occurs with no pre-collision braking in generated candidates\"\n  ]\n}",
+  "parsed_response": {
+    "case_id": "case_147",
+    "fault_layer": "unknown",
+    "fault_component": "unknown",
+    "causal_explanation": "Collision is confirmed by both dataset and error.json, while the lane invasion fault label conflicts between the two sources. Before collision, ego moved at ~3.45 m/s with no commanded or applied braking, and a nearby object was 3.128m from ego. All vehicle control commands are reported as zero in vehicle_cmd while vehicle_status indicates non-zero throttle and ongoing movement, but this mismatch alone is insufficient to confirm an actuation failure. No module-level root cause is directly proven by available evidence.",
+    "root_cause_pattern": "Conservative pattern: Ego approaches a nearby object on its planned route with no braking commanded or applied, leading to collision, while module-level fault attribution and lane invasion presence remain uncertain due to conflicting labels and incomplete evidence.",
+    "preservation_constraints": [
+      "Preserve the confirmed collision outcome before scenario end",
+      "Preserve a nearby object within ~3 meters of ego immediately before collision",
+      "Preserve zero commanded braking and zero applied braking in the pre-collision critical window",
+      "Preserve the mismatch between all-zero vehicle_cmd control values and non-zero ego movement pre-collision"
+    ],
+    "modifiable_factors": [
+      "actor_position",
+      "start_ego_pose",
+      "cloud_cover",
+      "fog_density",
+      "wetness",
+      "wind_speed"
+    ],
+    "non_modifiable_conditions": [
+      "Confirmed collision event",
+      "No braking in pre-collision critical window",
+      "Nearby close object pre-collision"
+    ],
+    "uncertainty": [
+      "Dataset and error.json disagree on lane invasion label: dataset=1, error_json=0",
+      "Dataset and error.json disagree on fault group: dataset=C+L, error_json=C",
+      "Vehicle_cmd/vehicle_status mismatch cannot be confirmed as actuation failure from available evidence",
+      "No direct module-level failure evidence is available to localize root cause"
+    ],
+    "evidence_support": [
+      {
+        "evidence_id": "oracle_consistency",
+        "claim": "Collision is confirmed by both sources, lane invasion label is conflicting"
+      },
+      {
+        "evidence_id": "critical_window_summary",
+        "claim": "Ego velocity was ~3.45 m/s pre-collision with no braking commanded or applied"
+      },
+      {
+        "evidence_id": "critical_window_summary",
+        "claim": "Closest object was ~3.13m from ego pre-collision, no blocked waypoints were detected"
+      },
+      {
+        "evidence_id": "actuation_summary",
+        "claim": "All vehicle_cmd values are zero pre-collision while vehicle_status reports non-zero throttle and moving ego"
+      }
+    ],
+    "confidence": "low",
+    "ready_for_phase2_generation": "uncertain",
+    "notes_for_validator": [
+      "Resolve lane invasion label conflict via manual replay review before confirming same-root-cause classification",
+      "Verify the vehicle_cmd/vehicle_status mismatch during post-generation validation",
+      "Confirm collision occurs with no pre-collision braking in generated candidates"
+    ]
+  },
+  "raw_api_payload": {
+    "id": "021782921361302d76bde1cbc64d4e78ca2611886b2c6a76d9c0f",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "{\n  \"case_id\": \"case_147\",\n  \"fault_layer\": \"unknown\",\n  \"fault_component\": \"unknown\",\n  \"causal_explanation\": \"Collision is confirmed by both dataset and error.json, while the lane invasion fault label conflicts between the two sources. Before collision, ego moved at ~3.45 m/s with no commanded or applied braking, and a nearby object was 3.128m from ego. All vehicle control commands are reported as zero in vehicle_cmd while vehicle_status indicates non-zero throttle and ongoing movement, but this mismatch alone is insufficient to confirm an actuation failure. No module-level root cause is directly proven by available evidence.\",\n  \"root_cause_pattern\": \"Conservative pattern: Ego approaches a nearby object on its planned route with no braking commanded or applied, leading to collision, while module-level fault attribution and lane invasion presence remain uncertain due to conflicting labels and incomplete evidence.\",\n  \"preservation_constraints\": [\n    \"Preserve the confirmed collision outcome before scenario end\",\n    \"Preserve a nearby object within ~3 meters of ego immediately before collision\",\n    \"Preserve zero commanded braking and zero applied braking in the pre-collision critical window\",\n    \"Preserve the mismatch between all-zero vehicle_cmd control values and non-zero ego movement pre-collision\"\n  ],\n  \"modifiable_factors\": [\"actor_position\", \"start_ego_pose\", \"cloud_cover\", \"fog_density\", \"wetness\", \"wind_speed\"],\n  \"non_modifiable_conditions\": [\"Confirmed collision event\", \"No braking in pre-collision critical window\", \"Nearby close object pre-collision\"],\n  \"uncertainty\": [\n    \"Dataset and error.json disagree on lane invasion label: dataset=1, error_json=0\",\n    \"Dataset and error.json disagree on fault group: dataset=C+L, error_json=C\",\n    \"Vehicle_cmd/vehicle_status mismatch cannot be confirmed as actuation failure from available evidence\",\n    \"No direct module-level failure evidence is available to localize root cause\"\n  ],\n  \"evidence_support\": [\n    {\"evidence_id\": \"oracle_consistency\", \"claim\": \"Collision is confirmed by both sources, lane invasion label is conflicting\"},\n    {\"evidence_id\": \"critical_window_summary\", \"claim\": \"Ego velocity was ~3.45 m/s pre-collision with no braking commanded or applied\"},\n    {\"evidence_id\": \"critical_window_summary\", \"claim\": \"Closest object was ~3.13m from ego pre-collision, no blocked waypoints were detected\"},\n    {\"evidence_id\": \"actuation_summary\", \"claim\": \"All vehicle_cmd values are zero pre-collision while vehicle_status reports non-zero throttle and moving ego\"}\n  ],\n  \"confidence\": \"low\",\n  \"ready_for_phase2_generation\": \"uncertain\",\n  \"notes_for_validator\": [\n    \"Resolve lane invasion label conflict via manual replay review before confirming same-root-cause classification\",\n    \"Verify the vehicle_cmd/vehicle_status mismatch during post-generation validation\",\n    \"Confirm collision occurs with no pre-collision braking in generated candidates\"\n  ]\n}",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null,
+          "reasoning_content": "\nGot it, let's work through this step by step. First, the case id is case_147, right? Let's start with that.\n\nNext, fault layer. There's a conflict between dataset and error json, and we don't have direct module failure evidence. Wait, let's check the vehicle cmd vs status. Oh, vehicle_cmd all zero, but vehicle_status has throttle non-zero? Wait no, look: vehicle_status before collision has throttle last 0.19, brake 0, but vehicle_cmd all accel, brake, steer are zero. Oh right, the rule says if vehicle_cmd all zero but vehicle status shows movement, mark controller uncertain, don't assign actuation from that alone. Also, lane invasion is conflicting: dataset says 1, error says 0. Collision is confirmed by both? Wait error json says crash true, dataset says collision 1, that's consistent. But lane invasion is conflicting.\n\nSo fault layer: let's see, do we have direct evidence for any module? Let's see. Final waypoints are all 101, no blocked waypoints detected, even though closest object is 3.128m away. Wait, detected objects last count 2, but closest object info is there. Wait but we can't directly say which module is wrong. Wait, let's check: vehicle_cmd is all zero in critical window, but vehicle_status has throttle non-zero and ego moving at 3.45 m/s before collision. Oh right, that's a mismatch, but rule says don't assign actuation from that alone. So fault layer should be unknown? Wait or is there enough? No, rule says prefer unknown when module attribution not directly supported. So fault_layer: unknown, fault_component: unknown.\n\nCausal explanation: Let's write that. Both dataset and error.json confirm a collision occurred, ego was moving at ~3.45 m/s before collision with no braking commanded or applied, lane invasion label is conflicting between dataset and error.json. Vehicle_cmd reports all zero control commands while vehicle_status reports non-zero throttle and ego movement, but this mismatch alone is not enough to confirm actuation failure. No module-level failure is directly proven by available evidence.\n\nRoot cause pattern: Conservative pattern: Ego vehicle moves toward a detected nearby object on the planned route, no braking is commanded or applied before collision, with conflicting lane invasion labels. Module-level fault attribution is not confirmed.\n\nPreservation constraints: Let's do 3-6, right. Let's list: 1. Preserve confirmed collision symptom. 2. Preserve nearby object within ~3m of ego before collision. 3. Preserve zero braking command and zero applied brake before collision. 4. Preserve the mismatch between all-zero vehicle_cmd and non-zero ego movement before collision. Wait that's good.\n\nModifiable factors: Let's see, what can we change? Actor position, weather, fog density, wetness, wind, start pose, number of actors? Wait the scenario has 2 actors, weather has cloud 69, fog 70, etc. So modifiable_factors: [\"actor_position\", \"weather_cloud\", \"fog_density\", \"wetness\", \"start_ego_pose\"].\n\nNon_modifiable_conditions: [\"confirmed collision event before end of scenario\", \"nearby object present close to ego pre-collision\", \"zero braking command and zero applied braking pre-collision\"].\n\nUncertainty: Let's list the conflicts first. [\"Dataset and error.json disagree on lane_invasion label: dataset=1, error_json=0\", \"Dataset and error.json disagree on fault group: dataset=C+L, error_json=C\", \"Mismatch between all-zero vehicle_cmd and moving ego can't be confirmed as actuation failure from available evidence\", \"No direct module-level failure evidence is available to localize root cause\"].\n\nEvidence support: Let's list each evidence. First, {\"evidence_id\": \"oracle_consistency\", \"claim\": \"Collision is confirmed by both dataset and error.json, lane invasion is conflicting\"}, then {\"evidence_id\": \"critical_window_summary\", \"claim\": \"Ego velocity was ~3.45 m/s immediately pre-collision with no braking commanded or applied\"}, {\"evidence_id\": \"critical_window_summary\", \"claim\": \"Closest object to ego was ~3.13m away pre-collision, no blocked waypoints were detected by planning\"}, {\"evidence_id\": \"actuation_topic_summary\", \"claim\": \"All vehicle_cmd values are zero in the critical window while vehicle_status reports non-zero throttle and moving ego\"}.\n\nConfidence: Low, right? Because of conflict and unknown root cause. So confidence: low.\n\nReady_for_phase2_generation: Yes? Wait, we have a checkable conservative pattern, even though it's uncertain. Wait the rule says use yes when there's a checkable conservative pattern. Let's see: the collision is confirmed, we have constraints, so ready_for_phase2_generation: yes? Wait no, wait there's a conflict, but rule says \"do not set ready_for_phase2_generation=no solely because fault_layer is unknown. Use yes when there is a checkable conservative preservation pattern; use uncertain when labels conflict or a key condition is missing.\" Oh right! Labels conflict here. Wait the conflict is on lane invasion. Wait the rule says use uncertain when labels conflict. Let me check that rule again: \"use yes when there is a checkable conservative preservation pattern; use uncertain when labels conflict or a key condition is missing.\" Oh right, so labels conflict here, so ready_for_phase2_generation: uncertain? Wait wait, let's re-read: \"If Dataset.xlsx and error.json disagree, mark uncertainty and do not treat the dataset label as confirmed ground truth.\" So the conflict exists, so ready is uncertain? Wait but collision is confirmed by both. Only lane invasion is conflicting. Let's see: the guidance says needs manual review, but do we set ready as uncertain? Yeah, because there's a label conflict. Wait let's check the rule again: \"ready_for_phase2_generation: yes | no | uncertain. Be concise: prefer short strings... use uncertain when labels conflict or a key condition is missing.\" Yep, so that applies here.\n\nNotes_for_validator: [\"Resolve lane invasion label conflict via manual review of replay before confirming same-root-cause classification\", \"Check for actuation mismatch between vehicle_cmd and vehicle_status during post-generation validation\", \"Confirm collision occurs with no pre-collision braking in generated candidates\"].\n\nWait let's put all this together correctly, make sure it follows all rules. Let's check all rules: no invention, mark conflict, don't infer actuation from mismatch alone, fault layer unknown because no direct module evidence, preservation constraints are semantic not timestamps, yes.\n\nWait let's adjust the causal explanation to be concise: \"Collision is confirmed by both dataset and error.json, while the lane invasion fault label conflicts between the two sources. Before collision, ego moved at ~3.45 m/s with no commanded or applied braking, and a nearby object was 3.128m from ego. All vehicle control commands are reported as zero in vehicle_cmd while vehicle_status indicates non-zero throttle and ongoing movement, but this mismatch alone is insufficient to confirm an actuation module failure. No module-level root cause is directly proven by available evidence.\" That's good.\n\nRoot cause pattern: \"Conservative root-cause pattern: Ego approaches a nearby object on its planned route with no braking commanded or applied, leading to collision, while module-level fault attribution and the presence of lane invasion remain uncertain due to conflicting labels and incomplete evidence.\" That's good.\n\nPreservation constraints: Let's make them semantic: [\"Preserve the confirmed collision outcome before scenario end\", \"Preserve a nearby non-static object within ~3 meters of ego immediately before collision\", \"Preserve zero commanded braking and zero applied braking in the pre-collision critical window\", \"Preserve the mismatch between all-zero vehicle_cmd control values and non-zero ego movement pre-collision\"]. That's four, good.\n\nModifiable factors: [\"actor_position\", \"start_ego_pose\", \"cloud_cover\", \"fog_density\", \"wind_speed\", \"wetness\"] that's fine.\n\nNon_modifiable_conditions: [\"Confirmed collision event pre-collision conditions: no braking, nearby close object\", \"Mismatch between all-zero vehicle_cmd and moving ego pre-collision\"] that's good.\n\nUncertainty we have the list right: [\"Dataset and error.json disagree on lane invasion label (dataset=1, error_json=0)\", \"Dataset and error.json disagree on fault group label (dataset=C+L, error_json=C)\", \"Mismatch between all-zero vehicle_cmd and moving ego cannot be confirmed as actuation failure from available evidence\", \"No direct module-level failure evidence is available to localize the root cause\"].\n\nEvidence support as we had before. Confidence is low, right? Because of all the uncertainty. Ready_for_phase2_generation is uncertain because of label conflict. Wait but let's confirm: collision is confirmed by both, so even with lane invasion conflict, is it uncertain? Yes, because the labels conflict, per rule.\n\nNotes for validator: [\"Manually verify lane invasion status during replay of generated candidates to resolve label conflict\", \"Check for the vehicle_cmd/vehicle_status mismatch during post-execution validation\", \"Confirm that collision occurs with no pre-collision braking in generated test cases\"].\n\nOkay let's put this all into valid JSON now, no extra stuff, exactly what's needed."
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "doubao-seed-2-0-lite-260215",
+    "object": "chat.completion",
+    "service_tier": "default",
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 2693,
+      "prompt_tokens": 4136,
+      "total_tokens": 6829,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 2008,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": null,
+        "cached_tokens": 0
+      }
+    }
+  },
+  "error_message": "",
+  "timestamp": "<REDACTED_TIMESTAMP>",
+  "elapsed_sec": 44.608
+}

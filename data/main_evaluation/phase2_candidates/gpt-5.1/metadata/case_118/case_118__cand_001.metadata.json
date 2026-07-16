@@ -1,0 +1,135 @@
+{
+  "case_id": "case_118",
+  "model_name": "gpt-5.1",
+  "candidate_index": 1,
+  "candidate_spec": {
+    "candidate_id": "cand_001",
+    "high_level_variant": "Baseline replay with minimal spatial variation to test repeatability of ego-only collision under same route and environment",
+    "mutation_intent": "Keep mission, actors, and environment essentially unchanged so that the ego still drives along the same path in Town01, preserving the pattern where the ego moves under nonzero throttle, receives no explicit high-level commands, and collides with an unspecified counterpart while perception and traffic-light topics are active. Tiny mission offsets remain within noise level to avoid altering intersection topology or light relations, thereby maintaining uncertainty about lane invasion and exact red-light mechanics.",
+    "expected_oracle": "collision",
+    "modifications": {
+      "weather_delta": {
+        "rain": 0,
+        "fog": 0,
+        "wetness": 0,
+        "puddle": 0
+      },
+      "actor_mutations": [],
+      "puddle_mutations": [
+        {
+          "puddle_index": 0,
+          "location_offset": {
+            "x": 0.5,
+            "y": -0.5
+          },
+          "level_delta": 0.0,
+          "size_scale": 1.0
+        },
+        {
+          "puddle_index": 1,
+          "location_offset": {
+            "x": -0.5,
+            "y": 0.5
+          },
+          "level_delta": 0.0,
+          "size_scale": 1.0
+        },
+        {
+          "puddle_index": 2,
+          "location_offset": {
+            "x": 0.3,
+            "y": 0.3
+          },
+          "level_delta": 0.0,
+          "size_scale": 1.0
+        }
+      ],
+      "mission_mutation": {
+        "keep_original": false,
+        "spawn_offset": {
+          "x": 1.0,
+          "y": -1.0
+        },
+        "destination_offset": {
+          "x": -1.0,
+          "y": 1.0
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Ensure mission map remains Town01 and spawn/destination offsets do not change intersection count or primary route topology.",
+      "Verify that no additional dynamic actors are introduced; ego should be the only explicitly configured actor.",
+      "Confirm that perception (detected objects, prediction objects), planning (final_waypoints), and traffic_lights topics are enabled in the scenario configuration."
+    ],
+    "post_execution_validation_rules": [
+      "Check that at least one collision oracle event is reported for the ego vehicle while its speed is > 0.5 m/s immediately before impact.",
+      "Confirm that vehicle_status shows nonzero throttle and zero brake in the 3 seconds before collision, with no significant speed drop.",
+      "Verify that vehicle_cmd accel_cmd, brake_cmd, and steer_cmd remain zero (or effectively zero) in the same pre-collision window, preserving the command-status mismatch.",
+      "Ensure that detection, prediction, final_waypoints, and traffic_lights topics contain messages in the 10 seconds preceding the collision.",
+      "Do not require lane_invasion or a red_light violation to be present in the oracle to accept this as a valid reproduction of the root cause pattern."
+    ],
+    "uncertainty": [
+      "Whether lane invasion occurs prior to or during the collision remains unresolved and is not enforced.",
+      "The identity and geometry of the collision counterpart (if any) are still unknown and may depend on simulator internals.",
+      "The exact relationship between the ego path and traffic-light state at the time of impact is not determined."
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": 0.0,
+      "fog": 0.0,
+      "wetness": 0.0,
+      "puddle": 0.0
+    },
+    "actor_mutations": [],
+    "puddle_mutations": [
+      {
+        "puddle_index": 0,
+        "location_offset": {
+          "x": 0.5,
+          "y": -0.5
+        },
+        "level_delta": 0.0,
+        "size_scale": 1.0
+      },
+      {
+        "puddle_index": 1,
+        "location_offset": {
+          "x": -0.5,
+          "y": 0.5
+        },
+        "level_delta": 0.0,
+        "size_scale": 1.0
+      },
+      {
+        "puddle_index": 2,
+        "location_offset": {
+          "x": 0.3,
+          "y": 0.3
+        },
+        "level_delta": 0.0,
+        "size_scale": 1.0
+      }
+    ],
+    "mission_mutation": {
+      "spawn_offset": {
+        "x": 1.0,
+        "y": -1.0
+      },
+      "destination_offset": {
+        "x": -1.0,
+        "y": 1.0
+      }
+    }
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": [
+      "no actors in candidate scenario"
+    ]
+  },
+  "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_118__gpt-5.1.json",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_118__gpt-5.1.json",
+  "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+}

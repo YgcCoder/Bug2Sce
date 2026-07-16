@@ -1,0 +1,107 @@
+{
+  "case_id": "case_168",
+  "model_name": "ark-doubao-seed-2.0-lite-260215",
+  "candidate_index": 2,
+  "candidate_spec": {
+    "candidate_id": "cand_002",
+    "high_level_variant": "Slightly reduced fog and conservatively shifted both puddles closer to the original ego route",
+    "mutation_intent": "Preserves all Phase 1 root-cause constraints: keeps original map, mission configuration, 0 dynamic actors, 2 puddles, retains red light on route, and maintains the required mismatch between all-zero actuation and non-zero ego movement, only makes minor conservative location changes to puddles",
+    "expected_oracle": "compound",
+    "modifications": {
+      "weather_delta": {
+        "rain": 0,
+        "fog": -10,
+        "wetness": 0,
+        "puddle": 0
+      },
+      "actor_mutations": [],
+      "puddle_mutations": [
+        {
+          "puddle_index": 0,
+          "location_offset": {
+            "x": 1.5,
+            "y": 0.8
+          },
+          "level_delta": 0.0,
+          "size_scale": 0.95
+        },
+        {
+          "puddle_index": 1,
+          "location_offset": {
+            "x": -1.2,
+            "y": 1.1
+          },
+          "level_delta": 0.0,
+          "size_scale": 0.95
+        }
+      ],
+      "mission_mutation": {
+        "keep_original": true,
+        "spawn_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "destination_offset": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Confirm all-zero /vehicle_cmd is configured in the critical window",
+      "Verify red light is positioned along the ego route",
+      "Check that exactly 2 puddles and 0 dynamic actors are spawned"
+    ],
+    "post_execution_validation_rules": [
+      "Confirm non-zero ego movement is present despite zero actuation commands",
+      "Validate occurrence of red-light violation",
+      "Check for lane boundary crossing to resolve original label mismatch"
+    ],
+    "uncertainty": [
+      "Actuation fault cannot be confirmed from vehicle_cmd/vehicle_status mismatch alone",
+      "No confirmed lane boundary crossing for lane invasion from original evidence"
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": 0.0,
+      "fog": -10.0,
+      "wetness": 0.0,
+      "puddle": 0.0
+    },
+    "actor_mutations": [],
+    "puddle_mutations": [
+      {
+        "puddle_index": 0,
+        "location_offset": {
+          "x": 1.5,
+          "y": 0.8
+        },
+        "level_delta": 0.0,
+        "size_scale": 0.95
+      },
+      {
+        "puddle_index": 1,
+        "location_offset": {
+          "x": -1.2,
+          "y": 1.1
+        },
+        "level_delta": 0.0,
+        "size_scale": 0.95
+      }
+    ],
+    "mission_mutation": {
+      "keep_original": true
+    }
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": [
+      "no actors in candidate scenario"
+    ]
+  },
+  "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_168__ark-doubao-seed-2.0-lite-260215.json",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_168__ark-doubao-seed-2.0-lite-260215.json",
+  "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+}

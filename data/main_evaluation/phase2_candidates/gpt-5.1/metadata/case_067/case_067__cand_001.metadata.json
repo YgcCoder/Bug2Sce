@@ -1,0 +1,79 @@
+{
+  "case_id": "case_067",
+  "model_name": "gpt-5.1",
+  "candidate_index": 1,
+  "candidate_spec": {
+    "candidate_id": "cand_001",
+    "high_level_variant": "Same route on Town01 with slight ego spawn shift and slightly reduced rain to keep visibility good, no added actors, relying on existing signalized intersection to again produce an oracle-only red-light violation with ambiguous labels.",
+    "mutation_intent": "Keep the ego on essentially the same path through the same signalized environment, modifying only spawn/destination slightly to perturb timing while preserving conditions where the external oracle can flag a red-light violation with traffic-light data present but without clearly establishing route–light or stop-line relations. No collisions or deliberate lane crossings are introduced so that any stuck or lane_invasion labels, if present, remain ambiguous and potentially conflicting with the oracle.",
+    "expected_oracle": "red_light",
+    "modifications": {
+      "weather_delta": {
+        "rain": -10,
+        "fog": -5,
+        "wetness": -5,
+        "puddle": 0
+      },
+      "actor_mutations": [],
+      "puddle_mutations": [],
+      "mission_mutation": {
+        "keep_original": false,
+        "spawn_offset": {
+          "x": 2.0,
+          "y": -2.5
+        },
+        "destination_offset": {
+          "x": -3.0,
+          "y": 1.5
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Ensure Town01 map is loaded and original signalized intersection topology on the mission route remains unchanged.",
+      "Verify at least one traffic light is active and publishing on /carla/traffic_lights along or near the ego route.",
+      "Confirm that no additional non-ego actors or explicit lane-boundary perturbations are injected beyond this spec."
+    ],
+    "post_execution_validation_rules": [
+      "Check error.json reports a red-light violation and no collision.",
+      "Verify /carla/traffic_lights messages are present during the critical window.",
+      "Confirm that available summaries cannot conclusively determine route–light relation or exact stop-line crossing at the violation time (keep them unknown or unlogged).",
+      "Check that no explicit lane-boundary crossing evidence is logged; if lane invasion is labeled, it must not be directly supported by a lane-crossing summary.",
+      "Inspect dataset-level labels for possible stuck or lane_invasion annotations and verify that any such labels remain in conflict or not fully aligned with the oracle events."
+    ],
+    "uncertainty": [
+      "The exact reason the oracle flags a red-light violation may still not be provable from summaries due to missing route–light relation and stop-line crossing evidence.",
+      "Any dataset-level stuck or lane_invasion labels may again appear without direct supporting evidence, preserving label–oracle conflict.",
+      "Controller and actuation behavior (e.g., vehicle_cmd vs vehicle_status) may remain ambiguous without deeper internal logs."
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": -10.0,
+      "fog": -5.0,
+      "wetness": -5.0,
+      "puddle": 0.0
+    },
+    "actor_mutations": [],
+    "puddle_mutations": [],
+    "mission_mutation": {
+      "spawn_offset": {
+        "x": 2.0,
+        "y": -2.5
+      },
+      "destination_offset": {
+        "x": -3.0,
+        "y": 1.5
+      }
+    }
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": [
+      "no actors in candidate scenario"
+    ]
+  },
+  "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_067__gpt-5.1.json",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_067__gpt-5.1.json",
+  "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+}

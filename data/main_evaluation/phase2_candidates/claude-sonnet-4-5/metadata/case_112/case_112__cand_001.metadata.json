@@ -1,0 +1,102 @@
+{
+  "case_id": "case_112",
+  "model_name": "claude-sonnet-4-5",
+  "candidate_index": 1,
+  "candidate_spec": {
+    "candidate_id": "cand_001",
+    "high_level_variant": "Walker closer to ego path, reduced rain and fog",
+    "mutation_intent": "Move walker toward ego trajectory to stress object detection and collision avoidance at moderate speed",
+    "expected_oracle": "collision",
+    "modifications": {
+      "weather_delta": {
+        "rain": -8,
+        "fog": -10,
+        "wetness": -5,
+        "puddle": 0
+      },
+      "actor_mutations": [
+        {
+          "actor_index": 0,
+          "position_offset": {
+            "x": -3.0,
+            "y": 2.5
+          },
+          "speed_delta": 0.0
+        },
+        {
+          "actor_index": 1,
+          "position_offset": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "speed_delta": 0.0
+        }
+      ],
+      "puddle_mutations": [],
+      "mission_mutation": {
+        "keep_original": true,
+        "spawn_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "destination_offset": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Walker actor_index 0 exists and is within 8m of original position",
+      "Ego spawn and destination unchanged",
+      "Weather rain and fog reduced"
+    ],
+    "post_execution_validation_rules": [
+      "Collision oracle triggered",
+      "Detection topic shows 1-6 objects in critical window",
+      "Ego speed 4-6 m/s before collision"
+    ],
+    "uncertainty": [
+      "vehicle_cmd vs vehicle_status mismatch may persist",
+      "Cannot confirm planning vs actuation fault",
+      "Lane invasion label uncertain"
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": -8.0,
+      "fog": -10.0,
+      "wetness": -5.0,
+      "puddle": 0.0
+    },
+    "actor_mutations": [
+      {
+        "actor_index": 0,
+        "position_offset": {
+          "x": -3.0,
+          "y": 2.5
+        },
+        "speed_delta": 0.0
+      },
+      {
+        "actor_index": 1,
+        "position_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "speed_delta": 0.0
+      }
+    ],
+    "puddle_mutations": [],
+    "mission_mutation": {
+      "keep_original": true
+    }
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_112__claude-sonnet-4-5.json",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_112__claude-sonnet-4-5.json",
+  "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+}

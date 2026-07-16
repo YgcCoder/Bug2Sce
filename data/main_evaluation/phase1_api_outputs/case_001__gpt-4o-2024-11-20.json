@@ -1,0 +1,103 @@
+{
+  "case_id": "case_001",
+  "workflow": "phase1_causal_explanation",
+  "model_name": "gpt-4o-2024-11-20",
+  "model_id": "gpt-4o-2024-11-20",
+  "status": "completed",
+  "dry_run": false,
+  "schema_valid": true,
+  "schema_errors": [],
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_prompts/case_001__gpt-4o-2024-11-20.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_001__gpt-4o-2024-11-20.json",
+  "prompt_estimated_tokens": 2380,
+  "usage": {
+    "prompt_tokens": 2707,
+    "completion_tokens": 332,
+    "total_tokens": 3039
+  },
+  "estimated_cost_usd": null,
+  "raw_response": "{\n  \"case_id\": \"case_001\",\n  \"fault_layer\": \"actuation\",\n  \"fault_component\": \"controller\",\n  \"causal_explanation\": \"Vehicle_cmd outputs were all zero, but vehicle_status shows movement and braking before collision. This indicates uncertain or incorrect controller behavior.\",\n  \"root_cause_pattern\": \"controller_cmd_mismatch\",\n  \"preservation_constraints\": [\n    \"collision timestamp and location\",\n    \"vehicle_cmd all zero\",\n    \"vehicle_status shows nonzero braking and movement\"\n  ],\n  \"modifiable_factors\": [\n    \"actor_position\",\n    \"weather\",\n    \"mission\",\n    \"puddles\"\n  ],\n  \"non_modifiable_conditions\": [\n    \"collision actor ID 6695\",\n    \"collision timestamp 21.599057735\"\n  ],\n  \"uncertainty\": [\n    \"controller behavior attribution is uncertain due to vehicle_cmd and vehicle_status mismatch\"\n  ],\n  \"evidence_support\": [\n    {\n      \"evidence_id\": \"critical_window_summary\",\n      \"claim\": \"Vehicle_cmd outputs were all zero while vehicle_status showed nonzero braking and movement.\"\n    },\n    {\n      \"evidence_id\": \"manual_phase1_status\",\n      \"claim\": \"Controller attribution is marked as uncertain due to mismatched vehicle_cmd and vehicle_status.\"\n    }\n  ],\n  \"confidence\": \"medium\",\n  \"ready_for_phase2_generation\": \"yes\",\n  \"notes_for_validator\": [\n    \"Verify that vehicle_cmd remains all zero throughout the critical window.\",\n    \"Ensure collision actor ID 6695 is preserved in Phase 2 scenarios.\"\n  ]\n}",
+  "parsed_response": {
+    "case_id": "case_001",
+    "fault_layer": "actuation",
+    "fault_component": "controller",
+    "causal_explanation": "Vehicle_cmd outputs were all zero, but vehicle_status shows movement and braking before collision. This indicates uncertain or incorrect controller behavior.",
+    "root_cause_pattern": "controller_cmd_mismatch",
+    "preservation_constraints": [
+      "collision timestamp and location",
+      "vehicle_cmd all zero",
+      "vehicle_status shows nonzero braking and movement"
+    ],
+    "modifiable_factors": [
+      "actor_position",
+      "weather",
+      "mission",
+      "puddles"
+    ],
+    "non_modifiable_conditions": [
+      "collision actor ID 6695",
+      "collision timestamp 21.599057735"
+    ],
+    "uncertainty": [
+      "controller behavior attribution is uncertain due to vehicle_cmd and vehicle_status mismatch"
+    ],
+    "evidence_support": [
+      {
+        "evidence_id": "critical_window_summary",
+        "claim": "Vehicle_cmd outputs were all zero while vehicle_status showed nonzero braking and movement."
+      },
+      {
+        "evidence_id": "manual_phase1_status",
+        "claim": "Controller attribution is marked as uncertain due to mismatched vehicle_cmd and vehicle_status."
+      }
+    ],
+    "confidence": "medium",
+    "ready_for_phase2_generation": "yes",
+    "notes_for_validator": [
+      "Verify that vehicle_cmd remains all zero throughout the critical window.",
+      "Ensure collision actor ID 6695 is preserved in Phase 2 scenarios."
+    ]
+  },
+  "raw_api_payload": {
+    "id": "<REDACTED_RESPONSE_ID>",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "{\n  \"case_id\": \"case_001\",\n  \"fault_layer\": \"actuation\",\n  \"fault_component\": \"controller\",\n  \"causal_explanation\": \"Vehicle_cmd outputs were all zero, but vehicle_status shows movement and braking before collision. This indicates uncertain or incorrect controller behavior.\",\n  \"root_cause_pattern\": \"controller_cmd_mismatch\",\n  \"preservation_constraints\": [\n    \"collision timestamp and location\",\n    \"vehicle_cmd all zero\",\n    \"vehicle_status shows nonzero braking and movement\"\n  ],\n  \"modifiable_factors\": [\n    \"actor_position\",\n    \"weather\",\n    \"mission\",\n    \"puddles\"\n  ],\n  \"non_modifiable_conditions\": [\n    \"collision actor ID 6695\",\n    \"collision timestamp 21.599057735\"\n  ],\n  \"uncertainty\": [\n    \"controller behavior attribution is uncertain due to vehicle_cmd and vehicle_status mismatch\"\n  ],\n  \"evidence_support\": [\n    {\n      \"evidence_id\": \"critical_window_summary\",\n      \"claim\": \"Vehicle_cmd outputs were all zero while vehicle_status showed nonzero braking and movement.\"\n    },\n    {\n      \"evidence_id\": \"manual_phase1_status\",\n      \"claim\": \"Controller attribution is marked as uncertain due to mismatched vehicle_cmd and vehicle_status.\"\n    }\n  ],\n  \"confidence\": \"medium\",\n  \"ready_for_phase2_generation\": \"yes\",\n  \"notes_for_validator\": [\n    \"Verify that vehicle_cmd remains all zero throughout the critical window.\",\n    \"Ensure collision actor ID 6695 is preserved in Phase 2 scenarios.\"\n  ]\n}",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": [],
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "gpt-4o-2024-11-20",
+    "object": "chat.completion",
+    "service_tier": "default",
+    "system_fingerprint": "<REDACTED_SYSTEM_FINGERPRINT>",
+    "usage": {
+      "completion_tokens": 332,
+      "prompt_tokens": 2707,
+      "total_tokens": 3039,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": 0,
+        "audio_tokens": 0,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 0
+      }
+    }
+  },
+  "error_message": "",
+  "timestamp": "<REDACTED_TIMESTAMP>",
+  "elapsed_sec": 6.69
+}

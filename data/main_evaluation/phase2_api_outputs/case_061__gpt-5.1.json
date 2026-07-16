@@ -1,0 +1,416 @@
+{
+  "case_id": "case_061",
+  "model_name": "gpt-5.1",
+  "workflow": "phase2_grounded_generation",
+  "status": "completed",
+  "schema_valid": true,
+  "schema_errors": [],
+  "phase1_ready": "yes",
+  "num_candidates_requested": 2,
+  "num_candidates_written": 2,
+  "num_pre_valid": 2,
+  "candidate_records": [
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/gpt-5.1/json/case_061/case_061__cand_001.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/gpt-5.1/metadata/case_061/case_061__cand_001.metadata.json",
+      "case_id": "case_061",
+      "model_name": "gpt-5.1",
+      "candidate_index": 1,
+      "candidate_spec": {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Preserve original Town01 approach with the ego proceeding through the same signalized corridor while a nearby walker starts slightly closer to the ego’s path, encouraging a collision and red-light violation without altering mission endpoints.",
+        "mutation_intent": "Keep the overall route and environment nearly identical so that the same unexplained absence of vehicle_cmd actuation under motion can manifest, while modestly tightening the proximity of a pedestrian to increase the likelihood of a collision during a red-light violation, maintaining populated perception/prediction/planning topics.",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": -2.0,
+                "y": 1.5
+              },
+              "speed_delta": 0.5
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": 1.5,
+                "y": -2.0
+              },
+              "speed_delta": 0.3
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Ensure the ego mission uses the original Town01 spawn and destination so that intersection and signal geometry remain comparable to the seed.",
+          "Verify that at least one traffic light is present and can plausibly control the ego’s initial corridor, enabling a potential red-light violation.",
+          "Confirm that both walkers are spawned successfully with the specified offsets and speeds and that at least one crosses or approaches the ego’s lane within the first 60 seconds.",
+          "Check that perception and prediction configurations are enabled so that moving pedestrians are reported as objects prior to potential impact."
+        ],
+        "post_execution_validation_rules": [
+          "Confirm that a collision involving the ego is reported before scenario end and that a red-light violation (or equivalent traffic-signal violation) is raised by the oracle/error logging.",
+          "Verify that vehicle_status shows nonzero ego speed in the seconds before collision, with no strong deceleration trend (no significant drop suggesting hard braking) in the critical window.",
+          "Check that vehicle_cmd reports zero or null accel, brake, steer, and target speed values throughout the critical pre-collision window while the ego is moving.",
+          "Ensure that perception and prediction object topics contain at least one object (e.g., the walkers) detected before collision.",
+          "Confirm that planning final_waypoints are present and non-null up to collision, with unblocked flags (no blocked path reported) in the last pre-collision entry.",
+          "Do not require lane_invasion as a necessary outcome; log it if present but treat it as optional for matching the root-cause pattern."
+        ],
+        "uncertainty": [
+          "The exact interaction between the ego, pedestrians, and traffic signals that triggers the red-light violation remains unknown and may vary with small geometry changes.",
+          "The specific collision partner (which walker or possibly another object) and precise impact configuration cannot be guaranteed from these high-level adjustments."
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 0.0,
+          "fog": 0.0,
+          "wetness": 0.0,
+          "puddle": 0.0
+        },
+        "actor_mutations": [
+          {
+            "actor_index": 0,
+            "position_offset": {
+              "x": -2.0,
+              "y": 1.5
+            },
+            "speed_delta": 0.5
+          },
+          {
+            "actor_index": 1,
+            "position_offset": {
+              "x": 1.5,
+              "y": -2.0
+            },
+            "speed_delta": 0.3
+          }
+        ],
+        "puddle_mutations": [],
+        "mission_mutation": {
+          "keep_original": true
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_061__gpt-5.1.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_061__gpt-5.1.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    },
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/gpt-5.1/json/case_061/case_061__cand_002.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/gpt-5.1/metadata/case_061/case_061__cand_002.metadata.json",
+      "case_id": "case_061",
+      "model_name": "gpt-5.1",
+      "candidate_index": 2,
+      "candidate_spec": {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Slightly shift the ego’s start and destination along the same corridor and reposition the lead walker more directly ahead in the ego’s likely travel lane, increasing chances of a forward collision during a red light while preserving the zero-command-under-motion pattern.",
+        "mutation_intent": "Introduce a conservative mission offset and place a single pedestrian more squarely on the ego’s expected path so that the system should need to slow or stop; if vehicle_cmd remains zero while the ego continues at roughly constant speed, a collision and red-light violation can still occur with active perception/prediction/planning.",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": 3,
+            "fog": 2,
+            "wetness": 5,
+            "puddle": 5
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": -1.0,
+                "y": 0.5
+              },
+              "speed_delta": 0.8
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": -3.0,
+                "y": 1.0
+              },
+              "speed_delta": -0.5
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": false,
+            "spawn_offset": {
+              "x": 3.0,
+              "y": -2.0
+            },
+            "destination_offset": {
+              "x": -4.0,
+              "y": 1.5
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Verify that the mission spawn and destination remain on the same general Town01 roadway segment as the seed, preserving a similar approach to at least one signalized intersection.",
+          "Ensure that the shifted spawn still results in the ego reaching a traffic light within the scenario time budget.",
+          "Confirm the lead walker (actor_index 0) is positioned so that its path intersects or closely parallels the ego’s lane ahead of the ego, not starting behind or completely off the route.",
+          "Verify that perception, prediction, and planning modules are fully active and publishing their standard topics before the ego reaches the intersection region."
+        ],
+        "post_execution_validation_rules": [
+          "Confirm that a collision involving the ego occurs before the scenario ends and that a red-light violation or equivalent traffic-signal error is reported in the oracle/error logs.",
+          "Check that ego vehicle_status indicates nonzero speed in the last seconds before collision without clear evidence of strong braking (no large drop in speed or high brake status).",
+          "Verify that vehicle_cmd accel, brake, steer, and target speed remain zero or effectively null over the critical pre-collision window while the ego is in motion.",
+          "Ensure that at least one object (ideally the adjusted lead walker) appears in perception and prediction outputs prior to collision.",
+          "Confirm that planning final_waypoints remain populated, non-null, and not flagged as blocked for the last plan prior to impact.",
+          "Treat any recorded lane_invasion as incidental; do not require lane_invasion to validate that this scenario matches the root-cause pattern."
+        ],
+        "uncertainty": [
+          "The precise timing between ego arrival at the intersection, signal phase, and pedestrian crossing remains uncertain and may affect whether the oracle flags a red-light violation.",
+          "It is not guaranteed that the adjusted pedestrian becomes the actual collision partner; another actor or object could be involved depending on low-level execution details."
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 3.0,
+          "fog": 2.0,
+          "wetness": 5.0,
+          "puddle": 5.0
+        },
+        "actor_mutations": [
+          {
+            "actor_index": 0,
+            "position_offset": {
+              "x": -1.0,
+              "y": 0.5
+            },
+            "speed_delta": 0.8
+          },
+          {
+            "actor_index": 1,
+            "position_offset": {
+              "x": -3.0,
+              "y": 1.0
+            },
+            "speed_delta": -0.5
+          }
+        ],
+        "puddle_mutations": [],
+        "mission_mutation": {
+          "spawn_offset": {
+            "x": 3.0,
+            "y": -2.0
+          },
+          "destination_offset": {
+            "x": -4.0,
+            "y": 1.5
+          }
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_061__gpt-5.1.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_061__gpt-5.1.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    }
+  ],
+  "seed_artifact_zip": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/gpt-5.1/seed-artifact/seed-artifact-case_061.zip",
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_prompts/case_061__gpt-5.1.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_061__gpt-5.1.json",
+  "prompt_estimated_tokens": 1680,
+  "usage": {
+    "prompt_tokens": 1594,
+    "completion_tokens": 1558,
+    "total_tokens": 3152
+  },
+  "raw_response": "{\n  \"case_id\": \"case_061\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Preserve original Town01 approach with the ego proceeding through the same signalized corridor while a nearby walker starts slightly closer to the ego’s path, encouraging a collision and red-light violation without altering mission endpoints.\",\n      \"mutation_intent\": \"Keep the overall route and environment nearly identical so that the same unexplained absence of vehicle_cmd actuation under motion can manifest, while modestly tightening the proximity of a pedestrian to increase the likelihood of a collision during a red-light violation, maintaining populated perception/prediction/planning topics.\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\n          \"rain\": 0,\n          \"fog\": 0,\n          \"wetness\": 0,\n          \"puddle\": 0\n        },\n        \"actor_mutations\": [\n          {\n            \"actor_index\": 0,\n            \"position_offset\": {\n              \"x\": -2.0,\n              \"y\": 1.5\n            },\n            \"speed_delta\": 0.5\n          },\n          {\n            \"actor_index\": 1,\n            \"position_offset\": {\n              \"x\": 1.5,\n              \"y\": -2.0\n            },\n            \"speed_delta\": 0.3\n          }\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\n          \"keep_original\": true,\n          \"spawn_offset\": {\n            \"x\": 0.0,\n            \"y\": 0.0\n          },\n          \"destination_offset\": {\n            \"x\": 0.0,\n            \"y\": 0.0\n          }\n        }\n      },\n      \"pre_execution_validation_rules\": [\n        \"Ensure the ego mission uses the original Town01 spawn and destination so that intersection and signal geometry remain comparable to the seed.\",\n        \"Verify that at least one traffic light is present and can plausibly control the ego’s initial corridor, enabling a potential red-light violation.\",\n        \"Confirm that both walkers are spawned successfully with the specified offsets and speeds and that at least one crosses or approaches the ego’s lane within the first 60 seconds.\",\n        \"Check that perception and prediction configurations are enabled so that moving pedestrians are reported as objects prior to potential impact.\"\n      ],\n      \"post_execution_validation_rules\": [\n        \"Confirm that a collision involving the ego is reported before scenario end and that a red-light violation (or equivalent traffic-signal violation) is raised by the oracle/error logging.\",\n        \"Verify that vehicle_status shows nonzero ego speed in the seconds before collision, with no strong deceleration trend (no significant drop suggesting hard braking) in the critical window.\",\n        \"Check that vehicle_cmd reports zero or null accel, brake, steer, and target speed values throughout the critical pre-collision window while the ego is moving.\",\n        \"Ensure that perception and prediction object topics contain at least one object (e.g., the walkers) detected before collision.\",\n        \"Confirm that planning final_waypoints are present and non-null up to collision, with unblocked flags (no blocked path reported) in the last pre-collision entry.\",\n        \"Do not require lane_invasion as a necessary outcome; log it if present but treat it as optional for matching the root-cause pattern.\"\n      ],\n      \"uncertainty\": [\n        \"The exact interaction between the ego, pedestrians, and traffic signals that triggers the red-light violation remains unknown and may vary with small geometry changes.\",\n        \"The specific collision partner (which walker or possibly another object) and precise impact configuration cannot be guaranteed from these high-level adjustments.\"\n      ]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Slightly shift the ego’s start and destination along the same corridor and reposition the lead walker more directly ahead in the ego’s likely travel lane, increasing chances of a forward collision during a red light while preserving the zero-command-under-motion pattern.\",\n      \"mutation_intent\": \"Introduce a conservative mission offset and place a single pedestrian more squarely on the ego’s expected path so that the system should need to slow or stop; if vehicle_cmd remains zero while the ego continues at roughly constant speed, a collision and red-light violation can still occur with active perception/prediction/planning.\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\n          \"rain\": 3,\n          \"fog\": 2,\n          \"wetness\": 5,\n          \"puddle\": 5\n        },\n        \"actor_mutations\": [\n          {\n            \"actor_index\": 0,\n            \"position_offset\": {\n              \"x\": -1.0,\n              \"y\": 0.5\n            },\n            \"speed_delta\": 0.8\n          },\n          {\n            \"actor_index\": 1,\n            \"position_offset\": {\n              \"x\": -3.0,\n              \"y\": 1.0\n            },\n            \"speed_delta\": -0.5\n          }\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\n          \"keep_original\": false,\n          \"spawn_offset\": {\n            \"x\": 3.0,\n            \"y\": -2.0\n          },\n          \"destination_offset\": {\n            \"x\": -4.0,\n            \"y\": 1.5\n          }\n        }\n      },\n      \"pre_execution_validation_rules\": [\n        \"Verify that the mission spawn and destination remain on the same general Town01 roadway segment as the seed, preserving a similar approach to at least one signalized intersection.\",\n        \"Ensure that the shifted spawn still results in the ego reaching a traffic light within the scenario time budget.\",\n        \"Confirm the lead walker (actor_index 0) is positioned so that its path intersects or closely parallels the ego’s lane ahead of the ego, not starting behind or completely off the route.\",\n        \"Verify that perception, prediction, and planning modules are fully active and publishing their standard topics before the ego reaches the intersection region.\"\n      ],\n      \"post_execution_validation_rules\": [\n        \"Confirm that a collision involving the ego occurs before the scenario ends and that a red-light violation or equivalent traffic-signal error is reported in the oracle/error logs.\",\n        \"Check that ego vehicle_status indicates nonzero speed in the last seconds before collision without clear evidence of strong braking (no large drop in speed or high brake status).\",\n        \"Verify that vehicle_cmd accel, brake, steer, and target speed remain zero or effectively null over the critical pre-collision window while the ego is in motion.\",\n        \"Ensure that at least one object (ideally the adjusted lead walker) appears in perception and prediction outputs prior to collision.\",\n        \"Confirm that planning final_waypoints remain populated, non-null, and not flagged as blocked for the last plan prior to impact.\",\n        \"Treat any recorded lane_invasion as incidental; do not require lane_invasion to validate that this scenario matches the root-cause pattern.\"\n      ],\n      \"uncertainty\": [\n        \"The precise timing between ego arrival at the intersection, signal phase, and pedestrian crossing remains uncertain and may affect whether the oracle flags a red-light violation.\",\n        \"It is not guaranteed that the adjusted pedestrian becomes the actual collision partner; another actor or object could be involved depending on low-level execution details.\"\n      ]\n    }\n  ]\n}",
+  "parsed_response": {
+    "case_id": "case_061",
+    "candidate_specs": [
+      {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Preserve original Town01 approach with the ego proceeding through the same signalized corridor while a nearby walker starts slightly closer to the ego’s path, encouraging a collision and red-light violation without altering mission endpoints.",
+        "mutation_intent": "Keep the overall route and environment nearly identical so that the same unexplained absence of vehicle_cmd actuation under motion can manifest, while modestly tightening the proximity of a pedestrian to increase the likelihood of a collision during a red-light violation, maintaining populated perception/prediction/planning topics.",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": -2.0,
+                "y": 1.5
+              },
+              "speed_delta": 0.5
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": 1.5,
+                "y": -2.0
+              },
+              "speed_delta": 0.3
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Ensure the ego mission uses the original Town01 spawn and destination so that intersection and signal geometry remain comparable to the seed.",
+          "Verify that at least one traffic light is present and can plausibly control the ego’s initial corridor, enabling a potential red-light violation.",
+          "Confirm that both walkers are spawned successfully with the specified offsets and speeds and that at least one crosses or approaches the ego’s lane within the first 60 seconds.",
+          "Check that perception and prediction configurations are enabled so that moving pedestrians are reported as objects prior to potential impact."
+        ],
+        "post_execution_validation_rules": [
+          "Confirm that a collision involving the ego is reported before scenario end and that a red-light violation (or equivalent traffic-signal violation) is raised by the oracle/error logging.",
+          "Verify that vehicle_status shows nonzero ego speed in the seconds before collision, with no strong deceleration trend (no significant drop suggesting hard braking) in the critical window.",
+          "Check that vehicle_cmd reports zero or null accel, brake, steer, and target speed values throughout the critical pre-collision window while the ego is moving.",
+          "Ensure that perception and prediction object topics contain at least one object (e.g., the walkers) detected before collision.",
+          "Confirm that planning final_waypoints are present and non-null up to collision, with unblocked flags (no blocked path reported) in the last pre-collision entry.",
+          "Do not require lane_invasion as a necessary outcome; log it if present but treat it as optional for matching the root-cause pattern."
+        ],
+        "uncertainty": [
+          "The exact interaction between the ego, pedestrians, and traffic signals that triggers the red-light violation remains unknown and may vary with small geometry changes.",
+          "The specific collision partner (which walker or possibly another object) and precise impact configuration cannot be guaranteed from these high-level adjustments."
+        ]
+      },
+      {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Slightly shift the ego’s start and destination along the same corridor and reposition the lead walker more directly ahead in the ego’s likely travel lane, increasing chances of a forward collision during a red light while preserving the zero-command-under-motion pattern.",
+        "mutation_intent": "Introduce a conservative mission offset and place a single pedestrian more squarely on the ego’s expected path so that the system should need to slow or stop; if vehicle_cmd remains zero while the ego continues at roughly constant speed, a collision and red-light violation can still occur with active perception/prediction/planning.",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": 3,
+            "fog": 2,
+            "wetness": 5,
+            "puddle": 5
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": -1.0,
+                "y": 0.5
+              },
+              "speed_delta": 0.8
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": -3.0,
+                "y": 1.0
+              },
+              "speed_delta": -0.5
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": false,
+            "spawn_offset": {
+              "x": 3.0,
+              "y": -2.0
+            },
+            "destination_offset": {
+              "x": -4.0,
+              "y": 1.5
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Verify that the mission spawn and destination remain on the same general Town01 roadway segment as the seed, preserving a similar approach to at least one signalized intersection.",
+          "Ensure that the shifted spawn still results in the ego reaching a traffic light within the scenario time budget.",
+          "Confirm the lead walker (actor_index 0) is positioned so that its path intersects or closely parallels the ego’s lane ahead of the ego, not starting behind or completely off the route.",
+          "Verify that perception, prediction, and planning modules are fully active and publishing their standard topics before the ego reaches the intersection region."
+        ],
+        "post_execution_validation_rules": [
+          "Confirm that a collision involving the ego occurs before the scenario ends and that a red-light violation or equivalent traffic-signal error is reported in the oracle/error logs.",
+          "Check that ego vehicle_status indicates nonzero speed in the last seconds before collision without clear evidence of strong braking (no large drop in speed or high brake status).",
+          "Verify that vehicle_cmd accel, brake, steer, and target speed remain zero or effectively null over the critical pre-collision window while the ego is in motion.",
+          "Ensure that at least one object (ideally the adjusted lead walker) appears in perception and prediction outputs prior to collision.",
+          "Confirm that planning final_waypoints remain populated, non-null, and not flagged as blocked for the last plan prior to impact.",
+          "Treat any recorded lane_invasion as incidental; do not require lane_invasion to validate that this scenario matches the root-cause pattern."
+        ],
+        "uncertainty": [
+          "The precise timing between ego arrival at the intersection, signal phase, and pedestrian crossing remains uncertain and may affect whether the oracle flags a red-light violation.",
+          "It is not guaranteed that the adjusted pedestrian becomes the actual collision partner; another actor or object could be involved depending on low-level execution details."
+        ]
+      }
+    ]
+  },
+  "raw_api_payload": {
+    "id": "<REDACTED_RESPONSE_ID>",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "{\n  \"case_id\": \"case_061\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Preserve original Town01 approach with the ego proceeding through the same signalized corridor while a nearby walker starts slightly closer to the ego’s path, encouraging a collision and red-light violation without altering mission endpoints.\",\n      \"mutation_intent\": \"Keep the overall route and environment nearly identical so that the same unexplained absence of vehicle_cmd actuation under motion can manifest, while modestly tightening the proximity of a pedestrian to increase the likelihood of a collision during a red-light violation, maintaining populated perception/prediction/planning topics.\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\n          \"rain\": 0,\n          \"fog\": 0,\n          \"wetness\": 0,\n          \"puddle\": 0\n        },\n        \"actor_mutations\": [\n          {\n            \"actor_index\": 0,\n            \"position_offset\": {\n              \"x\": -2.0,\n              \"y\": 1.5\n            },\n            \"speed_delta\": 0.5\n          },\n          {\n            \"actor_index\": 1,\n            \"position_offset\": {\n              \"x\": 1.5,\n              \"y\": -2.0\n            },\n            \"speed_delta\": 0.3\n          }\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\n          \"keep_original\": true,\n          \"spawn_offset\": {\n            \"x\": 0.0,\n            \"y\": 0.0\n          },\n          \"destination_offset\": {\n            \"x\": 0.0,\n            \"y\": 0.0\n          }\n        }\n      },\n      \"pre_execution_validation_rules\": [\n        \"Ensure the ego mission uses the original Town01 spawn and destination so that intersection and signal geometry remain comparable to the seed.\",\n        \"Verify that at least one traffic light is present and can plausibly control the ego’s initial corridor, enabling a potential red-light violation.\",\n        \"Confirm that both walkers are spawned successfully with the specified offsets and speeds and that at least one crosses or approaches the ego’s lane within the first 60 seconds.\",\n        \"Check that perception and prediction configurations are enabled so that moving pedestrians are reported as objects prior to potential impact.\"\n      ],\n      \"post_execution_validation_rules\": [\n        \"Confirm that a collision involving the ego is reported before scenario end and that a red-light violation (or equivalent traffic-signal violation) is raised by the oracle/error logging.\",\n        \"Verify that vehicle_status shows nonzero ego speed in the seconds before collision, with no strong deceleration trend (no significant drop suggesting hard braking) in the critical window.\",\n        \"Check that vehicle_cmd reports zero or null accel, brake, steer, and target speed values throughout the critical pre-collision window while the ego is moving.\",\n        \"Ensure that perception and prediction object topics contain at least one object (e.g., the walkers) detected before collision.\",\n        \"Confirm that planning final_waypoints are present and non-null up to collision, with unblocked flags (no blocked path reported) in the last pre-collision entry.\",\n        \"Do not require lane_invasion as a necessary outcome; log it if present but treat it as optional for matching the root-cause pattern.\"\n      ],\n      \"uncertainty\": [\n        \"The exact interaction between the ego, pedestrians, and traffic signals that triggers the red-light violation remains unknown and may vary with small geometry changes.\",\n        \"The specific collision partner (which walker or possibly another object) and precise impact configuration cannot be guaranteed from these high-level adjustments.\"\n      ]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Slightly shift the ego’s start and destination along the same corridor and reposition the lead walker more directly ahead in the ego’s likely travel lane, increasing chances of a forward collision during a red light while preserving the zero-command-under-motion pattern.\",\n      \"mutation_intent\": \"Introduce a conservative mission offset and place a single pedestrian more squarely on the ego’s expected path so that the system should need to slow or stop; if vehicle_cmd remains zero while the ego continues at roughly constant speed, a collision and red-light violation can still occur with active perception/prediction/planning.\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\n          \"rain\": 3,\n          \"fog\": 2,\n          \"wetness\": 5,\n          \"puddle\": 5\n        },\n        \"actor_mutations\": [\n          {\n            \"actor_index\": 0,\n            \"position_offset\": {\n              \"x\": -1.0,\n              \"y\": 0.5\n            },\n            \"speed_delta\": 0.8\n          },\n          {\n            \"actor_index\": 1,\n            \"position_offset\": {\n              \"x\": -3.0,\n              \"y\": 1.0\n            },\n            \"speed_delta\": -0.5\n          }\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\n          \"keep_original\": false,\n          \"spawn_offset\": {\n            \"x\": 3.0,\n            \"y\": -2.0\n          },\n          \"destination_offset\": {\n            \"x\": -4.0,\n            \"y\": 1.5\n          }\n        }\n      },\n      \"pre_execution_validation_rules\": [\n        \"Verify that the mission spawn and destination remain on the same general Town01 roadway segment as the seed, preserving a similar approach to at least one signalized intersection.\",\n        \"Ensure that the shifted spawn still results in the ego reaching a traffic light within the scenario time budget.\",\n        \"Confirm the lead walker (actor_index 0) is positioned so that its path intersects or closely parallels the ego’s lane ahead of the ego, not starting behind or completely off the route.\",\n        \"Verify that perception, prediction, and planning modules are fully active and publishing their standard topics before the ego reaches the intersection region.\"\n      ],\n      \"post_execution_validation_rules\": [\n        \"Confirm that a collision involving the ego occurs before the scenario ends and that a red-light violation or equivalent traffic-signal error is reported in the oracle/error logs.\",\n        \"Check that ego vehicle_status indicates nonzero speed in the last seconds before collision without clear evidence of strong braking (no large drop in speed or high brake status).\",\n        \"Verify that vehicle_cmd accel, brake, steer, and target speed remain zero or effectively null over the critical pre-collision window while the ego is in motion.\",\n        \"Ensure that at least one object (ideally the adjusted lead walker) appears in perception and prediction outputs prior to collision.\",\n        \"Confirm that planning final_waypoints remain populated, non-null, and not flagged as blocked for the last plan prior to impact.\",\n        \"Treat any recorded lane_invasion as incidental; do not require lane_invasion to validate that this scenario matches the root-cause pattern.\"\n      ],\n      \"uncertainty\": [\n        \"The precise timing between ego arrival at the intersection, signal phase, and pedestrian crossing remains uncertain and may affect whether the oracle flags a red-light violation.\",\n        \"It is not guaranteed that the adjusted pedestrian becomes the actual collision partner; another actor or object could be involved depending on low-level execution details.\"\n      ]\n    }\n  ]\n}",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": [],
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "gpt-5.1-2025-11-13",
+    "object": "chat.completion",
+    "service_tier": "default",
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 1558,
+      "prompt_tokens": 1594,
+      "total_tokens": 3152,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": 0,
+        "audio_tokens": 0,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 0
+      }
+    }
+  },
+  "error_message": "",
+  "elapsed_sec": 23.189,
+  "timestamp": "<REDACTED_TIMESTAMP>"
+}

@@ -1,0 +1,74 @@
+{
+  "case_id": "case_169",
+  "model_name": "ark-doubao-seed-2.0-lite-260215",
+  "candidate_index": 2,
+  "candidate_spec": {
+    "candidate_id": "cand_002",
+    "high_level_variant": "Slightly increased road wetness, small forward offset of ego spawn position towards the stop line, original map and mission destination preserved",
+    "mutation_intent": "Preserves all core original constraints: no dynamic actors, Town01 map, red-light violation requirement, and unconfirmed module attribution, small spawn offset stays within allowed bounds and does not change the root cause pattern while testing the violation with slightly different starting conditions",
+    "expected_oracle": "red_light",
+    "modifications": {
+      "weather_delta": {
+        "rain": 5,
+        "fog": 0,
+        "wetness": 8,
+        "puddle": 0
+      },
+      "actor_mutations": [],
+      "puddle_mutations": [],
+      "mission_mutation": {
+        "keep_original": false,
+        "spawn_offset": {
+          "x": 0.5,
+          "y": 1.0
+        },
+        "destination_offset": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Confirm the traffic light at the ego route intersection is in red state",
+      "Confirm no dynamic actors are added to the scenario"
+    ],
+    "post_execution_validation_rules": [
+      "Check for stop-line crossing to validate the reported red-light violation",
+      "Check for the vehicle_cmd and vehicle_status mismatch reported in the original case"
+    ],
+    "uncertainty": [
+      "Route-light relation and stop-line crossing are unconfirmed per original evidence",
+      "No specific module-level failure can be localized as in the original scenario"
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": 5.0,
+      "fog": 0.0,
+      "wetness": 8.0,
+      "puddle": 0.0
+    },
+    "actor_mutations": [],
+    "puddle_mutations": [],
+    "mission_mutation": {
+      "spawn_offset": {
+        "x": 0.5,
+        "y": 1.0
+      },
+      "destination_offset": {
+        "x": 0.0,
+        "y": 0.0
+      }
+    }
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": [
+      "no actors in candidate scenario"
+    ]
+  },
+  "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_169__ark-doubao-seed-2.0-lite-260215.json",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_169__ark-doubao-seed-2.0-lite-260215.json",
+  "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+}

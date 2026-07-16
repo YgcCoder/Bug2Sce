@@ -1,0 +1,89 @@
+{
+  "case_id": "case_118",
+  "model_name": "ark-deepseek-r1-250528",
+  "candidate_index": 1,
+  "candidate_spec": {
+    "candidate_id": "cand_001",
+    "high_level_variant": "Slightly increase road wetness and existing puddle level near the intersection to test if low road friction exacerbates the command-movement mismatch while preserving core scenario conditions",
+    "mutation_intent": "Preserves all Phase 1 root-cause constraints: zero dynamic actors, expected all-zero Autoware vehicle commands, non-zero pre-collision ego velocity with zero braking, confirmed collision and red-light violation outcomes, and original Town01 map. Only adjusts road surface conditions without altering the core mismatch pattern",
+    "expected_oracle": "compound",
+    "modifications": {
+      "weather_delta": {
+        "rain": 5,
+        "fog": 0,
+        "wetness": 5,
+        "puddle": 3
+      },
+      "actor_mutations": [],
+      "puddle_mutations": [
+        {
+          "puddle_index": 0,
+          "location_offset": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "level_delta": 0.1,
+          "size_scale": 1.0
+        }
+      ],
+      "mission_mutation": {
+        "keep_original": true,
+        "spawn_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "destination_offset": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Confirm no dynamic actors added to the scenario",
+      "Confirm all mutation parameters stay within allowed bounds",
+      "Confirm route remains on original Town01 road"
+    ],
+    "post_execution_validation_rules": [
+      "Confirm Autoware outputs all-zero vehicle control commands before collision",
+      "Confirm vehicle_status reports non-zero ego velocity and zero braking before collision",
+      "Confirm collision and red-light violation outcomes are achieved"
+    ],
+    "uncertainty": [
+      "Lane invasion label conflict remains unresolved per original evidence",
+      "Root cause module attribution is still unknown per original constraints"
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": 5.0,
+      "fog": 0.0,
+      "wetness": 5.0,
+      "puddle": 3.0
+    },
+    "actor_mutations": [],
+    "puddle_mutations": [
+      {
+        "puddle_index": 0,
+        "location_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "level_delta": 0.1,
+        "size_scale": 1.0
+      }
+    ],
+    "mission_mutation": {
+      "keep_original": true
+    }
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": [
+      "no actors in candidate scenario"
+    ]
+  },
+  "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_118__ark-deepseek-r1-250528.json",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_118__ark-deepseek-r1-250528.json",
+  "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+}

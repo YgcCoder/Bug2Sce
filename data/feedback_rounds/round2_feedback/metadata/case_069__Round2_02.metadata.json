@@ -1,0 +1,109 @@
+{
+  "case_id": "case_069",
+  "round": 2,
+  "model_name": "claude-sonnet-4-5",
+  "candidate_index": 2,
+  "candidate_spec": {
+    "candidate_id": "cand_002",
+    "high_level_variant": "Adjust both actors laterally toward ego corridor, add moderate rain and wetness",
+    "mutation_intent": "Test if weather degradation combined with tighter actor spacing preserves collision pattern with detected objects near ego",
+    "expected_oracle": "collision",
+    "modifications": {
+      "weather_delta": {
+        "rain": 12,
+        "fog": 5,
+        "wetness": 12,
+        "puddle": 0
+      },
+      "actor_mutations": [
+        {
+          "actor_index": 0,
+          "position_offset": {
+            "x": 1.8,
+            "y": -2.5
+          },
+          "speed_delta": -1.0
+        },
+        {
+          "actor_index": 1,
+          "position_offset": {
+            "x": 1.5,
+            "y": -2.0
+          },
+          "speed_delta": -1.0
+        }
+      ],
+      "puddle_mutations": [],
+      "mission_mutation": {
+        "keep_original": true,
+        "spawn_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "destination_offset": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Both actor spawn positions must remain valid on Town01",
+      "Weather parameters within simulator bounds"
+    ],
+    "post_execution_validation_rules": [
+      "Collision topic impulse must be present",
+      "Detected object presence confirmed in critical window",
+      "Ego speed profile 4-6 m/s maintained"
+    ],
+    "uncertainty": [
+      "Command-status mismatch may not reproduce consistently",
+      "Lane invasion label conflict unresolved in seed"
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": 12.0,
+      "fog": 5.0,
+      "wetness": 12.0,
+      "puddle": 0.0
+    },
+    "actor_mutations": [
+      {
+        "actor_index": 0,
+        "position_offset": {
+          "x": 1.8,
+          "y": -2.5
+        },
+        "speed_delta": -1.0
+      },
+      {
+        "actor_index": 1,
+        "position_offset": {
+          "x": 1.5,
+          "y": -2.0
+        },
+        "speed_delta": -1.0
+      }
+    ],
+    "puddle_mutations": [],
+    "mission_mutation": {
+      "keep_original": true
+    },
+    "safety_repairs": []
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "original_phase1_output": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_069__claude-sonnet-4-5.json",
+  "round1_feedback_models": [
+    "ark-deepseek-r1-250528",
+    "ark-doubao-seed-2.0-lite-260215",
+    "claude-sonnet-4-5",
+    "gemini-2.5-pro",
+    "gpt-4o-2024-11-20",
+    "gpt-5.1"
+  ],
+  "round2_api_output": "<WORKSPACE_ROOT>/processed/experiments/round2_feedback/api_outputs/case_069__claude-sonnet-4-5.json"
+}

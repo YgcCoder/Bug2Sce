@@ -1,0 +1,1258 @@
+{
+  "schema_version": "bug2scenario.feedback.v1",
+  "case_id": "case_039",
+  "record_policy": "retain_failed_boundary_and_successful_same_seed_attempts",
+  "records": [
+    {
+      "schema_version": "bug2scenario.feedback.v1",
+      "case_id": "case_039",
+      "round": 1,
+      "generator": "ark-deepseek-r1-250528",
+      "candidate_id": "cand_001",
+      "candidate_spec": {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Slightly shift the immobile actor position, adjust road wetness within conservative bounds, preserve all core scenario conditions",
+        "mutation_intent": "Preserves all root-cause constraints: mismatch between all-zero vehicle_cmd and non-zero ego movement, conflicting failure labels, presence of final waypoints, 1 actor and 3 puddles. All mutations are within allowed ranges and do not introduce new root causes.",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 5,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 1.2,
+                "y": -0.8
+              },
+              "speed_delta": 0.0
+            }
+          ],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": 0.0,
+              "size_scale": 1.0
+            },
+            {
+              "puddle_index": 1,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": 0.0,
+              "size_scale": 1.0
+            },
+            {
+              "puddle_index": 2,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": 0.0,
+              "size_scale": 1.0
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        }
+      },
+      "execution": {
+        "status": "partial_artifacts_no_oracle",
+        "expected_oracle_codes": "L+S",
+        "observed_oracle_codes": "",
+        "oracle_match_status": "no_observed_oracle",
+        "events": {
+          "collision": "",
+          "stuck": "",
+          "lane_invasion": "",
+          "red_light": ""
+        }
+      },
+      "automatic_analysis": {
+        "decision": "likely_no_failure_or_no_oracle",
+        "reasons": "No observed DriveFuzz oracle; status=partial_artifacts_no_oracle.",
+        "root_cause_pattern_summary": "Conservative preservation pattern: A mismatch between all-zero vehicle control commands and ongoing non-zero ego movement occurs, with unconfirmed conflicting failure labels, and no module-level fault can be confirmed from available evidence."
+      },
+      "manual_review": {
+        "preservation_result": "not_preserved",
+        "observed_failure_type": "R+S",
+        "notes": ""
+      },
+      "memory_role": "historical_outcome_not_authoritative_target"
+    },
+    {
+      "schema_version": "bug2scenario.feedback.v1",
+      "case_id": "case_039",
+      "round": 1,
+      "generator": "ark-doubao-seed-2.0-lite-260215",
+      "candidate_id": "cand_001",
+      "candidate_spec": {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Slight positional offset of the static actor while keeping all core scenario properties unchanged",
+        "mutation_intent": "Preserves all Phase 1 root cause constraints: maintains all-zero actuation commands, non-zero ego movement, conflicting failure labels between dataset and error.json, 1 actor, 3 puddles on Town01, and available final waypoints",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 2,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 1.2,
+                "y": -0.8
+              },
+              "speed_delta": 0.0
+            }
+          ],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 0.5,
+                "y": 0.3
+              },
+              "level_delta": 0.1,
+              "size_scale": 1.0
+            },
+            {
+              "puddle_index": 1,
+              "location_offset": {
+                "x": -0.2,
+                "y": 0.4
+              },
+              "level_delta": -0.05,
+              "size_scale": 1.0
+            },
+            {
+              "puddle_index": 2,
+              "location_offset": {
+                "x": 0.1,
+                "y": -0.2
+              },
+              "level_delta": 0.08,
+              "size_scale": 1.0
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        }
+      },
+      "execution": {
+        "status": "partial_artifacts_no_oracle",
+        "expected_oracle_codes": "L+S",
+        "observed_oracle_codes": "",
+        "oracle_match_status": "no_observed_oracle",
+        "events": {
+          "collision": "",
+          "stuck": "",
+          "lane_invasion": "",
+          "red_light": ""
+        }
+      },
+      "automatic_analysis": {
+        "decision": "likely_no_failure_or_no_oracle",
+        "reasons": "No observed DriveFuzz oracle; status=partial_artifacts_no_oracle.",
+        "root_cause_pattern_summary": "Conservative candidate pattern: Ego vehicle maintains non-zero movement and velocity when all published actuation commands are zero, with conflicting failure annotations between the dataset and error.json."
+      },
+      "manual_review": {
+        "preservation_result": "not_preserved",
+        "observed_failure_type": "R+S",
+        "notes": ""
+      },
+      "memory_role": "historical_outcome_not_authoritative_target"
+    },
+    {
+      "schema_version": "bug2scenario.feedback.v1",
+      "case_id": "case_039",
+      "round": 1,
+      "generator": "claude-sonnet-4-5",
+      "candidate_id": "cand_001",
+      "candidate_spec": {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Reduce puddle wetness and move immobile actor closer to ego path",
+        "mutation_intent": "Test if reduced wetness preserves vehicle_cmd=0 with vehicle_status actuation and low-speed movement pattern",
+        "expected_oracle": "unknown",
+        "modifications": {
+          "weather_delta": {
+            "rain": -2,
+            "fog": 0,
+            "wetness": -2,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": -3.0,
+                "y": -2.0
+              },
+              "speed_delta": 0.0
+            }
+          ],
+          "puddle_mutations": [
+            {
+              "puddle_index": 1,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": -0.1,
+              "size_scale": 0.9
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        }
+      },
+      "execution": {
+        "status": "partial_artifacts_no_oracle",
+        "expected_oracle_codes": "L+S",
+        "observed_oracle_codes": "",
+        "oracle_match_status": "no_observed_oracle",
+        "events": {
+          "collision": "",
+          "stuck": "",
+          "lane_invasion": "",
+          "red_light": ""
+        }
+      },
+      "automatic_analysis": {
+        "decision": "likely_no_failure_or_no_oracle",
+        "reasons": "No observed DriveFuzz oracle; status=partial_artifacts_no_oracle.",
+        "root_cause_pattern_summary": "Conservative preservation pattern: ego exhibits low-speed movement with available final waypoints and zero vehicle_cmd while vehicle_status shows actuation, in a scenario where dataset and error.json oracles disagree on stuck and lane_invasion."
+      },
+      "manual_review": {
+        "preservation_result": "not_preserved",
+        "observed_failure_type": "R+S",
+        "notes": ""
+      },
+      "memory_role": "historical_outcome_not_authoritative_target"
+    },
+    {
+      "schema_version": "bug2scenario.feedback.v1",
+      "case_id": "case_039",
+      "round": 1,
+      "generator": "gemini-2.5-pro",
+      "candidate_id": "cand_001",
+      "candidate_spec": {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Increase rain and wetness to test environmental effects on the internal failure.",
+        "mutation_intent": "Test if more severe weather exacerbates the control command generation failure, while preserving the unexplained vehicle movement.",
+        "expected_oracle": "unknown",
+        "modifications": {
+          "weather_delta": {
+            "rain": 15,
+            "fog": 0,
+            "wetness": 15,
+            "puddle": 0
+          },
+          "actor_mutations": [],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        }
+      },
+      "execution": {
+        "status": "oracle_triggered",
+        "expected_oracle_codes": "L+S",
+        "observed_oracle_codes": "C+R",
+        "oracle_match_status": "different_oracle_symptom",
+        "events": {
+          "collision": "TRUE",
+          "stuck": "FALSE",
+          "lane_invasion": "FALSE",
+          "red_light": "TRUE"
+        }
+      },
+      "automatic_analysis": {
+        "decision": "likely_different_root_cause",
+        "reasons": "score=10/22; orig_min_actor_route_dist=0.739; cand_min_actor_route_dist=0.739; orig_min_dist=13.679; cand_min_dist=13.685; start_delta=0.000; goal_delta=0.000; oracle symptom differs or only partially overlaps; map preserved; mission start remains close; mission goal remains close; actor type family overlaps; actor count remains comparable; actor remains near ego mission route; runtime min_dist remains close; lane...",
+        "root_cause_pattern_summary": "The vehicle moves without any corresponding vehicle_cmd output from the planning/control stack."
+      },
+      "manual_review": {
+        "preservation_result": "partial_or_boundary",
+        "observed_failure_type": "C+R+L",
+        "notes": "确实有L但是真的也最后装了"
+      },
+      "memory_role": "historical_outcome_not_authoritative_target"
+    },
+    {
+      "schema_version": "bug2scenario.feedback.v1",
+      "case_id": "case_039",
+      "round": 1,
+      "generator": "gpt-4o-2024-11-20",
+      "candidate_id": "cand_001",
+      "candidate_spec": {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Slightly adjusted actor position and weather to test lane invasion uncertainty.",
+        "mutation_intent": "This variant preserves the Phase 1 uncertainty by maintaining the dataset labels for stuck and lane invasion while introducing small changes to actor position and weather to test their impact.",
+        "expected_oracle": "unknown",
+        "modifications": {
+          "weather_delta": {
+            "rain": 2,
+            "fog": 5,
+            "wetness": 3,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 1.5,
+                "y": -2.0
+              },
+              "speed_delta": 0.0
+            }
+          ],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 0.5,
+                "y": -1.0
+              },
+              "level_delta": 0.1,
+              "size_scale": 1.0
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        }
+      },
+      "execution": {
+        "status": "oracle_triggered",
+        "expected_oracle_codes": "L+S",
+        "observed_oracle_codes": "C+R",
+        "oracle_match_status": "different_oracle_symptom",
+        "events": {
+          "collision": "TRUE",
+          "stuck": "FALSE",
+          "lane_invasion": "FALSE",
+          "red_light": "TRUE"
+        }
+      },
+      "automatic_analysis": {
+        "decision": "likely_different_root_cause",
+        "reasons": "score=10/22; orig_min_actor_route_dist=0.739; cand_min_actor_route_dist=1.583; orig_min_dist=13.679; cand_min_dist=4.150; start_delta=0.000; goal_delta=0.000; oracle symptom differs or only partially overlaps; map preserved; mission start remains close; mission goal remains close; actor type family overlaps; actor count remains comparable; actor remains near ego mission route; runtime min_dist remains close; lane-...",
+        "root_cause_pattern_summary": "Conservative preservation pattern: ego vehicle exhibits movement with final waypoints available, but dataset and error.json labels conflict, leaving the root cause uncertain."
+      },
+      "manual_review": {
+        "preservation_result": "not_preserved",
+        "observed_failure_type": "C+R",
+        "notes": ""
+      },
+      "memory_role": "historical_outcome_not_authoritative_target"
+    },
+    {
+      "schema_version": "bug2scenario.feedback.v1",
+      "case_id": "case_039",
+      "round": 1,
+      "generator": "gpt-5.1",
+      "candidate_id": "cand_001",
+      "candidate_spec": {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Ego drives through same wet corridor with nearby static vehicle, slight lateral mission shift, preserving continuous motion with zero vehicle_cmd and goal failure without oracle events",
+        "mutation_intent": "Maintain the original Town01 wet-road setting and nearby parked vehicle while slightly shifting the ego’s path so that it still travels a measurable distance under stable planning outputs and perception, yet ends with a goal-related failure without collision/stuck/lane-invasion oracle events. The unchanged static ac...",
+        "expected_oracle": "unknown",
+        "modifications": {
+          "weather_delta": {
+            "rain": 5,
+            "fog": 0,
+            "wetness": 8,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": -1.5,
+                "y": 1.0
+              },
+              "speed_delta": 0.0
+            }
+          ],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": 0.05,
+              "size_scale": 1.0
+            },
+            {
+              "puddle_index": 1,
+              "location_offset": {
+                "x": -1.0,
+                "y": 0.5
+              },
+              "level_delta": 0.05,
+              "size_scale": 1.0
+            },
+            {
+              "puddle_index": 2,
+              "location_offset": {
+                "x": 1.0,
+                "y": 0.0
+              },
+              "level_delta": 0.05,
+              "size_scale": 1.0
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": false,
+            "spawn_offset": {
+              "x": 1.0,
+              "y": -2.0
+            },
+            "destination_offset": {
+              "x": 2.0,
+              "y": -1.5
+            }
+          }
+        }
+      },
+      "execution": {
+        "status": "oracle_triggered",
+        "expected_oracle_codes": "L+S",
+        "observed_oracle_codes": "R",
+        "oracle_match_status": "different_oracle_symptom",
+        "events": {
+          "collision": "FALSE",
+          "stuck": "FALSE",
+          "lane_invasion": "FALSE",
+          "red_light": "TRUE"
+        }
+      },
+      "automatic_analysis": {
+        "decision": "likely_different_root_cause",
+        "reasons": "score=10/22; orig_min_actor_route_dist=0.739; cand_min_actor_route_dist=4.068; orig_min_dist=13.679; cand_min_dist=9.778; start_delta=2.236; goal_delta=2.500; oracle symptom differs or only partially overlaps; map preserved; mission start remains close; mission goal remains close; actor type family overlaps; actor count remains comparable; actor remains near ego mission route; runtime min_dist remains close; lane-...",
+        "root_cause_pattern_summary": "Conservative preservation pattern: a goal-related failure occurs in a scenario with continuous ego motion, stable final_waypoints, available perception and prediction objects, zeroed vehicle_cmd, and vehicle_status indicating nonzero velocity and displacement, while oracle events for stuck and lane invasion are absent despite dataset labels."
+      },
+      "manual_review": {
+        "preservation_result": "partial_or_boundary",
+        "observed_failure_type": "L+R",
+        "notes": ""
+      },
+      "memory_role": "historical_outcome_not_authoritative_target"
+    },
+    {
+      "schema_version": "bug2scenario.feedback.v1",
+      "case_id": "case_039",
+      "round": 2,
+      "generator": "",
+      "candidate_id": "cand_001",
+      "candidate_spec": {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Minimal weather change with actor moved slightly away from ego path",
+        "mutation_intent": "Preserve vehicle_cmd=0 with vehicle_status actuation pattern by reducing actor proximity while keeping wetness conditions minimal to avoid collision triggers",
+        "expected_oracle": "unknown",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 1,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 2.5,
+                "y": 1.5
+              },
+              "speed_delta": 0.0
+            }
+          ],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": 0.0,
+              "size_scale": 1.0
+            },
+            {
+              "puddle_index": 1,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": -0.05,
+              "size_scale": 1.0
+            },
+            {
+              "puddle_index": 2,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": 0.0,
+              "size_scale": 1.0
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        }
+      },
+      "execution": {
+        "status": "crash_or_minimal_artifacts",
+        "expected_oracle_codes": "S+L",
+        "observed_oracle_codes": "30",
+        "oracle_match_status": "no_observed_oracle",
+        "events": {
+          "collision": "30",
+          "stuck": "30",
+          "lane_invasion": "30",
+          "red_light": "30"
+        },
+        "artifact_counts": {
+          "bags": 0,
+          "scores": 0,
+          "cameras": 0
+        }
+      },
+      "automatic_analysis": {},
+      "manual_review": {
+        "preservation_result": "not_preserved_due_to_crash_or_missing_evidence",
+        "observed_failure_type": "30",
+        "notes": "30"
+      },
+      "memory_role": "historical_outcome_not_authoritative_target"
+    },
+    {
+      "schema_version": "bug2scenario.feedback.v1",
+      "case_id": "case_039",
+      "round": 2,
+      "generator": "",
+      "candidate_id": "cand_002",
+      "candidate_spec": {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Reduce wetness and shift mission destination slightly to test goal-reaching behavior",
+        "mutation_intent": "Test if small destination offset preserves low-speed movement with vehicle_cmd=0 pattern while avoiding collision/red_light triggers seen in Round 1",
+        "expected_oracle": "unknown",
+        "modifications": {
+          "weather_delta": {
+            "rain": -2,
+            "fog": 0,
+            "wetness": -2,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 0.5,
+                "y": 0.8
+              },
+              "speed_delta": 0.0
+            }
+          ],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": 0.0,
+              "size_scale": 1.0
+            },
+            {
+              "puddle_index": 1,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": -0.08,
+              "size_scale": 0.95
+            },
+            {
+              "puddle_index": 2,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": 0.0,
+              "size_scale": 1.0
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": false,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": -1.5,
+              "y": 1.0
+            }
+          }
+        }
+      },
+      "execution": {
+        "status": "crash_or_minimal_artifacts",
+        "expected_oracle_codes": "S+L",
+        "observed_oracle_codes": "30",
+        "oracle_match_status": "no_observed_oracle",
+        "events": {
+          "collision": "30",
+          "stuck": "30",
+          "lane_invasion": "30",
+          "red_light": "30"
+        },
+        "artifact_counts": {
+          "bags": 0,
+          "scores": 0,
+          "cameras": 0
+        }
+      },
+      "automatic_analysis": {},
+      "manual_review": {
+        "preservation_result": "not_preserved_due_to_crash_or_missing_evidence",
+        "observed_failure_type": "30",
+        "notes": "30"
+      },
+      "memory_role": "historical_outcome_not_authoritative_target"
+    },
+    {
+      "schema_version": "bug2scenario.feedback.v1",
+      "case_id": "case_039",
+      "round": 3,
+      "generator": "claude-sonnet-4-5",
+      "candidate_id": "cand_001",
+      "candidate_spec": {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Keep original weather and mission, move actor minimally perpendicular to ego path",
+        "mutation_intent": "Preserve vehicle_cmd=0 with vehicle_status actuation by keeping all environmental factors identical and only shifting actor 1m laterally to avoid collision triggers",
+        "expected_oracle": "unknown",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 0.0,
+                "y": 1.0
+              },
+              "speed_delta": 0.0
+            }
+          ],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": 0.0,
+              "size_scale": 1.0
+            },
+            {
+              "puddle_index": 1,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": 0.0,
+              "size_scale": 1.0
+            },
+            {
+              "puddle_index": 2,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": 0.0,
+              "size_scale": 1.0
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        }
+      },
+      "execution": {
+        "status": "crash_or_minimal_artifacts",
+        "expected_oracle_codes": "S+L",
+        "observed_oracle_codes": "30",
+        "oracle_match_status": "no_observed_oracle",
+        "events": {
+          "collision": "30",
+          "stuck": "30",
+          "lane_invasion": "30",
+          "red_light": "30"
+        },
+        "artifact_counts": {
+          "bags": 0,
+          "scores": 0,
+          "cameras": 0
+        }
+      },
+      "automatic_analysis": {},
+      "manual_review": {
+        "preservation_result": "not_preserved_due_to_crash_or_missing_evidence",
+        "observed_failure_type": "30",
+        "notes": "30"
+      },
+      "memory_role": "historical_outcome_not_authoritative_target"
+    },
+    {
+      "schema_version": "bug2scenario.feedback.v1",
+      "case_id": "case_039",
+      "round": 3,
+      "generator": "claude-sonnet-4-5",
+      "candidate_id": "cand_002",
+      "candidate_spec": {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Identical scenario with actor moved backward along road axis",
+        "mutation_intent": "Test if moving actor 2m backward preserves low-speed movement pattern without triggering collision or red_light oracles",
+        "expected_oracle": "unknown",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": -2.0,
+                "y": 0.0
+              },
+              "speed_delta": 0.0
+            }
+          ],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": 0.0,
+              "size_scale": 1.0
+            },
+            {
+              "puddle_index": 1,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": 0.0,
+              "size_scale": 1.0
+            },
+            {
+              "puddle_index": 2,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": 0.0,
+              "size_scale": 1.0
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        }
+      },
+      "execution": {
+        "status": "no_failure_reached_goal",
+        "expected_oracle_codes": "S+L",
+        "observed_oracle_codes": "30",
+        "oracle_match_status": "no_observed_oracle",
+        "events": {
+          "collision": "False",
+          "stuck": "False",
+          "lane_invasion": "False",
+          "red_light": "False"
+        },
+        "artifact_counts": {
+          "bags": 1,
+          "scores": 0,
+          "cameras": 2
+        }
+      },
+      "automatic_analysis": {},
+      "manual_review": {
+        "preservation_result": "not_preserved",
+        "observed_failure_type": "R",
+        "notes": "30"
+      },
+      "memory_role": "historical_outcome_not_authoritative_target"
+    },
+    {
+      "schema_version": "bug2scenario.feedback.v1",
+      "case_id": "case_039",
+      "round": 3,
+      "generator": "claude-sonnet-4-5",
+      "candidate_id": "cand_003",
+      "candidate_spec": {
+        "candidate_id": "cand_003",
+        "high_level_variant": "Minimal puddle level reduction on middle puddle only",
+        "mutation_intent": "Test if slight puddle level change preserves vehicle_cmd=0 pattern while keeping actor and weather identical to avoid Round 1 collision triggers",
+        "expected_oracle": "unknown",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "speed_delta": 0.0
+            }
+          ],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": 0.0,
+              "size_scale": 1.0
+            },
+            {
+              "puddle_index": 1,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": -0.03,
+              "size_scale": 1.0
+            },
+            {
+              "puddle_index": 2,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": 0.0,
+              "size_scale": 1.0
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        }
+      },
+      "execution": {
+        "status": "no_failure_reached_goal",
+        "expected_oracle_codes": "S+L",
+        "observed_oracle_codes": "30",
+        "oracle_match_status": "no_observed_oracle",
+        "events": {
+          "collision": "False",
+          "stuck": "False",
+          "lane_invasion": "False",
+          "red_light": "False"
+        },
+        "artifact_counts": {
+          "bags": 1,
+          "scores": 0,
+          "cameras": 2
+        }
+      },
+      "automatic_analysis": {},
+      "manual_review": {
+        "preservation_result": "not_reviewed",
+        "observed_failure_type": "30",
+        "notes": "完全没有报错"
+      },
+      "memory_role": "historical_outcome_not_authoritative_target"
+    },
+    {
+      "schema_version": "bug2scenario.feedback.v1",
+      "case_id": "case_039",
+      "round": 3,
+      "generator": "claude-sonnet-4-5",
+      "candidate_id": "cand_004",
+      "candidate_spec": {
+        "candidate_id": "cand_004",
+        "high_level_variant": "Actor moved diagonally away from ego path by small offset",
+        "mutation_intent": "Preserve vehicle_cmd=0 pattern by moving actor 1.5m diagonally to reduce proximity without changing weather or mission",
+        "expected_oracle": "unknown",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 1.0,
+                "y": 1.2
+              },
+              "speed_delta": 0.0
+            }
+          ],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": 0.0,
+              "size_scale": 1.0
+            },
+            {
+              "puddle_index": 1,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": 0.0,
+              "size_scale": 1.0
+            },
+            {
+              "puddle_index": 2,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": 0.0,
+              "size_scale": 1.0
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        }
+      },
+      "execution": {
+        "status": "crash_or_minimal_artifacts",
+        "expected_oracle_codes": "S+L",
+        "observed_oracle_codes": "30",
+        "oracle_match_status": "no_observed_oracle",
+        "events": {
+          "collision": "30",
+          "stuck": "30",
+          "lane_invasion": "30",
+          "red_light": "30"
+        },
+        "artifact_counts": {
+          "bags": 0,
+          "scores": 0,
+          "cameras": 0
+        }
+      },
+      "automatic_analysis": {},
+      "manual_review": {
+        "preservation_result": "not_preserved_due_to_crash_or_missing_evidence",
+        "observed_failure_type": "30",
+        "notes": "30"
+      },
+      "memory_role": "historical_outcome_not_authoritative_target"
+    },
+    {
+      "schema_version": "bug2scenario.feedback.v1",
+      "case_id": "case_039",
+      "round": 3,
+      "generator": "claude-sonnet-4-5",
+      "candidate_id": "cand_005",
+      "candidate_spec": {
+        "candidate_id": "cand_005",
+        "high_level_variant": "Increase fog slightly while keeping all other parameters identical",
+        "mutation_intent": "Test if minimal fog increase preserves vehicle_cmd=0 pattern without triggering collision or red_light seen in Round 1 high-weather cases",
+        "expected_oracle": "unknown",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 3,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "speed_delta": 0.0
+            }
+          ],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": 0.0,
+              "size_scale": 1.0
+            },
+            {
+              "puddle_index": 1,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": 0.0,
+              "size_scale": 1.0
+            },
+            {
+              "puddle_index": 2,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": 0.0,
+              "size_scale": 1.0
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        }
+      },
+      "execution": {
+        "status": "oracle_triggered",
+        "expected_oracle_codes": "S+L",
+        "observed_oracle_codes": "C",
+        "oracle_match_status": "different_oracle_symptom",
+        "events": {
+          "collision": "True",
+          "stuck": "False",
+          "lane_invasion": "False",
+          "red_light": "False"
+        },
+        "artifact_counts": {
+          "bags": 1,
+          "scores": 0,
+          "cameras": 2
+        }
+      },
+      "automatic_analysis": {},
+      "manual_review": {
+        "preservation_result": "not_preserved",
+        "observed_failure_type": "L+C",
+        "notes": "30"
+      },
+      "memory_role": "historical_outcome_not_authoritative_target"
+    },
+    {
+      "schema_version": "bug2scenario.feedback.v1",
+      "case_id": "case_039",
+      "round": 3,
+      "generator": "claude-sonnet-4-5",
+      "candidate_id": "cand_006",
+      "candidate_spec": {
+        "candidate_id": "cand_006",
+        "high_level_variant": "Slightly scale down middle puddle size while keeping level unchanged",
+        "mutation_intent": "Test if puddle size reduction preserves vehicle_cmd=0 with vehicle_status actuation without altering actor position or weather",
+        "expected_oracle": "unknown",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "speed_delta": 0.0
+            }
+          ],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": 0.0,
+              "size_scale": 1.0
+            },
+            {
+              "puddle_index": 1,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": 0.0,
+              "size_scale": 0.9
+            },
+            {
+              "puddle_index": 2,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": 0.0,
+              "size_scale": 1.0
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        }
+      },
+      "execution": {
+        "status": "partial_artifacts_no_oracle",
+        "expected_oracle_codes": "S+L",
+        "observed_oracle_codes": "30",
+        "oracle_match_status": "no_observed_oracle",
+        "events": {
+          "collision": "30",
+          "stuck": "30",
+          "lane_invasion": "30",
+          "red_light": "30"
+        },
+        "artifact_counts": {
+          "bags": 0,
+          "scores": 1,
+          "cameras": 2
+        }
+      },
+      "automatic_analysis": {},
+      "manual_review": {
+        "preservation_result": "not_preserved",
+        "observed_failure_type": "S",
+        "notes": "30"
+      },
+      "memory_role": "historical_outcome_not_authoritative_target"
+    }
+  ]
+}

@@ -1,0 +1,122 @@
+{
+  "case_id": "case_103",
+  "model_name": "ark-deepseek-r1-250528",
+  "candidate_index": 1,
+  "candidate_spec": {
+    "candidate_id": "cand_001",
+    "high_level_variant": "Slightly increase rain intensity and shift the non-ego actor closer to ego's planned path while retaining all core scenario elements",
+    "mutation_intent": "Preserves all Phase 1 root cause pattern requirements: retains Town01 map, original mission start/goal, heavy rain, high wetness, multiple puddles, one non-ego actor, red light in the critical window, and the original conflicting lane invasion label status. Only minor adjustments to non-core parameters to generate a valid variant",
+    "expected_oracle": "compound",
+    "modifications": {
+      "weather_delta": {
+        "rain": 5,
+        "fog": 0,
+        "wetness": 3,
+        "puddle": 4
+      },
+      "actor_mutations": [
+        {
+          "actor_index": 0,
+          "position_offset": {
+            "x": 1.2,
+            "y": -2.1
+          },
+          "speed_delta": 0.8
+        }
+      ],
+      "puddle_mutations": [
+        {
+          "puddle_index": 0,
+          "location_offset": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "level_delta": 0.1,
+          "size_scale": 1.05
+        },
+        {
+          "puddle_index": 1,
+          "location_offset": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "level_delta": 0.08,
+          "size_scale": 1.02
+        }
+      ],
+      "mission_mutation": {
+        "keep_original": true,
+        "spawn_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "destination_offset": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Confirm red light is active in ego's critical approach window",
+      "Confirm map remains Town01",
+      "Confirm weather stays in the high rain/wetness range"
+    ],
+    "post_execution_validation_rules": [
+      "Preserve original conflicting lane invasion/red-light label status",
+      "Confirm non-ego actor does not fully block ego's path"
+    ],
+    "uncertainty": [
+      "Unconfirmed stop-line crossing for red-light violation retained",
+      "Specific module-level root cause still unconfirmed per original evidence"
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": 5.0,
+      "fog": 0.0,
+      "wetness": 3.0,
+      "puddle": 4.0
+    },
+    "actor_mutations": [
+      {
+        "actor_index": 0,
+        "position_offset": {
+          "x": 1.2,
+          "y": -2.1
+        },
+        "speed_delta": 0.8
+      }
+    ],
+    "puddle_mutations": [
+      {
+        "puddle_index": 0,
+        "location_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "level_delta": 0.1,
+        "size_scale": 1.05
+      },
+      {
+        "puddle_index": 1,
+        "location_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "level_delta": 0.08,
+        "size_scale": 1.02
+      }
+    ],
+    "mission_mutation": {
+      "keep_original": true
+    }
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_103__ark-deepseek-r1-250528.json",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_103__ark-deepseek-r1-250528.json",
+  "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+}

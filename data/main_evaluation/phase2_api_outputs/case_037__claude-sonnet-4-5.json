@@ -1,0 +1,341 @@
+{
+  "case_id": "case_037",
+  "model_name": "claude-sonnet-4-5",
+  "workflow": "phase2_grounded_generation",
+  "status": "completed",
+  "schema_valid": true,
+  "schema_errors": [],
+  "phase1_ready": "uncertain",
+  "num_candidates_requested": 2,
+  "num_candidates_written": 2,
+  "num_pre_valid": 2,
+  "candidate_records": [
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/claude-sonnet-4-5/json/case_037/case_037__cand_001.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/claude-sonnet-4-5/metadata/case_037/case_037__cand_001.metadata.json",
+      "case_id": "case_037",
+      "model_name": "claude-sonnet-4-5",
+      "candidate_index": 1,
+      "candidate_spec": {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Reduce weather intensity, shift actor closer to ego path",
+        "mutation_intent": "Preserve nearby actor within 3m and moderate ego speed while reducing weather noise to isolate actuation inconsistency",
+        "expected_oracle": "red_light",
+        "modifications": {
+          "weather_delta": {
+            "rain": -20,
+            "fog": 0,
+            "wetness": -15,
+            "puddle": -10
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 2.5,
+                "y": -1.5
+              },
+              "speed_delta": -1.0
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Actor 0 must be within 5m of ego spawn",
+          "Ego spawn position unchanged",
+          "Weather rain below 80"
+        ],
+        "post_execution_validation_rules": [
+          "Confirm vehicle_cmd vs vehicle_status consistency",
+          "Check red_light oracle in error.json",
+          "Verify actor within 3m during critical window"
+        ],
+        "uncertainty": [
+          "Collision oracle may differ from dataset label",
+          "Actuation layer behavior unclear",
+          "Lane invasion not confirmed"
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": -20,
+          "fog": 0.0,
+          "wetness": -15.0,
+          "puddle": -10.0
+        },
+        "actor_mutations": [
+          {
+            "actor_index": 0,
+            "position_offset": {
+              "x": 2.5,
+              "y": -1.5
+            },
+            "speed_delta": -1.0
+          }
+        ],
+        "puddle_mutations": [],
+        "mission_mutation": {
+          "keep_original": true
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_037__claude-sonnet-4-5.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_037__claude-sonnet-4-5.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    },
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/claude-sonnet-4-5/json/case_037/case_037__cand_002.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/claude-sonnet-4-5/metadata/case_037/case_037__cand_002.metadata.json",
+      "case_id": "case_037",
+      "model_name": "claude-sonnet-4-5",
+      "candidate_index": 2,
+      "candidate_spec": {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Increase actor speed, adjust spawn slightly forward",
+        "mutation_intent": "Preserve moderate ego speed and nearby actor constraint while increasing actor speed to test collision vs red_light oracle",
+        "expected_oracle": "unknown",
+        "modifications": {
+          "weather_delta": {
+            "rain": -10,
+            "fog": 2,
+            "wetness": -10,
+            "puddle": -5
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 4.0,
+                "y": 0.5
+              },
+              "speed_delta": 2.0
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Actor 0 speed above 16 m/s",
+          "Ego spawn unchanged",
+          "Actor position offset within bounds"
+        ],
+        "post_execution_validation_rules": [
+          "Validate oracle symptom collision or red_light",
+          "Check vehicle_cmd zero vs vehicle_status nonzero",
+          "Confirm actor distance under 4m in critical window"
+        ],
+        "uncertainty": [
+          "Oracle may be collision or red_light",
+          "Dataset and error.json labels conflict",
+          "Actuation inconsistency unclear"
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": -10.0,
+          "fog": 2.0,
+          "wetness": -10.0,
+          "puddle": -5.0
+        },
+        "actor_mutations": [
+          {
+            "actor_index": 0,
+            "position_offset": {
+              "x": 4.0,
+              "y": 0.5
+            },
+            "speed_delta": 2.0
+          }
+        ],
+        "puddle_mutations": [],
+        "mission_mutation": {
+          "keep_original": true
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_037__claude-sonnet-4-5.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_037__claude-sonnet-4-5.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    }
+  ],
+  "seed_artifact_zip": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/claude-sonnet-4-5/seed-artifact/seed-artifact-case_037.zip",
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_prompts/case_037__claude-sonnet-4-5.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_037__claude-sonnet-4-5.json",
+  "prompt_estimated_tokens": 1315,
+  "usage": {
+    "prompt_tokens": 1576,
+    "completion_tokens": 753,
+    "total_tokens": 2329
+  },
+  "raw_response": "```json\n{\n  \"case_id\": \"case_037\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Reduce weather intensity, shift actor closer to ego path\",\n      \"mutation_intent\": \"Preserve nearby actor within 3m and moderate ego speed while reducing weather noise to isolate actuation inconsistency\",\n      \"expected_oracle\": \"red_light\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": -20, \"fog\": 0, \"wetness\": -15, \"puddle\": -10},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 2.5, \"y\": -1.5}, \"speed_delta\": -1.0}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Actor 0 must be within 5m of ego spawn\", \"Ego spawn position unchanged\", \"Weather rain below 80\"],\n      \"post_execution_validation_rules\": [\"Confirm vehicle_cmd vs vehicle_status consistency\", \"Check red_light oracle in error.json\", \"Verify actor within 3m during critical window\"],\n      \"uncertainty\": [\"Collision oracle may differ from dataset label\", \"Actuation layer behavior unclear\", \"Lane invasion not confirmed\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Increase actor speed, adjust spawn slightly forward\",\n      \"mutation_intent\": \"Preserve moderate ego speed and nearby actor constraint while increasing actor speed to test collision vs red_light oracle\",\n      \"expected_oracle\": \"unknown\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": -10, \"fog\": 2, \"wetness\": -10, \"puddle\": -5},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 4.0, \"y\": 0.5}, \"speed_delta\": 2.0}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Actor 0 speed above 16 m/s\", \"Ego spawn unchanged\", \"Actor position offset within bounds\"],\n      \"post_execution_validation_rules\": [\"Validate oracle symptom collision or red_light\", \"Check vehicle_cmd zero vs vehicle_status nonzero\", \"Confirm actor distance under 4m in critical window\"],\n      \"uncertainty\": [\"Oracle may be collision or red_light\", \"Dataset and error.json labels conflict\", \"Actuation inconsistency unclear\"]\n    }\n  ]\n}\n```",
+  "parsed_response": {
+    "case_id": "case_037",
+    "candidate_specs": [
+      {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Reduce weather intensity, shift actor closer to ego path",
+        "mutation_intent": "Preserve nearby actor within 3m and moderate ego speed while reducing weather noise to isolate actuation inconsistency",
+        "expected_oracle": "red_light",
+        "modifications": {
+          "weather_delta": {
+            "rain": -20,
+            "fog": 0,
+            "wetness": -15,
+            "puddle": -10
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 2.5,
+                "y": -1.5
+              },
+              "speed_delta": -1.0
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Actor 0 must be within 5m of ego spawn",
+          "Ego spawn position unchanged",
+          "Weather rain below 80"
+        ],
+        "post_execution_validation_rules": [
+          "Confirm vehicle_cmd vs vehicle_status consistency",
+          "Check red_light oracle in error.json",
+          "Verify actor within 3m during critical window"
+        ],
+        "uncertainty": [
+          "Collision oracle may differ from dataset label",
+          "Actuation layer behavior unclear",
+          "Lane invasion not confirmed"
+        ]
+      },
+      {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Increase actor speed, adjust spawn slightly forward",
+        "mutation_intent": "Preserve moderate ego speed and nearby actor constraint while increasing actor speed to test collision vs red_light oracle",
+        "expected_oracle": "unknown",
+        "modifications": {
+          "weather_delta": {
+            "rain": -10,
+            "fog": 2,
+            "wetness": -10,
+            "puddle": -5
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 4.0,
+                "y": 0.5
+              },
+              "speed_delta": 2.0
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Actor 0 speed above 16 m/s",
+          "Ego spawn unchanged",
+          "Actor position offset within bounds"
+        ],
+        "post_execution_validation_rules": [
+          "Validate oracle symptom collision or red_light",
+          "Check vehicle_cmd zero vs vehicle_status nonzero",
+          "Confirm actor distance under 4m in critical window"
+        ],
+        "uncertainty": [
+          "Oracle may be collision or red_light",
+          "Dataset and error.json labels conflict",
+          "Actuation inconsistency unclear"
+        ]
+      }
+    ]
+  },
+  "raw_api_payload": {
+    "id": "<REDACTED_RESPONSE_ID>",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "```json\n{\n  \"case_id\": \"case_037\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Reduce weather intensity, shift actor closer to ego path\",\n      \"mutation_intent\": \"Preserve nearby actor within 3m and moderate ego speed while reducing weather noise to isolate actuation inconsistency\",\n      \"expected_oracle\": \"red_light\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": -20, \"fog\": 0, \"wetness\": -15, \"puddle\": -10},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 2.5, \"y\": -1.5}, \"speed_delta\": -1.0}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Actor 0 must be within 5m of ego spawn\", \"Ego spawn position unchanged\", \"Weather rain below 80\"],\n      \"post_execution_validation_rules\": [\"Confirm vehicle_cmd vs vehicle_status consistency\", \"Check red_light oracle in error.json\", \"Verify actor within 3m during critical window\"],\n      \"uncertainty\": [\"Collision oracle may differ from dataset label\", \"Actuation layer behavior unclear\", \"Lane invasion not confirmed\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Increase actor speed, adjust spawn slightly forward\",\n      \"mutation_intent\": \"Preserve moderate ego speed and nearby actor constraint while increasing actor speed to test collision vs red_light oracle\",\n      \"expected_oracle\": \"unknown\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": -10, \"fog\": 2, \"wetness\": -10, \"puddle\": -5},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 4.0, \"y\": 0.5}, \"speed_delta\": 2.0}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Actor 0 speed above 16 m/s\", \"Ego spawn unchanged\", \"Actor position offset within bounds\"],\n      \"post_execution_validation_rules\": [\"Validate oracle symptom collision or red_light\", \"Check vehicle_cmd zero vs vehicle_status nonzero\", \"Confirm actor distance under 4m in critical window\"],\n      \"uncertainty\": [\"Oracle may be collision or red_light\", \"Dataset and error.json labels conflict\", \"Actuation inconsistency unclear\"]\n    }\n  ]\n}\n```",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "claude-sonnet-4-5",
+    "object": "chat.completion",
+    "service_tier": null,
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 753,
+      "prompt_tokens": 1576,
+      "total_tokens": 2329,
+      "completion_tokens_details": null,
+      "prompt_tokens_details": null
+    }
+  },
+  "error_message": "",
+  "elapsed_sec": 13.63,
+  "timestamp": "<REDACTED_TIMESTAMP>"
+}

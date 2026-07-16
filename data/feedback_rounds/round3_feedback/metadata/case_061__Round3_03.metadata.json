@@ -1,0 +1,103 @@
+{
+  "case_id": "case_061",
+  "round": 3,
+  "model_name": "claude-sonnet-4-5",
+  "candidate_index": 3,
+  "candidate_spec": {
+    "candidate_id": "cand_003",
+    "high_level_variant": "Both walkers moved perpendicular to ego with synchronized timing",
+    "mutation_intent": "Create dual-actor crossing scenario at intersection to increase collision probability while preserving traffic light presence",
+    "expected_oracle": "collision",
+    "modifications": {
+      "weather_delta": {
+        "rain": 0,
+        "fog": 0,
+        "wetness": 0,
+        "puddle": 0
+      },
+      "actor_mutations": [
+        {
+          "actor_index": 0,
+          "position_offset": {
+            "x": -2.2,
+            "y": 3.8
+          },
+          "speed_delta": 0.3
+        },
+        {
+          "actor_index": 1,
+          "position_offset": {
+            "x": -2.5,
+            "y": -2.0
+          },
+          "speed_delta": 0.5
+        }
+      ],
+      "puddle_mutations": [],
+      "mission_mutation": {
+        "keep_original": true,
+        "spawn_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "destination_offset": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Both walkers positioned near intersection",
+      "Ego spawn and destination unchanged"
+    ],
+    "post_execution_validation_rules": [
+      "Collision symptom present",
+      "Red-light violation confirmed",
+      "Moderate ego speed maintained"
+    ],
+    "uncertainty": [
+      "Dual-actor interaction may create different collision timing",
+      "Unclear which walker will be collision actor"
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": 0.0,
+      "fog": 0.0,
+      "wetness": 0.0,
+      "puddle": 0.0
+    },
+    "actor_mutations": [
+      {
+        "actor_index": 0,
+        "position_offset": {
+          "x": -2.2,
+          "y": 3.8
+        },
+        "speed_delta": 0.3
+      },
+      {
+        "actor_index": 1,
+        "position_offset": {
+          "x": -2.5,
+          "y": -2.0
+        },
+        "speed_delta": 0.5
+      }
+    ],
+    "puddle_mutations": [],
+    "mission_mutation": {
+      "keep_original": true
+    },
+    "safety_repairs": []
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "authoritative_original_phase1_output": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_061__claude-sonnet-4-5.json",
+  "round1_feedback_count": 6,
+  "round2_feedback_count": 2,
+  "round3_api_output": "<WORKSPACE_ROOT>/processed/experiments/round3_feedback/api_outputs/case_061__claude-sonnet-4-5.json"
+}

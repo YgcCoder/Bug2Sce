@@ -1,0 +1,118 @@
+{
+  "case_id": "case_151",
+  "model_name": "gemini-2.5-pro",
+  "candidate_index": 1,
+  "candidate_spec": {
+    "candidate_id": "cand_001",
+    "high_level_variant": "Simplify environment by removing weather and moving actors away.",
+    "mutation_intent": "Confirm the zero-command failure is an internal software bug by testing in a simple, clear environment without other actors nearby.",
+    "expected_oracle": "stuck",
+    "modifications": {
+      "weather_delta": {
+        "rain": -10,
+        "fog": -20,
+        "wetness": -20,
+        "puddle": 0
+      },
+      "actor_mutations": [
+        {
+          "actor_index": 1,
+          "position_offset": {
+            "x": 8.0,
+            "y": 0.0
+          },
+          "speed_delta": 0.0
+        }
+      ],
+      "puddle_mutations": [
+        {
+          "puddle_index": 0,
+          "location_offset": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "level_delta": -0.2,
+          "size_scale": 1.0
+        }
+      ],
+      "mission_mutation": {
+        "keep_original": true,
+        "spawn_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "destination_offset": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Weather is clear and dry.",
+      "No other actors are on the ego vehicle's path."
+    ],
+    "post_execution_validation_rules": [
+      "/vehicle_cmd topic contains only zero values.",
+      "Vehicle is marked as stuck."
+    ],
+    "uncertainty": [
+      "Uncertain if erratic movement pattern is identical to seed."
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": -10.0,
+      "fog": -20,
+      "wetness": -20,
+      "puddle": 0.0
+    },
+    "actor_mutations": [
+      {
+        "actor_index": 1,
+        "position_offset": {
+          "x": 8,
+          "y": 0.0
+        },
+        "speed_delta": 0.0
+      }
+    ],
+    "puddle_mutations": [
+      {
+        "puddle_index": 0,
+        "location_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "level_delta": -0.2,
+        "size_scale": 1.0
+      }
+    ],
+    "mission_mutation": {
+      "keep_original": true
+    },
+    "safety_repairs": [
+      {
+        "type": "actor_min_distance",
+        "actor_index": 1,
+        "old_spawn": {
+          "x": 47.707,
+          "y": 325.715
+        },
+        "new_spawn": {
+          "x": 48.09641505548762,
+          "y": 325.401120960297
+        },
+        "old_distance": 2.0,
+        "min_distance": 2.5
+      }
+    ]
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_151__gemini-2.5-pro.json",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_151__gemini-2.5-pro.json",
+  "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+}

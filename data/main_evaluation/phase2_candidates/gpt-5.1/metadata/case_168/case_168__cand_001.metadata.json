@@ -1,0 +1,121 @@
+{
+  "case_id": "case_168",
+  "model_name": "gpt-5.1",
+  "candidate_index": 1,
+  "candidate_spec": {
+    "candidate_id": "cand_001",
+    "high_level_variant": "Same Town01 route with slightly shifted spawn and moderate wet conditions; ego traverses an intersection with active red traffic lights and large puddles while vehicle_cmd remains zero despite ego motion, leading to an oracle red-light violation (collision remains incidental/uncertain).",
+    "mutation_intent": "Preserve the original command–status mismatch and red-light violation pattern under similar mission and environment, while slightly perturbing mission start and puddle configuration to test robustness without changing the core unknown root cause.",
+    "expected_oracle": "red_light",
+    "modifications": {
+      "weather_delta": {
+        "rain": 5,
+        "fog": -5,
+        "wetness": 10,
+        "puddle": 5
+      },
+      "actor_mutations": [],
+      "puddle_mutations": [
+        {
+          "puddle_index": 0,
+          "location_offset": {
+            "x": -2.0,
+            "y": 1.5
+          },
+          "level_delta": 0.05,
+          "size_scale": 1.1
+        },
+        {
+          "puddle_index": 1,
+          "location_offset": {
+            "x": 1.0,
+            "y": -2.0
+          },
+          "level_delta": -0.05,
+          "size_scale": 0.9
+        }
+      ],
+      "mission_mutation": {
+        "keep_original": false,
+        "spawn_offset": {
+          "x": 3.0,
+          "y": -2.5
+        },
+        "destination_offset": {
+          "x": -4.0,
+          "y": 1.5
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Ensure mission map remains Town01.",
+      "Verify no additional dynamic actors are present beyond the ego vehicle.",
+      "Confirm traffic light network is active along the ego route with multiple signals visible in traffic_lights topics.",
+      "Check that at least one traffic light reports a red state before the anticipated intersection interaction.",
+      "Validate that final_waypoints are nonempty and consistently published from early in the route through the expected violation window."
+    ],
+    "post_execution_validation_rules": [
+      "Confirm oracle flags a red-light violation for the ego; do not require lane invasion or collision for success.",
+      "Verify traffic_lights data include at least one red state in the time window immediately preceding the oracle red-light violation event.",
+      "Check that final_waypoints remain available and nonempty during the critical window leading up to the red-light violation.",
+      "Confirm that vehicle_cmd outputs remain effectively zero (throttle, brake, steer ≈ 0) while vehicle_status reports nonzero ego speed near and at the time of the oracle red-light violation.",
+      "Verify no additional dynamic actors influenced the ego at the time of violation (to match the no-extra-actors constraint).",
+      "If collision messages occur, record their presence and impulse but do not treat collision as required for matching this root-cause pattern."
+    ],
+    "uncertainty": [
+      "Route–light association and whether the governing light’s stop line is actually crossed remain unknown and must not be assumed from traffic_lights alone.",
+      "Lane invasion is not required because dataset.xlsx and error.json conflict on lane_invasion status.",
+      "Any observed collision may be low severity or simulator-side and should not be assumed as core to the root cause.",
+      "The origin of the command–status mismatch (planning, control, simulator, or logging) cannot be inferred from this scenario alone."
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": 5.0,
+      "fog": -5.0,
+      "wetness": 10.0,
+      "puddle": 5.0
+    },
+    "actor_mutations": [],
+    "puddle_mutations": [
+      {
+        "puddle_index": 0,
+        "location_offset": {
+          "x": -2.0,
+          "y": 1.5
+        },
+        "level_delta": 0.05,
+        "size_scale": 1.1
+      },
+      {
+        "puddle_index": 1,
+        "location_offset": {
+          "x": 1.0,
+          "y": -2.0
+        },
+        "level_delta": -0.05,
+        "size_scale": 0.9
+      }
+    ],
+    "mission_mutation": {
+      "spawn_offset": {
+        "x": 3.0,
+        "y": -2.5
+      },
+      "destination_offset": {
+        "x": -4.0,
+        "y": 1.5
+      }
+    }
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": [
+      "no actors in candidate scenario"
+    ]
+  },
+  "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_168__gpt-5.1.json",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_168__gpt-5.1.json",
+  "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+}

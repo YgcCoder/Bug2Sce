@@ -1,0 +1,395 @@
+{
+  "case_id": "case_061",
+  "model_name": "ark-doubao-seed-2.0-lite-260215",
+  "workflow": "phase2_grounded_generation",
+  "status": "completed",
+  "schema_valid": true,
+  "schema_errors": [],
+  "phase1_ready": "yes",
+  "num_candidates_requested": 2,
+  "num_candidates_written": 2,
+  "num_pre_valid": 2,
+  "candidate_records": [
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-doubao-seed-2.0-lite-260215/json/case_061/case_061__cand_001.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-doubao-seed-2.0-lite-260215/metadata/case_061/case_061__cand_001.metadata.json",
+      "case_id": "case_061",
+      "model_name": "ark-doubao-seed-2.0-lite-260215",
+      "candidate_index": 1,
+      "candidate_spec": {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Slightly increase surface wetness and adjust pedestrian positions closer to ego's travel lane",
+        "mutation_intent": "Preserves all core Phase 1 root pattern properties: retains all-zero pre-collision actuation commands, non-zero throttle/zero brake forward movement, confirmed collision and red light violation, keeps the closest detected object far from ego to preserve unconfirmed module attribution, and maintains conflicting lane invasion labels",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": 5,
+            "fog": 0,
+            "wetness": 10,
+            "puddle": 5
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": -1.2,
+                "y": 0.8
+              },
+              "speed_delta": 0.5
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": 0.5,
+                "y": -1.0
+              },
+              "speed_delta": 0.3
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Verify pre-collision actuation commands are all-zero",
+          "Confirm no blocked waypoints exist before collision"
+        ],
+        "post_execution_validation_rules": [
+          "Confirm collision and red light violation are observed",
+          "Validate that lane invasion status remains conflicting per original pattern"
+        ],
+        "uncertainty": [
+          "Lane invasion failure remains unconfirmed per original uncertainty",
+          "Module-level fault attribution remains unconfirmed as in original root pattern"
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 5.0,
+          "fog": 0.0,
+          "wetness": 10.0,
+          "puddle": 5.0
+        },
+        "actor_mutations": [
+          {
+            "actor_index": 0,
+            "position_offset": {
+              "x": -1.2,
+              "y": 0.8
+            },
+            "speed_delta": 0.5
+          },
+          {
+            "actor_index": 1,
+            "position_offset": {
+              "x": 0.5,
+              "y": -1.0
+            },
+            "speed_delta": 0.3
+          }
+        ],
+        "puddle_mutations": [],
+        "mission_mutation": {
+          "keep_original": true
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_061__ark-doubao-seed-2.0-lite-260215.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_061__ark-doubao-seed-2.0-lite-260215.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    },
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-doubao-seed-2.0-lite-260215/json/case_061/case_061__cand_002.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-doubao-seed-2.0-lite-260215/metadata/case_061/case_061__cand_002.metadata.json",
+      "case_id": "case_061",
+      "model_name": "ark-doubao-seed-2.0-lite-260215",
+      "candidate_index": 2,
+      "candidate_spec": {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Slightly decrease wetness and shift ego spawn and destination positions closer to the intersection",
+        "mutation_intent": "Retains all required preservation constraints: keeps all-zero pre-collision actuation commands, non-zero throttle/zero brake movement, confirmed collision and red light violation, no blocked waypoints, and conflicting lane invasion labels, preserving the unconfirmed root cause attribution",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": -3,
+            "fog": 0,
+            "wetness": -8,
+            "puddle": -4
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 1.0,
+                "y": -0.5
+              },
+              "speed_delta": -0.4
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": -0.8,
+                "y": 1.2
+              },
+              "speed_delta": -0.2
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": false,
+            "spawn_offset": {
+              "x": 2.0,
+              "y": -1.5
+            },
+            "destination_offset": {
+              "x": 1.8,
+              "y": 0.9
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Verify all mission position offsets are within allowed bounds",
+          "Confirm all-zero actuation commands in pre-collision critical window",
+          "Check that no blocked waypoints are detected before collision"
+        ],
+        "post_execution_validation_rules": [
+          "Confirm collision and red light violation occurred as expected",
+          "Verify the mismatch between zero actuation commands and non-zero throttle vehicle status is retained"
+        ],
+        "uncertainty": [
+          "Collision root cause remains unconfirmed per original evidence",
+          "Lane invasion failure status remains unconfirmed due to conflicting labels"
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": -3.0,
+          "fog": 0.0,
+          "wetness": -8.0,
+          "puddle": -4.0
+        },
+        "actor_mutations": [
+          {
+            "actor_index": 0,
+            "position_offset": {
+              "x": 1.0,
+              "y": -0.5
+            },
+            "speed_delta": -0.4
+          },
+          {
+            "actor_index": 1,
+            "position_offset": {
+              "x": -0.8,
+              "y": 1.2
+            },
+            "speed_delta": -0.2
+          }
+        ],
+        "puddle_mutations": [],
+        "mission_mutation": {
+          "spawn_offset": {
+            "x": 2.0,
+            "y": -1.5
+          },
+          "destination_offset": {
+            "x": 1.8,
+            "y": 0.9
+          }
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_061__ark-doubao-seed-2.0-lite-260215.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_061__ark-doubao-seed-2.0-lite-260215.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    }
+  ],
+  "seed_artifact_zip": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-doubao-seed-2.0-lite-260215/seed-artifact/seed-artifact-case_061.zip",
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_prompts/case_061__ark-doubao-seed-2.0-lite-260215.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_061__ark-doubao-seed-2.0-lite-260215.json",
+  "prompt_estimated_tokens": 1179,
+  "usage": {
+    "prompt_tokens": 1462,
+    "completion_tokens": 1822,
+    "total_tokens": 3284
+  },
+  "raw_response": "{\n  \"case_id\": \"case_061\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Slightly increase surface wetness and adjust pedestrian positions closer to ego's travel lane\",\n      \"mutation_intent\": \"Preserves all core Phase 1 root pattern properties: retains all-zero pre-collision actuation commands, non-zero throttle/zero brake forward movement, confirmed collision and red light violation, keeps the closest detected object far from ego to preserve unconfirmed module attribution, and maintains conflicting lane invasion labels\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 5, \"fog\": 0, \"wetness\": 10, \"puddle\": 5},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": -1.2, \"y\": 0.8}, \"speed_delta\": 0.5},\n          {\"actor_index\": 1, \"position_offset\": {\"x\": 0.5, \"y\": -1.0}, \"speed_delta\": 0.3}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Verify pre-collision actuation commands are all-zero\", \"Confirm no blocked waypoints exist before collision\"],\n      \"post_execution_validation_rules\": [\"Confirm collision and red light violation are observed\", \"Validate that lane invasion status remains conflicting per original pattern\"],\n      \"uncertainty\": [\"Lane invasion failure remains unconfirmed per original uncertainty\", \"Module-level fault attribution remains unconfirmed as in original root pattern\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Slightly decrease wetness and shift ego spawn and destination positions closer to the intersection\",\n      \"mutation_intent\": \"Retains all required preservation constraints: keeps all-zero pre-collision actuation commands, non-zero throttle/zero brake movement, confirmed collision and red light violation, no blocked waypoints, and conflicting lane invasion labels, preserving the unconfirmed root cause attribution\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": -3, \"fog\": 0, \"wetness\": -8, \"puddle\": -4},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 1.0, \"y\": -0.5}, \"speed_delta\": -0.4},\n          {\"actor_index\": 1, \"position_offset\": {\"x\": -0.8, \"y\": 1.2}, \"speed_delta\": -0.2}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": false, \"spawn_offset\": {\"x\": 2.0, \"y\": -1.5}, \"destination_offset\": {\"x\": 1.8, \"y\": 0.9}}\n      },\n      \"pre_execution_validation_rules\": [\"Verify all mission position offsets are within allowed bounds\", \"Confirm all-zero actuation commands in pre-collision critical window\", \"Check that no blocked waypoints are detected before collision\"],\n      \"post_execution_validation_rules\": [\"Confirm collision and red light violation occurred as expected\", \"Verify the mismatch between zero actuation commands and non-zero throttle vehicle status is retained\"],\n      \"uncertainty\": [\"Collision root cause remains unconfirmed per original evidence\", \"Lane invasion failure status remains unconfirmed due to conflicting labels\"]\n    }\n  ]\n}",
+  "parsed_response": {
+    "case_id": "case_061",
+    "candidate_specs": [
+      {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Slightly increase surface wetness and adjust pedestrian positions closer to ego's travel lane",
+        "mutation_intent": "Preserves all core Phase 1 root pattern properties: retains all-zero pre-collision actuation commands, non-zero throttle/zero brake forward movement, confirmed collision and red light violation, keeps the closest detected object far from ego to preserve unconfirmed module attribution, and maintains conflicting lane invasion labels",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": 5,
+            "fog": 0,
+            "wetness": 10,
+            "puddle": 5
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": -1.2,
+                "y": 0.8
+              },
+              "speed_delta": 0.5
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": 0.5,
+                "y": -1.0
+              },
+              "speed_delta": 0.3
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Verify pre-collision actuation commands are all-zero",
+          "Confirm no blocked waypoints exist before collision"
+        ],
+        "post_execution_validation_rules": [
+          "Confirm collision and red light violation are observed",
+          "Validate that lane invasion status remains conflicting per original pattern"
+        ],
+        "uncertainty": [
+          "Lane invasion failure remains unconfirmed per original uncertainty",
+          "Module-level fault attribution remains unconfirmed as in original root pattern"
+        ]
+      },
+      {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Slightly decrease wetness and shift ego spawn and destination positions closer to the intersection",
+        "mutation_intent": "Retains all required preservation constraints: keeps all-zero pre-collision actuation commands, non-zero throttle/zero brake movement, confirmed collision and red light violation, no blocked waypoints, and conflicting lane invasion labels, preserving the unconfirmed root cause attribution",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": -3,
+            "fog": 0,
+            "wetness": -8,
+            "puddle": -4
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 1.0,
+                "y": -0.5
+              },
+              "speed_delta": -0.4
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": -0.8,
+                "y": 1.2
+              },
+              "speed_delta": -0.2
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": false,
+            "spawn_offset": {
+              "x": 2.0,
+              "y": -1.5
+            },
+            "destination_offset": {
+              "x": 1.8,
+              "y": 0.9
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Verify all mission position offsets are within allowed bounds",
+          "Confirm all-zero actuation commands in pre-collision critical window",
+          "Check that no blocked waypoints are detected before collision"
+        ],
+        "post_execution_validation_rules": [
+          "Confirm collision and red light violation occurred as expected",
+          "Verify the mismatch between zero actuation commands and non-zero throttle vehicle status is retained"
+        ],
+        "uncertainty": [
+          "Collision root cause remains unconfirmed per original evidence",
+          "Lane invasion failure status remains unconfirmed due to conflicting labels"
+        ]
+      }
+    ]
+  },
+  "raw_api_payload": {
+    "id": "021782922189226f49357381ad84b476d8c8001bb9a349d701212",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "{\n  \"case_id\": \"case_061\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Slightly increase surface wetness and adjust pedestrian positions closer to ego's travel lane\",\n      \"mutation_intent\": \"Preserves all core Phase 1 root pattern properties: retains all-zero pre-collision actuation commands, non-zero throttle/zero brake forward movement, confirmed collision and red light violation, keeps the closest detected object far from ego to preserve unconfirmed module attribution, and maintains conflicting lane invasion labels\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 5, \"fog\": 0, \"wetness\": 10, \"puddle\": 5},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": -1.2, \"y\": 0.8}, \"speed_delta\": 0.5},\n          {\"actor_index\": 1, \"position_offset\": {\"x\": 0.5, \"y\": -1.0}, \"speed_delta\": 0.3}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Verify pre-collision actuation commands are all-zero\", \"Confirm no blocked waypoints exist before collision\"],\n      \"post_execution_validation_rules\": [\"Confirm collision and red light violation are observed\", \"Validate that lane invasion status remains conflicting per original pattern\"],\n      \"uncertainty\": [\"Lane invasion failure remains unconfirmed per original uncertainty\", \"Module-level fault attribution remains unconfirmed as in original root pattern\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Slightly decrease wetness and shift ego spawn and destination positions closer to the intersection\",\n      \"mutation_intent\": \"Retains all required preservation constraints: keeps all-zero pre-collision actuation commands, non-zero throttle/zero brake movement, confirmed collision and red light violation, no blocked waypoints, and conflicting lane invasion labels, preserving the unconfirmed root cause attribution\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": -3, \"fog\": 0, \"wetness\": -8, \"puddle\": -4},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 1.0, \"y\": -0.5}, \"speed_delta\": -0.4},\n          {\"actor_index\": 1, \"position_offset\": {\"x\": -0.8, \"y\": 1.2}, \"speed_delta\": -0.2}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": false, \"spawn_offset\": {\"x\": 2.0, \"y\": -1.5}, \"destination_offset\": {\"x\": 1.8, \"y\": 0.9}}\n      },\n      \"pre_execution_validation_rules\": [\"Verify all mission position offsets are within allowed bounds\", \"Confirm all-zero actuation commands in pre-collision critical window\", \"Check that no blocked waypoints are detected before collision\"],\n      \"post_execution_validation_rules\": [\"Confirm collision and red light violation occurred as expected\", \"Verify the mismatch between zero actuation commands and non-zero throttle vehicle status is retained\"],\n      \"uncertainty\": [\"Collision root cause remains unconfirmed per original evidence\", \"Lane invasion failure status remains unconfirmed due to conflicting labels\"]\n    }\n  ]\n}",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null,
+          "reasoning_content": "\nGot it, let's build this JSON step by step. First, the case_id is case_061, right? We need exactly two candidate specs.\n\nFirst candidate: cand_001. Let's think of the high level variant. Maybe \"Slightly increase wetness and adjust pedestrian positions closer to ego's lane to retain collision and red light violation\". Wait, mutation intent needs to preserve the root cause pattern. Let's see: the root cause is all zero actuation commands, non-zero throttle, collision and red light, no blocked waypoints, lane invasion conflict. So mutation intent for first one: \"Retains all required root pattern properties: all-zero pre-collision actuation commands, non-zero throttle/zero brake, confirmed collision and red light violation, keeps closest detected object far enough to preserve unconfirmed module attribution, retains lane invasion label conflict\". Expected oracle is compound, right? Because it's collision and red light.\n\nModifications: weather delta. Let's do rain +5, fog +0, wetness +10, puddle +5. That's within [-20,20], okay. Actor mutations: two actors, index 0: position offset x -1.2, y 0.8, speed delta +0.5. Index 1: x 0.5, y -1.0, speed delta +0.3. Both within [-8,8] position, speed within [-3,3], good. Puddles are empty so puddle_mutations is empty. Mission mutation keep_original true. Pre execution rules: [\"Verify pre-collision actuation commands are all-zero\", \"Confirm no blocked waypoints are present before collision\"], post execution: [\"Confirm collision and red light violation occurred\", \"Check that lane invasion status remains conflicting as required\"], uncertainty: [\"Unconfirmed lane invasion failure retained per original uncertainty\"].\n\nSecond candidate: cand_002. High level variant: \"Slightly decrease wetness and shift ego spawn position closer to the intersection to retain original failure pattern\". Mutation intent: \"Preserves all core root cause properties: all-zero pre-collision actuation commands, non-zero throttle/zero brake movement, confirmed collision and red light violation, preserves unconfirmed module attribution and lane invasion label conflict as required\". Expected oracle still compound, right? Because collision and red light.\n\nModifications: weather delta: rain -3, fog 0, wetness -8, puddle -4. All within range. Actor mutations: actor 0: position offset x 1.0, y -0.5, speed delta -0.4. Actor 1: x -0.8, y 1.2, speed delta -0.2. All good. Puddles still empty, so puddle_mutations empty. Mission mutation: keep_original false? Wait no, offsets within [-5,5]. Let's do spawn offset x 2.1, y -1.5, destination offset x 1.2, y 0.8. Wait or can we? Wait the rule says within [-5,5], that's okay. Wait or keep_original? No, make a small mutation. Let's set keep_original false, spawn offset x 2, y -1, destination offset x 1.5, y 0.5, all within 5. Pre execution rules: [\"Verify ego spawn and destination offsets are within allowed bounds\", \"Confirm all-zero actuation commands in pre-collision window\", \"Check no blocked waypoints are present\"], post execution: [\"Validate collision and red light violation are present as expected\", \"Verify lane invasion status remains conflicting per original pattern\"], uncertainty: [\"Collision root cause remains unconfirmed per original uncertainty, retained as-is\"].\n\nWait let's check all the rules. Exactly two candidates, all offsets within range. Preserve the root cause, don't invent new oracles. Original has confirmed collision and red light, so expected oracle is compound, that's right. Uncertainty preserved. Let's structure it correctly.\n\nWait let's check the schema. Let's make sure all fields are there. Let's put it all together.\n\nWait the seed scenario has no puddles, so puddle_mutations is empty array for both, right? Yes. Let's confirm actor positions: offsets are all way under 8, speed deltas under 3, correct. Weather deltas all within [-20,20], yes. Mission offsets for the second candidate are within [-5,5], correct.\n\nLet me write it out properly now."
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "doubao-seed-2-0-lite-260215",
+    "object": "chat.completion",
+    "service_tier": "default",
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 1822,
+      "prompt_tokens": 1462,
+      "total_tokens": 3284,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 954,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": null,
+        "cached_tokens": 0
+      }
+    }
+  },
+  "error_message": "",
+  "elapsed_sec": 31.272,
+  "timestamp": "<REDACTED_TIMESTAMP>"
+}

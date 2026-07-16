@@ -1,0 +1,105 @@
+{
+  "case_id": "case_069",
+  "model_name": "gpt-5.1",
+  "candidate_index": 1,
+  "candidate_spec": {
+    "candidate_id": "cand_001",
+    "high_level_variant": "Maintain original mission, bring the nearby linear vehicle closer into ego’s lane corridor with slightly reduced speed to encourage a low-speed lateral/offset collision near the end of the route.",
+    "mutation_intent": "Preserves the pattern of a collision oracle firing while ego continues at a few m/s with valid final_waypoints and nearby actors, without clear braking. Tightening the proximity and alignment of the linear vehicle increases the chance of a contact event late in the run while keeping perception/prediction populated and planning unconstrained by blocked-waypoint flags.",
+    "expected_oracle": "collision",
+    "modifications": {
+      "weather_delta": {
+        "rain": 0,
+        "fog": 0,
+        "wetness": 0,
+        "puddle": 0
+      },
+      "actor_mutations": [
+        {
+          "actor_index": 0,
+          "position_offset": {
+            "x": 1.5,
+            "y": -2.0
+          },
+          "speed_delta": -1.0
+        },
+        {
+          "actor_index": 1,
+          "position_offset": {
+            "x": 2.0,
+            "y": -1.5
+          },
+          "speed_delta": -1.5
+        }
+      ],
+      "puddle_mutations": [],
+      "mission_mutation": {
+        "keep_original": true,
+        "spawn_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "destination_offset": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Ensure ego mission remains drivable from original spawn to destination without immediate obstructions at t=0.",
+      "Verify both actors spawn on valid drivable lanes and within sensor range of the ego within the first 10s.",
+      "Check that actor 0 and actor 1 bounding boxes do not overlap the ego’s initial bounding box at spawn.",
+      "Confirm modified actor speeds remain positive and below 15 m/s."
+    ],
+    "post_execution_validation_rules": [
+      "Verify a collision oracle is emitted after t>20s while ego_speed > 2.0 m/s within 3s before the event.",
+      "Check perception/prediction topics report at least one of the two vehicles as a tracked object within 40m of ego in the 5s prior to collision.",
+      "Confirm planning publishes nonempty final_waypoints (no blocked flag) in the 3s prior to collision.",
+      "Ensure there is no prolonged ego standstill (>3s at speed <0.5 m/s) before the collision.",
+      "Do not require lane invasion; log but do not enforce lane_invasion oracles if they appear."
+    ],
+    "uncertainty": [
+      "Exact collision partner (which actor or environment detail) remains unknown.",
+      "Controller pipeline behavior (vehicle_cmd vs vehicle_status consistency) may differ from the seed run.",
+      "The precise timing of the collision relative to route completion cannot be guaranteed a priori."
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": 0.0,
+      "fog": 0.0,
+      "wetness": 0.0,
+      "puddle": 0.0
+    },
+    "actor_mutations": [
+      {
+        "actor_index": 0,
+        "position_offset": {
+          "x": 1.5,
+          "y": -2.0
+        },
+        "speed_delta": -1.0
+      },
+      {
+        "actor_index": 1,
+        "position_offset": {
+          "x": 2.0,
+          "y": -1.5
+        },
+        "speed_delta": -1.5
+      }
+    ],
+    "puddle_mutations": [],
+    "mission_mutation": {
+      "keep_original": true
+    }
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_069__gpt-5.1.json",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_069__gpt-5.1.json",
+  "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+}

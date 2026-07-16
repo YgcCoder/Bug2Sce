@@ -1,0 +1,101 @@
+{
+  "case_id": "case_079",
+  "model_name": "ark-doubao-seed-2.0-lite-260215",
+  "candidate_index": 1,
+  "candidate_spec": {
+    "candidate_id": "cand_001",
+    "high_level_variant": "Slight adjustment to weather parameters and actor positions, preserves original scenario structure",
+    "mutation_intent": "Small conservative changes to weather and actor positions stay within allowed bounds, preserves all root cause elements: conflicting lane invasion labels, red light presence in critical window, all-zero vehicle_cmd, non-zero vehicle velocity, 2 actors and Town01 map",
+    "expected_oracle": "red_light",
+    "modifications": {
+      "weather_delta": {
+        "rain": 5,
+        "fog": -3,
+        "wetness": 4,
+        "puddle": 2
+      },
+      "actor_mutations": [
+        {
+          "actor_index": 0,
+          "position_offset": {
+            "x": 0.5,
+            "y": -0.3
+          },
+          "speed_delta": 0.0
+        },
+        {
+          "actor_index": 1,
+          "position_offset": {
+            "x": -0.2,
+            "y": 0.4
+          },
+          "speed_delta": 0.2
+        }
+      ],
+      "puddle_mutations": [],
+      "mission_mutation": {
+        "keep_original": true,
+        "spawn_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "destination_offset": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "red traffic light is present in the critical scenario window",
+      "2 actors are spawned in Town01 map",
+      "vehicle_cmd topic has all-zero values during critical window"
+    ],
+    "post_execution_validation_rules": [
+      "non-zero velocity is present in vehicle_status during critical window",
+      "conflicting lane invasion labels between dataset and error.json are preserved"
+    ],
+    "uncertainty": [
+      "lane invasion label conflict remains unresolved per original evidence",
+      "stop-line crossing for red light violation is not confirmed by available evidence",
+      "module-level fault attribution is unconfirmed"
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": 5.0,
+      "fog": -3.0,
+      "wetness": 4.0,
+      "puddle": 2.0
+    },
+    "actor_mutations": [
+      {
+        "actor_index": 0,
+        "position_offset": {
+          "x": 0.5,
+          "y": -0.3
+        },
+        "speed_delta": 0.0
+      },
+      {
+        "actor_index": 1,
+        "position_offset": {
+          "x": -0.2,
+          "y": 0.4
+        },
+        "speed_delta": 0.2
+      }
+    ],
+    "puddle_mutations": [],
+    "mission_mutation": {
+      "keep_original": true
+    }
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_079__ark-doubao-seed-2.0-lite-260215.json",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_079__ark-doubao-seed-2.0-lite-260215.json",
+  "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+}

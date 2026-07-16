@@ -1,0 +1,118 @@
+{
+  "case_id": "case_024",
+  "model_name": "gpt-4o-2024-11-20",
+  "workflow": "pure_llm_phase2_baseline",
+  "candidate_index": 1,
+  "candidate_spec": {
+    "candidate_id": "cand_001",
+    "high_level_variant": "adjust actor speed and weather",
+    "mutation_intent": "test collision and red light risks",
+    "expected_oracle": "collision",
+    "modifications": {
+      "weather_delta": {
+        "rain": 10,
+        "fog": 5,
+        "wetness": 10,
+        "puddle": 0.1
+      },
+      "actor_mutations": [
+        {
+          "actor_index": 0,
+          "position_offset": {
+            "x": 2.0,
+            "y": -1.5
+          },
+          "speed_delta": -1.5
+        },
+        {
+          "actor_index": 1,
+          "position_offset": {
+            "x": -3.0,
+            "y": 2.0
+          },
+          "speed_delta": 1.0
+        }
+      ],
+      "puddle_mutations": [
+        {
+          "puddle_index": 0,
+          "location_offset": {
+            "x": 1.0,
+            "y": -1.0
+          },
+          "level_delta": 0.1,
+          "size_scale": 1.1
+        }
+      ],
+      "mission_mutation": {
+        "keep_original": true,
+        "spawn_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "destination_offset": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "ensure actor paths are valid"
+    ],
+    "post_execution_validation_rules": [
+      "check for collision events"
+    ],
+    "uncertainty": [
+      "weather impact on visibility"
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": 10.0,
+      "fog": 5.0,
+      "wetness": 10.0,
+      "puddle": 0.1
+    },
+    "actor_mutations": [
+      {
+        "actor_index": 0,
+        "position_offset": {
+          "x": 2.0,
+          "y": -1.5
+        },
+        "speed_delta": -1.5
+      },
+      {
+        "actor_index": 1,
+        "position_offset": {
+          "x": -3.0,
+          "y": 2.0
+        },
+        "speed_delta": 1.0
+      }
+    ],
+    "puddle_mutations": [
+      {
+        "puddle_index": 0,
+        "location_offset": {
+          "x": 1.0,
+          "y": -1.0
+        },
+        "level_delta": 0.1,
+        "size_scale": 1.1
+      }
+    ],
+    "mission_mutation": {
+      "keep_original": true
+    },
+    "safety_repairs": []
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/pure_llm_phase2_api_prompts/case_024__gpt-4o-2024-11-20.md",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/pure_llm_phase2_api_outputs/case_024__gpt-4o-2024-11-20.json",
+  "baseline_note": "Pure-LLM baseline: prompt used no root-cause pattern or critical-window evidence."
+}

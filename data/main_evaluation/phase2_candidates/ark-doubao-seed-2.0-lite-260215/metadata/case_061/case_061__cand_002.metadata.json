@@ -1,0 +1,107 @@
+{
+  "case_id": "case_061",
+  "model_name": "ark-doubao-seed-2.0-lite-260215",
+  "candidate_index": 2,
+  "candidate_spec": {
+    "candidate_id": "cand_002",
+    "high_level_variant": "Slightly decrease wetness and shift ego spawn and destination positions closer to the intersection",
+    "mutation_intent": "Retains all required preservation constraints: keeps all-zero pre-collision actuation commands, non-zero throttle/zero brake movement, confirmed collision and red light violation, no blocked waypoints, and conflicting lane invasion labels, preserving the unconfirmed root cause attribution",
+    "expected_oracle": "compound",
+    "modifications": {
+      "weather_delta": {
+        "rain": -3,
+        "fog": 0,
+        "wetness": -8,
+        "puddle": -4
+      },
+      "actor_mutations": [
+        {
+          "actor_index": 0,
+          "position_offset": {
+            "x": 1.0,
+            "y": -0.5
+          },
+          "speed_delta": -0.4
+        },
+        {
+          "actor_index": 1,
+          "position_offset": {
+            "x": -0.8,
+            "y": 1.2
+          },
+          "speed_delta": -0.2
+        }
+      ],
+      "puddle_mutations": [],
+      "mission_mutation": {
+        "keep_original": false,
+        "spawn_offset": {
+          "x": 2.0,
+          "y": -1.5
+        },
+        "destination_offset": {
+          "x": 1.8,
+          "y": 0.9
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Verify all mission position offsets are within allowed bounds",
+      "Confirm all-zero actuation commands in pre-collision critical window",
+      "Check that no blocked waypoints are detected before collision"
+    ],
+    "post_execution_validation_rules": [
+      "Confirm collision and red light violation occurred as expected",
+      "Verify the mismatch between zero actuation commands and non-zero throttle vehicle status is retained"
+    ],
+    "uncertainty": [
+      "Collision root cause remains unconfirmed per original evidence",
+      "Lane invasion failure status remains unconfirmed due to conflicting labels"
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": -3.0,
+      "fog": 0.0,
+      "wetness": -8.0,
+      "puddle": -4.0
+    },
+    "actor_mutations": [
+      {
+        "actor_index": 0,
+        "position_offset": {
+          "x": 1.0,
+          "y": -0.5
+        },
+        "speed_delta": -0.4
+      },
+      {
+        "actor_index": 1,
+        "position_offset": {
+          "x": -0.8,
+          "y": 1.2
+        },
+        "speed_delta": -0.2
+      }
+    ],
+    "puddle_mutations": [],
+    "mission_mutation": {
+      "spawn_offset": {
+        "x": 2.0,
+        "y": -1.5
+      },
+      "destination_offset": {
+        "x": 1.8,
+        "y": 0.9
+      }
+    }
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_061__ark-doubao-seed-2.0-lite-260215.json",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_061__ark-doubao-seed-2.0-lite-260215.json",
+  "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+}

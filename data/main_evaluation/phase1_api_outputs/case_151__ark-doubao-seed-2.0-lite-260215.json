@@ -1,0 +1,120 @@
+{
+  "case_id": "case_151",
+  "workflow": "phase1_causal_explanation",
+  "model_name": "ark-doubao-seed-2.0-lite-260215",
+  "model_id": "ark-doubao-seed-2.0-lite-260215",
+  "status": "completed",
+  "dry_run": false,
+  "schema_valid": true,
+  "schema_errors": [],
+  "quality_flags": [],
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_prompts/case_151__ark-doubao-seed-2.0-lite-260215.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_151__ark-doubao-seed-2.0-lite-260215.json",
+  "prompt_estimated_tokens": 2818,
+  "usage": {
+    "prompt_tokens": 3748,
+    "completion_tokens": 2559,
+    "total_tokens": 6307
+  },
+  "estimated_cost_usd": null,
+  "raw_response": "{\n  \"case_id\": \"case_151\",\n  \"fault_layer\": \"unknown\",\n  \"fault_component\": \"unknown\",\n  \"causal_explanation\": \"Dataset labels this case as stuck and lane invasion, but error_json reports no such events, only goal reached after ~58 seconds. Critical window evidence shows all vehicle actuation commands are zero across the sampled period, final waypoints remain available, and no direct evidence of lane boundary crossing exists. No module-level failure is confirmed.\",\n  \"root_cause_pattern\": \"Conservative pattern: Ego vehicle receives all-zero actuation commands for an extended period while final waypoints remain available, resulting in low average velocity, with conflicting failure labels between dataset and error oracle.\",\n  \"preservation_constraints\": [\n    \"Preserve conflicting stuck and lane invasion labels between dataset and error_json\",\n    \"Preserve consistent availability of 101 final waypoints throughout the critical window\",\n    \"Preserve all-zero acceleration, brake, and steering commands in vehicle_cmd\",\n    \"Preserve 2 actors and 2 puddle regions in the map\",\n    \"Preserve low mean ego velocity in the final 60 seconds of the scenario\"\n  ],\n  \"modifiable_factors\": [\"actor_position\", \"puddle_position\", \"weather_parameters\", \"start_position_offset\", \"goal_position_offset\"],\n  \"non_modifiable_conditions\": [\"Town01 map\", \"all-zero vehicle_cmd values in critical window\", \"101 final waypoints consistently available\", \"conflicting failure labels between dataset and error_json\"],\n  \"uncertainty\": [\n    \"Labels for stuck and lane invasion conflict between dataset and error_json\",\n    \"No evidence of lane boundary crossing is provided to confirm the lane invasion label\",\n    \"No direct evidence localizes the all-zero vehicle_cmd issue to a specific Autoware module\"\n  ],\n  \"evidence_support\": [\n    {\"evidence_id\": \"oracle_consistency\", \"claim\": \"Dataset labels stuck=1, lane_invasion=1; error_json reports no stuck or lane invasion, creating conflict\"},\n    {\"evidence_id\": \"actuation_trace_summary\", \"claim\": \"All sampled vehicle_cmd commands are zero across the critical window\"},\n    {\"evidence_id\": \"planning_trace_summary\", \"claim\": \"Final waypoints are consistently available with a fixed count of 101 across the critical window\"},\n    {\"evidence_id\": \"critical_window_summary\", \"claim\": \"The final 60 seconds of the scenario have a low mean ego velocity of 0.13 m/s\"}\n  ],\n  \"confidence\": \"low\",\n  \"ready_for_phase2_generation\": \"yes\",\n  \"notes_for_validator\": [\n    \"Resolve the label conflict manually before confirming a generated case matches this root cause\",\n    \"Verify vehicle_cmd values and final waypoint count in the critical window of generated cases to validate root cause match\"\n  ]\n}",
+  "parsed_response": {
+    "case_id": "case_151",
+    "fault_layer": "unknown",
+    "fault_component": "unknown",
+    "causal_explanation": "Dataset labels this case as stuck and lane invasion, but error_json reports no such events, only goal reached after ~58 seconds. Critical window evidence shows all vehicle actuation commands are zero across the sampled period, final waypoints remain available, and no direct evidence of lane boundary crossing exists. No module-level failure is confirmed.",
+    "root_cause_pattern": "Conservative pattern: Ego vehicle receives all-zero actuation commands for an extended period while final waypoints remain available, resulting in low average velocity, with conflicting failure labels between dataset and error oracle.",
+    "preservation_constraints": [
+      "Preserve conflicting stuck and lane invasion labels between dataset and error_json",
+      "Preserve consistent availability of 101 final waypoints throughout the critical window",
+      "Preserve all-zero acceleration, brake, and steering commands in vehicle_cmd",
+      "Preserve 2 actors and 2 puddle regions in the map",
+      "Preserve low mean ego velocity in the final 60 seconds of the scenario"
+    ],
+    "modifiable_factors": [
+      "actor_position",
+      "puddle_position",
+      "weather_parameters",
+      "start_position_offset",
+      "goal_position_offset"
+    ],
+    "non_modifiable_conditions": [
+      "Town01 map",
+      "all-zero vehicle_cmd values in critical window",
+      "101 final waypoints consistently available",
+      "conflicting failure labels between dataset and error_json"
+    ],
+    "uncertainty": [
+      "Labels for stuck and lane invasion conflict between dataset and error_json",
+      "No evidence of lane boundary crossing is provided to confirm the lane invasion label",
+      "No direct evidence localizes the all-zero vehicle_cmd issue to a specific Autoware module"
+    ],
+    "evidence_support": [
+      {
+        "evidence_id": "oracle_consistency",
+        "claim": "Dataset labels stuck=1, lane_invasion=1; error_json reports no stuck or lane invasion, creating conflict"
+      },
+      {
+        "evidence_id": "actuation_trace_summary",
+        "claim": "All sampled vehicle_cmd commands are zero across the critical window"
+      },
+      {
+        "evidence_id": "planning_trace_summary",
+        "claim": "Final waypoints are consistently available with a fixed count of 101 across the critical window"
+      },
+      {
+        "evidence_id": "critical_window_summary",
+        "claim": "The final 60 seconds of the scenario have a low mean ego velocity of 0.13 m/s"
+      }
+    ],
+    "confidence": "low",
+    "ready_for_phase2_generation": "yes",
+    "notes_for_validator": [
+      "Resolve the label conflict manually before confirming a generated case matches this root cause",
+      "Verify vehicle_cmd values and final waypoint count in the critical window of generated cases to validate root cause match"
+    ]
+  },
+  "raw_api_payload": {
+    "id": "021782919948984da6f4ee8e5443fabd9dcec9964b86351660287",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "{\n  \"case_id\": \"case_151\",\n  \"fault_layer\": \"unknown\",\n  \"fault_component\": \"unknown\",\n  \"causal_explanation\": \"Dataset labels this case as stuck and lane invasion, but error_json reports no such events, only goal reached after ~58 seconds. Critical window evidence shows all vehicle actuation commands are zero across the sampled period, final waypoints remain available, and no direct evidence of lane boundary crossing exists. No module-level failure is confirmed.\",\n  \"root_cause_pattern\": \"Conservative pattern: Ego vehicle receives all-zero actuation commands for an extended period while final waypoints remain available, resulting in low average velocity, with conflicting failure labels between dataset and error oracle.\",\n  \"preservation_constraints\": [\n    \"Preserve conflicting stuck and lane invasion labels between dataset and error_json\",\n    \"Preserve consistent availability of 101 final waypoints throughout the critical window\",\n    \"Preserve all-zero acceleration, brake, and steering commands in vehicle_cmd\",\n    \"Preserve 2 actors and 2 puddle regions in the map\",\n    \"Preserve low mean ego velocity in the final 60 seconds of the scenario\"\n  ],\n  \"modifiable_factors\": [\"actor_position\", \"puddle_position\", \"weather_parameters\", \"start_position_offset\", \"goal_position_offset\"],\n  \"non_modifiable_conditions\": [\"Town01 map\", \"all-zero vehicle_cmd values in critical window\", \"101 final waypoints consistently available\", \"conflicting failure labels between dataset and error_json\"],\n  \"uncertainty\": [\n    \"Labels for stuck and lane invasion conflict between dataset and error_json\",\n    \"No evidence of lane boundary crossing is provided to confirm the lane invasion label\",\n    \"No direct evidence localizes the all-zero vehicle_cmd issue to a specific Autoware module\"\n  ],\n  \"evidence_support\": [\n    {\"evidence_id\": \"oracle_consistency\", \"claim\": \"Dataset labels stuck=1, lane_invasion=1; error_json reports no stuck or lane invasion, creating conflict\"},\n    {\"evidence_id\": \"actuation_trace_summary\", \"claim\": \"All sampled vehicle_cmd commands are zero across the critical window\"},\n    {\"evidence_id\": \"planning_trace_summary\", \"claim\": \"Final waypoints are consistently available with a fixed count of 101 across the critical window\"},\n    {\"evidence_id\": \"critical_window_summary\", \"claim\": \"The final 60 seconds of the scenario have a low mean ego velocity of 0.13 m/s\"}\n  ],\n  \"confidence\": \"low\",\n  \"ready_for_phase2_generation\": \"yes\",\n  \"notes_for_validator\": [\n    \"Resolve the label conflict manually before confirming a generated case matches this root cause\",\n    \"Verify vehicle_cmd values and final waypoint count in the critical window of generated cases to validate root cause match\"\n  ]\n}",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null,
+          "reasoning_content": "\nGot it, let's work through this step by step. First, the case_id is case_151, right? Got that from input.\n\nNext, fault_layer. Let's see the evidence: vehicle_cmd has all zero commands in the critical window, but wait, vehicle_status also has all zero velocity, throttle, brake, steer? Wait let's check: actuation section says vehicle_cmd all 0, vehicle_status velocity min max 0. Also, there's conflict between dataset labels (stuck 1, lane invasion 1) and error_json which has 0 for both. So module attribution is not clear? Wait wait let's check: planning has final waypoints present, 101 waypoints always, so waypoints are there. But vehicle_cmd is all zero. Wait but the rule says if vehicle_cmd all zero but vehicle status has movement? No here vehicle status has all zero velocity. Wait but there's label conflict. Let's see fault_layer: wait the conflict is between dataset and error json. Let's see: the critical window last 60s: movement distance 56, displacement 7.57? Wait no, wait the stuck_window total duration 154, last 60s: start to end displacement 7.57, mean velocity 0.13, last 0.44. Wait wait trace_summary actuation says vehicle_cmd all 0, vehicle_status velocity all 0? Wait let me check that again: Oh right, trace_summary_compact actuation: vehicle_cmd: steer, accel, brake, target speed all min 0 max 0. Vehicle_status: velocity min 0 max 0. Wait the stuck_window last 60 says velocity mean 0.13, last 0.44. Wait maybe that's why conflict? Oh right, dataset says stuck 1, error json says 0.\n\nWait let's go step by step. Causal explanation: Dataset labels this as stuck + lane invasion, but error json reports no such events, only goal reached after ~58s. Critical window evidence shows vehicle_cmd has all zero acceleration, brake, and steering commands for the entire sampled period, while vehicle status shows near-zero velocity overall, no direct evidence of lane boundary crossing. No module-level failure is proven.\n\nFault_layer: since we can't attribute, let's set to unknown? Wait wait, vehicle_cmd is all zero, that's from planning? Or actuation? Wait planning outputs final waypoints, which are present, 101 always, no blocked. So why is vehicle_cmd zero? The evidence doesn't say if planning didn't send command, or actuation didn't process. So fault_layer should be unknown, right? Because no direct evidence. Fault component is unknown.\n\nRoot cause pattern: Conservative pattern: ego vehicle receives all-zero actuation commands for an extended period while final waypoints remain available, resulting in near-stationary movement, with conflicting labels between dataset and error oracle.\n\nPreservation constraints: Let's make 3-6: 1. Preserve conflicting labels between dataset and error json for stuck and lane invasion. 2. Preserve presence of 101 final waypoints throughout the critical window. 3. Preserve all-zero vehicle_cmd commands in the sampled critical period. 4. Preserve 2 actors and 2 puddles in Town01 map. 5. Preserve near-zero mean velocity in the last 60 seconds of the scenario. That's good.\n\nModifiable factors: What can be changed? actor_position, weather, fog, wind, cloud, right? Let's list: [\"actor_position\", \"weather_intensity\", \"puddle_position\", \"start_yaw_offset\"] Wait input has 2 actors, 2 puddles, so modifiable: [\"actor_position\", \"puddle_position\", \"weather_parameters\", \"start_position_offset\"] yeah.\n\nNon-modifiable conditions: [\"same map (Town01)\", \"all-zero vehicle_cmd in critical window\", \"101 available final waypoints throughout critical period\", \"conflicting stuck/lane_invasion labels between dataset and error_json\"]\n\nUncertainty: Let's list the conflicts: [\"Dataset labels stuck=1 and lane_invasion=1, error_json reports no stuck, no lane_invasion, so labels conflict.\", \"No direct evidence localizing the all-zero vehicle_cmd to planning, perception, or actuation modules.\", \"No evidence of lane boundary crossing is provided to confirm the lane invasion label.\"] That's right.\n\nEvidence support: Let's list each: {\"evidence_id\": \"oracle_consistency\", \"claim\": \"Labels for stuck and lane invasion conflict between dataset and error_json.\"}, {\"evidence_id\": \"actuation_trace_summary\", \"claim\": \"All sampled vehicle_cmd commands are zero across the critical window.\"}, {\"evidence_id\": \"planning_trace_summary\", \"claim\": \"Final waypoints are consistently available with count 101 across the critical window.\"}, {\"evidence_id\": \"critical_window_stuck\", \"claim\": \"Last 60 seconds of the scenario have low mean ego velocity.\"} That's good.\n\nConfidence: low, right? Because of conflict and no module attribution.\n\nReady_for_phase2_generation: yes, because we have a checkable conservative pattern. Wait the rule says use yes when there's a checkable conservative pattern, even if fault layer is unknown. That's right.\n\nNotes_for_validator: [\"Manually resolve label conflict before confirming root cause match for generated cases.\", \"Check vehicle_cmd values and final waypoint count in generated critical windows to validate same root cause.\"]\n\nWait let's check all rules: Did we invent anything? No, all from evidence. Conflicting labels, marked uncertainty. Didn't infer lane crossing because no evidence. Correct. Fault layer is unknown because no direct module attribution. Correct.\n\nWait let's put it all together properly in JSON, make sure it's valid. Let's check again:\n\ncase_id is case_151, correct. fault_layer: unknown, yes. fault_component: unknown. causal_explanation: \"Dataset labels this case as stuck and lane invasion, but error_json reports no such events, only goal reached after ~58 seconds. Critical window evidence shows all vehicle actuation commands are zero across the entire sampled period, final waypoints remain available, and there is no direct evidence of lane boundary crossing. No module-level failure can be confirmed from available evidence.\" That's concise, correct.\n\nroot_cause_pattern: \"Conservative pattern: Ego vehicle receives all-zero actuation commands for an extended period while final waypoints remain available, resulting in low average velocity, with conflicting failure labels between the dataset and error oracle.\" That's good.\n\npreservation_constraints: let's make them correct: [\"Preserve conflicting stuck and lane invasion labels between dataset and error_json\", \"Preserve consistent availability of 101 final waypoints throughout the critical window\", \"Preserve all-zero acceleration, brake, and steering commands in vehicle_cmd across the critical sampled period\", \"Preserve 2 actors and 2 puddle regions in the Town01 map\", \"Preserve low mean ego velocity in the final 60 seconds of the scenario\"] Correct.\n\nmodifiable_factors: [\"actor_position\", \"puddle_position\", \"weather_parameters\", \"start position offset\", \"goal position offset\"] That's fine.\n\nnon_modifiable_conditions: [\"Town01 map\", \"all-zero vehicle_cmd values in critical window\", \"101 final waypoints consistently available\", \"conflicting failure labels between dataset and error_json\"] Correct.\n\nuncertainty: [\"Labels for stuck and lane invasion conflict between dataset and error_json\", \"No evidence of lane boundary crossing is provided to confirm the lane invasion label\", \"No direct evidence localizes the all-zero vehicle_cmd issue to a specific Autoware module\"] Correct.\n\nevidence_support: [\n{\"evidence_id\": \"oracle_consistency\", \"claim\": \"Dataset labels stuck=1, lane_invasion=1; error_json reports no stuck or lane invasion, conflict exists\"},\n{\"evidence_id\": \"actuation_trace_summary\", \"claim\": \"All sampled vehicle_cmd commands (accel, brake, steer) are zero across the critical window\"},\n{\"evidence_id\": \"planning_trace_summary\", \"claim\": \"Final waypoints are consistently available with a fixed count of 101 across the critical window\"},\n{\"evidence_id\": \"critical_window_summary\", \"claim\": \"The final 60 seconds of the scenario have a low mean ego velocity of 0.13 m/s\"}\n] Correct.\n\nconfidence: \"low\", right? Because of all the uncertainty. Correct.\n\nready_for_phase2_generation: \"yes\", because we have a checkable pattern. Correct.\n\nnotes_for_validator: [\"Resolve the label conflict manually before confirming a generated case matches this root cause\", \"Verify vehicle_cmd values and final waypoint count in the critical window of generated cases to validate root cause match\"] Correct.\n\nWait that all checks out. Let's make sure it's valid JSON, no trailing commas. Let's write it properly."
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "doubao-seed-2-0-lite-260215",
+    "object": "chat.completion",
+    "service_tier": "default",
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 2559,
+      "prompt_tokens": 3748,
+      "total_tokens": 6307,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 1921,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": null,
+        "cached_tokens": 0
+      }
+    }
+  },
+  "error_message": "",
+  "timestamp": "<REDACTED_TIMESTAMP>",
+  "elapsed_sec": 51.518
+}

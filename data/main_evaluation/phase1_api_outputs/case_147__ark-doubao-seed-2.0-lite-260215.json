@@ -1,0 +1,120 @@
+{
+  "case_id": "case_147",
+  "workflow": "phase1_causal_explanation",
+  "model_name": "ark-doubao-seed-2.0-lite-260215",
+  "model_id": "ark-doubao-seed-2.0-lite-260215",
+  "status": "completed",
+  "dry_run": false,
+  "schema_valid": true,
+  "schema_errors": [],
+  "quality_flags": [],
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_prompts/case_147__ark-doubao-seed-2.0-lite-260215.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_147__ark-doubao-seed-2.0-lite-260215.json",
+  "prompt_estimated_tokens": 3075,
+  "usage": {
+    "prompt_tokens": 4136,
+    "completion_tokens": 1858,
+    "total_tokens": 5994
+  },
+  "estimated_cost_usd": null,
+  "raw_response": "{\n  \"case_id\": \"case_147\",\n  \"fault_layer\": \"unknown\",\n  \"fault_component\": \"unknown\",\n  \"causal_explanation\": \"Both dataset and error.json confirm a collision occurred, but disagree on the presence of lane invasion. All vehicle_cmd control commands are zero in the pre-collision window, while vehicle_status shows non-zero throttle and ego maintains ~3.45 m/s forward speed with no braking. No direct evidence localizes the failure to a specific Autoware module.\",\n  \"root_cause_pattern\": \"Conservative pattern: Ego vehicle experiences a collision with a nearby actor when all issued vehicle_cmd control outputs are zero, while ego maintains non-zero forward speed and no braking command is issued before collision.\",\n  \"preservation_constraints\": [\n    \"Preserve the confirmed collision oracle symptom\",\n    \"All vehicle_cmd control commands (accel, brake, steer) are zero in the pre-collision critical window\",\n    \"Ego maintains non-zero forward speed in the pre-collision critical window\",\n    \"No non-zero brake command is issued before collision\",\n    \"At least one actor is present within 4 meters of ego before collision\"\n  ],\n  \"modifiable_factors\": [\"actor_position\", \"cloud_coverage\", \"fog_density\", \"wind_speed\", \"wetness_level\"],\n  \"non_modifiable_conditions\": [\"collision occurs before scenario exit\", \"all pre-collision vehicle_cmd control outputs are zero\", \"ego has non-zero pre-collision velocity\", \"no pre-collision braking command is issued\"],\n  \"uncertainty\": [\n    \"Dataset and error.json conflict on lane invasion label: dataset=1, error_json=0\",\n    \"All vehicle_cmd are zero but vehicle_status shows non-zero throttle and movement, so controller behavior cannot be confirmed\",\n    \"No direct critical-window evidence supports module-level failure attribution\"\n  ],\n  \"evidence_support\": [\n    {\"evidence_id\": \"oracle_consistency\", \"claim\": \"Both dataset and error.json confirm a collision occurred\"},\n    {\"evidence_id\": \"critical_window_control\", \"claim\": \"All vehicle_cmd commands are zero pre-collision, while ego has non-zero velocity and no braking\"},\n    {\"evidence_id\": \"label_conflict\", \"claim\": \"Dataset and error.json disagree on lane invasion presence\"},\n    {\"evidence_id\": \"pre_collision_objects\", \"claim\": \"An actor is 3.13 meters from ego immediately before collision\"}\n  ],\n  \"confidence\": \"low\",\n  \"ready_for_phase2_generation\": \"yes\",\n  \"notes_for_validator\": [\n    \"Resolve lane invasion label conflict manually before classifying generated cases\",\n    \"Verify pre-collision zero vehicle_cmd and non-zero ego velocity to confirm same-root-cause match\"\n  ]\n}",
+  "parsed_response": {
+    "case_id": "case_147",
+    "fault_layer": "unknown",
+    "fault_component": "unknown",
+    "causal_explanation": "Both dataset and error.json confirm a collision occurred, but disagree on the presence of lane invasion. All vehicle_cmd control commands are zero in the pre-collision window, while vehicle_status shows non-zero throttle and ego maintains ~3.45 m/s forward speed with no braking. No direct evidence localizes the failure to a specific Autoware module.",
+    "root_cause_pattern": "Conservative pattern: Ego vehicle experiences a collision with a nearby actor when all issued vehicle_cmd control outputs are zero, while ego maintains non-zero forward speed and no braking command is issued before collision.",
+    "preservation_constraints": [
+      "Preserve the confirmed collision oracle symptom",
+      "All vehicle_cmd control commands (accel, brake, steer) are zero in the pre-collision critical window",
+      "Ego maintains non-zero forward speed in the pre-collision critical window",
+      "No non-zero brake command is issued before collision",
+      "At least one actor is present within 4 meters of ego before collision"
+    ],
+    "modifiable_factors": [
+      "actor_position",
+      "cloud_coverage",
+      "fog_density",
+      "wind_speed",
+      "wetness_level"
+    ],
+    "non_modifiable_conditions": [
+      "collision occurs before scenario exit",
+      "all pre-collision vehicle_cmd control outputs are zero",
+      "ego has non-zero pre-collision velocity",
+      "no pre-collision braking command is issued"
+    ],
+    "uncertainty": [
+      "Dataset and error.json conflict on lane invasion label: dataset=1, error_json=0",
+      "All vehicle_cmd are zero but vehicle_status shows non-zero throttle and movement, so controller behavior cannot be confirmed",
+      "No direct critical-window evidence supports module-level failure attribution"
+    ],
+    "evidence_support": [
+      {
+        "evidence_id": "oracle_consistency",
+        "claim": "Both dataset and error.json confirm a collision occurred"
+      },
+      {
+        "evidence_id": "critical_window_control",
+        "claim": "All vehicle_cmd commands are zero pre-collision, while ego has non-zero velocity and no braking"
+      },
+      {
+        "evidence_id": "label_conflict",
+        "claim": "Dataset and error.json disagree on lane invasion presence"
+      },
+      {
+        "evidence_id": "pre_collision_objects",
+        "claim": "An actor is 3.13 meters from ego immediately before collision"
+      }
+    ],
+    "confidence": "low",
+    "ready_for_phase2_generation": "yes",
+    "notes_for_validator": [
+      "Resolve lane invasion label conflict manually before classifying generated cases",
+      "Verify pre-collision zero vehicle_cmd and non-zero ego velocity to confirm same-root-cause match"
+    ]
+  },
+  "raw_api_payload": {
+    "id": "021782919896723cf2d23e4a199b9c4bf1f6d914b47619dd35936",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "{\n  \"case_id\": \"case_147\",\n  \"fault_layer\": \"unknown\",\n  \"fault_component\": \"unknown\",\n  \"causal_explanation\": \"Both dataset and error.json confirm a collision occurred, but disagree on the presence of lane invasion. All vehicle_cmd control commands are zero in the pre-collision window, while vehicle_status shows non-zero throttle and ego maintains ~3.45 m/s forward speed with no braking. No direct evidence localizes the failure to a specific Autoware module.\",\n  \"root_cause_pattern\": \"Conservative pattern: Ego vehicle experiences a collision with a nearby actor when all issued vehicle_cmd control outputs are zero, while ego maintains non-zero forward speed and no braking command is issued before collision.\",\n  \"preservation_constraints\": [\n    \"Preserve the confirmed collision oracle symptom\",\n    \"All vehicle_cmd control commands (accel, brake, steer) are zero in the pre-collision critical window\",\n    \"Ego maintains non-zero forward speed in the pre-collision critical window\",\n    \"No non-zero brake command is issued before collision\",\n    \"At least one actor is present within 4 meters of ego before collision\"\n  ],\n  \"modifiable_factors\": [\"actor_position\", \"cloud_coverage\", \"fog_density\", \"wind_speed\", \"wetness_level\"],\n  \"non_modifiable_conditions\": [\"collision occurs before scenario exit\", \"all pre-collision vehicle_cmd control outputs are zero\", \"ego has non-zero pre-collision velocity\", \"no pre-collision braking command is issued\"],\n  \"uncertainty\": [\n    \"Dataset and error.json conflict on lane invasion label: dataset=1, error_json=0\",\n    \"All vehicle_cmd are zero but vehicle_status shows non-zero throttle and movement, so controller behavior cannot be confirmed\",\n    \"No direct critical-window evidence supports module-level failure attribution\"\n  ],\n  \"evidence_support\": [\n    {\"evidence_id\": \"oracle_consistency\", \"claim\": \"Both dataset and error.json confirm a collision occurred\"},\n    {\"evidence_id\": \"critical_window_control\", \"claim\": \"All vehicle_cmd commands are zero pre-collision, while ego has non-zero velocity and no braking\"},\n    {\"evidence_id\": \"label_conflict\", \"claim\": \"Dataset and error.json disagree on lane invasion presence\"},\n    {\"evidence_id\": \"pre_collision_objects\", \"claim\": \"An actor is 3.13 meters from ego immediately before collision\"}\n  ],\n  \"confidence\": \"low\",\n  \"ready_for_phase2_generation\": \"yes\",\n  \"notes_for_validator\": [\n    \"Resolve lane invasion label conflict manually before classifying generated cases\",\n    \"Verify pre-collision zero vehicle_cmd and non-zero ego velocity to confirm same-root-cause match\"\n  ]\n}",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null,
+          "reasoning_content": "\nOkay, let's work through this step by step. First, case_id is case_147, right?\n\nFirst, fault_layer. Let's see. There's a conflict between dataset and error.json. Also, the vehicle_cmd is all zero, but vehicle_status... wait, wait, looking at actuation: vehicle_cmd all commands are zero, but vehicle_status has throttle up to 0.49? Wait no, wait critical window: vehicle_status throttle last is 0.19, brake zero, but vehicle_cmd all accel, brake, steer are zero. Oh right, rule says if vehicle_cmd all zero but vehicle status shows movement, controller uncertain. Also, there's a label conflict on lane invasion. Dataset says C+L, error json says only C. So fault attribution can't be confirmed, right? Wait let's check: collision is confirmed by both, right? Both say crash is true. The conflict is only lane invasion.\n\nWait let's go through each field:\n\ncase_id: \"case_147\"\n\nfault_layer: Let's see, what do we have? Vehicle_cmd is all zero, but ego is moving at 3.45 m/s before collision, no braking commands from vehicle_cmd, but vehicle status has non-zero throttle. Wait rule says if vehicle_cmd all zero but vehicle has movement, don't assign actuation from that alone. So fault_layer would be... unknown? Because we can't confirm which layer. Wait let's check: detected objects, last count is 2, there's a closest object 3.12m away. But no blocked waypoints. So planning didn't see it blocked? But no direct evidence. So yeah, fault_layer is unknown.\n\nfault_component: unknown, right? Because we can't attribute.\n\ncausal_explanation: Both dataset and error.json confirm a collision occurred, but disagree on the presence of lane invasion. Vehicle_cmd has all zero control commands before collision, but vehicle_status shows non-zero throttle and ego movement at ~3.45 m/s with no braking. Critical window evidence does not directly confirm which Autoware module caused the collision.\n\nroot_cause_pattern: Conservative pattern: ego vehicle experiences a collision with a nearby actor when all vehicle_cmd control outputs are zero, while ego maintains positive forward speed with no braking command issued.\n\npreservation_constraints: Let's make 3-6. Let's see:\n1. Preserve confirmed collision oracle symptom\n2. All vehicle_cmd control commands (accel, brake, steer) are zero in the pre-collision critical window\n3. Ego maintains non-zero forward speed in the pre-collision critical window\n4. No non-zero brake command is issued before collision\n5. One or more actors are present within 4 meters of ego before collision\n\nThat's good.\n\nmodifiable_factors: Let's see, what can we change? actor_position, weather, fog density, wind speed, cloud cover, wetness. Wait the original has fog 70, rain 0, wetness 26. So modifiable: [\"actor_position\", \"weather_cloud\", \"weather_fog\", \"weather_wind\", \"weather_wetness\"]\n\nnon_modifiable_conditions: [\"confirmed collision event occurs pre-exit\", \"all vehicle_cmd control outputs are zero in pre-collision window\", \"ego has non-zero velocity in pre-collision window\", \"no braking command is issued before collision\"]\n\nuncertainty: Let's list the conflicts: [\"Dataset and error.json disagree on presence of lane invasion: dataset=1, error_json=0\", \"Vehicle_cmd all zero but vehicle_status shows non-zero throttle and movement, controller behavior cannot be confirmed\", \"Module-level failure attribution is not supported by direct critical-window evidence\"]\n\nevidence_support: Let's list each:\n{\"evidence_id\": \"oracle_consistency\", \"claim\": \"Both dataset and error.json confirm collision occurred\"},\n{\"evidence_id\": \"critical_window_control\", \"claim\": \"All vehicle_cmd commands are zero in pre-collision window, while ego has non-zero velocity and no braking\"},\n{\"evidence_id\": \"label_conflict\", \"claim\": \"Dataset and error.json conflict on lane invasion label\"},\n{\"evidence_id\": \"critical_window_objects\", \"claim\": \"An actor is present ~3.13m from ego before collision\"}\n\nconfidence: low? Wait, collision is confirmed, but attribution is unknown. So confidence low, right? Because root cause is not confirmed.\n\nready_for_phase2_generation: yes? Wait, we have a checkable conservative pattern, even though attribution is unknown. Rule says use yes when there's a checkable conservative pattern. So yes.\n\nnotes_for_validator: [\"Manually resolve lane invasion label conflict before confirming same-root-cause classification\", \"Check that pre-collision vehicle_cmd is all zero and ego has non-zero velocity to validate generated case root cause match\"]\n\nWait let's check all rules. Let's make sure we didn't invent anything. Let's check: if dataset and error json disagree, we marked uncertainty, correct. We didn't infer lane crossing because error json says no lane invasion, dataset says yes, so we marked conflict. We didn't assign actuation because of the mismatch between vehicle_cmd and status, correct. We used cautious language, fault layer is unknown, which is correct. Preservation constraints are semantic, not timestamps, correct.\n\nWait let's adjust some things to be concise. Let's put it all together correctly in JSON.\n\nWait let's check the vehicle_cmd thing again: yes, in critical window, vehicle_cmd stats: all accel, brake, steer, linear velocity cmd are zero mean, min max, last all zero. And vehicle_status has throttle up to 0.49, last 0.19, brake zero, ego speed last 3.45. So that's correct, we note that uncertainty.\n\nOkay, let's write the JSON now:"
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "doubao-seed-2-0-lite-260215",
+    "object": "chat.completion",
+    "service_tier": "default",
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 1858,
+      "prompt_tokens": 4136,
+      "total_tokens": 5994,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 1245,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": null,
+        "cached_tokens": 0
+      }
+    }
+  },
+  "error_message": "",
+  "timestamp": "<REDACTED_TIMESTAMP>",
+  "elapsed_sec": 50.567
+}

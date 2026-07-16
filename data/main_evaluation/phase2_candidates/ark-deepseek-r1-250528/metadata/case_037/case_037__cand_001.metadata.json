@@ -1,0 +1,100 @@
+{
+  "case_id": "case_037",
+  "model_name": "ark-deepseek-r1-250528",
+  "candidate_index": 1,
+  "candidate_spec": {
+    "candidate_id": "cand_001",
+    "high_level_variant": "Slightly shift the lead vehicle toward ego's planned path, keep all original weather and mission parameters",
+    "mutation_intent": "Preserves all root cause requirements: retains original Town01 map, mission start/goal positions, heavy rain high wetness weather, 2 actors, all-zero vehicle_cmd output, and conflicting label status between dataset and error.json; small position shift increases collision likelihood to match the dataset's collision label while retaining original uncertainty",
+    "expected_oracle": "compound",
+    "modifications": {
+      "weather_delta": {
+        "rain": 0,
+        "fog": 0,
+        "wetness": 0,
+        "puddle": 0
+      },
+      "actor_mutations": [
+        {
+          "actor_index": 0,
+          "position_offset": {
+            "x": 1.2,
+            "y": -0.8
+          },
+          "speed_delta": 0.5
+        },
+        {
+          "actor_index": 1,
+          "position_offset": {
+            "x": 0.0,
+            "y": 1.0
+          },
+          "speed_delta": 0.0
+        }
+      ],
+      "puddle_mutations": [],
+      "mission_mutation": {
+        "keep_original": true,
+        "spawn_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "destination_offset": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Confirm all-zero vehicle actuation commands are configured",
+      "Confirm weather matches original heavy rain and high wetness conditions",
+      "Confirm exactly 2 actors are spawned as required"
+    ],
+    "post_execution_validation_rules": [
+      "Verify the mismatch between all-zero vehicle_cmd and moving ego vehicle status is reproduced",
+      "Check which failure types actually occur to retain the original conflicting label status"
+    ],
+    "uncertainty": [
+      "Collision and lane invasion status remain conflicting between original sources, preserved in this variant",
+      "Red light event details (stop-line crossing) are still unconfirmed as per original evidence"
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": 0.0,
+      "fog": 0.0,
+      "wetness": 0.0,
+      "puddle": 0.0
+    },
+    "actor_mutations": [
+      {
+        "actor_index": 0,
+        "position_offset": {
+          "x": 1.2,
+          "y": -0.8
+        },
+        "speed_delta": 0.5
+      },
+      {
+        "actor_index": 1,
+        "position_offset": {
+          "x": 0.0,
+          "y": 1.0
+        },
+        "speed_delta": 0.0
+      }
+    ],
+    "puddle_mutations": [],
+    "mission_mutation": {
+      "keep_original": true
+    }
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_037__ark-deepseek-r1-250528.json",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_037__ark-deepseek-r1-250528.json",
+  "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+}

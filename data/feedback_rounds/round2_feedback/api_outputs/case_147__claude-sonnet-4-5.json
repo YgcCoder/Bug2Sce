@@ -1,0 +1,167 @@
+{
+  "case_id": "case_147",
+  "model_name": "claude-sonnet-4-5",
+  "workflow": "round2_feedback_guided_b2s",
+  "experimental_difference": "six_models_round1_feedback_added_to_original_b2s_input",
+  "status": "completed",
+  "schema_valid": true,
+  "schema_errors": [],
+  "num_round1_feedback_records": 6,
+  "num_candidates_requested": 2,
+  "num_candidates_written": 2,
+  "num_pre_valid": 2,
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/round2_feedback/prompts/case_147.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/round2_feedback/api_outputs/case_147__claude-sonnet-4-5.json",
+  "prompt_estimated_tokens": 3725,
+  "usage": {
+    "prompt_tokens": 4170,
+    "completion_tokens": 723,
+    "total_tokens": 4893
+  },
+  "candidate_records": [
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/round2_feedback/candidates/case_147__Round2_01.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/round2_feedback/metadata/case_147__Round2_01.metadata.json",
+      "pre_valid": true,
+      "pre_validation_errors": [],
+      "pre_validation_warnings": []
+    },
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/round2_feedback/candidates/case_147__Round2_02.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/round2_feedback/metadata/case_147__Round2_02.metadata.json",
+      "pre_valid": true,
+      "pre_validation_errors": [],
+      "pre_validation_warnings": []
+    }
+  ],
+  "raw_response": "```json\n{\n  \"case_id\": \"case_147\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Move walker 0 directly into ego's reverse path with minimal offset and reduced speed\",\n      \"mutation_intent\": \"Maximize collision probability by placing walker directly on ego's backward trajectory with slower speed for longer exposure window\",\n      \"expected_oracle\": \"collision\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": -0.5, \"y\": -0.3}, \"speed_delta\": -1.2}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Walker 0 spawn within 4m of ego spawn point\"],\n      \"post_execution_validation_rules\": [\"Collision oracle present, ego speed >2.5 m/s pre-impact, detected objects >0, vehicle_cmd zero pattern\"],\n      \"uncertainty\": [\"Round 1 all failed with partial_artifacts or no_oracle; actor placement may need tighter convergence\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Keep walker 0 position nearly original but add moderate fog to stress perception\",\n      \"mutation_intent\": \"Test if perception degradation under fog triggers collision with minimal actor change, preserving zero vehicle_cmd pattern\",\n      \"expected_oracle\": \"collision\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 15, \"wetness\": 10, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": -0.2, \"y\": -0.1}, \"speed_delta\": 0.0}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Fog level increased by 15, walker 0 within 5m of original position\"],\n      \"post_execution_validation_rules\": [\"Collision oracle, detected objects >0, ego velocity >3 m/s, vehicle_cmd all-zero vs vehicle_status mismatch\"],\n      \"uncertainty\": [\"Round 1 weather-only mutation failed; combined minimal actor shift may improve oracle trigger rate\"]\n    }\n  ]\n}\n```",
+  "parsed_response": {
+    "case_id": "case_147",
+    "candidate_specs": [
+      {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Move walker 0 directly into ego's reverse path with minimal offset and reduced speed",
+        "mutation_intent": "Maximize collision probability by placing walker directly on ego's backward trajectory with slower speed for longer exposure window",
+        "expected_oracle": "collision",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": -0.5,
+                "y": -0.3
+              },
+              "speed_delta": -1.2
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Walker 0 spawn within 4m of ego spawn point"
+        ],
+        "post_execution_validation_rules": [
+          "Collision oracle present, ego speed >2.5 m/s pre-impact, detected objects >0, vehicle_cmd zero pattern"
+        ],
+        "uncertainty": [
+          "Round 1 all failed with partial_artifacts or no_oracle; actor placement may need tighter convergence"
+        ]
+      },
+      {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Keep walker 0 position nearly original but add moderate fog to stress perception",
+        "mutation_intent": "Test if perception degradation under fog triggers collision with minimal actor change, preserving zero vehicle_cmd pattern",
+        "expected_oracle": "collision",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 15,
+            "wetness": 10,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": -0.2,
+                "y": -0.1
+              },
+              "speed_delta": 0.0
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Fog level increased by 15, walker 0 within 5m of original position"
+        ],
+        "post_execution_validation_rules": [
+          "Collision oracle, detected objects >0, ego velocity >3 m/s, vehicle_cmd all-zero vs vehicle_status mismatch"
+        ],
+        "uncertainty": [
+          "Round 1 weather-only mutation failed; combined minimal actor shift may improve oracle trigger rate"
+        ]
+      }
+    ]
+  },
+  "error_message": "",
+  "timestamp": "<REDACTED_TIMESTAMP>",
+  "raw_api_payload": {
+    "id": "<REDACTED_RESPONSE_ID>",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "```json\n{\n  \"case_id\": \"case_147\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Move walker 0 directly into ego's reverse path with minimal offset and reduced speed\",\n      \"mutation_intent\": \"Maximize collision probability by placing walker directly on ego's backward trajectory with slower speed for longer exposure window\",\n      \"expected_oracle\": \"collision\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": -0.5, \"y\": -0.3}, \"speed_delta\": -1.2}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Walker 0 spawn within 4m of ego spawn point\"],\n      \"post_execution_validation_rules\": [\"Collision oracle present, ego speed >2.5 m/s pre-impact, detected objects >0, vehicle_cmd zero pattern\"],\n      \"uncertainty\": [\"Round 1 all failed with partial_artifacts or no_oracle; actor placement may need tighter convergence\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Keep walker 0 position nearly original but add moderate fog to stress perception\",\n      \"mutation_intent\": \"Test if perception degradation under fog triggers collision with minimal actor change, preserving zero vehicle_cmd pattern\",\n      \"expected_oracle\": \"collision\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 15, \"wetness\": 10, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": -0.2, \"y\": -0.1}, \"speed_delta\": 0.0}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Fog level increased by 15, walker 0 within 5m of original position\"],\n      \"post_execution_validation_rules\": [\"Collision oracle, detected objects >0, ego velocity >3 m/s, vehicle_cmd all-zero vs vehicle_status mismatch\"],\n      \"uncertainty\": [\"Round 1 weather-only mutation failed; combined minimal actor shift may improve oracle trigger rate\"]\n    }\n  ]\n}\n```",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "claude-sonnet-4-5",
+    "object": "chat.completion",
+    "service_tier": null,
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 723,
+      "prompt_tokens": 4170,
+      "total_tokens": 4893,
+      "completion_tokens_details": null,
+      "prompt_tokens_details": null
+    }
+  },
+  "elapsed_sec": 14.787
+}

@@ -1,0 +1,121 @@
+{
+  "case_id": "case_169",
+  "workflow": "phase1_causal_explanation",
+  "model_name": "gemini-2.5-pro",
+  "model_id": "gemini-2.5-pro",
+  "status": "completed",
+  "dry_run": false,
+  "schema_valid": true,
+  "schema_errors": [],
+  "quality_flags": [],
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_prompts/case_169__gemini-2.5-pro.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_169__gemini-2.5-pro.json",
+  "prompt_estimated_tokens": 2517,
+  "usage": {
+    "prompt_tokens": 3375,
+    "completion_tokens": 3100,
+    "total_tokens": 6475
+  },
+  "estimated_cost_usd": null,
+  "raw_response": "```json\n{\n  \"case_id\": \"case_169\",\n  \"fault_layer\": \"perception\",\n  \"fault_component\": \"Traffic light recognition\",\n  \"causal_explanation\": \"The ego vehicle ran a red light as the planner did not command a stop, likely because the perception module failed to detect the light in heavy fog.\",\n  \"root_cause_pattern\": \"Planner proceeds through a red light when the perception module provides no traffic light status.\",\n  \"preservation_constraints\": [\n    \"Preserve the red light violation oracle symptom.\",\n    \"Maintain heavy fog conditions.\",\n    \"Ensure planner does not command a stop for the light.\"\n  ],\n  \"modifiable_factors\": [\n    \"weather\",\n    \"map\",\n    \"mission\"\n  ],\n  \"non_modifiable_conditions\": [\n    \"Ego route intersects a red traffic light.\",\n    \"Planner does not receive a stop signal.\"\n  ],\n  \"uncertainty\": [\n    \"Specific traffic light perception module is unknown.\",\n    \"Route-to-light relationship is not confirmed by evidence.\",\n    \"Vehicle moves despite zero-value vehicle_cmd topic.\"\n  ],\n  \"evidence_support\": [\n    {\n      \"evidence_id\": \"trace_summary_compact\",\n      \"claim\": \"Planner waypoints are never marked as blocked.\"\n    },\n    {\n      \"evidence_id\": \"available_topics\",\n      \"claim\": \"No traffic light recognition output topic is present.\"\n    },\n    {\n      \"evidence_id\": \"scenario_config\",\n      \"claim\": \"Scenario has heavy fog (93).\"\n    },\n    {\n      \"evidence_id\": \"critical_window_summary\",\n      \"claim\": \"Planner waypoints have no associated stop line ID.\"\n    }\n  ],\n  \"confidence\": \"high\",\n  \"ready_for_phase2_generation\": \"yes\",\n  \"notes_for_validator\": [\n    \"Absence of a traffic light perception topic is key evidence.\",\n    \"Planner's lack of a stop command is confirmed.\"\n  ]\n}\n```",
+  "parsed_response": {
+    "case_id": "case_169",
+    "fault_layer": "perception",
+    "fault_component": "Traffic light recognition",
+    "causal_explanation": "The ego vehicle ran a red light as the planner did not command a stop, likely because the perception module failed to detect the light in heavy fog.",
+    "root_cause_pattern": "Planner proceeds through a red light when the perception module provides no traffic light status.",
+    "preservation_constraints": [
+      "Preserve the red light violation oracle symptom.",
+      "Maintain heavy fog conditions.",
+      "Ensure planner does not command a stop for the light."
+    ],
+    "modifiable_factors": [
+      "weather",
+      "map",
+      "mission"
+    ],
+    "non_modifiable_conditions": [
+      "Ego route intersects a red traffic light.",
+      "Planner does not receive a stop signal."
+    ],
+    "uncertainty": [
+      "Specific traffic light perception module is unknown.",
+      "Route-to-light relationship is not confirmed by evidence.",
+      "Vehicle moves despite zero-value vehicle_cmd topic."
+    ],
+    "evidence_support": [
+      {
+        "evidence_id": "trace_summary_compact",
+        "claim": "Planner waypoints are never marked as blocked."
+      },
+      {
+        "evidence_id": "available_topics",
+        "claim": "No traffic light recognition output topic is present."
+      },
+      {
+        "evidence_id": "scenario_config",
+        "claim": "Scenario has heavy fog (93)."
+      },
+      {
+        "evidence_id": "critical_window_summary",
+        "claim": "Planner waypoints have no associated stop line ID."
+      }
+    ],
+    "confidence": "high",
+    "ready_for_phase2_generation": "yes",
+    "notes_for_validator": [
+      "Absence of a traffic light perception topic is key evidence.",
+      "Planner's lack of a stop command is confirmed."
+    ]
+  },
+  "raw_api_payload": {
+    "id": "<REDACTED_RESPONSE_ID>",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "```json\n{\n  \"case_id\": \"case_169\",\n  \"fault_layer\": \"perception\",\n  \"fault_component\": \"Traffic light recognition\",\n  \"causal_explanation\": \"The ego vehicle ran a red light as the planner did not command a stop, likely because the perception module failed to detect the light in heavy fog.\",\n  \"root_cause_pattern\": \"Planner proceeds through a red light when the perception module provides no traffic light status.\",\n  \"preservation_constraints\": [\n    \"Preserve the red light violation oracle symptom.\",\n    \"Maintain heavy fog conditions.\",\n    \"Ensure planner does not command a stop for the light.\"\n  ],\n  \"modifiable_factors\": [\n    \"weather\",\n    \"map\",\n    \"mission\"\n  ],\n  \"non_modifiable_conditions\": [\n    \"Ego route intersects a red traffic light.\",\n    \"Planner does not receive a stop signal.\"\n  ],\n  \"uncertainty\": [\n    \"Specific traffic light perception module is unknown.\",\n    \"Route-to-light relationship is not confirmed by evidence.\",\n    \"Vehicle moves despite zero-value vehicle_cmd topic.\"\n  ],\n  \"evidence_support\": [\n    {\n      \"evidence_id\": \"trace_summary_compact\",\n      \"claim\": \"Planner waypoints are never marked as blocked.\"\n    },\n    {\n      \"evidence_id\": \"available_topics\",\n      \"claim\": \"No traffic light recognition output topic is present.\"\n    },\n    {\n      \"evidence_id\": \"scenario_config\",\n      \"claim\": \"Scenario has heavy fog (93).\"\n    },\n    {\n      \"evidence_id\": \"critical_window_summary\",\n      \"claim\": \"Planner waypoints have no associated stop line ID.\"\n    }\n  ],\n  \"confidence\": \"high\",\n  \"ready_for_phase2_generation\": \"yes\",\n  \"notes_for_validator\": [\n    \"Absence of a traffic light perception topic is key evidence.\",\n    \"Planner's lack of a stop command is confirmed.\"\n  ]\n}\n```",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "gemini-2.5-pro",
+    "object": "chat.completion",
+    "service_tier": null,
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 3100,
+      "prompt_tokens": 3375,
+      "total_tokens": 6475,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": 0,
+        "reasoning_tokens": 2621,
+        "rejected_prediction_tokens": null,
+        "text_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 0,
+        "text_tokens": 3375,
+        "image_tokens": 0
+      },
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "input_tokens_details": null,
+      "claude_cache_creation_5_m_tokens": 0,
+      "claude_cache_creation_1_h_tokens": 0
+    }
+  },
+  "error_message": "",
+  "timestamp": "<REDACTED_TIMESTAMP>",
+  "elapsed_sec": 30.747
+}

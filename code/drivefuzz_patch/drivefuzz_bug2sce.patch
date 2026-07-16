@@ -1,0 +1,536 @@
+diff --git a/src/config.py b/src/config.py
+old mode 100644
+new mode 100755
+index bb50bb3..d6c4f6f
+--- a/src/config.py
++++ b/src/config.py
+@@ -49,6 +49,8 @@ class Config:
+         # Fuzzer config
+         self.max_cycles = 0
+         self.max_mutation = 0
++        self.max_mutations = 0
++        self.use_json_scenarios = False
+         self.num_dry_runs = 1
+         self.num_param_mutations = 1
+         # self.initial_quota = 10
+@@ -94,8 +96,7 @@ class Config:
+             print("[-] Error - cannot find seed directory ({})".format(self.seed_dir))
+             sys.exit(-1)
+ 
+-        queue = [seed for seed in seed_scenarios if not seed.startswith(".")
+-                and seed.endswith(".json")]
++        queue = sorted(seed for seed in seed_scenarios if not seed.startswith(".")
++                and seed.endswith(".json"))
+ 
+         return queue
+-
+diff --git a/src/executor.py b/src/executor.py
+old mode 100644
+new mode 100755
+index ca5655e..e42c2e8
+--- a/src/executor.py
++++ b/src/executor.py
+@@ -5,6 +5,8 @@ import glob
+ import os
+ import sys
+ import argparse
++import shlex
++import shutil
+ from subprocess import Popen, PIPE
+ import signal
+ import numpy as np
+@@ -45,6 +47,47 @@ tm = None
+ list_spawn_points = None
+ 
+ 
++def ros_command(name):
++    cmd = shutil.which(name)
++    if cmd:
++        return cmd
++
++    fallback = os.path.join("/opt/ros/melodic/bin", name)
++    if os.path.exists(fallback):
++        return fallback
++
++    return name
++
++
++def ros_setup():
++    setup = os.getenv("DRIVEFUZZ_ROS_SETUP", "/opt/ros/melodic/setup.bash")
++    if os.path.exists(setup):
++        return setup
++    return None
++
++
++def ros_command_args(args):
++    setup = ros_setup()
++    if setup:
++        cmd = " ".join(shlex.quote(str(arg)) for arg in args)
++        return [
++            "bash",
++            "-lc",
++            "source {} && exec {}".format(shlex.quote(setup), cmd)
++        ]
++
++    return [ros_command(args[0])] + list(args[1:])
++
++
++def ros_popen(args, **kwargs):
++    return Popen(ros_command_args(args), **kwargs)
++
++
++def ros_system(args, **kwargs):
++    proc = ros_popen(args, **kwargs)
++    return proc.wait()
++
++
+ def _on_collision(event, state):
+     # print("COLLISION:", event)
+ 
+@@ -652,7 +695,7 @@ def simulate(conf, state, town, sp, wp, weather_dict, frictions_list, actors_lis
+             i = 0
+             while True:
+                 print("[*] Waiting for Autoware nodes " + "." * i + "\r", end="")
+-                proc1 = Popen(["rostopic", "list"], stdout=PIPE)
++                proc1 = ros_popen(["rostopic", "list"], stdout=PIPE)
+                 proc2 = Popen(["wc", "-l"], stdin=proc1.stdout, stdout=PIPE)
+                 proc1.stdout.close()
+                 output = proc2.communicate()[0]
+@@ -675,8 +718,8 @@ def simulate(conf, state, town, sp, wp, weather_dict, frictions_list, actors_lis
+             # exec a detached process that monitors the output of Autoware's
+             # decision-maker state, with which we can get an idea of when Autoware
+             # thinks it has reached the goal
+-            proc_state = Popen(["rostopic echo /decision_maker/state"],
+-                    shell=True, stdout=PIPE, stderr=PIPE)
++            proc_state = ros_popen(["rostopic", "echo", "/decision_maker/state"],
++                    stdout=PIPE, stderr=PIPE)
+ 
+             # set_camera(conf, player, spectator)
+ 
+@@ -693,9 +736,13 @@ def simulate(conf, state, town, sp, wp, weather_dict, frictions_list, actors_lis
+             msg_type = "geometry_msgs/PoseStamped"
+             goal_hdr = "header: {stamp: now, frame_id: \'map\'}"
+             goal_pose = "pose: {position: {x: %.6f, y: %.6f, z: 0}, orientation: {x: %.6f, y: %.6f, z: %.6f, w: %.6f}}" %(goal_loc.x, (-1) * float(goal_loc.y), goal_ox, goal_oy, goal_oz, goal_ow)
+-            goal_msg = "'{" + goal_hdr + ", " + goal_pose + "}'"
+-            pub_cmd = "rostopic pub --once {} {} {} > /dev/null".format(pub_topic, msg_type, goal_msg)
+-            os.system(pub_cmd)
++            goal_msg = "{" + goal_hdr + ", " + goal_pose + "}"
++            pub_cmd = "rostopic pub --once {} {} '{}' > /dev/null".format(pub_topic, msg_type, goal_msg)
++            with open(os.devnull, "w") as devnull:
++                ros_system(
++                    ["rostopic", "pub", "--once", pub_topic, msg_type, goal_msg],
++                    stdout=devnull
++                )
+             if conf.debug:
+                 print(goal_msg)
+             print("[carla] Goal published")
+@@ -1209,9 +1256,9 @@ def simulate(conf, state, town, sp, wp, weather_dict, frictions_list, actors_lis
+             os.system(cmd)
+ 
+         elif conf.agent_type == c.AUTOWARE:
+-            os.system("rosnode kill /recorder_video_front")
+-            os.system("rosnode kill /recorder_video_rear")
+-            os.system("rosnode kill /recorder_bag")
++            ros_system(["rosnode", "kill", "/recorder_video_front"])
++            ros_system(["rosnode", "kill", "/recorder_video_rear"])
++            ros_system(["rosnode", "kill", "/recorder_bag"])
+             while os.path.exists("/tmp/fuzzerdata/bagfile.lz4.bag.active"):
+                 print("waiting for rosbag to dump data")
+                 time.sleep(1)
+@@ -1651,4 +1698,3 @@ if __name__ == '__main__':
+     ret = simulate(client, town, tm, sp, wp,
+             weather_dict, frictions_list, actors_list)
+     print("simulation returned:", ret)
+-
+diff --git a/src/fuzz_utils.py b/src/fuzz_utils.py
+old mode 100644
+new mode 100755
+index b629006..d520982
+--- a/src/fuzz_utils.py
++++ b/src/fuzz_utils.py
+@@ -21,6 +21,23 @@ except ModuleNotFoundError as e:
+ import executor
+ import constants as c
+ 
++WEATHER_KEYS = ("cloud", "rain", "puddle", "wind", "fog", "wetness",
++                "angle", "altitude")
++
++ACTOR_TYPE_BY_NAME = {
++    "vehicle": c.VEHICLE,
++    "car": c.VEHICLE,
++    "walker": c.WALKER,
++    "pedestrian": c.WALKER,
++}
++
++NAVTYPE_BY_NAME = {
++    "linear": c.LINEAR,
++    "autopilot": c.AUTOPILOT,
++    "immobile": c.IMMOBILE,
++    "maneuver": c.MANEUVER,
++}
++
+ 
+ # def dry_run(conf, client, tm, town, sp, wp, weather):
+     # """
+@@ -72,8 +89,16 @@ def get_carla_transform(loc_rot_tuples):
+ 
+ 
+ def get_valid_xy_range(town):
++    town_info_dir = "town_info"
++    town_files = [
++        os.path.join(town_info_dir, town + ".json"),
++        os.path.join(town_info_dir, town.lower() + ".json"),
++        os.path.join(town_info_dir, town.upper() + ".json"),
++    ]
++
+     try:
+-        with open(os.path.join("town_info", town + ".json")) as fp:
++        town_file = next(path for path in town_files if os.path.exists(path))
++        with open(town_file) as fp:
+             town_data = json.load(fp)
+     except:
+         return (-999, 999, -999, 999)
+@@ -197,7 +222,8 @@ class TestScenario:
+         seedfile = os.path.join(conf.seed_dir, conf.cur_scenario)
+         with open(seedfile, "r") as fp:
+             seed = json.load(fp)
+-            self.seed_data = seed
++            self.raw_seed_data = seed
++            self.seed_data = self.normalize_seed_data(seed)
+ 
+         # self.sp = carla.Transform(
+             # carla.Location(seed["sp_x"], seed["sp_y"], seed["sp_z"]+2),
+@@ -209,9 +235,15 @@ class TestScenario:
+             # carla.Rotation(0.0, seed["wp_yaw"], 0.0)
+         # )
+ 
+-        self.town = seed["map"]
++        self.sp = self.get_seed_sp_transform(self.seed_data)
++        self.wp = self.get_seed_wp_transform(self.seed_data)
++
++        self.town = self.seed_data["map"]
+         executor.switch_map(conf, self.town)
+ 
++        if getattr(conf, "use_json_scenarios", False):
++            self.load_json_mutators(seed)
++
+         # self.oracle_state = dry_run(self.conf, self.client, self.tm,
+                 # self.town, self.sp, self.wp, self.weather)
+         # print("oracle:", self.oracle_state)
+@@ -222,6 +254,210 @@ class TestScenario:
+ 
+         print("[+] test case initialized")
+ 
++    def normalize_seed_data(self, seed):
++        """
++        Support both the legacy flat seed files and full JSON scenarios.
++
++        Full scenario files may use either:
++        - {"mission": {"map": ..., "spawn": {...}, "destination": {...}}}
++        - {"seed": {"map": ..., "sp_x": ..., "wp_x": ...}}
++        """
++        if "mission" in seed:
++            mission = seed["mission"]
++        elif "seed" in seed:
++            mission = seed["seed"]
++        else:
++            mission = seed
++
++        if "spawn" in mission or "start" in mission:
++            spawn = mission.get("spawn", mission.get("start"))
++            dest = mission.get("destination", mission.get("dest",
++                    mission.get("goal")))
++
++            if spawn is None or dest is None:
++                raise ValueError("JSON mission requires spawn and destination")
++
++            return {
++                "map": mission.get("map", mission.get("town", "Town01")),
++                "sp_x": spawn["x"],
++                "sp_y": spawn["y"],
++                "sp_z": spawn.get("z", 0.0),
++                "pitch": spawn.get("pitch", 0.0),
++                "yaw": spawn.get("yaw", 0.0),
++                "roll": spawn.get("roll", 0.0),
++                "wp_x": dest["x"],
++                "wp_y": dest["y"],
++                "wp_z": dest.get("z", 0.0),
++                "wp_yaw": dest.get("yaw", 0.0),
++            }
++
++        normalized = dict(mission)
++        normalized.setdefault("map", "Town01")
++        normalized.setdefault("pitch", 0.0)
++        normalized.setdefault("yaw", 0.0)
++        normalized.setdefault("roll", 0.0)
++        normalized.setdefault("wp_yaw", 0.0)
++        return normalized
++
++    def load_json_mutators(self, seed):
++        payload = seed.get("mutators", seed)
++
++        weather = payload.get("weather", {})
++        for key in WEATHER_KEYS:
++            if key in weather:
++                self.weather[key] = weather[key]
++
++        self.actors = [
++            self.normalize_actor(actor)
++            for actor in payload.get("actors", [])
++        ]
++        self.puddles = [
++            self.normalize_puddle(puddle)
++            for puddle in payload.get("puddles", [])
++        ]
++
++    def normalize_actor_type(self, value):
++        if isinstance(value, str):
++            return ACTOR_TYPE_BY_NAME[value.lower()]
++        return int(value)
++
++    def normalize_nav_type(self, value):
++        if isinstance(value, str):
++            return NAVTYPE_BY_NAME[value.lower()]
++        return int(value)
++
++    def normalize_location_rotation(self, item, default_z=1.5):
++        if item is None:
++            return None
++
++        if isinstance(item, dict):
++            loc = (
++                item["x"],
++                item["y"],
++                item.get("z", default_z)
++            )
++            rot = (
++                item.get("roll", 0.0),
++                item.get("pitch", 0.0),
++                item.get("yaw", 0.0)
++            )
++            return (loc, rot)
++
++        if isinstance(item, (list, tuple)):
++            if len(item) == 2:
++                return (tuple(item[0]), tuple(item[1]))
++            if len(item) == 3:
++                return (tuple(item), (0.0, 0.0, 0.0))
++
++        raise ValueError("Expected location/rotation as dict or tuple/list")
++
++    def normalize_actor_point(self, actor, prefix, aliases, default_z=1.5):
++        for alias in aliases:
++            if alias in actor:
++                return self.normalize_location_rotation(
++                    actor[alias],
++                    default_z=default_z
++                )
++
++        x_key = prefix + "_x"
++        y_key = prefix + "_y"
++        z_key = prefix + "_z"
++        if x_key in actor and y_key in actor:
++            loc = (
++                actor[x_key],
++                actor[y_key],
++                actor.get(z_key, default_z)
++            )
++            rot = (
++                actor.get(prefix + "_roll", 0.0),
++                actor.get(prefix + "_pitch", 0.0),
++                actor.get(prefix + "_yaw", 0.0)
++            )
++            return (loc, rot)
++
++        idx_key = prefix + "_idx"
++        if idx_key in actor:
++            point = executor.list_spawn_points[int(actor[idx_key])]
++            return (
++                (point.location.x, point.location.y, point.location.z),
++                (point.rotation.roll, point.rotation.pitch, point.rotation.yaw)
++            )
++
++        return None
++
++    def normalize_actor(self, actor):
++        actor_type = self.normalize_actor_type(actor["type"])
++        nav_type = self.normalize_nav_type(actor["nav_type"])
++        spawn_point = self.normalize_actor_point(
++            actor,
++            "sp",
++            ("spawn", "start", "spawn_point"),
++            default_z=1.5
++        )
++        dest_point = self.normalize_actor_point(
++            actor,
++            "dp",
++            ("destination", "dest", "goal", "dest_point"),
++            default_z=1.5
++        )
++
++        if spawn_point is None:
++            raise ValueError("Actor requires a spawn point")
++
++        maneuvers = actor.get("maneuvers")
++        if maneuvers is not None:
++            maneuvers = [list(maneuver) for maneuver in maneuvers]
++
++        return {
++            "type": actor_type,
++            "nav_type": nav_type,
++            "spawn_point": spawn_point,
++            "dest_point": dest_point,
++            "speed": actor.get("speed"),
++            "maneuvers": maneuvers
++        }
++
++    def normalize_puddle_location(self, puddle):
++        for key in ("location", "spawn", "spawn_point"):
++            if key in puddle:
++                return self.normalize_location_rotation(
++                    puddle[key],
++                    default_z=0.0
++                )[0]
++
++        return (
++            puddle["sp_x"],
++            puddle["sp_y"],
++            puddle.get("sp_z", 0.0)
++        )
++
++    def normalize_puddle_size(self, puddle):
++        if "size" in puddle:
++            size = puddle["size"]
++            if isinstance(size, dict):
++                return (
++                    size["x"],
++                    size["y"],
++                    size.get("z", 1000.0)
++                )
++            return tuple(size)
++
++        return (
++            puddle["size_x"],
++            puddle["size_y"],
++            puddle.get("size_z", 1000.0)
++        )
++
++    def normalize_puddle(self, puddle):
++        loc = self.normalize_puddle_location(puddle)
++        size = self.normalize_puddle_size(puddle)
++
++        return {
++            "level": puddle["level"],
++            "size": size,
++            "spawn_point": (loc, (0.0, 0.0, 0.0))
++        }
++
+     def get_seed_sp_transform(self, seed):
+         sp = carla.Transform(
+             carla.Location(seed["sp_x"], seed["sp_y"], seed["sp_z"]+2),
+@@ -398,6 +634,11 @@ class TestScenario:
+                 actor_dict["dp_x"] = actor["dest_point"][0][0]
+                 actor_dict["dp_y"] = actor["dest_point"][0][1]
+                 actor_dict["dp_z"] = actor["dest_point"][0][2]
++                actor_dict["dp_roll"] = actor["dest_point"][1][0]
++                actor_dict["dp_pitch"] = actor["dest_point"][1][1]
++                actor_dict["dp_yaw"] = actor["dest_point"][1][2]
++            if actor["maneuvers"] is not None:
++                actor_dict["maneuvers"] = actor["maneuvers"]
+             actor_list.append(actor_dict)
+         state_dict["actors"] = actor_list
+ 
+diff --git a/src/fuzzer.py b/src/fuzzer.py
+index c432eb5..5df604d 100755
+--- a/src/fuzzer.py
++++ b/src/fuzzer.py
+@@ -88,6 +88,7 @@ def init(conf, args):
+ 
+     conf.max_cycles = args.max_cycles
+     conf.max_mutations = args.max_mutations
++    conf.use_json_scenarios = args.json_scenarios
+ 
+     conf.timeout = args.timeout
+ 
+@@ -155,6 +156,61 @@ def mutate_weather_fixed(test_scenario):
+     test_scenario.weather["altitude"] = 60
+ 
+ 
++def run_test_scenario(conf, test_scenario, campaign_cnt, cycle_cnt, mutation_cnt):
++    ret = None
++
++    state = states.State()
++    state.campaign_cnt = campaign_cnt
++    state.cycle_cnt = cycle_cnt
++    state.mutation = mutation_cnt
++
++    signal.alarm(10 * 60) # timeout after 10 mins
++    try:
++        ret = test_scenario.run_test(state)
++
++    except Exception as e:
++        if e.args and e.args[0] == "HANG":
++            print("[-] simulation hanging. abort.")
++            ret = -1
++        else:
++            print("[-] run_test error:")
++            traceback.print_exc()
++
++    signal.alarm(0)
++
++    if ret == 128:
++        print("Exit by user request")
++        exit(0)
++
++    if getattr(test_scenario, "log_filename", None):
++        src = os.path.join(conf.queue_dir, test_scenario.log_filename)
++        dst = os.path.join(conf.cov_dir, test_scenario.log_filename)
++        if os.path.exists(src) and not os.path.exists(dst):
++            shutil.copyfile(src, dst)
++
++    return ret
++
++
++def run_json_scenarios(conf, queue):
++    if not queue:
++        print("[-] No JSON scenarios found in {}".format(conf.seed_dir))
++        return
++
++    for campaign_cnt, scenario in enumerate(queue, start=1):
++        conf.cur_scenario = scenario
++
++        print("\n\033[1m\033[92m" + "=" * 10 +
++              " JSON SCENARIO {}/{}: {} ".format(
++                  campaign_cnt, len(queue), scenario) +
++              "=" * 10 + "\033[0m\n")
++
++        test_scenario = fuzz_utils.TestScenario(conf, base=scenario)
++        ret = run_test_scenario(conf, test_scenario, campaign_cnt, 1, 1)
++        print("[*] JSON scenario {} returned {}".format(scenario, ret))
++
++    print("[+] Completed {} JSON scenarios".format(len(queue)))
++
++
+ def set_args():
+     argparser = argparse.ArgumentParser()
+     argparser.add_argument("-o", "--out-dir", default="output", type=str,
+@@ -181,6 +237,8 @@ def set_args():
+             help="Functionality to test (general / collision / traction)")
+     argparser.add_argument("--strategy", default="all", type=str,
+             help="Input mutation strategy (all / congestion / entropy / instability / trajectory)")
++    argparser.add_argument("--json-scenarios", action="store_true",
++            help="Read mission/weather/actors/puddles directly from JSON seed files and run each once")
+     argparser.add_argument("--town", default=None, type=int,
+             help="Test on a specific town (e.g., '--town 3' forces Town03)")
+     argparser.add_argument("--timeout", default="20", type=int,
+@@ -211,6 +269,10 @@ def main():
+ 
+     signal.signal(signal.SIGALRM, handler)
+ 
++    if conf.use_json_scenarios:
++        run_json_scenarios(conf, queue)
++        return
++
+     while True:
+         cycle_cnt = 0
+ 

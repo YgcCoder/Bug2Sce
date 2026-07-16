@@ -1,0 +1,365 @@
+{
+  "case_id": "case_118",
+  "model_name": "ark-deepseek-r1-250528",
+  "workflow": "phase2_grounded_generation",
+  "status": "completed",
+  "schema_valid": true,
+  "schema_errors": [],
+  "phase1_ready": "yes",
+  "num_candidates_requested": 2,
+  "num_candidates_written": 2,
+  "num_pre_valid": 2,
+  "candidate_records": [
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-deepseek-r1-250528/json/case_118/case_118__cand_001.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-deepseek-r1-250528/metadata/case_118/case_118__cand_001.metadata.json",
+      "case_id": "case_118",
+      "model_name": "ark-deepseek-r1-250528",
+      "candidate_index": 1,
+      "candidate_spec": {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Slightly increase road wetness and existing puddle level near the intersection to test if low road friction exacerbates the command-movement mismatch while preserving core scenario conditions",
+        "mutation_intent": "Preserves all Phase 1 root-cause constraints: zero dynamic actors, expected all-zero Autoware vehicle commands, non-zero pre-collision ego velocity with zero braking, confirmed collision and red-light violation outcomes, and original Town01 map. Only adjusts road surface conditions without altering the core mismatch pattern",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": 5,
+            "fog": 0,
+            "wetness": 5,
+            "puddle": 3
+          },
+          "actor_mutations": [],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": 0.1,
+              "size_scale": 1.0
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Confirm no dynamic actors added to the scenario",
+          "Confirm all mutation parameters stay within allowed bounds",
+          "Confirm route remains on original Town01 road"
+        ],
+        "post_execution_validation_rules": [
+          "Confirm Autoware outputs all-zero vehicle control commands before collision",
+          "Confirm vehicle_status reports non-zero ego velocity and zero braking before collision",
+          "Confirm collision and red-light violation outcomes are achieved"
+        ],
+        "uncertainty": [
+          "Lane invasion label conflict remains unresolved per original evidence",
+          "Root cause module attribution is still unknown per original constraints"
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 5.0,
+          "fog": 0.0,
+          "wetness": 5.0,
+          "puddle": 3.0
+        },
+        "actor_mutations": [],
+        "puddle_mutations": [
+          {
+            "puddle_index": 0,
+            "location_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "level_delta": 0.1,
+            "size_scale": 1.0
+          }
+        ],
+        "mission_mutation": {
+          "keep_original": true
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": [
+          "no actors in candidate scenario"
+        ]
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_118__ark-deepseek-r1-250528.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_118__ark-deepseek-r1-250528.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    },
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-deepseek-r1-250528/json/case_118/case_118__cand_002.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-deepseek-r1-250528/metadata/case_118/case_118__cand_002.metadata.json",
+      "case_id": "case_118",
+      "model_name": "ark-deepseek-r1-250528",
+      "candidate_index": 2,
+      "candidate_spec": {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Slightly shift ego spawn and destination along the original route, reduce fog density, and adjust an existing off-intersection puddle to test if the command-movement mismatch persists across minor condition changes",
+        "mutation_intent": "Preserves all Phase 1 core root-cause constraints, including zero dynamic actors, all-zero pre-collision vehicle commands, non-zero ego speed with zero braking, collision and red-light violation outcomes, and Town01 map. Minor positional and visibility changes do not alter the core mismatch pattern",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": -10,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [],
+          "puddle_mutations": [
+            {
+              "puddle_index": 1,
+              "location_offset": {
+                "x": 1.5,
+                "y": -1.0
+              },
+              "level_delta": -0.1,
+              "size_scale": 0.9
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": false,
+            "spawn_offset": {
+              "x": 2.0,
+              "y": 1.0
+            },
+            "destination_offset": {
+              "x": 2.0,
+              "y": 1.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Confirm no dynamic actors added to the scenario",
+          "Confirm spawn and destination offsets stay within allowed bounds",
+          "Confirm route remains on original Town01 road alignment"
+        ],
+        "post_execution_validation_rules": [
+          "Confirm all-zero vehicle control command output before collision is preserved",
+          "Confirm non-zero ego velocity and zero braking are reported in vehicle_status before collision",
+          "Confirm collision and red-light violation outcomes are achieved"
+        ],
+        "uncertainty": [
+          "Root cause module localization remains unconfirmed per original evidence",
+          "Lane invasion label conflict remains unresolved as in the original scenario",
+          "No additional module failure evidence is introduced"
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 0.0,
+          "fog": -10.0,
+          "wetness": 0.0,
+          "puddle": 0.0
+        },
+        "actor_mutations": [],
+        "puddle_mutations": [
+          {
+            "puddle_index": 1,
+            "location_offset": {
+              "x": 1.5,
+              "y": -1.0
+            },
+            "level_delta": -0.1,
+            "size_scale": 0.9
+          }
+        ],
+        "mission_mutation": {
+          "spawn_offset": {
+            "x": 2.0,
+            "y": 1.0
+          },
+          "destination_offset": {
+            "x": 2.0,
+            "y": 1.0
+          }
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": [
+          "no actors in candidate scenario"
+        ]
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_118__ark-deepseek-r1-250528.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_118__ark-deepseek-r1-250528.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    }
+  ],
+  "seed_artifact_zip": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-deepseek-r1-250528/seed-artifact/seed-artifact-case_118.zip",
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_prompts/case_118__ark-deepseek-r1-250528.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_118__ark-deepseek-r1-250528.json",
+  "prompt_estimated_tokens": 1133,
+  "usage": {
+    "prompt_tokens": 1461,
+    "completion_tokens": 2597,
+    "total_tokens": 4058
+  },
+  "raw_response": "{\n  \"case_id\": \"case_118\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Slightly increase road wetness and existing puddle level near the intersection to test if low road friction exacerbates the command-movement mismatch while preserving core scenario conditions\",\n      \"mutation_intent\": \"Preserves all Phase 1 root-cause constraints: zero dynamic actors, expected all-zero Autoware vehicle commands, non-zero pre-collision ego velocity with zero braking, confirmed collision and red-light violation outcomes, and original Town01 map. Only adjusts road surface conditions without altering the core mismatch pattern\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 5, \"fog\": 0, \"wetness\": 5, \"puddle\": 3},\n        \"actor_mutations\": [],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": 0.1, \"size_scale\": 1.0}\n        ],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Confirm no dynamic actors added to the scenario\", \"Confirm all mutation parameters stay within allowed bounds\", \"Confirm route remains on original Town01 road\"],\n      \"post_execution_validation_rules\": [\"Confirm Autoware outputs all-zero vehicle control commands before collision\", \"Confirm vehicle_status reports non-zero ego velocity and zero braking before collision\", \"Confirm collision and red-light violation outcomes are achieved\"],\n      \"uncertainty\": [\"Lane invasion label conflict remains unresolved per original evidence\", \"Root cause module attribution is still unknown per original constraints\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Slightly shift ego spawn and destination along the original route, reduce fog density, and adjust an existing off-intersection puddle to test if the command-movement mismatch persists across minor condition changes\",\n      \"mutation_intent\": \"Preserves all Phase 1 core root-cause constraints, including zero dynamic actors, all-zero pre-collision vehicle commands, non-zero ego speed with zero braking, collision and red-light violation outcomes, and Town01 map. Minor positional and visibility changes do not alter the core mismatch pattern\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": -10, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 1, \"location_offset\": {\"x\": 1.5, \"y\": -1.0}, \"level_delta\": -0.1, \"size_scale\": 0.9}\n        ],\n        \"mission_mutation\": {\"keep_original\": false, \"spawn_offset\": {\"x\": 2.0, \"y\": 1.0}, \"destination_offset\": {\"x\": 2.0, \"y\": 1.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Confirm no dynamic actors added to the scenario\", \"Confirm spawn and destination offsets stay within allowed bounds\", \"Confirm route remains on original Town01 road alignment\"],\n      \"post_execution_validation_rules\": [\"Confirm all-zero vehicle control command output before collision is preserved\", \"Confirm non-zero ego velocity and zero braking are reported in vehicle_status before collision\", \"Confirm collision and red-light violation outcomes are achieved\"],\n      \"uncertainty\": [\"Root cause module localization remains unconfirmed per original evidence\", \"Lane invasion label conflict remains unresolved as in the original scenario\", \"No additional module failure evidence is introduced\"]\n    }\n  ]\n}",
+  "parsed_response": {
+    "case_id": "case_118",
+    "candidate_specs": [
+      {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Slightly increase road wetness and existing puddle level near the intersection to test if low road friction exacerbates the command-movement mismatch while preserving core scenario conditions",
+        "mutation_intent": "Preserves all Phase 1 root-cause constraints: zero dynamic actors, expected all-zero Autoware vehicle commands, non-zero pre-collision ego velocity with zero braking, confirmed collision and red-light violation outcomes, and original Town01 map. Only adjusts road surface conditions without altering the core mismatch pattern",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": 5,
+            "fog": 0,
+            "wetness": 5,
+            "puddle": 3
+          },
+          "actor_mutations": [],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": 0.1,
+              "size_scale": 1.0
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Confirm no dynamic actors added to the scenario",
+          "Confirm all mutation parameters stay within allowed bounds",
+          "Confirm route remains on original Town01 road"
+        ],
+        "post_execution_validation_rules": [
+          "Confirm Autoware outputs all-zero vehicle control commands before collision",
+          "Confirm vehicle_status reports non-zero ego velocity and zero braking before collision",
+          "Confirm collision and red-light violation outcomes are achieved"
+        ],
+        "uncertainty": [
+          "Lane invasion label conflict remains unresolved per original evidence",
+          "Root cause module attribution is still unknown per original constraints"
+        ]
+      },
+      {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Slightly shift ego spawn and destination along the original route, reduce fog density, and adjust an existing off-intersection puddle to test if the command-movement mismatch persists across minor condition changes",
+        "mutation_intent": "Preserves all Phase 1 core root-cause constraints, including zero dynamic actors, all-zero pre-collision vehicle commands, non-zero ego speed with zero braking, collision and red-light violation outcomes, and Town01 map. Minor positional and visibility changes do not alter the core mismatch pattern",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": -10,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [],
+          "puddle_mutations": [
+            {
+              "puddle_index": 1,
+              "location_offset": {
+                "x": 1.5,
+                "y": -1.0
+              },
+              "level_delta": -0.1,
+              "size_scale": 0.9
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": false,
+            "spawn_offset": {
+              "x": 2.0,
+              "y": 1.0
+            },
+            "destination_offset": {
+              "x": 2.0,
+              "y": 1.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Confirm no dynamic actors added to the scenario",
+          "Confirm spawn and destination offsets stay within allowed bounds",
+          "Confirm route remains on original Town01 road alignment"
+        ],
+        "post_execution_validation_rules": [
+          "Confirm all-zero vehicle control command output before collision is preserved",
+          "Confirm non-zero ego velocity and zero braking are reported in vehicle_status before collision",
+          "Confirm collision and red-light violation outcomes are achieved"
+        ],
+        "uncertainty": [
+          "Root cause module localization remains unconfirmed per original evidence",
+          "Lane invasion label conflict remains unresolved as in the original scenario",
+          "No additional module failure evidence is introduced"
+        ]
+      }
+    ]
+  },
+  "raw_api_payload": {
+    "id": "021782923927832655dd71e1d01ef51dda793fc89c90573cdfb75",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "{\n  \"case_id\": \"case_118\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Slightly increase road wetness and existing puddle level near the intersection to test if low road friction exacerbates the command-movement mismatch while preserving core scenario conditions\",\n      \"mutation_intent\": \"Preserves all Phase 1 root-cause constraints: zero dynamic actors, expected all-zero Autoware vehicle commands, non-zero pre-collision ego velocity with zero braking, confirmed collision and red-light violation outcomes, and original Town01 map. Only adjusts road surface conditions without altering the core mismatch pattern\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 5, \"fog\": 0, \"wetness\": 5, \"puddle\": 3},\n        \"actor_mutations\": [],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": 0.1, \"size_scale\": 1.0}\n        ],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Confirm no dynamic actors added to the scenario\", \"Confirm all mutation parameters stay within allowed bounds\", \"Confirm route remains on original Town01 road\"],\n      \"post_execution_validation_rules\": [\"Confirm Autoware outputs all-zero vehicle control commands before collision\", \"Confirm vehicle_status reports non-zero ego velocity and zero braking before collision\", \"Confirm collision and red-light violation outcomes are achieved\"],\n      \"uncertainty\": [\"Lane invasion label conflict remains unresolved per original evidence\", \"Root cause module attribution is still unknown per original constraints\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Slightly shift ego spawn and destination along the original route, reduce fog density, and adjust an existing off-intersection puddle to test if the command-movement mismatch persists across minor condition changes\",\n      \"mutation_intent\": \"Preserves all Phase 1 core root-cause constraints, including zero dynamic actors, all-zero pre-collision vehicle commands, non-zero ego speed with zero braking, collision and red-light violation outcomes, and Town01 map. Minor positional and visibility changes do not alter the core mismatch pattern\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": -10, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 1, \"location_offset\": {\"x\": 1.5, \"y\": -1.0}, \"level_delta\": -0.1, \"size_scale\": 0.9}\n        ],\n        \"mission_mutation\": {\"keep_original\": false, \"spawn_offset\": {\"x\": 2.0, \"y\": 1.0}, \"destination_offset\": {\"x\": 2.0, \"y\": 1.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Confirm no dynamic actors added to the scenario\", \"Confirm spawn and destination offsets stay within allowed bounds\", \"Confirm route remains on original Town01 road alignment\"],\n      \"post_execution_validation_rules\": [\"Confirm all-zero vehicle control command output before collision is preserved\", \"Confirm non-zero ego velocity and zero braking are reported in vehicle_status before collision\", \"Confirm collision and red-light violation outcomes are achieved\"],\n      \"uncertainty\": [\"Root cause module localization remains unconfirmed per original evidence\", \"Lane invasion label conflict remains unresolved as in the original scenario\", \"No additional module failure evidence is introduced\"]\n    }\n  ]\n}",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null,
+          "reasoning_content": "\nGot it, let's build this step by step. First, case_id is case_118, right? We need two candidate specs. Let's start with cand_001.\n\nFirst, high_level_variant for cand 001: Slightly increase wetness and puddle level near the red light intersection to test if low friction exacerbates the command-movement mismatch. Wait, need to keep zero dynamic actors, that's a constraint. Oh right, preservation constraints say zero dynamic actors, so no actor mutations because actors are empty.\n\nMutation_intent: Preserves all core root cause constraints: zero dynamic actors, expected all-zero Autoware vehicle cmd, non-zero pre-collision ego speed, collision + red-light violation outcomes, Town01 map. Only adjusts road wetness/puddle level which doesn't change the root cause pattern.\n\nExpected oracle: compound, right? Because collision and red-light violation, so compound.\n\nModifications: Let's do weather delta. Rain +5, wetness +5, fog 0, puddle +3. That's within the [-20,20] limit. Actor mutations: actors are empty, so empty array? Wait, original actors are empty, so yeah. Puddle mutations: let's take puddle index 0, location offset x 0, y 0, level delta +0.1, size scale 1.0. That's within [-0.2, 0.2] level delta, size 1.0 is okay. Mission mutation: keep_original true, offsets 0,0.\n\nPre execution rules: [\"Confirm no dynamic actors added to scenario\", \"Confirm ego spawn and destination remain on original route in Town01\"]\n\nPost execution: [\"Confirm Autoware outputs all-zero vehicle control commands pre-collision\", \"Confirm vehicle_status reports non-zero ego velocity and zero braking pre-collision\", \"Confirm collision and red-light violation occurred\"]\n\nUncertainty: [\"Lane invasion label conflict remains unresolved per original evidence\", \"Root cause module attribution still unknown per original constraints\"]\n\nOkay, that's cand 001. Now cand 002. Let's think of another variant. How about slightly shift ego spawn position along the original route, keep everything else mostly, adjust fog a bit? Wait, let's make high_level_variant: Slightly shift ego spawn position along the original route and reduce fog density to check if the command-movement mismatch persists regardless of minor spawn location and visibility changes.\n\nMutation_intent: Preserves all core root-cause constraints: zero dynamic actors, all-zero vehicle_cmd before collision, non-zero pre-collision ego speed with zero braking, collision + red-light violation outcomes, Town01 map. Minor spawn shift doesn't alter the core mismatch pattern.\n\nExpected oracle: compound again, same as before.\n\nModifications: Weather delta: fog -10, others 0, that's within [-20,20]. Actor mutations: empty array, since no actors. Puddle mutations: keep original, so maybe? Wait, original puddles, let's do puddle index 1, level delta -0.1, size scale 0.9, that's within limits. Wait, mission mutation: keep_original false? No, spawn offset x 2, y 1, destination offset x 2, y 1, that's within [-5,5], right? 2 and 1 are okay. Or keep_original? No, let's do the offset. Wait, mission_mutation: \"keep_original\": false, \"spawn_offset\": {\"x\": 2.0, \"y\": 1.0}, \"destination_offset\": {\"x\": 2.0, \"y\": 1.0} that's okay, within [-5,5].\n\nWait, let's check the offsets: actor position offsets are within [-8,8], but we have no actors, so that's fine. Speed delta, no actors, so no problem. Mission offsets are 2, which is within [-5,5], good. Weather delta: fog -10, that's within [-20,20], good. Puddle level delta -0.1, that's within [-0.2, 0.2], size 0.9 is within [0.8,1.2], perfect.\n\nPre execution rules for cand 002: [\"Confirm no dynamic actors added to scenario\", \"Confirm spawn and destination offsets are within allowed bounds, route remains on original Town01 road\"]\n\nPost execution rules: [\"Confirm all-zero vehicle control command output pre-collision is preserved\", \"Confirm non-zero ego velocity and zero braking reported in vehicle_status pre-collision\", \"Confirm collision and red-light violation outcomes are achieved\"]\n\nUncertainty: [\"Root cause module localization still unconfirmed per original evidence\", \"Lane invasion label conflict remains unresolved as in original scenario\"]\n\nWait, let's check all rules: exactly two candidates, right? Yes. Preserve zero dynamic actors, yes, both have empty actor mutations, no actors added. Preserve all constraints from phase 1. Oracle is compound, which is correct because collision and red-light violation, that's compound. Actor offsets not needed because no actors. All deltas are within limits. Let's structure this correctly into JSON.\n\nWait, let's check the schema: top level is case_id, then candidate_specs array of two objects. Let's write it properly.\n\nWait, case_id is case_118, right? Yes, from input. Let's put it all together.\n\nWait, for actor_mutations, since there are no actors, can we leave it as empty array? Yes, that's correct. Because original actors are empty, so no mutations. For puddle_mutations, first candidate has one mutation, that's okay. Second can have one too. Let's check:\n\nFirst candidate modifications:\nweather_delta: {\"rain\": 5, \"fog\": 0, \"wetness\": 5, \"puddle\": 3} all within -20 20, yes.\nactor_mutations: [] because no actors.\npuddle_mutations: [{\"puddle_index\": 0, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": 0.1, \"size_scale\": 1.0}] that's okay, level delta 0.1 is within -0.2 0.2, size 1.0 good.\nmission_mutation: {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}} correct.\n\nYes. Second candidate modifications:\nweather_delta: {\"rain\": 0, \"fog\": -10, \"wetness\": 0, \"puddle\": 0} all within range.\nactor_mutations: []\npuddle_mutations: [{\"puddle_index\": 1, \"location_offset\": {\"x\": 1.5, \"y\": -1.0}, \"level_delta\": -0.1, \"size_scale\": 0.9}] location offsets 1.5 and -1 are within [-8,8], right? Yes, that's fine. Level delta -0.1 is okay, size 0.9 okay.\nmission_mutation: {\"keep_original\": false, \"spawn_offset\": {\"x\": 2.0, \"y\": 1.0}, \"destination_offset\": {\"x\": 2.0, \"y\": 1.0}} offsets are within [-5,5], correct.\n\nUncertainty for both matches the original uncertainty. Expected oracle is compound, which is correct because we have collision and red-light violation, so compound.\n\nOkay, that should be it. Now write it as proper JSON, no markdown fences, exactly one object."
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "doubao-seed-2-0-lite-260215",
+    "object": "chat.completion",
+    "service_tier": "default",
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 2597,
+      "prompt_tokens": 1461,
+      "total_tokens": 4058,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 1691,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": null,
+        "cached_tokens": 0
+      }
+    }
+  },
+  "error_message": "",
+  "elapsed_sec": 40.756,
+  "timestamp": "<REDACTED_TIMESTAMP>"
+}

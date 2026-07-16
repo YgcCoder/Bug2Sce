@@ -1,0 +1,385 @@
+{
+  "case_id": "case_002",
+  "model_name": "claude-sonnet-4-5",
+  "workflow": "phase2_grounded_generation",
+  "status": "completed",
+  "schema_valid": true,
+  "schema_errors": [],
+  "phase1_ready": "yes",
+  "num_candidates_requested": 2,
+  "num_candidates_written": 2,
+  "num_pre_valid": 2,
+  "candidate_records": [
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/claude-sonnet-4-5/json/case_002/case_002__cand_001.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/claude-sonnet-4-5/metadata/case_002/case_002__cand_001.metadata.json",
+      "case_id": "case_002",
+      "model_name": "claude-sonnet-4-5",
+      "candidate_index": 1,
+      "candidate_spec": {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Reduce fog and rain to clarify traffic light visibility",
+        "mutation_intent": "Test if red-light violation persists with better visibility, isolating perception vs planning failure",
+        "expected_oracle": "red_light",
+        "modifications": {
+          "weather_delta": {
+            "rain": -20,
+            "fog": -15,
+            "wetness": -10,
+            "puddle": -10
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "speed_delta": 0.0
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "speed_delta": 0.0
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Traffic lights exist on ego route",
+          "Spawn and destination unchanged",
+          "Weather improved for visibility"
+        ],
+        "post_execution_validation_rules": [
+          "Red-light oracle triggered",
+          "Traffic light transitioned to red before violation",
+          "Final waypoints show invalid stop-line IDs"
+        ],
+        "uncertainty": [
+          "Unclear if perception or planning causes failure",
+          "Vehicle command vs status mismatch origin unknown"
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": -20,
+          "fog": -15.0,
+          "wetness": -10.0,
+          "puddle": -10.0
+        },
+        "actor_mutations": [
+          {
+            "actor_index": 0,
+            "position_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "speed_delta": 0.0
+          },
+          {
+            "actor_index": 1,
+            "position_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "speed_delta": 0.0
+          }
+        ],
+        "puddle_mutations": [],
+        "mission_mutation": {
+          "keep_original": true
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_002__claude-sonnet-4-5.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_002__claude-sonnet-4-5.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    },
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/claude-sonnet-4-5/json/case_002/case_002__cand_002.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/claude-sonnet-4-5/metadata/case_002/case_002__cand_002.metadata.json",
+      "case_id": "case_002",
+      "model_name": "claude-sonnet-4-5",
+      "candidate_index": 2,
+      "candidate_spec": {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Shift immobile actor closer to intersection entry",
+        "mutation_intent": "Test if nearby obstacle affects stop decision or waypoint stop-line association at red light",
+        "expected_oracle": "red_light",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 5.0,
+                "y": 1.5
+              },
+              "speed_delta": 0.0
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "speed_delta": 0.0
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Immobile actor repositioned near intersection",
+          "Traffic lights on route",
+          "Mission unchanged"
+        ],
+        "post_execution_validation_rules": [
+          "Red-light oracle triggered",
+          "Traffic light red during violation",
+          "Waypoint stop-line IDs invalid or missing"
+        ],
+        "uncertainty": [
+          "Route-light relation not confirmed",
+          "Controller behavior with zero commands unclear"
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 0.0,
+          "fog": 0.0,
+          "wetness": 0.0,
+          "puddle": 0.0
+        },
+        "actor_mutations": [
+          {
+            "actor_index": 0,
+            "position_offset": {
+              "x": 5.0,
+              "y": 1.5
+            },
+            "speed_delta": 0.0
+          },
+          {
+            "actor_index": 1,
+            "position_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "speed_delta": 0.0
+          }
+        ],
+        "puddle_mutations": [],
+        "mission_mutation": {
+          "keep_original": true
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_002__claude-sonnet-4-5.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_002__claude-sonnet-4-5.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    }
+  ],
+  "seed_artifact_zip": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/claude-sonnet-4-5/seed-artifact/seed-artifact-case_002.zip",
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_prompts/case_002__claude-sonnet-4-5.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_002__claude-sonnet-4-5.json",
+  "prompt_estimated_tokens": 1219,
+  "usage": {
+    "prompt_tokens": 1441,
+    "completion_tokens": 779,
+    "total_tokens": 2220
+  },
+  "raw_response": "```json\n{\n  \"case_id\": \"case_002\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Reduce fog and rain to clarify traffic light visibility\",\n      \"mutation_intent\": \"Test if red-light violation persists with better visibility, isolating perception vs planning failure\",\n      \"expected_oracle\": \"red_light\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": -20, \"fog\": -15, \"wetness\": -10, \"puddle\": -10},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 0.0, \"y\": 0.0}, \"speed_delta\": 0.0},\n          {\"actor_index\": 1, \"position_offset\": {\"x\": 0.0, \"y\": 0.0}, \"speed_delta\": 0.0}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Traffic lights exist on ego route\", \"Spawn and destination unchanged\", \"Weather improved for visibility\"],\n      \"post_execution_validation_rules\": [\"Red-light oracle triggered\", \"Traffic light transitioned to red before violation\", \"Final waypoints show invalid stop-line IDs\"],\n      \"uncertainty\": [\"Unclear if perception or planning causes failure\", \"Vehicle command vs status mismatch origin unknown\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Shift immobile actor closer to intersection entry\",\n      \"mutation_intent\": \"Test if nearby obstacle affects stop decision or waypoint stop-line association at red light\",\n      \"expected_oracle\": \"red_light\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 5.0, \"y\": 1.5}, \"speed_delta\": 0.0},\n          {\"actor_index\": 1, \"position_offset\": {\"x\": 0.0, \"y\": 0.0}, \"speed_delta\": 0.0}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Immobile actor repositioned near intersection\", \"Traffic lights on route\", \"Mission unchanged\"],\n      \"post_execution_validation_rules\": [\"Red-light oracle triggered\", \"Traffic light red during violation\", \"Waypoint stop-line IDs invalid or missing\"],\n      \"uncertainty\": [\"Route-light relation not confirmed\", \"Controller behavior with zero commands unclear\"]\n    }\n  ]\n}\n```",
+  "parsed_response": {
+    "case_id": "case_002",
+    "candidate_specs": [
+      {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Reduce fog and rain to clarify traffic light visibility",
+        "mutation_intent": "Test if red-light violation persists with better visibility, isolating perception vs planning failure",
+        "expected_oracle": "red_light",
+        "modifications": {
+          "weather_delta": {
+            "rain": -20,
+            "fog": -15,
+            "wetness": -10,
+            "puddle": -10
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "speed_delta": 0.0
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "speed_delta": 0.0
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Traffic lights exist on ego route",
+          "Spawn and destination unchanged",
+          "Weather improved for visibility"
+        ],
+        "post_execution_validation_rules": [
+          "Red-light oracle triggered",
+          "Traffic light transitioned to red before violation",
+          "Final waypoints show invalid stop-line IDs"
+        ],
+        "uncertainty": [
+          "Unclear if perception or planning causes failure",
+          "Vehicle command vs status mismatch origin unknown"
+        ]
+      },
+      {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Shift immobile actor closer to intersection entry",
+        "mutation_intent": "Test if nearby obstacle affects stop decision or waypoint stop-line association at red light",
+        "expected_oracle": "red_light",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 5.0,
+                "y": 1.5
+              },
+              "speed_delta": 0.0
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "speed_delta": 0.0
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Immobile actor repositioned near intersection",
+          "Traffic lights on route",
+          "Mission unchanged"
+        ],
+        "post_execution_validation_rules": [
+          "Red-light oracle triggered",
+          "Traffic light red during violation",
+          "Waypoint stop-line IDs invalid or missing"
+        ],
+        "uncertainty": [
+          "Route-light relation not confirmed",
+          "Controller behavior with zero commands unclear"
+        ]
+      }
+    ]
+  },
+  "raw_api_payload": {
+    "id": "<REDACTED_RESPONSE_ID>",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "```json\n{\n  \"case_id\": \"case_002\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Reduce fog and rain to clarify traffic light visibility\",\n      \"mutation_intent\": \"Test if red-light violation persists with better visibility, isolating perception vs planning failure\",\n      \"expected_oracle\": \"red_light\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": -20, \"fog\": -15, \"wetness\": -10, \"puddle\": -10},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 0.0, \"y\": 0.0}, \"speed_delta\": 0.0},\n          {\"actor_index\": 1, \"position_offset\": {\"x\": 0.0, \"y\": 0.0}, \"speed_delta\": 0.0}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Traffic lights exist on ego route\", \"Spawn and destination unchanged\", \"Weather improved for visibility\"],\n      \"post_execution_validation_rules\": [\"Red-light oracle triggered\", \"Traffic light transitioned to red before violation\", \"Final waypoints show invalid stop-line IDs\"],\n      \"uncertainty\": [\"Unclear if perception or planning causes failure\", \"Vehicle command vs status mismatch origin unknown\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Shift immobile actor closer to intersection entry\",\n      \"mutation_intent\": \"Test if nearby obstacle affects stop decision or waypoint stop-line association at red light\",\n      \"expected_oracle\": \"red_light\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 5.0, \"y\": 1.5}, \"speed_delta\": 0.0},\n          {\"actor_index\": 1, \"position_offset\": {\"x\": 0.0, \"y\": 0.0}, \"speed_delta\": 0.0}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Immobile actor repositioned near intersection\", \"Traffic lights on route\", \"Mission unchanged\"],\n      \"post_execution_validation_rules\": [\"Red-light oracle triggered\", \"Traffic light red during violation\", \"Waypoint stop-line IDs invalid or missing\"],\n      \"uncertainty\": [\"Route-light relation not confirmed\", \"Controller behavior with zero commands unclear\"]\n    }\n  ]\n}\n```",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "claude-sonnet-4-5",
+    "object": "chat.completion",
+    "service_tier": null,
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 779,
+      "prompt_tokens": 1441,
+      "total_tokens": 2220,
+      "completion_tokens_details": null,
+      "prompt_tokens_details": null
+    }
+  },
+  "error_message": "",
+  "elapsed_sec": 12.879,
+  "timestamp": "<REDACTED_TIMESTAMP>"
+}

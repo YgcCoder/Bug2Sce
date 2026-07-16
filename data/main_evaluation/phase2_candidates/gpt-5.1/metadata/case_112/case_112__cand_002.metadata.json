@@ -1,0 +1,113 @@
+{
+  "case_id": "case_112",
+  "model_name": "gpt-5.1",
+  "candidate_index": 2,
+  "candidate_spec": {
+    "candidate_id": "cand_002",
+    "high_level_variant": "Ego drives the same mission in Town01 while a linear-moving vehicle approaches from a slightly shifted position, creating a low-speed lateral or oblique collision ahead with ego still moving, valid waypoints, perceived objects, and no braking in the critical window.",
+    "mutation_intent": "Switch the primary colliding counterpart from a walker-dominated interaction to a vehicle-dominated one while still preserving the core symptom: collision under continued ego motion with active planning/perception and no braking, plus an ambiguous or inconsistent actuation command state. The slight spatial and speed adjustments increase the chance of collision without changing the fundamental command-vs-status ambiguity pattern.",
+    "expected_oracle": "collision",
+    "modifications": {
+      "weather_delta": {
+        "rain": 0,
+        "fog": 0,
+        "wetness": 0,
+        "puddle": 0
+      },
+      "actor_mutations": [
+        {
+          "actor_index": 0,
+          "position_offset": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "speed_delta": 0.0
+        },
+        {
+          "actor_index": 1,
+          "position_offset": {
+            "x": 2.0,
+            "y": -1.5
+          },
+          "speed_delta": -1.0
+        }
+      ],
+      "puddle_mutations": [],
+      "mission_mutation": {
+        "keep_original": false,
+        "spawn_offset": {
+          "x": -2.0,
+          "y": 1.0
+        },
+        "destination_offset": {
+          "x": 1.5,
+          "y": -2.0
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Ensure actor_index 1 remains a vehicle with linear navigation whose trajectory intersects or closely approaches ego’s lane within the final segment of the route.",
+      "Verify that the mutated spawn and destination still keep ego on a comparable road segment in Town01, so that the vehicle actor can appear in ego’s forward field and be detectable by perception.",
+      "Confirm that both perception and prediction modules are active so that the approaching vehicle should appear in object and prediction topics before collision.",
+      "Check that no explicit emergency-brake trigger or scripted stop behavior is added for ego that would force strong braking before the interaction."
+    ],
+    "post_execution_validation_rules": [
+      "Verify that ego is involved in at least one collision with the other vehicle (actor_index 1) or another nearby agent while ego speed remains nonzero and does not significantly decrease in the few seconds immediately before impact.",
+      "Check that ego’s brake status and brake command remain near zero or otherwise show lack of meaningful braking during the critical pre-collision window.",
+      "Confirm that final_waypoints are continuously available and unblocked (full set of waypoints) leading up to collision, indicating that the planner had a valid trajectory.",
+      "Ensure perception and prediction object topics contain at least one object in front or near ego (preferably the other vehicle) near the collision time.",
+      "Inspect vehicle_cmd versus vehicle_status to verify some form of ambiguous actuation behavior (e.g., zero accel/brake commands while ego remains under throttle and moving, or another inconsistency consistent with the original case).",
+      "Do not require lane_invasion presence or absence for run acceptance; collisions with or without lane invasion both satisfy the intended pattern."
+    ],
+    "uncertainty": [
+      "It is not guaranteed that the colliding agent will be exactly actor_index 1; another nearby vehicle or object could become the primary collision partner depending on emergent behavior, as long as the core pattern is met.",
+      "The exact geometry (side-swipe vs frontal) of the vehicle-to-ego collision may vary; any collision under motion with no braking and valid waypoints is acceptable.",
+      "Whether the simulation reproduces the precise zeroed-command vs moving-vehicle mismatch is uncertain and must be verified by inspecting post-run logs."
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": 0.0,
+      "fog": 0.0,
+      "wetness": 0.0,
+      "puddle": 0.0
+    },
+    "actor_mutations": [
+      {
+        "actor_index": 0,
+        "position_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "speed_delta": 0.0
+      },
+      {
+        "actor_index": 1,
+        "position_offset": {
+          "x": 2.0,
+          "y": -1.5
+        },
+        "speed_delta": -1.0
+      }
+    ],
+    "puddle_mutations": [],
+    "mission_mutation": {
+      "spawn_offset": {
+        "x": -2.0,
+        "y": 1.0
+      },
+      "destination_offset": {
+        "x": 1.5,
+        "y": -2.0
+      }
+    }
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_112__gpt-5.1.json",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_112__gpt-5.1.json",
+  "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+}

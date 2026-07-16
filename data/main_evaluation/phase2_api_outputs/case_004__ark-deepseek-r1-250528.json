@@ -1,0 +1,371 @@
+{
+  "case_id": "case_004",
+  "model_name": "ark-deepseek-r1-250528",
+  "workflow": "phase2_grounded_generation",
+  "status": "completed",
+  "schema_valid": true,
+  "schema_errors": [],
+  "phase1_ready": "uncertain",
+  "num_candidates_requested": 2,
+  "num_candidates_written": 2,
+  "num_pre_valid": 2,
+  "candidate_records": [
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-deepseek-r1-250528/json/case_004/case_004__cand_001.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-deepseek-r1-250528/metadata/case_004/case_004__cand_001.metadata.json",
+      "case_id": "case_004",
+      "model_name": "ark-deepseek-r1-250528",
+      "candidate_index": 1,
+      "candidate_spec": {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Slight shift of existing puddle toward the intersection stop line, small increase in rain, wetness and puddle intensity, 0 dynamic actors preserved",
+        "mutation_intent": "Preserves all Phase 1 constraints: 0 dynamic actors, at least one puddle on Town01 route, original general route direction, retains red light violation as confirmed primary failure and preserves the original label conflict uncertainty",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": 5,
+            "fog": 0,
+            "wetness": 5,
+            "puddle": 3
+          },
+          "actor_mutations": [],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 2.0,
+                "y": -1.0
+              },
+              "level_delta": 0.1,
+              "size_scale": 1.0
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Confirm 0 dynamic actors are present in the scenario",
+          "Confirm at least one puddle exists on the original route in Town01",
+          "Confirm original start-to-goal route direction is preserved"
+        ],
+        "post_execution_validation_rules": [
+          "Verify stop-line crossing to confirm red light violation",
+          "Verify lane boundary crossing to resolve the lane invasion label conflict",
+          "Check for any unexpected module faults not noted in original root cause"
+        ],
+        "uncertainty": [
+          "Label conflict between dataset and error.json remains unresolved pre-execution",
+          "Stop-line crossing for red light violation is unconfirmed pre-execution",
+          "Lane boundary crossing for claimed lane invasion is unconfirmed pre-execution",
+          "No pre-execution evidence localizes fault to a specific Autoware module"
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 5.0,
+          "fog": 0.0,
+          "wetness": 5.0,
+          "puddle": 3.0
+        },
+        "actor_mutations": [],
+        "puddle_mutations": [
+          {
+            "puddle_index": 0,
+            "location_offset": {
+              "x": 2.0,
+              "y": -1.0
+            },
+            "level_delta": 0.1,
+            "size_scale": 1.0
+          }
+        ],
+        "mission_mutation": {
+          "keep_original": true
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": [
+          "no actors in candidate scenario"
+        ]
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_004__ark-deepseek-r1-250528.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_004__ark-deepseek-r1-250528.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    },
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-deepseek-r1-250528/json/case_004/case_004__cand_002.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-deepseek-r1-250528/metadata/case_004/case_004__cand_002.metadata.json",
+      "case_id": "case_004",
+      "model_name": "ark-deepseek-r1-250528",
+      "candidate_index": 2,
+      "candidate_spec": {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Small shift of ego spawn and destination positions along original route direction, slight reduction in puddle level and rain intensity, 0 dynamic actors preserved",
+        "mutation_intent": "Retains all Phase 1 root cause constraints: 0 dynamic actors, at least one puddle on route, original route direction, confirmed red light violation as primary failure, preserves all original uncertainty for post-generation validation",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": -4,
+            "fog": 3,
+            "wetness": -5,
+            "puddle": -2
+          },
+          "actor_mutations": [],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": -1.5,
+                "y": 1.5
+              },
+              "level_delta": -0.07,
+              "size_scale": 0.9
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": false,
+            "spawn_offset": {
+              "x": 2.5,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 1.5
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Confirm 0 dynamic actors are present in the scenario",
+          "Confirm at least one puddle is still located on the route",
+          "Confirm spawn/destination shift does not alter the original general route direction"
+        ],
+        "post_execution_validation_rules": [
+          "Check stop-line crossing to confirm red light violation",
+          "Check lane boundary crossing to resolve the original label conflict between dataset and error.json",
+          "Check for any unexpected actuation mismatches"
+        ],
+        "uncertainty": [
+          "Original label conflict between dataset and error.json is preserved pre-execution",
+          "Route-light relation and stop-line crossing are unconfirmed pre-execution",
+          "Lane boundary crossing for lane invasion is unconfirmed pre-execution",
+          "Fault can not be attributed to a specific Autoware module pre-execution"
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": -4.0,
+          "fog": 3.0,
+          "wetness": -5.0,
+          "puddle": -2.0
+        },
+        "actor_mutations": [],
+        "puddle_mutations": [
+          {
+            "puddle_index": 0,
+            "location_offset": {
+              "x": -1.5,
+              "y": 1.5
+            },
+            "level_delta": -0.07,
+            "size_scale": 0.9
+          }
+        ],
+        "mission_mutation": {
+          "spawn_offset": {
+            "x": 2.5,
+            "y": 0.0
+          },
+          "destination_offset": {
+            "x": 0.0,
+            "y": 1.5
+          }
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": [
+          "no actors in candidate scenario"
+        ]
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_004__ark-deepseek-r1-250528.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_004__ark-deepseek-r1-250528.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    }
+  ],
+  "seed_artifact_zip": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-deepseek-r1-250528/seed-artifact/seed-artifact-case_004.zip",
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_prompts/case_004__ark-deepseek-r1-250528.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_004__ark-deepseek-r1-250528.json",
+  "prompt_estimated_tokens": 1104,
+  "usage": {
+    "prompt_tokens": 1330,
+    "completion_tokens": 3162,
+    "total_tokens": 4492
+  },
+  "raw_response": "{\n  \"case_id\": \"case_004\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Slight shift of existing puddle toward the intersection stop line, small increase in rain, wetness and puddle intensity, 0 dynamic actors preserved\",\n      \"mutation_intent\": \"Preserves all Phase 1 constraints: 0 dynamic actors, at least one puddle on Town01 route, original general route direction, retains red light violation as confirmed primary failure and preserves the original label conflict uncertainty\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 5, \"fog\": 0, \"wetness\": 5, \"puddle\": 3},\n        \"actor_mutations\": [],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": 2.0, \"y\": -1.0}, \"level_delta\": 0.1, \"size_scale\": 1.0}\n        ],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\n        \"Confirm 0 dynamic actors are present in the scenario\",\n        \"Confirm at least one puddle exists on the original route in Town01\",\n        \"Confirm original start-to-goal route direction is preserved\"\n      ],\n      \"post_execution_validation_rules\": [\n        \"Verify stop-line crossing to confirm red light violation\",\n        \"Verify lane boundary crossing to resolve the lane invasion label conflict\",\n        \"Check for any unexpected module faults not noted in original root cause\"\n      ],\n      \"uncertainty\": [\n        \"Label conflict between dataset and error.json remains unresolved pre-execution\",\n        \"Stop-line crossing for red light violation is unconfirmed pre-execution\",\n        \"Lane boundary crossing for claimed lane invasion is unconfirmed pre-execution\",\n        \"No pre-execution evidence localizes fault to a specific Autoware module\"\n      ]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Small shift of ego spawn and destination positions along original route direction, slight reduction in puddle level and rain intensity, 0 dynamic actors preserved\",\n      \"mutation_intent\": \"Retains all Phase 1 root cause constraints: 0 dynamic actors, at least one puddle on route, original route direction, confirmed red light violation as primary failure, preserves all original uncertainty for post-generation validation\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": -4, \"fog\": 3, \"wetness\": -5, \"puddle\": -2},\n        \"actor_mutations\": [],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": -1.5, \"y\": 1.5}, \"level_delta\": -0.07, \"size_scale\": 0.9}\n        ],\n        \"mission_mutation\": {\"keep_original\": false, \"spawn_offset\": {\"x\": 2.5, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 1.5}}\n      },\n      \"pre_execution_validation_rules\": [\n        \"Confirm 0 dynamic actors are present in the scenario\",\n        \"Confirm at least one puddle is still located on the route\",\n        \"Confirm spawn/destination shift does not alter the original general route direction\"\n      ],\n      \"post_execution_validation_rules\": [\n        \"Check stop-line crossing to confirm red light violation\",\n        \"Check lane boundary crossing to resolve the original label conflict between dataset and error.json\",\n        \"Check for any unexpected actuation mismatches\"\n      ],\n      \"uncertainty\": [\n        \"Original label conflict between dataset and error.json is preserved pre-execution\",\n        \"Route-light relation and stop-line crossing are unconfirmed pre-execution\",\n        \"Lane boundary crossing for lane invasion is unconfirmed pre-execution\",\n        \"Fault can not be attributed to a specific Autoware module pre-execution\"\n      ]\n    }\n  ]\n}",
+  "parsed_response": {
+    "case_id": "case_004",
+    "candidate_specs": [
+      {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Slight shift of existing puddle toward the intersection stop line, small increase in rain, wetness and puddle intensity, 0 dynamic actors preserved",
+        "mutation_intent": "Preserves all Phase 1 constraints: 0 dynamic actors, at least one puddle on Town01 route, original general route direction, retains red light violation as confirmed primary failure and preserves the original label conflict uncertainty",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": 5,
+            "fog": 0,
+            "wetness": 5,
+            "puddle": 3
+          },
+          "actor_mutations": [],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 2.0,
+                "y": -1.0
+              },
+              "level_delta": 0.1,
+              "size_scale": 1.0
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Confirm 0 dynamic actors are present in the scenario",
+          "Confirm at least one puddle exists on the original route in Town01",
+          "Confirm original start-to-goal route direction is preserved"
+        ],
+        "post_execution_validation_rules": [
+          "Verify stop-line crossing to confirm red light violation",
+          "Verify lane boundary crossing to resolve the lane invasion label conflict",
+          "Check for any unexpected module faults not noted in original root cause"
+        ],
+        "uncertainty": [
+          "Label conflict between dataset and error.json remains unresolved pre-execution",
+          "Stop-line crossing for red light violation is unconfirmed pre-execution",
+          "Lane boundary crossing for claimed lane invasion is unconfirmed pre-execution",
+          "No pre-execution evidence localizes fault to a specific Autoware module"
+        ]
+      },
+      {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Small shift of ego spawn and destination positions along original route direction, slight reduction in puddle level and rain intensity, 0 dynamic actors preserved",
+        "mutation_intent": "Retains all Phase 1 root cause constraints: 0 dynamic actors, at least one puddle on route, original route direction, confirmed red light violation as primary failure, preserves all original uncertainty for post-generation validation",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": -4,
+            "fog": 3,
+            "wetness": -5,
+            "puddle": -2
+          },
+          "actor_mutations": [],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": -1.5,
+                "y": 1.5
+              },
+              "level_delta": -0.07,
+              "size_scale": 0.9
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": false,
+            "spawn_offset": {
+              "x": 2.5,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 1.5
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Confirm 0 dynamic actors are present in the scenario",
+          "Confirm at least one puddle is still located on the route",
+          "Confirm spawn/destination shift does not alter the original general route direction"
+        ],
+        "post_execution_validation_rules": [
+          "Check stop-line crossing to confirm red light violation",
+          "Check lane boundary crossing to resolve the original label conflict between dataset and error.json",
+          "Check for any unexpected actuation mismatches"
+        ],
+        "uncertainty": [
+          "Original label conflict between dataset and error.json is preserved pre-execution",
+          "Route-light relation and stop-line crossing are unconfirmed pre-execution",
+          "Lane boundary crossing for lane invasion is unconfirmed pre-execution",
+          "Fault can not be attributed to a specific Autoware module pre-execution"
+        ]
+      }
+    ]
+  },
+  "raw_api_payload": {
+    "id": "021782923140529d64c75fbaa5981adc97406384c9687653536d9",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "{\n  \"case_id\": \"case_004\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Slight shift of existing puddle toward the intersection stop line, small increase in rain, wetness and puddle intensity, 0 dynamic actors preserved\",\n      \"mutation_intent\": \"Preserves all Phase 1 constraints: 0 dynamic actors, at least one puddle on Town01 route, original general route direction, retains red light violation as confirmed primary failure and preserves the original label conflict uncertainty\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 5, \"fog\": 0, \"wetness\": 5, \"puddle\": 3},\n        \"actor_mutations\": [],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": 2.0, \"y\": -1.0}, \"level_delta\": 0.1, \"size_scale\": 1.0}\n        ],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\n        \"Confirm 0 dynamic actors are present in the scenario\",\n        \"Confirm at least one puddle exists on the original route in Town01\",\n        \"Confirm original start-to-goal route direction is preserved\"\n      ],\n      \"post_execution_validation_rules\": [\n        \"Verify stop-line crossing to confirm red light violation\",\n        \"Verify lane boundary crossing to resolve the lane invasion label conflict\",\n        \"Check for any unexpected module faults not noted in original root cause\"\n      ],\n      \"uncertainty\": [\n        \"Label conflict between dataset and error.json remains unresolved pre-execution\",\n        \"Stop-line crossing for red light violation is unconfirmed pre-execution\",\n        \"Lane boundary crossing for claimed lane invasion is unconfirmed pre-execution\",\n        \"No pre-execution evidence localizes fault to a specific Autoware module\"\n      ]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Small shift of ego spawn and destination positions along original route direction, slight reduction in puddle level and rain intensity, 0 dynamic actors preserved\",\n      \"mutation_intent\": \"Retains all Phase 1 root cause constraints: 0 dynamic actors, at least one puddle on route, original route direction, confirmed red light violation as primary failure, preserves all original uncertainty for post-generation validation\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": -4, \"fog\": 3, \"wetness\": -5, \"puddle\": -2},\n        \"actor_mutations\": [],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": -1.5, \"y\": 1.5}, \"level_delta\": -0.07, \"size_scale\": 0.9}\n        ],\n        \"mission_mutation\": {\"keep_original\": false, \"spawn_offset\": {\"x\": 2.5, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 1.5}}\n      },\n      \"pre_execution_validation_rules\": [\n        \"Confirm 0 dynamic actors are present in the scenario\",\n        \"Confirm at least one puddle is still located on the route\",\n        \"Confirm spawn/destination shift does not alter the original general route direction\"\n      ],\n      \"post_execution_validation_rules\": [\n        \"Check stop-line crossing to confirm red light violation\",\n        \"Check lane boundary crossing to resolve the original label conflict between dataset and error.json\",\n        \"Check for any unexpected actuation mismatches\"\n      ],\n      \"uncertainty\": [\n        \"Original label conflict between dataset and error.json is preserved pre-execution\",\n        \"Route-light relation and stop-line crossing are unconfirmed pre-execution\",\n        \"Lane boundary crossing for lane invasion is unconfirmed pre-execution\",\n        \"Fault can not be attributed to a specific Autoware module pre-execution\"\n      ]\n    }\n  ]\n}",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null,
+          "reasoning_content": "\nGot it, let's build this JSON step by step. First, case_id is case_004, right? We need two candidate specs. Let's start with the first one, cand_001.\n\nFirst, high_level_variant for cand 001: Let's see, original is 0 actors, one puddle. First variant can be slight shift of the puddle position towards the stop line, keep everything else same. Wait, mutation_intent: preserves 0 actors, keeps the original route, has at least one puddle, preserves red light as primary failure, keeps the label conflict uncertainty. Expected oracle: compound? Wait no, original has confirmed red light, possible lane invasion, so expected_oracle is compound? Wait let's check, the original label conflict is red light and lane invasion, so yeah, expected_oracle could be compound for first? Wait no, let's think. First candidate: let's make first variant: slight shift of the puddle towards the intersection stop line, adjust rain/wetness a bit. Let's do modifications: weather_delta: rain +5, fog 0, wetness +5, puddle +3? Wait that's within -20 20, okay. Actor mutations: original actors are 0, so actor_mutations is empty, right? Because preserve 0 dynamic actors. Oh right, preservation constraint says 0 actors, so both candidates have empty actor_mutations. Puddle mutations: puddle index 0, position offset x +2, y -1, level delta +0.1, size scale 1.0, that's within the allowed ranges. Mission mutation: keep_original true, so offsets 0. Pre execution rules: [\"Check 0 dynamic actors are present\", \"Check puddle exists on route in Town01\", \"Check original route direction is preserved\"], post execution: [\"Check stop-line crossing for red light violation\", \"Check lane boundary crossing for lane invasion label conflict resolution\"], uncertainty same as phase1, let's list the uncertainty entries as per phase1.\n\nThen cand_002, second candidate. High level variant: slight shift of ego spawn position closer to the intersection, reduce puddle level a little, keep 0 actors, same route. Mutation intent: preserves all root cause constraints: 0 actors, at least one puddle, original route direction, keeps red light as primary failure, retains label conflict uncertainty for validation. Expected oracle: still compound? Wait or red_light? Wait original has confirmed red light, conflicted lane invasion, so expected_oracle can be compound for both? Wait no, let's see, first can be compound, second? Or wait, let's do expected_oracle as compound because of the label conflict, right. Wait the rules say don't invent new oracle labels, preserve intended pattern. Original has red light confirmed, lane invasion conflicted, so compound is correct.\n\nWait modifications for cand 002: weather delta: rain -3, fog +2, wetness -4, puddle -2, all within range. Puddle mutation: index 0, position offset x -1.5, y +1.5, level delta -0.08, size scale 0.9, that's within [0.8,1.2], level delta within -0.2 0.2, good. Mission mutation: keep_original false? Wait no, spawn offset x +1.0, y 0, destination offset 0 0, keep_original false? Wait or keep_original? Wait, let's do mission mutation: keep_original: false, spawn offset x: 2.0, y: 0.0, destination offset x: 0, y: 1.0, all within [-5,5], that's okay. Pre execution rules same as first, maybe add \"Check spawn shift does not change overall route direction\", post execution same, uncertainty same as phase1.\n\nWait let's structure it properly. Let's check all constraints:\n\n1. Exactly 2 candidate specs, yes.\n2. Actor position offsets: since no actors, that's fine. If there were actors, we keep within [-8,8], but 0 actors so actor_mutations is empty.\n3. Speed delta: no actors, so okay.\n4. Mission offsets: within [-5,5], yes.\n5. Weather deltas: all within [-20,20], yes.\n6. Puddle level delta within [-0.2, 0.2], size scale [0.8,1.2], yes.\n7. Preserve root cause: 0 actors, at least one puddle, Town01, original route direction, red light as primary failure, yes.\n8. Uncertainty preserved, yes.\n\nLet me write it out properly:\n\ncase_id is \"case_004\". candidate_specs array has two elements.\n\nFirst candidate:\ncandidate_id: \"cand_001\"\nhigh_level_variant: \"Slight shift of existing puddle toward the intersection stop line, small increase in rain, wetness and puddle intensity, 0 dynamic actors preserved\"\nmutation_intent: \"Preserves all Phase 1 constraints: 0 dynamic actors, at least one puddle on Town01 route, original general route direction, retains red light violation as confirmed primary failure and preserves the original label conflict uncertainty\"\nexpected_oracle: \"compound\"\nmodifications:\nweather_delta: {\"rain\": 5, \"fog\": 0, \"wetness\": 5, \"puddle\": 3}\nactor_mutations: [] (since 0 actors, right)\npuddle_mutations: [{\"puddle_index\": 0, \"location_offset\": {\"x\": 2.0, \"y\": -1.0}, \"level_delta\": 0.1, \"size_scale\": 1.0}]\nmission_mutation: {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\npre_execution_validation_rules: [\"Confirm 0 dynamic actors are present in the scenario\", \"Confirm at least one puddle exists on the original route in Town01\", \"Confirm original start-to-goal route direction is preserved\"]\npost_execution_validation_rules: [\"Verify stop-line crossing to confirm red light violation\", \"Verify lane boundary crossing to resolve the lane invasion label conflict\", \"Check for any unexpected module faults not noted in original root cause\"]\nuncertainty: [\"Label conflict between dataset and error.json remains unresolved pre-execution\", \"Stop-line crossing for red light violation is unconfirmed pre-execution\", \"Lane boundary crossing for claimed lane invasion is unconfirmed pre-execution\", \"No pre-execution evidence localizes fault to a specific Autoware module\"]\n\nThat's first. Now second candidate:\n\ncandidate_id: \"cand_002\"\nhigh_level_variant: \"Small shift of ego spawn and destination positions along original route direction, slight reduction in puddle level and rain intensity, 0 dynamic actors preserved\"\nmutation_intent: \"Retains all Phase 1 root cause constraints: 0 dynamic actors, at least one puddle on route, original route direction, confirmed red light violation as primary failure, preserves all original uncertainty for post-generation validation\"\nexpected_oracle: \"compound\"\nmodifications:\nweather_delta: {\"rain\": -4, \"fog\": 3, \"wetness\": -5, \"puddle\": -2}\nactor_mutations: []\npuddle_mutations: [{\"puddle_index\": 0, \"location_offset\": {\"x\": -1.5, \"y\": 1.5}, \"level_delta\": -0.07, \"size_scale\": 0.9}]\nmission_mutation: {\"keep_original\": false, \"spawn_offset\": {\"x\": 2.5, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 1.5}}\npre_execution_validation_rules: [\"Confirm 0 dynamic actors are present in the scenario\", \"Confirm at least one puddle is still located on the route\", \"Confirm spawn/destination shift does not alter the original general route direction\"]\npost_execution_validation_rules: [\"Check stop-line crossing to confirm red light violation\", \"Check lane boundary crossing to resolve the original label conflict between dataset and error.json\", \"Check for any unexpected actuation mismatches\"]\nuncertainty: [\"Original label conflict between dataset and error.json is preserved pre-execution\", \"Route-light relation and stop-line crossing are unconfirmed pre-execution\", \"Lane boundary crossing for lane invasion is unconfirmed pre-execution\", \"Fault can not be attributed to a specific Autoware module pre-execution\"]\n\nWait that all checks out. Let's make sure all the numbers are within the allowed ranges:\n\nActor positions: no actors, so okay. Puddle position offsets: 2, -1, that's within [-8,8], yes. -1.5, 1.5 also fine. Level delta 0.1, -0.07, within [-0.2, 0.2], yes. Size scale 1.0 and 0.9, within [0.8, 1.2], yes. Mission offsets 2.5, 0, 0, 1.5, all within [-5,5], yes. Weather deltas 5, 3, -4, etc, all within [-20,20], yes. Expected oracle is compound which is allowed, matches the label conflict of red light and possible lane invasion. Preserves 0 actors, which is a constraint, yes, both have empty actor_mutations. Preserves one puddle, yes. Preserves original route direction, yes. All good.\n\nNow wrap it into the correct JSON structure, no markdown, just the object. Let's write it properly."
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "doubao-seed-2-0-lite-260215",
+    "object": "chat.completion",
+    "service_tier": "default",
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 3162,
+      "prompt_tokens": 1330,
+      "total_tokens": 4492,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 2152,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": null,
+        "cached_tokens": 0
+      }
+    }
+  },
+  "error_message": "",
+  "elapsed_sec": 44.579,
+  "timestamp": "<REDACTED_TIMESTAMP>"
+}

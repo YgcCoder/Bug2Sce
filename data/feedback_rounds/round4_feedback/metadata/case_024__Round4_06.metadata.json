@@ -1,0 +1,123 @@
+{
+  "case_id": "case_024",
+  "round": 4,
+  "model_name": "claude-sonnet-4-5",
+  "candidate_index": 6,
+  "candidate_spec": {
+    "candidate_id": "cand_006",
+    "high_level_variant": "Both actors speed slightly reduced, actor 1 moved closer to ego spawn",
+    "mutation_intent": "Lower both actor speeds to extend interaction duration while keeping actor 1 near ego spawn for early conflict",
+    "expected_oracle": "compound",
+    "modifications": {
+      "weather_delta": {
+        "rain": 0,
+        "fog": 0,
+        "wetness": 0,
+        "puddle": 0
+      },
+      "actor_mutations": [
+        {
+          "actor_index": 0,
+          "position_offset": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "speed_delta": -0.5
+        },
+        {
+          "actor_index": 1,
+          "position_offset": {
+            "x": -1.8,
+            "y": 1.8
+          },
+          "speed_delta": -0.8
+        }
+      ],
+      "puddle_mutations": [
+        {
+          "puddle_index": 0,
+          "location_offset": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "level_delta": 0.0,
+          "size_scale": 1.0
+        }
+      ],
+      "mission_mutation": {
+        "keep_original": true,
+        "spawn_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "destination_offset": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Both actors speed reduced from seed",
+      "Actor 1 within 15m of ego spawn"
+    ],
+    "post_execution_validation_rules": [
+      "Compound oracle collision+red-light confirmed",
+      "Traffic light interaction verified"
+    ],
+    "uncertainty": [
+      "Whether reduced speeds maintain collision timing at intersection"
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": 0.0,
+      "fog": 0.0,
+      "wetness": 0.0,
+      "puddle": 0.0
+    },
+    "actor_mutations": [
+      {
+        "actor_index": 0,
+        "position_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "speed_delta": -0.5
+      },
+      {
+        "actor_index": 1,
+        "position_offset": {
+          "x": -1.8,
+          "y": 1.8
+        },
+        "speed_delta": -0.8
+      }
+    ],
+    "puddle_mutations": [
+      {
+        "puddle_index": 0,
+        "location_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "level_delta": 0.0,
+        "size_scale": 1.0
+      }
+    ],
+    "mission_mutation": {
+      "keep_original": true
+    },
+    "safety_repairs": []
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "authoritative_original_phase1_output": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_024__claude-sonnet-4-5.json",
+  "round1_feedback_count": 6,
+  "round2_feedback_count": 2,
+  "round3_feedback_count": 6,
+  "feedback_memory_policy": "all_same_seed_outcomes_retained",
+  "round4_api_output": "<WORKSPACE_ROOT>/processed/experiments/round4_feedback/api_outputs/case_024__claude-sonnet-4-5.json"
+}

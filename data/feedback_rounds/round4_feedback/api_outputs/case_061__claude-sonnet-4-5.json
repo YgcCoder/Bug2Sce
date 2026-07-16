@@ -1,0 +1,425 @@
+{
+  "case_id": "case_061",
+  "model_name": "claude-sonnet-4-5",
+  "workflow": "round4_cumulative_feedback_guided_b2s",
+  "authoritative_target": "original_seed_and_original_phase1_root_cause",
+  "status": "completed",
+  "schema_valid": true,
+  "schema_errors": [],
+  "num_round1_feedback_records": 6,
+  "num_round2_feedback_records": 2,
+  "num_round3_feedback_records": 6,
+  "num_candidates_requested": 6,
+  "num_candidates_written": 6,
+  "num_pre_valid": 6,
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/round4_feedback/prompts/case_061.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/round4_feedback/api_outputs/case_061__claude-sonnet-4-5.json",
+  "prompt_estimated_tokens": 7112,
+  "usage": {
+    "prompt_tokens": 8142,
+    "completion_tokens": 2199,
+    "total_tokens": 10341
+  },
+  "candidate_records": [
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/round4_feedback/candidates/case_061__Round4_01.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/round4_feedback/metadata/case_061__Round4_01.metadata.json",
+      "pre_valid": true,
+      "pre_validation_errors": [],
+      "pre_validation_warnings": []
+    },
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/round4_feedback/candidates/case_061__Round4_02.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/round4_feedback/metadata/case_061__Round4_02.metadata.json",
+      "pre_valid": true,
+      "pre_validation_errors": [],
+      "pre_validation_warnings": []
+    },
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/round4_feedback/candidates/case_061__Round4_03.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/round4_feedback/metadata/case_061__Round4_03.metadata.json",
+      "pre_valid": true,
+      "pre_validation_errors": [],
+      "pre_validation_warnings": []
+    },
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/round4_feedback/candidates/case_061__Round4_04.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/round4_feedback/metadata/case_061__Round4_04.metadata.json",
+      "pre_valid": true,
+      "pre_validation_errors": [],
+      "pre_validation_warnings": []
+    },
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/round4_feedback/candidates/case_061__Round4_05.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/round4_feedback/metadata/case_061__Round4_05.metadata.json",
+      "pre_valid": true,
+      "pre_validation_errors": [],
+      "pre_validation_warnings": []
+    },
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/round4_feedback/candidates/case_061__Round4_06.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/round4_feedback/metadata/case_061__Round4_06.metadata.json",
+      "pre_valid": true,
+      "pre_validation_errors": [],
+      "pre_validation_warnings": []
+    }
+  ],
+  "raw_response": "```json\n{\n  \"case_id\": \"case_061\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Walker 0 positioned directly ahead on ego lane with slower crossing speed\",\n      \"mutation_intent\": \"Place walker in ego's forward path to force collision timing at intersection while preserving red-light and vehicle_cmd/status mismatch\",\n      \"expected_oracle\": \"collision\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 3.0, \"y\": 2.0}, \"speed_delta\": -1.2},\n          {\"actor_index\": 1, \"position_offset\": {\"x\": 0.0, \"y\": 0.0}, \"speed_delta\": 0.0}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Walker 0 spawn within 10m of ego route centerline\"],\n      \"post_execution_validation_rules\": [\"Verify collision oracle, traffic light presence, ego speed 3-5 m/s before impact\"],\n      \"uncertainty\": [\"Walker crossing timing may not align with ego arrival at intersection\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Walker 1 moved into ego forward path with increased approach speed\",\n      \"mutation_intent\": \"Use second walker as primary collision actor with faster speed to intersect ego trajectory during red-light scenario\",\n      \"expected_oracle\": \"collision\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 0.0, \"y\": 0.0}, \"speed_delta\": 0.0},\n          {\"actor_index\": 1, \"position_offset\": {\"x\": 2.5, \"y\": -3.5}, \"speed_delta\": 1.8}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Walker 1 initial position within 8m lateral of ego route\"],\n      \"post_execution_validation_rules\": [\"Check collision event, vehicle_cmd zero with vehicle_status throttle nonzero, red-light violation\"],\n      \"uncertainty\": [\"Higher walker speed may cause early or late intersection with ego path\"]\n    },\n    {\n      \"candidate_id\": \"cand_003\",\n      \"high_level_variant\": \"Both walkers converge on ego path from opposite sides with synchronized timing\",\n      \"mutation_intent\": \"Create dual-threat crossing scenario to maximize collision probability while maintaining traffic light and actor-route interaction\",\n      \"expected_oracle\": \"collision\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 1.8, \"y\": 3.0}, \"speed_delta\": 0.4},\n          {\"actor_index\": 1, \"position_offset\": {\"x\": 2.0, \"y\": -3.2}, \"speed_delta\": 0.6}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Both walkers positioned to cross ego route within intersection zone\"],\n      \"post_execution_validation_rules\": [\"Verify collision with either walker, moderate ego speed, traffic light state present\"],\n      \"uncertainty\": [\"Synchronization of dual walker crossing with ego arrival uncertain\"]\n    },\n    {\n      \"candidate_id\": \"cand_004\",\n      \"high_level_variant\": \"Walker 0 positioned ahead with heavy rain and fog for perception stress\",\n      \"mutation_intent\": \"Combine forward walker placement with degraded visibility to test if perception failure contributes to collision under original pattern\",\n      \"expected_oracle\": \"collision\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 20, \"fog\": 18, \"wetness\": 20, \"puddle\": 10},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 2.2, \"y\": 1.5}, \"speed_delta\": -0.6},\n          {\"actor_index\": 1, \"position_offset\": {\"x\": 0.0, \"y\": 0.0}, \"speed_delta\": 0.0}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Weather parameters within safe simulation bounds, walker near ego path\"],\n      \"post_execution_validation_rules\": [\"Check collision, vehicle_cmd/status mismatch, detected object count in critical window\"],\n      \"uncertainty\": [\"Heavy weather may alter ego behavior beyond original pattern scope\"]\n    },\n    {\n      \"candidate_id\": \"cand_005\",\n      \"high_level_variant\": \"Ego spawn shifted backward with walker 0 repositioned for earlier encounter\",\n      \"mutation_intent\": \"Delay ego start to change intersection arrival timing and increase walker-ego interaction window while preserving route\",\n      \"expected_oracle\": \"collision\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 1.5, \"y\": 2.8}, \"speed_delta\": 0.2},\n          {\"actor_index\": 1, \"position_offset\": {\"x\": 0.0, \"y\": 0.0}, \"speed_delta\": 0.0}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": false, \"spawn_offset\": {\"x\": -3.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Ego spawn offset preserves route validity and traffic light proximity\"],\n      \"post_execution_validation_rules\": [\"Verify collision oracle, red-light violation, actor near route before collision\"],\n      \"uncertainty\": [\"Spawn shift may alter traffic light phase timing relative to ego arrival\"]\n    },\n    {\n      \"candidate_id\": \"cand_006\",\n      \"high_level_variant\": \"Walker 0 very slow crossing directly in front of ego spawn point\",\n      \"mutation_intent\": \"Position slow-moving walker in immediate ego forward path to ensure prolonged occupancy and collision during red-light run\",\n      \"expected_oracle\": \"collision\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 2, \"fog\": 1, \"wetness\": 3, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 4.0, \"y\": 0.5}, \"speed_delta\": -1.8},\n          {\"actor_index\": 1, \"position_offset\": {\"x\": 0.0, \"y\": 0.0}, \"speed_delta\": 0.0}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Walker 0 speed remains positive after delta, positioned ahead of ego\"],\n      \"post_execution_validation_rules\": [\"Check collision, vehicle_cmd all zero, vehicle_status throttle nonzero, traffic light present\"],\n      \"uncertainty\": [\"Very slow walker may clear ego path before collision or stop in lane\"]\n    }\n  ]\n}\n```",
+  "parsed_response": {
+    "case_id": "case_061",
+    "candidate_specs": [
+      {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Walker 0 positioned directly ahead on ego lane with slower crossing speed",
+        "mutation_intent": "Place walker in ego's forward path to force collision timing at intersection while preserving red-light and vehicle_cmd/status mismatch",
+        "expected_oracle": "collision",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 3.0,
+                "y": 2.0
+              },
+              "speed_delta": -1.2
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "speed_delta": 0.0
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Walker 0 spawn within 10m of ego route centerline"
+        ],
+        "post_execution_validation_rules": [
+          "Verify collision oracle, traffic light presence, ego speed 3-5 m/s before impact"
+        ],
+        "uncertainty": [
+          "Walker crossing timing may not align with ego arrival at intersection"
+        ]
+      },
+      {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Walker 1 moved into ego forward path with increased approach speed",
+        "mutation_intent": "Use second walker as primary collision actor with faster speed to intersect ego trajectory during red-light scenario",
+        "expected_oracle": "collision",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "speed_delta": 0.0
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": 2.5,
+                "y": -3.5
+              },
+              "speed_delta": 1.8
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Walker 1 initial position within 8m lateral of ego route"
+        ],
+        "post_execution_validation_rules": [
+          "Check collision event, vehicle_cmd zero with vehicle_status throttle nonzero, red-light violation"
+        ],
+        "uncertainty": [
+          "Higher walker speed may cause early or late intersection with ego path"
+        ]
+      },
+      {
+        "candidate_id": "cand_003",
+        "high_level_variant": "Both walkers converge on ego path from opposite sides with synchronized timing",
+        "mutation_intent": "Create dual-threat crossing scenario to maximize collision probability while maintaining traffic light and actor-route interaction",
+        "expected_oracle": "collision",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 1.8,
+                "y": 3.0
+              },
+              "speed_delta": 0.4
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": 2.0,
+                "y": -3.2
+              },
+              "speed_delta": 0.6
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Both walkers positioned to cross ego route within intersection zone"
+        ],
+        "post_execution_validation_rules": [
+          "Verify collision with either walker, moderate ego speed, traffic light state present"
+        ],
+        "uncertainty": [
+          "Synchronization of dual walker crossing with ego arrival uncertain"
+        ]
+      },
+      {
+        "candidate_id": "cand_004",
+        "high_level_variant": "Walker 0 positioned ahead with heavy rain and fog for perception stress",
+        "mutation_intent": "Combine forward walker placement with degraded visibility to test if perception failure contributes to collision under original pattern",
+        "expected_oracle": "collision",
+        "modifications": {
+          "weather_delta": {
+            "rain": 20,
+            "fog": 18,
+            "wetness": 20,
+            "puddle": 10
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 2.2,
+                "y": 1.5
+              },
+              "speed_delta": -0.6
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "speed_delta": 0.0
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Weather parameters within safe simulation bounds, walker near ego path"
+        ],
+        "post_execution_validation_rules": [
+          "Check collision, vehicle_cmd/status mismatch, detected object count in critical window"
+        ],
+        "uncertainty": [
+          "Heavy weather may alter ego behavior beyond original pattern scope"
+        ]
+      },
+      {
+        "candidate_id": "cand_005",
+        "high_level_variant": "Ego spawn shifted backward with walker 0 repositioned for earlier encounter",
+        "mutation_intent": "Delay ego start to change intersection arrival timing and increase walker-ego interaction window while preserving route",
+        "expected_oracle": "collision",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 1.5,
+                "y": 2.8
+              },
+              "speed_delta": 0.2
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "speed_delta": 0.0
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": false,
+            "spawn_offset": {
+              "x": -3.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Ego spawn offset preserves route validity and traffic light proximity"
+        ],
+        "post_execution_validation_rules": [
+          "Verify collision oracle, red-light violation, actor near route before collision"
+        ],
+        "uncertainty": [
+          "Spawn shift may alter traffic light phase timing relative to ego arrival"
+        ]
+      },
+      {
+        "candidate_id": "cand_006",
+        "high_level_variant": "Walker 0 very slow crossing directly in front of ego spawn point",
+        "mutation_intent": "Position slow-moving walker in immediate ego forward path to ensure prolonged occupancy and collision during red-light run",
+        "expected_oracle": "collision",
+        "modifications": {
+          "weather_delta": {
+            "rain": 2,
+            "fog": 1,
+            "wetness": 3,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 4.0,
+                "y": 0.5
+              },
+              "speed_delta": -1.8
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "speed_delta": 0.0
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Walker 0 speed remains positive after delta, positioned ahead of ego"
+        ],
+        "post_execution_validation_rules": [
+          "Check collision, vehicle_cmd all zero, vehicle_status throttle nonzero, traffic light present"
+        ],
+        "uncertainty": [
+          "Very slow walker may clear ego path before collision or stop in lane"
+        ]
+      }
+    ]
+  },
+  "error_message": "",
+  "timestamp": "<REDACTED_TIMESTAMP>",
+  "raw_api_payload": {
+    "id": "<REDACTED_RESPONSE_ID>",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "```json\n{\n  \"case_id\": \"case_061\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Walker 0 positioned directly ahead on ego lane with slower crossing speed\",\n      \"mutation_intent\": \"Place walker in ego's forward path to force collision timing at intersection while preserving red-light and vehicle_cmd/status mismatch\",\n      \"expected_oracle\": \"collision\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 3.0, \"y\": 2.0}, \"speed_delta\": -1.2},\n          {\"actor_index\": 1, \"position_offset\": {\"x\": 0.0, \"y\": 0.0}, \"speed_delta\": 0.0}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Walker 0 spawn within 10m of ego route centerline\"],\n      \"post_execution_validation_rules\": [\"Verify collision oracle, traffic light presence, ego speed 3-5 m/s before impact\"],\n      \"uncertainty\": [\"Walker crossing timing may not align with ego arrival at intersection\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Walker 1 moved into ego forward path with increased approach speed\",\n      \"mutation_intent\": \"Use second walker as primary collision actor with faster speed to intersect ego trajectory during red-light scenario\",\n      \"expected_oracle\": \"collision\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 0.0, \"y\": 0.0}, \"speed_delta\": 0.0},\n          {\"actor_index\": 1, \"position_offset\": {\"x\": 2.5, \"y\": -3.5}, \"speed_delta\": 1.8}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Walker 1 initial position within 8m lateral of ego route\"],\n      \"post_execution_validation_rules\": [\"Check collision event, vehicle_cmd zero with vehicle_status throttle nonzero, red-light violation\"],\n      \"uncertainty\": [\"Higher walker speed may cause early or late intersection with ego path\"]\n    },\n    {\n      \"candidate_id\": \"cand_003\",\n      \"high_level_variant\": \"Both walkers converge on ego path from opposite sides with synchronized timing\",\n      \"mutation_intent\": \"Create dual-threat crossing scenario to maximize collision probability while maintaining traffic light and actor-route interaction\",\n      \"expected_oracle\": \"collision\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 1.8, \"y\": 3.0}, \"speed_delta\": 0.4},\n          {\"actor_index\": 1, \"position_offset\": {\"x\": 2.0, \"y\": -3.2}, \"speed_delta\": 0.6}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Both walkers positioned to cross ego route within intersection zone\"],\n      \"post_execution_validation_rules\": [\"Verify collision with either walker, moderate ego speed, traffic light state present\"],\n      \"uncertainty\": [\"Synchronization of dual walker crossing with ego arrival uncertain\"]\n    },\n    {\n      \"candidate_id\": \"cand_004\",\n      \"high_level_variant\": \"Walker 0 positioned ahead with heavy rain and fog for perception stress\",\n      \"mutation_intent\": \"Combine forward walker placement with degraded visibility to test if perception failure contributes to collision under original pattern\",\n      \"expected_oracle\": \"collision\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 20, \"fog\": 18, \"wetness\": 20, \"puddle\": 10},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 2.2, \"y\": 1.5}, \"speed_delta\": -0.6},\n          {\"actor_index\": 1, \"position_offset\": {\"x\": 0.0, \"y\": 0.0}, \"speed_delta\": 0.0}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Weather parameters within safe simulation bounds, walker near ego path\"],\n      \"post_execution_validation_rules\": [\"Check collision, vehicle_cmd/status mismatch, detected object count in critical window\"],\n      \"uncertainty\": [\"Heavy weather may alter ego behavior beyond original pattern scope\"]\n    },\n    {\n      \"candidate_id\": \"cand_005\",\n      \"high_level_variant\": \"Ego spawn shifted backward with walker 0 repositioned for earlier encounter\",\n      \"mutation_intent\": \"Delay ego start to change intersection arrival timing and increase walker-ego interaction window while preserving route\",\n      \"expected_oracle\": \"collision\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 1.5, \"y\": 2.8}, \"speed_delta\": 0.2},\n          {\"actor_index\": 1, \"position_offset\": {\"x\": 0.0, \"y\": 0.0}, \"speed_delta\": 0.0}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": false, \"spawn_offset\": {\"x\": -3.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Ego spawn offset preserves route validity and traffic light proximity\"],\n      \"post_execution_validation_rules\": [\"Verify collision oracle, red-light violation, actor near route before collision\"],\n      \"uncertainty\": [\"Spawn shift may alter traffic light phase timing relative to ego arrival\"]\n    },\n    {\n      \"candidate_id\": \"cand_006\",\n      \"high_level_variant\": \"Walker 0 very slow crossing directly in front of ego spawn point\",\n      \"mutation_intent\": \"Position slow-moving walker in immediate ego forward path to ensure prolonged occupancy and collision during red-light run\",\n      \"expected_oracle\": \"collision\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 2, \"fog\": 1, \"wetness\": 3, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 4.0, \"y\": 0.5}, \"speed_delta\": -1.8},\n          {\"actor_index\": 1, \"position_offset\": {\"x\": 0.0, \"y\": 0.0}, \"speed_delta\": 0.0}\n        ],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Walker 0 speed remains positive after delta, positioned ahead of ego\"],\n      \"post_execution_validation_rules\": [\"Check collision, vehicle_cmd all zero, vehicle_status throttle nonzero, traffic light present\"],\n      \"uncertainty\": [\"Very slow walker may clear ego path before collision or stop in lane\"]\n    }\n  ]\n}\n```",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "claude-sonnet-4-5",
+    "object": "chat.completion",
+    "service_tier": null,
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 2199,
+      "prompt_tokens": 8142,
+      "total_tokens": 10341,
+      "completion_tokens_details": null,
+      "prompt_tokens_details": null
+    }
+  },
+  "elapsed_sec": 37.474
+}

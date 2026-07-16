@@ -1,0 +1,435 @@
+{
+  "case_id": "case_142",
+  "model_name": "ark-doubao-seed-2.0-lite-260215",
+  "workflow": "phase2_grounded_generation",
+  "status": "completed",
+  "schema_valid": true,
+  "schema_errors": [],
+  "phase1_ready": "uncertain",
+  "num_candidates_requested": 2,
+  "num_candidates_written": 2,
+  "num_pre_valid": 2,
+  "candidate_records": [
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-doubao-seed-2.0-lite-260215/json/case_142/case_142__cand_001.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-doubao-seed-2.0-lite-260215/metadata/case_142/case_142__cand_001.metadata.json",
+      "case_id": "case_142",
+      "model_name": "ark-doubao-seed-2.0-lite-260215",
+      "candidate_index": 1,
+      "candidate_spec": {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Increased rain, wetness and puddle level near the intersection, shift crossing vehicle slightly closer to ego's planned path",
+        "mutation_intent": "Preserves all core root cause constraints: zero actuation commands from Autoware pre-collision, non-zero throttle reported by vehicle status, 3 actors on Town01, confirmed collision and red light violation symptoms. Varies road conditions to test root cause robustness",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": 10,
+            "fog": 0,
+            "wetness": 10,
+            "puddle": 5
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": -1.2,
+                "y": 0.8
+              },
+              "speed_delta": 0.5
+            }
+          ],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": 0.1,
+              "size_scale": 1.1
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Preserve zero actuation commands in pre-collision critical window",
+          "Ensure vehicle status reports non-zero throttle in critical window",
+          "Maintain exactly 3 actors on Town01 map"
+        ],
+        "post_execution_validation_rules": [
+          "Confirm collision event occurred",
+          "Confirm red light violation occurred",
+          "Verify actuation command/vehicle status mismatch is present"
+        ],
+        "uncertainty": [
+          "Unresolved lane invasion label conflict is preserved",
+          "No specific Autoware module failure is confirmed as root cause per original pattern"
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 10.0,
+          "fog": 0.0,
+          "wetness": 10.0,
+          "puddle": 5.0
+        },
+        "actor_mutations": [
+          {
+            "actor_index": 1,
+            "position_offset": {
+              "x": -1.2,
+              "y": 0.8
+            },
+            "speed_delta": 0.5
+          }
+        ],
+        "puddle_mutations": [
+          {
+            "puddle_index": 0,
+            "location_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "level_delta": 0.1,
+            "size_scale": 1.1
+          }
+        ],
+        "mission_mutation": {
+          "keep_original": true
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_142__ark-doubao-seed-2.0-lite-260215.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_142__ark-doubao-seed-2.0-lite-260215.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    },
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-doubao-seed-2.0-lite-260215/json/case_142/case_142__cand_002.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-doubao-seed-2.0-lite-260215/metadata/case_142/case_142__cand_002.metadata.json",
+      "case_id": "case_142",
+      "model_name": "ark-doubao-seed-2.0-lite-260215",
+      "candidate_index": 2,
+      "candidate_spec": {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Slightly shift ego spawn and destination, reduce fog density, adjust actor positions and speeds slightly",
+        "mutation_intent": "Preserves all required root cause pattern properties: zero pre-collision actuation commands, non-zero throttle in vehicle status, 3 actors, confirmed collision and red light violation. Varies visibility and positioning to test root cause reproducibility",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": -15,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 0.5,
+                "y": -1.0
+              },
+              "speed_delta": -0.8
+            },
+            {
+              "actor_index": 2,
+              "position_offset": {
+                "x": -0.3,
+                "y": 0.2
+              },
+              "speed_delta": 0.0
+            }
+          ],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": -0.05,
+              "size_scale": 0.9
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": false,
+            "spawn_offset": {
+              "x": 1.0,
+              "y": 0.5
+            },
+            "destination_offset": {
+              "x": 1.0,
+              "y": 0.5
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Must preserve zero actuation commands in pre-collision critical window",
+          "Must confirm non-zero throttle reported in vehicle status",
+          "Must maintain exactly 3 actors in the scenario"
+        ],
+        "post_execution_validation_rules": [
+          "Validate reproduction of collision and red light violation",
+          "Check that actuation command/vehicle status mismatch is preserved"
+        ],
+        "uncertainty": [
+          "Lane invasion label conflict remains unresolved per original",
+          "Root cause not localized to specific module, consistent with original uncertainty"
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 0.0,
+          "fog": -15.0,
+          "wetness": 0.0,
+          "puddle": 0.0
+        },
+        "actor_mutations": [
+          {
+            "actor_index": 0,
+            "position_offset": {
+              "x": 0.5,
+              "y": -1.0
+            },
+            "speed_delta": -0.8
+          },
+          {
+            "actor_index": 2,
+            "position_offset": {
+              "x": -0.3,
+              "y": 0.2
+            },
+            "speed_delta": 0.0
+          }
+        ],
+        "puddle_mutations": [
+          {
+            "puddle_index": 0,
+            "location_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "level_delta": -0.05,
+            "size_scale": 0.9
+          }
+        ],
+        "mission_mutation": {
+          "spawn_offset": {
+            "x": 1.0,
+            "y": 0.5
+          },
+          "destination_offset": {
+            "x": 1.0,
+            "y": 0.5
+          }
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_142__ark-doubao-seed-2.0-lite-260215.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_142__ark-doubao-seed-2.0-lite-260215.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    }
+  ],
+  "seed_artifact_zip": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-doubao-seed-2.0-lite-260215/seed-artifact/seed-artifact-case_142.zip",
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_prompts/case_142__ark-doubao-seed-2.0-lite-260215.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_142__ark-doubao-seed-2.0-lite-260215.json",
+  "prompt_estimated_tokens": 1201,
+  "usage": {
+    "prompt_tokens": 1614,
+    "completion_tokens": 2823,
+    "total_tokens": 4437
+  },
+  "raw_response": "{\n  \"case_id\": \"case_142\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Increased rain, wetness and puddle level near the intersection, shift crossing vehicle slightly closer to ego's planned path\",\n      \"mutation_intent\": \"Preserves all core root cause constraints: zero actuation commands from Autoware pre-collision, non-zero throttle reported by vehicle status, 3 actors on Town01, confirmed collision and red light violation symptoms. Varies road conditions to test root cause robustness\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 10, \"fog\": 0, \"wetness\": 10, \"puddle\": 5},\n        \"actor_mutations\": [\n          {\"actor_index\": 1, \"position_offset\": {\"x\": -1.2, \"y\": 0.8}, \"speed_delta\": 0.5}\n        ],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": 0.1, \"size_scale\": 1.1}\n        ],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Preserve zero actuation commands in pre-collision critical window\", \"Ensure vehicle status reports non-zero throttle in critical window\", \"Maintain exactly 3 actors on Town01 map\"],\n      \"post_execution_validation_rules\": [\"Confirm collision event occurred\", \"Confirm red light violation occurred\", \"Verify actuation command/vehicle status mismatch is present\"],\n      \"uncertainty\": [\"Unresolved lane invasion label conflict is preserved\", \"No specific Autoware module failure is confirmed as root cause per original pattern\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Slightly shift ego spawn and destination, reduce fog density, adjust actor positions and speeds slightly\",\n      \"mutation_intent\": \"Preserves all required root cause pattern properties: zero pre-collision actuation commands, non-zero throttle in vehicle status, 3 actors, confirmed collision and red light violation. Varies visibility and positioning to test root cause reproducibility\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": -15, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 0.5, \"y\": -1.0}, \"speed_delta\": -0.8},\n          {\"actor_index\": 2, \"position_offset\": {\"x\": -0.3, \"y\": 0.2}, \"speed_delta\": 0.0}\n        ],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": -0.05, \"size_scale\": 0.9}\n        ],\n        \"mission_mutation\": {\"keep_original\": false, \"spawn_offset\": {\"x\": 1.0, \"y\": 0.5}, \"destination_offset\": {\"x\": 1.0, \"y\": 0.5}}\n      },\n      \"pre_execution_validation_rules\": [\"Must preserve zero actuation commands in pre-collision critical window\", \"Must confirm non-zero throttle reported in vehicle status\", \"Must maintain exactly 3 actors in the scenario\"],\n      \"post_execution_validation_rules\": [\"Validate reproduction of collision and red light violation\", \"Check that actuation command/vehicle status mismatch is preserved\"],\n      \"uncertainty\": [\"Lane invasion label conflict remains unresolved per original\", \"Root cause not localized to specific module, consistent with original uncertainty\"]\n    }\n  ]\n}",
+  "parsed_response": {
+    "case_id": "case_142",
+    "candidate_specs": [
+      {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Increased rain, wetness and puddle level near the intersection, shift crossing vehicle slightly closer to ego's planned path",
+        "mutation_intent": "Preserves all core root cause constraints: zero actuation commands from Autoware pre-collision, non-zero throttle reported by vehicle status, 3 actors on Town01, confirmed collision and red light violation symptoms. Varies road conditions to test root cause robustness",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": 10,
+            "fog": 0,
+            "wetness": 10,
+            "puddle": 5
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": -1.2,
+                "y": 0.8
+              },
+              "speed_delta": 0.5
+            }
+          ],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": 0.1,
+              "size_scale": 1.1
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Preserve zero actuation commands in pre-collision critical window",
+          "Ensure vehicle status reports non-zero throttle in critical window",
+          "Maintain exactly 3 actors on Town01 map"
+        ],
+        "post_execution_validation_rules": [
+          "Confirm collision event occurred",
+          "Confirm red light violation occurred",
+          "Verify actuation command/vehicle status mismatch is present"
+        ],
+        "uncertainty": [
+          "Unresolved lane invasion label conflict is preserved",
+          "No specific Autoware module failure is confirmed as root cause per original pattern"
+        ]
+      },
+      {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Slightly shift ego spawn and destination, reduce fog density, adjust actor positions and speeds slightly",
+        "mutation_intent": "Preserves all required root cause pattern properties: zero pre-collision actuation commands, non-zero throttle in vehicle status, 3 actors, confirmed collision and red light violation. Varies visibility and positioning to test root cause reproducibility",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": -15,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 0.5,
+                "y": -1.0
+              },
+              "speed_delta": -0.8
+            },
+            {
+              "actor_index": 2,
+              "position_offset": {
+                "x": -0.3,
+                "y": 0.2
+              },
+              "speed_delta": 0.0
+            }
+          ],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": -0.05,
+              "size_scale": 0.9
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": false,
+            "spawn_offset": {
+              "x": 1.0,
+              "y": 0.5
+            },
+            "destination_offset": {
+              "x": 1.0,
+              "y": 0.5
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Must preserve zero actuation commands in pre-collision critical window",
+          "Must confirm non-zero throttle reported in vehicle status",
+          "Must maintain exactly 3 actors in the scenario"
+        ],
+        "post_execution_validation_rules": [
+          "Validate reproduction of collision and red light violation",
+          "Check that actuation command/vehicle status mismatch is preserved"
+        ],
+        "uncertainty": [
+          "Lane invasion label conflict remains unresolved per original",
+          "Root cause not localized to specific module, consistent with original uncertainty"
+        ]
+      }
+    ]
+  },
+  "raw_api_payload": {
+    "id": "02178292266701989a6ab5dfd15f12fdf9b1912203a3c65127eb6",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "{\n  \"case_id\": \"case_142\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Increased rain, wetness and puddle level near the intersection, shift crossing vehicle slightly closer to ego's planned path\",\n      \"mutation_intent\": \"Preserves all core root cause constraints: zero actuation commands from Autoware pre-collision, non-zero throttle reported by vehicle status, 3 actors on Town01, confirmed collision and red light violation symptoms. Varies road conditions to test root cause robustness\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 10, \"fog\": 0, \"wetness\": 10, \"puddle\": 5},\n        \"actor_mutations\": [\n          {\"actor_index\": 1, \"position_offset\": {\"x\": -1.2, \"y\": 0.8}, \"speed_delta\": 0.5}\n        ],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": 0.1, \"size_scale\": 1.1}\n        ],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Preserve zero actuation commands in pre-collision critical window\", \"Ensure vehicle status reports non-zero throttle in critical window\", \"Maintain exactly 3 actors on Town01 map\"],\n      \"post_execution_validation_rules\": [\"Confirm collision event occurred\", \"Confirm red light violation occurred\", \"Verify actuation command/vehicle status mismatch is present\"],\n      \"uncertainty\": [\"Unresolved lane invasion label conflict is preserved\", \"No specific Autoware module failure is confirmed as root cause per original pattern\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Slightly shift ego spawn and destination, reduce fog density, adjust actor positions and speeds slightly\",\n      \"mutation_intent\": \"Preserves all required root cause pattern properties: zero pre-collision actuation commands, non-zero throttle in vehicle status, 3 actors, confirmed collision and red light violation. Varies visibility and positioning to test root cause reproducibility\",\n      \"expected_oracle\": \"compound\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": -15, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [\n          {\"actor_index\": 0, \"position_offset\": {\"x\": 0.5, \"y\": -1.0}, \"speed_delta\": -0.8},\n          {\"actor_index\": 2, \"position_offset\": {\"x\": -0.3, \"y\": 0.2}, \"speed_delta\": 0.0}\n        ],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": -0.05, \"size_scale\": 0.9}\n        ],\n        \"mission_mutation\": {\"keep_original\": false, \"spawn_offset\": {\"x\": 1.0, \"y\": 0.5}, \"destination_offset\": {\"x\": 1.0, \"y\": 0.5}}\n      },\n      \"pre_execution_validation_rules\": [\"Must preserve zero actuation commands in pre-collision critical window\", \"Must confirm non-zero throttle reported in vehicle status\", \"Must maintain exactly 3 actors in the scenario\"],\n      \"post_execution_validation_rules\": [\"Validate reproduction of collision and red light violation\", \"Check that actuation command/vehicle status mismatch is preserved\"],\n      \"uncertainty\": [\"Lane invasion label conflict remains unresolved per original\", \"Root cause not localized to specific module, consistent with original uncertainty\"]\n    }\n  ]\n}",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null,
+          "reasoning_content": "\nGot it, let's build this step by step. First, the case_id is case_142, right? We need two candidate specs.\n\nFirst candidate: cand_001. Let's think of the high level variant. Maybe \"Slightly higher rain and wetness, shift the crossing vehicle (actor 1) a bit closer to ego's path to preserve collision chance\". Mutation intent: Keeps all required properties: zero actuation commands, non-zero throttle mismatch, preserves 3 actors, keeps confirmed collision and red light violation. Expected oracle should be compound, right? Because it's collision plus red light violation.\n\nNow modifications: weather delta. Let's do rain +10, fog 0, wetness +10, puddle +5, that's within the 20 limit, okay. Actor mutations: actor 1, position offset x -1.2, y 0.8, speed delta +0.5, that's within [-8,8] and [-3,3]. Actors 0 and 2? Wait, do we need to mention? Wait no, only the mutated ones? Wait, let's see, the original has 3 actors, we keep 3. Puddle mutations: puddle 0 (the one near collision) level delta +0.1, size scale 1.1, location offset 0, that's within the limit. Mission mutation keep_original true, right? Pre execution rules: [\"Must preserve zero actuation commands in pre-collision critical window\", \"Must confirm non-zero throttle reported in vehicle status\", \"Must maintain exactly 3 actors on Town01 map\"], post execution: [\"Must confirm collision occurred\", \"Must confirm red light violation occurred\", \"Check for actuation command/vehicle status mismatch\"], uncertainty: [\"Unresolved lane invasion label conflict preserved\", \"Failure module localization remains uncertain\"].\n\nThat's first candidate. Now second candidate, cand_002. High level variant: \"Slightly shift ego spawn position closer to intersection, reduce actor 0 speed slightly, lower fog density to improve perception visibility while keeping root cause pattern\". Mutation intent: Still preserves all core constraints: zero actuation commands from Autoware pre-collision, non-zero throttle in vehicle status, keeps 3 actors, maintains required collision and red light symptoms, just varies visibility and positioning to test root cause robustness. Expected oracle is still compound, right? Because collision and red light.\n\nModifications: weather delta: fog -15, rain 0, wetness 0, puddle 0, that's within -20 to 20. Actor mutations: actor 0 (wait, actor 0 is the other vehicle? Wait original actors: index 0 is vehicle, index 1 is another, index 2 walker. Let's do actor 0 speed delta -0.8, position offset x 0.5 y -1.0, walker (index 2) position offset x -0.3 y 0.2, that's all within limits. Puddle mutations: puddle 0 level delta -0.05, size scale 0.9, that's okay. Mission mutation: keep_original false? Wait no, spawn offset x 1.0 y 0.5, destination offset 1.0 0.5, that's within [-5,5], right? Yeah. Pre execution rules same core ones: [\"Must maintain zero actuation commands in pre-collision critical window\", \"Must confirm non-zero throttle in vehicle status reports\", \"Must keep exactly 3 actors in the scenario\"], post execution: [\"Validate collision and red light violation reproduction\", \"Verify actuation command/vehicle status mismatch is present\"], uncertainty: [\"Preserves unresolved lane invasion label conflict\", \"No specific module failure is confirmed as root cause, consistent with original pattern\"].\n\nWait let's check all rules: exactly two candidates, all offsets are within limits, root cause preserved, uncertainty preserved, don't invent new oracles, expected oracle is compound because collision plus red light, that's right. Let's structure it correctly according to the schema.\n\nWait let's check the schema again: the top level is case_id, then candidate_specs array of two. Let's make sure all fields are there. Let's write it properly.\n\nWait case_id is case_142, correct. First candidate candidate_id cand_001, high_level_variant: \"Increased rain, wetness and puddle level near intersection, shift crossing vehicle slightly closer to ego's planned path, keep all other scenario elements same\". Mutation_intent: \"Preserves all core root cause constraints: zero actuation commands from Autoware pre-collision, non-zero throttle reported by vehicle status, 3 actors on Town01, confirmed collision and red light violation symptoms. Varies road conditions to test root cause robustness\". Expected_oracle: \"compound\", that's right because it's collision + red light. Modifications: weather_delta: {\"rain\": 10, \"fog\": 0, \"wetness\": 10, \"puddle\": 5}, that's all within -20 20. Actor_mutations: [{\"actor_index\": 1, \"position_offset\": {\"x\": -1.2, \"y\": 0.8}, \"speed_delta\": 0.5}], that's x y within -8 8, speed within -3 3. Puddle_mutations: [{\"puddle_index\": 0, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": 0.1, \"size_scale\": 1.1}], level delta 0.1 is within -0.2 0.2, size 1.1 within 0.8 1.2, good. Mission_mutation: {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}, correct. Pre_execution_validation_rules: [\"Preserve zero actuation commands in pre-collision critical window\", \"Ensure vehicle status reports non-zero throttle in critical window\", \"Maintain exactly 3 actors on Town01 map\"], post_execution_validation_rules: [\"Confirm collision event occurred\", \"Confirm red light violation occurred\", \"Verify actuation command/vehicle status mismatch is present\"], uncertainty: [\"Unresolved lane invasion label conflict is preserved\", \"No specific Autoware module failure is confirmed as root cause per original pattern\"].\n\nThen second candidate cand_002: high_level_variant: \"Slightly shift ego spawn and destination, reduce fog density, adjust vehicle speeds slightly while keeping all core scenario structure\". Mutation_intent: \"Preserves all required root cause pattern properties: zero pre-collision actuation commands, non-zero throttle vehicle status, 3 actors, confirmed collision and red light violation. Varies visibility and positioning to test root cause reproducibility\". Expected_oracle: \"compound\". Modifications: weather_delta: {\"rain\": 0, \"fog\": -15, \"wetness\": 0, \"puddle\": 0}, that's within 20, good. Actor_mutations: [{\"actor_index\": 0, \"position_offset\": {\"x\": 0.5, \"y\": -1.0}, \"speed_delta\": -0.8}, {\"actor_index\": 2, \"position_offset\": {\"x\": -0.3, \"y\": 0.2}, \"speed_delta\": 0.0}], all offsets are good, speed within range. Puddle_mutations: [{\"puddle_index\": 0, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": -0.05, \"size_scale\": 0.9}], that's good, within limits. Mission_mutation: {\"keep_original\": false, \"spawn_offset\": {\"x\": 1.0, \"y\": 0.5}, \"destination_offset\": {\"x\": 1.0, \"y\": 0.5}}, offsets are within 5, good. Pre_execution_validation_rules: [\"Must preserve zero actuation commands in pre-collision critical window\", \"Must confirm non-zero throttle reported in vehicle status\", \"Must maintain exactly 3 actors in the scenario\"], post_execution_validation_rules: [\"Validate reproduction of collision and red light violation\", \"Check that actuation command/vehicle status mismatch is preserved\"], uncertainty: [\"Lane invasion label conflict remains unresolved per original\", \"Root cause not localized to specific module, consistent with original uncertainty\"].\n\nWait that all checks out. Let's put it into valid JSON now, no extra stuff, exactly as required. Let's make sure there's no syntax errors. Yeah. Let's write it."
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "doubao-seed-2-0-lite-260215",
+    "object": "chat.completion",
+    "service_tier": "default",
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 2823,
+      "prompt_tokens": 1614,
+      "total_tokens": 4437,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 1873,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": null,
+        "cached_tokens": 0
+      }
+    }
+  },
+  "error_message": "",
+  "elapsed_sec": 47.793,
+  "timestamp": "<REDACTED_TIMESTAMP>"
+}

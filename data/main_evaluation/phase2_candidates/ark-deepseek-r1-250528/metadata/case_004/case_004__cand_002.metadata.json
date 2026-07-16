@@ -1,0 +1,98 @@
+{
+  "case_id": "case_004",
+  "model_name": "ark-deepseek-r1-250528",
+  "candidate_index": 2,
+  "candidate_spec": {
+    "candidate_id": "cand_002",
+    "high_level_variant": "Small shift of ego spawn and destination positions along original route direction, slight reduction in puddle level and rain intensity, 0 dynamic actors preserved",
+    "mutation_intent": "Retains all Phase 1 root cause constraints: 0 dynamic actors, at least one puddle on route, original route direction, confirmed red light violation as primary failure, preserves all original uncertainty for post-generation validation",
+    "expected_oracle": "compound",
+    "modifications": {
+      "weather_delta": {
+        "rain": -4,
+        "fog": 3,
+        "wetness": -5,
+        "puddle": -2
+      },
+      "actor_mutations": [],
+      "puddle_mutations": [
+        {
+          "puddle_index": 0,
+          "location_offset": {
+            "x": -1.5,
+            "y": 1.5
+          },
+          "level_delta": -0.07,
+          "size_scale": 0.9
+        }
+      ],
+      "mission_mutation": {
+        "keep_original": false,
+        "spawn_offset": {
+          "x": 2.5,
+          "y": 0.0
+        },
+        "destination_offset": {
+          "x": 0.0,
+          "y": 1.5
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Confirm 0 dynamic actors are present in the scenario",
+      "Confirm at least one puddle is still located on the route",
+      "Confirm spawn/destination shift does not alter the original general route direction"
+    ],
+    "post_execution_validation_rules": [
+      "Check stop-line crossing to confirm red light violation",
+      "Check lane boundary crossing to resolve the original label conflict between dataset and error.json",
+      "Check for any unexpected actuation mismatches"
+    ],
+    "uncertainty": [
+      "Original label conflict between dataset and error.json is preserved pre-execution",
+      "Route-light relation and stop-line crossing are unconfirmed pre-execution",
+      "Lane boundary crossing for lane invasion is unconfirmed pre-execution",
+      "Fault can not be attributed to a specific Autoware module pre-execution"
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": -4.0,
+      "fog": 3.0,
+      "wetness": -5.0,
+      "puddle": -2.0
+    },
+    "actor_mutations": [],
+    "puddle_mutations": [
+      {
+        "puddle_index": 0,
+        "location_offset": {
+          "x": -1.5,
+          "y": 1.5
+        },
+        "level_delta": -0.07,
+        "size_scale": 0.9
+      }
+    ],
+    "mission_mutation": {
+      "spawn_offset": {
+        "x": 2.5,
+        "y": 0.0
+      },
+      "destination_offset": {
+        "x": 0.0,
+        "y": 1.5
+      }
+    }
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": [
+      "no actors in candidate scenario"
+    ]
+  },
+  "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_004__ark-deepseek-r1-250528.json",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_004__ark-deepseek-r1-250528.json",
+  "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+}

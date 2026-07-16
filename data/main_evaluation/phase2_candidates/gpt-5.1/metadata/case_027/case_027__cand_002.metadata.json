@@ -1,0 +1,117 @@
+{
+  "case_id": "case_027",
+  "model_name": "gpt-5.1",
+  "candidate_index": 2,
+  "candidate_spec": {
+    "candidate_id": "cand_002",
+    "high_level_variant": "Slightly shift ego mission and the nearby parked vehicle laterally while keeping them close to the original lane, and mildly reduce wetness, to see if the persistent stationary, brake-applied stuck pattern persists with a slightly different geometric context.",
+    "mutation_intent": "Alter spawn/destination and static actor positions modestly to change local geometry without creating explicit obstacles, maintaining a clear planned route and valid sensing. This should still allow reproduction of a long-duration stationary state with zero motion commands and stable final_waypoints, preserving the stuck root-cause pattern while testing its robustness to small geometric variations.",
+    "expected_oracle": "stuck",
+    "modifications": {
+      "weather_delta": {
+        "rain": -2,
+        "fog": 0,
+        "wetness": -5,
+        "puddle": 0
+      },
+      "actor_mutations": [
+        {
+          "actor_index": 0,
+          "position_offset": {
+            "x": -2.0,
+            "y": 1.5
+          },
+          "speed_delta": 0.0
+        }
+      ],
+      "puddle_mutations": [
+        {
+          "puddle_index": 0,
+          "location_offset": {
+            "x": -2.0,
+            "y": 2.0
+          },
+          "level_delta": -0.05,
+          "size_scale": 0.95
+        }
+      ],
+      "mission_mutation": {
+        "keep_original": false,
+        "spawn_offset": {
+          "x": 1.5,
+          "y": -2.0
+        },
+        "destination_offset": {
+          "x": -1.0,
+          "y": 2.0
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Ensure the modified spawn and destination positions remain on valid drivable lanes and do not place the ego inside static geometry.",
+      "Confirm that actor_index 0 remains parked/immobile and does not collide with the ego at spawn under the new offsets.",
+      "Verify that a continuous route can be generated between the offset spawn and destination, yielding stable final_waypoints.",
+      "Check that adjusted weather and puddle parameters are within valid simulator ranges and do not lead to sensor failures at startup."
+    ],
+    "post_execution_validation_rules": [
+      "Confirm that the scenario is labeled stuck by the oracle with an extended stationary duration (on the order of several minutes).",
+      "Validate that during the final stuck window, ego odometry indicates near-zero velocity and negligible net displacement.",
+      "Check that final_waypoints remain available and that their count does not fluctuate drastically during the stuck interval.",
+      "Ensure vehicle_cmd target_speed and accel_cmd remain at or near zero during the stuck window while brakes stay applied.",
+      "Verify that camera and lidar topics remain active and that pose/odometry streams do not exhibit long dropouts.",
+      "Confirm that there is no sustained physical contact or collision event that would better explain the stationary behavior (to keep the oracle pattern as stuck rather than collision)."
+    ],
+    "uncertainty": [
+      "Whether the slight geometric shifts in spawn, destination, and static actor position directly affect the internal decision logic is uncertain.",
+      "The source of any small non-zero ego_movement_distance during the stuck window remains ambiguous (oscillation vs. noise).",
+      "It is unclear if proximity to the parked vehicle plays any causal role in the zero-command stuck behavior or is incidental."
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": -2.0,
+      "fog": 0.0,
+      "wetness": -5.0,
+      "puddle": 0.0
+    },
+    "actor_mutations": [
+      {
+        "actor_index": 0,
+        "position_offset": {
+          "x": -2.0,
+          "y": 1.5
+        },
+        "speed_delta": 0.0
+      }
+    ],
+    "puddle_mutations": [
+      {
+        "puddle_index": 0,
+        "location_offset": {
+          "x": -2.0,
+          "y": 2.0
+        },
+        "level_delta": -0.05,
+        "size_scale": 0.95
+      }
+    ],
+    "mission_mutation": {
+      "spawn_offset": {
+        "x": 1.5,
+        "y": -2.0
+      },
+      "destination_offset": {
+        "x": -1.0,
+        "y": 2.0
+      }
+    }
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_027__gpt-5.1.json",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_027__gpt-5.1.json",
+  "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+}

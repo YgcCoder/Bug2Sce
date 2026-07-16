@@ -1,0 +1,100 @@
+{
+  "case_id": "case_104",
+  "model_name": "gpt-5.1",
+  "candidate_index": 2,
+  "candidate_spec": {
+    "candidate_id": "cand_002",
+    "high_level_variant": "Ego remains stalled near spawn on a slightly different alignment toward the signalized corridor, with modestly reduced fog and a slightly shifted large puddle, still leading to a dataset-level red_light label without a runtime red event.",
+    "mutation_intent": "Introduce a small mission offset and minor environmental changes while preserving the core pattern: ego near start pose with minimal motion, stable waypoints, available traffic-light cycling, and a dataset red_light label that may not be corroborated by runtime oracles.",
+    "expected_oracle": "red_light",
+    "modifications": {
+      "weather_delta": {
+        "rain": 5,
+        "fog": -15,
+        "wetness": 5,
+        "puddle": 0
+      },
+      "actor_mutations": [],
+      "puddle_mutations": [
+        {
+          "puddle_index": 0,
+          "location_offset": {
+            "x": -2.5,
+            "y": 1.0
+          },
+          "level_delta": -0.05,
+          "size_scale": 1.1
+        }
+      ],
+      "mission_mutation": {
+        "keep_original": false,
+        "spawn_offset": {
+          "x": 2.0,
+          "y": -1.5
+        },
+        "destination_offset": {
+          "x": -3.0,
+          "y": 2.0
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Verify that the new spawn pose still places ego on a lane that is routed through at least one traffic light controlled intersection.",
+      "Ensure routing and map matching succeed so that final_waypoints are produced from spawn toward the corridor containing a traffic light.",
+      "Confirm that the traffic light nearest to the routed corridor publishes multiple state changes over the scenario duration."
+    ],
+    "post_execution_validation_rules": [
+      "Check that the dataset or labeling pipeline classifies the outcome under a red_light-related group, even if the vehicle barely moves.",
+      "Confirm that ego’s final position is within 5 meters of its initial pose, indicating very low overall displacement.",
+      "Verify that vehicle_cmd messages exist and show target_speed and longitudinal commands close to zero for almost the entire run (e.g., > 90% of samples).",
+      "Ensure final_waypoints remain present during the main part of the run with no blocked flags and limited variation in count.",
+      "Validate that /carla/traffic_lights reports at least two distinct state values (e.g., green and red or red and yellow) for a light that lies along the planned route.",
+      "Inspect error.json (or equivalent) and confirm absence of an explicit red event entry, to preserve the mismatch between dataset red_light label and runtime oracle."
+    ],
+    "uncertainty": [
+      "Whether the slight change in spawn and destination offsets alters the internal route-light relation logic is unknown; the scenario aims to keep the ego in a low-motion regime regardless.",
+      "The labeling mechanism that marks a red_light violation might depend on internal conditions not exposed here, so reproducing the exact labeling behavior cannot be guaranteed.",
+      "It remains unclear whether the large puddle or modest weather adjustments have any impact on the red_light labeling process, so their influence should be treated as secondary."
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": 5.0,
+      "fog": -15.0,
+      "wetness": 5.0,
+      "puddle": 0.0
+    },
+    "actor_mutations": [],
+    "puddle_mutations": [
+      {
+        "puddle_index": 0,
+        "location_offset": {
+          "x": -2.5,
+          "y": 1.0
+        },
+        "level_delta": -0.05,
+        "size_scale": 1.1
+      }
+    ],
+    "mission_mutation": {
+      "spawn_offset": {
+        "x": 2.0,
+        "y": -1.5
+      },
+      "destination_offset": {
+        "x": -3.0,
+        "y": 2.0
+      }
+    }
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": [
+      "no actors in candidate scenario"
+    ]
+  },
+  "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_104__gpt-5.1.json",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_104__gpt-5.1.json",
+  "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+}

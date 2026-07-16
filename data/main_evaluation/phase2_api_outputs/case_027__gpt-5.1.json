@@ -1,0 +1,432 @@
+{
+  "case_id": "case_027",
+  "model_name": "gpt-5.1",
+  "workflow": "phase2_grounded_generation",
+  "status": "completed",
+  "schema_valid": true,
+  "schema_errors": [],
+  "phase1_ready": "yes",
+  "num_candidates_requested": 2,
+  "num_candidates_written": 2,
+  "num_pre_valid": 2,
+  "candidate_records": [
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/gpt-5.1/json/case_027/case_027__cand_001.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/gpt-5.1/metadata/case_027/case_027__cand_001.metadata.json",
+      "case_id": "case_027",
+      "model_name": "gpt-5.1",
+      "candidate_index": 1,
+      "candidate_spec": {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Same mission and nearby static vehicle; slightly increased road wetness to test if low-speed dynamics still lead to a long stationary, brake-applied stuck state with available waypoints.",
+        "mutation_intent": "Keep geometry and actors effectively unchanged so the planner still has a clear path, but mildly adjust surface conditions without introducing strong external blockers. This should preserve the pattern where, despite valid sensing and stable final waypoints, target_speed and accel_cmd stay at zero with brakes applied and ego remains stationary for an extended period.",
+        "expected_oracle": "stuck",
+        "modifications": {
+          "weather_delta": {
+            "rain": 5,
+            "fog": 0,
+            "wetness": 10,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 0.5,
+                "y": -0.5
+              },
+              "speed_delta": 0.0
+            }
+          ],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 1.0,
+                "y": -1.0
+              },
+              "level_delta": 0.05,
+              "size_scale": 1.05
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Validate that the ego spawn and destination remain on navigable drivable lanes in Town01.",
+          "Check that the immobile vehicle (actor_index 0) remains outside the ego spawn volume and does not overlap with the ego at t=0.",
+          "Ensure that weather parameters after applying deltas remain within simulator-accepted bounds and do not disable any sensors.",
+          "Confirm that at least one valid route exists from ego spawn to destination under the modified conditions (planner can generate final_waypoints)."
+        ],
+        "post_execution_validation_rules": [
+          "Verify that the oracle labels the scenario as stuck with a stuck duration comparable to or exceeding 240 seconds.",
+          "During a designated critical stuck window (e.g., the last 60 seconds), confirm ego net displacement is below a small threshold (e.g., < 1 m) while ego_movement_distance may be non-zero.",
+          "Check that final_waypoints remain continuously available with a stable, non-zero waypoint count and no blocked flags during the critical window.",
+          "Ensure vehicle_cmd target_speed and accel_cmd stay at or near zero throughout the critical window.",
+          "Confirm vehicle_status reports near-zero velocity in the critical window and a persistent, non-zero brake value.",
+          "Verify that camera, lidar, and odometry topics remain live and without long gaps over the entire run."
+        ],
+        "uncertainty": [
+          "The precise module (planning vs. control vs. higher-level logic) responsible for keeping target_speed and accel_cmd at zero remains unknown.",
+          "It is unclear whether ego_movement_distance during the stuck window reflects tiny oscillations, wheel slip, or localization noise.",
+          "The extent to which slightly increased wetness and rain influence the stationary behavior versus internal decision logic is not observable from high-level logs."
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 5.0,
+          "fog": 0.0,
+          "wetness": 10.0,
+          "puddle": 0.0
+        },
+        "actor_mutations": [
+          {
+            "actor_index": 0,
+            "position_offset": {
+              "x": 0.5,
+              "y": -0.5
+            },
+            "speed_delta": 0.0
+          }
+        ],
+        "puddle_mutations": [
+          {
+            "puddle_index": 0,
+            "location_offset": {
+              "x": 1.0,
+              "y": -1.0
+            },
+            "level_delta": 0.05,
+            "size_scale": 1.05
+          }
+        ],
+        "mission_mutation": {
+          "keep_original": true
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_027__gpt-5.1.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_027__gpt-5.1.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    },
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/gpt-5.1/json/case_027/case_027__cand_002.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/gpt-5.1/metadata/case_027/case_027__cand_002.metadata.json",
+      "case_id": "case_027",
+      "model_name": "gpt-5.1",
+      "candidate_index": 2,
+      "candidate_spec": {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Slightly shift ego mission and the nearby parked vehicle laterally while keeping them close to the original lane, and mildly reduce wetness, to see if the persistent stationary, brake-applied stuck pattern persists with a slightly different geometric context.",
+        "mutation_intent": "Alter spawn/destination and static actor positions modestly to change local geometry without creating explicit obstacles, maintaining a clear planned route and valid sensing. This should still allow reproduction of a long-duration stationary state with zero motion commands and stable final_waypoints, preserving the stuck root-cause pattern while testing its robustness to small geometric variations.",
+        "expected_oracle": "stuck",
+        "modifications": {
+          "weather_delta": {
+            "rain": -2,
+            "fog": 0,
+            "wetness": -5,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": -2.0,
+                "y": 1.5
+              },
+              "speed_delta": 0.0
+            }
+          ],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": -2.0,
+                "y": 2.0
+              },
+              "level_delta": -0.05,
+              "size_scale": 0.95
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": false,
+            "spawn_offset": {
+              "x": 1.5,
+              "y": -2.0
+            },
+            "destination_offset": {
+              "x": -1.0,
+              "y": 2.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Ensure the modified spawn and destination positions remain on valid drivable lanes and do not place the ego inside static geometry.",
+          "Confirm that actor_index 0 remains parked/immobile and does not collide with the ego at spawn under the new offsets.",
+          "Verify that a continuous route can be generated between the offset spawn and destination, yielding stable final_waypoints.",
+          "Check that adjusted weather and puddle parameters are within valid simulator ranges and do not lead to sensor failures at startup."
+        ],
+        "post_execution_validation_rules": [
+          "Confirm that the scenario is labeled stuck by the oracle with an extended stationary duration (on the order of several minutes).",
+          "Validate that during the final stuck window, ego odometry indicates near-zero velocity and negligible net displacement.",
+          "Check that final_waypoints remain available and that their count does not fluctuate drastically during the stuck interval.",
+          "Ensure vehicle_cmd target_speed and accel_cmd remain at or near zero during the stuck window while brakes stay applied.",
+          "Verify that camera and lidar topics remain active and that pose/odometry streams do not exhibit long dropouts.",
+          "Confirm that there is no sustained physical contact or collision event that would better explain the stationary behavior (to keep the oracle pattern as stuck rather than collision)."
+        ],
+        "uncertainty": [
+          "Whether the slight geometric shifts in spawn, destination, and static actor position directly affect the internal decision logic is uncertain.",
+          "The source of any small non-zero ego_movement_distance during the stuck window remains ambiguous (oscillation vs. noise).",
+          "It is unclear if proximity to the parked vehicle plays any causal role in the zero-command stuck behavior or is incidental."
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": -2.0,
+          "fog": 0.0,
+          "wetness": -5.0,
+          "puddle": 0.0
+        },
+        "actor_mutations": [
+          {
+            "actor_index": 0,
+            "position_offset": {
+              "x": -2.0,
+              "y": 1.5
+            },
+            "speed_delta": 0.0
+          }
+        ],
+        "puddle_mutations": [
+          {
+            "puddle_index": 0,
+            "location_offset": {
+              "x": -2.0,
+              "y": 2.0
+            },
+            "level_delta": -0.05,
+            "size_scale": 0.95
+          }
+        ],
+        "mission_mutation": {
+          "spawn_offset": {
+            "x": 1.5,
+            "y": -2.0
+          },
+          "destination_offset": {
+            "x": -1.0,
+            "y": 2.0
+          }
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_027__gpt-5.1.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_027__gpt-5.1.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    }
+  ],
+  "seed_artifact_zip": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/gpt-5.1/seed-artifact/seed-artifact-case_027.zip",
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_prompts/case_027__gpt-5.1.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_027__gpt-5.1.json",
+  "prompt_estimated_tokens": 1421,
+  "usage": {
+    "prompt_tokens": 1389,
+    "completion_tokens": 1528,
+    "total_tokens": 2917
+  },
+  "raw_response": "{\n  \"case_id\": \"case_027\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Same mission and nearby static vehicle; slightly increased road wetness to test if low-speed dynamics still lead to a long stationary, brake-applied stuck state with available waypoints.\",\n      \"mutation_intent\": \"Keep geometry and actors effectively unchanged so the planner still has a clear path, but mildly adjust surface conditions without introducing strong external blockers. This should preserve the pattern where, despite valid sensing and stable final waypoints, target_speed and accel_cmd stay at zero with brakes applied and ego remains stationary for an extended period.\",\n      \"expected_oracle\": \"stuck\",\n      \"modifications\": {\n        \"weather_delta\": {\n          \"rain\": 5,\n          \"fog\": 0,\n          \"wetness\": 10,\n          \"puddle\": 0\n        },\n        \"actor_mutations\": [\n          {\n            \"actor_index\": 0,\n            \"position_offset\": {\n              \"x\": 0.5,\n              \"y\": -0.5\n            },\n            \"speed_delta\": 0.0\n          }\n        ],\n        \"puddle_mutations\": [\n          {\n            \"puddle_index\": 0,\n            \"location_offset\": {\n              \"x\": 1.0,\n              \"y\": -1.0\n            },\n            \"level_delta\": 0.05,\n            \"size_scale\": 1.05\n          }\n        ],\n        \"mission_mutation\": {\n          \"keep_original\": true,\n          \"spawn_offset\": {\n            \"x\": 0.0,\n            \"y\": 0.0\n          },\n          \"destination_offset\": {\n            \"x\": 0.0,\n            \"y\": 0.0\n          }\n        }\n      },\n      \"pre_execution_validation_rules\": [\n        \"Validate that the ego spawn and destination remain on navigable drivable lanes in Town01.\",\n        \"Check that the immobile vehicle (actor_index 0) remains outside the ego spawn volume and does not overlap with the ego at t=0.\",\n        \"Ensure that weather parameters after applying deltas remain within simulator-accepted bounds and do not disable any sensors.\",\n        \"Confirm that at least one valid route exists from ego spawn to destination under the modified conditions (planner can generate final_waypoints).\"\n      ],\n      \"post_execution_validation_rules\": [\n        \"Verify that the oracle labels the scenario as stuck with a stuck duration comparable to or exceeding 240 seconds.\",\n        \"During a designated critical stuck window (e.g., the last 60 seconds), confirm ego net displacement is below a small threshold (e.g., < 1 m) while ego_movement_distance may be non-zero.\",\n        \"Check that final_waypoints remain continuously available with a stable, non-zero waypoint count and no blocked flags during the critical window.\",\n        \"Ensure vehicle_cmd target_speed and accel_cmd stay at or near zero throughout the critical window.\",\n        \"Confirm vehicle_status reports near-zero velocity in the critical window and a persistent, non-zero brake value.\",\n        \"Verify that camera, lidar, and odometry topics remain live and without long gaps over the entire run.\"\n      ],\n      \"uncertainty\": [\n        \"The precise module (planning vs. control vs. higher-level logic) responsible for keeping target_speed and accel_cmd at zero remains unknown.\",\n        \"It is unclear whether ego_movement_distance during the stuck window reflects tiny oscillations, wheel slip, or localization noise.\",\n        \"The extent to which slightly increased wetness and rain influence the stationary behavior versus internal decision logic is not observable from high-level logs.\"\n      ]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Slightly shift ego mission and the nearby parked vehicle laterally while keeping them close to the original lane, and mildly reduce wetness, to see if the persistent stationary, brake-applied stuck pattern persists with a slightly different geometric context.\",\n      \"mutation_intent\": \"Alter spawn/destination and static actor positions modestly to change local geometry without creating explicit obstacles, maintaining a clear planned route and valid sensing. This should still allow reproduction of a long-duration stationary state with zero motion commands and stable final_waypoints, preserving the stuck root-cause pattern while testing its robustness to small geometric variations.\",\n      \"expected_oracle\": \"stuck\",\n      \"modifications\": {\n        \"weather_delta\": {\n          \"rain\": -2,\n          \"fog\": 0,\n          \"wetness\": -5,\n          \"puddle\": 0\n        },\n        \"actor_mutations\": [\n          {\n            \"actor_index\": 0,\n            \"position_offset\": {\n              \"x\": -2.0,\n              \"y\": 1.5\n            },\n            \"speed_delta\": 0.0\n          }\n        ],\n        \"puddle_mutations\": [\n          {\n            \"puddle_index\": 0,\n            \"location_offset\": {\n              \"x\": -2.0,\n              \"y\": 2.0\n            },\n            \"level_delta\": -0.05,\n            \"size_scale\": 0.95\n          }\n        ],\n        \"mission_mutation\": {\n          \"keep_original\": false,\n          \"spawn_offset\": {\n            \"x\": 1.5,\n            \"y\": -2.0\n          },\n          \"destination_offset\": {\n            \"x\": -1.0,\n            \"y\": 2.0\n          }\n        }\n      },\n      \"pre_execution_validation_rules\": [\n        \"Ensure the modified spawn and destination positions remain on valid drivable lanes and do not place the ego inside static geometry.\",\n        \"Confirm that actor_index 0 remains parked/immobile and does not collide with the ego at spawn under the new offsets.\",\n        \"Verify that a continuous route can be generated between the offset spawn and destination, yielding stable final_waypoints.\",\n        \"Check that adjusted weather and puddle parameters are within valid simulator ranges and do not lead to sensor failures at startup.\"\n      ],\n      \"post_execution_validation_rules\": [\n        \"Confirm that the scenario is labeled stuck by the oracle with an extended stationary duration (on the order of several minutes).\",\n        \"Validate that during the final stuck window, ego odometry indicates near-zero velocity and negligible net displacement.\",\n        \"Check that final_waypoints remain available and that their count does not fluctuate drastically during the stuck interval.\",\n        \"Ensure vehicle_cmd target_speed and accel_cmd remain at or near zero during the stuck window while brakes stay applied.\",\n        \"Verify that camera and lidar topics remain active and that pose/odometry streams do not exhibit long dropouts.\",\n        \"Confirm that there is no sustained physical contact or collision event that would better explain the stationary behavior (to keep the oracle pattern as stuck rather than collision).\"\n      ],\n      \"uncertainty\": [\n        \"Whether the slight geometric shifts in spawn, destination, and static actor position directly affect the internal decision logic is uncertain.\",\n        \"The source of any small non-zero ego_movement_distance during the stuck window remains ambiguous (oscillation vs. noise).\",\n        \"It is unclear if proximity to the parked vehicle plays any causal role in the zero-command stuck behavior or is incidental.\"\n      ]\n    }\n  ]\n}",
+  "parsed_response": {
+    "case_id": "case_027",
+    "candidate_specs": [
+      {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Same mission and nearby static vehicle; slightly increased road wetness to test if low-speed dynamics still lead to a long stationary, brake-applied stuck state with available waypoints.",
+        "mutation_intent": "Keep geometry and actors effectively unchanged so the planner still has a clear path, but mildly adjust surface conditions without introducing strong external blockers. This should preserve the pattern where, despite valid sensing and stable final waypoints, target_speed and accel_cmd stay at zero with brakes applied and ego remains stationary for an extended period.",
+        "expected_oracle": "stuck",
+        "modifications": {
+          "weather_delta": {
+            "rain": 5,
+            "fog": 0,
+            "wetness": 10,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 0.5,
+                "y": -0.5
+              },
+              "speed_delta": 0.0
+            }
+          ],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 1.0,
+                "y": -1.0
+              },
+              "level_delta": 0.05,
+              "size_scale": 1.05
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Validate that the ego spawn and destination remain on navigable drivable lanes in Town01.",
+          "Check that the immobile vehicle (actor_index 0) remains outside the ego spawn volume and does not overlap with the ego at t=0.",
+          "Ensure that weather parameters after applying deltas remain within simulator-accepted bounds and do not disable any sensors.",
+          "Confirm that at least one valid route exists from ego spawn to destination under the modified conditions (planner can generate final_waypoints)."
+        ],
+        "post_execution_validation_rules": [
+          "Verify that the oracle labels the scenario as stuck with a stuck duration comparable to or exceeding 240 seconds.",
+          "During a designated critical stuck window (e.g., the last 60 seconds), confirm ego net displacement is below a small threshold (e.g., < 1 m) while ego_movement_distance may be non-zero.",
+          "Check that final_waypoints remain continuously available with a stable, non-zero waypoint count and no blocked flags during the critical window.",
+          "Ensure vehicle_cmd target_speed and accel_cmd stay at or near zero throughout the critical window.",
+          "Confirm vehicle_status reports near-zero velocity in the critical window and a persistent, non-zero brake value.",
+          "Verify that camera, lidar, and odometry topics remain live and without long gaps over the entire run."
+        ],
+        "uncertainty": [
+          "The precise module (planning vs. control vs. higher-level logic) responsible for keeping target_speed and accel_cmd at zero remains unknown.",
+          "It is unclear whether ego_movement_distance during the stuck window reflects tiny oscillations, wheel slip, or localization noise.",
+          "The extent to which slightly increased wetness and rain influence the stationary behavior versus internal decision logic is not observable from high-level logs."
+        ]
+      },
+      {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Slightly shift ego mission and the nearby parked vehicle laterally while keeping them close to the original lane, and mildly reduce wetness, to see if the persistent stationary, brake-applied stuck pattern persists with a slightly different geometric context.",
+        "mutation_intent": "Alter spawn/destination and static actor positions modestly to change local geometry without creating explicit obstacles, maintaining a clear planned route and valid sensing. This should still allow reproduction of a long-duration stationary state with zero motion commands and stable final_waypoints, preserving the stuck root-cause pattern while testing its robustness to small geometric variations.",
+        "expected_oracle": "stuck",
+        "modifications": {
+          "weather_delta": {
+            "rain": -2,
+            "fog": 0,
+            "wetness": -5,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": -2.0,
+                "y": 1.5
+              },
+              "speed_delta": 0.0
+            }
+          ],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": -2.0,
+                "y": 2.0
+              },
+              "level_delta": -0.05,
+              "size_scale": 0.95
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": false,
+            "spawn_offset": {
+              "x": 1.5,
+              "y": -2.0
+            },
+            "destination_offset": {
+              "x": -1.0,
+              "y": 2.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Ensure the modified spawn and destination positions remain on valid drivable lanes and do not place the ego inside static geometry.",
+          "Confirm that actor_index 0 remains parked/immobile and does not collide with the ego at spawn under the new offsets.",
+          "Verify that a continuous route can be generated between the offset spawn and destination, yielding stable final_waypoints.",
+          "Check that adjusted weather and puddle parameters are within valid simulator ranges and do not lead to sensor failures at startup."
+        ],
+        "post_execution_validation_rules": [
+          "Confirm that the scenario is labeled stuck by the oracle with an extended stationary duration (on the order of several minutes).",
+          "Validate that during the final stuck window, ego odometry indicates near-zero velocity and negligible net displacement.",
+          "Check that final_waypoints remain available and that their count does not fluctuate drastically during the stuck interval.",
+          "Ensure vehicle_cmd target_speed and accel_cmd remain at or near zero during the stuck window while brakes stay applied.",
+          "Verify that camera and lidar topics remain active and that pose/odometry streams do not exhibit long dropouts.",
+          "Confirm that there is no sustained physical contact or collision event that would better explain the stationary behavior (to keep the oracle pattern as stuck rather than collision)."
+        ],
+        "uncertainty": [
+          "Whether the slight geometric shifts in spawn, destination, and static actor position directly affect the internal decision logic is uncertain.",
+          "The source of any small non-zero ego_movement_distance during the stuck window remains ambiguous (oscillation vs. noise).",
+          "It is unclear if proximity to the parked vehicle plays any causal role in the zero-command stuck behavior or is incidental."
+        ]
+      }
+    ]
+  },
+  "raw_api_payload": {
+    "id": "<REDACTED_RESPONSE_ID>",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "{\n  \"case_id\": \"case_027\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Same mission and nearby static vehicle; slightly increased road wetness to test if low-speed dynamics still lead to a long stationary, brake-applied stuck state with available waypoints.\",\n      \"mutation_intent\": \"Keep geometry and actors effectively unchanged so the planner still has a clear path, but mildly adjust surface conditions without introducing strong external blockers. This should preserve the pattern where, despite valid sensing and stable final waypoints, target_speed and accel_cmd stay at zero with brakes applied and ego remains stationary for an extended period.\",\n      \"expected_oracle\": \"stuck\",\n      \"modifications\": {\n        \"weather_delta\": {\n          \"rain\": 5,\n          \"fog\": 0,\n          \"wetness\": 10,\n          \"puddle\": 0\n        },\n        \"actor_mutations\": [\n          {\n            \"actor_index\": 0,\n            \"position_offset\": {\n              \"x\": 0.5,\n              \"y\": -0.5\n            },\n            \"speed_delta\": 0.0\n          }\n        ],\n        \"puddle_mutations\": [\n          {\n            \"puddle_index\": 0,\n            \"location_offset\": {\n              \"x\": 1.0,\n              \"y\": -1.0\n            },\n            \"level_delta\": 0.05,\n            \"size_scale\": 1.05\n          }\n        ],\n        \"mission_mutation\": {\n          \"keep_original\": true,\n          \"spawn_offset\": {\n            \"x\": 0.0,\n            \"y\": 0.0\n          },\n          \"destination_offset\": {\n            \"x\": 0.0,\n            \"y\": 0.0\n          }\n        }\n      },\n      \"pre_execution_validation_rules\": [\n        \"Validate that the ego spawn and destination remain on navigable drivable lanes in Town01.\",\n        \"Check that the immobile vehicle (actor_index 0) remains outside the ego spawn volume and does not overlap with the ego at t=0.\",\n        \"Ensure that weather parameters after applying deltas remain within simulator-accepted bounds and do not disable any sensors.\",\n        \"Confirm that at least one valid route exists from ego spawn to destination under the modified conditions (planner can generate final_waypoints).\"\n      ],\n      \"post_execution_validation_rules\": [\n        \"Verify that the oracle labels the scenario as stuck with a stuck duration comparable to or exceeding 240 seconds.\",\n        \"During a designated critical stuck window (e.g., the last 60 seconds), confirm ego net displacement is below a small threshold (e.g., < 1 m) while ego_movement_distance may be non-zero.\",\n        \"Check that final_waypoints remain continuously available with a stable, non-zero waypoint count and no blocked flags during the critical window.\",\n        \"Ensure vehicle_cmd target_speed and accel_cmd stay at or near zero throughout the critical window.\",\n        \"Confirm vehicle_status reports near-zero velocity in the critical window and a persistent, non-zero brake value.\",\n        \"Verify that camera, lidar, and odometry topics remain live and without long gaps over the entire run.\"\n      ],\n      \"uncertainty\": [\n        \"The precise module (planning vs. control vs. higher-level logic) responsible for keeping target_speed and accel_cmd at zero remains unknown.\",\n        \"It is unclear whether ego_movement_distance during the stuck window reflects tiny oscillations, wheel slip, or localization noise.\",\n        \"The extent to which slightly increased wetness and rain influence the stationary behavior versus internal decision logic is not observable from high-level logs.\"\n      ]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Slightly shift ego mission and the nearby parked vehicle laterally while keeping them close to the original lane, and mildly reduce wetness, to see if the persistent stationary, brake-applied stuck pattern persists with a slightly different geometric context.\",\n      \"mutation_intent\": \"Alter spawn/destination and static actor positions modestly to change local geometry without creating explicit obstacles, maintaining a clear planned route and valid sensing. This should still allow reproduction of a long-duration stationary state with zero motion commands and stable final_waypoints, preserving the stuck root-cause pattern while testing its robustness to small geometric variations.\",\n      \"expected_oracle\": \"stuck\",\n      \"modifications\": {\n        \"weather_delta\": {\n          \"rain\": -2,\n          \"fog\": 0,\n          \"wetness\": -5,\n          \"puddle\": 0\n        },\n        \"actor_mutations\": [\n          {\n            \"actor_index\": 0,\n            \"position_offset\": {\n              \"x\": -2.0,\n              \"y\": 1.5\n            },\n            \"speed_delta\": 0.0\n          }\n        ],\n        \"puddle_mutations\": [\n          {\n            \"puddle_index\": 0,\n            \"location_offset\": {\n              \"x\": -2.0,\n              \"y\": 2.0\n            },\n            \"level_delta\": -0.05,\n            \"size_scale\": 0.95\n          }\n        ],\n        \"mission_mutation\": {\n          \"keep_original\": false,\n          \"spawn_offset\": {\n            \"x\": 1.5,\n            \"y\": -2.0\n          },\n          \"destination_offset\": {\n            \"x\": -1.0,\n            \"y\": 2.0\n          }\n        }\n      },\n      \"pre_execution_validation_rules\": [\n        \"Ensure the modified spawn and destination positions remain on valid drivable lanes and do not place the ego inside static geometry.\",\n        \"Confirm that actor_index 0 remains parked/immobile and does not collide with the ego at spawn under the new offsets.\",\n        \"Verify that a continuous route can be generated between the offset spawn and destination, yielding stable final_waypoints.\",\n        \"Check that adjusted weather and puddle parameters are within valid simulator ranges and do not lead to sensor failures at startup.\"\n      ],\n      \"post_execution_validation_rules\": [\n        \"Confirm that the scenario is labeled stuck by the oracle with an extended stationary duration (on the order of several minutes).\",\n        \"Validate that during the final stuck window, ego odometry indicates near-zero velocity and negligible net displacement.\",\n        \"Check that final_waypoints remain available and that their count does not fluctuate drastically during the stuck interval.\",\n        \"Ensure vehicle_cmd target_speed and accel_cmd remain at or near zero during the stuck window while brakes stay applied.\",\n        \"Verify that camera and lidar topics remain active and that pose/odometry streams do not exhibit long dropouts.\",\n        \"Confirm that there is no sustained physical contact or collision event that would better explain the stationary behavior (to keep the oracle pattern as stuck rather than collision).\"\n      ],\n      \"uncertainty\": [\n        \"Whether the slight geometric shifts in spawn, destination, and static actor position directly affect the internal decision logic is uncertain.\",\n        \"The source of any small non-zero ego_movement_distance during the stuck window remains ambiguous (oscillation vs. noise).\",\n        \"It is unclear if proximity to the parked vehicle plays any causal role in the zero-command stuck behavior or is incidental.\"\n      ]\n    }\n  ]\n}",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": [],
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "gpt-5.1-2025-11-13",
+    "object": "chat.completion",
+    "service_tier": "default",
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 1528,
+      "prompt_tokens": 1389,
+      "total_tokens": 2917,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": 0,
+        "audio_tokens": 0,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 0
+      }
+    }
+  },
+  "error_message": "",
+  "elapsed_sec": 24.556,
+  "timestamp": "<REDACTED_TIMESTAMP>"
+}

@@ -1,0 +1,119 @@
+{
+  "case_id": "case_118",
+  "workflow": "phase1_causal_explanation",
+  "model_name": "ark-doubao-seed-2.0-lite-260215",
+  "model_id": "ark-doubao-seed-2.0-lite-260215",
+  "status": "completed",
+  "dry_run": false,
+  "schema_valid": true,
+  "schema_errors": [],
+  "quality_flags": [],
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_prompts/case_118__ark-doubao-seed-2.0-lite-260215.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_118__ark-doubao-seed-2.0-lite-260215.json",
+  "prompt_estimated_tokens": 3228,
+  "usage": {
+    "prompt_tokens": 4345,
+    "completion_tokens": 2105,
+    "total_tokens": 6450
+  },
+  "estimated_cost_usd": null,
+  "raw_response": "{\n  \"case_id\": \"case_118\",\n  \"fault_layer\": \"unknown\",\n  \"fault_component\": \"unknown\",\n  \"causal_explanation\": \"Confirmed collision and red-light violation per error_json, with conflicting lane invasion label between dataset and error_json. All control commands in vehicle_cmd are zero in the pre-collision critical window, but vehicle_status reports non-zero throttle and ongoing ego movement. No dynamic actors are present, and no direct evidence localizes failure to a specific Autoware module.\",\n  \"root_cause_pattern\": \"Conservative pattern: Ego experiences collision and confirmed red-light violation when all vehicle_cmd control commands are zero pre-collision, while vehicle_status reports ongoing movement, with no dynamic actors present, and module attribution is unconfirmed.\",\n  \"preservation_constraints\": [\n    \"Preserve confirmed collision and red-light violation outcome symptoms\",\n    \"Preserve all-zero vehicle_cmd control values in the pre-collision critical window\",\n    \"Preserve zero dynamic actors in the scenario\",\n    \"Preserve 3 puddle regions on the Town01 map\"\n  ],\n  \"modifiable_factors\": [\"weather parameters\", \"puddle positions\", \"ego start position\", \"mission goal position\"],\n  \"non_modifiable_conditions\": [\"Zero dynamic actors in the scenario\", \"Town01 map\", \"All-zero vehicle_cmd in the pre-collision critical window\"],\n  \"uncertainty\": [\n    \"Lane invasion label conflicts between dataset and error_json\",\n    \"No direct evidence localizes failure to a specific Autoware module\",\n    \"Route-light relation and stop-line crossing for red-light violation are unconfirmed\",\n    \"Mismatch between all-zero vehicle_cmd and non-zero vehicle status movement cannot be attributed to actuation failure\"\n  ],\n  \"evidence_support\": [\n    {\"evidence_id\": \"oracle_consistency\", \"claim\": \"Collision and red-light violation are confirmed by error_json; lane invasion label is conflicting\"},\n    {\"evidence_id\": \"critical_window_collision\", \"claim\": \"All vehicle_cmd control commands are zero pre-collision, while vehicle_status has non-zero throttle and non-zero ego speed\"},\n    {\"evidence_id\": \"scenario_config\", \"claim\": \"Scenario has zero dynamic actors and 3 puddle regions on Town01 map\"},\n    {\"evidence_id\": \"red_light_window\", \"claim\": \"Route-light relation and stop-line crossing are not confirmed\"}\n  ],\n  \"confidence\": \"low\",\n  \"ready_for_phase2_generation\": \"yes\",\n  \"notes_for_validator\": [\n    \"Confirm collision and red-light violation outcomes before marking generated cases as matching root-cause\",\n    \"Check for the all-zero vehicle_cmd condition in the pre-collision critical window during validation\",\n    \"Resolve the lane invasion label conflict before final classification of generated outcomes\"\n  ]\n}",
+  "parsed_response": {
+    "case_id": "case_118",
+    "fault_layer": "unknown",
+    "fault_component": "unknown",
+    "causal_explanation": "Confirmed collision and red-light violation per error_json, with conflicting lane invasion label between dataset and error_json. All control commands in vehicle_cmd are zero in the pre-collision critical window, but vehicle_status reports non-zero throttle and ongoing ego movement. No dynamic actors are present, and no direct evidence localizes failure to a specific Autoware module.",
+    "root_cause_pattern": "Conservative pattern: Ego experiences collision and confirmed red-light violation when all vehicle_cmd control commands are zero pre-collision, while vehicle_status reports ongoing movement, with no dynamic actors present, and module attribution is unconfirmed.",
+    "preservation_constraints": [
+      "Preserve confirmed collision and red-light violation outcome symptoms",
+      "Preserve all-zero vehicle_cmd control values in the pre-collision critical window",
+      "Preserve zero dynamic actors in the scenario",
+      "Preserve 3 puddle regions on the Town01 map"
+    ],
+    "modifiable_factors": [
+      "weather parameters",
+      "puddle positions",
+      "ego start position",
+      "mission goal position"
+    ],
+    "non_modifiable_conditions": [
+      "Zero dynamic actors in the scenario",
+      "Town01 map",
+      "All-zero vehicle_cmd in the pre-collision critical window"
+    ],
+    "uncertainty": [
+      "Lane invasion label conflicts between dataset and error_json",
+      "No direct evidence localizes failure to a specific Autoware module",
+      "Route-light relation and stop-line crossing for red-light violation are unconfirmed",
+      "Mismatch between all-zero vehicle_cmd and non-zero vehicle status movement cannot be attributed to actuation failure"
+    ],
+    "evidence_support": [
+      {
+        "evidence_id": "oracle_consistency",
+        "claim": "Collision and red-light violation are confirmed by error_json; lane invasion label is conflicting"
+      },
+      {
+        "evidence_id": "critical_window_collision",
+        "claim": "All vehicle_cmd control commands are zero pre-collision, while vehicle_status has non-zero throttle and non-zero ego speed"
+      },
+      {
+        "evidence_id": "scenario_config",
+        "claim": "Scenario has zero dynamic actors and 3 puddle regions on Town01 map"
+      },
+      {
+        "evidence_id": "red_light_window",
+        "claim": "Route-light relation and stop-line crossing are not confirmed"
+      }
+    ],
+    "confidence": "low",
+    "ready_for_phase2_generation": "yes",
+    "notes_for_validator": [
+      "Confirm collision and red-light violation outcomes before marking generated cases as matching root-cause",
+      "Check for the all-zero vehicle_cmd condition in the pre-collision critical window during validation",
+      "Resolve the lane invasion label conflict before final classification of generated outcomes"
+    ]
+  },
+  "raw_api_payload": {
+    "id": "02178291968287280167a7b10ec4a01c7841bdc6c404317b4ae45",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "{\n  \"case_id\": \"case_118\",\n  \"fault_layer\": \"unknown\",\n  \"fault_component\": \"unknown\",\n  \"causal_explanation\": \"Confirmed collision and red-light violation per error_json, with conflicting lane invasion label between dataset and error_json. All control commands in vehicle_cmd are zero in the pre-collision critical window, but vehicle_status reports non-zero throttle and ongoing ego movement. No dynamic actors are present, and no direct evidence localizes failure to a specific Autoware module.\",\n  \"root_cause_pattern\": \"Conservative pattern: Ego experiences collision and confirmed red-light violation when all vehicle_cmd control commands are zero pre-collision, while vehicle_status reports ongoing movement, with no dynamic actors present, and module attribution is unconfirmed.\",\n  \"preservation_constraints\": [\n    \"Preserve confirmed collision and red-light violation outcome symptoms\",\n    \"Preserve all-zero vehicle_cmd control values in the pre-collision critical window\",\n    \"Preserve zero dynamic actors in the scenario\",\n    \"Preserve 3 puddle regions on the Town01 map\"\n  ],\n  \"modifiable_factors\": [\"weather parameters\", \"puddle positions\", \"ego start position\", \"mission goal position\"],\n  \"non_modifiable_conditions\": [\"Zero dynamic actors in the scenario\", \"Town01 map\", \"All-zero vehicle_cmd in the pre-collision critical window\"],\n  \"uncertainty\": [\n    \"Lane invasion label conflicts between dataset and error_json\",\n    \"No direct evidence localizes failure to a specific Autoware module\",\n    \"Route-light relation and stop-line crossing for red-light violation are unconfirmed\",\n    \"Mismatch between all-zero vehicle_cmd and non-zero vehicle status movement cannot be attributed to actuation failure\"\n  ],\n  \"evidence_support\": [\n    {\"evidence_id\": \"oracle_consistency\", \"claim\": \"Collision and red-light violation are confirmed by error_json; lane invasion label is conflicting\"},\n    {\"evidence_id\": \"critical_window_collision\", \"claim\": \"All vehicle_cmd control commands are zero pre-collision, while vehicle_status has non-zero throttle and non-zero ego speed\"},\n    {\"evidence_id\": \"scenario_config\", \"claim\": \"Scenario has zero dynamic actors and 3 puddle regions on Town01 map\"},\n    {\"evidence_id\": \"red_light_window\", \"claim\": \"Route-light relation and stop-line crossing are not confirmed\"}\n  ],\n  \"confidence\": \"low\",\n  \"ready_for_phase2_generation\": \"yes\",\n  \"notes_for_validator\": [\n    \"Confirm collision and red-light violation outcomes before marking generated cases as matching root-cause\",\n    \"Check for the all-zero vehicle_cmd condition in the pre-collision critical window during validation\",\n    \"Resolve the lane invasion label conflict before final classification of generated outcomes\"\n  ]\n}",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null,
+          "reasoning_content": "\nGot it, let's work through this step by step. First, case_id is case_118, right? Let's get that first.\n\nNext, fault_layer. Let's see what evidence we have. There's a conflict between dataset and error_json on lane invasion. Also, vehicle_cmd has all zero commands but vehicle_status shows movement (wait, vehicle_cmd stats all zero, vehicle_status has throttle non-zero, velocity is there). Oh right, the rule says if vehicle_cmd is all zero but vehicle status shows movement, don't assign actuation just from that. Also, we don't have direct proof which module is wrong. Wait, let's check: collision is confirmed by error_json, red light violation confirmed by error_json, lane invasion is conflicting. No module failure is directly proven, so fault_layer should be unknown? Wait let's confirm: yes, because critical window doesn't show which module failed. Fault component is unknown too, right?\n\nCausal explanation: Let's write it grounded. Confirmed collision and red light violation by error_json, lane invasion label conflicts between dataset and error_json. Vehicle_cmd has all zero control commands before collision, but vehicle_status reports non-zero throttle and movement. No direct evidence localizes the failure to a specific Autoware module. Also, there are no dynamic actors, 3 puddles on the map.\n\nRoot-cause pattern: Conservative pattern: Ego vehicle experiences collision and confirmed red light violation with all zero vehicle control commands from Autoware, while vehicle_status shows ongoing movement, with no dynamic actors present, so attribution is unknown. Wait, make it concise. Let's see: \"Conservative root-cause pattern: Ego receives all zero control commands from the planning/actuation pipeline before collision and red light violation, while vehicle status reports non-zero throttle and movement, with no dynamic actors in the scenario.\"\n\nPreservation constraints: Let's do 3-6, right. Let's list: 1. Preserve confirmed collision and red-light violation symptoms. 2. Preserve zero vehicle_cmd values for all control commands in the critical pre-collision window. 3. Preserve zero dynamic actors in the scenario. 4. Preserve 3 puddle regions on Town01 map. Wait, that's good. Let's make them semantic, no timestamps, right. Yeah: [\"Preserve confirmed collision and red-light violation outcome symptoms\", \"Preserve all-zero vehicle_cmd control command values in the pre-collision critical window\", \"Preserve zero dynamic actors in the scenario\", \"Preserve 3 puddle regions on the Town01 map\"] That works.\n\nModifiable factors: Let's see, what can change? Weather parameters, puddle position, ego start position, mission goal position. Wait, let's list: [\"weather parameters\", \"puddle positions\", \"ego start position\", \"mission goal position\"] Yeah that's right.\n\nNon-modifiable conditions: [\"Zero dynamic actors in the scenario\", \"Town01 map\", \"All-zero vehicle_cmd in critical pre-collision window\"] That's good.\n\nUncertainty: Let's list what's uncertain. 1. Lane invasion label conflicts between dataset and error_json. 2. No direct evidence localizes failure to a specific module. 3. Route-light relation and stop-line crossing for red-light violation are unconfirmed. 4. Mismatch between all-zero vehicle_cmd and non-zero vehicle status throttle cannot be attributed to actuation failure per available evidence. Yeah that's right, let's put that as uncertainty array.\n\nEvidence support: Let's list each evidence. First, {\"evidence_id\": \"oracle_consistency\", \"claim\": \"Collision and red-light violation are confirmed by error_json; lane invasion label conflicts between dataset and error_json.\"}, then {\"evidence_id\": \"critical_window_collision\", \"claim\": \"All vehicle_cmd accel, brake, steer, and velocity commands are zero in pre-collision window, while vehicle_status reports non-zero throttle and non-zero ego speed.\"}, {\"evidence_id\": \"scenario_config\", \"claim\": \"Scenario has zero dynamic actors and 3 puddle regions on Town01 map.\"}, {\"evidence_id\": \"red_light_window\", \"claim\": \"Route-light relation and stop-line crossing for red-light violation are unconfirmed.\"} That's good.\n\nConfidence: Low? Wait, or medium? Wait, we have confirmed collision and red light, but attribution is unknown, so confidence is low? Wait no, let's see: the pattern is conservative, but attribution is unknown. Let's go with low? Wait, no, confidence in the causal explanation we have: since we have conflicts and unknown module, confidence is low. Yeah.\n\nReady_for_phase2_generation: Yes, because we have a checkable conservative pattern, even with uncertainty. Wait the rule says: use yes when there is a checkable conservative preservation pattern, right? So yes.\n\nNotes_for_validator: [\"First confirm collision and red-light violation outcomes before marking as matching root-cause\", \"Check for the all-zero vehicle_cmd condition in the pre-collision critical window when validating generated cases\", \"Resolve the lane invasion label conflict before final classification of generated outcomes\"] That's good.\n\nWait let's check all rules: Did we invent anything? No, all from evidence. Let's check the rule about mismatch between vehicle_cmd all zero and movement: we marked uncertainty, didn't assign actuation, correct. Conflict between dataset and error_json: we marked that, correct. Red light: didn't infer route-light or stop-line crossing, which matches evidence that those are unconfirmed, correct. Preservation constraints are semantic, no timestamps, correct. Fault layer is unknown because attribution not supported, correct.\n\nWait let's put it all together in JSON correctly, no extra stuff. Let's check:\n\nWait fault_layer: let's confirm again, is there any reason to assign to a layer? Let's see: vehicle_cmd all zero, that's from planning? Wait no, because vehicle_cmd is output to actuation, but all zero, but we don't know if planning didn't output commands, or the topic wasn't updated, or actuation misread, so we can't tell, so fault_layer is unknown, correct. Fault component is unknown, correct.\n\nCausal explanation: Let's write it concise: \"Confirmed collision and red-light violation per error_json, with conflicting lane invasion label between dataset and error_json. All vehicle control commands in vehicle_cmd are zero in the pre-collision critical window, but vehicle_status reports non-zero throttle and ongoing ego movement. No dynamic actors are present in the scenario, and no direct evidence localizes failure to a specific Autoware module.\" That's good, concise, grounded.\n\nRoot cause pattern: \"Conservative pattern: Ego vehicle experiences collision and confirmed red-light violation when all control commands in vehicle_cmd are zero in the pre-collision window, while vehicle_status reports ongoing movement, with no dynamic actors present, and module-level failure attribution is unconfirmed.\" That's good.\n\nOkay let's put all into JSON now, make sure it's valid."
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "doubao-seed-2-0-lite-260215",
+    "object": "chat.completion",
+    "service_tier": "default",
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 2105,
+      "prompt_tokens": 4345,
+      "total_tokens": 6450,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 1481,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": null,
+        "cached_tokens": 0
+      }
+    }
+  },
+  "error_message": "",
+  "timestamp": "<REDACTED_TIMESTAMP>",
+  "elapsed_sec": 58.143
+}

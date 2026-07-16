@@ -1,0 +1,339 @@
+{
+  "case_id": "case_118",
+  "model_name": "gpt-4o-2024-11-20",
+  "workflow": "phase2_grounded_generation",
+  "status": "completed",
+  "schema_valid": true,
+  "schema_errors": [],
+  "phase1_ready": "uncertain",
+  "num_candidates_requested": 2,
+  "num_candidates_written": 2,
+  "num_pre_valid": 2,
+  "candidate_records": [
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/gpt-4o-2024-11-20/json/case_118/case_118__cand_001.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/gpt-4o-2024-11-20/metadata/case_118/case_118__cand_001.metadata.json",
+      "case_id": "case_118",
+      "model_name": "gpt-4o-2024-11-20",
+      "candidate_index": 1,
+      "candidate_spec": {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Ego vehicle approaches intersection with slightly reduced rain and adjusted puddle level near collision point.",
+        "mutation_intent": "This variant preserves the collision and red-light violation symptoms by maintaining ego movement with non-zero velocity and throttle while introducing minor environmental changes to test controller behavior under slightly altered conditions.",
+        "expected_oracle": "collision",
+        "modifications": {
+          "weather_delta": {
+            "rain": -10,
+            "fog": 0,
+            "wetness": -5,
+            "puddle": 0
+          },
+          "actor_mutations": [],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 1.0,
+                "y": -1.5
+              },
+              "level_delta": -0.1,
+              "size_scale": 1.0
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Ensure ego velocity and throttle remain non-zero before collision."
+        ],
+        "post_execution_validation_rules": [
+          "Validate critical-window ego speed, throttle, and vehicle_cmd consistency."
+        ],
+        "uncertainty": [
+          "Dataset.xlsx and error.json conflict on lane invasion.",
+          "Controller behavior remains uncertain."
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": -10.0,
+          "fog": 0.0,
+          "wetness": -5.0,
+          "puddle": 0.0
+        },
+        "actor_mutations": [],
+        "puddle_mutations": [
+          {
+            "puddle_index": 0,
+            "location_offset": {
+              "x": 1.0,
+              "y": -1.5
+            },
+            "level_delta": -0.1,
+            "size_scale": 1.0
+          }
+        ],
+        "mission_mutation": {
+          "keep_original": true
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": [
+          "no actors in candidate scenario"
+        ]
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_118__gpt-4o-2024-11-20.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_118__gpt-4o-2024-11-20.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    },
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/gpt-4o-2024-11-20/json/case_118/case_118__cand_002.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/gpt-4o-2024-11-20/metadata/case_118/case_118__cand_002.metadata.json",
+      "case_id": "case_118",
+      "model_name": "gpt-4o-2024-11-20",
+      "candidate_index": 2,
+      "candidate_spec": {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Ego vehicle approaches intersection with slightly increased fog and minor puddle relocation.",
+        "mutation_intent": "This variant tests the same collision and red-light violation symptoms by maintaining ego movement with non-zero velocity and throttle while introducing minor visibility and puddle changes to evaluate controller robustness.",
+        "expected_oracle": "collision",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 10,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [],
+          "puddle_mutations": [
+            {
+              "puddle_index": 1,
+              "location_offset": {
+                "x": -2.0,
+                "y": 2.0
+              },
+              "level_delta": 0.1,
+              "size_scale": 0.9
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Ensure ego velocity and throttle remain non-zero before collision."
+        ],
+        "post_execution_validation_rules": [
+          "Validate critical-window ego speed, throttle, and vehicle_cmd consistency."
+        ],
+        "uncertainty": [
+          "Dataset.xlsx and error.json conflict on lane invasion.",
+          "Controller behavior remains uncertain."
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 0.0,
+          "fog": 10.0,
+          "wetness": 0.0,
+          "puddle": 0.0
+        },
+        "actor_mutations": [],
+        "puddle_mutations": [
+          {
+            "puddle_index": 1,
+            "location_offset": {
+              "x": -2.0,
+              "y": 2.0
+            },
+            "level_delta": 0.1,
+            "size_scale": 0.9
+          }
+        ],
+        "mission_mutation": {
+          "keep_original": true
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": [
+          "no actors in candidate scenario"
+        ]
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_118__gpt-4o-2024-11-20.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_118__gpt-4o-2024-11-20.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    }
+  ],
+  "seed_artifact_zip": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/gpt-4o-2024-11-20/seed-artifact/seed-artifact-case_118.zip",
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_prompts/case_118__gpt-4o-2024-11-20.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_118__gpt-4o-2024-11-20.json",
+  "prompt_estimated_tokens": 1098,
+  "usage": {
+    "prompt_tokens": 1180,
+    "completion_tokens": 635,
+    "total_tokens": 1815
+  },
+  "raw_response": "{\n  \"case_id\": \"case_118\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Ego vehicle approaches intersection with slightly reduced rain and adjusted puddle level near collision point.\",\n      \"mutation_intent\": \"This variant preserves the collision and red-light violation symptoms by maintaining ego movement with non-zero velocity and throttle while introducing minor environmental changes to test controller behavior under slightly altered conditions.\",\n      \"expected_oracle\": \"collision\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": -10, \"fog\": 0, \"wetness\": -5, \"puddle\": 0},\n        \"actor_mutations\": [],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": 1.0, \"y\": -1.5}, \"level_delta\": -0.1, \"size_scale\": 1.0}\n        ],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Ensure ego velocity and throttle remain non-zero before collision.\"],\n      \"post_execution_validation_rules\": [\"Validate critical-window ego speed, throttle, and vehicle_cmd consistency.\"],\n      \"uncertainty\": [\"Dataset.xlsx and error.json conflict on lane invasion.\", \"Controller behavior remains uncertain.\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Ego vehicle approaches intersection with slightly increased fog and minor puddle relocation.\",\n      \"mutation_intent\": \"This variant tests the same collision and red-light violation symptoms by maintaining ego movement with non-zero velocity and throttle while introducing minor visibility and puddle changes to evaluate controller robustness.\",\n      \"expected_oracle\": \"collision\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 10, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 1, \"location_offset\": {\"x\": -2.0, \"y\": 2.0}, \"level_delta\": 0.1, \"size_scale\": 0.9}\n        ],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Ensure ego velocity and throttle remain non-zero before collision.\"],\n      \"post_execution_validation_rules\": [\"Validate critical-window ego speed, throttle, and vehicle_cmd consistency.\"],\n      \"uncertainty\": [\"Dataset.xlsx and error.json conflict on lane invasion.\", \"Controller behavior remains uncertain.\"]\n    }\n  ]\n}",
+  "parsed_response": {
+    "case_id": "case_118",
+    "candidate_specs": [
+      {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Ego vehicle approaches intersection with slightly reduced rain and adjusted puddle level near collision point.",
+        "mutation_intent": "This variant preserves the collision and red-light violation symptoms by maintaining ego movement with non-zero velocity and throttle while introducing minor environmental changes to test controller behavior under slightly altered conditions.",
+        "expected_oracle": "collision",
+        "modifications": {
+          "weather_delta": {
+            "rain": -10,
+            "fog": 0,
+            "wetness": -5,
+            "puddle": 0
+          },
+          "actor_mutations": [],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 1.0,
+                "y": -1.5
+              },
+              "level_delta": -0.1,
+              "size_scale": 1.0
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Ensure ego velocity and throttle remain non-zero before collision."
+        ],
+        "post_execution_validation_rules": [
+          "Validate critical-window ego speed, throttle, and vehicle_cmd consistency."
+        ],
+        "uncertainty": [
+          "Dataset.xlsx and error.json conflict on lane invasion.",
+          "Controller behavior remains uncertain."
+        ]
+      },
+      {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Ego vehicle approaches intersection with slightly increased fog and minor puddle relocation.",
+        "mutation_intent": "This variant tests the same collision and red-light violation symptoms by maintaining ego movement with non-zero velocity and throttle while introducing minor visibility and puddle changes to evaluate controller robustness.",
+        "expected_oracle": "collision",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 10,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [],
+          "puddle_mutations": [
+            {
+              "puddle_index": 1,
+              "location_offset": {
+                "x": -2.0,
+                "y": 2.0
+              },
+              "level_delta": 0.1,
+              "size_scale": 0.9
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Ensure ego velocity and throttle remain non-zero before collision."
+        ],
+        "post_execution_validation_rules": [
+          "Validate critical-window ego speed, throttle, and vehicle_cmd consistency."
+        ],
+        "uncertainty": [
+          "Dataset.xlsx and error.json conflict on lane invasion.",
+          "Controller behavior remains uncertain."
+        ]
+      }
+    ]
+  },
+  "raw_api_payload": {
+    "id": "<REDACTED_RESPONSE_ID>",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "{\n  \"case_id\": \"case_118\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Ego vehicle approaches intersection with slightly reduced rain and adjusted puddle level near collision point.\",\n      \"mutation_intent\": \"This variant preserves the collision and red-light violation symptoms by maintaining ego movement with non-zero velocity and throttle while introducing minor environmental changes to test controller behavior under slightly altered conditions.\",\n      \"expected_oracle\": \"collision\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": -10, \"fog\": 0, \"wetness\": -5, \"puddle\": 0},\n        \"actor_mutations\": [],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": 1.0, \"y\": -1.5}, \"level_delta\": -0.1, \"size_scale\": 1.0}\n        ],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Ensure ego velocity and throttle remain non-zero before collision.\"],\n      \"post_execution_validation_rules\": [\"Validate critical-window ego speed, throttle, and vehicle_cmd consistency.\"],\n      \"uncertainty\": [\"Dataset.xlsx and error.json conflict on lane invasion.\", \"Controller behavior remains uncertain.\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Ego vehicle approaches intersection with slightly increased fog and minor puddle relocation.\",\n      \"mutation_intent\": \"This variant tests the same collision and red-light violation symptoms by maintaining ego movement with non-zero velocity and throttle while introducing minor visibility and puddle changes to evaluate controller robustness.\",\n      \"expected_oracle\": \"collision\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 10, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 1, \"location_offset\": {\"x\": -2.0, \"y\": 2.0}, \"level_delta\": 0.1, \"size_scale\": 0.9}\n        ],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Ensure ego velocity and throttle remain non-zero before collision.\"],\n      \"post_execution_validation_rules\": [\"Validate critical-window ego speed, throttle, and vehicle_cmd consistency.\"],\n      \"uncertainty\": [\"Dataset.xlsx and error.json conflict on lane invasion.\", \"Controller behavior remains uncertain.\"]\n    }\n  ]\n}",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": [],
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "gpt-4o-2024-11-20",
+    "object": "chat.completion",
+    "service_tier": "default",
+    "system_fingerprint": "<REDACTED_SYSTEM_FINGERPRINT>",
+    "usage": {
+      "completion_tokens": 635,
+      "prompt_tokens": 1180,
+      "total_tokens": 1815,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": 0,
+        "audio_tokens": 0,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 0
+      }
+    }
+  },
+  "error_message": "",
+  "elapsed_sec": 4.332,
+  "timestamp": "<REDACTED_TIMESTAMP>"
+}

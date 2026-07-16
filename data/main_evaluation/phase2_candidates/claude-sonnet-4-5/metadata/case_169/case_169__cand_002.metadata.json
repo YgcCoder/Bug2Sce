@@ -1,0 +1,70 @@
+{
+  "case_id": "case_169",
+  "model_name": "claude-sonnet-4-5",
+  "candidate_index": 2,
+  "candidate_spec": {
+    "candidate_id": "cand_002",
+    "high_level_variant": "Reduced fog and rain to improve visibility",
+    "mutation_intent": "Test if reduced fog and rain affect red-light detection while preserving violation pattern",
+    "expected_oracle": "red_light",
+    "modifications": {
+      "weather_delta": {
+        "rain": -10,
+        "fog": -20,
+        "wetness": -5,
+        "puddle": -5
+      },
+      "actor_mutations": [],
+      "puddle_mutations": [],
+      "mission_mutation": {
+        "keep_original": true,
+        "spawn_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "destination_offset": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Traffic light states available",
+      "Final waypoints present",
+      "Weather delta applied correctly"
+    ],
+    "post_execution_validation_rules": [
+      "Red-light violation reproduced",
+      "Ego velocity non-zero near red light",
+      "Improved visibility conditions"
+    ],
+    "uncertainty": [
+      "Visibility impact on violation unclear",
+      "Stop-line crossing not confirmed",
+      "Module-level attribution uncertain"
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": -10.0,
+      "fog": -20,
+      "wetness": -5.0,
+      "puddle": -5.0
+    },
+    "actor_mutations": [],
+    "puddle_mutations": [],
+    "mission_mutation": {
+      "keep_original": true
+    }
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": [
+      "no actors in candidate scenario"
+    ]
+  },
+  "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_169__claude-sonnet-4-5.json",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_169__claude-sonnet-4-5.json",
+  "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+}

@@ -1,0 +1,124 @@
+{
+  "case_id": "case_118",
+  "model_name": "ark-doubao-seed-2.0-lite-260215",
+  "candidate_index": 1,
+  "candidate_spec": {
+    "candidate_id": "cand_001",
+    "high_level_variant": "Amplify road wetness and rain intensity while retaining all core scenario structure",
+    "mutation_intent": "Preserves all root-cause pattern requirements: zero dynamic actors, all-zero pre-collision vehicle_cmd, 3 puddle regions, and retains the confirmed collision and red-light violation outcome",
+    "expected_oracle": "compound",
+    "modifications": {
+      "weather_delta": {
+        "rain": 10,
+        "fog": 0,
+        "wetness": 10,
+        "puddle": 0
+      },
+      "actor_mutations": [],
+      "puddle_mutations": [
+        {
+          "puddle_index": 0,
+          "location_offset": {
+            "x": 1.0,
+            "y": -0.5
+          },
+          "level_delta": 0.05,
+          "size_scale": 1.0
+        },
+        {
+          "puddle_index": 1,
+          "location_offset": {
+            "x": -0.8,
+            "y": 0.3
+          },
+          "level_delta": -0.03,
+          "size_scale": 1.0
+        },
+        {
+          "puddle_index": 2,
+          "location_offset": {
+            "x": 0.5,
+            "y": -0.2
+          },
+          "level_delta": 0.02,
+          "size_scale": 1.0
+        }
+      ],
+      "mission_mutation": {
+        "keep_original": true,
+        "spawn_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "destination_offset": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "No dynamic actors are added to the scenario",
+      "All 3 original puddle regions are preserved",
+      "All-zero vehicle_cmd requirement is set for the pre-collision critical window"
+    ],
+    "post_execution_validation_rules": [
+      "Confirm collision and red-light violation outcomes occurred",
+      "Verify all-zero pre-collision vehicle_cmd condition holds"
+    ],
+    "uncertainty": [
+      "Lane invasion label conflict remains unresolved",
+      "Failure module attribution is still unconfirmed"
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": 10.0,
+      "fog": 0.0,
+      "wetness": 10.0,
+      "puddle": 0.0
+    },
+    "actor_mutations": [],
+    "puddle_mutations": [
+      {
+        "puddle_index": 0,
+        "location_offset": {
+          "x": 1.0,
+          "y": -0.5
+        },
+        "level_delta": 0.05,
+        "size_scale": 1.0
+      },
+      {
+        "puddle_index": 1,
+        "location_offset": {
+          "x": -0.8,
+          "y": 0.3
+        },
+        "level_delta": -0.03,
+        "size_scale": 1.0
+      },
+      {
+        "puddle_index": 2,
+        "location_offset": {
+          "x": 0.5,
+          "y": -0.2
+        },
+        "level_delta": 0.02,
+        "size_scale": 1.0
+      }
+    ],
+    "mission_mutation": {
+      "keep_original": true
+    }
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": [
+      "no actors in candidate scenario"
+    ]
+  },
+  "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_118__ark-doubao-seed-2.0-lite-260215.json",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_118__ark-doubao-seed-2.0-lite-260215.json",
+  "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+}

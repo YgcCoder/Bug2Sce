@@ -1,0 +1,152 @@
+{
+  "case_id": "case_156",
+  "model_name": "gpt-5.1",
+  "candidate_index": 2,
+  "candidate_spec": {
+    "candidate_id": "cand_002",
+    "high_level_variant": "Slightly shifted ego mission and nearby parked vehicle position in Town01, with identical weather and puddle conditions, to test whether the stuck-with-valid-waypoints behavior generalizes across small geometric variations around the original start location.",
+    "mutation_intent": "Introduce small spatial offsets to ego mission endpoints and the nearby static actor while keeping the same map, environment, and static-traffic context. This preserves the root-cause pattern of ego starting from rest, receiving continuous final_waypoints and perception, but remaining stationary with vehicle_cmd at zero, while probing geometry sensitivity of the stuck behavior.",
+    "expected_oracle": "stuck",
+    "modifications": {
+      "weather_delta": {
+        "rain": 0,
+        "fog": 0,
+        "wetness": 0,
+        "puddle": 0
+      },
+      "actor_mutations": [
+        {
+          "actor_index": 0,
+          "position_offset": {
+            "x": 2.0,
+            "y": -1.5
+          },
+          "speed_delta": 0.0
+        }
+      ],
+      "puddle_mutations": [
+        {
+          "puddle_index": 0,
+          "location_offset": {
+            "x": 1.0,
+            "y": 0.5
+          },
+          "level_delta": 0.05,
+          "size_scale": 1.0
+        },
+        {
+          "puddle_index": 1,
+          "location_offset": {
+            "x": -1.5,
+            "y": -0.5
+          },
+          "level_delta": -0.05,
+          "size_scale": 0.95
+        },
+        {
+          "puddle_index": 2,
+          "location_offset": {
+            "x": -2.0,
+            "y": 1.0
+          },
+          "level_delta": 0.0,
+          "size_scale": 1.05
+        }
+      ],
+      "mission_mutation": {
+        "keep_original": false,
+        "spawn_offset": {
+          "x": -3.0,
+          "y": 2.5
+        },
+        "destination_offset": {
+          "x": 2.0,
+          "y": -3.0
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Confirm that the adjusted ego spawn and destination remain on valid drivable lanes in Town01 and that a route planner can still compute a path.",
+      "Ensure the shifted static vehicle spawn does not initially overlap with the ego and remains immobile throughout the run.",
+      "Verify that weather and puddle parameters remain in a similar range to the seed so that sensing and perception are not dramatically altered.",
+      "Check that sensors (image_raw, points_raw) and perception/prediction topics are enabled and expected to be published continuously."
+    ],
+    "post_execution_validation_rules": [
+      "Verify that the oracle again reports a stuck outcome without collision, lane invasion, or red-light violation.",
+      "Confirm via odometry/current_pose that the ego exhibits only negligible displacement from its (shifted) start position over the scenario, with near-zero velocity in the final window.",
+      "Check that final_waypoints are continuously available, non-empty, and stable during the period where the ego is not moving, indicating a valid route exists despite the small geometric changes.",
+      "Verify that vehicle_cmd remains present and that target_speed and actuator commands (throttle/accel, brake, steer) stay effectively zero during the stuck interval.",
+      "Confirm that sensing and perception/prediction topics remain active and are not the cause of the ego’s immobility.",
+      "Compare the temporal pattern of waypoints and vehicle_cmd against the seed case to ensure the same high-level “planned route plus zero commands” behavior is reproduced despite the spatial offsets."
+    ],
+    "uncertainty": [
+      "It remains unclear whether the stuck behavior is tied to specific map features near the original spawn or reflects a broader logic issue; this variant probes that without resolving the root cause.",
+      "Small shifts in puddle placement and level are not directly observable in the logs; their influence on the planner or safety logic, if any, remains uncertain."
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": 0.0,
+      "fog": 0.0,
+      "wetness": 0.0,
+      "puddle": 0.0
+    },
+    "actor_mutations": [
+      {
+        "actor_index": 0,
+        "position_offset": {
+          "x": 2.0,
+          "y": -1.5
+        },
+        "speed_delta": 0.0
+      }
+    ],
+    "puddle_mutations": [
+      {
+        "puddle_index": 0,
+        "location_offset": {
+          "x": 1.0,
+          "y": 0.5
+        },
+        "level_delta": 0.05,
+        "size_scale": 1.0
+      },
+      {
+        "puddle_index": 1,
+        "location_offset": {
+          "x": -1.5,
+          "y": -0.5
+        },
+        "level_delta": -0.05,
+        "size_scale": 0.95
+      },
+      {
+        "puddle_index": 2,
+        "location_offset": {
+          "x": -2.0,
+          "y": 1.0
+        },
+        "level_delta": 0.0,
+        "size_scale": 1.05
+      }
+    ],
+    "mission_mutation": {
+      "spawn_offset": {
+        "x": -3.0,
+        "y": 2.5
+      },
+      "destination_offset": {
+        "x": 2.0,
+        "y": -3.0
+      }
+    }
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_156__gpt-5.1.json",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_156__gpt-5.1.json",
+  "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+}

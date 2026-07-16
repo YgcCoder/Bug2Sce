@@ -1,0 +1,131 @@
+{
+  "case_id": "case_169",
+  "workflow": "phase1_causal_explanation",
+  "model_name": "gpt-5.1",
+  "model_id": "gpt-5.1",
+  "status": "completed",
+  "dry_run": false,
+  "schema_valid": true,
+  "schema_errors": [],
+  "quality_flags": [],
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_prompts/case_169__gpt-5.1.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_169__gpt-5.1.json",
+  "prompt_estimated_tokens": 2602,
+  "usage": {
+    "prompt_tokens": 2668,
+    "completion_tokens": 1048,
+    "total_tokens": 3716
+  },
+  "estimated_cost_usd": null,
+  "raw_response": "{\n  \"case_id\": \"case_169\",\n  \"fault_layer\": \"unknown\",\n  \"fault_component\": \"unknown\",\n  \"causal_explanation\": \"The oracle reports a red-light violation, and traffic-light states are available, but the summaries do not confirm that the ego route intersected a specific red light or that any stop line was crossed at red. The ego shows nonzero velocity at some point during the run, with vehicle_cmd remaining all zeros and throttle/brake/steer reported as zero in vehicle_status, so the detailed control behavior and its relation to the traffic light timing remain uncertain.\",\n  \"root_cause_pattern\": \"Conservative preservation pattern: a red-light violation is flagged by the oracle while traffic-light state information is present, but the route–light relationship and stop-line crossing are not established, leaving the mechanism of the violation and the responsible module unknown.\",\n  \"preservation_constraints\": [\n    \"The generated candidate should preserve the same oracle symptom: a red-light violation is reported.\",\n    \"Traffic-light state information should be available on the /carla/traffic_lights topic during the run.\",\n    \"The ego vehicle should experience some movement during the scenario (nonzero velocity at some time).\",\n    \"Critical-window evidence should not conclusively establish route–light relation or explicit stop-line crossing at red.\",\n    \"Final waypoints should be available throughout the run, with no null rows reported.\"\n  ],\n  \"modifiable_factors\": [\n    \"actor_position\",\n    \"weather\",\n    \"mission\",\n    \"ego_speed_profile\",\n    \"traffic_light_timing\"\n  ],\n  \"non_modifiable_conditions\": [\n    \"same oracle symptom: red-light violation is detected by the oracle\",\n    \"availability of /carla/traffic_lights with multiple state values observed\",\n    \"planning outputs such as /final_waypoints remain present during the critical window\",\n    \"overall module/topic structure (sensing, perception, planning, actuation topics) remains similar\"\n  ],\n  \"uncertainty\": [\n    \"Route–traffic-light relation and stop-line crossing are marked as unknown in the summaries.\",\n    \"The precise timing and location of the red-light violation are not provided.\",\n    \"vehicle_cmd remains all zeros while vehicle_status shows nonzero velocity at some point, so the true control pathway (Autoware vs simulator default control) is unclear.\",\n    \"It is unknown whether any internal perception, planning, or control logic explicitly disregarded a red light.\"\n  ],\n  \"evidence_support\": [\n    {\n      \"evidence_id\": \"fault_label_and_error_json\",\n      \"claim\": \"The oracle labels this case as a red-light violation with no collision, stuck, lane invasion, or speeding; dataset and error.json groups are consistent.\"\n    },\n    {\n      \"evidence_id\": \"critical_window_red_light_window\",\n      \"claim\": \"Traffic-light states are available with multiple state values, but route–light relation and stop-line crossing are explicitly reported as unknown, with placeholder stop-line ID 4294967295.\"\n    },\n    {\n      \"evidence_id\": \"trace_summary_vehicle_status\",\n      \"claim\": \"vehicle_status shows a velocity_range with max approximately 9.75 m/s, indicating the ego moved during the run, while throttle, brake, and steer ranges remain zero.\"\n    },\n    {\n      \"evidence_id\": \"trace_summary_vehicle_cmd\",\n      \"claim\": \"vehicle_cmd exists but all sampled steering, acceleration, braking, and target speed commands are zero throughout the logged range.\"\n    },\n    {\n      \"evidence_id\": \"trace_summary_planning_final_waypoints\",\n      \"claim\": \"final_waypoints are present from early to late in the run, with a consistent waypoint count and no null rows reported, indicating continuous planning output availability.\"\n    },\n    {\n      \"evidence_id\": \"trace_summary_oracle_traffic_lights\",\n      \"claim\": \"The /carla/traffic_lights topic exists with 36 lights and observed states including 0, 1, and 2, confirming access to traffic-light state information.\"\n    }\n  ],\n  \"confidence\": \"medium\",\n  \"ready_for_phase2_generation\": \"yes\",\n  \"notes_for_validator\": [\n    \"After executing a generated candidate, verify that the oracle again reports a red-light violation and no conflicting primary oracle symptoms (collision, stuck, lane invasion).\",\n    \"Confirm that /carla/traffic_lights is present and carries multiple state values, but that the logs do not provide a clear, deterministic mapping from the ego route to a specific red traffic light and its stop line.\",\n    \"Check that final_waypoints remain available and structurally similar (no null rows, stable waypoint count) near the time the oracle flags the violation.\",\n    \"Inspect ego odometry or vehicle_status to ensure the ego has nonzero velocity at some point, indicating actual movement in the scenario.\",\n    \"Do not infer the responsible Autoware module from these preservation conditions alone; keep fault_layer as unknown unless additional, more detailed evidence emerges.\"\n  ]\n}",
+  "parsed_response": {
+    "case_id": "case_169",
+    "fault_layer": "unknown",
+    "fault_component": "unknown",
+    "causal_explanation": "The oracle reports a red-light violation, and traffic-light states are available, but the summaries do not confirm that the ego route intersected a specific red light or that any stop line was crossed at red. The ego shows nonzero velocity at some point during the run, with vehicle_cmd remaining all zeros and throttle/brake/steer reported as zero in vehicle_status, so the detailed control behavior and its relation to the traffic light timing remain uncertain.",
+    "root_cause_pattern": "Conservative preservation pattern: a red-light violation is flagged by the oracle while traffic-light state information is present, but the route–light relationship and stop-line crossing are not established, leaving the mechanism of the violation and the responsible module unknown.",
+    "preservation_constraints": [
+      "The generated candidate should preserve the same oracle symptom: a red-light violation is reported.",
+      "Traffic-light state information should be available on the /carla/traffic_lights topic during the run.",
+      "The ego vehicle should experience some movement during the scenario (nonzero velocity at some time).",
+      "Critical-window evidence should not conclusively establish route–light relation or explicit stop-line crossing at red.",
+      "Final waypoints should be available throughout the run, with no null rows reported."
+    ],
+    "modifiable_factors": [
+      "actor_position",
+      "weather",
+      "mission",
+      "ego_speed_profile",
+      "traffic_light_timing"
+    ],
+    "non_modifiable_conditions": [
+      "same oracle symptom: red-light violation is detected by the oracle",
+      "availability of /carla/traffic_lights with multiple state values observed",
+      "planning outputs such as /final_waypoints remain present during the critical window",
+      "overall module/topic structure (sensing, perception, planning, actuation topics) remains similar"
+    ],
+    "uncertainty": [
+      "Route–traffic-light relation and stop-line crossing are marked as unknown in the summaries.",
+      "The precise timing and location of the red-light violation are not provided.",
+      "vehicle_cmd remains all zeros while vehicle_status shows nonzero velocity at some point, so the true control pathway (Autoware vs simulator default control) is unclear.",
+      "It is unknown whether any internal perception, planning, or control logic explicitly disregarded a red light."
+    ],
+    "evidence_support": [
+      {
+        "evidence_id": "fault_label_and_error_json",
+        "claim": "The oracle labels this case as a red-light violation with no collision, stuck, lane invasion, or speeding; dataset and error.json groups are consistent."
+      },
+      {
+        "evidence_id": "critical_window_red_light_window",
+        "claim": "Traffic-light states are available with multiple state values, but route–light relation and stop-line crossing are explicitly reported as unknown, with placeholder stop-line ID 4294967295."
+      },
+      {
+        "evidence_id": "trace_summary_vehicle_status",
+        "claim": "vehicle_status shows a velocity_range with max approximately 9.75 m/s, indicating the ego moved during the run, while throttle, brake, and steer ranges remain zero."
+      },
+      {
+        "evidence_id": "trace_summary_vehicle_cmd",
+        "claim": "vehicle_cmd exists but all sampled steering, acceleration, braking, and target speed commands are zero throughout the logged range."
+      },
+      {
+        "evidence_id": "trace_summary_planning_final_waypoints",
+        "claim": "final_waypoints are present from early to late in the run, with a consistent waypoint count and no null rows reported, indicating continuous planning output availability."
+      },
+      {
+        "evidence_id": "trace_summary_oracle_traffic_lights",
+        "claim": "The /carla/traffic_lights topic exists with 36 lights and observed states including 0, 1, and 2, confirming access to traffic-light state information."
+      }
+    ],
+    "confidence": "medium",
+    "ready_for_phase2_generation": "yes",
+    "notes_for_validator": [
+      "After executing a generated candidate, verify that the oracle again reports a red-light violation and no conflicting primary oracle symptoms (collision, stuck, lane invasion).",
+      "Confirm that /carla/traffic_lights is present and carries multiple state values, but that the logs do not provide a clear, deterministic mapping from the ego route to a specific red traffic light and its stop line.",
+      "Check that final_waypoints remain available and structurally similar (no null rows, stable waypoint count) near the time the oracle flags the violation.",
+      "Inspect ego odometry or vehicle_status to ensure the ego has nonzero velocity at some point, indicating actual movement in the scenario.",
+      "Do not infer the responsible Autoware module from these preservation conditions alone; keep fault_layer as unknown unless additional, more detailed evidence emerges."
+    ]
+  },
+  "raw_api_payload": {
+    "id": "<REDACTED_RESPONSE_ID>",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "{\n  \"case_id\": \"case_169\",\n  \"fault_layer\": \"unknown\",\n  \"fault_component\": \"unknown\",\n  \"causal_explanation\": \"The oracle reports a red-light violation, and traffic-light states are available, but the summaries do not confirm that the ego route intersected a specific red light or that any stop line was crossed at red. The ego shows nonzero velocity at some point during the run, with vehicle_cmd remaining all zeros and throttle/brake/steer reported as zero in vehicle_status, so the detailed control behavior and its relation to the traffic light timing remain uncertain.\",\n  \"root_cause_pattern\": \"Conservative preservation pattern: a red-light violation is flagged by the oracle while traffic-light state information is present, but the route–light relationship and stop-line crossing are not established, leaving the mechanism of the violation and the responsible module unknown.\",\n  \"preservation_constraints\": [\n    \"The generated candidate should preserve the same oracle symptom: a red-light violation is reported.\",\n    \"Traffic-light state information should be available on the /carla/traffic_lights topic during the run.\",\n    \"The ego vehicle should experience some movement during the scenario (nonzero velocity at some time).\",\n    \"Critical-window evidence should not conclusively establish route–light relation or explicit stop-line crossing at red.\",\n    \"Final waypoints should be available throughout the run, with no null rows reported.\"\n  ],\n  \"modifiable_factors\": [\n    \"actor_position\",\n    \"weather\",\n    \"mission\",\n    \"ego_speed_profile\",\n    \"traffic_light_timing\"\n  ],\n  \"non_modifiable_conditions\": [\n    \"same oracle symptom: red-light violation is detected by the oracle\",\n    \"availability of /carla/traffic_lights with multiple state values observed\",\n    \"planning outputs such as /final_waypoints remain present during the critical window\",\n    \"overall module/topic structure (sensing, perception, planning, actuation topics) remains similar\"\n  ],\n  \"uncertainty\": [\n    \"Route–traffic-light relation and stop-line crossing are marked as unknown in the summaries.\",\n    \"The precise timing and location of the red-light violation are not provided.\",\n    \"vehicle_cmd remains all zeros while vehicle_status shows nonzero velocity at some point, so the true control pathway (Autoware vs simulator default control) is unclear.\",\n    \"It is unknown whether any internal perception, planning, or control logic explicitly disregarded a red light.\"\n  ],\n  \"evidence_support\": [\n    {\n      \"evidence_id\": \"fault_label_and_error_json\",\n      \"claim\": \"The oracle labels this case as a red-light violation with no collision, stuck, lane invasion, or speeding; dataset and error.json groups are consistent.\"\n    },\n    {\n      \"evidence_id\": \"critical_window_red_light_window\",\n      \"claim\": \"Traffic-light states are available with multiple state values, but route–light relation and stop-line crossing are explicitly reported as unknown, with placeholder stop-line ID 4294967295.\"\n    },\n    {\n      \"evidence_id\": \"trace_summary_vehicle_status\",\n      \"claim\": \"vehicle_status shows a velocity_range with max approximately 9.75 m/s, indicating the ego moved during the run, while throttle, brake, and steer ranges remain zero.\"\n    },\n    {\n      \"evidence_id\": \"trace_summary_vehicle_cmd\",\n      \"claim\": \"vehicle_cmd exists but all sampled steering, acceleration, braking, and target speed commands are zero throughout the logged range.\"\n    },\n    {\n      \"evidence_id\": \"trace_summary_planning_final_waypoints\",\n      \"claim\": \"final_waypoints are present from early to late in the run, with a consistent waypoint count and no null rows reported, indicating continuous planning output availability.\"\n    },\n    {\n      \"evidence_id\": \"trace_summary_oracle_traffic_lights\",\n      \"claim\": \"The /carla/traffic_lights topic exists with 36 lights and observed states including 0, 1, and 2, confirming access to traffic-light state information.\"\n    }\n  ],\n  \"confidence\": \"medium\",\n  \"ready_for_phase2_generation\": \"yes\",\n  \"notes_for_validator\": [\n    \"After executing a generated candidate, verify that the oracle again reports a red-light violation and no conflicting primary oracle symptoms (collision, stuck, lane invasion).\",\n    \"Confirm that /carla/traffic_lights is present and carries multiple state values, but that the logs do not provide a clear, deterministic mapping from the ego route to a specific red traffic light and its stop line.\",\n    \"Check that final_waypoints remain available and structurally similar (no null rows, stable waypoint count) near the time the oracle flags the violation.\",\n    \"Inspect ego odometry or vehicle_status to ensure the ego has nonzero velocity at some point, indicating actual movement in the scenario.\",\n    \"Do not infer the responsible Autoware module from these preservation conditions alone; keep fault_layer as unknown unless additional, more detailed evidence emerges.\"\n  ]\n}",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": [],
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "gpt-5.1-2025-11-13",
+    "object": "chat.completion",
+    "service_tier": "default",
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 1048,
+      "prompt_tokens": 2668,
+      "total_tokens": 3716,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": 0,
+        "audio_tokens": 0,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 0
+      }
+    }
+  },
+  "error_message": "",
+  "timestamp": "<REDACTED_TIMESTAMP>",
+  "elapsed_sec": 15.42
+}

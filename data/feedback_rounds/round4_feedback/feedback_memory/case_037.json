@@ -1,0 +1,1019 @@
+{
+  "schema_version": "bug2scenario.feedback.v1",
+  "case_id": "case_037",
+  "record_policy": "retain_failed_boundary_and_successful_same_seed_attempts",
+  "records": [
+    {
+      "schema_version": "bug2scenario.feedback.v1",
+      "case_id": "case_037",
+      "round": 1,
+      "generator": "ark-deepseek-r1-250528",
+      "candidate_id": "cand_001",
+      "candidate_spec": {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Slightly shift the lead vehicle toward ego's planned path, keep all original weather and mission parameters",
+        "mutation_intent": "Preserves all root cause requirements: retains original Town01 map, mission start/goal positions, heavy rain high wetness weather, 2 actors, all-zero vehicle_cmd output, and conflicting label status between dataset and error.json; small position shift increases collision likelihood to match the dataset's collision l...",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 1.2,
+                "y": -0.8
+              },
+              "speed_delta": 0.5
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": 0.0,
+                "y": 1.0
+              },
+              "speed_delta": 0.0
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        }
+      },
+      "execution": {
+        "status": "oracle_triggered",
+        "expected_oracle_codes": "C+L+R",
+        "observed_oracle_codes": "R",
+        "oracle_match_status": "partial_oracle_overlap",
+        "events": {
+          "collision": "FALSE",
+          "stuck": "FALSE",
+          "lane_invasion": "FALSE",
+          "red_light": "TRUE"
+        }
+      },
+      "automatic_analysis": {
+        "decision": "possible_same_root_cause_needs_video",
+        "reasons": "score=15/25; orig_min_actor_route_dist=14.661; cand_min_actor_route_dist=14.727; orig_min_dist=14.478; cand_min_dist=14.675; start_delta=0.000; goal_delta=0.000; oracle symptom differs or only partially overlaps; map preserved; mission start remains close; mission goal remains close; actor type family overlaps; actor count remains comparable; actor remains near ego mission route; runtime min_dist remains close; re...",
+        "root_cause_pattern_summary": "Conservative preservation pattern: Autoware outputs all-zero vehicle actuation commands while the ego vehicle continues moving in heavy rain high-wetness conditions, with conflicting failure labels and an unconfirmed red light event."
+      },
+      "manual_review": {
+        "preservation_result": "not_preserved",
+        "observed_failure_type": "R",
+        "notes": ""
+      },
+      "memory_role": "historical_outcome_not_authoritative_target"
+    },
+    {
+      "schema_version": "bug2scenario.feedback.v1",
+      "case_id": "case_037",
+      "round": 1,
+      "generator": "ark-doubao-seed-2.0-lite-260215",
+      "candidate_id": "cand_001",
+      "candidate_spec": {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Minor positional offset to the non-ego vehicle, retain all original weather, mission and actor count",
+        "mutation_intent": "Preserves all root cause requirements: conflicting dataset/error.json labels, actuation command-status mismatch, original Town01 map, original mission, heavy rain/high wetness, two-actor setup. Minor variation tests symptom consistency without changing the core root cause pattern",
+        "expected_oracle": "red_light",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 1.5,
+                "y": -0.5
+              },
+              "speed_delta": 0.3
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        }
+      },
+      "execution": {
+        "status": "oracle_triggered",
+        "expected_oracle_codes": "C+L+R",
+        "observed_oracle_codes": "R",
+        "oracle_match_status": "partial_oracle_overlap",
+        "events": {
+          "collision": "FALSE",
+          "stuck": "FALSE",
+          "lane_invasion": "FALSE",
+          "red_light": "TRUE"
+        }
+      },
+      "automatic_analysis": {
+        "decision": "possible_same_root_cause_needs_video",
+        "reasons": "score=15/25; orig_min_actor_route_dist=14.661; cand_min_actor_route_dist=14.661; orig_min_dist=14.478; cand_min_dist=14.627; start_delta=0.000; goal_delta=0.000; oracle symptom differs or only partially overlaps; map preserved; mission start remains close; mission goal remains close; actor type family overlaps; actor count remains comparable; actor remains near ego mission route; runtime min_dist remains close; re...",
+        "root_cause_pattern_summary": "Conservative pattern: conflicting failure labels between dataset and error.json oracles, plus an actuation command-vehicle status mismatch in the critical window, with unconfirmed module-level root cause."
+      },
+      "manual_review": {
+        "preservation_result": "not_preserved",
+        "observed_failure_type": "R",
+        "notes": ""
+      },
+      "memory_role": "historical_outcome_not_authoritative_target"
+    },
+    {
+      "schema_version": "bug2scenario.feedback.v1",
+      "case_id": "case_037",
+      "round": 1,
+      "generator": "claude-sonnet-4-5",
+      "candidate_id": "cand_001",
+      "candidate_spec": {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Reduce weather intensity, shift actor closer to ego path",
+        "mutation_intent": "Preserve nearby actor within 3m and moderate ego speed while reducing weather noise to isolate actuation inconsistency",
+        "expected_oracle": "red_light",
+        "modifications": {
+          "weather_delta": {
+            "rain": -20,
+            "fog": 0,
+            "wetness": -15,
+            "puddle": -10
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 2.5,
+                "y": -1.5
+              },
+              "speed_delta": -1.0
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        }
+      },
+      "execution": {
+        "status": "oracle_triggered",
+        "expected_oracle_codes": "C+L+R",
+        "observed_oracle_codes": "R",
+        "oracle_match_status": "partial_oracle_overlap",
+        "events": {
+          "collision": "FALSE",
+          "stuck": "FALSE",
+          "lane_invasion": "FALSE",
+          "red_light": "TRUE"
+        }
+      },
+      "automatic_analysis": {
+        "decision": "possible_same_root_cause_needs_video",
+        "reasons": "score=15/25; orig_min_actor_route_dist=14.661; cand_min_actor_route_dist=14.661; orig_min_dist=14.478; cand_min_dist=14.671; start_delta=0.000; goal_delta=0.000; oracle symptom differs or only partially overlaps; map preserved; mission start remains close; mission goal remains close; actor type family overlaps; actor count remains comparable; actor remains near ego mission route; runtime min_dist remains close; re...",
+        "root_cause_pattern_summary": "Conservative preservation pattern: ego approaches a nearby actor (classification 6, distance ~2.86m) while traveling at moderate speed (~4.77 m/s) with available perception and planning outputs, but vehicle_cmd remains zero despite vehicle_status showing actuation. Oracle labels conflict between dataset and error.json for collision and lane_invasion."
+      },
+      "manual_review": {
+        "preservation_result": "not_preserved",
+        "observed_failure_type": "R",
+        "notes": ""
+      },
+      "memory_role": "historical_outcome_not_authoritative_target"
+    },
+    {
+      "schema_version": "bug2scenario.feedback.v1",
+      "case_id": "case_037",
+      "round": 1,
+      "generator": "gemini-2.5-pro",
+      "candidate_id": "cand_001",
+      "candidate_spec": {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Ego runs red light and collides with another vehicle, with slightly better weather.",
+        "mutation_intent": "Confirm the collision by moving the other vehicle to create a more direct intersection point, while slightly reducing rain.",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": -20,
+            "fog": 0,
+            "wetness": -10,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": -2.0,
+                "y": -2.0
+              },
+              "speed_delta": 0.0
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        }
+      },
+      "execution": {
+        "status": "oracle_triggered",
+        "expected_oracle_codes": "C+L+R",
+        "observed_oracle_codes": "R",
+        "oracle_match_status": "partial_oracle_overlap",
+        "events": {
+          "collision": "FALSE",
+          "stuck": "FALSE",
+          "lane_invasion": "FALSE",
+          "red_light": "TRUE"
+        }
+      },
+      "automatic_analysis": {
+        "decision": "possible_same_root_cause_needs_video",
+        "reasons": "score=15/25; orig_min_actor_route_dist=14.661; cand_min_actor_route_dist=14.661; orig_min_dist=14.478; cand_min_dist=14.690; start_delta=0.000; goal_delta=0.000; oracle symptom differs or only partially overlaps; map preserved; mission start remains close; mission goal remains close; actor type family overlaps; actor count remains comparable; actor remains near ego mission route; runtime min_dist remains close; re...",
+        "root_cause_pattern_summary": "A mismatch between zero-value vehicle_cmd and non-zero vehicle_status precedes an oracle-reported failure."
+      },
+      "manual_review": {
+        "preservation_result": "not_preserved",
+        "observed_failure_type": "R",
+        "notes": ""
+      },
+      "memory_role": "historical_outcome_not_authoritative_target"
+    },
+    {
+      "schema_version": "bug2scenario.feedback.v1",
+      "case_id": "case_037",
+      "round": 1,
+      "generator": "gpt-4o-2024-11-20",
+      "candidate_id": "cand_001",
+      "candidate_spec": {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Ego vehicle approaches a red light with minimal movement, while weather conditions are slightly adjusted to test controller behavior under reduced visibility.",
+        "mutation_intent": "This variant preserves the red-light violation symptom and introduces minor weather changes to explore the impact on the controller's uncertain behavior.",
+        "expected_oracle": "red_light",
+        "modifications": {
+          "weather_delta": {
+            "rain": -10,
+            "fog": 10,
+            "wetness": 5,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "speed_delta": -0.5
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        }
+      },
+      "execution": {
+        "status": "oracle_triggered",
+        "expected_oracle_codes": "C+L+R",
+        "observed_oracle_codes": "R",
+        "oracle_match_status": "partial_oracle_overlap",
+        "events": {
+          "collision": "FALSE",
+          "stuck": "FALSE",
+          "lane_invasion": "FALSE",
+          "red_light": "TRUE"
+        }
+      },
+      "automatic_analysis": {
+        "decision": "possible_same_root_cause_needs_video",
+        "reasons": "score=15/25; orig_min_actor_route_dist=14.661; cand_min_actor_route_dist=14.661; orig_min_dist=14.478; cand_min_dist=14.368; start_delta=0.000; goal_delta=0.000; oracle symptom differs or only partially overlaps; map preserved; mission start remains close; mission goal remains close; actor type family overlaps; actor count remains comparable; actor remains near ego mission route; runtime min_dist remains close; re...",
+        "root_cause_pattern_summary": "Conservative preservation pattern: ego vehicle encounters a red-light violation scenario with uncertain oracle consistency and minimal movement during the critical window."
+      },
+      "manual_review": {
+        "preservation_result": "not_preserved",
+        "observed_failure_type": "R",
+        "notes": ""
+      },
+      "memory_role": "historical_outcome_not_authoritative_target"
+    },
+    {
+      "schema_version": "bug2scenario.feedback.v1",
+      "case_id": "case_037",
+      "round": 1,
+      "generator": "gpt-5.1",
+      "candidate_id": "cand_001",
+      "candidate_spec": {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Maintain heavy rain at the same intersection but nudge the oncoming vehicle closer to the ego’s lane approach, keeping ego mostly stationary while a near-side-pass collision impulse occurs near the end of the run with a recorded red-ligh...",
+        "mutation_intent": "Preserve the pattern of a red-light oracle violation with a late collision impulse near a close non-ego vehicle under heavy rain, while Autoware planning keeps publishing non-blocked waypoints and control commands remain essentially zero. Only the relative geometry of the non-ego vehicle is slightly tightened to rel...",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 5,
+            "wetness": 5,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 2.5,
+                "y": -2.0
+              },
+              "speed_delta": -1.0
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": -1.5,
+                "y": -1.0
+              },
+              "speed_delta": 0.2
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        }
+      },
+      "execution": {
+        "status": "oracle_triggered",
+        "expected_oracle_codes": "C+L+R",
+        "observed_oracle_codes": "R",
+        "oracle_match_status": "partial_oracle_overlap",
+        "events": {
+          "collision": "FALSE",
+          "stuck": "FALSE",
+          "lane_invasion": "FALSE",
+          "red_light": "TRUE"
+        }
+      },
+      "automatic_analysis": {
+        "decision": "possible_same_root_cause_needs_video",
+        "reasons": "score=15/25; orig_min_actor_route_dist=14.661; cand_min_actor_route_dist=16.163; orig_min_dist=14.478; cand_min_dist=16.171; start_delta=0.000; goal_delta=0.000; oracle symptom differs or only partially overlaps; map preserved; mission start remains close; mission goal remains close; actor type family overlaps; actor count remains comparable; actor remains near ego mission route; runtime min_dist remains close; re...",
+        "root_cause_pattern_summary": "Conservative preservation pattern: a red-light oracle violation is recorded while a close-proximity collision oracle event with a nearby actor occurs under heavy-rain conditions, with Autoware planning publishing non-blocked waypoints and actuation command topics remaining at zero, but the precise fault layer behind the collision, lane invasion, and red-l..."
+      },
+      "manual_review": {
+        "preservation_result": "not_preserved",
+        "observed_failure_type": "R",
+        "notes": ""
+      },
+      "memory_role": "historical_outcome_not_authoritative_target"
+    },
+    {
+      "schema_version": "bug2scenario.feedback.v1",
+      "case_id": "case_037",
+      "round": 2,
+      "generator": "",
+      "candidate_id": "cand_001",
+      "candidate_spec": {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Move vehicle actor significantly closer to ego spawn, increase fog to test perception under degraded visibility",
+        "mutation_intent": "All Round 1 candidates triggered only red_light, not collision. Move actor closer to ego path and increase fog to stress perception-actuation chain for collision trigger.",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 20,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 8.0,
+                "y": -3.0
+              },
+              "speed_delta": -2.0
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "speed_delta": 0.0
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        }
+      },
+      "execution": {
+        "status": "oracle_triggered",
+        "expected_oracle_codes": "C+L+R",
+        "observed_oracle_codes": "R",
+        "oracle_match_status": "partial_oracle_overlap",
+        "events": {
+          "collision": "False",
+          "stuck": "False",
+          "lane_invasion": "False",
+          "red_light": "True"
+        },
+        "artifact_counts": {
+          "bags": 1,
+          "scores": 0,
+          "cameras": 2
+        }
+      },
+      "automatic_analysis": {},
+      "manual_review": {
+        "preservation_result": "not_preserved",
+        "observed_failure_type": "L+R",
+        "notes": "30"
+      },
+      "memory_role": "historical_outcome_not_authoritative_target"
+    },
+    {
+      "schema_version": "bug2scenario.feedback.v1",
+      "case_id": "case_037",
+      "round": 2,
+      "generator": "",
+      "candidate_id": "cand_002",
+      "candidate_spec": {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Shift ego spawn closer to intersection, reduce rain and wetness to isolate red-light behavior from weather noise",
+        "mutation_intent": "Round 1 consistently triggered red_light only. Move ego spawn forward to reduce time-to-intersection and lower weather intensity to confirm red-light root cause without collision confound.",
+        "expected_oracle": "red_light",
+        "modifications": {
+          "weather_delta": {
+            "rain": -20,
+            "fog": -4,
+            "wetness": -20,
+            "puddle": -15
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "speed_delta": 0.0
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "speed_delta": 0.0
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": false,
+            "spawn_offset": {
+              "x": 3.0,
+              "y": -2.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        }
+      },
+      "execution": {
+        "status": "oracle_triggered",
+        "expected_oracle_codes": "C+L+R",
+        "observed_oracle_codes": "R",
+        "oracle_match_status": "partial_oracle_overlap",
+        "events": {
+          "collision": "False",
+          "stuck": "False",
+          "lane_invasion": "False",
+          "red_light": "True"
+        },
+        "artifact_counts": {
+          "bags": 1,
+          "scores": 0,
+          "cameras": 2
+        }
+      },
+      "automatic_analysis": {},
+      "manual_review": {
+        "preservation_result": "not_preserved",
+        "observed_failure_type": "L+R",
+        "notes": "30"
+      },
+      "memory_role": "historical_outcome_not_authoritative_target"
+    },
+    {
+      "schema_version": "bug2scenario.feedback.v1",
+      "case_id": "case_037",
+      "round": 3,
+      "generator": "claude-sonnet-4-5",
+      "candidate_id": "cand_001",
+      "candidate_spec": {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Move vehicle actor laterally toward ego lane, keep original weather and mission",
+        "mutation_intent": "Preserve nearby actor within 3m and moderate ego speed. Lateral shift tests collision trigger while maintaining actuation mismatch pattern.",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 5.0,
+                "y": -4.5
+              },
+              "speed_delta": -1.5
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "speed_delta": 0.0
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        }
+      },
+      "execution": {
+        "status": "oracle_triggered",
+        "expected_oracle_codes": "C+L+R",
+        "observed_oracle_codes": "R",
+        "oracle_match_status": "partial_oracle_overlap",
+        "events": {
+          "collision": "False",
+          "stuck": "False",
+          "lane_invasion": "False",
+          "red_light": "True"
+        },
+        "artifact_counts": {
+          "bags": 1,
+          "scores": 0,
+          "cameras": 2
+        }
+      },
+      "automatic_analysis": {},
+      "manual_review": {
+        "preservation_result": "not_preserved",
+        "observed_failure_type": "R",
+        "notes": "30"
+      },
+      "memory_role": "historical_outcome_not_authoritative_target"
+    },
+    {
+      "schema_version": "bug2scenario.feedback.v1",
+      "case_id": "case_037",
+      "round": 3,
+      "generator": "claude-sonnet-4-5",
+      "candidate_id": "cand_002",
+      "candidate_spec": {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Reduce vehicle actor speed significantly, shift slightly toward ego path",
+        "mutation_intent": "Slower actor increases dwell time near ego route. Tests whether prolonged proximity triggers collision while preserving actuation inconsistency.",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 3.5,
+                "y": -2.5
+              },
+              "speed_delta": -3.0
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "speed_delta": 0.0
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        }
+      },
+      "execution": {
+        "status": "oracle_triggered",
+        "expected_oracle_codes": "C+L+R",
+        "observed_oracle_codes": "R",
+        "oracle_match_status": "partial_oracle_overlap",
+        "events": {
+          "collision": "False",
+          "stuck": "False",
+          "lane_invasion": "False",
+          "red_light": "True"
+        },
+        "artifact_counts": {
+          "bags": 1,
+          "scores": 0,
+          "cameras": 2
+        }
+      },
+      "automatic_analysis": {},
+      "manual_review": {
+        "preservation_result": "not_preserved",
+        "observed_failure_type": "R",
+        "notes": "30"
+      },
+      "memory_role": "historical_outcome_not_authoritative_target"
+    },
+    {
+      "schema_version": "bug2scenario.feedback.v1",
+      "case_id": "case_037",
+      "round": 3,
+      "generator": "claude-sonnet-4-5",
+      "candidate_id": "cand_003",
+      "candidate_spec": {
+        "candidate_id": "cand_003",
+        "high_level_variant": "Increase rain and wetness, move vehicle actor diagonally closer to ego",
+        "mutation_intent": "Amplify weather conditions to stress perception while tightening actor geometry. Tests if weather plus proximity triggers collision oracle.",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": 20,
+            "fog": 0,
+            "wetness": 20,
+            "puddle": 10
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 6.0,
+                "y": -3.5
+              },
+              "speed_delta": -0.5
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "speed_delta": 0.0
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        }
+      },
+      "execution": {
+        "status": "oracle_triggered",
+        "expected_oracle_codes": "C+L+R",
+        "observed_oracle_codes": "R",
+        "oracle_match_status": "partial_oracle_overlap",
+        "events": {
+          "collision": "False",
+          "stuck": "False",
+          "lane_invasion": "False",
+          "red_light": "True"
+        },
+        "artifact_counts": {
+          "bags": 1,
+          "scores": 0,
+          "cameras": 2
+        }
+      },
+      "automatic_analysis": {},
+      "manual_review": {
+        "preservation_result": "not_preserved",
+        "observed_failure_type": "R",
+        "notes": "30"
+      },
+      "memory_role": "historical_outcome_not_authoritative_target"
+    },
+    {
+      "schema_version": "bug2scenario.feedback.v1",
+      "case_id": "case_037",
+      "round": 3,
+      "generator": "claude-sonnet-4-5",
+      "candidate_id": "cand_004",
+      "candidate_spec": {
+        "candidate_id": "cand_004",
+        "high_level_variant": "Shift walker actor toward ego path, keep vehicle actor and weather unchanged",
+        "mutation_intent": "Test if walker proximity triggers collision while vehicle actor maintains original geometry. Isolates pedestrian interaction effect.",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "speed_delta": 0.0
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": 4.0,
+                "y": -3.0
+              },
+              "speed_delta": 0.0
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        }
+      },
+      "execution": {
+        "status": "oracle_triggered",
+        "expected_oracle_codes": "C+L+R",
+        "observed_oracle_codes": "R",
+        "oracle_match_status": "partial_oracle_overlap",
+        "events": {
+          "collision": "False",
+          "stuck": "False",
+          "lane_invasion": "False",
+          "red_light": "True"
+        },
+        "artifact_counts": {
+          "bags": 1,
+          "scores": 0,
+          "cameras": 2
+        }
+      },
+      "automatic_analysis": {},
+      "manual_review": {
+        "preservation_result": "not_preserved",
+        "observed_failure_type": "R",
+        "notes": "30"
+      },
+      "memory_role": "historical_outcome_not_authoritative_target"
+    },
+    {
+      "schema_version": "bug2scenario.feedback.v1",
+      "case_id": "case_037",
+      "round": 3,
+      "generator": "claude-sonnet-4-5",
+      "candidate_id": "cand_005",
+      "candidate_spec": {
+        "candidate_id": "cand_005",
+        "high_level_variant": "Move both actors closer to ego spawn, reduce fog slightly",
+        "mutation_intent": "Dual actor proximity increases interaction complexity. Tests if multiple nearby actors trigger collision while preserving actuation mismatch.",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": -4,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 7.0,
+                "y": -4.0
+              },
+              "speed_delta": -1.0
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": 3.0,
+                "y": -2.5
+              },
+              "speed_delta": 0.0
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        }
+      },
+      "execution": {
+        "status": "oracle_triggered",
+        "expected_oracle_codes": "C+L+R",
+        "observed_oracle_codes": "R",
+        "oracle_match_status": "partial_oracle_overlap",
+        "events": {
+          "collision": "False",
+          "stuck": "False",
+          "lane_invasion": "False",
+          "red_light": "True"
+        },
+        "artifact_counts": {
+          "bags": 1,
+          "scores": 0,
+          "cameras": 2
+        }
+      },
+      "automatic_analysis": {},
+      "manual_review": {
+        "preservation_result": "not_preserved",
+        "observed_failure_type": "R",
+        "notes": "30"
+      },
+      "memory_role": "historical_outcome_not_authoritative_target"
+    },
+    {
+      "schema_version": "bug2scenario.feedback.v1",
+      "case_id": "case_037",
+      "round": 3,
+      "generator": "claude-sonnet-4-5",
+      "candidate_id": "cand_006",
+      "candidate_spec": {
+        "candidate_id": "cand_006",
+        "high_level_variant": "Increase vehicle actor speed, shift laterally toward ego, reduce wetness",
+        "mutation_intent": "Faster actor with lateral shift tests dynamic collision scenario. Lower wetness isolates actuation behavior from weather confound.",
+        "expected_oracle": "compound",
+        "modifications": {
+          "weather_delta": {
+            "rain": -15,
+            "fog": 0,
+            "wetness": -20,
+            "puddle": -10
+          },
+          "actor_mutations": [
+            {
+              "actor_index": 0,
+              "position_offset": {
+                "x": 4.5,
+                "y": -3.0
+              },
+              "speed_delta": 2.0
+            },
+            {
+              "actor_index": 1,
+              "position_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "speed_delta": 0.0
+            }
+          ],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        }
+      },
+      "execution": {
+        "status": "oracle_triggered",
+        "expected_oracle_codes": "C+L+R",
+        "observed_oracle_codes": "R",
+        "oracle_match_status": "partial_oracle_overlap",
+        "events": {
+          "collision": "False",
+          "stuck": "False",
+          "lane_invasion": "False",
+          "red_light": "True"
+        },
+        "artifact_counts": {
+          "bags": 1,
+          "scores": 0,
+          "cameras": 2
+        }
+      },
+      "automatic_analysis": {},
+      "manual_review": {
+        "preservation_result": "not_preserved",
+        "observed_failure_type": "R",
+        "notes": "30"
+      },
+      "memory_role": "historical_outcome_not_authoritative_target"
+    }
+  ]
+}

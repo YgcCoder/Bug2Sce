@@ -1,0 +1,101 @@
+{
+  "case_id": "case_061",
+  "round": 4,
+  "model_name": "claude-sonnet-4-5",
+  "candidate_index": 4,
+  "candidate_spec": {
+    "candidate_id": "cand_004",
+    "high_level_variant": "Walker 0 positioned ahead with heavy rain and fog for perception stress",
+    "mutation_intent": "Combine forward walker placement with degraded visibility to test if perception failure contributes to collision under original pattern",
+    "expected_oracle": "collision",
+    "modifications": {
+      "weather_delta": {
+        "rain": 20,
+        "fog": 18,
+        "wetness": 20,
+        "puddle": 10
+      },
+      "actor_mutations": [
+        {
+          "actor_index": 0,
+          "position_offset": {
+            "x": 2.2,
+            "y": 1.5
+          },
+          "speed_delta": -0.6
+        },
+        {
+          "actor_index": 1,
+          "position_offset": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "speed_delta": 0.0
+        }
+      ],
+      "puddle_mutations": [],
+      "mission_mutation": {
+        "keep_original": true,
+        "spawn_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "destination_offset": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Weather parameters within safe simulation bounds, walker near ego path"
+    ],
+    "post_execution_validation_rules": [
+      "Check collision, vehicle_cmd/status mismatch, detected object count in critical window"
+    ],
+    "uncertainty": [
+      "Heavy weather may alter ego behavior beyond original pattern scope"
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": 20,
+      "fog": 18.0,
+      "wetness": 20,
+      "puddle": 10.0
+    },
+    "actor_mutations": [
+      {
+        "actor_index": 0,
+        "position_offset": {
+          "x": 2.2,
+          "y": 1.5
+        },
+        "speed_delta": -0.6
+      },
+      {
+        "actor_index": 1,
+        "position_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "speed_delta": 0.0
+      }
+    ],
+    "puddle_mutations": [],
+    "mission_mutation": {
+      "keep_original": true
+    },
+    "safety_repairs": []
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "authoritative_original_phase1_output": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_061__claude-sonnet-4-5.json",
+  "round1_feedback_count": 6,
+  "round2_feedback_count": 2,
+  "round3_feedback_count": 6,
+  "feedback_memory_policy": "all_same_seed_outcomes_retained",
+  "round4_api_output": "<WORKSPACE_ROOT>/processed/experiments/round4_feedback/api_outputs/case_061__claude-sonnet-4-5.json"
+}

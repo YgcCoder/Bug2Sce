@@ -1,0 +1,90 @@
+{
+  "case_id": "case_104",
+  "model_name": "ark-deepseek-r1-250528",
+  "candidate_index": 2,
+  "candidate_spec": {
+    "candidate_id": "cand_002",
+    "high_level_variant": "Keep original ego mission, slightly increase fog and wetness, retain stationary ego with no dynamic actors",
+    "mutation_intent": "Preserves all Phase 1 root-cause constraints: conflicting red-light labels, zero actuation, near-zero ego speed, no dynamic actors, and 36 total map traffic lights are all retained",
+    "expected_oracle": "unknown",
+    "modifications": {
+      "weather_delta": {
+        "rain": 0,
+        "fog": 10,
+        "wetness": 10,
+        "puddle": 0
+      },
+      "actor_mutations": [],
+      "puddle_mutations": [
+        {
+          "puddle_index": 0,
+          "location_offset": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "level_delta": 0.05,
+          "size_scale": 1.0
+        }
+      ],
+      "mission_mutation": {
+        "keep_original": true,
+        "spawn_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "destination_offset": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Ego must have zero actuation commands in the critical window",
+      "No dynamic actors may be added to the scenario",
+      "Total number of traffic lights on the map must remain 36",
+      "Weather modifications are within conservative allowed ranges"
+    ],
+    "post_execution_validation_rules": [
+      "Conflicting red-light violation status between dataset annotation and automated detection is preserved"
+    ],
+    "uncertainty": [
+      "Stop-line crossing by ego is not confirmed",
+      "Relation between ego route and active red light is not confirmed",
+      "No module-level failure is confirmed",
+      "Weather adjustment does not resolve conflicting label status"
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": 0.0,
+      "fog": 10.0,
+      "wetness": 10.0,
+      "puddle": 0.0
+    },
+    "actor_mutations": [],
+    "puddle_mutations": [
+      {
+        "puddle_index": 0,
+        "location_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "level_delta": 0.05,
+        "size_scale": 1.0
+      }
+    ],
+    "mission_mutation": {
+      "keep_original": true
+    }
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": [
+      "no actors in candidate scenario"
+    ]
+  },
+  "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_104__ark-deepseek-r1-250528.json",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_104__ark-deepseek-r1-250528.json",
+  "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+}

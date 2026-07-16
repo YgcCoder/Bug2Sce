@@ -1,0 +1,473 @@
+{
+  "case_id": "case_010",
+  "model_name": "ark-doubao-seed-2.0-lite-260215",
+  "workflow": "phase2_grounded_generation",
+  "status": "completed",
+  "schema_valid": true,
+  "schema_errors": [],
+  "phase1_ready": "uncertain",
+  "num_candidates_requested": 2,
+  "num_candidates_written": 2,
+  "num_pre_valid": 2,
+  "candidate_records": [
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-doubao-seed-2.0-lite-260215/json/case_010/case_010__cand_001.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-doubao-seed-2.0-lite-260215/metadata/case_010/case_010__cand_001.metadata.json",
+      "case_id": "case_010",
+      "model_name": "ark-doubao-seed-2.0-lite-260215",
+      "candidate_index": 1,
+      "candidate_spec": {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Slight adjustment of all three puddle locations and intensities, keep all other original scenario properties unchanged",
+        "mutation_intent": "Preserves all required phase 1 constraints: maintains conflicting label status, zero dynamic actors, 3 puddle regions, original mission start/goal region, and wet high-puddle-coverage weather conditions, does not add new evidence that resolves existing uncertainty",
+        "expected_oracle": "lane_invasion",
+        "modifications": {
+          "weather_delta": {
+            "rain": 5,
+            "fog": 0,
+            "wetness": 3,
+            "puddle": 4
+          },
+          "actor_mutations": [],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 0.5,
+                "y": -0.3
+              },
+              "level_delta": 0.05,
+              "size_scale": 1.0
+            },
+            {
+              "puddle_index": 1,
+              "location_offset": {
+                "x": -0.2,
+                "y": 0.4
+              },
+              "level_delta": -0.03,
+              "size_scale": 0.95
+            },
+            {
+              "puddle_index": 2,
+              "location_offset": {
+                "x": 0.3,
+                "y": -0.2
+              },
+              "level_delta": 0.02,
+              "size_scale": 1.05
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Confirm 3 puddle regions are preserved",
+          "Confirm no dynamic actors are added",
+          "Confirm weather remains wet with high puddle coverage"
+        ],
+        "post_execution_validation_rules": [
+          "Check for label conflict between dataset-style oracle and error.json detection",
+          "Verify actuation mismatch (zero vehicle_cmd, non-zero vehicle status velocity) is still present"
+        ],
+        "uncertainty": [
+          "Label conflict between dataset and error.json remains unconfirmed",
+          "No module-level root cause is confirmed from available evidence",
+          "Actuation mismatch uncertainty is preserved"
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 5.0,
+          "fog": 0.0,
+          "wetness": 3.0,
+          "puddle": 4.0
+        },
+        "actor_mutations": [],
+        "puddle_mutations": [
+          {
+            "puddle_index": 0,
+            "location_offset": {
+              "x": 0.5,
+              "y": -0.3
+            },
+            "level_delta": 0.05,
+            "size_scale": 1.0
+          },
+          {
+            "puddle_index": 1,
+            "location_offset": {
+              "x": -0.2,
+              "y": 0.4
+            },
+            "level_delta": -0.03,
+            "size_scale": 0.95
+          },
+          {
+            "puddle_index": 2,
+            "location_offset": {
+              "x": 0.3,
+              "y": -0.2
+            },
+            "level_delta": 0.02,
+            "size_scale": 1.05
+          }
+        ],
+        "mission_mutation": {
+          "keep_original": true
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": [
+          "no actors in candidate scenario"
+        ]
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_010__ark-doubao-seed-2.0-lite-260215.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_010__ark-doubao-seed-2.0-lite-260215.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    },
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-doubao-seed-2.0-lite-260215/json/case_010/case_010__cand_002.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-doubao-seed-2.0-lite-260215/metadata/case_010/case_010__cand_002.metadata.json",
+      "case_id": "case_010",
+      "model_name": "ark-doubao-seed-2.0-lite-260215",
+      "candidate_index": 2,
+      "candidate_spec": {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Small shift of ego mission spawn and destination within the original general region, slight adjustment of puddle sizes and weather conditions within allowed wet range",
+        "mutation_intent": "Preserves all core root cause constraints: conflicting label status, zero dynamic actors, 3 puddle regions, original mission area, wet high-puddle-coverage, and retains the actuation mismatch condition that contributes to uncertainty",
+        "expected_oracle": "lane_invasion",
+        "modifications": {
+          "weather_delta": {
+            "rain": -3,
+            "fog": 2,
+            "wetness": -2,
+            "puddle": -3
+          },
+          "actor_mutations": [],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": -0.4,
+                "y": 0.2
+              },
+              "level_delta": -0.04,
+              "size_scale": 0.9
+            },
+            {
+              "puddle_index": 1,
+              "location_offset": {
+                "x": 0.3,
+                "y": -0.5
+              },
+              "level_delta": 0.04,
+              "size_scale": 1.1
+            },
+            {
+              "puddle_index": 2,
+              "location_offset": {
+                "x": -0.2,
+                "y": 0.3
+              },
+              "level_delta": -0.01,
+              "size_scale": 0.95
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": false,
+            "spawn_offset": {
+              "x": 1.2,
+              "y": -0.8
+            },
+            "destination_offset": {
+              "x": 1.0,
+              "y": -0.5
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Confirm mission spawn and destination remain in the original general region",
+          "Confirm no dynamic actors are added",
+          "Confirm 3 puddle regions are retained",
+          "Confirm wetness and puddle coverage remain high"
+        ],
+        "post_execution_validation_rules": [
+          "Check that label conflict between dataset and error.json oracles is still present",
+          "Verify actuation mismatch between zero vehicle_cmd and non-zero vehicle velocity is preserved"
+        ],
+        "uncertainty": [
+          "Lane invasion occurrence is still unconfirmed by available critical-window evidence",
+          "No module-level failure can be confirmed",
+          "Actuation behavior mismatch uncertainty remains unchanged"
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": -3.0,
+          "fog": 2.0,
+          "wetness": -2.0,
+          "puddle": -3.0
+        },
+        "actor_mutations": [],
+        "puddle_mutations": [
+          {
+            "puddle_index": 0,
+            "location_offset": {
+              "x": -0.4,
+              "y": 0.2
+            },
+            "level_delta": -0.04,
+            "size_scale": 0.9
+          },
+          {
+            "puddle_index": 1,
+            "location_offset": {
+              "x": 0.3,
+              "y": -0.5
+            },
+            "level_delta": 0.04,
+            "size_scale": 1.1
+          },
+          {
+            "puddle_index": 2,
+            "location_offset": {
+              "x": -0.2,
+              "y": 0.3
+            },
+            "level_delta": -0.01,
+            "size_scale": 0.95
+          }
+        ],
+        "mission_mutation": {
+          "spawn_offset": {
+            "x": 1.2,
+            "y": -0.8
+          },
+          "destination_offset": {
+            "x": 1.0,
+            "y": -0.5
+          }
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": [
+          "no actors in candidate scenario"
+        ]
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_010__ark-doubao-seed-2.0-lite-260215.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_010__ark-doubao-seed-2.0-lite-260215.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    }
+  ],
+  "seed_artifact_zip": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-doubao-seed-2.0-lite-260215/seed-artifact/seed-artifact-case_010.zip",
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_prompts/case_010__ark-doubao-seed-2.0-lite-260215.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_010__ark-doubao-seed-2.0-lite-260215.json",
+  "prompt_estimated_tokens": 1103,
+  "usage": {
+    "prompt_tokens": 1351,
+    "completion_tokens": 2712,
+    "total_tokens": 4063
+  },
+  "raw_response": "{\n  \"case_id\": \"case_010\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Slight adjustment of all three puddle locations and intensities, keep all other original scenario properties unchanged\",\n      \"mutation_intent\": \"Preserves all required phase 1 constraints: maintains conflicting label status, zero dynamic actors, 3 puddle regions, original mission start/goal region, and wet high-puddle-coverage weather conditions, does not add new evidence that resolves existing uncertainty\",\n      \"expected_oracle\": \"lane_invasion\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 5, \"fog\": 0, \"wetness\": 3, \"puddle\": 4},\n        \"actor_mutations\": [],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": 0.5, \"y\": -0.3}, \"level_delta\": 0.05, \"size_scale\": 1.0},\n          {\"puddle_index\": 1, \"location_offset\": {\"x\": -0.2, \"y\": 0.4}, \"level_delta\": -0.03, \"size_scale\": 0.95},\n          {\"puddle_index\": 2, \"location_offset\": {\"x\": 0.3, \"y\": -0.2}, \"level_delta\": 0.02, \"size_scale\": 1.05}\n        ],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Confirm 3 puddle regions are preserved\", \"Confirm no dynamic actors are added\", \"Confirm weather remains wet with high puddle coverage\"],\n      \"post_execution_validation_rules\": [\"Check for label conflict between dataset-style oracle and error.json detection\", \"Verify actuation mismatch (zero vehicle_cmd, non-zero vehicle status velocity) is still present\"],\n      \"uncertainty\": [\"Label conflict between dataset and error.json remains unconfirmed\", \"No module-level root cause is confirmed from available evidence\", \"Actuation mismatch uncertainty is preserved\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Small shift of ego mission spawn and destination within the original general region, slight adjustment of puddle sizes and weather conditions within allowed wet range\",\n      \"mutation_intent\": \"Preserves all core root cause constraints: conflicting label status, zero dynamic actors, 3 puddle regions, original mission area, wet high-puddle-coverage, and retains the actuation mismatch condition that contributes to uncertainty\",\n      \"expected_oracle\": \"lane_invasion\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": -3, \"fog\": 2, \"wetness\": -2, \"puddle\": -3},\n        \"actor_mutations\": [],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": -0.4, \"y\": 0.2}, \"level_delta\": -0.04, \"size_scale\": 0.9},\n          {\"puddle_index\": 1, \"location_offset\": {\"x\": 0.3, \"y\": -0.5}, \"level_delta\": 0.04, \"size_scale\": 1.1},\n          {\"puddle_index\": 2, \"location_offset\": {\"x\": -0.2, \"y\": 0.3}, \"level_delta\": -0.01, \"size_scale\": 0.95}\n        ],\n        \"mission_mutation\": {\"keep_original\": false, \"spawn_offset\": {\"x\": 1.2, \"y\": -0.8}, \"destination_offset\": {\"x\": 1.0, \"y\": -0.5}}\n      },\n      \"pre_execution_validation_rules\": [\"Confirm mission spawn and destination remain in the original general region\", \"Confirm no dynamic actors are added\", \"Confirm 3 puddle regions are retained\", \"Confirm wetness and puddle coverage remain high\"],\n      \"post_execution_validation_rules\": [\"Check that label conflict between dataset and error.json oracles is still present\", \"Verify actuation mismatch between zero vehicle_cmd and non-zero vehicle velocity is preserved\"],\n      \"uncertainty\": [\"Lane invasion occurrence is still unconfirmed by available critical-window evidence\", \"No module-level failure can be confirmed\", \"Actuation behavior mismatch uncertainty remains unchanged\"]\n    }\n  ]\n}",
+  "parsed_response": {
+    "case_id": "case_010",
+    "candidate_specs": [
+      {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Slight adjustment of all three puddle locations and intensities, keep all other original scenario properties unchanged",
+        "mutation_intent": "Preserves all required phase 1 constraints: maintains conflicting label status, zero dynamic actors, 3 puddle regions, original mission start/goal region, and wet high-puddle-coverage weather conditions, does not add new evidence that resolves existing uncertainty",
+        "expected_oracle": "lane_invasion",
+        "modifications": {
+          "weather_delta": {
+            "rain": 5,
+            "fog": 0,
+            "wetness": 3,
+            "puddle": 4
+          },
+          "actor_mutations": [],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 0.5,
+                "y": -0.3
+              },
+              "level_delta": 0.05,
+              "size_scale": 1.0
+            },
+            {
+              "puddle_index": 1,
+              "location_offset": {
+                "x": -0.2,
+                "y": 0.4
+              },
+              "level_delta": -0.03,
+              "size_scale": 0.95
+            },
+            {
+              "puddle_index": 2,
+              "location_offset": {
+                "x": 0.3,
+                "y": -0.2
+              },
+              "level_delta": 0.02,
+              "size_scale": 1.05
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Confirm 3 puddle regions are preserved",
+          "Confirm no dynamic actors are added",
+          "Confirm weather remains wet with high puddle coverage"
+        ],
+        "post_execution_validation_rules": [
+          "Check for label conflict between dataset-style oracle and error.json detection",
+          "Verify actuation mismatch (zero vehicle_cmd, non-zero vehicle status velocity) is still present"
+        ],
+        "uncertainty": [
+          "Label conflict between dataset and error.json remains unconfirmed",
+          "No module-level root cause is confirmed from available evidence",
+          "Actuation mismatch uncertainty is preserved"
+        ]
+      },
+      {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Small shift of ego mission spawn and destination within the original general region, slight adjustment of puddle sizes and weather conditions within allowed wet range",
+        "mutation_intent": "Preserves all core root cause constraints: conflicting label status, zero dynamic actors, 3 puddle regions, original mission area, wet high-puddle-coverage, and retains the actuation mismatch condition that contributes to uncertainty",
+        "expected_oracle": "lane_invasion",
+        "modifications": {
+          "weather_delta": {
+            "rain": -3,
+            "fog": 2,
+            "wetness": -2,
+            "puddle": -3
+          },
+          "actor_mutations": [],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": -0.4,
+                "y": 0.2
+              },
+              "level_delta": -0.04,
+              "size_scale": 0.9
+            },
+            {
+              "puddle_index": 1,
+              "location_offset": {
+                "x": 0.3,
+                "y": -0.5
+              },
+              "level_delta": 0.04,
+              "size_scale": 1.1
+            },
+            {
+              "puddle_index": 2,
+              "location_offset": {
+                "x": -0.2,
+                "y": 0.3
+              },
+              "level_delta": -0.01,
+              "size_scale": 0.95
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": false,
+            "spawn_offset": {
+              "x": 1.2,
+              "y": -0.8
+            },
+            "destination_offset": {
+              "x": 1.0,
+              "y": -0.5
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Confirm mission spawn and destination remain in the original general region",
+          "Confirm no dynamic actors are added",
+          "Confirm 3 puddle regions are retained",
+          "Confirm wetness and puddle coverage remain high"
+        ],
+        "post_execution_validation_rules": [
+          "Check that label conflict between dataset and error.json oracles is still present",
+          "Verify actuation mismatch between zero vehicle_cmd and non-zero vehicle velocity is preserved"
+        ],
+        "uncertainty": [
+          "Lane invasion occurrence is still unconfirmed by available critical-window evidence",
+          "No module-level failure can be confirmed",
+          "Actuation behavior mismatch uncertainty remains unchanged"
+        ]
+      }
+    ]
+  },
+  "raw_api_payload": {
+    "id": "021782921963298b271f24051681254581ebf74f65035124ab900",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "{\n  \"case_id\": \"case_010\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Slight adjustment of all three puddle locations and intensities, keep all other original scenario properties unchanged\",\n      \"mutation_intent\": \"Preserves all required phase 1 constraints: maintains conflicting label status, zero dynamic actors, 3 puddle regions, original mission start/goal region, and wet high-puddle-coverage weather conditions, does not add new evidence that resolves existing uncertainty\",\n      \"expected_oracle\": \"lane_invasion\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 5, \"fog\": 0, \"wetness\": 3, \"puddle\": 4},\n        \"actor_mutations\": [],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": 0.5, \"y\": -0.3}, \"level_delta\": 0.05, \"size_scale\": 1.0},\n          {\"puddle_index\": 1, \"location_offset\": {\"x\": -0.2, \"y\": 0.4}, \"level_delta\": -0.03, \"size_scale\": 0.95},\n          {\"puddle_index\": 2, \"location_offset\": {\"x\": 0.3, \"y\": -0.2}, \"level_delta\": 0.02, \"size_scale\": 1.05}\n        ],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Confirm 3 puddle regions are preserved\", \"Confirm no dynamic actors are added\", \"Confirm weather remains wet with high puddle coverage\"],\n      \"post_execution_validation_rules\": [\"Check for label conflict between dataset-style oracle and error.json detection\", \"Verify actuation mismatch (zero vehicle_cmd, non-zero vehicle status velocity) is still present\"],\n      \"uncertainty\": [\"Label conflict between dataset and error.json remains unconfirmed\", \"No module-level root cause is confirmed from available evidence\", \"Actuation mismatch uncertainty is preserved\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Small shift of ego mission spawn and destination within the original general region, slight adjustment of puddle sizes and weather conditions within allowed wet range\",\n      \"mutation_intent\": \"Preserves all core root cause constraints: conflicting label status, zero dynamic actors, 3 puddle regions, original mission area, wet high-puddle-coverage, and retains the actuation mismatch condition that contributes to uncertainty\",\n      \"expected_oracle\": \"lane_invasion\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": -3, \"fog\": 2, \"wetness\": -2, \"puddle\": -3},\n        \"actor_mutations\": [],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": -0.4, \"y\": 0.2}, \"level_delta\": -0.04, \"size_scale\": 0.9},\n          {\"puddle_index\": 1, \"location_offset\": {\"x\": 0.3, \"y\": -0.5}, \"level_delta\": 0.04, \"size_scale\": 1.1},\n          {\"puddle_index\": 2, \"location_offset\": {\"x\": -0.2, \"y\": 0.3}, \"level_delta\": -0.01, \"size_scale\": 0.95}\n        ],\n        \"mission_mutation\": {\"keep_original\": false, \"spawn_offset\": {\"x\": 1.2, \"y\": -0.8}, \"destination_offset\": {\"x\": 1.0, \"y\": -0.5}}\n      },\n      \"pre_execution_validation_rules\": [\"Confirm mission spawn and destination remain in the original general region\", \"Confirm no dynamic actors are added\", \"Confirm 3 puddle regions are retained\", \"Confirm wetness and puddle coverage remain high\"],\n      \"post_execution_validation_rules\": [\"Check that label conflict between dataset and error.json oracles is still present\", \"Verify actuation mismatch between zero vehicle_cmd and non-zero vehicle velocity is preserved\"],\n      \"uncertainty\": [\"Lane invasion occurrence is still unconfirmed by available critical-window evidence\", \"No module-level failure can be confirmed\", \"Actuation behavior mismatch uncertainty remains unchanged\"]\n    }\n  ]\n}",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null,
+          "reasoning_content": "\nGot it, let's build this JSON step by step. First, case_id is case_010, right? We need two candidate_specs. Let's start with the first one, cand_001.\n\nFirst, high_level_variant: Slightly adjust puddle positions and intensities while keeping all original constraints, maintain wet high coverage conditions. Wait, mutation_intent: Preserves conflicting label status, zero dynamic actors, 3 puddles, same mission region, wet conditions as required by preservation constraints. Expected oracle... wait original says conflicting labels, but original has dataset says lane invasion, error doesn't, so expected_oracle is lane_invasion? Wait no, wait the root cause is conflicting labels, but the original dataset labels it lane invasion. Wait let's check: the input says dataset labels as lane invasion, error doesn't. So expected_oracle... wait the rule says don't invent new oracle labels. Let's see, the pattern is unconfirmed candidate lane invasion with conflicting labels. So first candidate: expected_oracle could be lane_invasion? Wait no, wait let's think. Let's do first candidate:\n\ncand_001: high_level_variant: \"Slight adjustment of all three puddle locations and intensities, keep all other scenario properties unchanged\". Mutation_intent: \"Preserves all required constraints: zero dynamic actors, 3 puddle regions, original mission start/goal region, wet high-puddle-coverage weather, and maintains the conflicting label status by not adding new evidence that resolves the conflict\". Expected_oracle: \"lane_invasion\" (wait but it's conflicting, but the original dataset labels it that. Or is it compound? No, wait let's check. The root cause is label conflict, but the intended oracle from dataset is lane invasion. Let's go with lane_invasion for expected, but keep the uncertainty.\n\nThen modifications: weather_delta. Original preservation says keep wet high puddle, so let's do small deltas: rain +5, fog 0, wetness +3, puddle +4, all within [-20,20], that's good. Actor_mutations: original actors are zero, so empty array? Wait original actors is empty, so actor_mutations is empty, right? Because preserve zero dynamic actors. Then puddle_mutations: three puddles, each with small offset. Let's do: puddle 0: x +0.5, y -0.3, level_delta +0.05, size_scale 1.0. Puddle 1: x -0.2, y +0.4, level_delta -0.03, size_scale 0.95. Puddle 2: x +0.3, y -0.2, level_delta +0.02, size_scale 1.05. All level deltas within [-0.2, 0.2], size between 0.8 and 1.2, good. Mission mutation: keep_original true, offsets 0, right, because preserve general start and goal.\n\nThen pre_execution_validation_rules: [\"Confirm 3 puddle regions are preserved\", \"Confirm no dynamic actors added\", \"Confirm weather remains wet with high puddle coverage\"]. Post_execution_validation_rules: [\"Check for label conflict between dataset-style oracle and error.json detection\", \"Verify actuation mismatch (zero vehicle_cmd, non-zero vehicle status velocity) is still present\"]. Uncertainty: same as phase 1, let's list: [\"Label conflict between dataset and error.json remains unconfirmed\", \"No module-level root cause confirmed\", \"Actuation mismatch uncertainty is preserved\"].\n\nNow the second candidate, cand_002. Let's do a different small variant: Slight shift of ego mission spawn and destination within allowed bounds, adjust weather slightly within wet range, adjust puddle sizes slightly. Mutation_intent: \"Still preserves all core root cause constraints: zero dynamic actors, 3 puddles, conflicting label status, original mission region, wet high-puddle conditions, maintains the actuation mismatch condition\". Expected_oracle: \"lane_invasion\" same as before, wait or is it unknown? Wait no, original dataset labels it lane invasion, conflict exists. Let's keep expected_oracle as lane_invasion, because that's the original label. Wait, let's check the root cause says unconfirmed candidate lane invasion, so expected_oracle can be lane_invasion, uncertainty notes that.\n\nModifications for cand_002: weather_delta: rain -3, fog +2, wetness -2, puddle -3, all within [-20,20], good. Actor_mutations still empty, because preserve zero actors. Puddle_mutations: each puddle, size adjusted a bit, small location offset. Let's do: puddle 0: x -0.4, y +0.2, level_delta -0.04, size_scale 0.9. Puddle 1: x +0.3, y -0.5, level_delta +0.04, size_scale 1.1. Puddle 2: x -0.2, y +0.3, level_delta -0.01, size_scale 0.95. All within limits. Mission mutation: keep_original false? Wait no, offsets within [-5,5], small: spawn offset x +1.2, y -0.8, destination offset x +1.0, y -0.5, which is within 5, good, and preserves general region as required.\n\nPre_execution_validation_rules: [\"Confirm mission spawn and destination remain in original general region\", \"Confirm no dynamic actors added\", \"Confirm 3 puddle regions are retained\", \"Confirm wetness and puddle level remain high\"]. Post_execution_validation_rules: [\"Check that label conflict between dataset and error.json oracles is still present\", \"Verify actuation mismatch between zero vehicle_cmd and non-zero vehicle velocity is preserved\"]. Uncertainty: [\"Lane invasion occurrence is still unconfirmed by available evidence\", \"No module-level failure can be confirmed\", \"Actuation behavior mismatch uncertainty remains\"].\n\nWait let's check all rules: exactly two candidates, all offsets within limits: actor position (we don't have actors, so okay), speed delta none. Mission offsets are 1.2 etc, within 5. Weather deltas all between -20 and 20. Puddle level deltas between -0.2 and 0.2, size between 0.8 and 1.2. Preserve all preservation constraints: zero actors, 3 puddles, conflict labels, same mission region, wet high puddle. Correct.\n\nNow put it all into the JSON schema correctly. Let's make sure the structure is right. Let's write it out:\n\ncase_id is case_010, candidate_specs is array of two. Let's check each field.\n\nWait for actor_mutations: since there are zero actors, we can leave the array empty, right? Yes, because original actors are empty, preserve zero, so no mutations. That's correct.\n\nWait let's check the expected_oracle: the original says dataset labels lane invasion, error doesn't, so expected_oracle is lane_invasion, that's okay, because the uncertainty captures the conflict. Or should it be unknown? Wait the root cause pattern says unconfirmed candidate lane invasion, so maybe expected_oracle is unknown? Wait no, the rule says \"Preserve the intended oracle/failure pattern when evidence supports it\". The intended from dataset is lane invasion, conflict exists, so I think it's okay to put lane_invasion, and the uncertainty notes the conflict. Alternatively, compound? No, compound is multiple failures. Let's go with lane_invasion, that's what the dataset labels it.\n\nOkay, let's write the full JSON now."
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "doubao-seed-2-0-lite-260215",
+    "object": "chat.completion",
+    "service_tier": "default",
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 2712,
+      "prompt_tokens": 1351,
+      "total_tokens": 4063,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 1655,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": null,
+        "cached_tokens": 0
+      }
+    }
+  },
+  "error_message": "",
+  "elapsed_sec": 42.968,
+  "timestamp": "<REDACTED_TIMESTAMP>"
+}

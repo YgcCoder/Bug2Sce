@@ -1,0 +1,286 @@
+{
+  "case_id": "case_156",
+  "model_name": "gemini-2.5-pro",
+  "workflow": "phase2_grounded_generation",
+  "status": "completed",
+  "schema_valid": true,
+  "schema_errors": [],
+  "phase1_ready": "yes",
+  "num_candidates_requested": 2,
+  "num_candidates_written": 2,
+  "num_pre_valid": 2,
+  "candidate_records": [
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/gemini-2.5-pro/json/case_156/case_156__cand_001.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/gemini-2.5-pro/metadata/case_156/case_156__cand_001.metadata.json",
+      "case_id": "case_156",
+      "model_name": "gemini-2.5-pro",
+      "candidate_index": 1,
+      "candidate_spec": {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Slightly alter the ego vehicle's starting position to test planner initialization.",
+        "mutation_intent": "Move the ego vehicle's spawn point forward and slightly left to see if a different initial state avoids the planner getting stuck.",
+        "expected_oracle": "stuck",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": false,
+            "spawn_offset": {
+              "x": 2.0,
+              "y": -1.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Ego vehicle spawns at the new location."
+        ],
+        "post_execution_validation_rules": [
+          "Vehicle remains stuck with zero velocity.",
+          "Planner publishes a valid waypoint path."
+        ],
+        "uncertainty": []
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 0.0,
+          "fog": 0.0,
+          "wetness": 0.0,
+          "puddle": 0.0
+        },
+        "actor_mutations": [],
+        "puddle_mutations": [],
+        "mission_mutation": {
+          "spawn_offset": {
+            "x": 2.0,
+            "y": -1.0
+          },
+          "destination_offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_156__gemini-2.5-pro.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_156__gemini-2.5-pro.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    },
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/gemini-2.5-pro/json/case_156/case_156__cand_002.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/gemini-2.5-pro/metadata/case_156/case_156__cand_002.metadata.json",
+      "case_id": "case_156",
+      "model_name": "gemini-2.5-pro",
+      "candidate_index": 2,
+      "candidate_spec": {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Remove adverse weather conditions to see if they are a trigger.",
+        "mutation_intent": "Set rain, wetness, and puddle levels to zero to determine if the stuck state is dependent on weather perception.",
+        "expected_oracle": "stuck",
+        "modifications": {
+          "weather_delta": {
+            "rain": -15,
+            "fog": 0,
+            "wetness": -7,
+            "puddle": -18
+          },
+          "actor_mutations": [],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Scenario runs in clear and dry weather."
+        ],
+        "post_execution_validation_rules": [
+          "Vehicle remains stuck with zero velocity.",
+          "Planner publishes a valid waypoint path."
+        ],
+        "uncertainty": [
+          "The bug might be weather-dependent; if so, the vehicle will move."
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": -15.0,
+          "fog": 0.0,
+          "wetness": -7.0,
+          "puddle": -18.0
+        },
+        "actor_mutations": [],
+        "puddle_mutations": [],
+        "mission_mutation": {
+          "keep_original": true
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_156__gemini-2.5-pro.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_156__gemini-2.5-pro.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    }
+  ],
+  "seed_artifact_zip": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/gemini-2.5-pro/seed-artifact/seed-artifact-case_156.zip",
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_prompts/case_156__gemini-2.5-pro.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_156__gemini-2.5-pro.json",
+  "prompt_estimated_tokens": 962,
+  "usage": {
+    "prompt_tokens": 1380,
+    "completion_tokens": 1992,
+    "total_tokens": 3372
+  },
+  "raw_response": "```json\n{\n  \"case_id\": \"case_156\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Slightly alter the ego vehicle's starting position to test planner initialization.\",\n      \"mutation_intent\": \"Move the ego vehicle's spawn point forward and slightly left to see if a different initial state avoids the planner getting stuck.\",\n      \"expected_oracle\": \"stuck\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": false, \"spawn_offset\": {\"x\": 2.0, \"y\": -1.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Ego vehicle spawns at the new location.\"],\n      \"post_execution_validation_rules\": [\"Vehicle remains stuck with zero velocity.\", \"Planner publishes a valid waypoint path.\"],\n      \"uncertainty\": []\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Remove adverse weather conditions to see if they are a trigger.\",\n      \"mutation_intent\": \"Set rain, wetness, and puddle levels to zero to determine if the stuck state is dependent on weather perception.\",\n      \"expected_oracle\": \"stuck\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": -15, \"fog\": 0, \"wetness\": -7, \"puddle\": -18},\n        \"actor_mutations\": [],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Scenario runs in clear and dry weather.\"],\n      \"post_execution_validation_rules\": [\"Vehicle remains stuck with zero velocity.\", \"Planner publishes a valid waypoint path.\"],\n      \"uncertainty\": [\"The bug might be weather-dependent; if so, the vehicle will move.\"]\n    }\n  ]\n}\n```",
+  "parsed_response": {
+    "case_id": "case_156",
+    "candidate_specs": [
+      {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Slightly alter the ego vehicle's starting position to test planner initialization.",
+        "mutation_intent": "Move the ego vehicle's spawn point forward and slightly left to see if a different initial state avoids the planner getting stuck.",
+        "expected_oracle": "stuck",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": false,
+            "spawn_offset": {
+              "x": 2.0,
+              "y": -1.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Ego vehicle spawns at the new location."
+        ],
+        "post_execution_validation_rules": [
+          "Vehicle remains stuck with zero velocity.",
+          "Planner publishes a valid waypoint path."
+        ],
+        "uncertainty": []
+      },
+      {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Remove adverse weather conditions to see if they are a trigger.",
+        "mutation_intent": "Set rain, wetness, and puddle levels to zero to determine if the stuck state is dependent on weather perception.",
+        "expected_oracle": "stuck",
+        "modifications": {
+          "weather_delta": {
+            "rain": -15,
+            "fog": 0,
+            "wetness": -7,
+            "puddle": -18
+          },
+          "actor_mutations": [],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Scenario runs in clear and dry weather."
+        ],
+        "post_execution_validation_rules": [
+          "Vehicle remains stuck with zero velocity.",
+          "Planner publishes a valid waypoint path."
+        ],
+        "uncertainty": [
+          "The bug might be weather-dependent; if so, the vehicle will move."
+        ]
+      }
+    ]
+  },
+  "raw_api_payload": {
+    "id": "<REDACTED_RESPONSE_ID>",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "```json\n{\n  \"case_id\": \"case_156\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Slightly alter the ego vehicle's starting position to test planner initialization.\",\n      \"mutation_intent\": \"Move the ego vehicle's spawn point forward and slightly left to see if a different initial state avoids the planner getting stuck.\",\n      \"expected_oracle\": \"stuck\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": false, \"spawn_offset\": {\"x\": 2.0, \"y\": -1.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Ego vehicle spawns at the new location.\"],\n      \"post_execution_validation_rules\": [\"Vehicle remains stuck with zero velocity.\", \"Planner publishes a valid waypoint path.\"],\n      \"uncertainty\": []\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Remove adverse weather conditions to see if they are a trigger.\",\n      \"mutation_intent\": \"Set rain, wetness, and puddle levels to zero to determine if the stuck state is dependent on weather perception.\",\n      \"expected_oracle\": \"stuck\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": -15, \"fog\": 0, \"wetness\": -7, \"puddle\": -18},\n        \"actor_mutations\": [],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Scenario runs in clear and dry weather.\"],\n      \"post_execution_validation_rules\": [\"Vehicle remains stuck with zero velocity.\", \"Planner publishes a valid waypoint path.\"],\n      \"uncertainty\": [\"The bug might be weather-dependent; if so, the vehicle will move.\"]\n    }\n  ]\n}\n```",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "gemini-2.5-pro",
+    "object": "chat.completion",
+    "service_tier": null,
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 1992,
+      "prompt_tokens": 1380,
+      "total_tokens": 3372,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": 0,
+        "reasoning_tokens": 1421,
+        "rejected_prediction_tokens": null,
+        "text_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 0,
+        "text_tokens": 1380,
+        "image_tokens": 0
+      },
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "input_tokens_details": null,
+      "claude_cache_creation_5_m_tokens": 0,
+      "claude_cache_creation_1_h_tokens": 0
+    }
+  },
+  "error_message": "",
+  "elapsed_sec": 18.885,
+  "timestamp": "<REDACTED_TIMESTAMP>"
+}

@@ -1,0 +1,76 @@
+{
+  "case_id": "case_143",
+  "model_name": "ark-doubao-seed-2.0-lite-260215",
+  "candidate_index": 2,
+  "candidate_spec": {
+    "candidate_id": "cand_002",
+    "high_level_variant": "Slight offset to ego spawn position, minor weather adjustment, preserve original destination and zero actors/puddles",
+    "mutation_intent": "Small spawn offset within allowed bounds keeps the original red traffic light encounter, maintains all phase 1 preservation constraints including zero actors/puddles, conflicting labels, and same Town01 mission, root cause pattern remains unchanged",
+    "expected_oracle": "compound",
+    "modifications": {
+      "weather_delta": {
+        "rain": -4,
+        "fog": 6,
+        "wetness": -2,
+        "puddle": 0
+      },
+      "actor_mutations": [],
+      "puddle_mutations": [],
+      "mission_mutation": {
+        "keep_original": false,
+        "spawn_offset": {
+          "x": 2.1,
+          "y": -1.3
+        },
+        "destination_offset": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "confirm spawn offset is within allowed maximum bounds",
+      "confirm no dynamic actors or puddles are present in the scenario",
+      "verify the intersection traffic light is red when ego arrives"
+    ],
+    "post_execution_validation_rules": [
+      "record stop-line crossing status to confirm red-light violation",
+      "record lane boundary crossing status to resolve the lane invasion label conflict",
+      "check for the reported controller command-velocity mismatch"
+    ],
+    "uncertainty": [
+      "failure layer and module attribution remains unconfirmed by available evidence",
+      "lane boundary crossing status is unconfirmed, label conflict is preserved as required"
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": -4.0,
+      "fog": 6.0,
+      "wetness": -2.0,
+      "puddle": 0.0
+    },
+    "actor_mutations": [],
+    "puddle_mutations": [],
+    "mission_mutation": {
+      "spawn_offset": {
+        "x": 2.1,
+        "y": -1.3
+      },
+      "destination_offset": {
+        "x": 0.0,
+        "y": 0.0
+      }
+    }
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": [
+      "no actors in candidate scenario"
+    ]
+  },
+  "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_143__ark-doubao-seed-2.0-lite-260215.json",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_143__ark-doubao-seed-2.0-lite-260215.json",
+  "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+}

@@ -1,0 +1,57 @@
+{
+  "case_id": "case_142",
+  "model_name": "gemini-2.5-pro",
+  "candidate_index": 1,
+  "candidate_spec": {
+    "candidate_id": "cand_001",
+    "high_level_variant": "Test if the controller failure occurs in clear weather, isolating it from perception issues.",
+    "mutation_intent": "Remove adverse weather (rain, fog, wetness) to test if the planning failure is independent of environmental conditions.",
+    "expected_oracle": "compound",
+    "modifications": {
+      "weather_delta": {
+        "rain": -16,
+        "fog": -20,
+        "wetness": -20,
+        "puddle": 0
+      },
+      "actor_mutations": [],
+      "puddle_mutations": [],
+      "mission_mutation": {
+        "keep_original": true
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Ego approaches a red light.",
+      "Weather is significantly clearer than seed."
+    ],
+    "post_execution_validation_rules": [
+      "Vehicle command output is zero while ego is moving.",
+      "Ego collides with an actor.",
+      "Ego runs the red light."
+    ],
+    "uncertainty": [
+      "The disputed lane invasion may or may not occur."
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": -16.0,
+      "fog": -20,
+      "wetness": -20,
+      "puddle": 0.0
+    },
+    "actor_mutations": [],
+    "puddle_mutations": [],
+    "mission_mutation": {
+      "keep_original": true
+    }
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_142__gemini-2.5-pro.json",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_142__gemini-2.5-pro.json",
+  "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+}

@@ -1,0 +1,295 @@
+{
+  "case_id": "case_169",
+  "model_name": "ark-doubao-seed-2.0-lite-260215",
+  "workflow": "phase2_grounded_generation",
+  "status": "completed",
+  "schema_valid": true,
+  "schema_errors": [],
+  "phase1_ready": "yes",
+  "num_candidates_requested": 2,
+  "num_candidates_written": 2,
+  "num_pre_valid": 2,
+  "candidate_records": [
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-doubao-seed-2.0-lite-260215/json/case_169/case_169__cand_001.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-doubao-seed-2.0-lite-260215/metadata/case_169/case_169__cand_001.metadata.json",
+      "case_id": "case_169",
+      "model_name": "ark-doubao-seed-2.0-lite-260215",
+      "candidate_index": 1,
+      "candidate_spec": {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Slightly increased fog density around the target intersection, no dynamic actors added, original mission and Town01 map preserved",
+        "mutation_intent": "Preserves the original root cause pattern: unconfirmed red-light violation with no dynamic actors, no confirmed module-level fault attribution, only adjusts weather within conservative limits to test visibility-related violation while keeping all core preservation constraints",
+        "expected_oracle": "red_light",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 10,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Confirm the traffic light on ego route is set to red state",
+          "Confirm no dynamic actors are spawned in the scenario"
+        ],
+        "post_execution_validation_rules": [
+          "Verify if stop-line crossing occurs to confirm red-light violation",
+          "Check for the reported mismatch between all-zero vehicle_cmd and non-zero velocity"
+        ],
+        "uncertainty": [
+          "Route-light relation and stop-line crossing remain unconfirmed per original evidence",
+          "No firm module fault attribution is preserved as in the original case"
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 0.0,
+          "fog": 10.0,
+          "wetness": 0.0,
+          "puddle": 0.0
+        },
+        "actor_mutations": [],
+        "puddle_mutations": [],
+        "mission_mutation": {
+          "keep_original": true
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": [
+          "no actors in candidate scenario"
+        ]
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_169__ark-doubao-seed-2.0-lite-260215.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_169__ark-doubao-seed-2.0-lite-260215.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    },
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-doubao-seed-2.0-lite-260215/json/case_169/case_169__cand_002.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-doubao-seed-2.0-lite-260215/metadata/case_169/case_169__cand_002.metadata.json",
+      "case_id": "case_169",
+      "model_name": "ark-doubao-seed-2.0-lite-260215",
+      "candidate_index": 2,
+      "candidate_spec": {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Slightly increased road wetness, small forward offset of ego spawn position towards the stop line, original map and mission destination preserved",
+        "mutation_intent": "Preserves all core original constraints: no dynamic actors, Town01 map, red-light violation requirement, and unconfirmed module attribution, small spawn offset stays within allowed bounds and does not change the root cause pattern while testing the violation with slightly different starting conditions",
+        "expected_oracle": "red_light",
+        "modifications": {
+          "weather_delta": {
+            "rain": 5,
+            "fog": 0,
+            "wetness": 8,
+            "puddle": 0
+          },
+          "actor_mutations": [],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": false,
+            "spawn_offset": {
+              "x": 0.5,
+              "y": 1.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Confirm the traffic light at the ego route intersection is in red state",
+          "Confirm no dynamic actors are added to the scenario"
+        ],
+        "post_execution_validation_rules": [
+          "Check for stop-line crossing to validate the reported red-light violation",
+          "Check for the vehicle_cmd and vehicle_status mismatch reported in the original case"
+        ],
+        "uncertainty": [
+          "Route-light relation and stop-line crossing are unconfirmed per original evidence",
+          "No specific module-level failure can be localized as in the original scenario"
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 5.0,
+          "fog": 0.0,
+          "wetness": 8.0,
+          "puddle": 0.0
+        },
+        "actor_mutations": [],
+        "puddle_mutations": [],
+        "mission_mutation": {
+          "spawn_offset": {
+            "x": 0.5,
+            "y": 1.0
+          },
+          "destination_offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": [
+          "no actors in candidate scenario"
+        ]
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_169__ark-doubao-seed-2.0-lite-260215.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_169__ark-doubao-seed-2.0-lite-260215.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    }
+  ],
+  "seed_artifact_zip": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/ark-doubao-seed-2.0-lite-260215/seed-artifact/seed-artifact-case_169.zip",
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_prompts/case_169__ark-doubao-seed-2.0-lite-260215.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_169__ark-doubao-seed-2.0-lite-260215.json",
+  "prompt_estimated_tokens": 1008,
+  "usage": {
+    "prompt_tokens": 1200,
+    "completion_tokens": 2410,
+    "total_tokens": 3610
+  },
+  "raw_response": "{\n  \"case_id\": \"case_169\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Slightly increased fog density around the target intersection, no dynamic actors added, original mission and Town01 map preserved\",\n      \"mutation_intent\": \"Preserves the original root cause pattern: unconfirmed red-light violation with no dynamic actors, no confirmed module-level fault attribution, only adjusts weather within conservative limits to test visibility-related violation while keeping all core preservation constraints\",\n      \"expected_oracle\": \"red_light\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 10, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Confirm the traffic light on ego route is set to red state\", \"Confirm no dynamic actors are spawned in the scenario\"],\n      \"post_execution_validation_rules\": [\"Verify if stop-line crossing occurs to confirm red-light violation\", \"Check for the reported mismatch between all-zero vehicle_cmd and non-zero velocity\"],\n      \"uncertainty\": [\"Route-light relation and stop-line crossing remain unconfirmed per original evidence\", \"No firm module fault attribution is preserved as in the original case\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Slightly increased road wetness, small forward offset of ego spawn position towards the stop line, original map and mission destination preserved\",\n      \"mutation_intent\": \"Preserves all core original constraints: no dynamic actors, Town01 map, red-light violation requirement, and unconfirmed module attribution, small spawn offset stays within allowed bounds and does not change the root cause pattern while testing the violation with slightly different starting conditions\",\n      \"expected_oracle\": \"red_light\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 5, \"fog\": 0, \"wetness\": 8, \"puddle\": 0},\n        \"actor_mutations\": [],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": false, \"spawn_offset\": {\"x\": 0.5, \"y\": 1.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Confirm the traffic light at the ego route intersection is in red state\", \"Confirm no dynamic actors are added to the scenario\"],\n      \"post_execution_validation_rules\": [\"Check for stop-line crossing to validate the reported red-light violation\", \"Check for the vehicle_cmd and vehicle_status mismatch reported in the original case\"],\n      \"uncertainty\": [\"Route-light relation and stop-line crossing are unconfirmed per original evidence\", \"No specific module-level failure can be localized as in the original scenario\"]\n    }\n  ]\n}",
+  "parsed_response": {
+    "case_id": "case_169",
+    "candidate_specs": [
+      {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Slightly increased fog density around the target intersection, no dynamic actors added, original mission and Town01 map preserved",
+        "mutation_intent": "Preserves the original root cause pattern: unconfirmed red-light violation with no dynamic actors, no confirmed module-level fault attribution, only adjusts weather within conservative limits to test visibility-related violation while keeping all core preservation constraints",
+        "expected_oracle": "red_light",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 10,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Confirm the traffic light on ego route is set to red state",
+          "Confirm no dynamic actors are spawned in the scenario"
+        ],
+        "post_execution_validation_rules": [
+          "Verify if stop-line crossing occurs to confirm red-light violation",
+          "Check for the reported mismatch between all-zero vehicle_cmd and non-zero velocity"
+        ],
+        "uncertainty": [
+          "Route-light relation and stop-line crossing remain unconfirmed per original evidence",
+          "No firm module fault attribution is preserved as in the original case"
+        ]
+      },
+      {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Slightly increased road wetness, small forward offset of ego spawn position towards the stop line, original map and mission destination preserved",
+        "mutation_intent": "Preserves all core original constraints: no dynamic actors, Town01 map, red-light violation requirement, and unconfirmed module attribution, small spawn offset stays within allowed bounds and does not change the root cause pattern while testing the violation with slightly different starting conditions",
+        "expected_oracle": "red_light",
+        "modifications": {
+          "weather_delta": {
+            "rain": 5,
+            "fog": 0,
+            "wetness": 8,
+            "puddle": 0
+          },
+          "actor_mutations": [],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": false,
+            "spawn_offset": {
+              "x": 0.5,
+              "y": 1.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Confirm the traffic light at the ego route intersection is in red state",
+          "Confirm no dynamic actors are added to the scenario"
+        ],
+        "post_execution_validation_rules": [
+          "Check for stop-line crossing to validate the reported red-light violation",
+          "Check for the vehicle_cmd and vehicle_status mismatch reported in the original case"
+        ],
+        "uncertainty": [
+          "Route-light relation and stop-line crossing are unconfirmed per original evidence",
+          "No specific module-level failure can be localized as in the original scenario"
+        ]
+      }
+    ]
+  },
+  "raw_api_payload": {
+    "id": "0217829229969712a4bcff7a815297f0c14dc5136a71ea2170240",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "{\n  \"case_id\": \"case_169\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Slightly increased fog density around the target intersection, no dynamic actors added, original mission and Town01 map preserved\",\n      \"mutation_intent\": \"Preserves the original root cause pattern: unconfirmed red-light violation with no dynamic actors, no confirmed module-level fault attribution, only adjusts weather within conservative limits to test visibility-related violation while keeping all core preservation constraints\",\n      \"expected_oracle\": \"red_light\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 10, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Confirm the traffic light on ego route is set to red state\", \"Confirm no dynamic actors are spawned in the scenario\"],\n      \"post_execution_validation_rules\": [\"Verify if stop-line crossing occurs to confirm red-light violation\", \"Check for the reported mismatch between all-zero vehicle_cmd and non-zero velocity\"],\n      \"uncertainty\": [\"Route-light relation and stop-line crossing remain unconfirmed per original evidence\", \"No firm module fault attribution is preserved as in the original case\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Slightly increased road wetness, small forward offset of ego spawn position towards the stop line, original map and mission destination preserved\",\n      \"mutation_intent\": \"Preserves all core original constraints: no dynamic actors, Town01 map, red-light violation requirement, and unconfirmed module attribution, small spawn offset stays within allowed bounds and does not change the root cause pattern while testing the violation with slightly different starting conditions\",\n      \"expected_oracle\": \"red_light\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 5, \"fog\": 0, \"wetness\": 8, \"puddle\": 0},\n        \"actor_mutations\": [],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": false, \"spawn_offset\": {\"x\": 0.5, \"y\": 1.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Confirm the traffic light at the ego route intersection is in red state\", \"Confirm no dynamic actors are added to the scenario\"],\n      \"post_execution_validation_rules\": [\"Check for stop-line crossing to validate the reported red-light violation\", \"Check for the vehicle_cmd and vehicle_status mismatch reported in the original case\"],\n      \"uncertainty\": [\"Route-light relation and stop-line crossing are unconfirmed per original evidence\", \"No specific module-level failure can be localized as in the original scenario\"]\n    }\n  ]\n}",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null,
+          "reasoning_content": "\nGot it, let's build this JSON step by step. First, case_id is case_169 right? Then we need two candidate_specs.\n\nFirst, let's recall the preservation constraints: preserve red-light oracle, no dynamic actors, Town01, original mission, traffic light has red states. Uncertainty is preserved too.\n\nFirst candidate (cand_001): Let's think of a variant that slightly increases fog to test visibility, but keeps everything else same. Wait, high_level_variant: Slightly increased fog density at the intersection with the red traffic light, no dynamic actors added, mission unchanged. Mutation intent: Preserves the original red-light violation pattern, keeps no dynamic actors, original mission, only adjusts weather within conservative delta, maintains the root cause pattern of unconfirmed module attribution. Expected oracle is red_light, right? Because original says it's red-light violation.\n\nModifications for cand_001: weather_delta: fog +10, others 0. Because delta has to be within -20, 20, that's fine. Actors: original actors are empty, so actor_mutations... wait original actors is empty, so maybe actor_mutations is empty? Wait no, wait if no actors, just leave it empty? Wait, no, let's check. The seed scenario has actors empty, so actor_mutations can be empty. Puddles are empty too, so puddle_mutations empty. Mission mutation keep_original true, right, because preservation constraint says preserve original mission.\n\nPre-execution rules: [\"Confirm traffic light at the route intersection is set to red state\", \"Confirm no dynamic actors are spawned in the scenario\"] Post execution: [\"Check for stop-line crossing to confirm red-light violation\", \"Verify vehicle_cmd and vehicle_status mismatch consistency\"]. Uncertainty: [\"Route-light relation remains unconfirmed per original evidence\", \"No firm module fault attribution is preserved\"] That matches the original uncertainty.\n\nNow second candidate, cand_002. What's another variant? Let's adjust wetness a bit, and shift ego spawn a tiny bit, within the allowed offset. High level variant: Slightly increased road wetness, small offset of ego spawn position towards the stop line, all other original properties preserved. Mutation intent: Preserves all core constraints (no dynamic actors, original destination, red light state requirement, Town01 map), the small spawn offset keeps within allowed bounds and tests the same red-light violation condition without changing root cause. Expected oracle still red_light.\n\nModifications: weather_delta: rain +5, wetness +8, others 0. That's within delta. Actor mutations: wait, ego is the mission, right? Wait actor_index: wait original actors are empty, the ego is part of mission, right? So mission mutation: spawn offset x 0.5, y 1.0, keep_original? Wait no, wait we do a small offset, so keep_original is false? Wait no, preserve original mission, so offset within [-5,5], that's fine. So mission_mutation: keep_original is false, spawn offset x 0.5, y 1.0, destination offset 0 0. Because it's a small shift. Actor mutations: since no other actors, it's empty. Puddle mutations empty, since original has no puddles.\n\nWait pre execution rules for cand 002: [\"Confirm traffic light on route is in red state before ego starts moving\", \"Confirm no dynamic actors are added to the scenario\"], post execution: [\"Validate stop-line crossing event if present to confirm violation\", \"Check for the reported mismatch between all-zero vehicle_cmd and non-zero velocity\"], uncertainty same as original, right? [\"Stop-line crossing and route-light relation are not confirmed per original evidence\", \"No specific module fault can be attributed from available evidence as in original case\"].\n\nWait let's check all the rules: 2 candidates, offsets all within allowed ranges. Actor position: if no actors, that's fine. Speed delta not needed because no actors. Weather deltas are within [-20,20], yes. Mission offsets are 0.5 and 1, way within [-5,5]. Preserve all constraints: no dynamic actors, Town01, original mission, red light oracle, correct.\n\nWait let's structure the JSON properly. Let's make sure the schema matches. Let's check:\n\ncase_id is \"case_169\", right. Then candidate_specs array of two.\n\nFirst candidate:\ncandidate_id: \"cand_001\"\nhigh_level_variant: \"Slightly increased fog density around the intersection, no dynamic actors added, original mission and map preserved\"\nmutation_intent: \"Preserves the original root cause pattern: unconfirmed red-light violation with no dynamic actors, no confirmed module-level fault attribution, only adjusts weather within conservative limits to test visibility-related violation while keeping all core constraints\"\nexpected_oracle: \"red_light\"\nmodifications: weather_delta is {\"rain\": 0, \"fog\": 10, \"wetness\": 0, \"puddle\": 0}, actor_mutations is empty array, puddle_mutations empty array, mission_mutation is {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\npre_execution_validation_rules: [\"Confirm the traffic light on ego route is set to red state\", \"Confirm no dynamic actors are spawned in the scenario\"]\npost_execution_validation_rules: [\"Verify if stop-line crossing occurs to confirm red-light violation\", \"Check for the reported mismatch between all-zero vehicle_cmd and non-zero velocity\"]\nuncertainty: [\"Route-light relation and stop-line crossing remain unconfirmed per original evidence\", \"No firm actuation or module fault attribution is still preserved as in original case\"]\n\nThat's good. Now second candidate:\n\ncandidate_id: \"cand_002\"\nhigh_level_variant: \"Slightly increased road wetness, small forward offset of ego spawn position towards the stop line, original map and mission destination preserved\"\nmutation_intent: \"Preserves all core original constraints: no dynamic actors, Town01 map, red-light violation requirement, and unconfirmed module attribution, small spawn offset does not change the root cause pattern while testing the violation scenario with slightly different starting conditions\"\nexpected_oracle: \"red_light\"\nmodifications: weather_delta {\"rain\": 5, \"fog\": 0, \"wetness\": 8, \"puddle\": 0}, actor_mutations [], puddle_mutations [], mission_mutation {\"keep_original\": false, \"spawn_offset\": {\"x\": 0.5, \"y\": 1.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\npre_execution_validation_rules: [\"Confirm traffic light at the ego route intersection is in red state\", \"Confirm no dynamic actors are added to the scenario\"]\npost_execution_validation_rules: [\"Check for stop-line crossing to validate the reported red-light violation\", \"Check for the vehicle_cmd and vehicle_status mismatch reported in original case\"]\nuncertainty: [\"Route-light relation and stop-line crossing are unconfirmed per original evidence\", \"No specific module-level failure can be localized as in the original scenario\"]\n\nWait that's all correct. Let's check all constraints: actor offsets are within range, but we don't have any actors, so that's fine. Mission offset 0.5 and 1, way within [-5,5]. Weather deltas 10, 5, 8 all within [-20,20]. No new actors, so no dynamic actors, which follows the preservation constraint. Oracle is red_light, which matches the original intended. Uncertainty preserved, as per rules. Two candidates, exactly. That fits all requirements. Now put it all into valid JSON."
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "doubao-seed-2-0-lite-260215",
+    "object": "chat.completion",
+    "service_tier": "default",
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 2410,
+      "prompt_tokens": 1200,
+      "total_tokens": 3610,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 1690,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": null,
+        "cached_tokens": 0
+      }
+    }
+  },
+  "error_message": "",
+  "elapsed_sec": 43.334,
+  "timestamp": "<REDACTED_TIMESTAMP>"
+}

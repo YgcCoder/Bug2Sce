@@ -1,0 +1,68 @@
+{
+  "case_id": "case_067",
+  "model_name": "ark-doubao-seed-2.0-lite-260215",
+  "candidate_index": 2,
+  "candidate_spec": {
+    "candidate_id": "cand_002",
+    "high_level_variant": "Keep original ego mission spawn and destination positions, apply conservative minor weather adjustment, no actors or puddles added",
+    "mutation_intent": "Adheres to all Phase 1 preservation constraints: retains original mission positioning, maintains absence of actors and puddles, preserves the conflicting failure label status and requirement for all-zero final actuation, keeps unconfirmed status of route and stop-line relation",
+    "expected_oracle": "compound",
+    "modifications": {
+      "weather_delta": {
+        "rain": -4,
+        "fog": 2,
+        "wetness": -3,
+        "puddle": 0
+      },
+      "actor_mutations": [],
+      "puddle_mutations": [],
+      "mission_mutation": {
+        "keep_original": true,
+        "spawn_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "destination_offset": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "No dynamic actors or puddles are present in the generated scenario",
+      "Weather delta adjustments are within conservative allowed bounds"
+    ],
+    "post_execution_validation_rules": [
+      "All-zero actuation commands in the final critical window are confirmed",
+      "No artificial module-level root cause is introduced",
+      "Conflicting failure label status is maintained"
+    ],
+    "uncertainty": [
+      "No specific module-level root cause is confirmed, matching original uncertainty",
+      "Route-light relation and stop-line crossing status remain unconfirmed"
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": -4.0,
+      "fog": 2.0,
+      "wetness": -3.0,
+      "puddle": 0.0
+    },
+    "actor_mutations": [],
+    "puddle_mutations": [],
+    "mission_mutation": {
+      "keep_original": true
+    }
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": [
+      "no actors in candidate scenario"
+    ]
+  },
+  "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_067__ark-doubao-seed-2.0-lite-260215.json",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_067__ark-doubao-seed-2.0-lite-260215.json",
+  "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+}

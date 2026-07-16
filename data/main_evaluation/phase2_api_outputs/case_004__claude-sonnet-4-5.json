@@ -1,0 +1,322 @@
+{
+  "case_id": "case_004",
+  "model_name": "claude-sonnet-4-5",
+  "workflow": "phase2_grounded_generation",
+  "status": "completed",
+  "schema_valid": true,
+  "schema_errors": [],
+  "phase1_ready": "uncertain",
+  "num_candidates_requested": 2,
+  "num_candidates_written": 2,
+  "num_pre_valid": 2,
+  "candidate_records": [
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/claude-sonnet-4-5/json/case_004/case_004__cand_001.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/claude-sonnet-4-5/metadata/case_004/case_004__cand_001.metadata.json",
+      "case_id": "case_004",
+      "model_name": "claude-sonnet-4-5",
+      "candidate_index": 1,
+      "candidate_spec": {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Increase rain and wetness to stress traffic light detection",
+        "mutation_intent": "Amplify weather to test if degraded perception causes red-light violation with minimal ego movement",
+        "expected_oracle": "red_light",
+        "modifications": {
+          "weather_delta": {
+            "rain": 15,
+            "fog": 5,
+            "wetness": 20,
+            "puddle": 10
+          },
+          "actor_mutations": [],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": 0.1,
+              "size_scale": 1.1
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Traffic light state data available",
+          "Spawn near traffic light intersection"
+        ],
+        "post_execution_validation_rules": [
+          "Red-light violation in error.json",
+          "Ego velocity near zero in final window",
+          "Traffic light state logged"
+        ],
+        "uncertainty": [
+          "Dataset lane_invasion conflict unresolved",
+          "Zero vehicle_cmd with non-zero throttle unclear",
+          "Perception object origin unknown"
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 15.0,
+          "fog": 5.0,
+          "wetness": 20,
+          "puddle": 10.0
+        },
+        "actor_mutations": [],
+        "puddle_mutations": [
+          {
+            "puddle_index": 0,
+            "location_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "level_delta": 0.1,
+            "size_scale": 1.1
+          }
+        ],
+        "mission_mutation": {
+          "keep_original": true
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": [
+          "no actors in candidate scenario"
+        ]
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_004__claude-sonnet-4-5.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_004__claude-sonnet-4-5.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    },
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/claude-sonnet-4-5/json/case_004/case_004__cand_002.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/claude-sonnet-4-5/metadata/case_004/case_004__cand_002.metadata.json",
+      "case_id": "case_004",
+      "model_name": "claude-sonnet-4-5",
+      "candidate_index": 2,
+      "candidate_spec": {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Shift spawn closer to intersection to reduce approach distance",
+        "mutation_intent": "Test if shorter approach distance triggers red-light violation with minimal movement pattern",
+        "expected_oracle": "red_light",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": false,
+            "spawn_offset": {
+              "x": 5.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Spawn offset within bounds",
+          "Traffic light reachable from spawn"
+        ],
+        "post_execution_validation_rules": [
+          "Red-light violation confirmed",
+          "Minimal ego movement in final window",
+          "Stop-line crossing logged"
+        ],
+        "uncertainty": [
+          "Controller behavior with zero commands uncertain",
+          "Lane invasion oracle conflict persists"
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 0.0,
+          "fog": 0.0,
+          "wetness": 0.0,
+          "puddle": 0.0
+        },
+        "actor_mutations": [],
+        "puddle_mutations": [],
+        "mission_mutation": {
+          "spawn_offset": {
+            "x": 5,
+            "y": 0.0
+          },
+          "destination_offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": [
+          "no actors in candidate scenario"
+        ]
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_004__claude-sonnet-4-5.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_004__claude-sonnet-4-5.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    }
+  ],
+  "seed_artifact_zip": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/claude-sonnet-4-5/seed-artifact/seed-artifact-case_004.zip",
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_prompts/case_004__claude-sonnet-4-5.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_004__claude-sonnet-4-5.json",
+  "prompt_estimated_tokens": 1234,
+  "usage": {
+    "prompt_tokens": 1416,
+    "completion_tokens": 655,
+    "total_tokens": 2071
+  },
+  "raw_response": "```json\n{\n  \"case_id\": \"case_004\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Increase rain and wetness to stress traffic light detection\",\n      \"mutation_intent\": \"Amplify weather to test if degraded perception causes red-light violation with minimal ego movement\",\n      \"expected_oracle\": \"red_light\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 15, \"fog\": 5, \"wetness\": 20, \"puddle\": 10},\n        \"actor_mutations\": [],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": 0.1, \"size_scale\": 1.1}\n        ],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Traffic light state data available\", \"Spawn near traffic light intersection\"],\n      \"post_execution_validation_rules\": [\"Red-light violation in error.json\", \"Ego velocity near zero in final window\", \"Traffic light state logged\"],\n      \"uncertainty\": [\"Dataset lane_invasion conflict unresolved\", \"Zero vehicle_cmd with non-zero throttle unclear\", \"Perception object origin unknown\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Shift spawn closer to intersection to reduce approach distance\",\n      \"mutation_intent\": \"Test if shorter approach distance triggers red-light violation with minimal movement pattern\",\n      \"expected_oracle\": \"red_light\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": false, \"spawn_offset\": {\"x\": 5.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Spawn offset within bounds\", \"Traffic light reachable from spawn\"],\n      \"post_execution_validation_rules\": [\"Red-light violation confirmed\", \"Minimal ego movement in final window\", \"Stop-line crossing logged\"],\n      \"uncertainty\": [\"Controller behavior with zero commands uncertain\", \"Lane invasion oracle conflict persists\"]\n    }\n  ]\n}\n```",
+  "parsed_response": {
+    "case_id": "case_004",
+    "candidate_specs": [
+      {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Increase rain and wetness to stress traffic light detection",
+        "mutation_intent": "Amplify weather to test if degraded perception causes red-light violation with minimal ego movement",
+        "expected_oracle": "red_light",
+        "modifications": {
+          "weather_delta": {
+            "rain": 15,
+            "fog": 5,
+            "wetness": 20,
+            "puddle": 10
+          },
+          "actor_mutations": [],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": 0.1,
+              "size_scale": 1.1
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Traffic light state data available",
+          "Spawn near traffic light intersection"
+        ],
+        "post_execution_validation_rules": [
+          "Red-light violation in error.json",
+          "Ego velocity near zero in final window",
+          "Traffic light state logged"
+        ],
+        "uncertainty": [
+          "Dataset lane_invasion conflict unresolved",
+          "Zero vehicle_cmd with non-zero throttle unclear",
+          "Perception object origin unknown"
+        ]
+      },
+      {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Shift spawn closer to intersection to reduce approach distance",
+        "mutation_intent": "Test if shorter approach distance triggers red-light violation with minimal movement pattern",
+        "expected_oracle": "red_light",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": false,
+            "spawn_offset": {
+              "x": 5.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Spawn offset within bounds",
+          "Traffic light reachable from spawn"
+        ],
+        "post_execution_validation_rules": [
+          "Red-light violation confirmed",
+          "Minimal ego movement in final window",
+          "Stop-line crossing logged"
+        ],
+        "uncertainty": [
+          "Controller behavior with zero commands uncertain",
+          "Lane invasion oracle conflict persists"
+        ]
+      }
+    ]
+  },
+  "raw_api_payload": {
+    "id": "<REDACTED_RESPONSE_ID>",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "```json\n{\n  \"case_id\": \"case_004\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Increase rain and wetness to stress traffic light detection\",\n      \"mutation_intent\": \"Amplify weather to test if degraded perception causes red-light violation with minimal ego movement\",\n      \"expected_oracle\": \"red_light\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 15, \"fog\": 5, \"wetness\": 20, \"puddle\": 10},\n        \"actor_mutations\": [],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": 0.1, \"size_scale\": 1.1}\n        ],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Traffic light state data available\", \"Spawn near traffic light intersection\"],\n      \"post_execution_validation_rules\": [\"Red-light violation in error.json\", \"Ego velocity near zero in final window\", \"Traffic light state logged\"],\n      \"uncertainty\": [\"Dataset lane_invasion conflict unresolved\", \"Zero vehicle_cmd with non-zero throttle unclear\", \"Perception object origin unknown\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Shift spawn closer to intersection to reduce approach distance\",\n      \"mutation_intent\": \"Test if shorter approach distance triggers red-light violation with minimal movement pattern\",\n      \"expected_oracle\": \"red_light\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": false, \"spawn_offset\": {\"x\": 5.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Spawn offset within bounds\", \"Traffic light reachable from spawn\"],\n      \"post_execution_validation_rules\": [\"Red-light violation confirmed\", \"Minimal ego movement in final window\", \"Stop-line crossing logged\"],\n      \"uncertainty\": [\"Controller behavior with zero commands uncertain\", \"Lane invasion oracle conflict persists\"]\n    }\n  ]\n}\n```",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "claude-sonnet-4-5",
+    "object": "chat.completion",
+    "service_tier": null,
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 655,
+      "prompt_tokens": 1416,
+      "total_tokens": 2071,
+      "completion_tokens_details": null,
+      "prompt_tokens_details": null
+    }
+  },
+  "error_message": "",
+  "elapsed_sec": 11.82,
+  "timestamp": "<REDACTED_TIMESTAMP>"
+}

@@ -1,0 +1,355 @@
+{
+  "case_id": "case_010",
+  "model_name": "claude-sonnet-4-5",
+  "workflow": "phase2_grounded_generation",
+  "status": "completed",
+  "schema_valid": true,
+  "schema_errors": [],
+  "phase1_ready": "uncertain",
+  "num_candidates_requested": 2,
+  "num_candidates_written": 2,
+  "num_pre_valid": 2,
+  "candidate_records": [
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/claude-sonnet-4-5/json/case_010/case_010__cand_001.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/claude-sonnet-4-5/metadata/case_010/case_010__cand_001.metadata.json",
+      "case_id": "case_010",
+      "model_name": "claude-sonnet-4-5",
+      "candidate_index": 1,
+      "candidate_spec": {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Reduce weather intensity to isolate zero-command movement pattern",
+        "mutation_intent": "Lower rain and puddle levels to test if zero vehicle_cmd with non-zero velocity persists under drier conditions",
+        "expected_oracle": "unknown",
+        "modifications": {
+          "weather_delta": {
+            "rain": -20,
+            "fog": 0,
+            "wetness": -20,
+            "puddle": -20
+          },
+          "actor_mutations": [],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": -0.05,
+              "size_scale": 0.9
+            },
+            {
+              "puddle_index": 1,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": -0.15,
+              "size_scale": 0.85
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Verify spawn and destination coordinates match original mission",
+          "Confirm weather deltas applied correctly",
+          "Check puddle level reductions are within bounds"
+        ],
+        "post_execution_validation_rules": [
+          "Verify vehicle_cmd remains all zero in critical window",
+          "Confirm vehicle_status shows non-zero velocity",
+          "Check oracle label consistency between dataset and error.json"
+        ],
+        "uncertainty": [
+          "Oracle conflict unresolved; expected_oracle remains unknown",
+          "Zero-command movement root cause unclear",
+          "Weather reduction may not affect controller behavior"
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": -20,
+          "fog": 0.0,
+          "wetness": -20,
+          "puddle": -20
+        },
+        "actor_mutations": [],
+        "puddle_mutations": [
+          {
+            "puddle_index": 0,
+            "location_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "level_delta": -0.05,
+            "size_scale": 0.9
+          },
+          {
+            "puddle_index": 1,
+            "location_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "level_delta": -0.15,
+            "size_scale": 0.85
+          }
+        ],
+        "mission_mutation": {
+          "keep_original": true
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": [
+          "no actors in candidate scenario"
+        ]
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_010__claude-sonnet-4-5.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_010__claude-sonnet-4-5.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    },
+    {
+      "json_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/claude-sonnet-4-5/json/case_010/case_010__cand_002.json",
+      "metadata_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/claude-sonnet-4-5/metadata/case_010/case_010__cand_002.metadata.json",
+      "case_id": "case_010",
+      "model_name": "claude-sonnet-4-5",
+      "candidate_index": 2,
+      "candidate_spec": {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Shift spawn position slightly to test spatial sensitivity",
+        "mutation_intent": "Small spawn offset to check if zero-command movement and oracle conflict are position-dependent",
+        "expected_oracle": "unknown",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": false,
+            "spawn_offset": {
+              "x": 2.0,
+              "y": -2.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Confirm spawn offset applied within bounds",
+          "Verify destination remains unchanged",
+          "Check weather and puddle parameters unchanged"
+        ],
+        "post_execution_validation_rules": [
+          "Verify vehicle_cmd remains all zero in critical window",
+          "Confirm vehicle_status shows non-zero velocity",
+          "Check oracle label consistency between dataset and error.json"
+        ],
+        "uncertainty": [
+          "Oracle conflict unresolved; expected_oracle remains unknown",
+          "Spawn offset may not trigger different behavior",
+          "Root cause of zero-command movement unclear"
+        ]
+      },
+      "applied_modifications": {
+        "weather_delta": {
+          "rain": 0.0,
+          "fog": 0.0,
+          "wetness": 0.0,
+          "puddle": 0.0
+        },
+        "actor_mutations": [],
+        "puddle_mutations": [],
+        "mission_mutation": {
+          "spawn_offset": {
+            "x": 2.0,
+            "y": -2.0
+          },
+          "destination_offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        }
+      },
+      "pre_validation": {
+        "pre_valid": true,
+        "errors": [],
+        "warnings": [
+          "no actors in candidate scenario"
+        ]
+      },
+      "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_010__claude-sonnet-4-5.json",
+      "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_010__claude-sonnet-4-5.json",
+      "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+    }
+  ],
+  "seed_artifact_zip": "<WORKSPACE_ROOT>/processed/experiments/phase2_candidates/claude-sonnet-4-5/seed-artifact/seed-artifact-case_010.zip",
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_prompts/case_010__claude-sonnet-4-5.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_010__claude-sonnet-4-5.json",
+  "prompt_estimated_tokens": 1222,
+  "usage": {
+    "prompt_tokens": 1491,
+    "completion_tokens": 779,
+    "total_tokens": 2270
+  },
+  "raw_response": "```json\n{\n  \"case_id\": \"case_010\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Reduce weather intensity to isolate zero-command movement pattern\",\n      \"mutation_intent\": \"Lower rain and puddle levels to test if zero vehicle_cmd with non-zero velocity persists under drier conditions\",\n      \"expected_oracle\": \"unknown\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": -20, \"fog\": 0, \"wetness\": -20, \"puddle\": -20},\n        \"actor_mutations\": [],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": -0.05, \"size_scale\": 0.9},\n          {\"puddle_index\": 1, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": -0.15, \"size_scale\": 0.85}\n        ],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Verify spawn and destination coordinates match original mission\", \"Confirm weather deltas applied correctly\", \"Check puddle level reductions are within bounds\"],\n      \"post_execution_validation_rules\": [\"Verify vehicle_cmd remains all zero in critical window\", \"Confirm vehicle_status shows non-zero velocity\", \"Check oracle label consistency between dataset and error.json\"],\n      \"uncertainty\": [\"Oracle conflict unresolved; expected_oracle remains unknown\", \"Zero-command movement root cause unclear\", \"Weather reduction may not affect controller behavior\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Shift spawn position slightly to test spatial sensitivity\",\n      \"mutation_intent\": \"Small spawn offset to check if zero-command movement and oracle conflict are position-dependent\",\n      \"expected_oracle\": \"unknown\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": false, \"spawn_offset\": {\"x\": 2.0, \"y\": -2.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Confirm spawn offset applied within bounds\", \"Verify destination remains unchanged\", \"Check weather and puddle parameters unchanged\"],\n      \"post_execution_validation_rules\": [\"Verify vehicle_cmd remains all zero in critical window\", \"Confirm vehicle_status shows non-zero velocity\", \"Check oracle label consistency between dataset and error.json\"],\n      \"uncertainty\": [\"Oracle conflict unresolved; expected_oracle remains unknown\", \"Spawn offset may not trigger different behavior\", \"Root cause of zero-command movement unclear\"]\n    }\n  ]\n}\n```",
+  "parsed_response": {
+    "case_id": "case_010",
+    "candidate_specs": [
+      {
+        "candidate_id": "cand_001",
+        "high_level_variant": "Reduce weather intensity to isolate zero-command movement pattern",
+        "mutation_intent": "Lower rain and puddle levels to test if zero vehicle_cmd with non-zero velocity persists under drier conditions",
+        "expected_oracle": "unknown",
+        "modifications": {
+          "weather_delta": {
+            "rain": -20,
+            "fog": 0,
+            "wetness": -20,
+            "puddle": -20
+          },
+          "actor_mutations": [],
+          "puddle_mutations": [
+            {
+              "puddle_index": 0,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": -0.05,
+              "size_scale": 0.9
+            },
+            {
+              "puddle_index": 1,
+              "location_offset": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "level_delta": -0.15,
+              "size_scale": 0.85
+            }
+          ],
+          "mission_mutation": {
+            "keep_original": true,
+            "spawn_offset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Verify spawn and destination coordinates match original mission",
+          "Confirm weather deltas applied correctly",
+          "Check puddle level reductions are within bounds"
+        ],
+        "post_execution_validation_rules": [
+          "Verify vehicle_cmd remains all zero in critical window",
+          "Confirm vehicle_status shows non-zero velocity",
+          "Check oracle label consistency between dataset and error.json"
+        ],
+        "uncertainty": [
+          "Oracle conflict unresolved; expected_oracle remains unknown",
+          "Zero-command movement root cause unclear",
+          "Weather reduction may not affect controller behavior"
+        ]
+      },
+      {
+        "candidate_id": "cand_002",
+        "high_level_variant": "Shift spawn position slightly to test spatial sensitivity",
+        "mutation_intent": "Small spawn offset to check if zero-command movement and oracle conflict are position-dependent",
+        "expected_oracle": "unknown",
+        "modifications": {
+          "weather_delta": {
+            "rain": 0,
+            "fog": 0,
+            "wetness": 0,
+            "puddle": 0
+          },
+          "actor_mutations": [],
+          "puddle_mutations": [],
+          "mission_mutation": {
+            "keep_original": false,
+            "spawn_offset": {
+              "x": 2.0,
+              "y": -2.0
+            },
+            "destination_offset": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "pre_execution_validation_rules": [
+          "Confirm spawn offset applied within bounds",
+          "Verify destination remains unchanged",
+          "Check weather and puddle parameters unchanged"
+        ],
+        "post_execution_validation_rules": [
+          "Verify vehicle_cmd remains all zero in critical window",
+          "Confirm vehicle_status shows non-zero velocity",
+          "Check oracle label consistency between dataset and error.json"
+        ],
+        "uncertainty": [
+          "Oracle conflict unresolved; expected_oracle remains unknown",
+          "Spawn offset may not trigger different behavior",
+          "Root cause of zero-command movement unclear"
+        ]
+      }
+    ]
+  },
+  "raw_api_payload": {
+    "id": "<REDACTED_RESPONSE_ID>",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "```json\n{\n  \"case_id\": \"case_010\",\n  \"candidate_specs\": [\n    {\n      \"candidate_id\": \"cand_001\",\n      \"high_level_variant\": \"Reduce weather intensity to isolate zero-command movement pattern\",\n      \"mutation_intent\": \"Lower rain and puddle levels to test if zero vehicle_cmd with non-zero velocity persists under drier conditions\",\n      \"expected_oracle\": \"unknown\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": -20, \"fog\": 0, \"wetness\": -20, \"puddle\": -20},\n        \"actor_mutations\": [],\n        \"puddle_mutations\": [\n          {\"puddle_index\": 0, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": -0.05, \"size_scale\": 0.9},\n          {\"puddle_index\": 1, \"location_offset\": {\"x\": 0.0, \"y\": 0.0}, \"level_delta\": -0.15, \"size_scale\": 0.85}\n        ],\n        \"mission_mutation\": {\"keep_original\": true, \"spawn_offset\": {\"x\": 0.0, \"y\": 0.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Verify spawn and destination coordinates match original mission\", \"Confirm weather deltas applied correctly\", \"Check puddle level reductions are within bounds\"],\n      \"post_execution_validation_rules\": [\"Verify vehicle_cmd remains all zero in critical window\", \"Confirm vehicle_status shows non-zero velocity\", \"Check oracle label consistency between dataset and error.json\"],\n      \"uncertainty\": [\"Oracle conflict unresolved; expected_oracle remains unknown\", \"Zero-command movement root cause unclear\", \"Weather reduction may not affect controller behavior\"]\n    },\n    {\n      \"candidate_id\": \"cand_002\",\n      \"high_level_variant\": \"Shift spawn position slightly to test spatial sensitivity\",\n      \"mutation_intent\": \"Small spawn offset to check if zero-command movement and oracle conflict are position-dependent\",\n      \"expected_oracle\": \"unknown\",\n      \"modifications\": {\n        \"weather_delta\": {\"rain\": 0, \"fog\": 0, \"wetness\": 0, \"puddle\": 0},\n        \"actor_mutations\": [],\n        \"puddle_mutations\": [],\n        \"mission_mutation\": {\"keep_original\": false, \"spawn_offset\": {\"x\": 2.0, \"y\": -2.0}, \"destination_offset\": {\"x\": 0.0, \"y\": 0.0}}\n      },\n      \"pre_execution_validation_rules\": [\"Confirm spawn offset applied within bounds\", \"Verify destination remains unchanged\", \"Check weather and puddle parameters unchanged\"],\n      \"post_execution_validation_rules\": [\"Verify vehicle_cmd remains all zero in critical window\", \"Confirm vehicle_status shows non-zero velocity\", \"Check oracle label consistency between dataset and error.json\"],\n      \"uncertainty\": [\"Oracle conflict unresolved; expected_oracle remains unknown\", \"Spawn offset may not trigger different behavior\", \"Root cause of zero-command movement unclear\"]\n    }\n  ]\n}\n```",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "claude-sonnet-4-5",
+    "object": "chat.completion",
+    "service_tier": null,
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 779,
+      "prompt_tokens": 1491,
+      "total_tokens": 2270,
+      "completion_tokens_details": null,
+      "prompt_tokens_details": null
+    }
+  },
+  "error_message": "",
+  "elapsed_sec": 15.205,
+  "timestamp": "<REDACTED_TIMESTAMP>"
+}

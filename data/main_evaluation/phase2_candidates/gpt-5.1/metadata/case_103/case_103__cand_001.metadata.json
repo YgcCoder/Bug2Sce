@@ -1,0 +1,130 @@
+{
+  "case_id": "case_103",
+  "model_name": "gpt-5.1",
+  "candidate_index": 1,
+  "candidate_spec": {
+    "candidate_id": "cand_001",
+    "high_level_variant": "Same route, moderate rain, ego slightly shifted toward intersection center.",
+    "mutation_intent": "Perturb ego path near lights while preserving traffic-light data and red_light violation.",
+    "expected_oracle": "red_light",
+    "modifications": {
+      "weather_delta": {
+        "rain": -10,
+        "fog": 0,
+        "wetness": -5,
+        "puddle": -5
+      },
+      "actor_mutations": [
+        {
+          "actor_index": 0,
+          "position_offset": {
+            "x": -2.0,
+            "y": 1.5
+          },
+          "speed_delta": 0.5
+        }
+      ],
+      "puddle_mutations": [
+        {
+          "puddle_index": 0,
+          "location_offset": {
+            "x": 1.0,
+            "y": -2.0
+          },
+          "level_delta": -0.05,
+          "size_scale": 0.9
+        },
+        {
+          "puddle_index": 1,
+          "location_offset": {
+            "x": -1.5,
+            "y": 1.0
+          },
+          "level_delta": -0.05,
+          "size_scale": 0.9
+        }
+      ],
+      "mission_mutation": {
+        "keep_original": false,
+        "spawn_offset": {
+          "x": 1.5,
+          "y": -2.0
+        },
+        "destination_offset": {
+          "x": -2.0,
+          "y": 1.0
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Confirm traffic-light topic has multiple lights and state changes.",
+      "Ensure ego pose and odometry available near intersection.",
+      "Verify planning waypoints present around red-light event."
+    ],
+    "post_execution_validation_rules": [
+      "Check error_json red_light=true and scenario not stuck.",
+      "Confirm traffic-light data exists within 5s of violation.",
+      "Do not require lane_invasion flag to match."
+    ],
+    "uncertainty": [
+      "Governing light for ego route may remain unknown.",
+      "Stop-line and lane-boundary crossing may stay unconfirmed."
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": -10.0,
+      "fog": 0.0,
+      "wetness": -5.0,
+      "puddle": -5.0
+    },
+    "actor_mutations": [
+      {
+        "actor_index": 0,
+        "position_offset": {
+          "x": -2.0,
+          "y": 1.5
+        },
+        "speed_delta": 0.5
+      }
+    ],
+    "puddle_mutations": [
+      {
+        "puddle_index": 0,
+        "location_offset": {
+          "x": 1.0,
+          "y": -2.0
+        },
+        "level_delta": -0.05,
+        "size_scale": 0.9
+      },
+      {
+        "puddle_index": 1,
+        "location_offset": {
+          "x": -1.5,
+          "y": 1.0
+        },
+        "level_delta": -0.05,
+        "size_scale": 0.9
+      }
+    ],
+    "mission_mutation": {
+      "spawn_offset": {
+        "x": 1.5,
+        "y": -2.0
+      },
+      "destination_offset": {
+        "x": -2.0,
+        "y": 1.0
+      }
+    }
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_103__gpt-5.1.json",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_103__gpt-5.1.json",
+  "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+}

@@ -1,0 +1,125 @@
+{
+  "case_id": "case_103",
+  "model_name": "ark-doubao-seed-2.0-lite-260215",
+  "candidate_index": 1,
+  "candidate_spec": {
+    "candidate_id": "cand_001",
+    "high_level_variant": "Move nearby actor slightly closer to ego's planned path, slightly increase puddle levels while preserving all original map, mission and weather conditions",
+    "mutation_intent": "Preserves all Phase 1 root cause pattern and constraints: keeps Town01 map, original mission spawn/destination, heavy rain/high wetness, 2 puddles, 1 nearby actor, confirmed red light event, and the label conflict between dataset and error.json for lane invasion",
+    "expected_oracle": "compound",
+    "modifications": {
+      "weather_delta": {
+        "rain": 4,
+        "fog": 0,
+        "wetness": 3,
+        "puddle": 2
+      },
+      "actor_mutations": [
+        {
+          "actor_index": 0,
+          "position_offset": {
+            "x": 2.1,
+            "y": -1.3
+          },
+          "speed_delta": 0.6
+        }
+      ],
+      "puddle_mutations": [
+        {
+          "puddle_index": 0,
+          "location_offset": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "level_delta": 0.08,
+          "size_scale": 1.05
+        },
+        {
+          "puddle_index": 1,
+          "location_offset": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "level_delta": 0.07,
+          "size_scale": 0.95
+        }
+      ],
+      "mission_mutation": {
+        "keep_original": true,
+        "spawn_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "destination_offset": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Confirm map is Town01",
+      "Confirm mission spawn and destination match original",
+      "Confirm heavy rain, high wetness, 2 puddles and 1 nearby actor are present"
+    ],
+    "post_execution_validation_rules": [
+      "Check if confirmed red light violation is reproduced",
+      "Check if lane boundary crossing occurs to resolve label conflict",
+      "Check if mismatch between all-zero actuation commands and non-zero vehicle movement is reproduced"
+    ],
+    "uncertainty": [
+      "Lane invasion status remains unconfirmed per original label conflict",
+      "Stop-line crossing for red light is not pre-confirmed",
+      "Module-level root cause remains unlocalized",
+      "Actuation command mismatch does not confirm actuation failure"
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": 4.0,
+      "fog": 0.0,
+      "wetness": 3.0,
+      "puddle": 2.0
+    },
+    "actor_mutations": [
+      {
+        "actor_index": 0,
+        "position_offset": {
+          "x": 2.1,
+          "y": -1.3
+        },
+        "speed_delta": 0.6
+      }
+    ],
+    "puddle_mutations": [
+      {
+        "puddle_index": 0,
+        "location_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "level_delta": 0.08,
+        "size_scale": 1.05
+      },
+      {
+        "puddle_index": 1,
+        "location_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "level_delta": 0.07,
+        "size_scale": 0.95
+      }
+    ],
+    "mission_mutation": {
+      "keep_original": true
+    }
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_103__ark-doubao-seed-2.0-lite-260215.json",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_103__ark-doubao-seed-2.0-lite-260215.json",
+  "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+}

@@ -1,0 +1,105 @@
+{
+  "case_id": "case_147",
+  "round": 4,
+  "model_name": "claude-sonnet-4-5",
+  "candidate_index": 3,
+  "candidate_spec": {
+    "candidate_id": "cand_003",
+    "high_level_variant": "Walker 0 moved perpendicular with increased speed, walker 1 positioned closer to destination area",
+    "mutation_intent": "Create dynamic crossing scenario where walker 0 intersects ego path at higher speed while walker 1 provides secondary detection target",
+    "expected_oracle": "collision",
+    "modifications": {
+      "weather_delta": {
+        "rain": 0,
+        "fog": 0,
+        "wetness": 0,
+        "puddle": 0
+      },
+      "actor_mutations": [
+        {
+          "actor_index": 0,
+          "position_offset": {
+            "x": -3.5,
+            "y": 2.2
+          },
+          "speed_delta": 0.8
+        },
+        {
+          "actor_index": 1,
+          "position_offset": {
+            "x": 4.5,
+            "y": -0.5
+          },
+          "speed_delta": 0.2
+        }
+      ],
+      "puddle_mutations": [],
+      "mission_mutation": {
+        "keep_original": true,
+        "spawn_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "destination_offset": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Walker 0 crossing trajectory intersects ego route",
+      "Walker 1 near destination zone"
+    ],
+    "post_execution_validation_rules": [
+      "Collision detected",
+      "Ego moving backward > 3 m/s",
+      "Waypoints available before collision"
+    ],
+    "uncertainty": [
+      "Higher walker speed may cause early or late intersection",
+      "Perpendicular approach angle effect on detection"
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": 0.0,
+      "fog": 0.0,
+      "wetness": 0.0,
+      "puddle": 0.0
+    },
+    "actor_mutations": [
+      {
+        "actor_index": 0,
+        "position_offset": {
+          "x": -3.5,
+          "y": 2.2
+        },
+        "speed_delta": 0.8
+      },
+      {
+        "actor_index": 1,
+        "position_offset": {
+          "x": 4.5,
+          "y": -0.5
+        },
+        "speed_delta": 0.2
+      }
+    ],
+    "puddle_mutations": [],
+    "mission_mutation": {
+      "keep_original": true
+    },
+    "safety_repairs": []
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "authoritative_original_phase1_output": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_147__claude-sonnet-4-5.json",
+  "round1_feedback_count": 6,
+  "round2_feedback_count": 2,
+  "round3_feedback_count": 6,
+  "feedback_memory_policy": "all_same_seed_outcomes_retained",
+  "round4_api_output": "<WORKSPACE_ROOT>/processed/experiments/round4_feedback/api_outputs/case_147__claude-sonnet-4-5.json"
+}

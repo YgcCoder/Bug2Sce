@@ -1,0 +1,105 @@
+{
+  "case_id": "case_147",
+  "round": 4,
+  "model_name": "claude-sonnet-4-5",
+  "candidate_index": 4,
+  "candidate_spec": {
+    "candidate_id": "cand_004",
+    "high_level_variant": "Walker 0 near spawn with moderate fog and wetness increase, walker 1 original position",
+    "mutation_intent": "Combine actor position adjustment with environmental stress to test perception degradation while preserving multi-object pattern",
+    "expected_oracle": "collision",
+    "modifications": {
+      "weather_delta": {
+        "rain": 5,
+        "fog": 12,
+        "wetness": 15,
+        "puddle": 8
+      },
+      "actor_mutations": [
+        {
+          "actor_index": 0,
+          "position_offset": {
+            "x": -1.5,
+            "y": -1.0
+          },
+          "speed_delta": -0.3
+        },
+        {
+          "actor_index": 1,
+          "position_offset": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "speed_delta": 0.0
+        }
+      ],
+      "puddle_mutations": [],
+      "mission_mutation": {
+        "keep_original": true,
+        "spawn_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "destination_offset": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Weather parameters within conservative bounds",
+      "Walker 0 closer to ego spawn than original"
+    ],
+    "post_execution_validation_rules": [
+      "Collision oracle triggered",
+      "Detection counts present despite fog",
+      "Command-actuation mismatch preserved"
+    ],
+    "uncertainty": [
+      "Environmental stress may prevent oracle trigger",
+      "Fog impact on detection range"
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": 5.0,
+      "fog": 12.0,
+      "wetness": 15.0,
+      "puddle": 8.0
+    },
+    "actor_mutations": [
+      {
+        "actor_index": 0,
+        "position_offset": {
+          "x": -1.5,
+          "y": -1.0
+        },
+        "speed_delta": -0.3
+      },
+      {
+        "actor_index": 1,
+        "position_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "speed_delta": 0.0
+      }
+    ],
+    "puddle_mutations": [],
+    "mission_mutation": {
+      "keep_original": true
+    },
+    "safety_repairs": []
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": []
+  },
+  "authoritative_original_phase1_output": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_147__claude-sonnet-4-5.json",
+  "round1_feedback_count": 6,
+  "round2_feedback_count": 2,
+  "round3_feedback_count": 6,
+  "feedback_memory_policy": "all_same_seed_outcomes_retained",
+  "round4_api_output": "<WORKSPACE_ROOT>/processed/experiments/round4_feedback/api_outputs/case_147__claude-sonnet-4-5.json"
+}

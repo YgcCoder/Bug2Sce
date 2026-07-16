@@ -1,0 +1,126 @@
+{
+  "case_id": "case_118",
+  "model_name": "claude-sonnet-4-5",
+  "candidate_index": 1,
+  "candidate_spec": {
+    "candidate_id": "cand_001",
+    "high_level_variant": "Reduce weather intensity to isolate collision trigger from environmental factors",
+    "mutation_intent": "Lower rain, fog, wetness, puddle to test if collision persists under clearer conditions with same route",
+    "expected_oracle": "collision",
+    "modifications": {
+      "weather_delta": {
+        "rain": -15,
+        "fog": -20,
+        "wetness": -20,
+        "puddle": -15
+      },
+      "actor_mutations": [],
+      "puddle_mutations": [
+        {
+          "puddle_index": 0,
+          "location_offset": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "level_delta": -0.1,
+          "size_scale": 0.9
+        },
+        {
+          "puddle_index": 1,
+          "location_offset": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "level_delta": -0.15,
+          "size_scale": 0.85
+        },
+        {
+          "puddle_index": 2,
+          "location_offset": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "level_delta": -0.1,
+          "size_scale": 0.9
+        }
+      ],
+      "mission_mutation": {
+        "keep_original": true,
+        "spawn_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "destination_offset": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      }
+    },
+    "pre_execution_validation_rules": [
+      "Same spawn and destination as seed",
+      "Weather reduced but still present",
+      "No actors added"
+    ],
+    "post_execution_validation_rules": [
+      "Collision oracle preserved",
+      "Detected objects present before collision",
+      "vehicle_cmd vs vehicle_status mismatch"
+    ],
+    "uncertainty": [
+      "Red-light and lane_invasion labels may conflict",
+      "Fault layer attribution remains unresolved",
+      "Object detection may vary with weather"
+    ]
+  },
+  "applied_modifications": {
+    "weather_delta": {
+      "rain": -15.0,
+      "fog": -20,
+      "wetness": -20,
+      "puddle": -15.0
+    },
+    "actor_mutations": [],
+    "puddle_mutations": [
+      {
+        "puddle_index": 0,
+        "location_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "level_delta": -0.1,
+        "size_scale": 0.9
+      },
+      {
+        "puddle_index": 1,
+        "location_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "level_delta": -0.15,
+        "size_scale": 0.85
+      },
+      {
+        "puddle_index": 2,
+        "location_offset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "level_delta": -0.1,
+        "size_scale": 0.9
+      }
+    ],
+    "mission_mutation": {
+      "keep_original": true
+    }
+  },
+  "pre_validation": {
+    "pre_valid": true,
+    "errors": [],
+    "warnings": [
+      "no actors in candidate scenario"
+    ]
+  },
+  "phase1_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_118__claude-sonnet-4-5.json",
+  "phase2_output_path": "<WORKSPACE_ROOT>/processed/experiments/phase2_api_outputs/case_118__claude-sonnet-4-5.json",
+  "note": "Generated candidate scenario JSON for local DriveFuzz execution. It has not been executed in CARLA/Autoware."
+}

@@ -1,0 +1,119 @@
+{
+  "case_id": "case_137",
+  "workflow": "phase1_causal_explanation",
+  "model_name": "ark-doubao-seed-2.0-lite-260215",
+  "model_id": "ark-doubao-seed-2.0-lite-260215",
+  "status": "completed",
+  "dry_run": false,
+  "schema_valid": true,
+  "schema_errors": [],
+  "quality_flags": [],
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_prompts/case_137__ark-doubao-seed-2.0-lite-260215.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_137__ark-doubao-seed-2.0-lite-260215.json",
+  "prompt_estimated_tokens": 2586,
+  "usage": {
+    "prompt_tokens": 3290,
+    "completion_tokens": 2239,
+    "total_tokens": 5529
+  },
+  "estimated_cost_usd": null,
+  "raw_response": "{\n  \"case_id\": \"case_137\",\n  \"fault_layer\": \"unknown\",\n  \"fault_component\": \"unknown\",\n  \"causal_explanation\": \"This case is consistently labeled a red-light violation by both the dataset and error.json. Critical window evidence does not confirm the ego's route intersects the relevant red light, does not confirm stop-line crossing, and does not directly attribute the violation to any specific Autoware module. A mismatch exists where all vehicle_cmd commands are zero, but vehicle_status records non-zero velocity.\",\n  \"root_cause_pattern\": \"Conservative preservation pattern for a consistently labeled red-light violation with unconfirmed route-light relation, unconfirmed stop-line crossing, and a mismatch between all-zero commanded actuation and non-zero actual vehicle velocity.\",\n  \"preservation_constraints\": [\n    \"Preserve consistent red-light violation labeling across dataset and error.json oracle\",\n    \"Preserve the mismatch between all-zero commanded actuation and non-zero actual velocity in the critical window\",\n    \"Preserve 36 total traffic lights with mixed red (state 0) and non-red (state 2) states in the critical window\",\n    \"Preserve the original ego start and goal mission on Town01 map\"\n  ],\n  \"modifiable_factors\": [\"actor_position\", \"weather_parameters\", \"puddle_location\", \"actor_count\"],\n  \"non_modifiable_conditions\": [\"consistent red-light violation labeling\", \"actuation command-actual state mismatch\", \"Town01 map\", \"mixed traffic light states in critical window\"],\n  \"uncertainty\": [\n    \"Route-light intersection relation is unconfirmed, so it is unclear if a valid violation occurred\",\n    \"Ego stop-line crossing is not confirmed by available evidence\",\n    \"No critical-window evidence directly attributes the violation to any specific Autoware module\",\n    \"The actuation command-velocity mismatch is not sufficient to confirm an actuation fault per rules\"\n  ],\n  \"evidence_support\": [\n    {\"evidence_id\": \"oracle_consistency\", \"claim\": \"Dataset and error.json labels are consistent for red-light violation\"},\n    {\"evidence_id\": \"critical_window_summary\", \"claim\": \"Route-light relation and stop-line crossing are unconfirmed\"},\n    {\"evidence_id\": \"actuation_trace_summary\", \"claim\": \"All vehicle_cmd values are zero while vehicle_status records non-zero velocity up to ~7.7 m/s\"},\n    {\"evidence_id\": \"traffic_light_state_sample\", \"claim\": \"36 traffic lights exist with 24 red (state 0) and 12 non-red (state 2) in the critical window sample\"}\n  ],\n  \"confidence\": \"low\",\n  \"ready_for_phase2_generation\": \"yes\",\n  \"notes_for_validator\": [\n    \"Confirm stop-line crossing and route-light intersection after generation to validate a genuine red-light violation\",\n    \"Verify that the mismatch between commanded and actual actuation is preserved in generated cases\"\n  ]\n}",
+  "parsed_response": {
+    "case_id": "case_137",
+    "fault_layer": "unknown",
+    "fault_component": "unknown",
+    "causal_explanation": "This case is consistently labeled a red-light violation by both the dataset and error.json. Critical window evidence does not confirm the ego's route intersects the relevant red light, does not confirm stop-line crossing, and does not directly attribute the violation to any specific Autoware module. A mismatch exists where all vehicle_cmd commands are zero, but vehicle_status records non-zero velocity.",
+    "root_cause_pattern": "Conservative preservation pattern for a consistently labeled red-light violation with unconfirmed route-light relation, unconfirmed stop-line crossing, and a mismatch between all-zero commanded actuation and non-zero actual vehicle velocity.",
+    "preservation_constraints": [
+      "Preserve consistent red-light violation labeling across dataset and error.json oracle",
+      "Preserve the mismatch between all-zero commanded actuation and non-zero actual velocity in the critical window",
+      "Preserve 36 total traffic lights with mixed red (state 0) and non-red (state 2) states in the critical window",
+      "Preserve the original ego start and goal mission on Town01 map"
+    ],
+    "modifiable_factors": [
+      "actor_position",
+      "weather_parameters",
+      "puddle_location",
+      "actor_count"
+    ],
+    "non_modifiable_conditions": [
+      "consistent red-light violation labeling",
+      "actuation command-actual state mismatch",
+      "Town01 map",
+      "mixed traffic light states in critical window"
+    ],
+    "uncertainty": [
+      "Route-light intersection relation is unconfirmed, so it is unclear if a valid violation occurred",
+      "Ego stop-line crossing is not confirmed by available evidence",
+      "No critical-window evidence directly attributes the violation to any specific Autoware module",
+      "The actuation command-velocity mismatch is not sufficient to confirm an actuation fault per rules"
+    ],
+    "evidence_support": [
+      {
+        "evidence_id": "oracle_consistency",
+        "claim": "Dataset and error.json labels are consistent for red-light violation"
+      },
+      {
+        "evidence_id": "critical_window_summary",
+        "claim": "Route-light relation and stop-line crossing are unconfirmed"
+      },
+      {
+        "evidence_id": "actuation_trace_summary",
+        "claim": "All vehicle_cmd values are zero while vehicle_status records non-zero velocity up to ~7.7 m/s"
+      },
+      {
+        "evidence_id": "traffic_light_state_sample",
+        "claim": "36 traffic lights exist with 24 red (state 0) and 12 non-red (state 2) in the critical window sample"
+      }
+    ],
+    "confidence": "low",
+    "ready_for_phase2_generation": "yes",
+    "notes_for_validator": [
+      "Confirm stop-line crossing and route-light intersection after generation to validate a genuine red-light violation",
+      "Verify that the mismatch between commanded and actual actuation is preserved in generated cases"
+    ]
+  },
+  "raw_api_payload": {
+    "id": "0217829197413071c0c6753674be13a7429d2b96e0ce0271b3ec5",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "{\n  \"case_id\": \"case_137\",\n  \"fault_layer\": \"unknown\",\n  \"fault_component\": \"unknown\",\n  \"causal_explanation\": \"This case is consistently labeled a red-light violation by both the dataset and error.json. Critical window evidence does not confirm the ego's route intersects the relevant red light, does not confirm stop-line crossing, and does not directly attribute the violation to any specific Autoware module. A mismatch exists where all vehicle_cmd commands are zero, but vehicle_status records non-zero velocity.\",\n  \"root_cause_pattern\": \"Conservative preservation pattern for a consistently labeled red-light violation with unconfirmed route-light relation, unconfirmed stop-line crossing, and a mismatch between all-zero commanded actuation and non-zero actual vehicle velocity.\",\n  \"preservation_constraints\": [\n    \"Preserve consistent red-light violation labeling across dataset and error.json oracle\",\n    \"Preserve the mismatch between all-zero commanded actuation and non-zero actual velocity in the critical window\",\n    \"Preserve 36 total traffic lights with mixed red (state 0) and non-red (state 2) states in the critical window\",\n    \"Preserve the original ego start and goal mission on Town01 map\"\n  ],\n  \"modifiable_factors\": [\"actor_position\", \"weather_parameters\", \"puddle_location\", \"actor_count\"],\n  \"non_modifiable_conditions\": [\"consistent red-light violation labeling\", \"actuation command-actual state mismatch\", \"Town01 map\", \"mixed traffic light states in critical window\"],\n  \"uncertainty\": [\n    \"Route-light intersection relation is unconfirmed, so it is unclear if a valid violation occurred\",\n    \"Ego stop-line crossing is not confirmed by available evidence\",\n    \"No critical-window evidence directly attributes the violation to any specific Autoware module\",\n    \"The actuation command-velocity mismatch is not sufficient to confirm an actuation fault per rules\"\n  ],\n  \"evidence_support\": [\n    {\"evidence_id\": \"oracle_consistency\", \"claim\": \"Dataset and error.json labels are consistent for red-light violation\"},\n    {\"evidence_id\": \"critical_window_summary\", \"claim\": \"Route-light relation and stop-line crossing are unconfirmed\"},\n    {\"evidence_id\": \"actuation_trace_summary\", \"claim\": \"All vehicle_cmd values are zero while vehicle_status records non-zero velocity up to ~7.7 m/s\"},\n    {\"evidence_id\": \"traffic_light_state_sample\", \"claim\": \"36 traffic lights exist with 24 red (state 0) and 12 non-red (state 2) in the critical window sample\"}\n  ],\n  \"confidence\": \"low\",\n  \"ready_for_phase2_generation\": \"yes\",\n  \"notes_for_validator\": [\n    \"Confirm stop-line crossing and route-light intersection after generation to validate a genuine red-light violation\",\n    \"Verify that the mismatch between commanded and actual actuation is preserved in generated cases\"\n  ]\n}",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null,
+          "reasoning_content": "\nGot it, let's work through this step by step. First, the case_id is case_137, right? Got that from input.\n\nNext, fault_layer. Let's see. The evidence says route-light relation is unknown, stop line crossing not confirmed. All we have is the red light violation labeled, but no module evidence that points to a specific layer. Wait, wait, let's check: vehicle_cmd has all zero steer, accel, brake, target speed, but vehicle_status has velocity up to 7.7. Oh right, the rule says if vehicle_cmd is all zero but vehicle status has movement, mark controller as uncertain, can't assign actuation from that alone. Also, we don't have proof that perception didn't detect the red light, planning didn't plan a stop. So fault_layer should be unknown? Wait, let's confirm. Yeah, no direct evidence for any module. Fault component is unknown too.\n\nCausal explanation: Let's write that. The case is labeled as a red light violation by both dataset and error.json, oracle is consistent. But there's no confirmed evidence of stop-line crossing or that the ego's route actually intersects the red light. No module-level failure is directly confirmed by the critical window evidence. Wait, also, vehicle_cmd is all zero but vehicle_status has movement, that mismatch is there but can't confirm actuation fault. Let's make it concise: \"This case is consistently labeled a red-light violation by both the dataset and error.json. Critical window evidence does not confirm that ego's route intersects the relevant red light, does not confirm stop-line crossing, and does not directly attribute the violation to any specific Autoware module. A mismatch exists where all vehicle_cmd commands are zero, but vehicle_status records non-zero velocity.\"\n\nRoot cause pattern: Since we can't confirm a module bug, it's a conservative preservation pattern: Conservative pattern for red-light violation labeling where route-light relation and stop-line crossing are unconfirmed, with a mismatch between commanded and actual vehicle actuation states. That makes sense.\n\nPreservation constraints: Let's do 3-6. Let's see: 1. Preserve the consistent red-light violation labeling from both dataset and error.json. 2. Preserve the mismatch between all-zero vehicle_cmd values and non-zero actual vehicle velocity in the critical window. 3. Preserve the presence of 36 total traffic lights with mixed red (state 0) and non-red (state 2) states in the critical window. 4. Preserve the ego mission start and goal positions on Town01 map. Wait, that's good. Let me list them properly.\n\nModifiable factors: Let's see, what can be changed? actor positions, weather parameters (rain, fog, etc), puddle location, number of actors, right? So [\"actor_position\", \"weather_conditions\", \"puddle_location\", \"actor_count\"] that works.\n\nNon_modifiable_conditions: [\"consistent red-light violation labeling across dataset and error.json\", \"mismatch between all-zero commanded actuation and non-zero actual velocity\", \"Town01 map\", \"36 total traffic lights present in critical window\"] that's right.\n\nUncertainty: Let's list what's uncertain. 1. Route-light intersection relation is unconfirmed, so it's unclear if a valid violation occurred. 2. Stop-line crossing by ego is not confirmed. 3. No direct evidence of which module (sensing, perception, planning, actuation) caused the violation. 4. The mismatch between vehicle_cmd and vehicle_status can't confirm actuation failure per rules. That's good.\n\nEvidence support: Let's map each. First, {\"evidence_id\": \"oracle_consistency\", \"claim\": \"Dataset and error.json labels are consistent for red-light violation\"}, then {\"evidence_id\": \"critical_window_summary\", \"claim\": \"Route-light relation and stop-line crossing are unconfirmed\"}, {\"evidence_id\": \"actuation trace summary\", \"claim\": \"All vehicle_cmd values are zero while vehicle_status records non-zero velocity up to ~7.7 m/s\"}, {\"evidence_id\": \"traffic_light_state_sample\", \"claim\": \"36 traffic lights exist with 24 in state 0 (red) and 12 in state 2 in the critical window sample\"}. That's correct.\n\nConfidence: Low? Wait, or medium? Wait, we know the label is consistent, but no root cause. So confidence low, because we can't attribute the fault. Yeah, confidence low.\n\nReady_for_phase2_generation: Yes, because we have a checkable conservative pattern. Wait, the rule says use yes when there's a checkable conservative preservation pattern. So yes.\n\nNotes_for_validator: [\"Must confirm stop-line crossing and route-light intersection after generation to validate if a genuine red-light violation occurred with the same root candidate\", \"Check that the mismatch between commanded and actual actuation is preserved in generated cases\"] That's good.\n\nWait let's check all rules. Let's make sure we didn't infer anything we shouldn't. Like, we didn't infer stop line crossing, didn't assign fault to a layer because no evidence. We marked the uncertainty about the mismatch. All good.\n\nNow let's structure it into the JSON correctly. Let's make sure all fields are there. Let's put it all together:\n\nWait let's check again case_id is case_137, correct. fault_layer is unknown, fault_component unknown. Causal explanation as we had. Root cause pattern: \"Conservative preservation pattern: a consistently labeled red-light violation case with an unconfirmed route-light relation, unconfirmed stop-line crossing, and a mismatch between all-zero commanded actuation and non-zero actual vehicle velocity.\" That's good.\n\nPreservation constraints: let's write them:\n[\n  \"Preserve consistent red-light violation labeling across the dataset and error.json oracle\",\n  \"Preserve the mismatch between all-zero commanded actuation values and non-zero actual vehicle velocity in the critical window\",\n  \"Preserve 36 total traffic lights with mixed red (state 0) and non-red (state 2) states in the critical window\",\n  \"Preserve the original ego start and goal mission on the Town01 map\"\n]\n\nThat's 4, good.\n\nModifiable_factors: [\"actor_position\", \"weather_parameters\", \"puddle_location\", \"actor_count\"]\n\nNon_modifiable_conditions: [\"consistent red-light violation labeling\", \"actuation command-actual state mismatch\", \"Town01 map\", \"mixed traffic light states in critical window\"]\n\nUncertainty: [\n  \"Route-light intersection relation is not confirmed, so it is unclear if a valid red-light violation occurred\",\n  \"Ego stop-line crossing is not confirmed by available evidence\",\n  \"No critical-window evidence directly attributes the violation to any specific Autoware module\",\n  \"The actuation command-velocity mismatch is not sufficient to confirm an actuation layer fault per rules\"\n]\n\nEvidence support: as we had, let's make sure each is correct.\n\nConfidence is low, right? Because we can't confirm the root cause, so low. Ready for phase2 is yes, because we have a checkable pattern.\n\nNotes for validator: [\"Check for confirmed stop-line crossing and route-light intersection after execution to validate the red-light violation\", \"Verify that the mismatch between commanded actuation and actual vehicle velocity is preserved in generated cases\"]\n\nYes that all checks out. Now let's write it as proper JSON, no extra stuff."
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "doubao-seed-2-0-lite-260215",
+    "object": "chat.completion",
+    "service_tier": "default",
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 2239,
+      "prompt_tokens": 3290,
+      "total_tokens": 5529,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 1589,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": null,
+        "cached_tokens": 0
+      }
+    }
+  },
+  "error_message": "",
+  "timestamp": "<REDACTED_TIMESTAMP>",
+  "elapsed_sec": 54.583
+}

@@ -1,0 +1,123 @@
+{
+  "case_id": "case_029",
+  "workflow": "phase1_causal_explanation",
+  "model_name": "ark-deepseek-r1-250528",
+  "model_id": "ark-deepseek-r1-250528",
+  "status": "completed",
+  "dry_run": false,
+  "schema_valid": true,
+  "schema_errors": [],
+  "quality_flags": [],
+  "prompt_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_prompts/case_029__ark-deepseek-r1-250528.md",
+  "output_path": "<WORKSPACE_ROOT>/processed/experiments/phase1_api_outputs/case_029__ark-deepseek-r1-250528.json",
+  "prompt_estimated_tokens": 2724,
+  "usage": {
+    "prompt_tokens": 3514,
+    "completion_tokens": 2008,
+    "total_tokens": 5522
+  },
+  "estimated_cost_usd": null,
+  "raw_response": "{\n  \"case_id\": \"case_029\",\n  \"fault_layer\": \"unknown\",\n  \"fault_component\": \"unknown\",\n  \"causal_explanation\": \"Dataset labels this case as having both lane invasion and red light violation, but error.json only confirms a red light event, with open conflict on the lane invasion label. No available critical-window evidence directly localizes the failure to a specific Autoware module.\",\n  \"root_cause_pattern\": \"Conservative preservation pattern: Ego vehicle encounters a red traffic light during its Town01 mission, with conflicting oracle labels for an additional lane invasion fault, and no confirmed module-level root cause from available evidence.\",\n  \"preservation_constraints\": [\n    \"Preserve the mission start and goal positions on the Town01 map\",\n    \"Preserve the presence of 2 actors in the scenario\",\n    \"Preserve the confirmed red light event reported by error.json\",\n    \"Preserve the conflicting lane invasion and fault group labels between dataset and error.json\",\n    \"Preserve enabled rain in the scenario weather conditions\"\n  ],\n  \"modifiable_factors\": [\"actor_position\", \"fog_density\", \"wind_speed\", \"cloud_coverage\", \"wetness level\"],\n  \"non_modifiable_conditions\": [\"same Town01 map\", \"same mission start and end points\", \"2 total actors\", \"rain is enabled\", \"red light event is present\"],\n  \"uncertainty\": [\n    \"Dataset and error.json conflict on lane_invasion label and fault group assignment\",\n    \"Route-light relation and stop-line crossing for red light violation are unconfirmed\",\n    \"Lane boundary crossing for the reported lane invasion is unconfirmed\",\n    \"No critical-window evidence directly attributes fault to any specific Autoware module\",\n    \"All sampled vehicle_cmd values are zero while vehicle_status recorded non-zero velocity, so actuation behavior is uncertain\"\n  ],\n  \"evidence_support\": [\n    {\"evidence_id\": \"oracle_consistency\", \"claim\": \"Dataset labels lane_invasion=1 and group=L+R, while error.json labels lane_invasion=0 and group=R\"},\n    {\"evidence_id\": \"red_light_window_summary\", \"claim\": \"Route-light relation and stop-line crossing are not confirmed by available evidence\"},\n    {\"evidence_id\": \"actuation_topic_summary\", \"claim\": \"Sampled vehicle_cmd has all zero values, while vehicle_status records maximum velocity up to ~9.27 m/s\"},\n    {\"evidence_id\": \"label_conflict\", \"claim\": \"Manual review is required to resolve the label conflict, no resolution is provided in input\"}\n  ],\n  \"confidence\": \"low\",\n  \"ready_for_phase2_generation\": \"uncertain\",\n  \"notes_for_validator\": [\n    \"Resolve the label conflict between dataset and error.json before confirming same-root-cause status for generated cases\",\n    \"After generation, verify stop-line crossing to confirm red light violation and lane boundary crossing to confirm lane invasion if required\"\n  ]\n}",
+  "parsed_response": {
+    "case_id": "case_029",
+    "fault_layer": "unknown",
+    "fault_component": "unknown",
+    "causal_explanation": "Dataset labels this case as having both lane invasion and red light violation, but error.json only confirms a red light event, with open conflict on the lane invasion label. No available critical-window evidence directly localizes the failure to a specific Autoware module.",
+    "root_cause_pattern": "Conservative preservation pattern: Ego vehicle encounters a red traffic light during its Town01 mission, with conflicting oracle labels for an additional lane invasion fault, and no confirmed module-level root cause from available evidence.",
+    "preservation_constraints": [
+      "Preserve the mission start and goal positions on the Town01 map",
+      "Preserve the presence of 2 actors in the scenario",
+      "Preserve the confirmed red light event reported by error.json",
+      "Preserve the conflicting lane invasion and fault group labels between dataset and error.json",
+      "Preserve enabled rain in the scenario weather conditions"
+    ],
+    "modifiable_factors": [
+      "actor_position",
+      "fog_density",
+      "wind_speed",
+      "cloud_coverage",
+      "wetness level"
+    ],
+    "non_modifiable_conditions": [
+      "same Town01 map",
+      "same mission start and end points",
+      "2 total actors",
+      "rain is enabled",
+      "red light event is present"
+    ],
+    "uncertainty": [
+      "Dataset and error.json conflict on lane_invasion label and fault group assignment",
+      "Route-light relation and stop-line crossing for red light violation are unconfirmed",
+      "Lane boundary crossing for the reported lane invasion is unconfirmed",
+      "No critical-window evidence directly attributes fault to any specific Autoware module",
+      "All sampled vehicle_cmd values are zero while vehicle_status recorded non-zero velocity, so actuation behavior is uncertain"
+    ],
+    "evidence_support": [
+      {
+        "evidence_id": "oracle_consistency",
+        "claim": "Dataset labels lane_invasion=1 and group=L+R, while error.json labels lane_invasion=0 and group=R"
+      },
+      {
+        "evidence_id": "red_light_window_summary",
+        "claim": "Route-light relation and stop-line crossing are not confirmed by available evidence"
+      },
+      {
+        "evidence_id": "actuation_topic_summary",
+        "claim": "Sampled vehicle_cmd has all zero values, while vehicle_status records maximum velocity up to ~9.27 m/s"
+      },
+      {
+        "evidence_id": "label_conflict",
+        "claim": "Manual review is required to resolve the label conflict, no resolution is provided in input"
+      }
+    ],
+    "confidence": "low",
+    "ready_for_phase2_generation": "uncertain",
+    "notes_for_validator": [
+      "Resolve the label conflict between dataset and error.json before confirming same-root-cause status for generated cases",
+      "After generation, verify stop-line crossing to confirm red light violation and lane boundary crossing to confirm lane invasion if required"
+    ]
+  },
+  "raw_api_payload": {
+    "id": "0217829205766786061aa40146dbf4d117b0497e84060d77be2b8",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "{\n  \"case_id\": \"case_029\",\n  \"fault_layer\": \"unknown\",\n  \"fault_component\": \"unknown\",\n  \"causal_explanation\": \"Dataset labels this case as having both lane invasion and red light violation, but error.json only confirms a red light event, with open conflict on the lane invasion label. No available critical-window evidence directly localizes the failure to a specific Autoware module.\",\n  \"root_cause_pattern\": \"Conservative preservation pattern: Ego vehicle encounters a red traffic light during its Town01 mission, with conflicting oracle labels for an additional lane invasion fault, and no confirmed module-level root cause from available evidence.\",\n  \"preservation_constraints\": [\n    \"Preserve the mission start and goal positions on the Town01 map\",\n    \"Preserve the presence of 2 actors in the scenario\",\n    \"Preserve the confirmed red light event reported by error.json\",\n    \"Preserve the conflicting lane invasion and fault group labels between dataset and error.json\",\n    \"Preserve enabled rain in the scenario weather conditions\"\n  ],\n  \"modifiable_factors\": [\"actor_position\", \"fog_density\", \"wind_speed\", \"cloud_coverage\", \"wetness level\"],\n  \"non_modifiable_conditions\": [\"same Town01 map\", \"same mission start and end points\", \"2 total actors\", \"rain is enabled\", \"red light event is present\"],\n  \"uncertainty\": [\n    \"Dataset and error.json conflict on lane_invasion label and fault group assignment\",\n    \"Route-light relation and stop-line crossing for red light violation are unconfirmed\",\n    \"Lane boundary crossing for the reported lane invasion is unconfirmed\",\n    \"No critical-window evidence directly attributes fault to any specific Autoware module\",\n    \"All sampled vehicle_cmd values are zero while vehicle_status recorded non-zero velocity, so actuation behavior is uncertain\"\n  ],\n  \"evidence_support\": [\n    {\"evidence_id\": \"oracle_consistency\", \"claim\": \"Dataset labels lane_invasion=1 and group=L+R, while error.json labels lane_invasion=0 and group=R\"},\n    {\"evidence_id\": \"red_light_window_summary\", \"claim\": \"Route-light relation and stop-line crossing are not confirmed by available evidence\"},\n    {\"evidence_id\": \"actuation_topic_summary\", \"claim\": \"Sampled vehicle_cmd has all zero values, while vehicle_status records maximum velocity up to ~9.27 m/s\"},\n    {\"evidence_id\": \"label_conflict\", \"claim\": \"Manual review is required to resolve the label conflict, no resolution is provided in input\"}\n  ],\n  \"confidence\": \"low\",\n  \"ready_for_phase2_generation\": \"uncertain\",\n  \"notes_for_validator\": [\n    \"Resolve the label conflict between dataset and error.json before confirming same-root-cause status for generated cases\",\n    \"After generation, verify stop-line crossing to confirm red light violation and lane boundary crossing to confirm lane invasion if required\"\n  ]\n}",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": null,
+          "reasoning_content": "\nGot it, let's work through this step by step. First, the case_id is case_029, right? Got that from input.\n\nNext, fault_layer. Let's see: there's conflicting labels between dataset and error.json. Dataset says lane_invasion 1, red 1, group L+R, error_json says lane_invasion 0, red 1, group R. Also, we don't have confirmed stop line crossing, no confirmed lane boundary crossing, and module attribution isn't clear. Wait, let's check: vehicle_cmd is all zero, but vehicle_status? Wait, vehicle_cmd has steer, accel, brake all 0, target speed 0, but vehicle_status had velocity up to 9.26. Oh right, the rule says if vehicle_cmd all zero but status shows movement, controller behavior uncertain, can't assign actuation from that alone. Also, no direct evidence of which module failed. So fault_layer should be unknown? Wait, let's confirm. Yeah, because of conflicting labels, no direct module fault evidence. So fault_layer unknown, fault_component unknown.\n\nCausal explanation: Let's structure it. Dataset labels both lane invasion and red light violation, but error.json only confirms red light violation, with a conflict on lane invasion. No direct evidence localizing the failure to a specific Autoware module, route-light relation and stop-line crossing are unconfirmed, lane boundary crossing is unconfirmed. That makes sense.\n\nRoot-cause pattern: Conservative pattern: Ego vehicle encounters a red traffic light during the mission, with conflicting oracle labels for an additional lane invasion fault, module-level root cause attribution is unconfirmed by available evidence. Yeah, that's right.\n\nPreservation constraints: Let's do 3-6, like the rules say. Let's list: 1. Preserve the mission start and goal positions on Town01 map. 2. Preserve the presence of 2 actors in the scenario. 3. Preserve the confirmed red light event reported by error.json. 4. Preserve the conflicting oracle labels between dataset and error.json for lane invasion. 5. Preserve the rainy, wet weather conditions from the scenario config. Wait, that's good, 5 constraints, that's fine.\n\nModifiable_factors: Let's see, what can be changed? actor_position, fog density, wind speed, cloud coverage, right? Wait, the existing weather has cloud 100, rain 1, etc. So modifiable could be [\"actor_position\", \"fog_density\", \"wind_speed\", \"cloud_coverage\"] that's good.\n\nNon_modifiable_conditions: Let's see, [\"same Town01 map\", \"same mission start and goal\", \"2 total actors in the scenario\", \"red light event reported by error.json\", \"rain is enabled in weather\"] yeah, that's right.\n\nUncertainty: Let's list the conflicts and missing info. 1. Dataset and error.json conflict on lane_invasion label and fault group. 2. Route-light relation and stop-line crossing for red light violation are not confirmed. 3. Lane boundary crossing for lane invasion is not confirmed. 4. No critical-window evidence directly attributes the fault to any specific Autoware module. 5. vehicle_cmd is all zero but vehicle_status has non-zero maximum velocity, so actuation behavior is uncertain. That's all correct.\n\nEvidence_support: Let's go through each evidence. First, {\"evidence_id\": \"oracle_consistency\", \"claim\": \"Dataset label for lane_invasion=1 conflicts with error_json lane_invasion=0, and fault group conflict exists.\"}, then {\"evidence_id\": \"red_light_window_summary\", \"claim\": \"Route-light relation and stop-line crossing are unconfirmed for the red light event.\"}, {\"evidence_id\": \"actuation_topic_summary\", \"claim\": \"All vehicle_cmd values are zero in the sampled critical window, while vehicle_status recorded non-zero maximum velocity.\"}, {\"evidence_id\": \"label_conflict\", \"claim\": \"Manual review is needed to resolve label conflicts, no resolution is provided in input evidence.\"} That's good.\n\nConfidence: Low, right? Because of all the uncertainty and conflicts. So confidence low.\n\nReady_for_phase2_generation: Wait, the rules say use yes when there's a checkable conservative pattern. Wait, but there's a conflict, but do we have a checkable pattern? Wait, let's see: the guidance says use as uncertainty-aware input. So ready_for_phase2_generation is uncertain? Wait no, wait the rule: \"Do not set ready_for_phase2_generation=no solely because fault_layer is unknown. Use yes when there is a checkable conservative preservation pattern; use uncertain when labels conflict or a key condition is missing.\" Oh right! Labels conflict, so ready_for_phase2_generation is uncertain? Wait let's check that rule again: yes when checkable conservative, uncertain when labels conflict or key condition missing. Yeah, this case has conflicting labels, so it's uncertain. Wait wait, let me re-read that rule: \"Do not set ready_for_phase2_generation=no solely because fault_layer is unknown. Use yes when there is a checkable conservative preservation pattern; use uncertain when labels conflict or a key condition is missing.\" Okay, so labels conflict here, so it's uncertain.\n\nNotes_for_validator: [\"Resolve label conflict between dataset and error.json before confirming generated case root cause.\", \"Verify stop-line crossing for red light violation and lane boundary crossing for lane invasion after generation to confirm fault occurrence.\"] That's good.\n\nWait let's put all this together correctly, make sure it follows all rules. Let's check each rule:\n\n- No invention: all from evidence. Correct.\n- Mark uncertainty when disagree: yes, we did that.\n- Red light: no infer route-light or stop-line crossing unless evidence: correct, we said they are unconfirmed.\n- Lane invasion: no infer crossing: correct.\n- Vehicle_cmd all zero, vehicle status movement: marked uncertain, didn't assign actuation: correct.\n- Preservation constraints are semantic, no timestamps or raw IDs: correct.\n- Root cause is conservative, no module blame without evidence: correct.\n- Fault_layer is unknown when no attribution: correct.\n- Ready for phase2 is uncertain because labels conflict: correct.\n\nLet me write the JSON properly now, make sure no mistakes."
+        }
+      }
+    ],
+    "created": "<REDACTED_TIMESTAMP>",
+    "model": "doubao-seed-2-0-lite-260215",
+    "object": "chat.completion",
+    "service_tier": "default",
+    "system_fingerprint": null,
+    "usage": {
+      "completion_tokens": 2008,
+      "prompt_tokens": 3514,
+      "total_tokens": 5522,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 1350,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": null,
+        "cached_tokens": 0
+      }
+    }
+  },
+  "error_message": "",
+  "timestamp": "<REDACTED_TIMESTAMP>",
+  "elapsed_sec": 40.051
+}
